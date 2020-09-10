@@ -1,4 +1,8 @@
+# system files and folders
 node_modules/
 .DS_STORE
 *.log
+
+# shopify files
 config.yml
+assets/

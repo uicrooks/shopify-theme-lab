@@ -1,0 +1,12 @@
+development:
+  password: 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
+  theme_id: "111395078306"
+  store: sergejcodes.myshopify.com
+  ignores:
+    - .config/.shopifyignore
+production:
+  password: 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
+  theme_id: "111395078306"
+  store: sergejcodes.myshopify.com
+  ignores:
+    - .config/.shopifyignore
