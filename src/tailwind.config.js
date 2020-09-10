@@ -1,9 +1,9 @@
-/*
-** TailwindCSS Configuration File
-**
-** Docs: https://tailwindcss.com/docs/configuration
-** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
-*/
+/**
+ * tailwindCSS Configuration File
+ *
+ * docs: https://tailwindcss.com/docs/configuration
+ * default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
+ */
 
 module.exports = {
   theme: {
@@ -12,17 +12,17 @@ module.exports = {
   variants: {},
   plugins: [],
   purge: {
-    // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
+    // learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
     content: [
-      'src/**/*.vue',
-      'src/**/*.js',
-      'layout/**/*',
-      'templates/**/*',
+      '**/*.vue',
+      '**/*.js',
+      'shopify/layout/**/*',
+      'shopify/templates/**/*',
     ]
   },
   future: {
-    // Learn more on https://tailwindcss.com/docs/upcoming-changes
+    // learn more on https://tailwindcss.com/docs/upcoming-changes
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true
   },
