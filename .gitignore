@@ -4,5 +4,5 @@ node_modules/
 *.log
 
 # shopify files
-config.yml
+shopify.config.yml
 assets/
