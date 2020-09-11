@@ -9,8 +9,8 @@
     "reloadr": "node .config/reloadr/reloadr.server.js",
     "shopify:watch": "theme watch --env=development --allow-live --config .config/shopify.config.yml --dir shopify --notify=http://localhost:5000/reload",
     "shopify:deploy": "theme deploy --env=production --config .config/shopify.config.yml --dir shopify",
-    "open:dev": "theme open --env=development",
-    "open:live": "theme open --env=production"
+    "open:dev": "theme open --env=development --config .config/shopify.config.yml",
+    "open:live": "theme open --env=production --config .config/shopify.config.yml"
   },
   "dependencies": {
     "tailwindcss": "^1.8.6",
