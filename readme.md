@@ -1,6 +1,10 @@
 # Shopify Starterkit
 
-Shopify Starterkit for rapid theme development with the power of Vue and Tailwind CSS 🔥.
+Shopify Starterkit for rapid theme development with the power of Vue and Tailwind CSS 🔥
+
+## System Requirements
+- Node.js
+- Yarn
 
 ## Features
 - Shopify
