@@ -4,7 +4,7 @@
 
 # Shopify Starterkit
 
-Shopify Starterkit is a development environment for rapid shopify theme development with Vue and Tailwind CSS 🔥
+Shopify Starterkit is a development environment for rapid Shopify theme development with Vue and Tailwind CSS 🔥
 
 ## Features
 - Shopify
@@ -34,18 +34,18 @@ Shopify Starterkit is a development environment for rapid shopify theme developm
 ## Directories
 | Directories | Description |
 | - | - |
-| .config | configurations for `shopify`, `webpack`, `postCSS` and `reloadr` plugin |
-| shopify | contains shopify theme templates |
+| .config | contains configurations for `shopify`, `webpack`, `postCSS` and `reloadr` |
+| shopify | contains Shopify theme templates and config files |
 | src | contains `tailwind`, `vue` and `scss` files |
 
 ## Tasks
 | Task | Description |
 | - | - |
-| start | runs `dev`, `reloadr` and `shopify:watch` tasks in parallel |
-| dev | bundle and watch for changes in src files with webpack |
-| build | create dist files for shoppify in `shopify/assets/` directory with webpack |
-| reloadr | runs a http server and websocket server for remote auto reloading |
-| shopify:watch | watches for changes in the `shopify` folder and uploads to the dev store |
-| shopify:deploy | uploads the `shopify/` folder to the live store |
-| open:dev | opens the url of the dev store |
-| open:live | opens the url of the live store |
+| start | run `dev`, `reloadr` and `shopify:watch` tasks in parallel |
+| dev | bundle and watch for changes in `src/` files with webpack |
+| build | create dist files for Shopify in `shopify/assets/` directory with webpack |
+| reloadr | run a http server and websocket server for remote auto reloading |
+| shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
+| shopify:deploy | upload the `shopify/` directory to the live store |
+| open:dev | open the url of the dev store |
+| open:live | open the url of the live store |
