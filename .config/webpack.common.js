@@ -27,7 +27,7 @@ module.exports = {
   },
   plugins: [
     new ProgressBarPlugin(),
-    // new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
     new VueLoaderPlugin()
   ]
 }
