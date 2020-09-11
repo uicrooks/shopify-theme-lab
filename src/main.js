@@ -5,6 +5,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import './scss/main.scss'
 
+Vue.config.productionTip = false
+
 /**
  * vue components
  * auto import all vue components

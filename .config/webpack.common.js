@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
+  stats: 'minimal',
   entry: path.resolve(__dirname, '../src/main.js'),
   output: {
     path: path.resolve(__dirname, '../shopify/assets/'),
@@ -26,7 +27,7 @@ module.exports = {
   },
   plugins: [
     new ProgressBarPlugin(),
-    new CleanWebpackPlugin(),
+    // new CleanWebpackPlugin(),
     new VueLoaderPlugin()
   ]
 }
