@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="250px" src=".config/readme/logo.svg" alt="Shopify Starterkit logo"></a>
+  <img width="250px" src=".config/readme/logo.svg" alt="Shopify Starterkit logo">
 </p>
 
 # Shopify Starterkit
