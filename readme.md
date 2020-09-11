@@ -1,6 +1,6 @@
-# Shopify Boilerplate
+# Shopify Starterkit
 
-Shopify boilerplate for rapid theme development with the power of Vue and Tailwind CSS 🔥.
+Shopify Starterkit for rapid theme development with the power of Vue and Tailwind CSS 🔥.
 
 ## Features
 - Shopify
