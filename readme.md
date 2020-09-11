@@ -1,10 +1,10 @@
+<p align="center">
+  <img width="250px" src=".config/readme/logo.svg" alt="Shopify Starterkit logo"></a>
+</p>
+
 # Shopify Starterkit
 
 Shopify Starterkit for rapid theme development with the power of Vue and Tailwind CSS 🔥
-
-## System Requirements
-- Node.js
-- Yarn
 
 ## Features
 - Shopify
@@ -15,6 +15,10 @@ Shopify Starterkit for rapid theme development with the power of Vue and Tailwin
 - Tailwind CSS
 - Webpack
 - Auto-Reload
+
+## System Requirements
+- Node.js
+- Yarn
 
 ## Getting started
 1. Follow the steps on [Theme Kit Docs](https://shopify.github.io/themekit)
