@@ -47,5 +47,7 @@ Shopify Starterkit is a development environment for rapid Shopify theme developm
 | reloadr | run a http server and websocket server for remote auto reloading |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
 | shopify:deploy | upload the `shopify/` directory to the live store |
+| settings:dev | download `settings_data.json` from dev store |
+| settings:live | download `settings_data.json` from live store |
 | open:dev | open the url of the dev store |
 | open:live | open the url of the live store |
