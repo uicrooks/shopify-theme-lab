@@ -22,14 +22,29 @@ module.exports = {
       {
         test: /\.vue$/,
         loader: 'vue-loader'
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          'file-loader'
+        ]
       }
     ]
   },
   plugins: [
     new ProgressBarPlugin(),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['bundle.js', 'bundle.css']
-    }),
+    new CleanWebpackPlugin(), // Docs: https://github.com/johnagan/clean-webpack-plugin
     new VueLoaderPlugin()
   ]
 }
