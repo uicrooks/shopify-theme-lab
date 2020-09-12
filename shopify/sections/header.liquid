@@ -1,0 +1,78 @@
+<div
+  class="bg-gray-200 py-4 mb-8"
+  style="color: {{ section.settings.text_color }}; background: {{ section.settings.background_color }};"
+>
+  <div class="container">
+    <div class="flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold">
+        Logo
+      </a>
+
+      <div class="space-x-4">
+        {% for link in linklists.main-menu.links %}
+          {% assign child_list_handle = link.title | handleize %}
+
+          {% if linklists[child_list_handle].links != blank %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+            [{% for childlink in linklists[child_list_handle].links %}
+              <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+            {% endfor %}]
+          {% else %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="flex items-center space-x-4">
+        {% if shop.customer_accounts_enabled %}
+          {% if customer %}
+            <a href="/account">account</a>
+            {{ 'log out'  | customer_logout_link }}
+          {% else %}
+            {{ 'log in ' | customer_login_link }}
+            {{ 'register' | customer_register_link }}
+          {% endif %}
+        {% endif %}
+
+        <a href="/cart" class="flex items-center">
+          Cart
+          {% render 'icon-cart', class: 'text-gray-600 w-5 ml-2' %}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": {
+    "en": "Header",
+    "de": "Kopfzeile"
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": {
+        "en": "Colrs",
+        "de": "Farben"
+      }
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": {
+        "en": "Background color",
+        "de": "Hintergrundfarbe"
+      }
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": {
+        "en": "Text color",
+        "de": "Textfarbe"
+      }
+    }
+  ]
+}
+{% endschema %}

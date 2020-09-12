@@ -1,1 +1,56 @@
-<!-- /templates/customers/login.liquid -->
+{% form 'customer_login', novalidate: 'novalidate' %}
+  {%- if form.errors -%}
+    <div>
+      <h2 class="" tabindex="-1" data-form-status>{{ 'contact.form.error_heading' | t }}</h2>
+      {{ form.errors | default_errors }}
+    </div>
+  {%- endif -%}
+
+  <div>
+    <label for="CustomerEmail">{{ 'customer.login.email' | t }}</label>
+    <input
+      type="email"
+      name="customer[email]"
+      id="CustomerEmail"
+      autocomplete="email"
+      autocorrect="off"
+      autocapitalize="off"
+      class="border"
+      {%- if form.errors contains 'form' -%}
+        class="input--error"
+        aria-invalid="true"
+      {%- endif -%}
+    >
+  </div>
+
+  {% if form.password_needed %}
+    <div>
+      <label for="CustomerPassword">{{ 'customer.login.password' | t }}</label>
+      <input
+        type="password"
+        value=""
+        name="customer[password]"
+        id="CustomerPassword"
+        class="border"
+        {%- if form.errors contains 'form' -%}
+          class="input--error"
+          aria-invalid="true"
+        {%- endif -%}
+      >
+    </div>
+  {% endif %}
+
+  <div class="text-center">
+    {% if form.password_needed %}
+      <p>
+        <a href="#recover" id="RecoverPassword">{{ 'customer.login.forgot_password' | t }}</a>
+      </p>
+    {% endif %}
+
+    <input type="submit" value="{{ 'customer.login.sign_in' | t }}">
+
+    <p>
+      {{ 'layout.customer.create_account' | t | customer_register_link }}
+    </p>
+  </div>
+{% endform %}

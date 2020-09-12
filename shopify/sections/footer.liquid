@@ -1,0 +1,61 @@
+<div
+  class="text-white bg-gray-800 py-4"
+  style="color: {{ section.settings.text_color }}; background: {{ section.settings.background_color }};"
+>
+  <div class="container">
+    <div
+      class="flex justify-center border-b border-gray-700 space-x-4 pb-4"
+      style="border-color: {{ section.settings.separator_color }};"
+    >
+      {% for link in linklists.footer.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </div>
+
+    <div class="text-sm text-center pt-4">
+      &copy; Shopify Themekit
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": {
+    "en": "Footer",
+    "de": "Fußzeile"
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": {
+        "en": "Colors",
+        "de": "Farben"
+      }
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": {
+        "en": "Background color",
+        "de": "Hintergrundfarbe"
+      }
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": {
+        "en": "Text color",
+        "de": "Textfarbe"
+      }
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": {
+        "en": "Separator color",
+        "de": "Trenstrichfarbe"
+      }
+    }
+  ]
+}
+{% endschema %}
