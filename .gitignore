@@ -5,4 +5,5 @@ node_modules/
 
 # shopify files
 shopify.config.yml
-assets/
+**/assets/bundle.js
+**/assets/bundle.css

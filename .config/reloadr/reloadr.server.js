@@ -24,7 +24,7 @@ http.createServer((req, res) => {
     setTimeout(() => {
       clients.forEach(client => client.send('reload'))
     }, options.delay)
-    res.writeHead(200)
-    res.end()
   }
+
+  res.end()
 }).listen(options.serverPort)
