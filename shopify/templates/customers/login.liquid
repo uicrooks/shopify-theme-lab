@@ -15,7 +15,6 @@
       autocomplete="email"
       autocorrect="off"
       autocapitalize="off"
-      class="border"
       {%- if form.errors contains 'form' -%}
         class="input--error"
         aria-invalid="true"
@@ -31,7 +30,6 @@
         value=""
         name="customer[password]"
         id="CustomerPassword"
-        class="border"
         {%- if form.errors contains 'form' -%}
           class="input--error"
           aria-invalid="true"

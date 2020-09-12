@@ -6,11 +6,18 @@
     }
   },
   "layout": {
+    "search": {
+      "title": "Search",
+      "no_results": "No results"
+    },
+    "cart": {
+      "title": "Cart"
+    },
     "customer": {
       "account": "Account",
-      "log_out": "Log out",
       "log_in": "Log in",
-      "create_account": "Create account"
+      "log_out": "Log out",
+      "register": "Register"
     }
   },
   "customer": {

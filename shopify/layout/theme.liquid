@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ shop.locale }}" class="h-full">
+<html lang="{{ shop.locale }}" class="min-h-screen">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -24,8 +24,8 @@
     {{ content_for_header }}
   </head>
 
-  <body class="template-{{ request.page_type | handle }} h-full overflow-x-hidden overflow-y-scroll">
-    <div id="app" class="h-full flex flex-col">
+  <body class="template-{{ request.page_type | handle }} min-min-h-screen overflow-x-hidden overflow-y-scroll">
+    <div id="app" class="min-h-screen flex flex-col">
       {% section 'header' %}
 
       <main class="flex-1 container" role="main">
@@ -33,6 +33,8 @@
       </main>
 
       {% section 'footer' %}
+
+      {% render 'vue-offcanvas' %}
     </div>
 
     <!-- js bundle -->

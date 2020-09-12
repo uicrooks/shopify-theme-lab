@@ -1,27 +1,43 @@
 {% paginate search.results by 10 %}
-  <form action="/search" method="get" role="search">
+  <form
+    action="/search"
+    method="get"
+    role="search"
+    class="flex flex-wrap mb-4"
+  >
     <input
       type="search"
       name="q"
       value="{{ search.terms | escape }}"
-      class="border"
+      class="flex-1"
     >
-    <button type="submit" class="button">search</button>
+    <button
+      type="submit"
+      class="button"
+    >
+      {{ 'layout.search.title' | t }}
+    </button>
   </form>
 
   {% if search.performed %}
     {% for item in search.results %}
       {% if item.featured_image %}
-        <a href="{{ item.url | within: collection }}" title="{{ item.title | escape }}">
+        <a
+          href="{{ item.url | within: collection }}"
+          title="{{ item.title | escape }}"
+        >
           {{ item.featured_image.src | img_url: 'medium' | img_tag: item.featured_image.alt }}
         </a>
       {% endif %}
-      <h5>{{ item.title | link_to: item.url }}</h5>
+
+      <h2>{{ item.title | link_to: item.url }}</h2>
       <p>{{ item.content | strip_html | truncatewords: 50 }}</p>
     {% else %}
-      no results
+      {{ 'layout.search.no_results' | t }}
     {% endfor %}
   {% endif %}
 
-  {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
+  {% if paginate.pages > 1 %}
+    {{ paginate | default_pagination }}
+  {% endif %}
 {% endpaginate %}

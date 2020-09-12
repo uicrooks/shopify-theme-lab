@@ -8,36 +8,51 @@
         Logo
       </a>
 
-      <div class="space-x-4">
-        {% for link in linklists.main-menu.links %}
-          {% assign child_list_handle = link.title | handleize %}
-
-          {% if linklists[child_list_handle].links != blank %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-            [{% for childlink in linklists[child_list_handle].links %}
-              <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
-            {% endfor %}]
-          {% else %}
-            <a href="{{ link.url }}">{{ link.title }}</a>
-          {% endif %}
-        {% endfor %}
-      </div>
+      {% render 'layout-menu', class: 'hidden md:block space-x-4' %}
 
       <div class="flex items-center space-x-4">
+        <a href="/search" class="flex items-center">
+          <span class="hidden md:block mr-2">
+            {{ 'layout.search.title' | t }}
+          </span>
+
+          {% render 'icon-search', class: 'text-gray-600 w-5' %}
+        </a>
+
         {% if shop.customer_accounts_enabled %}
           {% if customer %}
-            <a href="/account">account</a>
-            {{ 'log out'  | customer_logout_link }}
+            <a href="/account">
+              {{ 'layout.customer.account' | t }}
+            </a>
+
+            <div class="hidden md:block">
+              {{ 'layout.customer.logout' | t | customer_logout_link }}
+            </div>
           {% else %}
-            {{ 'log in ' | customer_login_link }}
-            {{ 'register' | customer_register_link }}
+            <div class="hidden md:block">
+              {{ 'layout.customer.log_in' | t | customer_login_link }}
+            </div>
+
+            <div class="hidden md:block">
+              {{ 'layout.customer.register' | t | customer_register_link }}
+            </div>
           {% endif %}
         {% endif %}
 
         <a href="/cart" class="flex items-center">
-          Cart
-          {% render 'icon-cart', class: 'text-gray-600 w-5 ml-2' %}
+          <span class="hidden md:block mr-2">
+            {{ 'layout.cart.title' | t }}
+          </span>
+
+          {% render 'icon-cart', class: 'text-gray-600 w-5' %}
         </a>
+
+        <button
+          class="md:hidden"
+          @click="$store.dispatch('offcanvas/show')"
+        >
+          {% render 'icon-menu', class: 'text-gray-600 w-5' %}
+        </button>
       </div>
     </div>
   </div>
