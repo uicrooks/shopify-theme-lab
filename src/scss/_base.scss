@@ -1,3 +1,5 @@
-html, body, #app {
-  @apply overflow-x-hidden h-full;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+html, body {
+  font-family: 'Open Sans', sans-serif;
 }
