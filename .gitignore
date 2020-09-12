@@ -6,3 +6,4 @@ node_modules/
 # shopify files
 shopify.config.yml
 shopify/assets/
+shopify/config/settings_data.json
