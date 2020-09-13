@@ -23,7 +23,15 @@ export default {
 
 <style lang="scss" scoped>
 .offcanvas {
-  @apply w-full max-w-sm bg-white absolute inset-y-0 right-0 opacity-0 transform translate-x-full transition-all duration-150;
+  @apply w-full max-w-sm h-screen bg-white absolute opacity-50 transform transition-all duration-150;
+}
+
+.offcanvas--left {
+  @apply left-0 -translate-x-full;
+}
+
+.offcanvas--right {
+  @apply right-0 translate-x-full;
 }
 
 .offcanvas--open {

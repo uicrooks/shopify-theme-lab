@@ -1,8 +1,8 @@
-<offcanvas>
+<renderless-offcanvas>
   <div
     slot-scope="{ visible, hideOffcanvas }"
     :class="{ 'offcanvas--open': visible }"
-    class="offcanvas"
+    class="offcanvas offcanvas--right"
   >
     <div class="flex justify-end bg-gray-200">
       <button
@@ -17,4 +17,4 @@
       {% render 'layout-menu', class: 'flex flex-col space-y-2' %}
     </div>
   </div>
-</offcanvas>
+</renderless-offcanvas>
