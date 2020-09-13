@@ -1,5 +1,5 @@
 /**
- * tailwindCSS Configuration File
+ * tailwindCSS configuration file
  *
  * docs: https://tailwindcss.com/docs/configuration
  * default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
