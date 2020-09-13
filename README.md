@@ -35,7 +35,7 @@ Shopify Starterkit is a development environment for rapid Shopify theme developm
 ## Directories
 | Directory | Description |
 | - | - |
-| .config | contains configurations for `shopify`, `webpack`, `postCSS` and `reloadr` |
+| .config | contains multiple configurations for the development environment |
 | shopify | contains Shopify theme templates and config files |
 | src | contains `tailwind`, `vue` and `scss` files |
 
