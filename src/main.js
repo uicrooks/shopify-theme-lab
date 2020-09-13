@@ -3,8 +3,12 @@
  */
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 import './scss/main.scss'
 
+/**
+ * vue settings
+ */
 Vue.config.productionTip = false
 
 /**
@@ -63,6 +67,12 @@ directives.keys().forEach(key => {
   const directive = directives(key).default
   Vue.directive(directive.name, directive.directive)
 })
+
+/**
+ * vue prototype
+ * extend with addtional features
+ */
+Vue.prototype.$axios = axios
 
 /**
  * create vue instance

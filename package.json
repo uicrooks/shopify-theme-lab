@@ -33,6 +33,7 @@
     "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.vue --config .config/.eslintrc.js"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "tailwindcss": "^1.8.9",
     "vue": "^2.6.12",
     "vuex": "^3.5.1"
