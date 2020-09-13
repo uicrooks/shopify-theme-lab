@@ -14,7 +14,7 @@ const log = (msg) => {
  * create websocket server
  * for remote shopify theme
  */
-const wss = new WebSocket.Server({ port: options.websoketPort })
+const wss = new WebSocket.Server({ port: options.websocketPort })
 
 wss.broadcast = (msg) => {
   wss.clients.forEach((client) => {

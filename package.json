@@ -1,13 +1,30 @@
 {
   "name": "shopify-starterkit",
+  "description": "Environment for rapid Shopify theme development with Vue and Tailwind CSS",
+  "author": "Sergej Samsonenko",
   "version": "1.0.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergejcodes/shopify-starterkit"
+  },
+  "bugs": {
+    "url": "https://github.com/sergejcodes/shopify-starterkit/issues"
+  },
+  "homepage": "https://github.com/sergejcodes/shopify-starterkit#readme",
+  "config": {
+    "reloadr": {
+      "serverPort": 5000,
+      "websoketPort": 5050,
+      "delay": 2000
+    }
+  },
   "scripts": {
     "start": "npm-run-all --parallel --race dev reloadr shopify:watch",
     "dev": "cross-env NODE_ENV=development node_modules/.bin/webpack --config .config/webpack.dev.js --watch",
     "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config .config/webpack.prod.js",
     "reloadr": "node .config/reloadr/reloadr.server.js",
-    "shopify:watch": "theme watch --env=development --allow-live --config .config/shopify.config.yml --dir shopify --notify=http://localhost:5000/reload",
+    "shopify:watch": "cross-var theme watch --env=development --allow-live --config .config/shopify.config.yml --dir shopify --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
     "shopify:deploy": "theme deploy --env=production --config .config/shopify.config.yml --dir shopify",
     "settings:dev": "theme --env=development download config/settings_data.json -c .config/shopify.config.yml",
     "settings:live": "theme --env=live download config/settings_data.json -c .config/shopify.config.yml",
@@ -26,6 +43,7 @@
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^7.0.2",
+    "cross-var": "^1.1.0",
     "css-loader": "^4.3.0",
     "file-loader": "^6.1.0",
     "mini-css-extract-plugin": "^0.11.1",
