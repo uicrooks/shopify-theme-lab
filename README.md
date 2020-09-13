@@ -17,6 +17,7 @@ Shopify Starterkit is a development environment for rapid Shopify theme developm
 ## System Requirements
 - Node.js
 - Yarn
+- [Shopify Theme Kit](https://shopify.github.io/themekit)
 
 ## Getting started
 1. Follow the steps on [Theme Kit Docs](https://shopify.github.io/themekit)
