@@ -1,5 +1,7 @@
 # Docs
-Subdirectories are not allowed.
+
+- Template files from [repo](https://github.com/Shopify/themekit/tree/master/theme-template/templates)
+- Subdirectories are not allowed
 
 ## Overview
 - [Concepts](https://shopify.dev/concepts)
