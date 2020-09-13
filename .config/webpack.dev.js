@@ -6,7 +6,7 @@ module.exports = merge(common, {
   mode: 'development',
   entry: [
     path.resolve(__dirname, '../src/main.js'),
-    path.resolve(__dirname, './reloadr/reloadr.client.js') // add reloadr to the dist bundle
+    path.resolve(__dirname, './reloadr/reloadr.client.js') // add reloadr to the bundle
   ],
   module: {
     rules: [

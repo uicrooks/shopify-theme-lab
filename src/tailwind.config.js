@@ -29,5 +29,5 @@ module.exports = {
     // learn more on https://tailwindcss.com/docs/upcoming-changes
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true
-  },
+  }
 }
