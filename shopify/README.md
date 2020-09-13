@@ -1,4 +1,5 @@
 # Docs
+Subdirectories are not allowed.
 
 ## Overview
 - [Concepts](https://shopify.dev/concepts)

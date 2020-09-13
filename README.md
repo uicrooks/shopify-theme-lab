@@ -32,7 +32,7 @@ Shopify Starterkit is a development environment for rapid Shopify theme developm
 2. Run `$ yarn shopify:deploy` to deploy to live store
 
 ## Directories
-| Directories | Description |
+| Directory | Description |
 | - | - |
 | .config | contains configurations for `shopify`, `webpack`, `postCSS` and `reloadr` |
 | shopify | contains Shopify theme templates and config files |
