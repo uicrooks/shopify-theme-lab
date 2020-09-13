@@ -9,13 +9,15 @@ export default {
   },
   methods: {
     ...mapActions({
-      hideOffcanvas: 'offcanvas/hide'
+      hideOffcanvas: 'offcanvas/hide',
+      hideBackdrop: 'backdrop/hide'
     })
   },
   render () {
     return this.$scopedSlots.default({
       visible: this.visible,
-      hideOffcanvas: this.hideOffcanvas
+      hideOffcanvas: this.hideOffcanvas,
+      hideBackdrop: this.hideBackdrop
     })
   }
 }
@@ -23,7 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .offcanvas {
-  @apply w-full max-w-sm h-screen bg-white absolute opacity-50 transform transition-all duration-150;
+  @apply w-full max-w-sm h-screen bg-white absolute z-20 opacity-50 transform transition-all duration-150;
 }
 
 .offcanvas--left {

@@ -1,13 +1,13 @@
 <renderless-offcanvas>
   <div
-    slot-scope="{ visible, hideOffcanvas }"
+    slot-scope="{ visible, hideOffcanvas, hideBackdrop }"
     :class="{ 'offcanvas--open': visible }"
     class="offcanvas offcanvas--right"
   >
     <div class="flex justify-end bg-gray-200">
       <button
         class="p-4"
-        @click="hideOffcanvas"
+        @click="hideOffcanvas(), hideBackdrop()"
       >
         {% render 'icon-cancel', class: 'text-gray-600 w-5' %}
       </button>
