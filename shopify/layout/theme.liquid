@@ -7,18 +7,18 @@
 
     <title>{{ page_title }}</title>
 
-    {%- if page_description -%}
+    {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
-    {%- endif -%}
+    {% endif %}
 
-    {%- if canonical_url != blank -%}
+    {% if canonical_url != blank %}
       <link rel="canonical" href="{{ canonical_url }}">
-    {%- endif -%}
+    {% endif %}
 
     {% comment %} include css bundle if domain doesn't contain 'myshopify.com' {% endcomment %}
-    {%- unless shop.url contains 'myshopify.com' -%}
+    {% unless shop.url contains 'myshopify.com' %}
       {{ 'bundle.css' | asset_url | stylesheet_tag }}
-    {%- endunless -%}
+    {% endunless %}
 
     <!-- Header hook for plugins -->
     {{ content_for_header }}
