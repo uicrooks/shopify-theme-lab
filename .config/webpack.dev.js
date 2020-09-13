@@ -11,6 +11,19 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        exclude: /node_modules/,
+        use: [
+            {
+            loader: 'eslint-loader',
+            options: {
+              configFile: path.resolve(__dirname, '.eslintrc.js')
+            }
+          }
+        ]
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           'style-loader',
