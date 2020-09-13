@@ -1,5 +1,4 @@
 # Docs
-
 - Template files from [repo](https://github.com/Shopify/themekit/tree/master/theme-template/templates)
 - Subdirectories are not allowed
 
