@@ -6,7 +6,11 @@ module.exports = {
     'vue'
   ],
   rules: {
-    'quotes': [ 1, 'single' ],
-    'semi': [ 1, 'never' ]
+    'prefer-const': ['error', {
+      'destructuring': 'any',
+      'ignoreReadBeforeAssign': false
+    }],
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'never']
   }
 }

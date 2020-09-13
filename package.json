@@ -29,7 +29,8 @@
     "settings:dev": "theme --env=development download config/settings_data.json -c .config/shopify.config.yml",
     "settings:live": "theme --env=live download config/settings_data.json -c .config/shopify.config.yml",
     "open:dev": "theme open --env=development --config .config/shopify.config.yml",
-    "open:live": "theme open --env=production --config .config/shopify.config.yml"
+    "open:live": "theme open --env=production --config .config/shopify.config.yml",
+    "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.vue --config .config/.eslintrc.js"
   },
   "dependencies": {
     "tailwindcss": "^1.8.9",
