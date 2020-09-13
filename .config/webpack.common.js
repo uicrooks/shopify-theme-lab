@@ -44,7 +44,13 @@ module.exports = {
   },
   plugins: [
     new ProgressBarPlugin(),
-    new CleanWebpackPlugin(), // docs: https://github.com/johnagan/clean-webpack-plugin
+    /**
+     * dont clean files with 'static' keyword in them
+     * docs: https://github.com/johnagan/clean-webpack-plugin
+     */
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', '!+(*)static+(*)'],
+    }),
     new VueLoaderPlugin()
   ]
 }

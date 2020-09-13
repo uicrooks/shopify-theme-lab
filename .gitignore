@@ -5,5 +5,8 @@ node_modules/
 
 # shopify files
 shopify.config.yml
-shopify/assets/
 shopify/config/settings_data.json
+
+# adjust if static assets in the assets directory should be tracked
+# shopify/assets/bundle*
+shopify/assets/
