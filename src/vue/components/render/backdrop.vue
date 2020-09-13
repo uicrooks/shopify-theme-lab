@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       v-if="visible"
-      class="w-full h-full absolute z-10"
+      class="w-full h-full fixed z-10"
       @click="hideBackdrop(), hideOffcanvas()"
     />
   </transition>
