@@ -20,10 +20,11 @@ Shopify Starterkit is a development environment for rapid Shopify theme developm
 
 ## Getting started
 1. Follow the steps on [Theme Kit Docs](https://shopify.github.io/themekit)
-2. Copy and adjust `.config/sample.shopify.config.yml` with credentials from step 1
-3. Run `$ yarn install` in root directory
-4. Run `$ yarn start` to start developing
-5. Run `$ yarn open:dev` to open the development url
+2. Clone or download this repo
+3. Copy and adjust `.config/sample.shopify.config.yml` with credentials from step 1
+4. Run `$ yarn install` in root directory
+5. Run `$ yarn start` to start developing
+6. Run `$ yarn open:dev` to open the development url
 
 ## Deploying
 1. Run `$ yarn build` to build `js` and `css` files
