@@ -52,4 +52,4 @@ Shopify Starterkit is a development environment for rapid Shopify theme developm
 | settings:live | download `settings_data.json` from live store |
 | open:dev | open the url of the dev store |
 | open:live | open the url of the live store |
-| lint | lint `src/` js and vue files |
+| lint | lint `js` and `vue` files inside the`src/` directory |
