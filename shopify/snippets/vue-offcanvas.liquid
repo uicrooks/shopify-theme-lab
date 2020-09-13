@@ -2,7 +2,8 @@
   <div
     slot-scope="{ visible, hideOffcanvas, hideBackdrop }"
     :class="{ 'offcanvas--open': visible }"
-    class="offcanvas offcanvas--right"
+    class="offcanvas offcanvas--right {{ class | default: '' }}"
+    style="{{ style | default: '' }}"
   >
     <div class="flex justify-end bg-gray-200">
       <button
