@@ -44,7 +44,7 @@ module.exports = {
   },
   plugins: [
     new ProgressBarPlugin(),
-    new CleanWebpackPlugin(), // Docs: https://github.com/johnagan/clean-webpack-plugin
+    new CleanWebpackPlugin(), // docs: https://github.com/johnagan/clean-webpack-plugin
     new VueLoaderPlugin()
   ]
 }
