@@ -44,6 +44,27 @@ const store = new Vuex.Store({
 })
 
 /**
+ * vue mixins
+ * auto register all mixins with a 'global' keyword in their name
+ */
+const mixins = require.context('./vue/mixins/', true, /.*global.*\.js$/)
+
+mixins.keys().forEach(key => {
+  Vue.mixin(mixins(key).default)
+})
+
+/**
+ * vue directives
+ * auto register all directives with a 'global' keyword in their name
+ */
+const directives = require.context('./vue/directives/', true, /.*global.*\.js$/)
+
+directives.keys().forEach(key => {
+  const directive = directives(key).default
+  Vue.directive(directive.name, directive.directive)
+})
+
+/**
  * create vue instance
  */
 new Vue({
