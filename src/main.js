@@ -11,7 +11,7 @@ Vue.config.productionTip = false
  * vue components
  * auto import all vue components
  */
-const vueComponents = require.context('./vue/components/', true, /\.vue$/)
+const vueComponents = require.context('./vue/components/', true, /(\.vue$|\.js$)/)
 const components = {}
 
 vueComponents.keys().forEach(key => {
