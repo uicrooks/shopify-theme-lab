@@ -15,7 +15,7 @@ Shopify Starterkit is a development environment for rapid Shopify theme developm
 - ESLint
 - Auto-Reload
 
-## System Requirements
+## System requirements
 - Node.js
 - Yarn
 - [Shopify Theme Kit](https://shopify.github.io/themekit)
