@@ -7,8 +7,7 @@
   },
   "layout": {
     "search": {
-      "title": "Search",
-      "no_results": "No results"
+      "title": "Search"
     },
     "cart": {
       "title": "Cart"
@@ -18,28 +17,6 @@
       "log_in": "Log in",
       "log_out": "Log out",
       "register": "Register"
-    }
-  },
-  "customer": {
-    "login": {
-      "title": "Login",
-      "email": "Email",
-      "password": "Password",
-      "forgot_password": "Forgot your password?",
-      "sign_in": "Sign In",
-      "guest_title": "Continue as a guest",
-      "guest_continue": "Continue"
-    }
-  },
-  "contact": {
-    "form": {
-      "name": "Name",
-      "email": "Email",
-      "phone": "Phone Number",
-      "message": "Message",
-      "submit": "Send",
-      "post_success": "Thanks for contacting us. We'll get back to you as soon as possible.",
-      "error_heading": "Please adjust the following:"
     }
   }
 }
