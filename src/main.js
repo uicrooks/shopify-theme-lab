@@ -15,7 +15,14 @@ const vueComponents = require.context('./vue/components/', true, /\.vue$/)
 const components = {}
 
 vueComponents.keys().forEach(key => {
-  components[key.replace(/(\.\/|\.vue)/g, '').replace(/^(.*[\\\/])/g, '')] = vueComponents(key).default
+  const component = vueComponents(key).default
+
+  // if the component has a name defined use the name else use path as component name
+  const name = component.name
+    ? component.name
+    : key.replace(/(\.\/|\.vue|\.js)/g, '').replace(/\/\w/g, (match) => match.slice(1).toUpperCase())
+
+  components[name] = component
 })
 
 /**
