@@ -47,7 +47,7 @@ const initTheme = async () => {
       { headers: { 'X-Shopify-Access-Token': options.password } }
     )
 
-    // assign theme id to options
+    // assign theme id
     themeId = response.data.theme.id.toString()
   } catch (e) {
     console.error(chalk.red(e))
