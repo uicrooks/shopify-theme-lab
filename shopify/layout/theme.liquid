@@ -15,10 +15,8 @@
       <link rel="canonical" href="{{ canonical_url }}">
     {% endif %}
 
-    {% comment %} include css bundle if domain doesn't contain 'myshopify.com' {% endcomment %}
-    {% unless shop.url contains 'myshopify.com' %}
-      {{ 'bundle.css' | asset_url | stylesheet_tag }}
-    {% endunless %}
+    {% comment %} css bundle is not loaded during development task {% endcomment %}
+    {{ 'bundle.css' | asset_url | stylesheet_tag }}
 
     <!-- Header hook for plugins -->
     {{ content_for_header }}
