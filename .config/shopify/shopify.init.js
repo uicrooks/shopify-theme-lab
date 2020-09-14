@@ -68,7 +68,7 @@ const initTheme = async () => {
   })
 
   // write shopify config file
-  try{
+  try {
     await fs.outputFile(configPath, yamlConfig)
   } catch (e) {
     console.error(chalk.red(e))
@@ -76,7 +76,7 @@ const initTheme = async () => {
   }
 
   // write settings_data.json to shopify/config
-  try{
+  try {
     const settingsData = {
       current: 'Default',
       presets: {
@@ -91,7 +91,7 @@ const initTheme = async () => {
   }
 
   // upload shopify theme to remote
-  try{
+  try {
     await themeKit.command('deploy', {
       config: configPath,
       env: options.env
