@@ -61,7 +61,7 @@ $ yarn deploy:live
 | build | create dist files for Shopify in `shopify/assets/` directory with webpack |
 | reloadr | run a http server and websocket server for remote auto reloading |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
-| shopify:init | initializes theme on remote shopware store creates a shopify config file |
+| shopify:init | initializes theme on remote shopware store and creates a shopify config file for specified environment |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from dev store |
