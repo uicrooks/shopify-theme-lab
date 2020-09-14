@@ -29,7 +29,7 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 $ yarn install
 ```
 
-4. Initialize theme on shopify with credentials from first step. Either for **dev** or **live** environment:
+4. Initialize theme on Shopify with credentials from first step. Either for **dev** or **live** environment:
 ```
 $ yarn shopify:init --password [your-password] --store [your-store.myshopify.com] --env [dev or live] --name [theme name]
 ```
