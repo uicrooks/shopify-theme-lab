@@ -5,8 +5,8 @@ const common = require('./webpack.common.js')
 module.exports = merge(common, {
   mode: 'development',
   entry: [
-    path.resolve(__dirname, '../src/main.js'),
-    path.resolve(__dirname, './reloadr/reloadr.client.js') // add reloadr to the bundle
+    path.resolve(__dirname, '../../src/main.js'),
+    path.resolve(__dirname, '../reloadr/reloadr.client.js') // add reloadr to the bundle
   ],
   module: {
     rules: [
@@ -18,7 +18,7 @@ module.exports = merge(common, {
             {
             loader: 'eslint-loader',
             options: {
-              configFile: path.resolve(__dirname, '.eslintrc.js')
+              configFile: path.resolve(__dirname, '../.eslintrc.js')
             }
           }
         ]
@@ -31,7 +31,7 @@ module.exports = merge(common, {
           {
             loader: 'postcss-loader',
             options: {
-              postcssOptions: require('./postcss.config.js')
+              postcssOptions: require(path.resolve(__dirname, '../postcss.config.js'))
             }
           },
           'sass-loader'

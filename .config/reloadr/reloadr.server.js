@@ -1,7 +1,7 @@
 const http = require('http')
 const WebSocket = require('ws')
 const chalk = require('chalk')
-const options = require('../reloadr.config.js')
+const options = require('./reloadr.config.js')
 
 /**
  * custom console.log

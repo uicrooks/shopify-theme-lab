@@ -1,4 +1,4 @@
-<img width="100%" src=".config/readme/banner.svg" alt="Shopify Starterkit banner">
+<img width="100%" src=".config/.readme/banner.svg" alt="Shopify Starterkit banner">
 
 # Shopify Starterkit
 
@@ -7,7 +7,7 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 
 ## Features
 - Shopify
-- Shopify Theme Kit Integration
+- Shopify Theme Kit
 - Vue
 - Vuex
 - SCSS
@@ -18,20 +18,33 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 
 ## System requirements
 - Node.js
-- Yarn
-- [Shopify Theme Kit](https://shopify.github.io/themekit)
+- npm or yarn
 
 ## Getting started
-1. Follow the steps on [Theme Kit Docs](https://shopify.github.io/themekit)
+1. Get Shopify api access [Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
 2. Clone or download this repo
-3. Copy and adjust `.config/sample.shopify.config.yml` with credentials from step 1
-4. Run `$ yarn install` in root directory
-5. Run `$ yarn start` to start developing
-6. Run `$ yarn open:dev` to open the development url
+
+3. Install dependencies:
+```
+$ yarn install
+```
+
+4. Initialize theme on Shopify with credentials from first step. Either for **dev** or **live** environment:
+```
+$ yarn shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name [theme name]
+```
+
+5. Start developing:
+```
+$ yarn start
+$ yarn open:dev
+```
 
 ## Deploying
-1. Run `$ yarn build` to build `js` and `css` files
-2. Run `$ yarn shopify:deploy` to deploy to live store
+```
+$ yarn build
+$ yarn deploy:live
+```
 
 ## Directories
 | Directory | Description |
@@ -48,7 +61,9 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 | build | create dist files for Shopify in `shopify/assets/` directory with webpack |
 | reloadr | run a http server and websocket server for remote auto reloading |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
-| shopify:deploy | upload the `shopify/` directory to the live store |
+| shopify:init | initializes theme on remote shopware store and creates a shopify config file for specified environment |
+| deploy:dev | upload the `shopify/` directory to the dev store |
+| deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from dev store |
 | settings:live | download `settings_data.json` from live store |
 | open:dev | open the url of the dev store |
