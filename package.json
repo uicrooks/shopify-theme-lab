@@ -21,16 +21,18 @@
   },
   "scripts": {
     "start": "npm-run-all --parallel --race dev reloadr shopify:watch",
-    "dev": "cross-env NODE_ENV=development node_modules/.bin/webpack --config .config/webpack.dev.js --watch",
-    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config .config/webpack.prod.js",
+    "dev": "cross-env NODE_ENV=development node_modules/.bin/webpack --config .config/webpack/webpack.dev.js --watch",
+    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --config .config/webpack/webpack.prod.js",
     "reloadr": "node .config/reloadr/reloadr.server.js",
-    "shopify:watch": "cross-var theme watch --env=development --allow-live --config .config/shopify.config.yml --dir shopify --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
-    "shopify:deploy": "theme deploy --env=production --config .config/shopify.config.yml --dir shopify",
-    "settings:dev": "theme --env=development download config/settings_data.json -c .config/shopify.config.yml",
-    "settings:live": "theme --env=live download config/settings_data.json -c .config/shopify.config.yml",
-    "open:dev": "theme open --env=development --config .config/shopify.config.yml",
-    "open:live": "theme open --env=production --config .config/shopify.config.yml",
-    "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.vue --config .config/.eslintrc.js"
+    "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.vue --config .config/.eslintrc.js",
+    "shopify:watch": "cross-var shopify-themekit watch --env=dev --allow-live --config .config/shopify/shopify.dev.yml --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
+    "shopify:init": "node .config/shopify/shopify.init.js",
+    "deploy:dev": "shopify-themekit deploy --env=dev --config .config/shopify/shopify.dev.yml --allow-live",
+    "deploy:live": "shopify-themekit deploy --env=live --config .config/shopify/shopify.live.yml",
+    "settings:dev": "shopify-themekit --env=dev download config/settings_data.json --config .config/shopify/shopify.dev.yml",
+    "settings:live": "shopify-themekit --env=live download config/settings_data.json --config .config/shopify/shopify.live.yml",
+    "open:dev": "shopify-themekit open --env=dev --config .config/shopify/shopify.dev.yml",
+    "open:live": "shopify-themekit open --env=live --config .config/shopify/shopify.live.yml"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -41,9 +43,11 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
+    "@shopify/themekit": "^1.1.6",
     "babel-loader": "^8.1.0",
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "command-line-args": "^5.1.1",
     "cross-env": "^7.0.2",
     "cross-var": "^1.1.0",
     "css-loader": "^4.3.0",
@@ -51,6 +55,7 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-vue": "^6.2.2",
     "file-loader": "^6.1.0",
+    "fs-extra": "^9.0.1",
     "mini-css-extract-plugin": "^0.11.1",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
@@ -66,6 +71,7 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-merge": "^5.1.4",
-    "ws": "^7.3.1"
+    "ws": "^7.3.1",
+    "yaml": "^1.10.0"
   }
 }
