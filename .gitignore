@@ -4,7 +4,8 @@ node_modules/
 *.log
 
 # shopify files
-shopify.config.yml
+shopify.dev.yml
+shopify.live.yml
 shopify/config/settings_data.json
 
 # adjust if static assets in the assets directory should be tracked
