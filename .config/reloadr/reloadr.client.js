@@ -1,4 +1,4 @@
-const options = require('../reloadr.config.js')
+const options = require('./reloadr.config.js')
 
 initReloadrClient = () => {
   const socket = new WebSocket(`ws://localhost:${options.websocketPort}`)

@@ -5,16 +5,16 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   stats: 'minimal',
-  entry: path.resolve(__dirname, '../src/main.js'),
+  entry: path.resolve(__dirname, '../../src/main.js'),
   output: {
-    path: path.resolve(__dirname, '../shopify/assets/'),
+    path: path.resolve(__dirname, '../../shopify/assets/'),
     filename: 'bundle.js'
   },
   resolve: {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': path.resolve(__dirname, '../src/')
+      '@': path.resolve(__dirname, '../../src/')
     }
   },
   module: {
