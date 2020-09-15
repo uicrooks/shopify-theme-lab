@@ -15,6 +15,7 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 - Webpack
 - ESLint
 - Auto-Reload
+- Easily expandable
 
 ## System requirements
 - Node.js
@@ -69,3 +70,7 @@ $ yarn deploy:live
 | settings:live | download `settings_data.json` from live store |
 | open:dev | open the url of the dev store |
 | open:live | open the url of the live store |
+
+## Limitations
+- Vue components can only be used in `<kebab-case />`
+- `<style></style>` will be removed on mount inside vue components (basically everything inside #app), use `<component is="style"><componet>` instead
