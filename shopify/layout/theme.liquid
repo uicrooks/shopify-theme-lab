@@ -15,7 +15,7 @@
       <link rel="canonical" href="{{ canonical_url }}">
     {% endif %}
 
-    {% comment %} css bundle is not loaded during development task {% endcomment %}
+    {% comment %} css bundle is not loaded during development task, it displays a 404 error in the web console {% endcomment %}
     {{ 'bundle.css' | asset_url | stylesheet_tag }}
 
     <!-- Header hook for plugins -->
