@@ -75,7 +75,7 @@ $ yarn deploy:live
 ## Development environment concepts
 - By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory on the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
 - By running `yarn start` 3 tasks are executed in parallel: `dev`, `reloadr` and `shopify:watch`.
-- Inside the `src/` directory are a tailwind config, `scss` files and vue related files.
+- Inside the `src/` directory are: a tailwind config, scss files and vue related files.
 - All vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, vuex modules, mixins with `global` in their filename and directives with `global` in their filename.
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags.
 - The webpack bundle and all other assets are outputted to `shopify/assets` directory.
