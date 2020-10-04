@@ -81,7 +81,9 @@ $ yarn deploy:live
 - The webpack bundle and all other assets are outputted to `shopify/assets` directory.
 - The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a localhost:port address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser).
 
-<img width="100%" src=".config/.readme/auto-reload-demo.gif" alt="Shopify Starterkit auto reload demo" style="border-radius: 5px; box-shadow: 0 10px 20px rgba(0,0,0,.15);">
+<div style="border-radius: 5px; box-shadow: 0 10px 20px rgba(0,0,0,.15);">
+  <img width="100%" src=".config/.readme/auto-reload-demo.gif" alt="Shopify Starterkit auto reload demo">
+</div>
 
 ## Limitations
 - Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload the file to the remote store
