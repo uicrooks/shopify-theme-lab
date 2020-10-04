@@ -62,7 +62,7 @@ $ yarn deploy:live
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create dist files for Shopify in `shopify/assets/` directory with webpack |
 | reloadr | run a http server and websocket server for remote auto reloading |
-| lint | lint `js` and `vue` files inside the`src/` directory |
+| lint | lint `js` and `vue` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
 | shopify:init | initialize theme on remote shopware store and create a shopify config file for specified environment |
 | deploy:dev | upload the `shopify/` directory to the dev store |
@@ -72,6 +72,16 @@ $ yarn deploy:live
 | open:dev | open the url of the dev store |
 | open:live | open the url of the live store |
 
+## Development environtment concepts
+- By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory on the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
+- By running `yarn start` 3 tasks are executed in parallel: `dev`, `reloadr` and `shopify:watch`.
+- Inside the `src/` directory are a tailwind config, `scss` files and vue related files.
+- All vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, vuex modules, mixins with `global` in their filename and directives with `global` in their filename.
+- Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags.
+- The webpack bundle and all other assets are outputted to `shopify/assets` directory.
+- The `shopify/` directory will be watched for changes and all changed files will be uploaded to the Shopify remote server. After the upload is finished, a request is sent to a localhost:port address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser).
+
 ## Limitations
+- Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload it to the remote store
 - Vue components can only be used in `<kebab-case />`
 - `<style></style>` will be removed on mount inside vue components (basically everything inside #app), use `<component is="style"><componet>` instead when working with `.liquid` files
