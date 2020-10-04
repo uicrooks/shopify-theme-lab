@@ -1,3 +1,5 @@
+# this is a sample file for illustration purposes and can be safely deleted
+# run shopify:init to initialize a new shopify config
 dev:
   password: [your-api-password]
   theme_id: "[your-theme-id]"

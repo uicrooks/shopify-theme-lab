@@ -1,10 +1,13 @@
+/**
+ * this is a script to quickly initialize the local development environment and a remote shopify theme
+ */
 const path = require('path')
 const fs = require('fs-extra')
 const commandLineArgs = require('command-line-args')
 const yaml = require('yaml')
 const axios = require('axios')
 const chalk = require('chalk')
-const themeKit = require('@shopify/themekit')
+const themeKit = require('@shopify/themekit') // node wrapper for https://shopify.github.io/themekit
 
 /**
  * get command line arguments
