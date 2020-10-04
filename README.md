@@ -85,5 +85,5 @@ $ yarn deploy:live
 
 ## Limitations
 - Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload the file to the remote store
-- Vue components inside `.liquid` files can only be used in non-self-closing `<kebab-case></kebap-case>` manner
+- Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
 - `<style></style>` will be removed on mount inside vue components (basically everything inside #app), use `<component is="style"><componet>` instead when working with `.liquid` files
