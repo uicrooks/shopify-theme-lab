@@ -15,7 +15,9 @@
       <link rel="canonical" href="{{ canonical_url }}">
     {% endif %}
 
-    {% comment %} css bundle is not loaded during development task, it displays a 404 error in the web console {% endcomment %}
+    {% comment %}
+      css bundle is not loaded during development task, instead it displays a 404 error in the web console
+    {% endcomment %}
     {{ 'bundle.css' | asset_url | stylesheet_tag }}
 
     <!-- Header hook for plugins -->
@@ -29,17 +31,44 @@
     <div id="app" class="min-h-screen flex flex-col">
       {% section 'header' %}
 
+      {% comment %}
+        vue component: with shopify data passed via prop
+      {% endcomment%}
+      <render-system-info
+        :shopify-data="{
+          shopName: '{{ shop.name }}',
+          shopDomain: '{{ shop.domain }}',
+          shopEmail: '{{ shop.email }}',
+          shopCurrency: '{{ shop.currency }}'
+        }"
+        class="container mb-8"
+      >
+        <div class="text-lg font-bold mb-4">
+          System Info
+        </div>
+      </render-system-info>
+
       <main class="flex-1 container" role="main">
         {{ content_for_layout }}
       </main>
 
       {% section 'footer' %}
 
+      {% comment %}
+        renderless vue component: snippets/vue-offcanvas.liquid
+        test it by clicking the hamburger-menu icon on mobile breakpoint
+      {% endcomment%}
       {% render 'vue-offcanvas' %}
-      <render-backdrop class="bg-black bg-opacity-50" />
+
+      {% comment %}
+        vue component
+      {% endcomment%}
+      <render-backdrop class="bg-black bg-opacity-50"></render-backdrop>
     </div>
 
-    <!-- js bundle -->
+    {% comment %}
+      js bundle outputted by webpack
+    {% endcomment%}
     {{ 'bundle.js' | asset_url | script_tag }}
   </body>
 </html>
