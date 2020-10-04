@@ -82,6 +82,6 @@ $ yarn deploy:live
 - The `shopify/` directory will be watched for changes and all changed files will be uploaded to the Shopify remote server. After the upload is finished, a request is sent to a localhost:port address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser).
 
 ## Limitations
-- Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload it to the remote store
-- Vue components can only be used in `<kebab-case />`
+- Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload the file to the remote store
+- Vue components inside `.liquid` files can only be used in non-self-closing `<kebab-case></kebap-case>` manner
 - `<style></style>` will be removed on mount inside vue components (basically everything inside #app), use `<component is="style"><componet>` instead when working with `.liquid` files
