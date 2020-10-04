@@ -15,7 +15,7 @@
     "customer": {
       "account": "Konto",
       "log_in": "Anmelden",
-      "log_out": "Abmelden",
+      "logout": "Abmelden",
       "register": "Registrieren"
     }
   }
