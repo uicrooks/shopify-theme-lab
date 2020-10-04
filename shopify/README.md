@@ -1,6 +1,7 @@
 # Docs
-- Template files from [repo](https://github.com/Shopify/themekit/tree/master/theme-template/templates)
-- Subdirectories are not allowed
+- Subdirectories are not allowed (Shopify limitation)
+- Template files are from themekit [repo](https://github.com/Shopify/themekit/tree/master/theme-template/templates)
+- More code and examples can be found in the official Shopify starter-theme [repo](https://github.com/Shopify/starter-theme/tree/master/src)
 
 ## Overview
 - [Concepts](https://shopify.dev/concepts)

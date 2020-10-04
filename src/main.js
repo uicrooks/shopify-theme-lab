@@ -24,7 +24,7 @@ vueComponents.keys().forEach(key => {
   // if the component has a name defined use the name else use path as component name
   const name = component.name
     ? component.name
-    : key.replace(/(\.\/|\.vue|\.js)/g, '').replace(/\/\w/g, (match) => match.slice(1).toUpperCase())
+    : key.replace(/(\.\/|\.vue|\.js)/g, '').replace(/(\/|-|_)\w/g, (match) => match.slice(1).toUpperCase())
 
   components[name] = component
 })
@@ -35,11 +35,11 @@ vueComponents.keys().forEach(key => {
  */
 Vue.use(Vuex)
 
-const files = require.context('./vue/store/', false, /\.js$/)
+const vuexModules = require.context('./vue/store/', false, /\.js$/)
 const modules = {}
 
-files.keys().forEach(key => {
-  modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default
+vuexModules.keys().forEach(key => {
+  modules[key.replace(/(\.\/|\.js)/g, '')] = vuexModules(key).default
 })
 
 const store = new Vuex.Store({
