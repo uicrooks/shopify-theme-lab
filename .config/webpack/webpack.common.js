@@ -45,7 +45,7 @@ module.exports = {
   plugins: [
     new ProgressBarPlugin(),
     /**
-     * dont clean files with 'static' keyword in them
+     * don't clean files with 'static' keyword in their filename
      * docs: https://github.com/johnagan/clean-webpack-plugin
      */
     new CleanWebpackPlugin({
