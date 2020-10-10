@@ -17,6 +17,12 @@
 
 <script>
 export default {
+  /**
+   * if a name is defined, you can use the component as <system-info></system-info> in .liquid files
+   * otherwise the component will be named after the file path starting from components/ directory
+   * for this file it is: <render-system-info></render-system-info>
+   */
+  // name: 'systemInfo',
   props: {
     shopifyData: {
       type: Object,
