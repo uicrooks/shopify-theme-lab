@@ -2,7 +2,7 @@
 
 # Shopify Starterkit
 
-Shopify Starterkit is a development environment for rapid Shopify theme development with Liquid, Vue and Tailwind CSS 🔥
+Shopify Starterkit is a development environment for quick Shopify theme development with Liquid, Vue and Tailwind CSS 🔥
 The kit provides an easy way to build a custom Shopify theme from scratch. It contains a minimal styled boilerplate as a starting point. Everything is pre-configured and should work out of the box.
 
 ## Features
