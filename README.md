@@ -64,7 +64,7 @@ $ yarn deploy:live
 | reloadr | run a http server and websocket server for remote auto reloading |
 | lint | lint `js` and `vue` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
-| shopify:init | initialize theme on remote shopware store and create a shopify config file for specified environment |
+| shopify:init | initialize theme on remote shopify store and create a shopify config file for specified environment |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from dev store |
