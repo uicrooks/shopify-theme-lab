@@ -2,7 +2,7 @@
 
 # Shopify Starterkit
 
-Shopify Starterkit is a development environment for rapid Shopify theme development with Vue and Tailwind CSS 🔥
+Shopify Starterkit is a development environment for fast Shopify theme development with Liquid, Vue and Tailwind CSS 🔥
 The kit provides an easy way to build a custom Shopify theme from scratch. It contains a minimal styled boilerplate as a starting point. Everything is pre-configured and should work out of the box.
 
 ## Features
@@ -58,13 +58,13 @@ $ yarn deploy:live
 ## Tasks
 | Task | Description |
 | - | - |
-| start | run `dev`, `reloadr` and `shopify:watch` tasks in parallel |
+| start | run `dev`, `reloadr` and `shopify:watch` tasks simultaneously in parallel |
 | dev | bundle and watch for changes in `src/` files with webpack |
-| build | create dist files for Shopify in `shopify/assets/` directory with webpack |
+| build | create minified production files for Shopify in `shopify/assets/` directory |
 | reloadr | run a http server and websocket server for remote auto reloading |
 | lint | lint `js` and `vue` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
-| shopify:init | initialize theme on remote shopware store and create a shopify config file for specified environment |
+| shopify:init | initialize theme on remote shopify store and create a shopify config file for specified environment |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from dev store |
@@ -78,7 +78,7 @@ $ yarn deploy:live
 - Inside the `src/` directory are: a tailwind config, scss files and vue related files.
 - All vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - vue components, vuex modules, mixins with `global` in their filename and directives with `global` in their filename.
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags.
-- The webpack bundle and all other assets are outputted to `shopify/assets` directory.
+- The webpack bundle and all other assets are outputted to `shopify/assets/` directory.
 - The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a localhost:port address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser).
 
 <img width="100%" src=".config/.readme/auto-reload-demo.gif" alt="Shopify Starterkit auto reload demo">

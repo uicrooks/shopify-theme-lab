@@ -1,8 +1,8 @@
 {
   "name": "shopify-starterkit",
-  "description": "Environment for rapid Shopify theme development with Vue and Tailwind CSS",
+  "description": "Modern stack for Shopify theme development with Liquid, Vue and Tailwind CSS.",
   "author": "Sergej Samsonenko",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "repository": {
     "type": "git",
