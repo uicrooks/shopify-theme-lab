@@ -52,7 +52,7 @@ $ yarn deploy:live
 | Directory | Description |
 | - | - |
 | .config | contains multiple configurations for the development environment |
-| shopify | contains Shopify theme templates and config files |
+| shopify | contains Shopify `.liquid` and config files |
 | src | contains `tailwind`, `vue` and `scss` files |
 
 ## Tasks
@@ -79,7 +79,7 @@ $ yarn deploy:live
 - All vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - vue components, vuex modules, mixins with `global` in their filename and directives with `global` in their filename.
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags.
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory.
-- The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a localhost:port address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser).
+- The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser and connected via websockets).
 
 <img width="100%" src=".config/.readme/auto-reload-demo.gif" alt="Shopify Starterkit auto reload demo">
 
