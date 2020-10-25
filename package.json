@@ -15,7 +15,7 @@
   "config": {
     "reloadr": {
       "serverPort": 5000,
-      "websoketPort": 5050,
+      "websocketPort": 5050,
       "delay": 2000
     }
   },
