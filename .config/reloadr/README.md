@@ -12,5 +12,5 @@ Settings and ports for the script can be adjusted in the `packages.json`.
 | Option | Description |
 | - | - |
 | serverPort | the localhost port `shopify:watch` task and `reloadr.server.js` use to communicate |
-| websoketPort | the localhost port `reloadr.server.js` and `reloader.client.js` use to communicate |
+| websocketPort | the localhost port `reloadr.server.js` and `reloader.client.js` use to communicate |
 | delay | auto reload needs a slight delay before reloading the remote site, so all newly uploaded files will be loaded. Values between `1500`ms and `2000`ms seem to work well |
