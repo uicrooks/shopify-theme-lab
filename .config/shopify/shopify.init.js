@@ -39,7 +39,7 @@ const configPath = path.resolve(__dirname, `./shopify.${options.env}.yml`)
 let themeId // assigned after remote initialization
 
 /**
- * function initialises local config and remote shopify theme
+ * function initializes local config and remote shopify theme
  */
 const initTheme = async () => {
   // initialize empty theme on shopify store
