@@ -24,10 +24,5 @@ module.exports = {
       path.resolve(__dirname, '**/*.js'),
       path.resolve(__dirname, '../shopify/**/*.liquid')
     ]
-  },
-  future: {
-    // learn more on https://tailwindcss.com/docs/upcoming-changes
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
   }
 }
