@@ -36,7 +36,9 @@ $ yarn install
 $ yarn shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name [theme name]
 ```
 
-5. Start developing:
+5. Publish new theme in Shopify panel: your-store.myshopify.com/admin/themes
+
+6. Start developing:
 ```
 $ yarn start
 $ yarn open:dev
