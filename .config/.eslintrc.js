@@ -7,7 +7,7 @@ module.exports = {
   ],
   rules: {
     /**
-     * add any rules
+     * add custom rules
      * docs: https://eslint.org/docs/rules
      */
     // 'quotes': ['error', 'single'],
