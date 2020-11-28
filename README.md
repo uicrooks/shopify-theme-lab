@@ -27,25 +27,25 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 2. Clone or download this repo
 
 3. Install dependencies:
-```
+```shell
 $ yarn install
 ```
 
 4. Initialize theme on Shopify with credentials from first step. Either for **dev** or **live** environment:
-```
+```shell
 $ yarn shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
 5. Publish new theme in Shopify panel: your-store.myshopify.com/admin/themes
 
 6. Start developing:
-```
+```shell
 $ yarn start
 $ yarn open:dev
 ```
 
 ## Deploying
-```
+```shell
 $ yarn build
 $ yarn deploy:live
 ```
