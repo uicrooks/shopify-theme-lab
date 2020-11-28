@@ -18,8 +18,7 @@ initReloadrClient = () => {
   socket.addEventListener('error', () => log('error'))
   socket.addEventListener('close', () => log('disonected'))
   socket.addEventListener('message', (event) => {
-    // don't reload when inside shopify's visual theme editor
-    if(event.data === 'reload' && !location.href.includes('preview_theme')) location.reload()
+    if(event.data === 'reload') location.reload()
   })
 }
 
