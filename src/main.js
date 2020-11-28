@@ -16,7 +16,6 @@ Vue.config.productionTip = false
  * auto import all vue components
  */
 const vueComponents = require.context('./vue/components/', true, /(\.vue$|\.js$)/)
-const components = {}
 
 vueComponents.keys().forEach(key => {
   const component = vueComponents(key).default
@@ -26,7 +25,7 @@ vueComponents.keys().forEach(key => {
     ? component.name
     : key.replace(/(\.\/|\.vue|\.js)/g, '').replace(/(\/|-|_)\w/g, (match) => match.slice(1).toUpperCase())
 
-  components[name] = component
+  Vue.component(name, component)
 })
 
 /**
@@ -90,6 +89,5 @@ Vue.prototype.$axios = axios
  */
 new Vue({
   el: '#app',
-  components,
   store
 })
