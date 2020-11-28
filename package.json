@@ -27,10 +27,10 @@
     "open:live": "shopify-themekit open --env=live --config .config/shopify/shopify.live.yml"
   },
   "dependencies": {
-    "axios": "^0.20.0",
-    "tailwindcss": "^1.9.6",
+    "axios": "^0.21.0",
+    "tailwindcss": "^2.0.1",
     "vue": "^2.6.12",
-    "vuex": "^3.5.1"
+    "vuex": "^3.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
