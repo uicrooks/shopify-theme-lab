@@ -6,11 +6,11 @@ module.exports = {
     'vue'
   ],
   rules: {
-    'prefer-const': ['error', {
-      'destructuring': 'any',
-      'ignoreReadBeforeAssign': false
-    }],
-    'quotes': ['error', 'single'],
-    'semi': ['error', 'never']
+    /**
+     * add any rules
+     * docs: https://eslint.org/docs/rules
+     */
+    // 'quotes': ['error', 'single'],
+    // 'semi': ['error', 'never']
   }
 }
