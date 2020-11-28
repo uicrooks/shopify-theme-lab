@@ -8,7 +8,7 @@
           v-for="(value, key) in shopifyData"
           :key="key"
         >
-          {{ key }}: <span class="text-gray-500">{{ value }}</span>
+          {{ key }}: <span class="text-gray-300">{{ value }}</span>
         </li>
       </ul>
     </div>
