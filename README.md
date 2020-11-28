@@ -33,7 +33,7 @@ $ yarn install
 
 4. Initialize theme on Shopify with credentials from first step. Either for **dev** or **live** environment:
 ```
-$ yarn shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name [theme name]
+$ yarn shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
 5. Publish new theme in Shopify panel: your-store.myshopify.com/admin/themes
