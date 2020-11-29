@@ -1,16 +1,44 @@
+<!-- logo (start) -->
 <img width="100%" src=".github/img/banner.svg" alt="Shopify Starterkit banner">
+<!-- logo (end) -->
 
+<!-- badges (start) -->
+<p align="center">
+  <img src="https://img.shields.io/github/package-json/v/sergejcodes/shopify-starterkit?color=%237079ff&label=shopify-starterkit">
+  <img src="https://img.shields.io/github/package-json/dependency-version/sergejcodes/shopify-starterkit/vue?color=%234fc08d">
+  <img src="https://img.shields.io/github/package-json/dependency-version/sergejcodes/shopify-starterkit/tailwindcss?color=%2300c5e3">
+</p>
+<!-- badges (end) -->
+
+<!-- title / description (start) -->
 ## Shopify Starterkit
 
 Shopify Starterkit is a development environment for fast Shopify theme development with Liquid, Vue and Tailwind CSS 🔥
 The kit provides an easy way to build a custom Shopify theme from scratch. It contains a minimal styled boilerplate as a starting point. Everything is pre-configured and should work out of the box.
+<!-- title / description (end) -->
 
+<!-- toc (start) -->
+## Table of contents
+
+- [Features](#features)
+- [System requirements](#system-requirements)
+- [Getting started](#getting-started)
+- [Deploying](#deploying)
+- [CSS preprocessors](#css-preprocessors)
+- [Directories](#directories)
+- [Tasks](#tasks)
+- [Development environment](#development-environment)
+- [Limitations](#limitations)
+<!-- toc (end) -->
+
+<!-- features (start) -->
 ## Features
+
 - Shopify
   - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit)
   - Default Shopify theme directory and file structure
   - Blazing fast shopify theme setup on remote store with `npm run shopify:init`
-  - `npm scripts` to run common tasks
+  - Batch of `npm scripts` to run common tasks
 - JavaScript
   - [Vue](https://vuejs.org)
   - [Vuex](https://vuex.vuejs.org)
@@ -31,12 +59,18 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
   - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
   - Clean [config structure](.config/)
   - Easily adjustable/extendable configurations
+<!-- features (end) -->
 
+<!-- system requirements (start) -->
 ## System requirements
+
 - Node.js
 - npm or yarn
+<!-- system requirements (end) -->
 
+<!-- getting started (start) -->
 ## Getting started
+
 1. Get Shopify api access [Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
 2. Clone or download this repo
 
@@ -57,21 +91,49 @@ $ yarn shopify:init --password [your-api-password] --store [your-store.myshopify
 $ yarn start
 $ yarn open:dev
 ```
+<!-- getting started (end) -->
 
+<!-- deploying (start) -->
 ## Deploying
+
 ```shell
 $ yarn build
 $ yarn deploy:live
 ```
+<!-- deploying (end) -->
 
+<!-- css preprocessors (start) -->
+## CSS preprocessors
+
+### sass/scss
+```shell
+$ npm install sass sass-loader --save-dev
+```
+
+### less
+```shell
+$ npm install less less-loader --save-dev
+```
+
+### stylus
+```shell
+$ npm install stylus stylus-loader --save-dev
+```
+<!-- css preprocessors (end) -->
+
+<!-- directories (start) -->
 ## Directories
+
 | Directory | Description |
 | - | - |
 | .config | contains multiple configurations for the development environment |
 | shopify | contains Shopify `.liquid` and config files |
 | src | contains `tailwind`, `vue` and `scss` files |
+<!-- directories (end) -->
 
+<!-- tasks (start) -->
 ## Tasks
+
 | Task | Description |
 | - | - |
 | start | run `dev`, `reloadr` and `shopify:watch` tasks simultaneously in parallel |
@@ -87,8 +149,11 @@ $ yarn deploy:live
 | settings:live | download `settings_data.json` from live store |
 | open:dev | open the url of the dev store |
 | open:live | open the url of the live store |
+<!-- tasks (end) -->
 
-## Development environment concepts
+<!-- development environment (start) -->
+## Development environment
+
 - By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory to the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
 - By running `yarn start` 3 tasks are executed in parallel: `dev`, `reloadr` and `shopify:watch`.
 - Inside the `src/` directory are: a tailwind config, scss files and vue related files.
@@ -96,10 +161,12 @@ $ yarn deploy:live
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags.
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory.
 - The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser and connected via websockets).
+<!-- development environment (end) -->
 
-<img width="100%" src=".github/img/auto-reload-demo.gif" alt="Shopify Starterkit auto reload demo">
-
+<!-- limitations (start) -->
 ## Limitations
+
 - Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload the file to the remote store
 - Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
 - `<style></style>` will be removed on mount inside vue components (basically everything inside #app), use `<component is="style"><componet>` instead when working with `.liquid` files
+<!-- limitations (end) -->
