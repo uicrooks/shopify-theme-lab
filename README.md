@@ -41,8 +41,8 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
   - [Configs](#configs)
-  - [Shopify & environment initialization](#shopify-environment-initialization)
-  - [Shopify + webpack](#shopify-webpack)
+  - [Shopify & environment initialization](#shopify--environment-initialization)
+  - [Shopify + webpack](#shopify--webpack)
   - [Shopify remote auto-reloading](#shopify-remote-auto-reloading)
 - [Limitations](#limitations)
 <!-- toc (end) -->
