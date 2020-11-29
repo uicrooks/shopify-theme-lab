@@ -10,7 +10,7 @@ const log = require('../plugins/log')
  * initial console.log on build start
  */
 log.box({
-  msg: 'Started build process',
+  msg: 'Shopify Theming Kit:\nStarting build',
   color: 'green'
 })
 
