@@ -30,6 +30,7 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 
 - [Features](#features)
 - [System requirements](#system-requirements)
+- [Installing](#installing)
 - [Getting started](#getting-started)
 - [Deploying](#deploying)
 - [CSS preprocessors](#css-preprocessors)
@@ -55,13 +56,13 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 - CSS
   - [Tailwind CSS](https://tailwindcss.com)
   - [PostCSS](https://postcss.org) with [PreCSS](https://github.com/jonathantneal/precss)
-  - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [SASS / SCSS](https://sass-lang.com), [LESS](http://lesscss.org), [Stylus](https://stylus-lang.com) support
 - Workflow
   - [Webpack](https://webpack.js.org)
   - [Babel](https://babeljs.io)
   - [ESLint](https://eslint.org)
   - [Browserlist](https://github.com/browserslist/browserslist)
+  - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css)
   - Remote Shopify theme auto-reloading with [reloadr](.config/plugins/reloadr) plugin
   - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
@@ -76,28 +77,43 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 - npm or yarn
 <!-- system requirements (end) -->
 
-<!-- getting started (start) -->
-## Getting started
+<!-- installing (start) -->
+## Installing
+Clone or download this repo and execute following command(s) with your prefered package manager:
 
-1. Get Shopify api access [Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
-2. Clone or download this repo
+### npm
 
-3. Install dependencies:
 ```shell
+$ npm install
+```
+
+### yarn
+
+```shell
+$ yarn import # migrate package-lock.json to yarn.lock
+$ rm package-lock.json # or delete manually
 $ yarn install
 ```
 
-4. Initialize theme on Shopify with credentials from first step. Either for **dev** or **live** environment:
+> If you migrated to yarn replace `npm run` with `yarn` when executing upcoming commands.
+<!-- installing (end) -->
+
+<!-- getting started (start) -->
+## Getting started
+
+1. Get Shopify api access: [Instructions at Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
+
+2. Initialize theme on Shopify store with credentials from first step. Either for **dev** or **live** environment:
 ```shell
-$ yarn shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
+$ npm run shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
-5. Publish new theme in Shopify panel: your-store.myshopify.com/admin/themes
+3. Publish new theme through Shopify panel: your-store.myshopify.com/admin/themes
 
-6. Start developing:
+4. Start developing:
 ```shell
-$ yarn start
-$ yarn open:dev
+$ npm run start
+$ npm run open:dev # open store url in default browser
 ```
 <!-- getting started (end) -->
 
@@ -105,8 +121,8 @@ $ yarn open:dev
 ## Deploying
 
 ```shell
-$ yarn build
-$ yarn deploy:live
+$ npm run build # bundle js, css and assets like images/fonts with webpack
+$ npm run deploy:live # deploy shopify/ directory
 ```
 <!-- deploying (end) -->
 
