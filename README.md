@@ -7,20 +7,30 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 
 ## Features
 - Shopify
-- Shopify Theme Kit
-- Vue
-- Vuex
-- Axios
-- PostCSS
-- SCSS / LESS / Stylus
-- Tailwind CSS
-- Webpack
-- Babel
-- ESLint
-- Browserlist
-- Remote Shopify theme auto-reload
-- Easily extendable
-- Clean config structure
+  - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit)
+  - Default Shopify theme directory and file structure
+  - Blazing fast shopify theme setup on remote store with `npm run shopify:init`
+  - `npm scripts` to run common tasks
+- JavaScript
+  - [Vue](https://vuejs.org)
+  - [Vuex](https://vuex.vuejs.org)
+  - [Axios](https://github.com/axios/axios)
+  - Use [npm packages](https://www.npmjs.com) 📦
+- CSS
+  - [Tailwind CSS](https://tailwindcss.com)
+  - [PostCSS](https://postcss.org) with [PreCSS](https://github.com/jonathantneal/precss)
+  - [Autoprefixer](https://github.com/postcss/autoprefixer)
+  - [SASS / SCSS](https://sass-lang.com), [LESS](http://lesscss.org), [Stylus](https://stylus-lang.com) support
+- Workflow
+  - [Webpack](https://webpack.js.org)
+  - [Babel](https://babeljs.io)
+  - [ESLint](https://eslint.org)
+  - [Browserlist](https://github.com/browserslist/browserslist)
+  - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css)
+  - Remote Shopify theme auto-reloading with [reloadr](.config/plugins/reloadr) plugin
+  - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
+  - Clean [config structure](.config/)
+  - Easily adjustable/extendable configurations
 
 ## System requirements
 - Node.js
