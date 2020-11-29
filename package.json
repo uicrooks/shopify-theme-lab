@@ -12,9 +12,9 @@
     }
   },
   "scripts": {
-    "start": "npm-run-all --parallel --race dev reloadr shopify:watch",
+    "start": "npm-run-all --parallel --silent --race dev reloadr shopify:watch",
     "dev": "cross-env NODE_ENV=development BROWSERSLIST_ENV=development BROWSERSLIST_CONFIG=.config/.browserslistrc node_modules/.bin/webpack --config .config/webpack/webpack.dev.js --watch",
-    "build": "cross-env NODE_ENV=production BROWSERSLIST_CONFIG=.config/.browserslistrc node_modules/.bin/webpack --config .config/webpack/webpack.prod.js",
+    "build": "cross-env NODE_ENV=production BROWSERSLIST_ENV=production BROWSERSLIST_CONFIG=.config/.browserslistrc node_modules/.bin/webpack --config .config/webpack/webpack.prod.js",
     "reloadr": "node .config/plugins/reloadr/reloadr.server.js",
     "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.vue --config .config/.eslintrc.js",
     "shopify:watch": "cross-var shopify-themekit watch --env=dev --allow-live --config .config/shopify/shopify.dev.yml --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
