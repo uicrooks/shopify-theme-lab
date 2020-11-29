@@ -28,9 +28,6 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
-    "bootstrap": "^4.5.3",
-    "bulma": "^0.9.1",
-    "materialize-css": "^1.0.0-rc.2",
     "tailwindcss": "^2.0.1",
     "vue": "^2.6.12",
     "vuex": "^3.6.0"
