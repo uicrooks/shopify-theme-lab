@@ -1,24 +1,21 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
-const chalk = require('chalk')
-const boxen = require('boxen')
+const log = require('../plugins/log')
 
-// initial console log
-console.log(boxen(
-  chalk.green('Starting development tasks'),
-  {
-    padding: 1,
-    margin: { top: 1, right: 0, bottom: 2, left: 0 },
-    borderColor: 'green'
-  }
-))
+/**
+ * initial console.log on development start
+ */
+log.box({
+  msg: 'Starting development tasks',
+  color: 'green'
+})
 
 module.exports = merge(common, {
   mode: 'development',
   entry: [
     path.resolve(__dirname, '../../src/main.js'),
-    path.resolve(__dirname, '../reloadr/reloadr.client.js') // add reloadr to the bundle
+    path.resolve(__dirname, '../plugins/reloadr/reloadr.client.js') // add reloadr to the bundle
   ],
   module: {
     rules: [
