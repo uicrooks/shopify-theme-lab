@@ -18,7 +18,7 @@
     "reloadr": "node .config/plugins/reloadr/reloadr.server.js",
     "lint": "node_modules/.bin/eslint src/**/*.js src/**/*.vue --config .config/.eslintrc.js",
     "shopify:watch": "cross-var shopify-themekit watch --env=dev --allow-live --config .config/shopify/shopify.dev.yml --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
-    "shopify:init": "node .config/shopify/shopify.init.js",
+    "shopify:init": "node .config/plugins/shopify/theme.init.js",
     "deploy:dev": "shopify-themekit deploy --env=dev --config .config/shopify/shopify.dev.yml --allow-live",
     "deploy:live": "shopify-themekit deploy --env=live --config .config/shopify/shopify.live.yml",
     "settings:dev": "shopify-themekit --env=dev download config/settings_data.json --config .config/shopify/shopify.dev.yml",
