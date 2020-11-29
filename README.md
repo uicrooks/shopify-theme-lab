@@ -24,7 +24,7 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 
 > Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
 
-**TL;DR** Go to [Installing](#installing), then to [Getting started](#getting-started). Now you're ready start 🔥
+**TL;DR** Go to [Installing](#installing), then go to [Getting started](#getting-started). Now you're ready start 🔥
 <!-- title / description (end) -->
 
 <!-- toc (start) -->
@@ -161,8 +161,8 @@ $ yarn add sass sass-loader --dev
 | - | - |
 | .config | contains multiple configurations and plugins for the development environment |
 | .github | contains files related to github and design/image files for READMEs |
-| shopify | contains default Shopify theme directory structure wtih '.liquid' files and configs |
-| src | contains `main.js` webpack entry point, `tailwind` config, `vue` and `css` files |
+| shopify | contains default Shopify theme directory structure wtih `.liquid` files and configs |
+| src | contains `main.js` webpack entry point, `tailwind.config.js`, `vue` and `css` files |
 <!-- directories (end) -->
 
 <!-- tasks (start) -->
