@@ -158,7 +158,7 @@ $ yarn add sass sass-loader --dev
 | - | - |
 | .config | contains multiple configurations and plugins for the development environment |
 | .github | contains files related to github and design/image files for READMEs |
-| shopify | contains default Shopify theme directory structure |
+| shopify | contains default Shopify theme directory structure wtih '.liquid' files and configs |
 | src | contains `main.js` webpack entry point, `tailwind` config, `vue` and `css` files |
 <!-- directories (end) -->
 
