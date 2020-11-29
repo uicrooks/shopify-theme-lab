@@ -8,6 +8,7 @@ shopify.dev.yml
 shopify.live.yml
 shopify/config/settings_data.json
 
-# adjust if static assets in the assets directory should be tracked
-# shopify/assets/bundle*
-shopify/assets/
+# ignore all files inside shopify/assets/ except files with 'static' keyword in their filename
+# on every webpack build all files are deleted except for 'static' files
+shopify/assets/*
+!shopify/assets/*static*
