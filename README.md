@@ -36,7 +36,7 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 - [CSS preprocessors](#css-preprocessors)
 - [Directories](#directories)
 - [Tasks](#tasks)
-- [Development environment](#development-environment)
+- [Development environment concepts](#development-environment-concepts)
 - [Limitations](#limitations)
 <!-- toc (end) -->
 
@@ -130,7 +130,7 @@ $ npm run deploy:live # deploy shopify/ directory
 ## CSS preprocessors
 > For the most cohesive development experience, it's recommended that you use PostCSS exclusively. [Tailwind CSS Docs](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus)
 
-By default only PostCSS with PreCSS are installed. PreCSS lets you use sass-like markup in css files. If you want to use a preprocessor it's recommended to use `SASS/SCSS`.
+By default only PostCSS with PreCSS are installed. [PreCSS](https://github.com/jonathantneal/precss) lets you use sass-like markup in css files. If you want to use a preprocessor it's recommended to use `SASS/SCSS`.
 
 ### SASS/SCSS
 1. Run the following command:
@@ -156,9 +156,10 @@ $ yarn add sass sass-loader --dev
 
 | Directory | Description |
 | - | - |
-| .config | contains multiple configurations for the development environment |
-| shopify | contains Shopify `.liquid` and config files |
-| src | contains `tailwind`, `vue` and `scss` files |
+| .config | contains multiple configurations and plugins for the development environment |
+| .github | contains files related to github and design/image files for READMEs |
+| shopify | contains default Shopify theme directory structure |
+| src | contains `main.js` webpack entry point, `tailwind` config, `vue` and `css` files |
 <!-- directories (end) -->
 
 <!-- tasks (start) -->
@@ -169,10 +170,10 @@ $ yarn add sass sass-loader --dev
 | start | run `dev`, `reloadr` and `shopify:watch` tasks simultaneously in parallel |
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create minified production files for Shopify in `shopify/assets/` directory |
-| reloadr | run a http server and websocket server for remote auto reloading |
-| lint | lint `js` and `vue` files inside the `src/` directory |
+| reloadr | run a http server and websocket server for remote auto-reloading |
+| lint | lint `.js` and `.vue` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
-| shopify:init | initialize theme on remote shopify store and create a shopify config file for specified environment |
+| shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for specified environment |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from dev store |
@@ -181,8 +182,8 @@ $ yarn add sass sass-loader --dev
 | open:live | open the url of the live store |
 <!-- tasks (end) -->
 
-<!-- development environment (start) -->
-## Development environment
+<!-- development environment concepts (start) -->
+## Development environment concepts
 
 - By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory to the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
 - By running `yarn start` 3 tasks are executed in parallel: `dev`, `reloadr` and `shopify:watch`.
@@ -191,7 +192,7 @@ $ yarn add sass sass-loader --dev
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags.
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory.
 - The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser and connected via websockets).
-<!-- development environment (end) -->
+<!-- development environment concepts (end) -->
 
 <!-- limitations (start) -->
 ## Limitations
