@@ -88,7 +88,6 @@ Vue.prototype.$axios = axios
  * vue plugins
  * extend with addtional features
  */
-
 // register additional plugins here
 
 /**
