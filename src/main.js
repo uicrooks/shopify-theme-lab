@@ -85,6 +85,13 @@ filters.keys().forEach(key => {
 Vue.prototype.$axios = axios
 
 /**
+ * vue plugins
+ * extend with addtional features
+ */
+
+// register additional plugins here
+
+/**
  * create vue instance
  */
 new Vue({
