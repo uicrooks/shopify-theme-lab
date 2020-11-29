@@ -19,8 +19,7 @@
 <!-- title / description (start) -->
 <h2 align="center">Shopify Theming Kit</h2>
 
-Shopify Theming Kit is a modern development environment for blazing fast Shopify theme development with Liquid, Vue and Tailwind CSS.
-This kit provides an easy way to build a custom Shopify theme from scratch. It contains a minimal styled boilerplate as a starting point. Everything is pre-configured and should work out of the box.
+Shopify Theming Kit is a modular development environment for blazing fast Shopify theme development. By default it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
 
 > Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
 
@@ -37,6 +36,11 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 - [Deploying](#deploying)
 - [CSS preprocessors](#css-preprocessors)
   - [SASS/SCSS](#sassscss)
+- [Swaping CSS framework](swaping-css-framework)
+  - [Removing Tailwind CSS](#removing-tailwind-css)
+  - [Bulma](#Bulma)
+  - [Bootstrap](#Bootstrap)
+  - [Materialize CSS](#materialize-css)
 - [Directories](#directories)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
@@ -52,16 +56,17 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 
 - Shopify
   - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit)
-  - Default Shopify theme directory and file structure
+  - Default Shopify theme directory structure with unstyled `.liquid` files
   - Quick shopify theme setup on remote store with `npm run shopify:init`
   - Batch of `npm scripts` to run common tasks
 - JavaScript
   - [Vue](https://vuejs.org)
   - [Vuex](https://vuex.vuejs.org)
   - [Axios](https://github.com/axios/axios)
-  - Extend with any [npm packages](https://www.npmjs.com) 📦
+  - Extend with [npm packages](https://www.npmjs.com) 📦
 - CSS
   - [Tailwind CSS](https://tailwindcss.com)
+  - Swap Tailswind CSS with any other framework like [Bulma](https://bulma.io), [Bootstrap](https://getbootstrap.com) or [Materialize CSS](https://materializecss.com)
   - [PostCSS](https://postcss.org) with [PreCSS](https://github.com/jonathantneal/precss)
   - [SASS / SCSS](https://sass-lang.com) support
 - Workflow
@@ -89,13 +94,11 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 Clone or download this repo and run following command(s) with your prefered package manager:
 
 ### npm
-
 ```shell
 $ npm install
 ```
 
 ### yarn
-
 ```shell
 $ yarn import # migrate package-lock.json to yarn.lock
 $ rm package-lock.json # or delete manually
@@ -143,7 +146,6 @@ By default only PostCSS with PreCSS are installed. [PreCSS](https://github.com/j
 1. Run the following command:
 
 #### npm
-
 ```shell
 $ npm install sass sass-loader --save-dev
 ```
@@ -157,6 +159,88 @@ $ yarn add sass sass-loader --dev
 
 3. Change `import './css/main.css'` to `import './css/main.scss'` in [src/main.js](src/main.js)
 <!-- css preprocessors (end) -->
+
+<!-- swapimg css framework (start) -->
+## Swaping CSS framework
+
+### Removing Tailwind CSS
+
+1. Remove package:
+
+#### npm
+```shell
+$ npm uninstall tailwindcss
+```
+
+#### yarn
+```shell
+$ yarn remove tailwindcss
+```
+
+2. Remove tailwind config:
+
+```shell
+$ rm src/tailwind.config.js # or delete manually
+```
+
+3. Inside [postcss.config.js](.config/postcss.config.js) remove `require('tailwindcss')(path.resolve(__dirname, '../src/tailwind.config.js'))`.
+
+4. Remove `@tailwind` imports from [main.css](src/css/main.css)
+
+### Bulma
+
+1. [Install SASS/SCSS](#sassscss) and update files accordingly
+
+2. Install package:
+
+#### npm
+```shell
+$ npm install bulma
+```
+
+#### yarn
+```shell
+$ yarn add bulma
+```
+
+3. import bulma in `main.scss` with `@import "~bulma/bulma";`
+
+### Bootstrap
+
+1. [Install SASS/SCSS](#sassscss) and update files accordingly
+
+2. Install package:
+
+#### npm
+```shell
+$ npm install bootstrap
+```
+
+#### yarn
+```shell
+$ yarn add bootstrap
+```
+
+3. import bootstrap in `main.scss` with `@import "~bootstrap/scss/bootstrap";`
+
+### Materialize CSS
+
+1. [Install SASS/SCSS](#sassscss) and update files accordingly
+
+2. Install package:
+
+#### npm
+```shell
+$ npm install materialize-css@next
+```
+
+#### yarn
+```shell
+$ yarn add materialize-css@next
+```
+
+3. import  materialize-css in `main.scss` with `@import "~materialize-css/sass/materialize";`
+<!-- swaping css framework (end) -->
 
 <!-- directories (start) -->
 ## Directories
