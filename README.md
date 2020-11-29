@@ -40,6 +40,10 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 - [Directories](#directories)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
+  - [Configs](#configs)
+  - [Shopify & environment initialization](#shopify-environment-initialization)
+  - [Shopify + webpack](#shopify-webpack)
+  - [Shopify remote auto-reloading](#shopify-remote-auto-reloading)
 - [Limitations](#limitations)
 <!-- toc (end) -->
 
@@ -188,19 +192,27 @@ $ yarn add sass sass-loader --dev
 <!-- development environment concepts (start) -->
 ## Development environment concepts
 
-- By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory to the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
+### Configs
+Inside `.configs/` are multiple pre-configured configs and plugins. You should be able to go from start to finish, whithout ever going in this directory. But if you feel the need to adjust some configs to your liking, go for it!
+
+### Shopify & environment initialization
+By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory to the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
+
+### Shopify + webpack
+- You will spend most of your time in `shopify/` and `src/` directories.
 - By running `yarn start` 3 tasks are executed in parallel: `dev`, `reloadr` and `shopify:watch`.
-- Inside the `src/` directory are: a tailwind config, scss files and vue related files.
-- All vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - vue components, vuex modules, mixins with `global` in their filename and directives with `global` in their filename.
-- Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags.
-- The webpack bundle and all other assets are outputted to `shopify/assets/` directory.
-- The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address and the [reloadr script](.config/reloadr/) reloads the remote store (if it's open in the browser and connected via websockets).
+- All vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - vue components, vuex modules, as well as mixins, directives and filters with `global` in their filename. Everything is defined in `src/main.js`.
+- Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags (You can use Liquid templating while hooking in vue functionality).
+- The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files like favicons add `static` to their filenames: `myfile.static.png`.
+
+### Shopify remote auto-reloading
+While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [reloadr plugin](.config/plugins/reloadr/) reloads all connected remote Shopify store sites. *Open the web console to check if a site is connected.*
 <!-- development environment concepts (end) -->
 
 <!-- limitations (start) -->
 ## Limitations
 
-- When the development task is running, the browser console throws a `bundle.css` error
+- When the development task is running, the browser console throws a `bundle.css` missing error
 - Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload the file to the remote store
 - Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
 - `<style></style>` and `<script></script>` will be removed on mount inside vue components (basically everything inside `<div id="app"></div>`), use `<component is="style"><componet>` and `<component is="script"></componet>` instead
