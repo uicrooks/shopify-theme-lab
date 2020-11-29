@@ -71,7 +71,7 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
   - [Browserlist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css)
-  - Remote Shopify theme auto-reloading with [reloadr](.config/plugins/reloadr) plugin
+  - Shopify remote theme auto-reloading with [reloadr](.config/plugins/reloadr) plugin
   - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
   - Clean [config structure](.config/)
   - Easily adjustable/extendable configurations
@@ -206,7 +206,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files like favicons add `static` to their filenames: `myfile.static.png`.
 
 ### Shopify remote auto-reloading
-While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [reloadr plugin](.config/plugins/reloadr/) reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
+While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [reloadr](.config/plugins/reloadr/) plugin reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
 <!-- development environment concepts (end) -->
 
 <!-- limitations (start) -->
