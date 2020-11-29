@@ -20,7 +20,7 @@
 <h2 align="center">Shopify Theming Kit</h2>
 
 Shopify Theming Kit is a modern development environment for blazing fast Shopify theme development with Liquid, Vue and Tailwind CSS.
-The kit provides an easy way to build a custom Shopify theme from scratch. It contains a minimal styled boilerplate as a starting point. Everything is pre-configured and should work out of the box.
+This kit provides an easy way to build a custom Shopify theme from scratch. It contains a minimal styled boilerplate as a starting point. Everything is pre-configured and should work out of the box.
 
 > Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
 <!-- title / description (end) -->
@@ -56,7 +56,7 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 - CSS
   - [Tailwind CSS](https://tailwindcss.com)
   - [PostCSS](https://postcss.org) with [PreCSS](https://github.com/jonathantneal/precss)
-  - [SASS / SCSS](https://sass-lang.com), [LESS](http://lesscss.org), [Stylus](https://stylus-lang.com) support
+  - [SASS / SCSS](https://sass-lang.com) support
 - Workflow
   - [Webpack](https://webpack.js.org)
   - [Babel](https://babeljs.io)
@@ -108,7 +108,7 @@ $ yarn install
 $ npm run shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
-3. Publish new theme through Shopify panel: your-store.myshopify.com/admin/themes
+3. Publish new theme through Shopify panel: **your-store.myshopify.com/admin/themes**
 
 4. Start developing:
 ```shell
@@ -128,21 +128,27 @@ $ npm run deploy:live # deploy shopify/ directory
 
 <!-- css preprocessors (start) -->
 ## CSS preprocessors
+> For the most cohesive development experience, it's recommended that you use PostCSS exclusively. [Tailwind CSS Docs](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus)
 
-### sass/scss
+By default only PostCSS with PreCSS are installed. PreCSS lets you use sass-like markup in css files. If you want to use a preprocessor it's recommended to use `SASS/SCSS`.
+
+### SASS/SCSS
+1. Run the following command:
+
+#### npm
+
 ```shell
 $ npm install sass sass-loader --save-dev
 ```
 
-### less
+#### yarn
 ```shell
-$ npm install less less-loader --save-dev
+$ yarn add sass sass-loader --dev
 ```
 
-### stylus
-```shell
-$ npm install stylus stylus-loader --save-dev
-```
+2. Rename `src/css/main.css` to `src/css/main.scss`
+
+3. Change `import './css/main.css'` to `import './css/main.scss'` in [src/main.js](src/main.js)
 <!-- css preprocessors (end) -->
 
 <!-- directories (start) -->
@@ -190,7 +196,8 @@ $ npm install stylus stylus-loader --save-dev
 <!-- limitations (start) -->
 ## Limitations
 
+- When the development task is running, the browser console throws a `bundle.css` error
 - Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload the file to the remote store
 - Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
-- `<style></style>` will be removed on mount inside vue components (basically everything inside #app), use `<component is="style"><componet>` instead when working with `.liquid` files
+- `<style></style>` and `<script></script>` will be removed on mount inside vue components (basically everything inside `<div id="app"></div>`), use `<component is="style"><componet>` and `<component is="script"></componet>` instead
 <!-- limitations (end) -->
