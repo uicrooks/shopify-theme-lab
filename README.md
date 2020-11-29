@@ -24,7 +24,7 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 
 > Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
 
-**TL;DR** Go to [Installing](#installing) then to [Getting started](#getting-started). Now you're ready start 🔥
+**TL;DR** Go to [Installing](#installing), then to [Getting started](#getting-started). Now you're ready start 🔥
 <!-- title / description (end) -->
 
 <!-- toc (start) -->
@@ -106,12 +106,12 @@ $ yarn install
 
 1. Get Shopify api access: [Instructions at Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
 
-2. Initialize theme on Shopify store with credentials from first step. Either for **dev** or **live** environment:
+2. Initialize theme on Shopify store with credentials from first step. Either for **dev** or **live** environment (You can define both environments one after another):
 ```shell
 $ npm run shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
-3. Publish new theme through Shopify panel: **your-store.myshopify.com/admin/themes**
+3. Publish the new theme through Shopify panel: **your-store.myshopify.com/admin/themes**
 
 4. Start developing:
 ```shell
@@ -124,7 +124,7 @@ $ npm run open:dev # open store url in default browser
 ## Deploying
 
 ```shell
-$ npm run build # bundle js, css and assets like images/fonts with webpack
+$ npm run build # bundle js, css and other assets like images/fonts with webpack
 $ npm run deploy:live # deploy shopify/ directory
 ```
 <!-- deploying (end) -->
