@@ -1,8 +1,8 @@
 {
   "name": "shopify-theming-kit",
-  "description": "Modern stack for Shopify theme development with Liquid, Vue and Tailwind CSS.",
+  "description": "Modular development environment for blazing fast Shopify theme development",
   "author": "Sergej Samsonenko <contact@sergej.codes>",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "license": "MIT",
   "config": {
     "reloadr": {
@@ -28,6 +28,9 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
+    "bulma": "^0.9.1",
+    "materialize-css": "^1.0.0-rc.2",
     "tailwindcss": "^2.0.1",
     "vue": "^2.6.12",
     "vuex": "^3.6.0"
@@ -58,6 +61,8 @@
     "postcss-loader": "^4.1.0",
     "precss": "^4.0.0",
     "progress-webpack-plugin": "^1.0.11",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.5",
