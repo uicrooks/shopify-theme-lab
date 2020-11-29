@@ -2,7 +2,8 @@ const path = require('path')
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin') // comes with webpack 5, no need to add to package.json
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -23,9 +24,7 @@ module.exports = merge(common, {
       {
         test: /\.css$/i,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader
-          },
+          MiniCssExtractPlugin.loader,
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -41,14 +40,20 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: './bundle.css',
       chunkFilename: '[id].css'
-    }),
-    new OptimizeCssAssetsPlugin({
-      assetNameRegExp: /\.css$/g,
-      cssProcessor: require('cssnano'),
-      cssProcessorPluginOptions: {
-        preset: ['default', { discardComments: { removeAll: true } }],
-      },
-      canPrint: true
     })
-  ]
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          format: {
+            comments: /@license/i // preserve license comments
+          }
+        },
+        extractComments: false
+      }),
+      new CssMinimizerPlugin()
+    ]
+  }
 })
