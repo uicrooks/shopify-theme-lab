@@ -23,6 +23,8 @@ Shopify Theming Kit is a modern development environment for blazing fast Shopify
 This kit provides an easy way to build a custom Shopify theme from scratch. It contains a minimal styled boilerplate as a starting point. Everything is pre-configured and should work out of the box.
 
 > Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
+
+**TL;DR** Go to [Installing](#installing) then to [Getting started](#getting-started). Now you're ready start 🔥
 <!-- title / description (end) -->
 
 <!-- toc (start) -->
@@ -34,6 +36,7 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 - [Getting started](#getting-started)
 - [Deploying](#deploying)
 - [CSS preprocessors](#css-preprocessors)
+  - [SASS/SCSS](#sassscss)
 - [Directories](#directories)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
@@ -79,7 +82,7 @@ This kit provides an easy way to build a custom Shopify theme from scratch. It c
 
 <!-- installing (start) -->
 ## Installing
-Clone or download this repo and execute following command(s) with your prefered package manager:
+Clone or download this repo and run following command(s) with your prefered package manager:
 
 ### npm
 
