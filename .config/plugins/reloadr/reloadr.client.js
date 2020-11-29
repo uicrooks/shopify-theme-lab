@@ -26,7 +26,7 @@ initReloadrClient = () => {
 
   socket.addEventListener('close', () => {
     if (initialConnectionClose) {
-      log({ msg: 'disonected', type: 'error' })
+      log({ msg: 'disconnected', type: 'error' })
       initialConnectionClose = false
     }
 
