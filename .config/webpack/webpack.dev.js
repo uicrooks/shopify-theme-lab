@@ -1,5 +1,6 @@
 const path = require('path')
 const { merge } = require('webpack-merge')
+const ESLintPlugin = require('eslint-webpack-plugin')
 const common = require('./webpack.common.js')
 const log = require('../plugins/log')
 
@@ -19,19 +20,6 @@ module.exports = merge(common, {
   ],
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        exclude: /node_modules/,
-        use: [
-            {
-            loader: 'eslint-loader',
-            options: {
-              configFile: path.resolve(__dirname, '../.eslintrc.js')
-            }
-          }
-        ]
-      },
       ... (() => {
         const rules = []
 
@@ -63,5 +51,14 @@ module.exports = merge(common, {
         return rules
       })()
     ]
-  }
+  },
+  plugins: [
+    /**
+     * docs: https://www.npmjs.com/package/eslint-webpack-plugin
+     */
+    new ESLintPlugin({
+      files: 'src/**/*.{js,vue}',
+      overrideConfigFile: path.resolve(__dirname, '../.eslintrc.js')
+    })
+  ]
 })
