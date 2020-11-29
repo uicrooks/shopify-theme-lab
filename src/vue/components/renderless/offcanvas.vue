@@ -39,4 +39,14 @@ export default {
 .offcanvas--open {
   @apply shadow-lg translate-x-0 opacity-100;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-all duration-200;
+}
+
+.fade-enter,
+.fade-leave-to {
+  @apply opacity-0;
+}
 </style>

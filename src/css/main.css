@@ -5,9 +5,6 @@
 @tailwind base;
 @tailwind components;
 
-@import "base";
-@import "transitions";
-@import "buttons";
-@import "forms";
+/* @import "my-file" */
 
 @tailwind utilities;
