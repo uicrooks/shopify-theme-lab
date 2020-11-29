@@ -6,7 +6,7 @@ const boxen = require('boxen')
 
 // initial console log
 console.log(boxen(
-  chalk.green(`Starting development tasks`),
+  chalk.green('Starting development tasks'),
   {
     padding: 1,
     margin: { top: 1, right: 0, bottom: 2, left: 0 },
@@ -36,7 +36,7 @@ module.exports = merge(common, {
         ]
       },
       {
-        test: /\.s[ac]ss$/i,
+        test: /\.css$/i,
         use: [
           'style-loader',
           'css-loader',
@@ -45,8 +45,7 @@ module.exports = merge(common, {
             options: {
               postcssOptions: require(path.resolve(__dirname, '../postcss.config.js'))
             }
-          },
-          'sass-loader'
+          }
         ]
       }
     ]

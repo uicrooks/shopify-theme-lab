@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .offcanvas {
   @apply w-full max-w-sm h-screen bg-white fixed z-20 opacity-50 top-0 transform transition-all duration-150;
 }
