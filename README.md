@@ -1,20 +1,28 @@
 <!-- logo (start) -->
-<img width="100%" src=".github/img/banner.svg" alt="Shopify Starterkit banner">
+<p align="center">
+  <img src=".github/img/logo.svg" width="250px">
+</p>
+
+<p align="center">
+  <img src=".github/img/banner.svg" width="400px">
+</p>
 <!-- logo (end) -->
 
 <!-- badges (start) -->
 <p align="center">
-  <img src="https://img.shields.io/github/package-json/v/sergejcodes/shopify-starterkit?color=%237079ff&label=shopify-starterkit">
+  <img src="https://img.shields.io/github/package-json/v/sergejcodes/shopify-starterkit?color=%236e78ff&label=shopify-theming-kit">
   <img src="https://img.shields.io/github/package-json/dependency-version/sergejcodes/shopify-starterkit/vue?color=%234fc08d">
-  <img src="https://img.shields.io/github/package-json/dependency-version/sergejcodes/shopify-starterkit/tailwindcss?color=%2300c5e3">
+  <img src="https://img.shields.io/github/package-json/dependency-version/sergejcodes/shopify-starterkit/tailwindcss?color=%2306b6d4">
 </p>
 <!-- badges (end) -->
 
 <!-- title / description (start) -->
-## Shopify Starterkit
+<h2 align="center">Shopify Theming Kit</h2>
 
-Shopify Starterkit is a development environment for fast Shopify theme development with Liquid, Vue and Tailwind CSS 🔥
+Shopify Theming Kit is a modern development environment for blazing fast Shopify theme development with Liquid, Vue and Tailwind CSS.
 The kit provides an easy way to build a custom Shopify theme from scratch. It contains a minimal styled boilerplate as a starting point. Everything is pre-configured and should work out of the box.
+
+> Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
 <!-- title / description (end) -->
 
 <!-- toc (start) -->
@@ -37,13 +45,13 @@ The kit provides an easy way to build a custom Shopify theme from scratch. It co
 - Shopify
   - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit)
   - Default Shopify theme directory and file structure
-  - Blazing fast shopify theme setup on remote store with `npm run shopify:init`
+  - Quick shopify theme setup on remote store with `npm run shopify:init`
   - Batch of `npm scripts` to run common tasks
 - JavaScript
   - [Vue](https://vuejs.org)
   - [Vuex](https://vuex.vuejs.org)
   - [Axios](https://github.com/axios/axios)
-  - Use [npm packages](https://www.npmjs.com) 📦
+  - Extend with any [npm packages](https://www.npmjs.com) 📦
 - CSS
   - [Tailwind CSS](https://tailwindcss.com)
   - [PostCSS](https://postcss.org) with [PreCSS](https://github.com/jonathantneal/precss)

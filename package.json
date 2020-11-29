@@ -1,5 +1,5 @@
 {
-  "name": "shopify-starterkit",
+  "name": "shopify-theming-kit",
   "description": "Modern stack for Shopify theme development with Liquid, Vue and Tailwind CSS.",
   "author": "Sergej Samsonenko <contact@sergej.codes>",
   "version": "1.2.2",

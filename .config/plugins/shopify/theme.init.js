@@ -16,7 +16,7 @@ const optionDefinitions = [
   { name: 'env', alias: 'e', type: String, defaultValue: 'dev' },
   { name: 'password', alias: 'p', type: String },
   { name: 'store', alias: 's', type: String },
-  { name: 'name', alias: 'n', type: String, defaultValue: 'Shopify Starterkit' }
+  { name: 'name', alias: 'n', type: String, defaultValue: 'Shopify Theming Kit' }
 ]
 
 const options = commandLineArgs(optionDefinitions)
