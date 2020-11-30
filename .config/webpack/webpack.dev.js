@@ -8,7 +8,7 @@ const log = require('../plugins/log')
  * initial console.log on development start
  */
 log.box({
-  msg: 'Shopify Theming Kit:\nStarting development',
+  msg: 'Shopify Theme Lab:\nStarting development',
   color: 'green'
 })
 
