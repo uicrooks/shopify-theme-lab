@@ -72,7 +72,7 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
   - [Tailwind CSS](https://tailwindcss.com)
   - Swap Tailwind CSS with any other framework like [Bulma](https://bulma.io), [Bootstrap](https://getbootstrap.com) or [Materialize CSS](https://materializecss.com)
   - [PostCSS](https://postcss.org) with [PreCSS](https://github.com/jonathantneal/precss)
-  - Preprocessor support: [SASS / SCSS](https://sass-lang.com) / [LESS](http://lesscss.org) /[Stylus](https://stylus-lang.com)
+  - Preprocessor support: [SASS / SCSS](https://sass-lang.com), [LESS](http://lesscss.org) and [Stylus](https://stylus-lang.com)
 - Workflow
   - [Webpack](https://webpack.js.org)
   - [Babel](https://babeljs.io)
