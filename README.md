@@ -36,6 +36,8 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
 - [Deploying](#deploying)
 - [CSS preprocessors](#css-preprocessors)
   - [SASS/SCSS](#sassscss)
+  - [LESS](#less)
+  - [Stylus](#stylus)
 - [Swaping CSS framework](swaping-css-framework)
   - [Removing Tailwind CSS](#removing-tailwind-css)
   - [Bulma](#Bulma)
@@ -70,7 +72,7 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
   - [Tailwind CSS](https://tailwindcss.com)
   - Swap Tailwind CSS with any other framework like [Bulma](https://bulma.io), [Bootstrap](https://getbootstrap.com) or [Materialize CSS](https://materializecss.com)
   - [PostCSS](https://postcss.org) with [PreCSS](https://github.com/jonathantneal/precss)
-  - [SASS / SCSS](https://sass-lang.com) support
+  - Preprocessor support: [SASS / SCSS](https://sass-lang.com) / [LESS](http://lesscss.org) /[Stylus](https://stylus-lang.com)
 - Workflow
   - [Webpack](https://webpack.js.org)
   - [Babel](https://babeljs.io)
@@ -107,7 +109,7 @@ $ rm package-lock.json # or delete manually
 $ yarn install
 ```
 
-> If you migrated to yarn replace `npm run` with `yarn` when executing upcoming commands.
+> If you migrated to yarn, replace `npm run` with `yarn` when executing upcoming commands.
 <!-- installing (end) -->
 
 <!-- getting started (start) -->
@@ -115,7 +117,7 @@ $ yarn install
 
 1. Get Shopify api access: [Instructions at Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
 
-2. Initialize theme on Shopify store with credentials from first step. Either for **dev** or **live** environment (You can define both environments one after another):
+2. Initialize theme on Shopify store with credentials from first step. Either for **dev** or **live** environment:
 ```shell
 $ npm run shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
@@ -142,7 +144,7 @@ $ npm run deploy:live # deploy shopify/ directory
 ## CSS preprocessors
 > For the most cohesive development experience, it's recommended that you use PostCSS exclusively. [Tailwind CSS Docs](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus)
 
-By default only PostCSS with PreCSS are installed. [PreCSS](https://github.com/jonathantneal/precss) lets you use sass-like markup in css files. If you want to use a preprocessor it's recommended to use `SASS/SCSS`.
+By default only PostCSS with PreCSS are installed. [PreCSS](https://github.com/jonathantneal/precss) lets you use sass-like markup in css files. If you want to use a preprocessor it's recommended to use `SASS/SCSS` since it's the most compatible with most CSS frameworks.
 
 ### SASS/SCSS
 1. Run the following command:
@@ -160,6 +162,41 @@ $ yarn add sass sass-loader --dev
 2. Rename `src/css/main.css` to `src/css/main.scss`
 
 3. Change `import './css/main.css'` to `import './css/main.scss'` in [src/main.js](src/main.js)
+
+### LESS
+1. Run the following command:
+
+#### npm
+```shell
+$ npm install less less-loader --save-dev
+```
+
+#### yarn
+```shell
+$ yarn add less less-loader --dev
+```
+
+2. Rename `src/css/main.css` to `src/css/main.less`
+
+3. Change `import './css/main.css'` to `import './css/main.less'` in [src/main.js](src/main.js)
+
+### Stylus
+1. Run the following command:
+
+#### npm
+```shell
+$ npm install stylus stylus-loader --save-dev
+```
+
+#### yarn
+```shell
+$ yarn add stylus stylus-loader --dev
+```
+
+2. Rename `src/css/main.css` to `src/css/main.styl`
+
+3. Change `import './css/main.css'` to `import './css/main.styl'` in [src/main.js](src/main.js)
+
 <!-- css preprocessors (end) -->
 
 <!-- swapimg css framework (start) -->
