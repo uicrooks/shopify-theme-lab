@@ -59,7 +59,7 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
 ## Features
 
 - Shopify
-  - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit)
+  - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit) npm package
   - Default Shopify theme directory structure with unstyled `.liquid` files
   - Quick shopify theme setup on remote store with `npm run shopify:init`
   - Batch of `npm scripts` to run common tasks
@@ -79,7 +79,7 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
   - [ESLint](https://eslint.org)
   - [Browserlist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
-  - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css)
+  - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
   - Shopify remote theme auto-reloading with [reloadr](.config/plugins/reloadr) plugin
   - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
   - Clean [config structure](.config/)
@@ -142,9 +142,9 @@ $ npm run deploy:live # deploy shopify/ directory
 
 <!-- css preprocessors (start) -->
 ## CSS preprocessors
-> For the most cohesive development experience, it's recommended that you use PostCSS exclusively. [Tailwind CSS Docs](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus)
+> For the most cohesive development experience, it's recommended that you use PostCSS exclusively when working with [Tailwind CSS](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus).
 
-By default only PostCSS with PreCSS are installed. [PreCSS](https://github.com/jonathantneal/precss) lets you use sass-like markup in css files. If you want to use a preprocessor it's recommended to use `SASS/SCSS` since it's the most compatible with most CSS frameworks.
+By default only PostCSS with PreCSS are installed. [PreCSS](https://github.com/jonathantneal/precss) lets you use sass-like markup in `.css` files. If you want to use a preprocessor it's recommended to use `SASS/SCSS` since it's the most compatible with a variety of CSS frameworks.
 
 ### SASS/SCSS
 1. Run the following command:
