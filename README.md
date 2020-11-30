@@ -41,6 +41,8 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
   - [Bulma](#Bulma)
   - [Bootstrap](#Bootstrap)
   - [Materialize CSS](#materialize-css)
+- [Swaping JavaScript framework](swaping-javascript-framework)
+  - [Removing Vue](#removing-vue)
 - [Directories](#directories)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
@@ -241,6 +243,56 @@ $ yarn add materialize-css@next
 
 3. import  materialize-css in `main.scss` with `@import "~materialize-css/sass/materialize";`
 <!-- swaping css framework (end) -->
+
+<!-- swapimg javascript framework (start) -->
+## Swaping JavaScript framework
+
+### Removing Vue
+
+1. Remove packages:
+
+#### npm
+```shell
+$ npm uninstall vue vuex vue-loader vue-template-compiler
+```
+
+#### yarn
+```shell
+$ yarn remove vue vuex vue-loader vue-template-compiler
+```
+
+2. Remove [vue](src/vue) directory:
+
+```shell
+$ rm -r src/vue # or delete manually
+```
+
+3. Remove everything from [main.js](src/main.js) except `import './css/main.css'`
+
+4. Inside [.eslintrc.js](.config/.eslintrc.js) remove `'plugin:vue/recommended'` and `'vue'`.
+
+5. Inside [webpack.common.js](.config/webpack/webpack.common.js) remove:
+
+```js
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
+```
+
+```js
+'vue$': 'vue/dist/vue.esm.js'
+```
+
+```js
+{
+  test: /\.vue$/,
+  loader: 'vue-loader'
+}
+```
+
+```js
+new VueLoaderPlugin()
+```
+
+<!-- swapimg javascript framework (end) -->
 
 <!-- directories (start) -->
 ## Directories
