@@ -19,11 +19,11 @@
 <!-- title / description (start) -->
 <h2 align="center">Shopify Theme Lab</h2>
 
-Shopify Theme Lab is a modular development environment for blazing-fast Shopify theme creation. By default it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
+Shopify Theme Lab is a modular development environment for blazing-fast Shopify theme creation. By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
 
 > Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
 
-**TL;DR** Go to [Installing](#installing), then go to [Getting started](#getting-started). Now you're ready start 🔥
+**TL;DR** Go to [Installing](#installing), then go to [Getting started](#getting-started). Now you're ready to start 🔥
 <!-- title / description (end) -->
 
 <!-- toc (start) -->
@@ -38,12 +38,12 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
   - [SASS/SCSS](#sassscss)
   - [LESS](#less)
   - [Stylus](#stylus)
-- [Swaping CSS framework](swaping-css-framework)
+- [Swapping CSS framework](swapping-css-framework)
   - [Removing Tailwind CSS](#removing-tailwind-css)
   - [Bulma](#Bulma)
   - [Bootstrap](#Bootstrap)
   - [Materialize CSS](#materialize-css)
-- [Swaping JavaScript framework](swaping-javascript-framework)
+- [Swapping JavaScript framework](swapping-javascript-framework)
   - [Removing Vue](#removing-vue)
 - [Directories](#directories)
 - [Tasks](#tasks)
@@ -61,8 +61,8 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
 - Shopify
   - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit) npm package
   - Default Shopify theme directory structure with unstyled `.liquid` files
-  - Quick shopify theme setup on remote store with `npm run shopify:init`
-  - Batch of `npm scripts` to run common tasks
+  - Quick Shopify theme setup on a remote store with `npm run shopify:init`
+  - A batch of `npm scripts` to run common tasks
 - JavaScript
   - [Vue](https://vuejs.org)
   - [Vuex](https://vuex.vuejs.org)
@@ -95,7 +95,7 @@ Shopify Theme Lab is a modular development environment for blazing-fast Shopify 
 
 <!-- installing (start) -->
 ## Installing
-Clone or download this repo and run following command(s) with your prefered package manager:
+Clone or download this repo and run the following command(s) with your preferred package manager:
 
 ### npm
 ```shell
@@ -115,14 +115,14 @@ $ yarn install
 <!-- getting started (start) -->
 ## Getting started
 
-1. Get Shopify api access: [Instructions at Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
+1. Get Shopify API access: [Instructions at Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
 
-2. Initialize theme on Shopify store with credentials from first step. Either for **dev** or **live** environment:
+2. Initialize theme on Shopify store with credentials from the first step. Either for **dev** or **live** environment:
 ```shell
 $ npm run shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
-3. Publish the new theme through Shopify panel: **your-store.myshopify.com/admin/themes**
+3. Publish the new theme through the Shopify panel: **your-store.myshopify.com/admin/themes**
 
 4. Start developing:
 ```shell
@@ -144,7 +144,7 @@ $ npm run deploy:live # deploy shopify/ directory
 ## CSS preprocessors
 > For the most cohesive development experience, it's recommended that you use PostCSS exclusively when working with [Tailwind CSS](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus).
 
-By default only PostCSS with PreCSS are installed. [PreCSS](https://github.com/jonathantneal/precss) lets you use sass-like markup in `.css` files. If you want to use a preprocessor it's recommended to use `SASS/SCSS` since it's the most compatible with a variety of CSS frameworks.
+By default, only PostCSS with PreCSS is installed. [PreCSS](https://github.com/jonathantneal/precss) lets you use sass-like markup in `.css` files. If you want to use a preprocessor it's recommended to use `SASS/SCSS` since it's the most compatible with a variety of CSS frameworks.
 
 ### SASS/SCSS
 1. Run the following command:
@@ -199,8 +199,8 @@ $ yarn add stylus stylus-loader --dev
 
 <!-- css preprocessors (end) -->
 
-<!-- swapimg css framework (start) -->
-## Swaping CSS framework
+<!-- swappimg css framework (start) -->
+## Swapping CSS framework
 
 ### Removing Tailwind CSS
 
@@ -279,10 +279,10 @@ $ yarn add materialize-css@next
 ```
 
 3. import  materialize-css in `main.scss` with `@import "~materialize-css/sass/materialize";`
-<!-- swaping css framework (end) -->
+<!-- swapping css framework (end) -->
 
-<!-- swapimg javascript framework (start) -->
-## Swaping JavaScript framework
+<!-- swappimg javascript framework (start) -->
+## Swapping JavaScript framework
 
 ### Removing Vue
 
@@ -362,7 +362,7 @@ module: {
 | - | - |
 | .config | contains multiple configurations and plugins for the development environment |
 | .github | contains files related to github and design/image files for READMEs |
-| shopify | contains default Shopify theme directory structure wtih `.liquid` files and configs |
+| shopify | contains default Shopify theme directory structure with `.liquid` files and configs |
 | src | contains `main.js` webpack entry point, `tailwind.config.js`, `js`, `vue` and `css` files |
 <!-- directories (end) -->
 
@@ -374,23 +374,23 @@ module: {
 | start | run `dev`, `reloadr` and `shopify:watch` tasks simultaneously in parallel |
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create minified production files for Shopify in `shopify/assets/` directory |
-| reloadr | run a http server and websocket server for remote auto-reloading |
+| reloadr | run an HTTP server and WebSocket server for remote auto-reloading |
 | lint | lint `.js` and `.vue` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
-| shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for specified environment |
+| shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
-| settings:dev | download `settings_data.json` from dev store |
-| settings:live | download `settings_data.json` from live store |
-| open:dev | open the url of the dev store |
-| open:live | open the url of the live store |
+| settings:dev | download `settings_data.json` from the dev store |
+| settings:live | download `settings_data.json` from the live store |
+| open:dev | open the URL of the dev store |
+| open:live | open the URL of the live store |
 <!-- tasks (end) -->
 
 <!-- development environment concepts (start) -->
 ## Development environment concepts
 
 ### Configs
-Inside `.configs/` are multiple pre-configured configs and plugins. You should be able to go from start to finish, whithout ever going in this directory. But if you feel the need to adjust some configs to your liking, go for it!
+Inside `.configs/` are multiple pre-configured configs and plugins. You should be able to work from start to finish, without ever going into this directory. But if you feel the need to adjust some configs to your liking, go for it!
 
 ### Shopify & environment initialization
 By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory to the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
