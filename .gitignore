@@ -3,12 +3,13 @@ node_modules/
 .DS_STORE
 *.log
 
-# shopify files
+# shopify config files
 shopify.dev.yml
 shopify.live.yml
+
+# ignored by default, remove next line to include 'settings_data.json' in version control
 shopify/config/settings_data.json
 
 # ignore all files inside shopify/assets/ except files with 'static' keyword in their filename
-# on every webpack build all files are deleted except for 'static' files
 shopify/assets/*
 !shopify/assets/*static*
