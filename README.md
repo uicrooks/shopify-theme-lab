@@ -306,27 +306,52 @@ $ rm -r src/vue # or delete manually
 
 3. Remove everything from [main.js](src/main.js) except `import './css/main.css'`
 
-4. Inside [.eslintrc.js](.config/.eslintrc.js) remove `'plugin:vue/recommended'` and `'vue'`.
-
-5. Inside [webpack.common.js](.config/webpack/webpack.common.js) remove:
-
-```js
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-```
-
-```js
-'vue$': 'vue/dist/vue.esm.js'
-```
-
+4. Inside [.eslintrc.js](.config/.eslintrc.js):
 ```js
 {
-  test: /\.vue$/,
-  loader: 'vue-loader'
+  ...
+  extends: [
+    ...
+    'plugin:vue/recommended' // remove 'plugin:vue/recommended'
+    ...
+  ],
+  plugins: [
+    'vue' // remove 'vue'
+  ]
+  ...
+}
+```
+
+5. Inside [webpack.common.js](.config/webpack/webpack.common.js):
+
+```js
+...
+const VueLoaderPlugin = require('vue-loader/lib/plugin') // remove VueLoaderPlugin
+...
+```
+
+```js
+module: {
+  rules: [
+    ...
+    // remove vue-loader
+    {
+      test: /\.vue$/,
+      loader: 'vue-loader'
+    }
+    ...
+  ]
 }
 ```
 
 ```js
-new VueLoaderPlugin()
+{
+  plugins: [
+    ...
+    new VueLoaderPlugin() // remove VueLoaderPlugin
+    ...
+  ]
+}
 ```
 <!-- swapimg javascript framework (end) -->
 
