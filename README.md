@@ -328,7 +328,6 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 ```js
 new VueLoaderPlugin()
 ```
-
 <!-- swapimg javascript framework (end) -->
 
 <!-- directories (start) -->
