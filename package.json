@@ -58,8 +58,6 @@
     "postcss-loader": "^4.1.0",
     "precss": "^4.0.0",
     "progress-webpack-plugin": "^1.0.11",
-    "sass": "^1.29.0",
-    "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.5",
