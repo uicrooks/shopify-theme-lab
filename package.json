@@ -4,6 +4,10 @@
   "author": "Sergej Samsonenko <contact@sergej.codes>",
   "version": "2.0.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergejcodes/shopify-starterkit"
+  },
   "config": {
     "reloadr": {
       "serverPort": 5000,
