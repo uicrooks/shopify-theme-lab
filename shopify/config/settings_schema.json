@@ -3,30 +3,16 @@
     "name": "theme_info",
     "theme_name": "Shopify Theme Lab",
     "theme_version": "1.0.0",
-    "theme_author": "Sergej Samsonenko",
-    "theme_documentation_url": "https://github.com/sergejcodes/shopify-starterkit",
-    "theme_support_url": "https://github.com/sergejcodes/shopify-starterkit/issues"
+    "theme_author": "THEME_AUTHOR",
+    "theme_documentation_url": "https://THEME_DOCUMENTATION_URL.com",
+    "theme_support_url": "https://THEME_SUPPORT_URL.com"
   },
   {
-    "name": {
-      "en": "Page",
-      "de": "Seite"
-    },
+    "name": "name",
     "settings": [
       {
         "type": "header",
-        "content": {
-          "en": "Colors",
-          "de": "Farben"
-        }
-      },
-      {
-        "type": "color",
-        "id": "theme_background_color",
-        "label": {
-          "en": "Background color",
-          "de": "Hintergrundfarbe"
-        }
+        "content": "Header"
       }
     ]
   }

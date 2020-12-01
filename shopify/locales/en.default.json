@@ -2,13 +2,10 @@
   "general": {
     "404": {
       "title": "404 Page Not Found",
-      "subtext_html": "The page you requested does not exist."
+      "text": "The page you requested does not exist."
     }
   },
   "layout": {
-    "search": {
-      "title": "Search"
-    },
     "cart": {
       "title": "Cart"
     },

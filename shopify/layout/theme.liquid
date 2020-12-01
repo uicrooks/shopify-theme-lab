@@ -1,77 +1,41 @@
 <!doctype html>
-<html lang="{{ shop.locale }}" class="min-h-screen">
+<html lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <title>{{ page_title }}</title>
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
+    <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>{{ page_title | escape }}</title>
 
     {% if page_description %}
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {% if canonical_url != blank %}
-      <link rel="canonical" href="{{ canonical_url }}">
-    {% endif %}
-
     {% comment %}
-      css bundle is not loaded during development task, instead it displays a 404 error in the web console
+      css bundle is not loaded during the development task, instead it displays a 404 error in the web console
     {% endcomment %}
     {{ 'bundle.css' | asset_url | stylesheet_tag }}
 
-    <!-- Header hook for plugins -->
+    <!-- Header hook for shopify plugins -->
     {{ content_for_header }}
   </head>
 
-  <body
-    class="template-{{ request.page_type | handle }} min-h-screen overflow-x-hidden overflow-y-scroll"
-    style="background: {{ settings.theme_background_color }};"
-  >
-    <div id="app" class="min-h-screen flex flex-col">
+  <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}" >
+    <div id="app">
       {% section 'header' %}
 
-      {% comment %}
-        vue component: with shopify data passed via prop
-      {% endcomment%}
-      <render-system-info
-        :shopify-data="{
-          shopName: '{{ shop.name }}',
-          shopDomain: '{{ shop.domain }}',
-          shopEmail: '{{ shop.email }}',
-          shopCurrency: '{{ shop.currency }}'
-        }"
-        class="container mb-8"
-      >
-        <div class="text-lg font-bold mb-4">
-          System Info
-        </div>
-      </render-system-info>
-
-      <main class="flex-1 container" role="main">
+      <main id="main" role="main">
         {{ content_for_layout }}
       </main>
 
       {% section 'footer' %}
-
-      {% comment %}
-        renderless vue component: snippets/vue-offcanvas.liquid
-        test it by clicking the hamburger-menu icon on mobile breakpoint
-      {% endcomment%}
-      {% render 'vue-offcanvas' %}
-
-      {% comment %}
-        vue component
-      {% endcomment%}
-      <render-backdrop class="bg-black bg-opacity-50"></render-backdrop>
     </div>
 
-    {% comment %}
-      js bundle outputted by webpack
-    {% endcomment%}
+    <!-- webpack bundle -->
     {{ 'bundle.js' | asset_url | script_tag }}
   </body>
 </html>
