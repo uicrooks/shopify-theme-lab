@@ -4,18 +4,18 @@ import { mapState, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      key: state => state.module.key
+      visible: state => state['my-module'].visible
     })
   },
   methods: {
     ...mapActions({
-      action: 'module/action'
+      toggle: 'my-module/toggle'
     })
   },
   render () {
     return this.$scopedSlots.default({
-      key: this.key,
-      action: this.action
+      visible: this.visible,
+      toggle: this.toggle
     })
   }
 }

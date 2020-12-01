@@ -1,14 +1,12 @@
-<div>
-  <div class="container">
-    <div>
-      {% for link in linklists.footer.links %}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      {% endfor %}
-    </div>
+<div class="container">
+  <div>
+    {% for link in linklists.footer.links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+  </div>
 
-    <div>
-      &copy; Shopify Theme Lab
-    </div>
+  <div>
+    &copy; Shopify Theme Lab
   </div>
 </div>
 

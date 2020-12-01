@@ -1,4 +1,4 @@
 export default {
-  name: 'name',
-  filter: value => value
+  name: 'myFilter',
+  filter: value => `'my-filter' was used on ${value}`
 }

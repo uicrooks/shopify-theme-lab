@@ -1,28 +1,20 @@
 <template>
   <div>
-    <div>
-      <slot />
+    <slot />
 
-      <ul>
-        <li
-          v-for="(value, key) in shopifyData"
-          :key="key"
-        >
-          {{ key }}: {{ value }}
-        </li>
-      </ul>
-    </div>
+    <ul>
+      <li
+        v-for="(value, key) in shopifyData"
+        :key="key"
+      >
+        {{ key }}: {{ value }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  /**
-   * if a name is defined, you can use the component as <system-info></system-info> in .liquid files,
-   * otherwise the component will be named after the file path starting from components/ directory
-   * for this file it is: <render-system-info></render-system-info>
-   */
-  // name: 'systemInfo',
   props: {
     shopifyData: {
       type: Object,

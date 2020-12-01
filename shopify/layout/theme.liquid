@@ -26,6 +26,9 @@
 
   <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}" >
     <div id="app">
+      <!-- vue examples -->
+      {% render 'vue-examples' %}
+
       {% section 'header' %}
 
       <main id="main" role="main">

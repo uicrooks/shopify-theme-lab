@@ -1,24 +1,20 @@
-<div>
-  <div class="container">
-    <div>
-      <a href="/">Logo</a>
+<div class="container">
+  <a href="/">Logo</a>
 
-      {% render 'layout-menu' %}
+  {% render 'layout-menu' %}
 
-      <div>
-        {% if shop.customer_accounts_enabled %}
-          {% if customer %}
-            <a href="/account">{{ 'layout.customer.account' | t }}</a>
-            {{ 'layout.customer.logout' | t | customer_logout_link }}
-          {% else %}
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-            {{ 'layout.customer.register' | t | customer_register_link }}
-          {% endif %}
-        {% endif %}
+  <div>
+    {% if shop.customer_accounts_enabled %}
+      {% if customer %}
+        <a href="/account">{{ 'layout.customer.account' | t }}</a>
+        {{ 'layout.customer.logout' | t | customer_logout_link }}
+      {% else %}
+        {{ 'layout.customer.log_in' | t | customer_login_link }}
+        {{ 'layout.customer.register' | t | customer_register_link }}
+      {% endif %}
+    {% endif %}
 
-        <a href="/cart">{{ 'layout.cart.title' | t }}</a>
-      </div>
-    </div>
+    <a href="/cart">{{ 'layout.cart.title' | t }}</a>
   </div>
 </div>
 
