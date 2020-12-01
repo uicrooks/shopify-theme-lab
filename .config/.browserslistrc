@@ -2,8 +2,8 @@
 # run '$ npx browserslist' in .config/ directory to see what browsers are selected by your queries for [production].
 
 [development]
-last 2 chrome version
-last 2 firefox version
+last 2 chrome versions
+last 2 firefox versions
 
 [production]
 last 4 versions
