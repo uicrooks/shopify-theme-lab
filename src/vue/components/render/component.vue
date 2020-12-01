@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-gray-800 text-white p-6">
+    <div>
       <slot />
 
       <ul>
@@ -8,7 +8,7 @@
           v-for="(value, key) in shopifyData"
           :key="key"
         >
-          {{ key }}: <span class="text-gray-300">{{ value }}</span>
+          {{ key }}: {{ value }}
         </li>
       </ul>
     </div>

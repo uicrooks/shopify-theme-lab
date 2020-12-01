@@ -13,14 +13,14 @@ Vue.config.productionTip = false
 
 /**
  * vue components
- * auto import all vue components
+ * auto-import all vue components
  */
 const vueComponents = require.context('./vue/components/', true, /(\.vue$|\.js$)/)
 
 vueComponents.keys().forEach(key => {
   const component = vueComponents(key).default
 
-  // if the component has a name defined use the name else use path as component name
+  // if a component has a name defined use the name, else use the path as component name
   const name = component.name
     ? component.name
     : key.replace(/(\.\/|\.vue|\.js)/g, '').replace(/(\/|-|_)\w/g, (match) => match.slice(1).toUpperCase())
@@ -30,7 +30,7 @@ vueComponents.keys().forEach(key => {
 
 /**
  * vuex
- * auto import all modules
+ * auto-import all modules
  */
 Vue.use(Vuex)
 
@@ -48,7 +48,7 @@ const store = new Vuex.Store({
 
 /**
  * vue mixins
- * auto register all mixins with a 'global' keyword in their name
+ * auto-register all mixins with a 'global' keyword in their filename
  */
 const mixins = require.context('./vue/mixins/', true, /.*global.*\.js$/)
 
@@ -58,7 +58,7 @@ mixins.keys().forEach(key => {
 
 /**
  * vue directives
- * auto register all directives with a 'global' keyword in their name
+ * auto-register all directives with a 'global' keyword in their filename
  */
 const directives = require.context('./vue/directives/', true, /.*global.*\.js$/)
 
@@ -69,7 +69,7 @@ directives.keys().forEach(key => {
 
 /**
  * vue filters
- * auto register all filters with a 'global' keyword in their name
+ * auto-register all filters with a 'global' keyword in their filename
  */
 const filters = require.context('./vue/filters/', true, /.*global.*\.js$/)
 

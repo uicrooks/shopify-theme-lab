@@ -1,5 +1,5 @@
 export default {
-  name: 'log', // use on a component with 'v-log'
+  name: 'name',
   directive: {
     inserted (el) {
       console.log(el)
