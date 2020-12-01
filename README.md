@@ -106,7 +106,7 @@ $ npm install
 ```shell
 $ yarn import # migrate package-lock.json to yarn.lock
 $ rm package-lock.json # or delete manually
-$ yarn install
+$ yarn install --force
 ```
 
 > If you migrated to yarn, replace `npm run` with `yarn` when executing upcoming commands.
