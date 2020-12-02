@@ -16,6 +16,12 @@ module.exports = {
     browser: true,
     es6: true
   },
+  ignorePatterns: [
+    /**
+     * ignore certein files
+     * docs: https://eslint.org/docs/user-guide/configuring#ignorepatterns-in-config-files
+     */
+  ],
   rules: {
     /**
      * add custom rules
