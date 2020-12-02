@@ -19,7 +19,7 @@
 <!-- title / description (start) -->
 <h2 align="center">Shopify Theme Lab</h2>
 
-Shopify Theme Lab is an easy customizable modular development environment for blazing-fast Shopify theme creation. By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
+Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
 
 > Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
 
@@ -71,7 +71,7 @@ Shopify Theme Lab is an easy customizable modular development environment for bl
 - CSS
   - [Tailwind CSS](https://tailwindcss.com)
   - Swap Tailwind CSS with any other framework like [Bulma](https://bulma.io), [Bootstrap](https://getbootstrap.com) or [Materialize CSS](https://materializecss.com)
-  - [PostCSS](https://postcss.org) with [PreCSS](https://github.com/jonathantneal/precss)
+  - [PostCSS](https://postcss.org) with [postcss-preset-env](https://preset-env.cssdb.org/features)
   - Preprocessor support: [SASS / SCSS](https://sass-lang.com), [LESS](http://lesscss.org) and [Stylus](https://stylus-lang.com)
 - Workflow
   - [Webpack](https://webpack.js.org)
@@ -144,7 +144,7 @@ $ npm run deploy:live # deploy shopify/ directory
 ## CSS preprocessors
 > For the most cohesive development experience, it's recommended that you use PostCSS exclusively when working with [Tailwind CSS](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus).
 
-By default, only PostCSS with PreCSS is installed. [PreCSS](https://github.com/jonathantneal/precss) lets you use sass-like markup in `.css` files. If you want to use a preprocessor it's recommended to use `SASS/SCSS` since it's the most compatible with a variety of CSS frameworks.
+By default, only PostCSS with `postcss-preset-env` is installed. [postcss-preset-env](https://preset-env.cssdb.org/features) lets you use tomorrow’s CSS today. If you want to use a preprocessor it's recommended to use `SASS/SCSS` since it's the most compatible with a variety of CSS frameworks.
 
 ### SASS/SCSS
 1. Run the following command:
@@ -224,7 +224,7 @@ $ rm src/tailwind.config.js # or delete manually
 
 3. Inside [postcss.config.js](.config/postcss.config.js) remove `require('tailwindcss')(path.resolve(__dirname, '../src/tailwind.config.js'))`.
 
-4. Remove `@tailwind` imports from [main.css](src/css/main.css)
+4. Remove all `@import "tailwindcss/..` imports from [main.css](src/css/main.css)
 
 ### Bulma
 
