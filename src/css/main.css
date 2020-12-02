@@ -2,9 +2,9 @@
  * entry file for tailwind
  * and other style files
  */
-@tailwind base;
-@tailwind components;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
 
-/* @import "my-file" */
+/* @import "my-file"; */
 
-@tailwind utilities;
+@import "tailwindcss/utilities";
