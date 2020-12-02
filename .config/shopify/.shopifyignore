@@ -1,5 +1,4 @@
-node_modules/
-src/
-.config/
+.gitkeep
+.gitignore
 readme.md
 README.md

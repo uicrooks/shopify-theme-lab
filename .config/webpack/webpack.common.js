@@ -1,5 +1,5 @@
 const path = require('path')
-const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const ProgressPlugin = require('progress-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
@@ -43,7 +43,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ProgressBarPlugin(),
+    new ProgressPlugin(),
     /**
      * don't clean files with 'static' keyword in their filename
      * docs: https://github.com/johnagan/clean-webpack-plugin

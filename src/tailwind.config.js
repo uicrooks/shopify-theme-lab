@@ -1,5 +1,5 @@
 /**
- * tailwindCSS configuration file
+ * Tailwind CSS configuration file
  *
  * docs: https://tailwindcss.com/docs/configuration
  * default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
@@ -24,10 +24,5 @@ module.exports = {
       path.resolve(__dirname, '**/*.js'),
       path.resolve(__dirname, '../shopify/**/*.liquid')
     ]
-  },
-  future: {
-    // learn more on https://tailwindcss.com/docs/upcoming-changes
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true
   }
 }

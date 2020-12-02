@@ -7,11 +7,11 @@
         {{ link.title }}
       </a>
 
-      [{% for childlink in linklists[child_list_handle].links %}
+      {% for childlink in linklists[child_list_handle].links %}
         <a href="{{ childlink.url }}">
           {{ childlink.title | escape }}
         </a>
-      {% endfor %}]
+      {% endfor %}
     {% else %}
       <a href="{{ link.url }}">
         {{ link.title }}

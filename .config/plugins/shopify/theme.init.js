@@ -16,7 +16,7 @@ const optionDefinitions = [
   { name: 'env', alias: 'e', type: String, defaultValue: 'dev' },
   { name: 'password', alias: 'p', type: String },
   { name: 'store', alias: 's', type: String },
-  { name: 'name', alias: 'n', type: String, defaultValue: 'Shopify Starterkit' }
+  { name: 'name', alias: 'n', type: String, defaultValue: 'Shopify Theme Lab' }
 ]
 
 const options = commandLineArgs(optionDefinitions)
@@ -35,17 +35,17 @@ if (!options.env.match(/^dev$|^live$|^staging$/)) {
 /**
  * additional variables
  */
-const configPath = path.resolve(__dirname, `./shopify.${options.env}.yml`)
+const configPath = path.resolve(__dirname, `../../shopify/shopify.${options.env}.yml`)
 let themeId // assigned after remote initialization
 
 /**
- * function initialises local config and remote shopify theme
+ * function initializes local config and remote shopify theme
  */
 const initTheme = async () => {
   // initialize empty theme on shopify store
   try {
     const response  = await axios.post(
-      `https://${options.store}/admin/api/2020-07/themes.json`,
+      `https://${options.store}/admin/api/2020-10/themes.json`,
       { theme: { name: options.name } },
       { headers: { 'X-Shopify-Access-Token': options.password } }
     )
@@ -87,7 +87,7 @@ const initTheme = async () => {
       }
     }
 
-    await fs.outputFile(path.resolve(__dirname, '../../shopify/config/settings_data.json'), JSON.stringify(settingsData))
+    await fs.outputFile(path.resolve(__dirname, '../../../shopify/config/settings_data.json'), JSON.stringify(settingsData))
   } catch (e) {
     console.error(chalk.red(e))
     process.exit(1)
