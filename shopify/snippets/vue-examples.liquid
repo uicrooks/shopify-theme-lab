@@ -12,12 +12,12 @@
       <!--
         * if "name: 'myComponent'" is defined inside a vue file, it can be referenced as <my-component></my-component>
         * otherwise the component will be named after the file path starting from the components/ directory
-        * for src/vue/components/render/component.vue it's: <render-my-component></render-my-component>
+        * for src/vue/components/render/my-component.vue it's: <render-my-component></render-my-component>
       -->
 
       <div class="shopify-theme-lab__example">
-        <!-- render component example: src/vue/components/render/component.vue -->
-        <render-component
+        <!-- render component example: src/vue/components/render/my-component.vue -->
+        <render-my-component
           :shopify-data="{
             shopName: '{{ shop.name }}',
             shopDomain: '{{ shop.domain }}',
@@ -28,7 +28,7 @@
           <div class="shopify-theme-lab__subline">
             Vue component with slots and props
           </div>
-        </render-component>
+        </render-my-component>
 
         <!-- global directive -->
         <div>
@@ -54,8 +54,8 @@
       </div>
 
       <div class="shopify-theme-lab__example">
-        <!-- renderless component example: src/vue/components/renderless/component.vue -->
-        <renderless-component>
+        <!-- renderless component example: src/vue/components/renderless/my-component.vue -->
+        <renderless-my-component>
           <div slot-scope="{ visible, toggle }">
             <div class="shopify-theme-lab__subline">
               Renderless Vue component + Vuex
@@ -69,7 +69,7 @@
               Click me!
             </button>
           </div>
-        </renderless-component>
+        </renderless-my-component>
 
         <!-- vuex anywhere! -->
         <div>
