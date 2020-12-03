@@ -24,7 +24,7 @@ module.exports = merge(common, {
         const rules = []
 
         const loaders = [
-          { test: /\.css$/i },
+          { test: /\.(css|postcss)$/i },
           { test: /\.s[ac]ss$/i, loader: 'sass-loader' },
           { test: /\.less$/i, loader: 'less-loader' },
           { test: /\.styl$/i, loader: 'stylus-loader' }
