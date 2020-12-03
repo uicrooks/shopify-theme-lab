@@ -118,8 +118,11 @@ $ yarn install --force
 1. Get Shopify API access: [Instructions at Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
 
 2. Initialize theme on Shopify store with credentials from the first step. Either for **dev** or **live** environment:
+
+> `npm` requires the extra `--` before any arguments! When using `yarn` you can omit them.
+
 ```shell
-$ npm run shopify:init --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
+$ npm run shopify:init -- --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
 3. Publish the new theme through the Shopify panel: **your-store.myshopify.com/admin/themes**
