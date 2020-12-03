@@ -18,7 +18,7 @@ module.exports = {
   },
   ignorePatterns: [
     /**
-     * ignore certein files
+     * ignore certain files
      * docs: https://eslint.org/docs/user-guide/configuring#ignorepatterns-in-config-files
      */
     // 'my-file.js',
