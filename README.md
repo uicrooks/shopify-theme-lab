@@ -26,6 +26,14 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 **TL;DR** Go to [Installing](#installing), then go to [Getting started](#getting-started). Now you're ready to start 🔥
 <!-- title / description (end) -->
 
+<!-- button-youtube-setup (start) -->
+<p>
+  <a href="https://youtu.be/b1CQC7RhmHA">
+    <img src=".github/img/button-youtube-setup.svg" width="200px">
+  </a>
+</p>
+<!-- button-youtube-setup (end) -->
+
 <!-- toc (start) -->
 ## Table of contents
 
@@ -136,6 +144,7 @@ $ npm run open:dev # open store url in default browser
 
 <!-- deploying (start) -->
 ## Deploying
+> first, make sure the configuration for the `live` environment is initialized.
 
 ```shell
 $ npm run build # bundle js, css and other assets like images/fonts with webpack
@@ -227,7 +236,7 @@ $ rm src/tailwind.config.js # or delete manually
 
 3. Inside [postcss.config.js](.config/postcss.config.js) remove `require('tailwindcss')(path.resolve(__dirname, '../src/tailwind.config.js'))`.
 
-4. Remove all `@import "tailwindcss/..` imports from [main.css](src/css/main.css)
+4. Remove all `@import "tailwindcss/..";` imports from [main.css](src/css/main.css)
 
 ### Bulma
 
@@ -329,7 +338,7 @@ $ rm -r src/vue # or delete manually
 
 ```js
 ...
-const VueLoaderPlugin = require('vue-loader/lib/plugin') // remove VueLoaderPlugin
+const VueLoaderPlugin = require('vue-loader/lib/plugin') // remove VueLoaderPlugin require
 ...
 ```
 

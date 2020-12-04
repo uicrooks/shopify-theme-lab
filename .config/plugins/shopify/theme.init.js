@@ -108,6 +108,6 @@ const initTheme = async () => {
 }
 
 /**
- * inititalise theme
+ * initialize theme
  */
 initTheme()
