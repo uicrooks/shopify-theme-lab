@@ -1,5 +1,5 @@
 const options = require('./reloadr.config.js')
-let initialConnectionClose = true // allows to display disonnected error only once on 'close' event
+let initialConnectionClose = true // allows displaying disconnected error only once on 'close' event
 
 initReloadrClient = () => {
   const socket = new WebSocket(`ws://localhost:${options.websocketPort}`)
@@ -39,7 +39,7 @@ initReloadrClient = () => {
 }
 
 /**
- * auto load in browser
+ * autoload in the browser
  */
 (() => {
   if (window) initReloadrClient()

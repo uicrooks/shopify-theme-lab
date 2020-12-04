@@ -20,7 +20,7 @@ const vueComponents = require.context('./vue/components/', true, /(\.vue$|\.js$)
 vueComponents.keys().forEach(key => {
   const component = vueComponents(key).default
 
-  // if a component has a name defined use the name, else use the path as component name
+  // if a component has a name defined use the name, else use the path as the component name
   const name = component.name
     ? component.name
     : key.replace(/(\.\/|\.vue|\.js)/g, '').replace(/(\/|-|_)\w/g, (match) => match.slice(1).toUpperCase())
@@ -80,13 +80,13 @@ filters.keys().forEach(key => {
 
 /**
  * vue prototype
- * extend with addtional features
+ * extend with additional features
  */
 Vue.prototype.$axios = axios
 
 /**
  * vue plugins
- * extend with addtional features
+ * extend with additional features
  */
 // register additional plugins here
 

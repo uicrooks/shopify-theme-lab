@@ -64,7 +64,7 @@ module.exports = merge(common, {
   },
   plugins: [
     /**
-     * docs: https://webpack.js.org/plugins/mini-css-extract-plugin/
+     * docs: https://webpack.js.org/plugins/mini-css-extract-plugin
      */
     new MiniCssExtractPlugin({
       filename: './bundle.css',
