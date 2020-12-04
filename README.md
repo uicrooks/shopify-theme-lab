@@ -136,6 +136,7 @@ $ npm run open:dev # open store url in default browser
 
 <!-- deploying (start) -->
 ## Deploying
+> first, make sure the configuration for the `live` environment is initialized.
 
 ```shell
 $ npm run build # bundle js, css and other assets like images/fonts with webpack
