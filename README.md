@@ -227,7 +227,7 @@ $ rm src/tailwind.config.js # or delete manually
 
 3. Inside [postcss.config.js](.config/postcss.config.js) remove `require('tailwindcss')(path.resolve(__dirname, '../src/tailwind.config.js'))`.
 
-4. Remove all `@import "tailwindcss/..` imports from [main.css](src/css/main.css)
+4. Remove all `@import "tailwindcss/..";` imports from [main.css](src/css/main.css)
 
 ### Bulma
 
