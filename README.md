@@ -329,7 +329,7 @@ $ rm -r src/vue # or delete manually
 
 ```js
 ...
-const VueLoaderPlugin = require('vue-loader/lib/plugin') // remove VueLoaderPlugin
+const VueLoaderPlugin = require('vue-loader/lib/plugin') // remove VueLoaderPlugin require
 ...
 ```
 
