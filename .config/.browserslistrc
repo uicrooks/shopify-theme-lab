@@ -1,5 +1,5 @@
 # docs: https://www.npmjs.com/package/browserslist
-# run '$ npx browserslist' in .config/ directory to see what browsers are selected by your queries for [production].
+# run '$ npx browserslist' in .config/ directory to see wich browsers are selected by your queries for [production].
 
 [development]
 last 2 chrome versions

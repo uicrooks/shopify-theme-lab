@@ -12,7 +12,7 @@ const log = (msg) => {
 
 /**
  * create websocket server
- * for remote shopify theme
+ * for remote Shopify theme
  */
 const wss = new WebSocket.Server({ port: options.websocketPort })
 
@@ -23,7 +23,7 @@ wss.broadcast = (msg) => {
 }
 
 /**
- * create http server
+ * create HTTP server
  * for themekit notify requests
  */
 http.createServer((req, res) => {

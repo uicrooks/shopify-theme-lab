@@ -1,5 +1,5 @@
 /**
- * this is a script to quickly initialize the local development environment and a remote shopify theme
+ * this is a script to quickly initialize the local development environment and a remote Shopify theme
  */
 const path = require('path')
 const fs = require('fs-extra')
@@ -10,7 +10,7 @@ const chalk = require('chalk')
 const themeKit = require('@shopify/themekit') // node wrapper for https://shopify.github.io/themekit
 
 /**
- * get command line arguments
+ * get command-line arguments
  */
 const optionDefinitions = [
   { name: 'env', alias: 'e', type: String, defaultValue: 'dev' },
@@ -39,7 +39,7 @@ const configPath = path.resolve(__dirname, `../../shopify/shopify.${options.env}
 let themeId // assigned after remote initialization
 
 /**
- * function initializes local config and remote shopify theme
+ * function initializes local config and a remote Shopify theme
  */
 const initTheme = async () => {
   // initialize empty theme on shopify store
@@ -70,7 +70,7 @@ const initTheme = async () => {
     }
   })
 
-  // write shopify config file
+  // write Shopify config file
   try {
     await fs.outputFile(configPath, yamlConfig)
   } catch (e) {
@@ -93,7 +93,7 @@ const initTheme = async () => {
     process.exit(1)
   }
 
-  // upload shopify theme to remote
+  // upload Shopify theme to remote
   try {
     await themeKit.command('deploy', {
       config: configPath,

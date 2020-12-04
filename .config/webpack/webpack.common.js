@@ -45,7 +45,7 @@ module.exports = {
   plugins: [
     new ProgressPlugin(),
     /**
-     * don't clean files with 'static' keyword in their filename
+     * don't clean files with the 'static' keyword in their filename
      * docs: https://github.com/johnagan/clean-webpack-plugin
      */
     new CleanWebpackPlugin({
