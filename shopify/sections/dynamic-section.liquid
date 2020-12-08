@@ -1,0 +1,35 @@
+<div class="container">
+  <div>
+    <div>
+      <strong>Dynamic section</strong>
+    </div>
+
+    <div>
+      Text field value: <strong>{{ section.settings['my-text-field'] }}</strong>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Dynamic section",
+    "settings": [
+    {
+      "type": "paragraph",
+      "content": "Add custom settings for this section. [Learn more](https://shopify.dev/docs/themes/settings)"
+    },
+    {
+      "type": "text",
+      "id": "my-text-field",
+      "label": "Text field",
+      "default": "This is a default text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic section",
+      "category": "text"
+    }
+  ]
+}
+{% endschema %}
