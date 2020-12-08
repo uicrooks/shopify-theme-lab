@@ -83,7 +83,17 @@ const initTheme = async () => {
     const settingsData = {
       current: 'Default',
       presets: {
-        Default: {}
+        Default: {
+          sections: {
+            'dynamic-section': {
+              type: 'dynamic-section',
+              category: 'Text'
+            }
+          },
+          content_for_index: [
+            'dynamic-section'
+          ]
+        }
       }
     }
 

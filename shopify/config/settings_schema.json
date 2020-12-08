@@ -8,11 +8,15 @@
     "theme_support_url": "https://THEME_SUPPORT_URL.com"
   },
   {
-    "name": "name",
+    "name": "Custom settings",
     "settings": [
       {
         "type": "header",
-        "content": "Header"
+        "content": "About JSON settings"
+      },
+      {
+        "type": "paragraph",
+        "content": "This file controls the organization and content of the Theme settings area of the theme editor. The settings in this file can be referenced by any other files in your theme. [Learn more](https://shopify.dev/docs/themes/settings)"
       }
     ]
   }
