@@ -15,7 +15,7 @@ Vue.config.productionTip = false
  * vue components
  * auto-import all vue components
  */
-const vueComponents = require.context('./vue/components/', true, /(\.vue$|\.js$)/)
+const vueComponents = require.context('./vue/components/', true, /\.(vue|js)$/)
 
 vueComponents.keys().forEach(key => {
   const component = vueComponents(key).default
@@ -23,7 +23,7 @@ vueComponents.keys().forEach(key => {
   // if a component has a name defined use the name, else use the path as the component name
   const name = component.name
     ? component.name
-    : key.replace(/(\.\/|\.vue|\.js)/g, '').replace(/(\/|-|_)\w/g, (match) => match.slice(1).toUpperCase())
+    : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
 
   Vue.component(name, component)
 })
@@ -34,11 +34,12 @@ vueComponents.keys().forEach(key => {
  */
 Vue.use(Vuex)
 
-const vuexModules = require.context('./vue/store/', false, /\.js$/)
+const vuexModules = require.context('./vue/store/', true, /\.js$/)
 const modules = {}
 
 vuexModules.keys().forEach(key => {
-  modules[key.replace(/(\.\/|\.js)/g, '')] = vuexModules(key).default
+  const name = key.replace(/\.(\/|js)/g, '').replace(/\s/g, '-')
+  modules[name] = vuexModules(key).default
 })
 
 const store = new Vuex.Store({
