@@ -409,7 +409,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 
 ### Shopify + webpack
 - You will spend most of your time in `shopify/` and `src/` directories.
-- By running `yarn start` 3 tasks are executed in parallel: `dev`, `reloadr` and `shopify:watch`.
+- By running `npm run start` 3 tasks are executed in parallel: `dev`, `reloadr` and `shopify:watch`.
 - All vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - vue components, vuex modules, as well as mixins, directives and filters with `global` in their filename. Everything is defined in `src/main.js`.
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags (You can use Liquid templating while hooking in vue functionality).
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files like favicons add `static` to their filenames: `myfile.static.png`.
