@@ -100,14 +100,9 @@ const initTheme = async () => {
     const settingsFilePath = path.resolve(__dirname, '../../../shopify/config/settings_data.json')
 
     // check if settings_data.json already exists and if not then create that file
-    fs.stat(settingsFilePath, (e) => {
-      if (e && e.code === 'ENOENT') {
-        fs.outputFile(settingsFilePath, JSON.stringify(settingsData))
-      } else if (e) {
-        console.error(chalk.red(e))
-        process.exit(1)
-      }
-    })
+    if (!fs.existsSync(settingsFilePath)) {
+      await fs.outputFile(settingsFilePath, JSON.stringify(settingsData))
+    }
   } catch (e) {
     console.error(chalk.red(e))
     process.exit(1)

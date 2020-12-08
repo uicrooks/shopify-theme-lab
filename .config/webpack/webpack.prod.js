@@ -6,9 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin') // included in webpack 5, 
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const log = require('../plugins/log')
 
-/**
- * initial console.log on build start
- */
+// initial console.log on build start
 log.box({
   msg: 'Shopify Theme Lab:\nStarting build',
   color: 'green'

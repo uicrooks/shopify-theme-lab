@@ -4,9 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const common = require('./webpack.common.js')
 const log = require('../plugins/log')
 
-/**
- * initial console.log on development start
- */
+// initial console.log on development start
 log.box({
   msg: 'Shopify Theme Lab:\nStarting development',
   color: 'green'
