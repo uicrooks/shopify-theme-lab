@@ -101,7 +101,7 @@ const initTheme = async () => {
 
     // check if settings_data.json already exists and if not then create that file
     if (!fs.existsSync(settingsFilePath)) {
-      await fs.outputFile(settingsFilePath, JSON.stringify(settingsData))
+      await fs.outputFile(settingsFilePath, JSON.stringify(settingsData, null, 2))
     }
   } catch (e) {
     console.error(chalk.red(e))
