@@ -150,6 +150,12 @@ $ npm run open:dev # open store url in default browser
 $ npm run build # bundle js, css and other assets like images/fonts with webpack
 $ npm run deploy:live # deploy shopify/ directory
 ```
+
+> There is a safety mechanism in place, which won't allow you to deploy to an already published theme on the **live** store. If you want to deploy regardless use the `--allow-live` flag.
+
+```shell
+$ npm run deploy:live -- --allow-live
+```
 <!-- deploying (end) -->
 
 <!-- css preprocessors (start) -->
