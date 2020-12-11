@@ -217,7 +217,7 @@ $ yarn add stylus stylus-loader --dev
 
 <!-- css preprocessors (end) -->
 
-<!-- swappimg css framework (start) -->
+<!-- swapping css framework (start) -->
 ## Swapping CSS framework
 
 ### Removing Tailwind CSS
@@ -299,7 +299,7 @@ $ yarn add materialize-css@next
 3. import  materialize-css in `main.scss` with `@import "~materialize-css/sass/materialize";`
 <!-- swapping css framework (end) -->
 
-<!-- swappimg javascript framework (start) -->
+<!-- swapping javascript framework (start) -->
 ## Swapping JavaScript framework
 
 ### Removing Vue
@@ -371,7 +371,7 @@ module: {
   ]
 }
 ```
-<!-- swapimg javascript framework (end) -->
+<!-- swapping javascript framework (end) -->
 
 <!-- directories (start) -->
 ## Directories
