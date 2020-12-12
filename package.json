@@ -21,7 +21,7 @@
     "build": "cross-env NODE_ENV=production BROWSERSLIST_ENV=production BROWSERSLIST_CONFIG=.config/.browserslistrc node_modules/.bin/webpack --config .config/webpack/webpack.prod.js",
     "reloadr": "node .config/plugins/reloadr/reloadr.server.js",
     "lint": "node_modules/.bin/eslint src/**/*.{js,vue} --config .config/.eslintrc.js",
-    "shopify:watch": "cross-var shopify-themekit watch --env=dev --allow-live --config .config/shopify/shopify.dev.yml --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
+    "shopify:watch": "cross-env shopify-themekit watch --env=dev --allow-live --config .config/shopify/shopify.dev.yml --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
     "shopify:init": "node .config/plugins/shopify/theme.init.js",
     "deploy:dev": "shopify-themekit deploy --env=dev --config .config/shopify/shopify.dev.yml --allow-live",
     "deploy:live": "shopify-themekit deploy --env=live --config .config/shopify/shopify.live.yml",
