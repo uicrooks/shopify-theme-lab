@@ -85,6 +85,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Webpack](https://webpack.js.org)
   - [Babel](https://babeljs.io)
   - [ESLint](https://eslint.org)
+  - [stylelint](https://stylelint.io)
   - [Browserlist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
@@ -393,7 +394,9 @@ module: {
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create minified production files for Shopify in `shopify/assets/` directory |
 | reloadr | run an HTTP server and WebSocket server for remote auto-reloading |
-| lint | lint `.js` and `.vue` files inside the `src/` directory |
+| lint | run `lint:js` and `lint:css` tasks one after another |
+| lint:js | lint `.js` and `.vue` files inside the `src/` directory |
+| lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
 | shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment |
 | deploy:dev | upload the `shopify/` directory to the dev store |
