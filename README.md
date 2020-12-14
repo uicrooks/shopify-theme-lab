@@ -53,7 +53,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Materialize CSS](#materialize-css)
 - [Swapping JavaScript framework](swapping-javascript-framework)
   - [Removing Vue](#removing-vue)
-- [Directories](#directories)
+- [Project Structure](#project-structure)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
   - [Configs](#configs)
@@ -374,16 +374,41 @@ module: {
 ```
 <!-- swapping javascript framework (end) -->
 
-<!-- directories (start) -->
-## Directories
+<!-- project structure (start) -->
+## Project Structure
 
-| Directory | Description |
-| - | - |
-| .config | contains multiple configurations and plugins for the development environment |
-| .github | contains files related to github and design/image files for READMEs |
-| shopify | contains default Shopify theme directory structure with `.liquid` files and configs |
-| src | contains `main.js` webpack entry point, `tailwind.config.js`, `.js`, `.vue` and `.css` files |
-<!-- directories (end) -->
+```text
+shopify-theme-lab/             📁 root of your Shopify Theme Lab project
+├── .config/                   📁 development environment files and configs
+│   ├── plugins/               📁 additional scripts for the development environment
+│   │   └── ...
+│   ├── shopify/               📁 Shopify credential-configs
+│   │   ├── .shopifyignore     📁 files and folders that won't be uploaded to Shopify
+│   │   └── ...
+│   ├── webpack/               📁 webpack configs
+│   │   ├── webpack.common.js  📄 webpack shared config used by development and production
+│   │   ├── webpack.dev.js     📄 webpack development config
+│   │   └── webpack.prod.js    📄 webpack production config
+│   ├── .browserslistrc        📄 Browserslist config
+│   ├── .eslintrc.js           📄 ESLint config
+│   ├── .stylelintrc.js        📄 stylelint config
+│   └── postcss.config.js      📄 PostCSS config
+├── .github/                   📁 files related to GitHub and images for READMEs
+├── shopify/                   📁 default Shopify theme structure
+│   ├── assets/                📁 files outputted by webpack will be placed here
+│   └── ...
+├── src/                       📁 source files processed by webpack
+│   ├── css/                   📁 css directory
+│   │   └── main.css           📄 main stylesheet
+│   ├── vue/                   📁 Vue, Vuex files and directories
+│   │   └── ...
+│   ├── main.js                📄 webpack's main entry point
+│   └── tailwind.config.js     📄 Tailwind CSS config
+├── .gitignore                 📄 files and folders ignored by git
+├── package.json               📄 dependencies and tasks
+└── ...
+```
+<!-- project structure (end) -->
 
 <!-- tasks (start) -->
 ## Tasks
