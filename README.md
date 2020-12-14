@@ -108,18 +108,18 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 “Use this template”, clone or download this repo and run the following command(s) with your preferred package manager:
 
 ### npm
-```shell
+```sh
 $ npm install
 ```
 
 ### yarn
-```shell
+```sh
 $ yarn import # migrate package-lock.json to yarn.lock
 $ rm package-lock.json # or delete manually
 $ yarn install --force
 ```
 
-> If you migrated to yarn, replace `npm run` with `yarn` when executing upcoming commands.
+> If you migrated to yarn, you can replace `npm run` with `yarn` when executing upcoming commands.
 <!-- installing (end) -->
 
 <!-- getting started (start) -->
@@ -131,14 +131,14 @@ $ yarn install --force
 
 > `npm` requires the extra `--` before any arguments! When using `yarn` you can omit them.
 
-```shell
+```sh
 $ npm run shopify:init -- --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
 3. Publish the new theme through the Shopify panel: **your-store.myshopify.com/admin/themes**
 
 4. Start developing:
-```shell
+```sh
 $ npm run start
 $ npm run open:dev # open store url in default browser
 ```
@@ -148,14 +148,14 @@ $ npm run open:dev # open store url in default browser
 ## Deploying
 > first, make sure the configuration for the `live` environment is initialized.
 
-```shell
+```sh
 $ npm run build # bundle js, css and other assets like images/fonts with webpack
 $ npm run deploy:live # deploy shopify/ directory
 ```
 
 > There is a safety mechanism in place, which won't allow you to deploy to an already published theme on the **live** store. If you want to deploy regardless use the `--allow-live` flag.
 
-```shell
+```sh
 $ npm run deploy:live -- --allow-live
 ```
 <!-- deploying (end) -->
@@ -170,12 +170,12 @@ By default, only PostCSS with `postcss-preset-env` is installed. [postcss-preset
 1. Run the following command:
 
 #### npm
-```shell
+```sh
 $ npm install sass sass-loader --save-dev
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add sass sass-loader --dev
 ```
 
@@ -187,12 +187,12 @@ $ yarn add sass sass-loader --dev
 1. Run the following command:
 
 #### npm
-```shell
+```sh
 $ npm install less less-loader --save-dev
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add less less-loader --dev
 ```
 
@@ -204,12 +204,12 @@ $ yarn add less less-loader --dev
 1. Run the following command:
 
 #### npm
-```shell
+```sh
 $ npm install stylus stylus-loader --save-dev
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add stylus stylus-loader --dev
 ```
 
@@ -227,18 +227,18 @@ $ yarn add stylus stylus-loader --dev
 1. Remove package:
 
 #### npm
-```shell
+```sh
 $ npm uninstall tailwindcss
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn remove tailwindcss
 ```
 
 2. Remove tailwind config:
 
-```shell
+```sh
 $ rm src/tailwind.config.js # or delete manually
 ```
 
@@ -253,12 +253,12 @@ $ rm src/tailwind.config.js # or delete manually
 2. Install package:
 
 #### npm
-```shell
+```sh
 $ npm install bulma
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add bulma
 ```
 
@@ -271,12 +271,12 @@ $ yarn add bulma
 2. Install package:
 
 #### npm
-```shell
+```sh
 $ npm install bootstrap
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add bootstrap
 ```
 
@@ -289,12 +289,12 @@ $ yarn add bootstrap
 2. Install package:
 
 #### npm
-```shell
+```sh
 $ npm install materialize-css@next
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add materialize-css@next
 ```
 
@@ -309,18 +309,18 @@ $ yarn add materialize-css@next
 1. Remove packages:
 
 #### npm
-```shell
+```sh
 $ npm uninstall vue vuex vue-loader vue-template-compiler
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn remove vue vuex vue-loader vue-template-compiler
 ```
 
 2. Remove [vue](src/vue) directory:
 
-```shell
+```sh
 $ rm -r src/vue # or delete manually
 ```
 
