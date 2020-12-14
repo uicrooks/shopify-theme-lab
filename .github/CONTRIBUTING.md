@@ -8,6 +8,7 @@ Please take a moment to read this document in order to make the contribution pro
 - **Modular** - It should be effortless to alter, add, remove or swap any component.
 - **Fast** - Automating tedious processes as much as possible.
 - **Intuitive** - This project as a whole, file contents and directory structure should be quick to grasp and easy to work with.
+- **Self-sufficient** - There should be no need to install external tools or applications outside of the project to make it work.
 - **Modern** - Gone are the days of jQuery.
 
 Please keep the above points in mind when submitting issues or adding new features.
