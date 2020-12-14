@@ -86,7 +86,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Babel](https://babeljs.io)
   - [ESLint](https://eslint.org)
   - [stylelint](https://stylelint.io)
-  - [Browserlist](https://github.com/browserslist/browserslist)
+  - [Browserslist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
   - Shopify remote theme auto-reloading with [reloadr](.config/plugins/reloadr) plugin
