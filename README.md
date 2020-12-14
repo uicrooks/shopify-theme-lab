@@ -61,6 +61,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Shopify + webpack](#shopify--webpack)
   - [Shopify remote auto-reloading](#shopify-remote-auto-reloading)
 - [Limitations](#limitations)
+- [Contributing](#contributing)
 <!-- toc (end) -->
 
 <!-- features (start) -->
@@ -460,3 +461,9 @@ While `npm run start` task is running: The `shopify/` directory is being watched
 - Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
 - `<style></style>` and `<script></script>` will be removed on mount inside Vue components (basically everything inside `<div id="app">...</div>`), use `<component is="style"><componet>` and `<component is="script"></componet>` instead
 <!-- limitations (end) -->
+
+<!-- contributing (start) -->
+## Contributing
+
+Everyone is welcome to make Shopify theme development better! Please read the [Contributing guide](.github/CONTRIBUTING.md) before creating issues or submitting pull requests.
+<!-- contributing (end) -->
