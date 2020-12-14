@@ -1,4 +1,4 @@
-## Contributing Guide
+## Contributing guide
 Please take a moment to read this document in order to make the contribution process easy and effective for everyone.
 
 ### Project goals
