@@ -25,6 +25,7 @@
     "lint:css": "node_modules/.bin/stylelint src/**/*.{vue,css,sass,scss} --config .config/.stylelintrc.js",
     "shopify:watch": "cross-env-shell shopify-themekit watch --env=dev --allow-live --config .config/shopify/shopify.dev.yml --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
     "shopify:init": "node .config/plugins/shopify/theme.init.js",
+    "shopify:themes": "shopify-themekit get --list",
     "deploy:dev": "shopify-themekit deploy --env=dev --config .config/shopify/shopify.dev.yml --allow-live",
     "deploy:live": "shopify-themekit deploy --env=live --config .config/shopify/shopify.live.yml",
     "settings:dev": "shopify-themekit --env=dev download config/settings_data.json --config .config/shopify/shopify.dev.yml",
