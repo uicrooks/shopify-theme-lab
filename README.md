@@ -42,7 +42,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Installing](#installing)
 - [Getting started](#getting-started)
 - [Deploying](#deploying)
-  - [Teamwork](#teamwork)
+  - [Teams](#teams)
 - [CSS preprocessors](#css-preprocessors)
   - [SASS/SCSS](#sassscss)
   - [LESS](#less)
@@ -160,10 +160,10 @@ $ npm run deploy:live # deploy shopify/ directory
 $ npm run deploy:live -- --allow-live
 ```
 
-### Teamwork
+### Teams
 The `shopify:init` task always creates a new theme with a unique ID on the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
 
-1. Run the following command to list all the themes on the provided store and write down the ID for the theme in question:
+1. Run the following command to list all themes on the provided store and write down the ID for the theme in question:
 
 ```sh
 $ npm run shopify:themes -- --password [your-api-password] --store [your-store.myshopify.com]
