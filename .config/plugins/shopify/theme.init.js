@@ -27,8 +27,8 @@ if (Object.keys(options).length < 4) {
   process.exit(1)
 }
 
-if (!options.env.match(/^dev$|^live$|^staging$/)) {
-  console.error(chalk.red('env should be \'dev\', \'live\' or \'staging\''))
+if (!options.env.match(/^(dev|live)$/)) {
+  console.error(chalk.red('env should be \'dev\' or \'live\''))
   process.exit(1)
 }
 
