@@ -28,7 +28,7 @@ if (Object.keys(options).length < 4) {
 }
 
 if (!options.env.match(/^(dev|live)$/)) {
-  console.error(chalk.red('env should be \'dev\' or \'live\''))
+  console.error(chalk.red(`env should be ${chalk.inverse('dev')} or ${chalk.inverse('live')}`))
   process.exit()
 }
 
@@ -119,7 +119,7 @@ const initTheme = async () => {
     process.exit()
   }
 
-  console.log(chalk.green('initialized remote theme'))
+  console.log(chalk.green('✓ theme successfully initialized'))
 }
 
 /**
