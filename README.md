@@ -443,7 +443,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
 | shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment |
-| shopify:themes | list all themes with IDs on the provided store. Takes two arguments `--password` and `--store` |
+| shopify:themes | list all themes with IDs from the provided store. Takes two arguments `--password` and `--store` |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from the dev store |
