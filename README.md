@@ -384,7 +384,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 │   ├── plugins/               📁 additional scripts for the development environment
 │   │   └── ...
 │   ├── shopify/               📁 Shopify credential-configs
-│   │   ├── .shopifyignore     📄 files and folders that won't be uploaded to Shopify
+│   │   ├── .shopifyignore     📄 files and directories that won't be uploaded to Shopify
 │   │   └── ...
 │   ├── webpack/               📁 webpack configs
 │   │   ├── webpack.common.js  📄 webpack shared config used by development and production
@@ -405,7 +405,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 │   │   └── ...
 │   ├── main.js                📄 webpack's main entry point
 │   └── tailwind.config.js     📄 Tailwind CSS config
-├── .gitignore                 📄 files and folders ignored by git
+├── .gitignore                 📄 files and directories ignored by git
 ├── package.json               📄 dependencies and tasks
 └── ...
 ```
