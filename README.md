@@ -161,9 +161,9 @@ $ npm run deploy:live -- --allow-live
 ```
 
 ### Teams
-The `shopify:init` task always creates a new theme with a unique ID on the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
+The `shopify:init` task always creates a new theme with a unique ID for the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
 
-1. Run the following command to list all themes on the provided store and write down the ID for the theme in question:
+1. Run the following command to list all themes from the provided store and write down the ID for the theme in question:
 
 ```sh
 $ npm run shopify:themes -- --password [your-api-password] --store [your-store.myshopify.com]
