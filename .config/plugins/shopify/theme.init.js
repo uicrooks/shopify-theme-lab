@@ -24,12 +24,12 @@ const options = commandLineArgs(optionDefinitions)
 // check the provided options
 if (Object.keys(options).length < 4) {
   console.error(chalk.red('not enough arguments provided for initialization'))
-  process.exit(1)
+  process.exit()
 }
 
 if (!options.env.match(/^(dev|live)$/)) {
   console.error(chalk.red('env should be \'dev\' or \'live\''))
-  process.exit(1)
+  process.exit()
 }
 
 /**
@@ -54,7 +54,7 @@ const initTheme = async () => {
     themeId = response.data.theme.id.toString()
   } catch (e) {
     console.error(chalk.red(e))
-    process.exit(1)
+    process.exit()
   }
 
   // create yaml config
@@ -75,7 +75,7 @@ const initTheme = async () => {
     await fs.outputFile(configPath, yamlConfig)
   } catch (e) {
     console.error(chalk.red(e))
-    process.exit(1)
+    process.exit()
   }
 
   // write settings_data.json to shopify/config
@@ -105,7 +105,7 @@ const initTheme = async () => {
     }
   } catch (e) {
     console.error(chalk.red(e))
-    process.exit(1)
+    process.exit()
   }
 
   // upload Shopify theme to remote
@@ -116,7 +116,7 @@ const initTheme = async () => {
     })
   } catch (e) {
     console.error(chalk.red(e))
-    process.exit(1)
+    process.exit()
   }
 
   console.log(chalk.green('initialized remote theme'))
