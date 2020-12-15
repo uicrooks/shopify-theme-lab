@@ -28,7 +28,7 @@ if (Object.keys(options).length < 4) {
 }
 
 if (!options.env.match(/^(dev|live)$/)) {
-  console.error(chalk.red(`env should be ${chalk.inverse('dev')} or ${chalk.inverse('live')}`))
+  console.error(chalk.red(`env should be ${chalk.inverse(' dev ')} or ${chalk.inverse(' live ')}`))
   process.exit()
 }
 
