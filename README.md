@@ -42,6 +42,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Installing](#installing)
 - [Getting started](#getting-started)
 - [Deploying](#deploying)
+  - [Teamwork](#teamwork)
 - [CSS preprocessors](#css-preprocessors)
   - [SASS/SCSS](#sassscss)
   - [LESS](#less)
@@ -158,6 +159,23 @@ $ npm run deploy:live # deploy shopify/ directory
 ```sh
 $ npm run deploy:live -- --allow-live
 ```
+
+### Teamwork
+The `shopify:init` task always creates a new theme with a unique ID on the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
+
+1. Run the following command to list all the themes on the provided store and write down the ID for the theme in question:
+
+```sh
+$ npm run shopify:themes -- --password [your-api-password] --store [your-store.myshopify.com]
+```
+
+2. Copy and rename the Shopify sample config file:
+
+```sh
+$ cp .config/shopify/shopify.sample.yml .config/shopify/shopify.live.yml # or copy and rename manually
+```
+
+3. Adjust the contents of the newly created `shopify.live.yml` file.
 <!-- deploying (end) -->
 
 <!-- css preprocessors (start) -->
@@ -425,6 +443,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
 | shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment |
+| shopify:themes | list all themes with IDs on the provided store. Takes two arguments `--password` and `--store` |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from the dev store |
