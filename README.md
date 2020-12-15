@@ -54,7 +54,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Materialize CSS](#materialize-css)
 - [Swapping JavaScript framework](swapping-javascript-framework)
   - [Removing Vue](#removing-vue)
-- [Project Structure](#project-structure)
+- [Project structure](#project-structure)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
   - [Configs](#configs)
@@ -394,7 +394,7 @@ module: {
 <!-- swapping javascript framework (end) -->
 
 <!-- project structure (start) -->
-## Project Structure
+## Project structure
 
 ```text
 shopify-theme-lab/             📁 root of your Shopify Theme Lab project
