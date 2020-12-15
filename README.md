@@ -42,6 +42,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Installing](#installing)
 - [Getting started](#getting-started)
 - [Deploying](#deploying)
+  - [Teams](#teams)
 - [CSS preprocessors](#css-preprocessors)
   - [SASS/SCSS](#sassscss)
   - [LESS](#less)
@@ -53,7 +54,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Materialize CSS](#materialize-css)
 - [Swapping JavaScript framework](swapping-javascript-framework)
   - [Removing Vue](#removing-vue)
-- [Directories](#directories)
+- [Project structure](#project-structure)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
   - [Configs](#configs)
@@ -61,6 +62,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Shopify + webpack](#shopify--webpack)
   - [Shopify remote auto-reloading](#shopify-remote-auto-reloading)
 - [Limitations](#limitations)
+- [Contributing](#contributing)
 <!-- toc (end) -->
 
 <!-- features (start) -->
@@ -85,7 +87,8 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Webpack](https://webpack.js.org)
   - [Babel](https://babeljs.io)
   - [ESLint](https://eslint.org)
-  - [Browserlist](https://github.com/browserslist/browserslist)
+  - [stylelint](https://stylelint.io)
+  - [Browserslist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
   - Shopify remote theme auto-reloading with [reloadr](.config/plugins/reloadr) plugin
@@ -106,18 +109,18 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 “Use this template”, clone or download this repo and run the following command(s) with your preferred package manager:
 
 ### npm
-```shell
+```sh
 $ npm install
 ```
 
 ### yarn
-```shell
+```sh
 $ yarn import # migrate package-lock.json to yarn.lock
 $ rm package-lock.json # or delete manually
 $ yarn install --force
 ```
 
-> If you migrated to yarn, replace `npm run` with `yarn` when executing upcoming commands.
+> If you migrated to yarn, you can replace `npm run` with `yarn` when executing upcoming commands.
 <!-- installing (end) -->
 
 <!-- getting started (start) -->
@@ -129,14 +132,14 @@ $ yarn install --force
 
 > `npm` requires the extra `--` before any arguments! When using `yarn` you can omit them.
 
-```shell
+```sh
 $ npm run shopify:init -- --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
 ```
 
 3. Publish the new theme through the Shopify panel: **your-store.myshopify.com/admin/themes**
 
 4. Start developing:
-```shell
+```sh
 $ npm run start
 $ npm run open:dev # open store url in default browser
 ```
@@ -146,16 +149,33 @@ $ npm run open:dev # open store url in default browser
 ## Deploying
 > first, make sure the configuration for the `live` environment is initialized.
 
-```shell
+```sh
 $ npm run build # bundle js, css and other assets like images/fonts with webpack
 $ npm run deploy:live # deploy shopify/ directory
 ```
 
 > There is a safety mechanism in place, which won't allow you to deploy to an already published theme on the **live** store. If you want to deploy regardless use the `--allow-live` flag.
 
-```shell
+```sh
 $ npm run deploy:live -- --allow-live
 ```
+
+### Teams
+The `shopify:init` task always creates a new theme with a unique ID on the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
+
+1. Run the following command to list all themes on the provided store and write down the ID for the theme in question:
+
+```sh
+$ npm run shopify:themes -- --password [your-api-password] --store [your-store.myshopify.com]
+```
+
+2. Copy and rename the Shopify sample config file:
+
+```sh
+$ cp .config/shopify/shopify.sample.yml .config/shopify/shopify.live.yml # or copy and rename manually
+```
+
+3. Adjust the contents of the newly created `shopify.live.yml` file.
 <!-- deploying (end) -->
 
 <!-- css preprocessors (start) -->
@@ -168,12 +188,12 @@ By default, only PostCSS with `postcss-preset-env` is installed. [postcss-preset
 1. Run the following command:
 
 #### npm
-```shell
+```sh
 $ npm install sass sass-loader --save-dev
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add sass sass-loader --dev
 ```
 
@@ -185,12 +205,12 @@ $ yarn add sass sass-loader --dev
 1. Run the following command:
 
 #### npm
-```shell
+```sh
 $ npm install less less-loader --save-dev
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add less less-loader --dev
 ```
 
@@ -202,12 +222,12 @@ $ yarn add less less-loader --dev
 1. Run the following command:
 
 #### npm
-```shell
+```sh
 $ npm install stylus stylus-loader --save-dev
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add stylus stylus-loader --dev
 ```
 
@@ -217,7 +237,7 @@ $ yarn add stylus stylus-loader --dev
 
 <!-- css preprocessors (end) -->
 
-<!-- swappimg css framework (start) -->
+<!-- swapping css framework (start) -->
 ## Swapping CSS framework
 
 ### Removing Tailwind CSS
@@ -225,18 +245,18 @@ $ yarn add stylus stylus-loader --dev
 1. Remove package:
 
 #### npm
-```shell
+```sh
 $ npm uninstall tailwindcss
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn remove tailwindcss
 ```
 
 2. Remove tailwind config:
 
-```shell
+```sh
 $ rm src/tailwind.config.js # or delete manually
 ```
 
@@ -251,12 +271,12 @@ $ rm src/tailwind.config.js # or delete manually
 2. Install package:
 
 #### npm
-```shell
+```sh
 $ npm install bulma
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add bulma
 ```
 
@@ -269,12 +289,12 @@ $ yarn add bulma
 2. Install package:
 
 #### npm
-```shell
+```sh
 $ npm install bootstrap
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add bootstrap
 ```
 
@@ -287,19 +307,19 @@ $ yarn add bootstrap
 2. Install package:
 
 #### npm
-```shell
+```sh
 $ npm install materialize-css@next
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn add materialize-css@next
 ```
 
 3. import  materialize-css in `main.scss` with `@import "~materialize-css/sass/materialize";`
 <!-- swapping css framework (end) -->
 
-<!-- swappimg javascript framework (start) -->
+<!-- swapping javascript framework (start) -->
 ## Swapping JavaScript framework
 
 ### Removing Vue
@@ -307,18 +327,18 @@ $ yarn add materialize-css@next
 1. Remove packages:
 
 #### npm
-```shell
+```sh
 $ npm uninstall vue vuex vue-loader vue-template-compiler
 ```
 
 #### yarn
-```shell
+```sh
 $ yarn remove vue vuex vue-loader vue-template-compiler
 ```
 
 2. Remove [vue](src/vue) directory:
 
-```shell
+```sh
 $ rm -r src/vue # or delete manually
 ```
 
@@ -371,18 +391,43 @@ module: {
   ]
 }
 ```
-<!-- swapimg javascript framework (end) -->
+<!-- swapping javascript framework (end) -->
 
-<!-- directories (start) -->
-## Directories
+<!-- project structure (start) -->
+## Project structure
 
-| Directory | Description |
-| - | - |
-| .config | contains multiple configurations and plugins for the development environment |
-| .github | contains files related to github and design/image files for READMEs |
-| shopify | contains default Shopify theme directory structure with `.liquid` files and configs |
-| src | contains `main.js` webpack entry point, `tailwind.config.js`, `.js`, `.vue` and `.css` files |
-<!-- directories (end) -->
+```text
+shopify-theme-lab/             📁 root of your Shopify Theme Lab project
+├── .config/                   📁 development environment files and configs
+│   ├── plugins/               📁 additional scripts for the development environment
+│   │   └── ...
+│   ├── shopify/               📁 Shopify credential-configs
+│   │   ├── .shopifyignore     📄 files and directories that won't be uploaded to Shopify
+│   │   └── ...
+│   ├── webpack/               📁 webpack configs
+│   │   ├── webpack.common.js  📄 webpack shared config used by development and production
+│   │   ├── webpack.dev.js     📄 webpack development config
+│   │   └── webpack.prod.js    📄 webpack production config
+│   ├── .browserslistrc        📄 Browserslist config
+│   ├── .eslintrc.js           📄 ESLint config
+│   ├── .stylelintrc.js        📄 stylelint config
+│   └── postcss.config.js      📄 PostCSS config
+├── .github/                   📁 files related to GitHub and images for READMEs
+├── shopify/                   📁 default Shopify theme structure
+│   ├── assets/                📁 files outputted by webpack will be placed here
+│   └── ...
+├── src/                       📁 source files processed by webpack
+│   ├── css/                   📁 css directory
+│   │   └── main.css           📄 main stylesheet
+│   ├── vue/                   📁 Vue, Vuex files and directories
+│   │   └── ...
+│   ├── main.js                📄 webpack's main entry point
+│   └── tailwind.config.js     📄 Tailwind CSS config
+├── .gitignore                 📄 files and directories ignored by git
+├── package.json               📄 dependencies and tasks
+└── ...
+```
+<!-- project structure (end) -->
 
 <!-- tasks (start) -->
 ## Tasks
@@ -393,9 +438,12 @@ module: {
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create minified production files for Shopify in `shopify/assets/` directory |
 | reloadr | run an HTTP server and WebSocket server for remote auto-reloading |
-| lint | lint `.js` and `.vue` files inside the `src/` directory |
+| lint | run `lint:js` and `lint:css` tasks one after another |
+| lint:js | lint `.js` and `.vue` files inside the `src/` directory |
+| lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
 | shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment |
+| shopify:themes | list all themes with IDs on the provided store. Takes two arguments `--password` and `--store` |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from the dev store |
@@ -432,3 +480,9 @@ While `npm run start` task is running: The `shopify/` directory is being watched
 - Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
 - `<style></style>` and `<script></script>` will be removed on mount inside Vue components (basically everything inside `<div id="app">...</div>`), use `<component is="style"><componet>` and `<component is="script"></componet>` instead
 <!-- limitations (end) -->
+
+<!-- contributing (start) -->
+## Contributing
+
+Everyone is welcome to make Shopify theme development better! Please read the [Contributing guide](.github/CONTRIBUTING.md) before creating issues or submitting pull requests.
+<!-- contributing (end) -->
