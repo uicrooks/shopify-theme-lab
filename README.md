@@ -438,7 +438,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create minified production files for Shopify in `shopify/assets/` directory |
 | reloadr | run an HTTP server and WebSocket server for remote auto-reloading |
-| lint | run `lint:js` and `lint:css` tasks one after another |
+| lint | run `lint:js` and `lint:css` tasks in sequence |
 | lint:js | lint `.js` and `.vue` files inside the `src/` directory |
 | lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
