@@ -405,7 +405,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 │   │   ├── .shopifyignore     📄 files and directories that won't be uploaded to Shopify
 │   │   └── ...
 │   ├── webpack/               📁 webpack configs
-│   │   ├── webpack.common.js  📄 webpack shared config used by development and production
+│   │   ├── webpack.common.js  📄 webpack shared config used in development and production
 │   │   ├── webpack.dev.js     📄 webpack development config
 │   │   └── webpack.prod.js    📄 webpack production config
 │   ├── .browserslistrc        📄 Browserslist config
