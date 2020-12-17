@@ -2,12 +2,14 @@ module.exports = {
   extends: 'stylelint-config-recommended',
   plugins: [
     /**
+     * add plugins
      * docs: https://stylelint.io/user-guide/configure#plugins
      */
-    // 'stylelint-scss' // not included by default, add with a package manager
+    // 'stylelint-scss' // stylelint by itself supports SCSS syntax very well
   ],
   ignoreFiles: [
     /**
+     * ignore certain files
      * docs: https://stylelint.io/user-guide/configure#ignorefiles
      */
     // 'my-file.css',
@@ -15,6 +17,7 @@ module.exports = {
   ],
   rules: {
     /**
+     * add custom rules
      * docs: https://stylelint.io/user-guide/rules/list
      */
     'at-rule-no-unknown': [
