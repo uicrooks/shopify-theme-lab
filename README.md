@@ -141,7 +141,7 @@ $ npm run shopify:init -- --password [your-api-password] --store [your-store.mys
 4. Start developing:
 ```sh
 $ npm run start
-$ npm run open:dev # open store url in default browser
+$ npm run open:dev # open/preview theme in default browser
 ```
 <!-- getting started (end) -->
 
@@ -448,8 +448,8 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from the dev store |
 | settings:live | download `settings_data.json` from the live store |
-| open:dev | open the URL of the dev store |
-| open:live | open the URL of the live store |
+| open:dev | open/preview theme on the dev store |
+| open:live | open/preview theme on the live store |
 <!-- tasks (end) -->
 
 <!-- development environment concepts (start) -->
