@@ -28,7 +28,7 @@ if (Object.keys(options).length < 4) {
 }
 
 if (!options.env.match(/^(dev|live)$/)) {
-  console.error(chalk.red(`env should be ${chalk.inverse('dev')} or ${chalk.inverse('live')}`))
+  console.error(chalk.red(`env should be ${chalk.inverse(' dev ')} or ${chalk.inverse(' live ')}`))
   process.exit()
 }
 
@@ -44,7 +44,7 @@ let themeId // assigned after remote initialization
 const initTheme = async () => {
   // initialize empty theme on shopify store
   try {
-    const response  = await axios.post(
+    const response = await axios.post(
       `https://${options.store}/admin/api/2020-10/themes.json`,
       { theme: { name: options.name } },
       { headers: { 'X-Shopify-Access-Token': options.password } }

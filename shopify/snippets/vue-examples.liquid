@@ -30,6 +30,17 @@
           </div>
         </render-my-component>
 
+        <!-- global mixin -->
+        <div>
+          <div class="shopify-theme-lab__subline">
+            Global Vue mixin
+          </div>
+
+          <div>
+            NODE_ENV: {% raw %}{{ env }}{% endraw %}
+          </div>
+        </div>
+
         <!-- global directive -->
         <div>
           <div class="shopify-theme-lab__subline">
@@ -37,7 +48,7 @@
           </div>
 
           <div v-my-directive>
-            Check the web console!
+            this text
           </div>
         </div>
 
@@ -48,7 +59,7 @@
           </div>
 
           <div>
-            {% raw %}{{ 'this string' | my-filter }}{% endraw %}
+            {% raw %}{{ 'this text' | my-filter }}{% endraw %}
           </div>
         </div>
       </div>

@@ -141,7 +141,7 @@ $ npm run shopify:init -- --password [your-api-password] --store [your-store.mys
 4. Start developing:
 ```sh
 $ npm run start
-$ npm run open:dev # open store url in default browser
+$ npm run open:dev # open/preview theme in default browser
 ```
 <!-- getting started (end) -->
 
@@ -161,9 +161,9 @@ $ npm run deploy:live -- --allow-live
 ```
 
 ### Teams
-The `shopify:init` task always creates a new theme with a unique ID on the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
+The `shopify:init` task always creates a new theme with a unique ID for the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
 
-1. Run the following command to list all themes on the provided store and write down the ID for the theme in question:
+1. Run the following command to list all themes from the provided store and write down the ID for the theme in question:
 
 ```sh
 $ npm run shopify:themes -- --password [your-api-password] --store [your-store.myshopify.com]
@@ -405,7 +405,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 │   │   ├── .shopifyignore     📄 files and directories that won't be uploaded to Shopify
 │   │   └── ...
 │   ├── webpack/               📁 webpack configs
-│   │   ├── webpack.common.js  📄 webpack shared config used by development and production
+│   │   ├── webpack.common.js  📄 webpack shared config used in development and production
 │   │   ├── webpack.dev.js     📄 webpack development config
 │   │   └── webpack.prod.js    📄 webpack production config
 │   ├── .browserslistrc        📄 Browserslist config
@@ -438,18 +438,18 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create minified production files for Shopify in `shopify/assets/` directory |
 | reloadr | run an HTTP server and WebSocket server for remote auto-reloading |
-| lint | run `lint:js` and `lint:css` tasks one after another |
+| lint | run `lint:js` and `lint:css` tasks in sequence |
 | lint:js | lint `.js` and `.vue` files inside the `src/` directory |
 | lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
 | shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment |
-| shopify:themes | list all themes with IDs on the provided store. Takes two arguments `--password` and `--store` |
+| shopify:themes | list all themes with IDs from the provided store. Takes two arguments `--password` and `--store` |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
 | settings:dev | download `settings_data.json` from the dev store |
 | settings:live | download `settings_data.json` from the live store |
-| open:dev | open the URL of the dev store |
-| open:live | open the URL of the live store |
+| open:dev | open/preview theme on the dev store |
+| open:live | open/preview theme on the live store |
 <!-- tasks (end) -->
 
 <!-- development environment concepts (start) -->

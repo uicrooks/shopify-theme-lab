@@ -1,12 +1,14 @@
 <div class="container">
-  <a href="/">Logo</a>
+  <a href="{{ routes.root_url }}">
+    Logo
+  </a>
 
   {% render 'layout-menu' %}
 
   <div>
     {% if shop.customer_accounts_enabled %}
       {% if customer %}
-        <a href="/account">{{ 'layout.customer.account' | t }}</a>
+        <a href="{{ routes.account_url }}">{{ 'layout.customer.account' | t }}</a>
         {{ 'layout.customer.logout' | t | customer_logout_link }}
       {% else %}
         {{ 'layout.customer.log_in' | t | customer_login_link }}
@@ -14,7 +16,9 @@
       {% endif %}
     {% endif %}
 
-    <a href="/cart">{{ 'layout.cart.title' | t }}</a>
+    <a href="{{ routes.cart_url }}">
+      {{ 'layout.cart.title' | t }}
+    </a>
   </div>
 </div>
 
