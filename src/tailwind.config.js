@@ -20,8 +20,7 @@ module.exports = {
     // learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
     content: [
-      path.resolve(__dirname, '**/*.vue'),
-      path.resolve(__dirname, '**/*.js'),
+      path.resolve(__dirname, '**/*.{js,vue}'),
       path.resolve(__dirname, '../shopify/**/*.liquid')
     ]
   }
