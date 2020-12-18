@@ -26,13 +26,13 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 **TL;DR** Go to [Installing](#installing), then go to [Getting started](#getting-started). Now you're ready to start 🔥
 <!-- title / description (end) -->
 
-<!-- button-youtube-setup (start) -->
+<!-- button-youtube-quick-start (start) -->
 <p>
   <a href="https://youtu.be/b1CQC7RhmHA">
-    <img src=".github/img/button-youtube-setup.svg" width="200px">
+    <img src=".github/img/button-youtube-quick-start.svg" width="250px">
   </a>
 </p>
-<!-- button-youtube-setup (end) -->
+<!-- button-youtube-quick-start (end) -->
 
 <!-- toc (start) -->
 ## Table of contents
