@@ -50,8 +50,6 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Swapping CSS framework](swapping-css-framework)
   - [Removing Tailwind CSS](#removing-tailwind-css)
   - [Bulma](#Bulma)
-  - [Bootstrap](#Bootstrap)
-  - [Materialize CSS](#materialize-css)
 - [Swapping JavaScript framework](swapping-javascript-framework)
   - [Removing Vue](#removing-vue)
 - [Project structure](#project-structure)
@@ -81,7 +79,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - Extend with [npm packages](https://www.npmjs.com) 📦
 - CSS
   - [Tailwind CSS](https://tailwindcss.com)
-  - Swap Tailwind CSS with any other framework like [Bulma](https://bulma.io), [Bootstrap](https://getbootstrap.com) or [Materialize CSS](https://materializecss.com)
+  - Swap Tailwind CSS with any other framework e.g. [Bulma](https://bulma.io)
   - [PostCSS](https://postcss.org) with [postcss-preset-env](https://preset-env.cssdb.org/features)
   - Preprocessor support: [SASS / SCSS](https://sass-lang.com), [LESS](http://lesscss.org) and [Stylus](https://stylus-lang.com)
 - Workflow
@@ -282,42 +280,6 @@ $ yarn add bulma
 ```
 
 3. import bulma in `main.scss` with `@import "~bulma/bulma";`
-
-### Bootstrap
-
-1. [Install SASS/SCSS](#sassscss) and update files accordingly
-
-2. Install package:
-
-#### npm
-```sh
-$ npm install bootstrap
-```
-
-#### yarn
-```sh
-$ yarn add bootstrap
-```
-
-3. import bootstrap in `main.scss` with `@import "~bootstrap/scss/bootstrap";`
-
-### Materialize CSS
-
-1. [Install SASS/SCSS](#sassscss) and update files accordingly
-
-2. Install package:
-
-#### npm
-```sh
-$ npm install materialize-css@next
-```
-
-#### yarn
-```sh
-$ yarn add materialize-css@next
-```
-
-3. import  materialize-css in `main.scss` with `@import "~materialize-css/sass/materialize";`
 <!-- swapping css framework (end) -->
 
 <!-- swapping javascript framework (start) -->
