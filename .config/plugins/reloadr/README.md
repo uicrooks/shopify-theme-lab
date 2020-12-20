@@ -8,7 +8,7 @@ The `reloadr.client.js` script (WebSocket client) is injected into the webpack b
 
 If the connection between `reloadr.client.js` and `reloadr.server.js` is lost, `reloadr.client.js` tries every couple of seconds to reconnect to the server.
 
-Settings and ports for the script can be adjusted in `packages.json`.
+Settings and ports for the script can be adjusted in `package.json`.
 
 ## Settings
 | Option | Description |

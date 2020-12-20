@@ -1,6 +1,6 @@
 <!-- logo (start) -->
 <p align="center">
-  <img src=".github/img/logo.svg" width="250px">
+  <img src=".github/img/logo.svg" width="275px">
 </p>
 
 <p align="center">
@@ -37,6 +37,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 <!-- toc (start) -->
 ## Table of contents
 
+- [Ecosystem](#ecosystem)
 - [Features](#features)
 - [System requirements](#system-requirements)
 - [Installing](#installing)
@@ -50,8 +51,6 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Swapping CSS framework](swapping-css-framework)
   - [Removing Tailwind CSS](#removing-tailwind-css)
   - [Bulma](#Bulma)
-  - [Bootstrap](#Bootstrap)
-  - [Materialize CSS](#materialize-css)
 - [Swapping JavaScript framework](swapping-javascript-framework)
   - [Removing Vue](#removing-vue)
 - [Project structure](#project-structure)
@@ -65,10 +64,23 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Contributing](#contributing)
 <!-- toc (end) -->
 
+<!-- ecosystem (start) -->
+## Ecosystem
+<p align="center">
+  <img src=".github/img/ecosystem.svg">
+</p>
+
+| Project | Status | Description |
+| - | - | - |
+| [Shopify Theme Lab](https://github.com/uicrooks/shopify-theme-lab) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff"> | Modular development environment for blazing-fast Shopify theming |
+| Vue x Tailwind Theme | <img src="https://img.shields.io/badge/roadmap-lightgrey"> | A modern Shopify starter theme build with Vue and Tailwind CSS
+<!-- ecosystem (end) -->
+
 <!-- features (start) -->
 ## Features
 
 - Shopify
+  - Self-contained, no need to install external tools
   - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit) npm package
   - Default Shopify theme directory structure with unstyled `.liquid` files
   - Quick Shopify theme setup on a remote store with `npm run shopify:init`
@@ -80,7 +92,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - Extend with [npm packages](https://www.npmjs.com) 📦
 - CSS
   - [Tailwind CSS](https://tailwindcss.com)
-  - Swap Tailwind CSS with any other framework like [Bulma](https://bulma.io), [Bootstrap](https://getbootstrap.com) or [Materialize CSS](https://materializecss.com)
+  - Swap Tailwind CSS with any other framework e.g. [Bulma](https://bulma.io)
   - [PostCSS](https://postcss.org) with [postcss-preset-env](https://preset-env.cssdb.org/features)
   - Preprocessor support: [SASS / SCSS](https://sass-lang.com), [LESS](http://lesscss.org) and [Stylus](https://stylus-lang.com)
 - Workflow
@@ -281,42 +293,6 @@ $ yarn add bulma
 ```
 
 3. import bulma in `main.scss` with `@import "~bulma/bulma";`
-
-### Bootstrap
-
-1. [Install SASS/SCSS](#sassscss) and update files accordingly
-
-2. Install package:
-
-#### npm
-```sh
-$ npm install bootstrap
-```
-
-#### yarn
-```sh
-$ yarn add bootstrap
-```
-
-3. import bootstrap in `main.scss` with `@import "~bootstrap/scss/bootstrap";`
-
-### Materialize CSS
-
-1. [Install SASS/SCSS](#sassscss) and update files accordingly
-
-2. Install package:
-
-#### npm
-```sh
-$ npm install materialize-css@next
-```
-
-#### yarn
-```sh
-$ yarn add materialize-css@next
-```
-
-3. import  materialize-css in `main.scss` with `@import "~materialize-css/sass/materialize";`
 <!-- swapping css framework (end) -->
 
 <!-- swapping javascript framework (start) -->
