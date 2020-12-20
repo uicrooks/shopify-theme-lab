@@ -69,6 +69,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 ## Features
 
 - Shopify
+  - Self-contained, no need to install external tools
   - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit) npm package
   - Default Shopify theme directory structure with unstyled `.liquid` files
   - Quick Shopify theme setup on a remote store with `npm run shopify:init`
