@@ -1,6 +1,6 @@
 <!-- logo (start) -->
 <p align="center">
-  <img src=".github/img/logo.svg" width="275px">
+  <img src=".github/img/logo.svg" width="250px">
 </p>
 
 <p align="center">
@@ -73,6 +73,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 | Project | Status | Description |
 | - | - | - |
 | [Shopify Theme Lab](https://github.com/uicrooks/shopify-theme-lab) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff"> | Modular development environment for blazing-fast Shopify theming |
+| [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab-cli?color=%236e78ff"> | Command Line Interface for Shopify Theme Lab |
 | Vue x Tailwind Theme | <img src="https://img.shields.io/badge/roadmap-lightgrey"> | A modern Shopify starter theme build with Vue and Tailwind CSS
 <!-- ecosystem (end) -->
 
@@ -118,7 +119,13 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 
 <!-- installing (start) -->
 ## Installing
-“Use this template”, clone or download this repo and run the following command(s) with your preferred package manager:
+1. Clone this repo or use the following command in your terminal:
+
+```sh
+$ npx themelab create <directory-name>
+```
+
+2. Run the following command(s) with your preferred package manager:
 
 ### npm
 ```sh
