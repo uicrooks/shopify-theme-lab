@@ -104,7 +104,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Browserslist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
-  - Shopify remote theme auto-reloading with [reloadr](.config/plugins/reloadr) plugin
+  - Shopify remote theme auto-reloading with [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr)
   - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` as well as Vuex `modules` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
   - Clean [config structure](.config/)
   - Easily adjustable/extendable configurations
@@ -382,8 +382,6 @@ module: {
 ```text
 shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 ├── .config/                   📁 development environment files and configs
-│   ├── plugins/               📁 additional scripts for the development environment
-│   │   └── ...
 │   ├── shopify/               📁 Shopify credential-configs
 │   │   ├── .shopifyignore     📄 files and directories that won't be uploaded to Shopify
 │   │   └── ...
@@ -425,7 +423,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | lint:js | lint `.js` and `.vue` files inside the `src/` directory |
 | lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
 | shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
-| shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment |
+| shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment (Run in the root directory of your project) |
 | shopify:themes | list all themes with IDs from the provided store. Takes two arguments `--password` and `--store` |
 | deploy:dev | upload the `shopify/` directory to the dev store |
 | deploy:live | upload the `shopify/` directory to the live store |
@@ -438,8 +436,11 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 <!-- development environment concepts (start) -->
 ## Development environment concepts
 
+### CLI
+under the hood Shopify Theme Lab uses the [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli) for some tasks. You can also use the CLI independantly from included tasks.
+
 ### Configs
-Inside `.configs/` are multiple pre-configured configs and plugins. You should be able to work from start to finish, without ever going into this directory. But if you feel the need to adjust some configs to your liking, go for it!
+Inside `.configs/` are multiple pre-configured config files. You should be able to work from start to finish, without ever going into this directory. But if you feel the need to adjust some configs to your liking, go for it!
 
 ### Shopify & environment initialization
 By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory to the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
@@ -452,7 +453,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files like favicons add `static` to their filenames: `myfile.static.png`
 
 ### Shopify remote auto-reloading
-While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [reloadr](.config/plugins/reloadr/) plugin reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
+While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
 <!-- development environment concepts (end) -->
 
 <!-- limitations (start) -->
