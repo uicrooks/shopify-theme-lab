@@ -4,10 +4,6 @@
   "author": "Sergej Samsonenko <contact@sergej.codes>",
   "version": "2.3.4",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/uicrooks/shopify-theme-lab"
-  },
   "config": {
     "reloadr": {
       "serverPort": 5000,
@@ -64,7 +60,7 @@
     "postcss-loader": "^4.1.0",
     "postcss-preset-env": "^6.7.0",
     "progress-webpack-plugin": "^1.0.11",
-    "shopify-reloadr": "^1.0.0",
+    "shopify-reloadr": "^1.0.1",
     "style-loader": "^2.0.0",
     "stylelint": "^13.8.0",
     "stylelint-config-recommended": "^3.0.0",
