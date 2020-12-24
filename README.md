@@ -382,8 +382,6 @@ module: {
 ```text
 shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 ├── .config/                   📁 development environment files and configs
-│   ├── plugins/               📁 additional scripts for the development environment
-│   │   └── ...
 │   ├── shopify/               📁 Shopify credential-configs
 │   │   ├── .shopifyignore     📄 files and directories that won't be uploaded to Shopify
 │   │   └── ...
@@ -438,8 +436,11 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 <!-- development environment concepts (start) -->
 ## Development environment concepts
 
+### CLI
+under the hood Shopify Theme Lab uses the [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli) for some tasks. You can also use the CLI independantly from included tasks.
+
 ### Configs
-Inside `.configs/` are multiple pre-configured configs and plugins. You should be able to work from start to finish, without ever going into this directory. But if you feel the need to adjust some configs to your liking, go for it!
+Inside `.configs/` are multiple pre-configured config files. You should be able to work from start to finish, without ever going into this directory. But if you feel the need to adjust some configs to your liking, go for it!
 
 ### Shopify & environment initialization
 By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory to the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
@@ -452,7 +453,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files like favicons add `static` to their filenames: `myfile.static.png`
 
 ### Shopify remote auto-reloading
-While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr) plugin reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
+While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
 <!-- development environment concepts (end) -->
 
 <!-- limitations (start) -->
