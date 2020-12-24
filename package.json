@@ -20,7 +20,7 @@
     "lint:js": "node_modules/.bin/eslint src/**/*.{js,vue} --config .config/.eslintrc.js",
     "lint:css": "node_modules/.bin/stylelint src/**/*.{vue,css,sass,scss} --config .config/.stylelintrc.js",
     "shopify:watch": "cross-env-shell shopify-themekit watch --env=dev --allow-live --config .config/shopify/shopify.dev.yml --notify=http://localhost:$npm_package_config_reloadr_serverPort/reload",
-    "shopify:init": "node .config/plugins/shopify/theme.init.js",
+    "shopify:init": "npx themelab shopify:init",
     "shopify:themes": "shopify-themekit get --list",
     "deploy:dev": "shopify-themekit deploy --env=dev --config .config/shopify/shopify.dev.yml --allow-live",
     "deploy:live": "shopify-themekit deploy --env=live --config .config/shopify/shopify.live.yml",
@@ -30,6 +30,7 @@
     "open:live": "shopify-themekit open --env=live --config .config/shopify/shopify.live.yml"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "tailwindcss": "^2.0.1",
     "vue": "^2.6.12",
     "vuex": "^3.6.0"
@@ -40,11 +41,8 @@
     "@babel/preset-env": "^7.12.10",
     "@shopify/themekit": "^1.1.6",
     "autoprefixer": "^10.1.0",
-    "axios": "^0.21.0",
     "babel-loader": "^8.2.2",
-    "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
-    "command-line-args": "^5.1.1",
     "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "css-minimizer-webpack-plugin": "^1.1.5",
@@ -52,7 +50,6 @@
     "eslint-plugin-vue": "^7.2.0",
     "eslint-webpack-plugin": "^2.4.1",
     "file-loader": "^6.2.0",
-    "fs-extra": "^9.0.1",
     "mini-css-extract-plugin": "^1.3.3",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.2.1",
@@ -70,8 +67,6 @@
     "vue-template-compiler": "^2.6.12",
     "webpack": "^5.10.1",
     "webpack-cli": "^4.2.0",
-    "webpack-merge": "^5.7.0",
-    "ws": "^7.4.1",
-    "yaml": "^1.10.0"
+    "webpack-merge": "^5.7.0"
   }
 }
