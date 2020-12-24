@@ -4,13 +4,6 @@ const common = require('./webpack.common.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin') // included in webpack 5, no need to add to package.json
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const log = require('../plugins/log')
-
-// initial console.log on build start
-log.box({
-  msg: 'Shopify Theme Lab:\nStarting build',
-  color: 'green'
-})
 
 module.exports = merge(common, {
   mode: 'production',
