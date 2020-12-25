@@ -28,7 +28,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 
 <!-- button-youtube-quick-start (start) -->
 <p>
-  <a href="https://youtu.be/b1CQC7RhmHA">
+  <a href="https://youtu.be/_jFoPw_n9g4">
     <img src=".github/img/button-youtube-quick-start.svg" width="250px">
   </a>
 </p>
