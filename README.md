@@ -56,6 +56,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Project structure](#project-structure)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
+  - [CLI](#cli)
   - [Configs](#configs)
   - [Shopify & environment initialization](#shopify--environment-initialization)
   - [Shopify + webpack](#shopify--webpack)
