@@ -28,7 +28,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 
 <!-- button-youtube-quick-start (start) -->
 <p>
-  <a href="https://youtu.be/b1CQC7RhmHA">
+  <a href="https://youtu.be/_jFoPw_n9g4">
     <img src=".github/img/button-youtube-quick-start.svg" width="250px">
   </a>
 </p>
@@ -119,7 +119,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 
 <!-- installing (start) -->
 ## Installing
-1. Clone this repo or use the following command in your terminal:
+1. Clone this repo or simply run the following command in your terminal:
 
 ```sh
 $ npx themelab create <directory-name>
