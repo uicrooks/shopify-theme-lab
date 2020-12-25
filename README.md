@@ -119,7 +119,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 
 <!-- installing (start) -->
 ## Installing
-1. Clone this repo or use the following command in your terminal:
+1. Clone this repo or simply run the following command in your terminal:
 
 ```sh
 $ npx themelab create <directory-name>
