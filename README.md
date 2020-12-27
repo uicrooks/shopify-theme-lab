@@ -44,6 +44,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Getting started](#getting-started)
 - [Deploying](#deploying)
   - [Teams](#teams)
+  - [CI/CD](#cicd)
 - [CSS preprocessors](#css-preprocessors)
   - [SASS/SCSS](#sassscss)
   - [LESS](#less)
@@ -56,6 +57,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Project structure](#project-structure)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
+  - [CLI](#cli)
   - [Configs](#configs)
   - [Shopify & environment initialization](#shopify--environment-initialization)
   - [Shopify + webpack](#shopify--webpack)
@@ -82,9 +84,10 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 
 - Shopify
   - Self-contained, no need to install external tools
-  - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit) npm package
-  - Default Shopify theme directory structure with unstyled `.liquid` files
+  - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit) npm package included
   - Quick Shopify theme setup on a remote store with `npm run shopify:init`
+  - CI/CD integration with [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli)
+  - Default Shopify theme directory structure with unstyled `.liquid` files
   - A batch of `npm scripts` to run common tasks
 - JavaScript
   - [Vue](https://vuejs.org)
@@ -195,6 +198,67 @@ $ cp .config/shopify/shopify.sample.yml .config/shopify/shopify.live.yml # or co
 ```
 
 3. Adjust the contents of the newly created `shopify.live.yml` file.
+
+### CI/CD
+
+#### GitHub actions
+
+1. Add the following four secrets to your Shopify Theme Lab repo in `settings` → `secrets`:
+
+```sh
+SHOPIFY_API_PASSWORD # your-api-password
+SHOPIFY_STORE_URL # your-store.myshopify.com
+SHOPIFY_ENV # dev or live
+SHOPIFY_THEME_ID # theme-id (without quotation marks) - find the id either in shopify.[env].config.yml or with shopify:themes task
+```
+
+2. Copy and paste into a GitHub action (adjust contents if necessary):
+
+```yml
+# Shopify Theme Lab CI/CD integration for GitHub actions
+name: Shopify Theme Lab CI/CD
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch: # allows to manually run from GitHub actions panel
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 14.x ]
+
+    steps:
+      - name: Checkout master branch
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies and build dist files
+        run: |
+          npm install
+          npm run build
+
+        # first, make sure the theme is already initialized on the Shopify store in question
+        #
+        # Below "run" commands explained:
+        # 1. creates a Shopify credential config
+        # 2. downloads settings_data.json from the remote store
+        # 3. deploys the shopify/ directory to the remote store
+      - name: Deploy to Shopify store
+        run: |
+          npx themelab shopify:init -p ${{ secrets.SHOPIFY_API_PASSWORD }} -s ${{ secrets.SHOPIFY_STORE_URL }} -e ${{ secrets.SHOPIFY_ENV }} -i ${{ secrets.SHOPIFY_THEME_ID }}
+          npm run settings:${{ secrets.SHOPIFY_ENV }}
+          npm run deploy:${{ secrets.SHOPIFY_ENV }} --allow-live
+```
 <!-- deploying (end) -->
 
 <!-- css preprocessors (start) -->
