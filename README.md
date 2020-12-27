@@ -44,7 +44,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - [Getting started](#getting-started)
 - [Deploying](#deploying)
   - [Teams](#teams)
-  - [CI/CD](#ci-cd)
+  - [CI/CD](#cicd)
 - [CSS preprocessors](#css-preprocessors)
   - [SASS/SCSS](#sassscss)
   - [LESS](#less)
