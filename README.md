@@ -257,7 +257,7 @@ jobs:
         run: |
           npx themelab shopify:init -p ${{ secrets.SHOPIFY_API_PASSWORD }} -s ${{ secrets.SHOPIFY_STORE_URL }} -e ${{ secrets.SHOPIFY_ENV }} -i ${{ secrets.SHOPIFY_THEME_ID }}
           npm run settings:${{ secrets.SHOPIFY_ENV }}
-          npm run deploy:${{ secrets.SHOPIFY_ENV }} --allow-live
+          npm run deploy:${{ secrets.SHOPIFY_ENV }} -- --allow-live
 ```
 <!-- deploying (end) -->
 
