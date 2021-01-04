@@ -155,7 +155,7 @@ $ yarn install --force
 > `npm` requires the extra `--` before any arguments! When using `yarn` you can omit them.
 
 ```sh
-$ npm run shopify:init -- --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name ['theme name']
+$ npm run shopify:init -- --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name [theme-name]
 ```
 
 3. Publish the new theme through the Shopify panel: **your-store.myshopify.com/admin/themes**
