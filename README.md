@@ -76,7 +76,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 | - | - | - |
 | [Shopify Theme Lab](https://github.com/uicrooks/shopify-theme-lab) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff"> | Modular development environment for blazing-fast Shopify theming |
 | [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab-cli?color=%236e78ff"> | Command Line Interface for Shopify Theme Lab |
-| Vue x Tailwind Theme | <img src="https://img.shields.io/badge/roadmap-lightgrey"> | A modern Shopify starter theme build with Vue and Tailwind CSS
+| [Shopify Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme) | <img src="https://img.shields.io/badge/roadmap-lightgrey"> | A modern Shopify starter theme built with Vue and Tailwind CSS
 <!-- ecosystem (end) -->
 
 <!-- features (start) -->
