@@ -25,7 +25,7 @@
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}">
-    <div id="app">
+    <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
       <!-- vue examples -->
       {% render 'vue-examples' %}
 
