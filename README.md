@@ -448,13 +448,13 @@ module: {
 #### npm
 ```sh
 $ npm install react react-dom
-$ npm install @babel/preset-react babel-eslint --save-dev
+$ npm install @babel/preset-react --save-dev
 ```
 
 #### yarn
 ```sh
 $ yarn add react react-dom
-$ yarn add @babel/preset-react babel-eslint --dev
+$ yarn add @babel/preset-react --dev
 ```
 
 2. Inside [webpack.common.js](.config/webpack/webpack.common.js):
