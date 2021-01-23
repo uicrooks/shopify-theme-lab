@@ -486,7 +486,7 @@ module: {
 ...
 ```
 
-3. Add ecmaFeatures to [.eslint.js](config/.eslint.js)
+3. Add ecmaFeatures to [.eslint.js](config/.eslint.js):
 ```js
 ...
 parserOptions: {
@@ -540,7 +540,7 @@ class MyComponent extends React.Component {
 export default MyComponent
 ```
 
-6. Add a dom element to [theme.liquid](shopify/layout/theme.liquid) or any other `.liquid` file
+6. Add a dom element to [theme.liquid](shopify/layout/theme.liquid) or any other `.liquid` file:
 ```html
 <div react-component="MyComponent"></div>
 ```
