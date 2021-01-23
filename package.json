@@ -2,7 +2,7 @@
   "name": "shopify-theme-lab",
   "description": "Customizable modular development environment for blazing-fast Shopify theme creation",
   "author": "Sergej Samsonenko <contact@sergej.codes>",
-  "version": "2.4.7",
+  "version": "2.4.8",
   "license": "MIT",
   "config": {
     "reloadr": {
