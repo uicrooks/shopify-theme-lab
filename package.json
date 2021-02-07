@@ -2,7 +2,7 @@
   "name": "shopify-theme-lab",
   "description": "Customizable modular development environment for blazing-fast Shopify theme creation",
   "author": "Sergej Samsonenko <contact@sergej.codes>",
-  "version": "2.4.10",
+  "version": "2.4.11",
   "license": "MIT",
   "config": {
     "reloadr": {
@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "tailwindcss": "^2.0.1",
+    "tailwindcss": "^2.0.3",
     "vue": "^2.6.12",
     "vuex": "^3.6.2"
   },
@@ -65,7 +65,7 @@
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
-    "webpack": "^5.21.1",
+    "webpack": "^5.21.2",
     "webpack-cli": "^4.5.0",
     "webpack-merge": "^5.7.3"
   }

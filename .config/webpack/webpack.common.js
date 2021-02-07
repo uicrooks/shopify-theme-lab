@@ -36,9 +36,14 @@ module.exports = {
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader'
-        ]
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            publicPath: './',
+            outputPath: './'
+          }
+        }
       }
     ]
   },
@@ -49,7 +54,7 @@ module.exports = {
      * docs: https://github.com/johnagan/clean-webpack-plugin
      */
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', '!+(*)static+(*)'],
+      cleanOnceBeforeBuildPatterns: ['**/*', '!*static*']
     }),
     new VueLoaderPlugin()
   ]
