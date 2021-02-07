@@ -49,7 +49,7 @@ module.exports = {
      * docs: https://github.com/johnagan/clean-webpack-plugin
      */
     new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: ['**/*', '!+(*)static+(*)'],
+      cleanOnceBeforeBuildPatterns: ['**/*', '!*static*'],
     }),
     new VueLoaderPlugin()
   ]
