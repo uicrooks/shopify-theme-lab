@@ -28,7 +28,8 @@ module.exports = {
           'apply',
           'variants',
           'responsive',
-          'screen'
+          'screen',
+          'layer'
         ]
       }
     ],
