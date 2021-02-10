@@ -150,7 +150,7 @@ $ yarn install --force
 <!-- getting started (start) -->
 ## Getting started
 
-1. Get Shopify API access: [Instructions at Theme Kit Docs](https://shopify.github.io/themekit#get-api-access)
+1. Get Shopify API access: [Instructions at Theme Kit Docs](https://shopify.dev/tools/theme-kit/getting-started#step-2-generate-api-credentials)
 
 2. Initialize theme on Shopify store with credentials from the first step. Either for **dev** or **live** environment:
 
