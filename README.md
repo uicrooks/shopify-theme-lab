@@ -63,6 +63,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Shopify & environment initialization](#shopify--environment-initialization)
   - [Shopify + webpack](#shopify--webpack)
   - [Shopify remote auto-reloading](#shopify-remote-auto-reloading)
+- [Common pitfalls](#common-pitfalls)
 - [Limitations](#limitations)
 - [Contributing](#contributing)
 <!-- toc (end) -->
@@ -626,13 +627,19 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
 <!-- development environment concepts (end) -->
 
+<!-- common pitfalls (start) -->
+## Common pitfalls
+
+- `<style></style>` and `<script></script>` will be removed on mount inside Vue components (basically everything inside `<div id="app">...</div>`), use `<component is="style"><componet>` and `<component is="script"></componet>` instead
+- If you want to pass an entire Shopify Drop (Object) as a prop, you have to first convert the Drop to `json` and replace all double quotes with single quotes: `<component :shopify-data="{{ product | json | replace: '"', "'" }}"></component>`. Not all Drops can be converted to `json`, if you get an `{"error":"json not allowed for this object"}` it's a Shopify limitation and you have to pass the values in question individually
+<!-- common pitfalls (end) -->
+
 <!-- limitations (start) -->
 ## Limitations
 
 - When the development task is running, the browser console throws a `bundle.css` missing error
 - Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload the file to the remote store
 - Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
-- `<style></style>` and `<script></script>` will be removed on mount inside Vue components (basically everything inside `<div id="app">...</div>`), use `<component is="style"><componet>` and `<component is="script"></componet>` instead
 <!-- limitations (end) -->
 
 <!-- contributing (start) -->
