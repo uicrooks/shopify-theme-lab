@@ -379,12 +379,12 @@ $ yarn add bulma
 
 #### npm
 ```sh
-$ npm uninstall vue vuex vue-loader vue-template-compiler
+$ npm uninstall vue vuex vue-loader @vue/compiler-sfc
 ```
 
 #### yarn
 ```sh
-$ yarn remove vue vuex vue-loader vue-template-compiler
+$ yarn remove vue vuex vue-loader @vue/compiler-sfc
 ```
 
 2. Remove [vue](src/vue) directory:
@@ -401,7 +401,7 @@ $ rm -r src/vue # or delete manually
   ...
   extends: [
     ...
-    'plugin:vue/recommended' // remove 'plugin:vue/recommended'
+    'plugin:vue/vue3-recommended' // remove 'plugin:vue/vue3-recommended'
     ...
   ],
   plugins: [
@@ -415,6 +415,7 @@ $ rm -r src/vue # or delete manually
 
 ```js
 ...
+const webpack = require('webpack') // remove explicit webpack require
 const VueLoaderPlugin = require('vue-loader/lib/plugin') // remove VueLoaderPlugin require
 ...
 ```
@@ -437,7 +438,12 @@ module: {
 {
   plugins: [
     ...
-    new VueLoaderPlugin() // remove VueLoaderPlugin
+    // remove VueLoaderPlugin and webpack.DefinePlugin
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: 'true',
+      __VUE_PROD_DEVTOOLS__: 'false'
+    })
     ...
   ]
 }
@@ -621,7 +627,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 - All webpack configs are inside `.config/webpack/` directory
 - [main.js](src/main.js) is webpack's main entry point
 - All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins, directives and filters with `global` in their filename. Everything is defined in `src/main.js`
-- Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
+- Vue components can be either used as regular single-file-components or as renderless components without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files like favicons add `static` to their filenames: `myfile.static.png`
 
 ### Shopify remote auto-reloading
