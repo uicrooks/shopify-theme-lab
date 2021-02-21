@@ -51,23 +51,12 @@
             this text
           </div>
         </div>
-
-        <!-- global filter: src/vue/filters/global.filter.js -->
-        <div>
-          <div class="shopify-theme-lab__subline">
-            Global Vue filter
-          </div>
-
-          <div>
-            {% raw %}{{ 'this text' | my-filter }}{% endraw %}
-          </div>
-        </div>
       </div>
 
       <div class="shopify-theme-lab__example">
         <!-- renderless component example: src/vue/components/renderless/my-component.vue -->
-        <renderless-my-component>
-          <div v-slot="{ visible, toggle }">
+        <renderless-my-component v-slot="{ visible, toggle }">
+          <div>
             <div class="shopify-theme-lab__subline">
               Renderless Vue component + Vuex
             </div>

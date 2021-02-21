@@ -1,15 +1,15 @@
 /**
  * imports
  */
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createApp } from 'vue'
+import { createStore } from 'vuex'
 import axios from 'axios'
 import './css/main.css'
 
 /**
- * vue settings
+ * create vue instance
  */
-Vue.config.productionTip = false
+const app = createApp({})
 
 /**
  * vue components
@@ -25,15 +25,13 @@ vueComponents.keys().forEach(key => {
     ? component.name
     : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
 
-  Vue.component(name, component)
+  app.component(name, component)
 })
 
 /**
  * vuex
  * auto-import all modules
  */
-Vue.use(Vuex)
-
 const vuexModules = require.context('./vue/store/', true, /\.js$/)
 const modules = {}
 
@@ -42,10 +40,12 @@ vuexModules.keys().forEach(key => {
   modules[name] = vuexModules(key).default
 })
 
-const store = new Vuex.Store({
+const store = createStore({
   strict: process.env.NODE_ENV !== 'production',
   modules
 })
+
+app.use(store)
 
 /**
  * vue mixins
@@ -54,7 +54,7 @@ const store = new Vuex.Store({
 const mixins = require.context('./vue/mixins/', true, /.*global.*\.js$/)
 
 mixins.keys().forEach(key => {
-  Vue.mixin(mixins(key).default)
+  app.mixin(mixins(key).default)
 })
 
 /**
@@ -65,36 +65,22 @@ const directives = require.context('./vue/directives/', true, /.*global.*\.js$/)
 
 directives.keys().forEach(key => {
   const directive = directives(key).default
-  Vue.directive(directive.name, directive.directive)
+  app.directive(directive.name, directive.directive)
 })
 
 /**
- * vue filters
- * auto-register all filters with a 'global' keyword in their filename
- */
-const filters = require.context('./vue/filters/', true, /.*global.*\.js$/)
-
-filters.keys().forEach(key => {
-  const filter = filters(key).default
-  Vue.filter(filter.name, filter.filter)
-})
-
-/**
- * vue prototype
+ * vue config
  * extend with additional features
  */
-Vue.prototype.$axios = axios
+app.config.globalProperties.$axios = axios
 
 /**
  * vue plugins
  * extend with additional features
  */
-// register additional plugins here
+// app.use(MyPlugin)
 
 /**
- * create vue instance
+ * mount vue instance
  */
-new Vue({
-  el: '#app',
-  store
-})
+app.mount('#app')
