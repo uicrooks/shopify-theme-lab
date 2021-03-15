@@ -1,7 +1,7 @@
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:vue/recommended'
+    'plugin:vue/recommended' // use 'plugin:vue/essential' for less strict linting rules - https://eslint.vuejs.org/rules
   ],
   plugins: [
     'vue'
