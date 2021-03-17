@@ -54,7 +54,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Bulma](#bulma)
 - [Swapping JavaScript framework](#swapping-javascript-framework)
   - [Removing Vue](#removing-vue)
-  - [Alpine.js](#alpine.js)
+  - [Alpine.js](#alpinejs)
 - [Project structure](#project-structure)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
