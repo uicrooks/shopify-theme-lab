@@ -416,7 +416,7 @@ $ rm -r src/vue # or delete manually
 ```js
 ...
 const webpack = require('webpack') // remove explicit webpack require
-const VueLoaderPlugin = require('vue-loader/lib/plugin') // remove VueLoaderPlugin require
+const { VueLoaderPlugin } = require('vue-loader') // remove VueLoaderPlugin require
 ...
 ```
 
