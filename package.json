@@ -65,7 +65,7 @@
     "stylelint-webpack-plugin": "^2.1.1",
     "url-loader": "^4.1.1",
     "vue-loader": "^16.1.2",
-    "webpack": "^5.26.0",
+    "webpack": "^5.26.2",
     "webpack-cli": "^4.5.0",
     "webpack-merge": "^5.7.3"
   }
