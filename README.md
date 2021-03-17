@@ -54,7 +54,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Bulma](#bulma)
 - [Swapping JavaScript framework](#swapping-javascript-framework)
   - [Removing Vue](#removing-vue)
-  - [React](#react)
+  - [Alpine.js](#alpine.js)
 - [Project structure](#project-structure)
 - [Tasks](#tasks)
 - [Development environment concepts](#development-environment-concepts)
@@ -95,7 +95,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - JavaScript
   - [Vue](https://vuejs.org)
   - [Vuex](https://vuex.vuejs.org)
-  - Swap Vue with any other framework e.g. [React](https://reactjs.org)
+  - Swap Vue with any other framework e.g. [Alpine.js](https://github.com/alpinejs/alpine)
   - [Axios](https://github.com/axios/axios)
   - Extend with [npm packages](https://www.npmjs.com) 📦
 - CSS
@@ -449,108 +449,24 @@ module: {
 }
 ```
 
-### React
+### Alpine.js
+If you want to use something lighter than Vue, a good alternative is [Alpine.js](https://github.com/alpinejs/alpine).
 
-1. Install packages:
+1. Install package:
 
 #### npm
 ```sh
-$ npm install react react-dom
-$ npm install @babel/preset-react --save-dev
+$ npm install alpinejs
 ```
 
 #### yarn
 ```sh
-$ yarn add react react-dom
-$ yarn add @babel/preset-react --dev
+$ yarn add alpinejs
 ```
 
-2. Inside [webpack.common.js](.config/webpack/webpack.common.js):
+2. Import `alpinejs` in [main.js](src/main.js):
 ```js
-...
-resolve: {
-  extensions: [... '.jsx'] // add jsx to extensions array
-}
-...
-```
-
-```js
-...
-module: {
-  rules: [
-    // add babel-loader for jsx,
-    // remove the same loader from webpack.prod.js
-    {
-      test: /\.(js|jsx)$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      options: {
-        presets: [ '@babel/preset-env', '@babel/preset-react' ]
-      }
-    },
-    ...
-  ]
-}
-...
-```
-
-3. Add ecmaFeatures to [.eslint.js](config/.eslint.js):
-```js
-...
-parserOptions: {
-  ecmaVersion: 2020,
-  sourceType: 'module',
-  ecmaFeatures: { // add ecmaFeatures
-    jsx: true,
-    modules: true
-  }
-}
-...
-```
-
-4. Add following code to [main.js](src/main.js):
-```js
-// eslint-disable-next-line
-import React from 'react'
-import { render } from 'react-dom'
-
-/**
- * react components
- * auto-map all react components to dom elements
- */
-const reactComponents = require.context('./react/components/', true, /\.(jsx|js)$/)
-
-reactComponents.keys().forEach(key => {
-  const Component = reactComponents(key).default
-
-  // transform file name to PascalCase
-  const name = key.replace(/\.(\/|jsx|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
-
-  const domElement = document.querySelector(`[react-component='${name}']`)
-  render(<Component/>, domElement)
-})
-```
-
-5. Create `src/react/components/MyComponent.jsx` with following content:
-```js
-import React from 'react'
-
-class MyComponent extends React.Component {
-  render() {
-    return(
-      <div>
-        My Component
-      </div>
-    )
-  }
-}
-
-export default MyComponent
-```
-
-6. Add a dom element to [theme.liquid](shopify/layout/theme.liquid) or any other `.liquid` file:
-```html
-<div react-component="MyComponent"></div>
+import 'alpinejs'
 ```
 <!-- swapping javascript framework (end) -->
 
