@@ -1,7 +1,7 @@
 {
   "action": {
-    "log_in": "Log in",
-    "logout": "Log out",
+    "login": "Login",
+    "logout": "Logout",
     "register": "Register",
     "account": "Account",
     "cart": "Cart"
