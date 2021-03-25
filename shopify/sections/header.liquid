@@ -11,7 +11,7 @@
         <a href="{{ routes.account_url }}">{{ 'action.account' | t }}</a>
         {{ 'action.logout' | t | customer_logout_link }}
       {% else %}
-        {{ 'action.log_in' | t | customer_login_link }}
+        {{ 'action.login' | t | customer_login_link }}
         {{ 'action.register' | t | customer_register_link }}
       {% endif %}
     {% endif %}
