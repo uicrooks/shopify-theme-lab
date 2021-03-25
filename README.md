@@ -538,7 +538,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 - [main.js](src/main.js) is webpack's main entry point
 - All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins, directives and filters with `global` in their filename. Everything is defined in `src/main.js`
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
-- The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files like favicons add `static` to their filenames: `myfile.static.png`
+- The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files add `static` to their filenames: `myfile.static.png`
 
 ### Shopify remote auto-reloading
 While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
@@ -547,6 +547,7 @@ While `npm run start` task is running: The `shopify/` directory is being watched
 <!-- common pitfalls (start) -->
 ## Common pitfalls
 
+- If you manually place any files inside the `shopify/assets/` directory add the `static` keyword to their filenames, otherwise webpack will delete them on every consecutive build. For example: `myfile.static.png`
 - `<style></style>` and `<script></script>` will be removed on mount inside Vue components (basically everything inside `<div id="app">...</div>`), use `<component is="style"><componet>` and `<component is="script"></componet>` instead
 - If you want to pass an entire Shopify Drop (Object) as a prop, you have to first convert the Drop to `json` and replace all double quotes with single quotes: `<component :shopify-data="{{ product | json | replace: '"', "'" }}"></component>`. Not all Drops can be converted to `json`, if you get an `{"error":"json not allowed for this object"}` it's a Shopify limitation and you have to pass the values in question individually
 <!-- common pitfalls (end) -->

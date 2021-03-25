@@ -8,16 +8,16 @@
   <div>
     {% if shop.customer_accounts_enabled %}
       {% if customer %}
-        <a href="{{ routes.account_url }}">{{ 'layout.customer.account' | t }}</a>
-        {{ 'layout.customer.logout' | t | customer_logout_link }}
+        <a href="{{ routes.account_url }}">{{ 'action.account' | t }}</a>
+        {{ 'action.log_out' | t | customer_logout_link }}
       {% else %}
-        {{ 'layout.customer.log_in' | t | customer_login_link }}
-        {{ 'layout.customer.register' | t | customer_register_link }}
+        {{ 'action.log_in' | t | customer_login_link }}
+        {{ 'action.register' | t | customer_register_link }}
       {% endif %}
     {% endif %}
 
     <a href="{{ routes.cart_url }}">
-      {{ 'layout.cart.title' | t }}
+      {{ 'action.cart' | t }}
     </a>
   </div>
 </div>

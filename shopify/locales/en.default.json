@@ -1,19 +1,13 @@
 {
-  "general": {
-    "404": {
-      "title": "404 Page Not Found",
-      "text": "The page you requested does not exist."
-    }
+  "action": {
+    "log_in": "Log in",
+    "log_out": "Log out",
+    "register": "Register",
+    "account": "Account",
+    "cart": "Cart"
   },
-  "layout": {
-    "cart": {
-      "title": "Cart"
-    },
-    "customer": {
-      "account": "Account",
-      "log_in": "Log in",
-      "logout": "Log out",
-      "register": "Register"
-    }
+  "404": {
+    "title": "404 Page Not Found",
+    "text": "The page you requested does not exist."
   }
 }
