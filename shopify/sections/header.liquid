@@ -8,7 +8,9 @@
   <div>
     {% if shop.customer_accounts_enabled %}
       {% if customer %}
-        <a href="{{ routes.account_url }}">{{ 'action.account' | t }}</a>
+        <a href="{{ routes.account_url }}">
+          {{ 'action.account' | t }}
+        </a>
         {{ 'action.log_out' | t | customer_logout_link }}
       {% else %}
         {{ 'action.log_in' | t | customer_login_link }}

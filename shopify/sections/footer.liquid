@@ -1,7 +1,9 @@
 <div class="container">
   <div>
     {% for link in linklists.footer.links %}
-      <a href="{{ link.url }}">{{ link.title }}</a>
+      <a href="{{ link.url }}">
+        {{ link.title }}
+      </a>
     {% endfor %}
   </div>
 
