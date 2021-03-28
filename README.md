@@ -78,8 +78,9 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 | - | - | - |
 | [Shopify Theme Lab](https://github.com/uicrooks/shopify-theme-lab) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff"> | Modular development environment for blazing-fast Shopify theming |
 | [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab-cli?color=%236e78ff"> | Command Line Interface for Shopify Theme Lab |
+| [Shopify Theme Lab Plugins](https://github.com/uicrooks/shopify-theme-lab-plugins) | <img src="https://img.shields.io/static/v1?label=version&message=misc&color=%236e78ff"> | Official Shopify Theme Lab plugins |
 | [Shopify Settings Control](https://github.com/uicrooks/shopify-settings-control) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-settings-control?color=%236e78ff"> | Automatic Git version control for Shopify `settings_data.json` |
-| [Shopify Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-foundation-theme?color=%236e78ff"> | A modern Shopify starter theme built with Vue and Tailwind CSS
+| [Shopify Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-foundation-theme?color=%236e78ff"> | A modern Shopify starter theme built with Vue and Tailwind CSS |
 <!-- ecosystem (end) -->
 
 <!-- features (start) -->
