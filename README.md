@@ -113,7 +113,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
   - Shopify remote theme auto-reloading with [shopify-theme-lab-reloader](https://github.com/uicrooks/shopify-theme-lab-plugins/tree/master/packages/reloader)
-  - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` as well as Vuex `modules` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
+  - Auto-loading of Vue `components`, `mixins` and `directives` as well as Vuex `modules` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
   - Clean [config structure](.config/)
   - Easily adjustable/extendable configurations
 <!-- features (end) -->
@@ -537,7 +537,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 ### Shopify + webpack
 - All webpack configs are inside `.config/webpack/` directory
 - [main.js](src/main.js) is webpack's main entry point
-- All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins, directives and filters with `global` in their filename. Everything is defined in `src/main.js`
+- All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins and directives with `global` in their filename. Everything is defined in `src/main.js`
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files add `static` to their filenames: `myfile.static.png`
 

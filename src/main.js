@@ -69,17 +69,6 @@ directives.keys().forEach(key => {
 })
 
 /**
- * vue filters
- * auto-register all filters with a 'global' keyword in their filename
- */
-const filters = require.context('./vue/filters/', true, /.*global.*\.js$/)
-
-filters.keys().forEach(key => {
-  const filter = filters(key).default
-  Vue.filter(filter.name, filter.filter)
-})
-
-/**
  * vue prototype
  * extend with additional features
  */
