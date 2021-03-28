@@ -111,7 +111,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Browserslist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
-  - Shopify remote theme auto-reloading with [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr)
+  - Shopify remote theme auto-reloading with [shopify-theme-lab-reloader](https://github.com/uicrooks/shopify-theme-lab-plugins/tree/master/packages/reloader)
   - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` as well as Vuex `modules` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
   - Clean [config structure](.config/)
   - Easily adjustable/extendable configurations
@@ -509,10 +509,10 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 
 | Task | Description |
 | - | - |
-| start | run `dev`, `reloadr` and `shopify:watch` tasks simultaneously in parallel |
+| start | run `dev`, `reloader` and `shopify:watch` tasks simultaneously in parallel |
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create minified production files for Shopify in `shopify/assets/` directory |
-| reloadr | run an HTTP server and WebSocket server for remote auto-reloading |
+| reloader | run an HTTP server and WebSocket server for remote auto-reloading |
 | lint | run `lint:js` and `lint:css` tasks in sequence |
 | lint:js | lint `.js` and `.vue` files inside the `src/` directory |
 | lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
@@ -547,7 +547,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files add `static` to their filenames: `myfile.static.png`
 
 ### Shopify remote auto-reloading
-While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
+While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-theme-lab-reloader](https://github.com/uicrooks/shopify-theme-lab-plugins/tree/master/packages/reloader) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
 <!-- development environment concepts (end) -->
 
 <!-- common pitfalls (start) -->

@@ -8,7 +8,7 @@ module.exports = merge(common, {
   mode: 'development',
   entry: [
     path.resolve(__dirname, '../../src/main.js'),
-    path.resolve(__dirname, '../../node_modules/shopify-reloadr/client') // add reloadr to the bundle
+    path.resolve(__dirname, '../../node_modules/shopify-theme-lab-reloader/client.autoload') // add reloader to the bundle
   ],
   module: {
     rules: [
