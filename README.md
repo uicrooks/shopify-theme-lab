@@ -78,8 +78,9 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 | - | - | - |
 | [Shopify Theme Lab](https://github.com/uicrooks/shopify-theme-lab) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff"> | Modular development environment for blazing-fast Shopify theming |
 | [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab-cli?color=%236e78ff"> | Command Line Interface for Shopify Theme Lab |
+| [Shopify Theme Lab Plugins](https://github.com/uicrooks/shopify-theme-lab-plugins) | <img src="https://img.shields.io/static/v1?label=version&message=misc&color=%236e78ff"> | Official Shopify Theme Lab plugins |
 | [Shopify Settings Control](https://github.com/uicrooks/shopify-settings-control) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-settings-control?color=%236e78ff"> | Automatic Git version control for Shopify `settings_data.json` |
-| [Shopify Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-foundation-theme?color=%236e78ff"> | A modern Shopify starter theme built with Vue and Tailwind CSS
+| [Shopify Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-foundation-theme?color=%236e78ff"> | A modern Shopify starter theme built with Vue and Tailwind CSS |
 <!-- ecosystem (end) -->
 
 <!-- features (start) -->
@@ -111,8 +112,8 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [Browserslist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
   - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
-  - Shopify remote theme auto-reloading with [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr)
-  - Auto-loading of Vue `components`, `mixins`, `directives` and `filters` as well as Vuex `modules` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
+  - Shopify remote theme auto-reloading with [shopify-theme-lab-reloader](https://github.com/uicrooks/shopify-theme-lab-plugins/tree/master/packages/reloader)
+  - Auto-loading of Vue `components`, `mixins` and `directives` as well as Vuex `modules` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
   - Clean [config structure](.config/)
   - Easily adjustable/extendable configurations
 <!-- features (end) -->
@@ -503,10 +504,10 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 
 | Task | Description |
 | - | - |
-| start | run `dev`, `reloadr` and `shopify:watch` tasks simultaneously in parallel |
+| start | run `dev`, `reloader` and `shopify:watch` tasks simultaneously in parallel |
 | dev | bundle and watch for changes in `src/` files with webpack |
 | build | create minified production files for Shopify in `shopify/assets/` directory |
-| reloadr | run an HTTP server and WebSocket server for remote auto-reloading |
+| reloader | run an HTTP server and WebSocket server for remote auto-reloading |
 | lint | run `lint:js` and `lint:css` tasks in sequence |
 | lint:js | lint `.js` and `.vue` files inside the `src/` directory |
 | lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
@@ -536,12 +537,12 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 ### Shopify + webpack
 - All webpack configs are inside `.config/webpack/` directory
 - [main.js](src/main.js) is webpack's main entry point
-- All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins, directives and filters with `global` in their filename. Everything is defined in `src/main.js`
+- All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins and directives with `global` in their filename. Everything is defined in `src/main.js`
 - Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build. If you want to keep certain files add `static` to their filenames: `myfile.static.png`
 
 ### Shopify remote auto-reloading
-While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-reloadr](https://github.com/uicrooks/shopify-reloadr) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
+While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-theme-lab-reloader](https://github.com/uicrooks/shopify-theme-lab-plugins/tree/master/packages/reloader) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
 <!-- development environment concepts (end) -->
 
 <!-- common pitfalls (start) -->
