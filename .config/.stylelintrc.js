@@ -20,19 +20,7 @@ module.exports = {
      * add custom rules
      * docs: https://stylelint.io/user-guide/rules/list
      */
-    'at-rule-no-unknown': [
-      true,
-      {
-        ignoreAtRules: [
-          'tailwind',
-          'apply',
-          'variants',
-          'responsive',
-          'screen',
-          'layer'
-        ]
-      }
-    ],
+    'at-rule-no-unknown': null,
     'no-descending-specificity': null
   }
 }
