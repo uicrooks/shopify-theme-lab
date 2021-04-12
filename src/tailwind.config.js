@@ -15,6 +15,7 @@ module.exports = {
     }
   },
   variants: {},
+  darkMode: false,
   plugins: [],
   purge: {
     // learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
