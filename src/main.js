@@ -88,3 +88,19 @@ const createVueApp = () => {
  * create and mount vue instance
  */
 createVueApp().mount('#app')
+
+/**
+ * fix: properly render vue components inside sections on user insert in the theme editor
+ * add the 'vue' keyword to the section's wrapper classes e.g.:
+ * {% schema %}
+ * {
+ *   "class": "shopify-section-vue"
+ * }
+ * {% endschema %}
+ */
+// eslint-disable-next-line
+Shopify.designMode && document.addEventListener('shopify:section:load', (event) => {
+  if(event.target.classList.value.includes('vue')) {
+    createVueApp().mount(event.target)
+  }
+})
