@@ -100,7 +100,7 @@ createVueApp().mount('#app')
  */
 // eslint-disable-next-line
 Shopify.designMode && document.addEventListener('shopify:section:load', (event) => {
-  if(event.target.classList.value.includes('vue')) {
+  if (event.target.classList.value.includes('vue')) {
     createVueApp().mount(event.target)
   }
 })
