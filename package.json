@@ -2,7 +2,7 @@
   "name": "shopify-theme-lab",
   "description": "Customizable modular development environment for blazing-fast Shopify theme creation",
   "author": "Sergej Samsonenko <contact@sergej.codes>",
-  "version": "2.5.3",
+  "version": "2.6.0",
   "license": "MIT",
   "config": {
     "reloader": {
@@ -45,13 +45,13 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "cross-env": "^7.0.3",
-    "css-loader": "^5.2.1",
+    "css-loader": "^5.2.4",
     "css-minimizer-webpack-plugin": "^2.0.0",
     "eslint": "^7.24.0",
     "eslint-plugin-vue": "^7.9.0",
-    "eslint-webpack-plugin": "^2.5.3",
+    "eslint-webpack-plugin": "^2.5.4",
     "file-loader": "^6.2.0",
-    "mini-css-extract-plugin": "^1.4.1",
+    "mini-css-extract-plugin": "^1.5.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.2.10",
     "postcss-import": "^14.0.1",
@@ -66,7 +66,7 @@
     "url-loader": "^4.1.1",
     "vue-loader": "^15.9.6",
     "vue-template-compiler": "^2.6.12",
-    "webpack": "^5.31.2",
+    "webpack": "^5.34.0",
     "webpack-cli": "^4.6.0",
     "webpack-merge": "^5.7.3"
   }
