@@ -189,6 +189,12 @@ $ npm run deploy:live # deploy shopify/ directory
 $ npm run deploy:live -- --allow-live
 ```
 
+> By default, the deploy task overrides all files on the remote store, if any changes were made through the Shopify theme editor you might want to download the `settings_data.json` file before deploying:
+
+```sh
+$ npm run settings:live
+```
+
 ### Teams
 The `shopify:init` task always creates a new theme with a unique ID for the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
 
