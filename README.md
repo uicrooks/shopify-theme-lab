@@ -189,7 +189,7 @@ $ npm run deploy:live # deploy shopify/ directory
 $ npm run deploy:live -- --allow-live
 ```
 
-> By default, the deploy task overrides all files on the remote store, if any changes were made through the Shopify theme editor you might want to download the settings file before deploying:
+> By default, the deploy task overrides all files on the remote store, if any changes were made through the Shopify theme editor you might want to download the `settings_data.json` file before deploying:
 
 ```sh
 $ npm run settings:live
