@@ -26,6 +26,9 @@
 
   <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}">
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
+      <!-- vue examples -->
+      {% render 'vue-examples' %}
+
       {% section 'header' %}
 
       <main id="main" role="main">

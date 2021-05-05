@@ -1,10 +1,12 @@
-/**
- * imports
- */
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { BootstrapVue } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './css/main.scss'
+
+Vue.use(BootstrapVue)
 
 /**
  * vue settings
@@ -19,12 +21,9 @@ const vueComponents = require.context('./vue/components/', true, /\.(vue|js)$/)
 
 vueComponents.keys().forEach(key => {
   const component = vueComponents(key).default
-
-  // if a component has a name defined use the name, else use the path as the component name
   const name = component.name
     ? component.name
     : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
-
   Vue.component(name, component)
 })
 
