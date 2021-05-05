@@ -3,7 +3,6 @@ const path = require('path')
 module.exports = {
   plugins: [
     require('postcss-import'),
-    require('tailwindcss')(path.resolve(__dirname, '../src/tailwind.config.js')),
     require('autoprefixer'),
     /**
      * use tomorrow’s CSS today
