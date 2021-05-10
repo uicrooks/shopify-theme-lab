@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import { BootstrapVue } from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './css/main.scss'
 
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 /**
  * vue settings
