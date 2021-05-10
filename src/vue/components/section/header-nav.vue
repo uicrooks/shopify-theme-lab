@@ -1,24 +1,23 @@
 <template>
   <div class="section-header-nav-component">
-    <h1>Header Nav</h1>
+    <h1 class="text-primary">Header Nav</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "section-header-nav",
+  name: "SectionHeaderNav",
   mounted() {
-    console.log("Header!");
+    console.log("Header!dd");
   }
 }
 </script>
 
 <style scoped lang="scss">
-@import "../../../css/variables.scss";
 
 .section-header-nav-component {
   h1 {
-    color: $orange;
+    color: blue;
   }
 }
 </style>

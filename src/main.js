@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import { BootstrapVue } from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
+/*import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './css/main.scss'
+import './css/main.scss'*/
+
+import "./css/main.scss";
 
 Vue.use(BootstrapVue)
 
@@ -20,11 +22,12 @@ Vue.config.productionTip = false
 const vueComponents = require.context('./vue/components/', true, /\.(vue|js)$/)
 
 vueComponents.keys().forEach(key => {
-  const component = vueComponents(key).default
+  const component = vueComponents(key).default;
+  const file = component.__file.split('src/')[1];
   const name = component.name
     ? component.name
     : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
-  Vue.component(name, component)
+  Vue.component(name, () => import(`./${file}`));
 })
 
 /**

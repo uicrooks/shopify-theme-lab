@@ -1,5 +1,78 @@
-/**
- * entry file for Tailwind CSS
- * and other style files
- */
-/* @import "my-file"; */
+@import "./bootstrap_variables.scss";
+@import "./partials//brand.scss";
+@import "~bootstrap/scss/bootstrap";
+@import url("https://p.typekit.net/p.css?s=1&k=xcy0upy&ht=tk&f=749.753.44458&a=52179711&app=typekit&e=css");
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+@include _assert-ascending($container-max-widths, "$container-max-widths");
+
+[v-cloak] {
+  display: none !important;
+}
+
+@font-face {
+font-family:"adrianna";
+src:url("https://use.typekit.net/af/66da5c/0000000000000000773597ae/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/66da5c/0000000000000000773597ae/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/66da5c/0000000000000000773597ae/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;
+}
+@font-face {
+font-family:"adrianna-bold";
+src:url("https://use.typekit.net/af/c255b5/0000000000000000773597b3/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"),url("https://use.typekit.net/af/c255b5/0000000000000000773597b3/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"),url("https://use.typekit.net/af/c255b5/0000000000000000773597b3/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:800;
+}
+@font-face {
+font-family:"worker-3d";
+src:url("https://use.typekit.net/af/d9770a/00000000000000007735c89c/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/d9770a/00000000000000007735c89c/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/d9770a/00000000000000007735c89c/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+font-display:auto;font-style:normal;font-weight:400;
+}
+
+html {
+  padding-bottom: 0 !important; // removes padding from 3rd party apps
+  font-size: 14px;
+  // better font-rendering
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: auto !important;
+  &.open-drawer {
+    overflow: hidden !important;
+  }
+}
+
+html,body{width:auto!important;height:100%;}
+  .shopify-section {
+   overflow-x:hidden; 
+  }
+  #shopify-section-header {
+    overflow-x:unset!important;
+  }
+
+
+  /* styles for lazy load images */
+img[data-sizes="auto"] {
+  display: block;
+  width: 100%;
+}
+
+.lazyload {
+  -webkit-filter: blur(20px);
+  filter: blur(20px);
+  transition: $transition-base;
+
+  &.lazyloaded {
+    -webkit-filter: blur(0);
+    filter: blur(0);
+  }
+}
+
+.lazyloading {
+  -webkit-filter: blur(20px);
+  filter: blur(20px);
+  transition: $transition-base;
+}
+
+.lazyloaded {
+  -webkit-filter: blur(0);
+  filter: blur(0);
+  transition: $transition-base;
+}
