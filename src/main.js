@@ -1,36 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import { BootstrapVue } from 'bootstrap-vue';
-console.log('hihih')
-console.log(Vue)
-/*import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './css/main.scss'*/
+//import { BootstrapVue } from 'bootstrap-vue';
 
+console.log('asdfs')
 import "./css/main.scss";
 
-Vue.use(BootstrapVue)
+//Vue.use(BootstrapVue)
 
 /**
  * vue settings
  */
 Vue.config.productionTip = false
 
-/**
- * vue components
- * auto-import all vue components
- */
-const vueComponents = require.context('./vue/components/', true, /\.(vue|js)$/)
-
-vueComponents.keys().forEach(key => {
-  const component = vueComponents(key).default;
-  const file = component.__file.split('src/')[1];
-  const name = component.name
-    ? component.name
-    : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
-  Vue.component(name, () => import(`./${file}`));
-})
 
 /**
  * vuex
@@ -87,20 +69,17 @@ Vue.prototype.$axios = axios
 /**
  * create vue instance
  */
+const SiteHeader = () => import(/* webpackChunkName: "site-header" */'../components/FooterEmailCapture.vue');
+const SiteFooter = () => import(/* webpackChunkName: "site-footer" */'../components/FooterEmailCaptured.vue');
 new Vue({
   el: '#app',
-  store
+  store,
+  components: {
+    SiteHeader,
+    SiteFooter
+  }
 })
 
-/**
- * fix: properly render vue components inside sections on user insert in the theme editor
- * add the 'vue' keyword to the section's wrapper classes e.g.:
- * {% schema %}
- * {
- *   "class": "shopify-section-vue"
- * }
- * {% endschema %}
- */
 // eslint-disable-next-line
 Shopify.designMode && document.addEventListener('shopify:section:load', (event) => {
   if (event.target.classList.value.includes('vue')) {

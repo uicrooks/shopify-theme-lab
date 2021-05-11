@@ -8,36 +8,36 @@
     {% render "_head.og-meta" %}
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
     <!--<link rel="preload" href="{{ 'main.js' | asset_url }}" as="script">-->
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="shortcut icon" href="{{ settings.favicon_image | img_url: '32x32' }}" type="image/png">
 
     {% render "_head.seo" %}
-    
-    {% if content_for_header contains "previewBarInjector.init();" %}
-    {% elsif content_for_header contains "Shopify.designMode" %}
-    {% else %}
-      <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
-      {% comment %}Live!{% endcomment %}
-      {{ 'bundle.css' | asset_url | stylesheet_tag }}
-    {% endif %}
+    {{ 'bundle.css' | asset_url | stylesheet_tag }}
 
     {{ content_for_header }}
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}">
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
-      {% section 'header' %}
 
       <main id="main" role="main">
-        {{ content_for_layout }}
+        <app-theme-header></app-theme-header>
+        <div class="inner-container">
+          {% comment %}Route Specific Content{% endcomment %}
+          {{ content_for_layout }}
+        </div>
       </main>
 
-      {% section 'footer' %}
+      <app-theme-footer></app-theme-footer>
     </div>
 
     <!-- webpack bundle -->
-    {{ 'main.js' | asset_url | script_tag }}
+    {{ 'bundle.js' | asset_url | script_tag }}
+    {% comment %}
+    {{ 'layout-index.js' | asset_url | script_tag }}
+    {% endcomment %}
     {% render '_body.crawler-schema' %}
     {% render '_body.live-chat' %}
   </body>
