@@ -1,0 +1,101 @@
+{% capture gorgias_chat %}
+<!--Gorgias Chat Widget Start--><script id="gorgias-chat-widget-install">!function(_){_.GORGIAS_CHAT_APP_ID="5462",_.GORGIAS_CHAT_BASE_URL="us-east1-898b.production.gorgias.chat",_.GORGIAS_API_BASE_URL="config.gorgias.chat";var e=new XMLHttpRequest;e.open("GET","https://config.gorgias.chat/applications/5462",!0),e.onload=function(t){if(4===e.readyState)if(200===e.status){var n=JSON.parse(e.responseText);if(!n.application||!n.bundleVersion)throw new Error("Missing fields in the response body - https://config.gorgias.chat/applications/5462");if(_.GORGIAS_CHAT_APP=n.application,_.GORGIAS_CHAT_BUNDLE_VERSION=n.bundleVersion,n&&n.texts&&(_.GORGIAS_CHAT_TEXTS=n.texts),n&&n.sspTexts&&(_.GORGIAS_CHAT_SELF_SERVICE_PORTAL_TEXTS=n.sspTexts),!document.getElementById("gorgias-chat-container")){var o=document.createElement("div");o.id="gorgias-chat-container",document.body.appendChild(o);var r=document.createElement("script");r.setAttribute("defer",!0),r.src="https://client-builds.production.gorgias.chat/{bundleVersion}/static/js/main.js".replace("{bundleVersion}",n.bundleVersion),document.body.appendChild(r)}}else console.error("Failed request GET - https://config.gorgias.chat/applications/5462")},e.onerror=function(_){console.error(_)},e.send()}(window||{});</script><!--Gorgias Chat Widget End-->
+<script>
+  console.log('INIT Gorgias')
+    window.gorgiasChatInterval = window.setInterval(function() {
+    var container = document.querySelector('#gorgias-chat-container')
+    if (window.GorgiasChat && GorgiasChat.hasOwnProperty("on")) {
+      GorgiasChat.setShopifyContext('drsquatchsoapco.myshopify.com');
+      console.log('LOADED Gorgias')
+      clearInterval(window.gorgiasChatInterval);
+    }
+  }, 500);
+</script>
+{% endcapture %}
+  {% if template contains 'customers' and settings.enable_gorgias_account %}
+    {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'collection' and settings.enable_gorgias_collections %}
+     {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'product' and settings.enable_gorgias_pdp %}
+     {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'page.contact-us' and settings.enable_gorgias_contact %}
+    {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'page.hero-discounts' and settings.enable_gorgias_verifypass %}
+    {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'page.about' and settings.enable_gorgias_about %}
+    {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'page.shipping' and settings.enable_gorgias_shipping %}
+    {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'page.returns' and settings.enable_gorgias_returns %}
+    {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'page.quiz-1' and settings.enable_gorgias_quiz %}
+  {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'page.terms-conditions' and settings.enable_gorgias_terms %}
+  {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'page.wholesale' and settings.enable_gorgias_wholesale %}
+  {{ gorgias_chat }}
+  {% endif %}
+
+  {% if template == 'cart' and settings.enable_gorgias_cart %}
+  {{ gorgias_chat }}
+  {% endif %}
+  
+{% unless template == 'index' or template == 'page.quiz-1' or template == 'product' or template == 'cart' %}
+  <script type="text/javascript">
+    window.hdlh = {
+        widget_key: "mh1wsut48ti1x67gzwx5",
+        logo: false,
+        primary_color: '#DE7C00',
+        disable_contact_button: false,
+        brand: 'FAQ & Support',//['tag:test','article:12a45b78', 'category:ab3c5d7e']
+        {% if template == 'account' %}
+        suggestions: ['category:u2buifrs17','category:lxa10co02r'],
+        {% elsif template == 'page.shipping' %}
+        suggestions: ['category:pcsfxv0aqa'],
+        {% elsif template == 'collection' %}
+        suggestions: ['category:ssepszdhw2'],
+        {% elsif template == 'page.returns' %}
+        suggestions: ['category:vgt020ydup'],
+        {% elsif template == 'page.terms-conditions' %}
+        suggestions: ['category:g08qbj8sob'],
+        {% elsif template == 'page.contact-us' %}
+        suggestions: ['category:pcsfxv0aqa'],
+        {% elsif template == 'page.hero-discounts' %}
+        suggestions: ['article:dhhapd97nz'],
+        {% elsif template == 'page.about' %}
+        suggestions: ['category:rb60bm0fqy'],
+        {% elsif template == 'page.wholesale' %}
+        suggestions: ['article:gnpve2x5dx'],
+        {% endif %}
+        color_mode: 'light',
+        launcher_button_image: 'https://cdn.shopify.com/s/files/1/0275/7784/3817/files/lighthouse.svg?v=1590171121',
+        {% if customer %}
+        user: {
+            name: '{{customer.name}}',
+            email: '{{customer.email}}'
+        }
+        {% endif %}
+    };
+    (function (h, d) { var s = d.createElement("script"); s.type = 'text/javascript'; s.async = true; s.src = h + "?t=" + new Date().getTime(); d.head.appendChild(s); })("https://lighthouse.helpdocs.io/load", document);
+</script>
+{% endunless %}

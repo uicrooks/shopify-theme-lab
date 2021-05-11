@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import { BootstrapVue } from 'bootstrap-vue'
+import { BootstrapVue } from 'bootstrap-vue';
+console.log('hihih')
+console.log(Vue)
 /*import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './css/main.scss'*/
