@@ -3,3 +3,13 @@
  * and other style files
  */
 /* @import "my-file"; */
+
+@import "./variables.scss";
+
+.sqautch-main-font {
+  font-family: $main-font;
+}
+
+.squatch-sub-font {
+  font-family: $sub-font;
+}
