@@ -9,6 +9,11 @@ module.exports = merge(common, {
   entry: [
     path.resolve(__dirname, '../../src/main.js'),
     path.resolve(__dirname, '../../src/layout/index.js'),
+    path.resolve(__dirname, '../../src/layout/page.js'),
+    path.resolve(__dirname, '../../src/layout/collection.js'),
+    path.resolve(__dirname, '../../src/layout/product.js'),
+    path.resolve(__dirname, '../../src/layout/cart.js'),
+    path.resolve(__dirname, '../../src/layout/account.js'),
     path.resolve(__dirname, '../../node_modules/shopify-theme-lab-reloader/client.autoload') // add reloader to the bundle
   ],
   module: {

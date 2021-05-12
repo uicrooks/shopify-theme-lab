@@ -1,16 +1,18 @@
-import Vue from 'vue'
+import Vue from 'vue';
+
+if (window.theme.template_name == "page") {
+console.log("layout-page");
 
 const vueComponents = require.context('../vue/templates/page', true, /\.(vue|js)$/);
 vueComponents.keys().forEach(key => {
   const component = vueComponents(key).default;
-  var t = '@/'+ key.split('./')[1];
   const name = component.name
     ? component.name
     : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
-  Vue.component(name, () => import(t))
+  Vue.component(name, component);
 })
 
 new Vue({
   el: '#layout-page',
-  store,
 })
+}

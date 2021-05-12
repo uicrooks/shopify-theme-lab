@@ -2,7 +2,13 @@
 {% if template.name == "index" %}
 {{ "layout-index.js" | asset_url | script_tag }}
 {% elsif template.name == "product" %}
+{{ "layout-product.js" | asset_url | script_tag }}
 {% elsif template.name == "page" %}
+{{ "layout-page.js" | asset_url | script_tag }}
 {% elsif template.name == "collection" %}
+{{ "layout-collection.js" | asset_url | script_tag }}
 {% elsif template.name == "account" %}
+{{ "layout-account.js" | asset_url | script_tag }}
+{% elsif template.name == "cart" %}
+{{ "layout-cart.js" | asset_url | script_tag }}
 {% endif %}

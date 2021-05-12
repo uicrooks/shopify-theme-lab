@@ -8,8 +8,6 @@
     {% render "_head.og-meta" %}
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <!--<link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">-->
-    <!--<link rel="preload" href="{{ 'main.js' | asset_url }}" as="script">-->
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="shortcut icon" href="{{ settings.favicon_image | img_url: '32x32' }}" type="image/png">
 
@@ -31,7 +29,7 @@
 
       <site-footer></site-footer>
     </div>
-
+    {% render "_body.globals" %}
     <!-- webpack bundle -->
     {% render "_body.content-scripts" %}
 

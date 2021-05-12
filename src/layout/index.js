@@ -1,5 +1,7 @@
 import Vue from 'vue'
-console.log('INDEX')
+
+if (window.theme.template_name == "index") {
+console.log("layout-index");
 
 const vueComponents = require.context('../vue/templates/index', true, /\.(vue|js)$/);
 vueComponents.keys().forEach(key => {
@@ -13,3 +15,4 @@ vueComponents.keys().forEach(key => {
 new Vue({
   el: '#layout-index',
 })
+}
