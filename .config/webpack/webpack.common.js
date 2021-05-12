@@ -5,10 +5,14 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   stats: 'minimal',
-  entry: path.resolve(__dirname, '../../src/main.js'),
+  //entry: path.resolve(__dirname, '../../src/main.js'),
+  entry: {
+    main: path.resolve(__dirname, '../../src/main.js'),
+    index: path.resolve(__dirname, '../../src/layout/index.js'),
+  },
   output: {
     path: path.resolve(__dirname, '../../shopify/assets/'),
-    filename: 'bundle.js'
+    filename: 'layout-[name].js'
   },
   resolve: {
     extensions: ['*', '.js', '.vue', '.json'],

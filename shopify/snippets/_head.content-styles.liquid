@@ -1,0 +1,9 @@
+{{ 'layout-main.css' | asset_url | stylesheet_tag }}
+
+{% if template.name == "index" %}
+{{ "layout-index.css" | asset_url | stylesheet_tag}}
+{% elsif template.name == "product" %}
+{% elsif template.name == "page" %}
+{% elsif template.name == "collection" %}
+{% elsif template.name == "account" %}
+{% endif %}

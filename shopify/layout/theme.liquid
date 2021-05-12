@@ -8,36 +8,33 @@
     {% render "_head.og-meta" %}
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
+    <!--<link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">-->
     <!--<link rel="preload" href="{{ 'main.js' | asset_url }}" as="script">-->
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="shortcut icon" href="{{ settings.favicon_image | img_url: '32x32' }}" type="image/png">
 
     {% render "_head.seo" %}
-    {{ 'bundle.css' | asset_url | stylesheet_tag }}
+    {% render "_head.content-styles" %}
 
     {{ content_for_header }}
   </head>
 
   <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}">
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
-
       <main id="main" role="main">
-        <app-theme-header></app-theme-header>
+        <site-header></site-header>
         <div class="inner-container">
           {% comment %}Route Specific Content{% endcomment %}
           {{ content_for_layout }}
         </div>
       </main>
 
-      <app-theme-footer></app-theme-footer>
+      <site-footer></site-footer>
     </div>
 
     <!-- webpack bundle -->
-    {{ 'bundle.js' | asset_url | script_tag }}
-    {% comment %}
-    {{ 'layout-index.js' | asset_url | script_tag }}
-    {% endcomment %}
+    {% render "_body.content-scripts" %}
+
     {% render '_body.crawler-schema' %}
     {% render '_body.live-chat' %}
   </body>

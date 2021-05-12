@@ -3,26 +3,6 @@
 @forward "variables/colors.scss";
 @forward "variables/breakpoints.scss";
 
-$enable-caret:                                true;
-$enable-rounded:                              false;
-$enable-shadows:                              false;
-$enable-gradients:                            false;
-$enable-transitions:                          true;
-$enable-prefers-reduced-motion-media-query:   true;
-$enable-grid-classes:                         true;
-$enable-pointer-cursor-for-buttons:           true;
-$enable-print-styles:                         true;
-$enable-responsive-font-sizes:                true;
-$enable-validation-icons:                     true;
-$enable-deprecation-messages:                 true;
-$yiq-contrasted-threshold:  150;
-$yiq-text-dark:             #212529;
-$yiq-text-light:            colors.$white;
-$body-bg:                   colors.$white;
-$body-color:                colors.$brown-text;
-$headings-color:            colors.$brown;
-$min-contrast-ratio:        2.5;
-
 $colors: ();
 // stylelint-disable-next-line scss/dollar-variable-default
 $colors: map-merge(
@@ -68,6 +48,9 @@ $theme-colors: map-merge(
 @each $color in $theme-colors {
   .bg-#{nth($color,1)} {
     background-color: nth($color,2);
+  }
+  .text-#{nth($color,1)} {
+    color: nth($color,2);
   }
 }
 

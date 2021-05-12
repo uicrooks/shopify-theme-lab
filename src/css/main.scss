@@ -1,6 +1,10 @@
-@import "./bootstrap_variables.scss";
-@import "./partials//brand.scss";
-@import "~bootstrap/scss/bootstrap";
+@import "./_variables.scss";
+@import "./partials/brand.scss";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "~bootstrap/scss/grid";
+
 @import url("https://p.typekit.net/p.css?s=1&k=xcy0upy&ht=tk&f=749.753.44458&a=52179711&app=typekit&e=css");
 
 @include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
