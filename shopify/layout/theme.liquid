@@ -17,22 +17,26 @@
     {{ content_for_header }}
   </head>
 
-  <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}">
-    <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
+  <body
+    id="{{ page_title | handle }}"
+    class="template-{{ request.page_type | handle }}"
+  >
+    <div
+      {% unless request.page_type == 'captcha' %}
+        id="app"
+      {% endunless %}
+    >
       <main id="main" role="main">
-        <site-header></site-header>
+        {% section 'header' %}
         <div class="inner-container">
-          {% comment %}Route Specific Content{% endcomment %}
+          {% comment %} Route Specific Content {% endcomment %}
           {{ content_for_layout }}
         </div>
       </main>
-
-      <site-footer></site-footer>
     </div>
-    {% render "_body.globals" %}
+    {% render '_body.globals' %}
     <!-- webpack bundle -->
-    {% render "_body.content-scripts" %}
-
+    {% render '_body.content-scripts' %}
     {% render '_body.crawler-schema' %}
     {% render '_body.live-chat' %}
   </body>

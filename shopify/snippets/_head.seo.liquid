@@ -1,15 +1,21 @@
 {% capture seo_title %}
-{{ page_title }}
-{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} -
-{{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}
-{% if current_page != 1 %} - {{ 'general.meta.page' | t: page: current_page }}{% endif %}
-{% unless page_title contains shop.name %} - {{ shop.name }}{% endunless %}
+  {{ page_title }}
+  {% if current_tags %}
+    {% assign meta_tags = current_tags | join: ', ' %}
+    - {{ 'general.meta.tags' | t: tags: meta_tags }}
+  {% endif %}
+  {% if current_page != 1 %}
+    - {{ 'general.meta.page' | t: page: current_page }}
+  {% endif %}
+  {% unless page_title contains shop.name %}
+    - {{ shop.name }}
+  {% endunless %}
 {% endcapture %}
 
 <title>{{ seo_title }}</title>
 
 {% if page_description %}
-<meta name="description" content="{{ page_description | escape }}">
+  <meta name="description" content="{{ page_description | escape }}">
 {% else %}
-<meta name="description" content="{{ seo_title }}">
+  <meta name="description" content="{{ seo_title }}">
 {% endif %}

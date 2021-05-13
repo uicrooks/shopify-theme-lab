@@ -56,16 +56,22 @@ directives.keys().forEach(key => {
 
 Vue.prototype.$axios = axios;
 
-// TO DO: loop import
-import SiteHeader from './vue/shared/components/SiteHeader.vue';
-import SiteFooter from './vue/shared/components/SiteFooter.vue';
+/**
+ * vue components
+ * auto-import all Vue core components
+ */
+ const vueComponents = require.context('./vue/components/core/', true, /\.(vue|js)$/)
+
+ vueComponents.keys().forEach(key => {
+   const component = vueComponents(key).default
+   const name = component.name
+     ? component.name
+     : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
+   Vue.component(name, component)
+ })
 
 new Vue({
-  el: '#app',
-  components: {
-    SiteHeader,
-    SiteFooter
-  }
+  el: '#app'
 })
 
 // NOT NEEDED, showing it's okay to delete;

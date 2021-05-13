@@ -257,9 +257,6 @@ export default {
     navigateTo(menu) {
       console.log(menu);
     }
-  },
-  mounted() {
-    console.log("Header!");
   }
 }
 </script>
