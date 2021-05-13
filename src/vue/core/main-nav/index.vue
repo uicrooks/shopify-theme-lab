@@ -3,21 +3,21 @@
     <!-- Mobile sidebar navigation -->
     <div class="mobile-nav">
       <img
+        id="drsquatch-logo-mobile"
         src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
         alt="Dr.Squatch logo"
-        id="drsquatch-logo-mobile"
-      />
+      >
       <div class="buttons">
         <b-icon
           icon="cart"
           font-scale="2"
-        ></b-icon>
+        />
         <b-icon
           v-b-toggle.main-nav-sidebar
           icon="list"
           font-scale="2"
           class="burger-icon"
-        ></b-icon>
+        />
       </div>
 
       <b-sidebar
@@ -29,16 +29,16 @@
         <template #header>
           <div class="sidebar-header">
             <img
-              src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
-              alt="Dr.Squatch logo"
               id="drsquatch-logo-mobile-sidebar"
-            />
+              src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
+              alt="Dr.Squatch logo"   
+            >
             <div class="account-icon-box">
               <b-icon
                 icon="person-fill"
                 font-scale="2.5"
                 class="person-icon"
-              ></b-icon>
+              />
               <span>Log In</span>
             </div>
           </div>
@@ -47,60 +47,60 @@
         <template #default>
           <squatch-button
             text="The Subscription"
-            subText="Save 15% on your favorite soap and get free shipping for life!"
+            sub-text="Save 15% on your favorite soap and get free shipping for life!"
             path="/test"
-          ></squatch-button>
+          />
           <squatch-button
             text="Starter Bundles"
-            subText="Your choice of our curated best sellers"
+            sub-text="Your choice of our curated best sellers"
             path="/test"
             color="maroon"
-          ></squatch-button>
+          />
 
           <grouped-menu-item
             :name="soapMenu.name"
-            :isOpen="soapMenu.isOpen"
-            :subMenuItems="soapMenu.subMenuItems"
+            :is-open="soapMenu.isOpen"
+            :sub-menu-items="soapMenu.subMenuItems"
             @toggle="soapMenu.isOpen = !soapMenu.isOpen"
-          ></grouped-menu-item>
+          />
           <single-menu-item
             v-for="(item, index) of singleMenuItems"
             :key="`single-menu-item-${index}`"
             :name="item.name"
             :badge="item.badge"
             :path="item.path"
-          ></single-menu-item>
+          />
           <grouped-menu-item
             :name="moreMenu.name"
-            :isOpen="moreMenu.isOpen"
-            :subMenuItems="moreMenu.subMenuItems"
+            :is-open="moreMenu.isOpen"
+            :sub-menu-items="moreMenu.subMenuItems"
             @toggle="moreMenu.isOpen = !moreMenu.isOpen"
-          ></grouped-menu-item>
+          />
           <single-menu-item
             class="soap-quiz-menu"
             name="Take Soap Quiz"
             path="/quiz"
-          ></single-menu-item>
+          />
 
           <div class="sidebar-footer">
             <grouped-menu-item
               :name="infoMenu.name"
-              :isOpen="infoMenu.isOpen"
-              :subMenuItems="infoMenu.subMenuItems"
+              :is-open="infoMenu.isOpen"
+              :sub-menu-items="infoMenu.subMenuItems"
               @toggle="infoMenu.isOpen = !infoMenu.isOpen"
-            ></grouped-menu-item>
+            />
             <grouped-menu-item
               :name="aboutMenu.name"
-              :isOpen="aboutMenu.isOpen"
-              :subMenuItems="aboutMenu.subMenuItems"
+              :is-open="aboutMenu.isOpen"
+              :sub-menu-items="aboutMenu.subMenuItems"
               @toggle="aboutMenu.isOpen = !aboutMenu.isOpen"
-            ></grouped-menu-item>
+            />
             <grouped-menu-item
               :name="helpMenu.name"
-              :isOpen="helpMenu.isOpen"
-              :subMenuItems="helpMenu.subMenuItems"
+              :is-open="helpMenu.isOpen"
+              :sub-menu-items="helpMenu.subMenuItems"
               @toggle="helpMenu.isOpen = !helpMenu.isOpen"
-            ></grouped-menu-item>
+            />
           </div>
         </template>
       </b-sidebar>
@@ -108,27 +108,27 @@
     <!-- Desktop Navigation -->
     <div class="desktop-nav">
       <div class="left-section">
-
+        haha
       </div>
       <img
+        id="drsquatch-logo-desktop"
         src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
         alt="Dr.Squatch logo"
-        id="drsquatch-logo-desktop"
-      />
+      >
       <div class="right-section">
-        
+        hahaha
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import SquatchButton from "./../../ui-elements/squatch-button";
-import GroupedMenuItem from "./grouped-menu-item";
-import SingleMenuItem from "./single-menu-item";
+import SquatchButton from "@vue/ui-elements/squatch-button";
+import GroupedMenuItem from "@vue/core/main-nav/grouped-menu-item";
+import SingleMenuItem from "@vue/core/main-nav/single-menu-item";
 
 export default {
-  name: "main-nav",
+  name: "MainNav",
   components: {
     SquatchButton,
     GroupedMenuItem,
@@ -262,7 +262,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../../css/main.scss";
+@import "@/styles/main.scss";
 
 .main-nav-component {
   font-size: 16px;
@@ -273,7 +273,7 @@ export default {
     justify-content: space-between;
     padding: 15px;
 
-    @media (min-width: $md-breakpoint) {
+    @include layout-md {
       display: none;
     }
 
@@ -336,7 +336,7 @@ export default {
   .desktop-nav {
     display: none;
 
-    @media (min-width: $md-breakpoint) {
+    @include layout-md {
       display: flex;
       width: 100%;
     }
@@ -349,6 +349,10 @@ export default {
 </style>
 
 <style lang="scss">
+.b-sidebar-body {
+  overflow-y: hidden !important;
+}
+
 .squatch-button-component {
   .button-text {
     font-size: 16px;

@@ -9,30 +9,30 @@
     >
       {{ name }}
       <span
-        class="badge"
         v-if="badge"
+        class="badge"
       >{{ badge }}</span>
       <b-icon
         class="arrow-icon"
         :icon="isOpen ? 'chevron-up' : 'chevron-down'"
-      ></b-icon>  
+      /> 
     </div>
     <b-collapse
       id="sub-menu"
-      v-model="isOpen"
+      v-model="subMenuOpen"
     >
       <div 
-        class="menu-item sub"
         v-for="(subMenuItem, index) of subMenuItems"
         :key="`sub-menu-item-${index}`"
+        class="menu-item sub"
         @click="navigateTo(subMenuItem)"
       >
         {{ subMenuItem.name }}
         <span
-          class="badge"
           v-if="subMenuItem.badge"
+          class="badge"
         >{{ subMenuItem.badge }}</span>
-        </div>
+      </div>
     </b-collapse>
   </div>
 </template>
@@ -59,6 +59,16 @@ export default {
       default: () => []
     }
   },
+  computed: {
+    subMenuOpen: {
+      get() {
+        return this.isOpen;
+      },
+      set(open) {
+        return open;
+      }
+    }
+  },
   methods: {
     toggleMenuItem() {
       this.$emit("toggle");
@@ -74,7 +84,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../../css/main.scss";
+@import "@/styles/main.scss";
 
 .menu-item {
   width: 100%;

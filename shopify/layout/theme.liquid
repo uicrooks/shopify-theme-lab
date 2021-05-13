@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="{{ settings.favicon_image | img_url: '32x32' }}" type="image/png">
 
     {% render "_head.seo" %}
-    {% render "_head.content-styles" %}
+    <!-- {% render "_head.content-styles" %} -->
 
     {{ content_for_header }}
   </head>
@@ -26,12 +26,10 @@
         id="app"
       {% endunless %}
     >
+      {% section 'header' %}
       <main id="main" role="main">
-        {% section 'header' %}
-        <div class="inner-container">
-          {% comment %} Route Specific Content {% endcomment %}
-          {{ content_for_layout }}
-        </div>
+        {% comment %} Route Specific Content {% endcomment %}
+        {{ content_for_layout }}
       </main>
     </div>
     {% render '_body.globals' %}

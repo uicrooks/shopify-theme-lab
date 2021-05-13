@@ -4,15 +4,12 @@ import axios from 'axios'
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import './css/main.scss'
 
+// CAN WE IMPROVE IMPORT?
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
 
-//Vue.use(BootstrapVue) ** CAN WE IMPROVE IMPORT?
-
 Vue.config.productionTip = false
-
 
 /**
  * vuex
@@ -60,7 +57,7 @@ Vue.prototype.$axios = axios;
  * vue components
  * auto-import all Vue core components
  */
- const vueComponents = require.context('./vue/components/core/', true, /\.(vue|js)$/)
+ const vueComponents = require.context('./vue/core/', true, /\.(vue|js)$/)
 
  vueComponents.keys().forEach(key => {
    const component = vueComponents(key).default

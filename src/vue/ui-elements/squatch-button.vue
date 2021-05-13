@@ -5,12 +5,15 @@
     @click="navigateTo"
   >
     <div
-      class="button-text squatch-main-font"
+      class="button-text"
       :class="{'as-header': subText}"
     >
       {{ text }}
     </div>
-    <div class="button-sub-text squatch-sub-font" v-if="subText">
+    <div
+      v-if="subText"
+      class="button-sub-text"
+    >
       {{ subText }}
     </div>
   </div>
@@ -30,7 +33,8 @@ export default {
     },
     path: {
       type: String,
-      required: false
+      required: false,
+      default: ""
     },
     color: {
       type: String,
@@ -50,8 +54,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../css/main.scss";
-@import "../../../css/variables.scss";
+@import "@/styles/main.scss";
 
 .squatch-button-component {
   margin: 16px;
@@ -64,16 +67,16 @@ export default {
   cursor: pointer;
 
   &:hover {
-    background-color: $orange-hover;
-    color: $white-hover;
+    background-color: $orange-darken;
+    color: $white-darken;
   }
 
   &.maroon {
     background-color: $maroon;
 
     &:hover {
-      background-color: $maroon-hover;
-      color: $white-hover;
+      background-color: $maroon-darken;
+      color: $white-darken;
     }
   }
 

@@ -11,16 +11,16 @@ export default {
   name: "IndexHero",
 };
 </script>
-<style scoped lang="scss">
-@import "../../../css/mixins/media-query";
-@import "../../../css/mixins/font-style-heading";
+// <style scoped lang="scss">
+// @import "../../../css/mixins/media-query";
+// @import "../../../css/mixins/font-style-heading";
 
-.index-hero {
-  background: #fff;
-  color: #fff;
-  @include font-style-heading(40px);
-  @include media-query($md,'max') {
-    color: pink !important;
-  }
-}
-</style>
+// .index-hero {
+//   background: #fff;
+//   color: #fff;
+//   @include font-style-heading(40px);
+//   @include media-query($md,'max') {
+//     color: pink !important;
+//   }
+// }
+// </style>

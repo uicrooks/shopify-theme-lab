@@ -1,0 +1,17 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1336px;
+
+@mixin layout-sm {
+  @media (max-width: $sm) { @content; }
+}
+@mixin layout-md {
+  @media (min-width: $md) { @content; }
+}
+@mixin layout-lg {
+  @media (min-width: $lg) { @content; }
+}
+@mixin layout-xl {
+  @media (min-width: $xl) { @content; }
+}

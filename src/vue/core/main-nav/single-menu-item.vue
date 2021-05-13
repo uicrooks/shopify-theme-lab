@@ -5,13 +5,13 @@
   >
     {{ name }}
     <span
-      class="badge"
       v-if="badge"
+      class="badge"
     >{{ badge }}</span>
     <b-icon
       class="arrow-icon"
       icon="chevron-right"
-    ></b-icon>
+    />
   </div>
 </template>
 
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../../../css/main.scss";
+@import "@/styles/main.scss";
 
 .single-menu-item-component {
   width: 100%;
