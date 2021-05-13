@@ -1,10 +1,11 @@
-/**
- * entry file for Tailwind CSS
- * and other style files
- */
-/* @import "my-file"; */
+@import "./_variables.scss";
+@import "./partials/brand.scss";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+@import "~bootstrap/scss/grid";
 
-@import "./variables.scss";
+@import "./variables2.scss";
 
 .sqautch-main-font {
   font-family: $main-font;
