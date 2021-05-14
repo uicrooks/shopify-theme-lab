@@ -46,11 +46,13 @@
 
         <template #default>
           <squatch-button
+            class="big-cta-button"
             text="The Subscription"
             sub-text="Save 15% on your favorite soap and get free shipping for life!"
             path="/test"
           />
           <squatch-button
+            class="big-cta-button"
             text="Starter Bundles"
             sub-text="Your choice of our curated best sellers"
             path="/test"
@@ -108,7 +110,26 @@
     <!-- Desktop Navigation -->
     <div class="desktop-nav">
       <div class="left-section">
-        haha
+        <squatch-button
+          text="Subscribe"
+          path="/test"
+          color="hover-lighten"
+        />
+        <div
+          class="menu-item"
+          @click="navigateToPath('/test')"
+        >
+          Bundles
+        </div>
+        <div
+          class="menu-item"
+          v-b-toggle.products-menu  
+        >
+          Products
+          <b-icon
+            :icon="productsSubMenuOpen ? 'x' : 'chevron-down'"
+          />
+        </div>
       </div>
       <img
         id="drsquatch-logo-desktop"
@@ -116,9 +137,77 @@
         alt="Dr.Squatch logo"
       >
       <div class="right-section">
-        hahaha
+        <div
+          class="menu-item"
+          @click="navigateTo('/test')"
+        >
+          Take Quiz
+        </div>
+        <div
+          class="menu-item"
+          @click="navigateTo('/test')"
+        >
+          Log In
+        </div>
+        <b-icon
+          icon="cart"
+          font-scale="2"
+        />
       </div>
     </div>
+    <b-collapse id="products-menu" v-model="productsSubMenuOpen">
+      <h6 class="submenu-title">Essentials</h6>
+      <div class="essentials">
+        <div
+          v-for="(item, index) of productsSubMenuItems.essentials"
+          :key="`products-essential-item-${index}`"
+          class="essential-item"
+          @click="navigateTo(item.path)"
+        >
+          <span
+            v-if="item.badge"
+            class="badge"
+          >{{ item.badge }}</span>
+          <div class="item-image-wrapper">
+            <img 
+              :src="item.imageSrc"
+              :alt="`${item.name} image`"
+            >
+          </div>
+          <div class="item-name">{{ item.name }}</div>
+        </div>
+      </div>
+      <h6 class="submenu-title">More Products</h6>
+      <div class="more">
+        <div class="more-col">
+          <div
+            v-for="(item, index) of moreMenu.subMenuItems"
+            :key="`more-item-${index}`"
+            class="more-item"
+            @click="navigateTo(item.path)"
+          >
+            {{ item.name }}
+          </div>
+        </div>
+        <div class="more-col">
+          <div
+            class="more-item more-item-shop-all"
+            @click="navigateTo('/test')"
+          >
+            Shop All
+            <b-icon
+              icon="arrow-right"
+            />
+          </div>
+          <div
+            class="more-item"
+            @click="navigateTo('/test')"
+          >
+            Take Soap Quiz
+          </div>
+        </div>
+      </div>
+    </b-collapse>
   </div>
 </template>
 
@@ -250,12 +339,45 @@ export default {
           name: "Best Sellers",
           path: "/"
         }
-      ]
+      ],
+      productsSubMenuOpen: false,
+      productsSubMenuItems: {
+        essentials: [{
+          name: "Shop Bundles",
+          path: "/test",
+          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457"
+        }, {
+          name: "Bar Soaps",
+          path: "/test",
+          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
+        }, {
+          name: "Hair Care",
+          path: "/test",
+          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
+        }, {
+          name: "Deodorant",
+          path: "/test",
+          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          badge: "New!"
+        }, {
+          name: "Toothpaste",
+          path: "/test",
+          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
+        }, {
+          name: "Shower Boosters",
+          path: "/test",
+          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
+        }, {
+          name: "Best Sellers",
+          path: "/test",
+          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
+        }]
+      }
     }
   },
   methods: {
-    navigateTo(menu) {
-      console.log(menu);
+    navigateTo(path) {
+      console.log(path);
     }
   }
 }
@@ -273,7 +395,7 @@ export default {
     justify-content: space-between;
     padding: 15px;
 
-    @include layout-md {
+    @include layout-lg {
       display: none;
     }
 
@@ -335,14 +457,130 @@ export default {
 
   .desktop-nav {
     display: none;
+    width: 100%;
+    padding: 14px 30px;
 
-    @include layout-md {
+    @include layout-lg {
       display: flex;
-      width: 100%;
+    }
+
+    .left-section {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      flex: 1;
     }
 
     #drsquatch-logo-desktop {
       width: 165px;
+    }
+
+    .right-section {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: flex-end;
+      flex: 1;
+    }
+
+    .menu-item {
+      margin: 0 16px;
+      cursor: pointer;
+      @include font-style-body();
+
+      &:hover {
+        color: $orange;
+      }
+    }
+  }
+
+  #products-menu {
+    padding: 20px 15px;
+    border-top: 2px solid $white-darken;
+    background-color: $white;
+    position: absolute;
+
+    .submenu-title {
+      margin-bottom: 15px;
+      padding-left: 15px;
+      @include font-style-heading($color: $dark-brown);
+    }
+
+    .essentials {
+      display: flex;
+      flex-flow: row nowrap;
+
+      .essential-item {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        width: 138px;
+        padding: 0 20px;
+        position: relative;
+        margin-bottom: 15px;
+        cursor: pointer;
+
+        .badge {
+          position: absolute;
+          top: -20px;
+          left: 39px;
+          font-size: 10px;
+          font-weight: 400;
+          background-color: $orange;
+          border-radius: 11px;
+          padding: 4px 7px; 
+          text-transform: uppercase;
+          margin-left: 8px;
+        }
+        
+        .item-image-wrapper {
+          border-radius: 100%;
+          width: 80px;
+          text-align: center;
+
+          &:hover {
+            background-color: $white-darken;
+          }
+
+          img {
+            width: 80px;
+            height: auto;
+          }
+        }
+
+        .item-name {
+          text-align: center;
+          @include font-style-heading($size: 14px, $color: $dark-brown)
+        }
+      }
+    }
+
+    .more {
+      display: flex;
+      flex-flow: row nowrap;
+      
+      .more-col {
+        height: 120px;
+        display: flex;
+        flex-flow: column wrap;
+        align-content: flex-start;
+        min-width: 320px;
+
+        .more-item {
+          width: 160px;
+          margin: 0 0 14px 15px;
+          @include font-style-body($color: $dark-brown, $weight: 600);
+          cursor: pointer;
+
+          &:hover {
+            color: $orange;
+          }
+        }
+
+        .more-item-shop-all {
+          @include font-style-heading($size: 14px, $color: $dark-brown, $weight: 600);
+        }
+      }
     }
   }
 }
@@ -353,7 +591,10 @@ export default {
   overflow-y: hidden !important;
 }
 
-.squatch-button-component {
+.squatch-button-component.big-cta-button {
+  padding: 20px 15px;
+  margin: 16px;
+
   .button-text {
     font-size: 16px;
     text-transform: uppercase;

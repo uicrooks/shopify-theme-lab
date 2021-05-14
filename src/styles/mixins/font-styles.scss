@@ -1,15 +1,25 @@
-@mixin font-style-heading($size: false, $colour: false, $weight: false,  $lh: false) {
+@mixin font-style-heading(
+  $size: 18px,
+  $color: false,
+  $weight: 500, 
+  $lh: 18px
+) {
   font-family: 'worker-3d', Arial, sans-serif;
   @if $size { font-size: $size; }
-  @if $colour { color: $colour; }
+  @if $color { color: $color; }
   @if $weight { font-weight: $weight; }
   @if $lh { line-height: $lh; }
 }
 
-@mixin font-style-body($size: false, $colour: false, $weight: false,  $lh: false) {
+@mixin font-style-body(
+  $size: 14px,
+  $color: false,
+  $weight: false, 
+  $lh: 14px
+) {
   font-family: 'adrianna', Arial, sans-serif;
   @if $size { font-size: $size; }
-  @if $colour { color: $colour; }
+  @if $color { color: $color; }
   @if $weight { font-weight: $weight; }
   @if $lh { line-height: $lh; }
 }

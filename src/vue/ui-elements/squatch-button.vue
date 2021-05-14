@@ -39,7 +39,7 @@ export default {
     color: {
       type: String,
       required: false,
-      default: "orange"
+      default: ""
     }
   },
   methods: {
@@ -57,8 +57,7 @@ export default {
 @import "@/styles/main.scss";
 
 .squatch-button-component {
-  margin: 16px;
-  padding: 20px 15px;
+  padding: 12px 15px;
   border-radius: 5px;
   font-size: 15px;
   text-align: center;
@@ -69,6 +68,11 @@ export default {
   &:hover {
     background-color: $orange-darken;
     color: $white-darken;
+
+    &.hover-lighten {
+      background-color: $orange-lighten;
+      color: $white;
+    }
   }
 
   &.maroon {
