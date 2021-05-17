@@ -149,6 +149,18 @@
         >
           Log In
         </div>
+        <div
+          class="menu-item"
+          v-b-toggle.currency-options  
+        >
+          USD
+          <b-icon
+            icon="caret-down-fill"
+          />
+        </div>
+        <b-collapse id="curreny-options">
+          CAD
+        </b-collapse>
         <b-icon
           icon="cart"
           font-scale="2"
@@ -378,6 +390,9 @@ export default {
   methods: {
     navigateTo(path) {
       console.log(path);
+    },
+    toggleCurrency() {
+      console.log("toggleCurrency");
     }
   }
 }
@@ -494,7 +509,12 @@ export default {
     }
   }
 
+  #currency-options {
+    position: absolute;
+  }
+
   #products-menu {
+    width: 100%;
     padding: 20px 15px;
     border-top: 2px solid $white-darken;
     background-color: $white;
