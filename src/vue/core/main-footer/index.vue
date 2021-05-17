@@ -6,12 +6,30 @@
         DR. SQUATCH is a registered trademark of Dr. Squatch, Inc. © 2021, Dr. Squatch, Inc. All rights reserved.
       </div>
       <div class="payment-methods">
-        <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-visa.svg?v=1617925436" alt="Visa logo" />
-        <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-mastercard.svg?v=1617925436" alt="Master card logo" />
-        <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-amex.svg?v=1617925435" alt="American Express logo" />
-        <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-shopify.svg?v=1617925435" alt="Shop Pay logo" />
-        <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-paypal.svg?v=1617925436" alt="PayPal logo" />
-        <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-googlepay.svg?v=1617925436" alt="Google Pay logo" />
+        <img
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-visa.svg?v=1617925436"
+          alt="Visa logo"
+        >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-mastercard.svg?v=1617925436"
+          alt="Master card logo"
+        >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-amex.svg?v=1617925435"
+          alt="American Express logo"
+        >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-shopify.svg?v=1617925435"
+          alt="Shop Pay logo"
+        >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-paypal.svg?v=1617925436"
+          alt="PayPal logo"
+        >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-googlepay.svg?v=1617925436"
+          alt="Google Pay logo"
+        >
       </div>      
     </div>
   </div>
@@ -21,7 +39,7 @@
 import FooterMenu from "@vue/core/main-footer/footer-menu";
 
 export default {
-  name: "main-footer",
+  name: "MainFooter",
   components: {
     FooterMenu
   }

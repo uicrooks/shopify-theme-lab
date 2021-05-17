@@ -122,8 +122,8 @@
           Bundles
         </div>
         <div
-          class="menu-item"
           v-b-toggle.products-menu  
+          class="menu-item"
         >
           Products
           <b-icon
@@ -150,8 +150,8 @@
           Log In
         </div>
         <div
-          class="menu-item"
           v-b-toggle.currency-options  
+          class="menu-item"
         >
           USD
           <b-icon
@@ -167,8 +167,13 @@
         />
       </div>
     </div>
-    <b-collapse id="products-menu" v-model="productsSubMenuOpen">
-      <h6 class="submenu-title">Essentials</h6>
+    <b-collapse
+      id="products-menu"
+      v-model="productsSubMenuOpen"
+    >
+      <h6 class="submenu-title">
+        Essentials
+      </h6>
       <div class="essentials">
         <div
           v-for="(item, index) of productsSubMenuItems.essentials"
@@ -186,10 +191,14 @@
               :alt="`${item.name} image`"
             >
           </div>
-          <div class="item-name">{{ item.name }}</div>
+          <div class="item-name">
+            {{ item.name }}
+          </div>
         </div>
       </div>
-      <h6 class="submenu-title">More Products</h6>
+      <h6 class="submenu-title">
+        More Products
+      </h6>
       <div class="more">
         <div class="more-col">
           <div
