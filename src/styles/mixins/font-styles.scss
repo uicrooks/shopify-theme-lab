@@ -14,7 +14,7 @@
 @mixin font-style-body(
   $size: 14px,
   $color: false,
-  $weight: false, 
+  $weight: 400, 
   $lh: 14px
 ) {
   font-family: 'adrianna', Arial, sans-serif;

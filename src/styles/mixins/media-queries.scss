@@ -4,7 +4,7 @@ $lg: 992px;
 $xl: 1336px;
 
 @mixin layout-sm {
-  @media (max-width: $sm) { @content; }
+  @media (min-width: $sm) { @content; }
 }
 @mixin layout-md {
   @media (min-width: $md) { @content; }
