@@ -123,7 +123,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 <!-- system requirements (start) -->
 ## System requirements
 
-- Node.js >= `12.0.0`
+- Node.js >= `14.0.0`
 - npm or yarn
 <!-- system requirements (end) -->
 
@@ -179,7 +179,7 @@ $ npm run open:dev # open/preview theme in default browser
 > first, make sure the configuration for the `live` environment is initialized.
 
 ```sh
-$ npm run build # bundle js, css and other assets like images/fonts with webpack
+$ npm run build # bundle css and js
 $ npm run deploy:live # deploy shopify/ directory
 ```
 
