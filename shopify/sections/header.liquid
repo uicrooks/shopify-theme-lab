@@ -1,1 +1,12 @@
-<main-nav></main-nav>
+<main-nav
+  :logged-in="{% if customer %}true{% else %}false{% endif %}"
+></main-nav>
+<!-- 
+{% if customer %}
+A
+<main-nav
+  :logged-in="true"
+></main-nav>
+{% else %}
+not
+{% endif %} -->

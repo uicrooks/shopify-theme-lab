@@ -8,10 +8,7 @@
         alt="Dr.Squatch logo"
       >
       <div class="buttons">
-        <b-icon
-          icon="cart"
-          font-scale="2"
-        />
+        <cart />
         <b-icon
           v-b-toggle.main-nav-sidebar
           icon="list"
@@ -33,7 +30,10 @@
               src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
               alt="Dr.Squatch logo"   
             >
-            <div class="account-icon-box">
+            <div
+              class="account-icon-box"
+              @click="navigateTo('/account/login')"
+            >
               <b-icon
                 icon="person-fill"
                 font-scale="2.5"
@@ -144,8 +144,16 @@
           Take Quiz
         </div>
         <div
+          v-if="loggedIn"
           class="menu-item"
-          @click="navigateTo('/test')"
+          @click="navigateTo('/account')"
+        >
+          Account
+        </div>
+        <div
+          v-else
+          class="menu-item"
+          @click="navigateTo('/account/login')"
         >
           Log In
         </div>
@@ -161,10 +169,7 @@
         <b-collapse id="curreny-options">
           CAD
         </b-collapse>
-        <b-icon
-          icon="cart"
-          font-scale="2"
-        />
+        <cart />
       </div>
     </div>
     <b-collapse
@@ -236,13 +241,22 @@
 import SquatchButton from "@vue/ui-elements/squatch-button";
 import GroupedMenuItem from "@vue/core/main-nav/grouped-menu-item";
 import SingleMenuItem from "@vue/core/main-nav/single-menu-item";
+import Cart from "@/vue/core/cart";
 
 export default {
   name: "MainNav",
   components: {
     SquatchButton,
     GroupedMenuItem,
-    SingleMenuItem
+    SingleMenuItem,
+    Cart
+  },
+  props: {
+    loggedIn: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
   },
   data() {
     return {
@@ -399,6 +413,8 @@ export default {
   methods: {
     navigateTo(path) {
       console.log(path);
+      if (path === "/test") return;
+      window.location = path;
     },
     toggleCurrency() {
       console.log("toggleCurrency");
@@ -457,6 +473,7 @@ export default {
         width: 40px;
         color: $orange;
         font-size: 11px;
+        cursor: pointer;
 
         .person-icon {
           color: $orange;

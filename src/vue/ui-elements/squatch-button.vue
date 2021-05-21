@@ -87,6 +87,7 @@ export default {
   .button-text {
     font-size: 14px;
     font-weight: 500;
+    @include font-style-heading($size: 14px, $color: $white, $weight: 400, $lh: 14px);
 
     &.as-header {
       font-size: 16px;
@@ -96,9 +97,7 @@ export default {
 
   .button-sub-text {
     margin-top: 3px;
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 15px;
+    @include font-style-body($size: 15px, $color: $white, $lh: 15px);
   }
 }
 </style>
