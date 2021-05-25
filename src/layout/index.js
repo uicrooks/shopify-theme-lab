@@ -9,9 +9,9 @@ if (window.theme.template_name == "index") {
     const name = component.name
       ? component.name
       : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+    console.log(name)
     Vue.component(name, component)
   })
-
   new Vue({
     el: '#layout-index',
   })

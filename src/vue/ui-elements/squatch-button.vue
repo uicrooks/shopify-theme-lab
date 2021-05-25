@@ -64,6 +64,7 @@ export default {
   background-color: $orange;
   color: $white;
   cursor: pointer;
+  margin: 0 !important;
 
   &:hover {
     background-color: $orange-darken;
