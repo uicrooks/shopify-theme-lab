@@ -3,7 +3,7 @@
     <div class="image-header-bg position-relative">
       <div class="ptext pimg1 flex-outer-center">
         <div class="brand-content offset-md-5 offset-xxl-6">
-          <h1 class="image-bg_title text-white mb-0">FEEL LIKE A MAN,</h1>
+          <h1 class="image-bg_title text-white">FEEL LIKE A MAN,</h1>
           <h1 class="image-bg_title bottom-title text-white">SMELL LIKE A CHAMPION</h1>
           <p class="subheader text-white">Better smell and better skin, without the harsh chemicals</p>
           <squatch-button

@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="banner-display row-element outer-row">
-      <div class="banner-content" :style="this.reversed ? 'padding-left:15px; order:2;' : 'padding-right:15px'" >
-        <div style="display:flex; align-items:center;height:100%;" :style="this.reversed ? 'padding-left:2.5rem' : 'padding-right:2.5rem'" >
+      <div class="banner-content" :class="this.reversed ? 'reversed' : ''" >
+        <div class="banner-text"  :class="this.reversed ? 'reversed' : ''" >
+          <div class="image-mobile">
+            <img :src="this.imageSrc" v-if="this.imageSrc"/>
+          </div>
           <div class="brand-content">
-            <div class="image-mobile">
-              <img :src="this.imageSrc" v-if="this.imageSrc"/>
-            </div>
 
             <p class="preheader">{{this.preheader}}</p>
             <h1 class="header">{{this.header}}</h1>
@@ -26,9 +26,9 @@
         </div>
       </div>
 
-      <div class="banner-content banner-desktop" :class="this.reversed ? 'desktop-image reversed' : 'desktop-image'">
+      <div class="banner-image banner-desktop" :class="this.reversed ? 'desktop-image reversed' : 'desktop-image'">
         <img class="desktop-image" :src="this.imageSrc" v-if="this.imageSrc"/>
-        <!-- <div class="wistia_embed wistia_async_{{ videoId }} seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%"  v-if="this.video">
+        <!-- <div class="wistia_embed wistia_async_1sri3k4jg1 seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%"  v-if="this.videoId" >
         </div> -->
       </div>
     </div>
@@ -59,7 +59,7 @@ export default {
       type: String,
       required: false,
     },
-    video:{
+    videoId:{
       type: String, 
       required: false
     },
@@ -96,6 +96,10 @@ export default {
   @media(min-width:768px){
     display: none;
   }
+
+  img{
+    width: 100%;
+  }
 }
 
 .big-cta-button{
@@ -129,27 +133,79 @@ export default {
     margin-top: 30px;
     margin-bottom: 30px;
 
-    @media(max-width:768px){
+    @media(max-width:767px){
       flex-direction: column;
     }
 
     .brand-content{
-      padding: 0 15px;
+      padding: 15px;
       width: 100%;
+      @media(min-width:768px){
+        padding: 0 15px;
+      }
     }
-
-    .banner-content{
+    .banner-image{
         flex: 0 0 100%;
         max-width: 100%;
-      @media(min-width:768px){
-        flex: 0 0 50%;
-        max-width: 50%;
-      }
+        @media(min-width:768px){
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
 
       .desktop-image{
         width: 100%;
-        padding: 60px 0 60px 15px;
       }
+    }
+    .banner-content{
+        flex: 0 0 100%;
+        max-width: 100%;
+        padding: 0;
+
+        &.reversed{
+          @media(min-width:768px){
+            padding: 0 0 0 15px !important; 
+            order:2 !important;
+          }
+        }
+
+        @media(min-width:768px){
+          flex: 0 0 50%;
+          max-width: 50%;
+          padding-right: 15px;
+        }
+      
+      .banner-text{
+        display:flex; 
+        align-items:center;
+        height:100%;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        text-align: center;
+
+        @media(min-width:768px){
+          padding-right: 2.5rem;
+          text-align: initial;
+        }
+
+        .cta-wrapper{
+          display: flex;
+          justify-content: center;
+
+          @media(min-width:768px){
+            justify-content: initial;
+          }
+        }
+
+        &.reversed{
+          @media(min-width:768px){
+            padding: 0 0 0 2.5rem;
+          }
+        }
+
+      }
+
+
     }
 }
 
