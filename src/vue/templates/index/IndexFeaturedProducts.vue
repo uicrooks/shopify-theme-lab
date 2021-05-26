@@ -133,6 +133,7 @@ export default {
             border: none;
             border-radius: 5px;
             background-color: white;
+            overflow: hidden;
 
             .brand-content {
               padding: 30px 15px 0;
