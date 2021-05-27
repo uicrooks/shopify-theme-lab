@@ -84,6 +84,7 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/partials/brand.scss";
 @import "@/styles/variables/colors.scss";
+@import "@/styles/variables/fonts.scss";
 
   .featured-products{
     width: 100%;
@@ -101,11 +102,15 @@ export default {
         width: 100%;
         padding: 30px 15px 0;
         text-align: center;
+
+        .subheader{
+          color: #5a3714;
+          font-family: 'adrianna-bold';
+        }
       }
     }
 
     .featured-products-container{
-      padding-top:30px;
       display:flex;
       position: relative;
 
@@ -114,10 +119,13 @@ export default {
         max-width: 1660px;
         display: flex;
         flex-direction: column;
+        padding-top:30px;
+        flex-wrap: wrap;
 
 
         @media(min-width :768px){
           flex-direction: row;
+          padding-top:0;
         }
 
         .product-card{
@@ -125,8 +133,19 @@ export default {
           padding-right: 15px;
           padding-left: 15px;
           margin-bottom: 30px;
+          
+          @media(min-width:768px){
+            flex: 0 0 50%;
+            max-width: 50%;
+          }
+
+          @media(min-width: 1300px){
+            flex: 0 0 25%;
+            max-width: 25%;
+          }
 
           .product-card-content{
+            height:100%;
             width:100%;
             display: flex;
             flex-direction: column;
@@ -134,6 +153,7 @@ export default {
             border-radius: 5px;
             background-color: white;
             overflow: hidden;
+            box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
 
             .brand-content {
               padding: 30px 15px 0;
@@ -141,6 +161,19 @@ export default {
               h3 {
                   margin-bottom: 20px;
               }
+
+              .cta-btns{
+                .link{
+                  color: #cc6328;
+                  text-decoration: none;
+                }
+  
+                a:hover{
+                  cursor: pointer;
+                  transition: all .2s ease-in-out;
+                }
+              }
+
             }
           }
         }

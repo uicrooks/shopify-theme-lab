@@ -3,7 +3,7 @@
     <div class="review-preheader">
       <p class="preheader">Don't Just Take Our Word For It</p> 
       <h3>100,000+ Verified Reviews</h3> 
-      <p>Don't just take our word for it ... hear what guys like you are saying about Dr. Squatch</p>
+      <p style="font-size:14px;">Don't just take our word for it ... hear what guys like you are saying about Dr. Squatch</p>
     </div>
     <div class="review-content">
       <div class="review-table">
@@ -20,7 +20,7 @@
             </div>
             <div>
               <p class="review-text">Super smooth on the skin, smells awesome, makes you feel good showering, and yes....the wife approves.</p>
-              <p>James S.</p>
+              <p class="reviewer-name">James S.</p>
             </div>
           </div>
         </div>
@@ -37,7 +37,7 @@
             </div>
             <div>
               <p class="review-text">It's crazy how clean my skin feels and the lather is outstanding. Guys do yourself a huge favor and get some!</p>
-              <p>Stephen B.</p>
+              <p class="reviewer-name">Stephen B.</p>
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@
             </div>
             <div>
               <p class="review-text">First of all they’re made in the USA! Second of all they are all natural! And third they smell incredible!</p>
-              <p>Amanda T.</p>
+              <p class="reviewer-name">Amanda T.</p>
             </div>
           </div>
         </div>
@@ -75,6 +75,7 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/partials/brand.scss";
 @import "@/styles/variables/colors.scss";
+@import "@/styles/variables/fonts.scss";
 
 .index-reviews{
   padding: 30px 0;
@@ -89,6 +90,10 @@ export default {
     width:100%;
     position: relative;
 
+    @media(min-width: 768px){
+      padding-bottom:20px;
+    }
+
     .review-table{
       width: 100%;
       max-width:1024px;
@@ -98,11 +103,10 @@ export default {
       overflow: scroll;
 
       @media(min-width: 768px){
-        overflow: none;
+        overflow: hidden;
       }
 
       .review-container{
-        height: 100%;
         flex: 0 0 33.3333333333%;
         width:100%;
         padding:15px;
@@ -117,6 +121,7 @@ export default {
           display: flex;
           flex-direction: column;
           width: 90vw;
+          height:100%;
           box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
           background-color: white;
 
@@ -126,6 +131,12 @@ export default {
 
           .review-title{
             display: flex;
+
+            strong{
+              margin-bottom: 15px;
+              font-family: "worker-3d";
+              font-size: 16px
+            }
             
             .reviewer-image{
               width: 50px;
@@ -144,6 +155,13 @@ export default {
 
           .review-text{
             line-height: 1;
+          }
+          .reviewer-name{
+            font-family: "adrianna-bold";
+            color: rgb(90, 55, 20);
+          }
+          p{
+            font-size: 14px;
           }
         }
       }

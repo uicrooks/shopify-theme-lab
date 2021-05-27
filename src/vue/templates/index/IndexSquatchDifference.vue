@@ -9,7 +9,7 @@
           <h3 class="mb-0">The</h3> 
           <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_wordmark_black.svg?v=1615332033" class="squatch-difference-logo"> 
           <h3 >Difference</h3> 
-          <p> Dr. Squatch is changing the way men approach hygiene by providingnatural, healthy products that make you feel like a man and smell like a champion.</p>
+          <p> Dr. Squatch is changing the way men approach hygiene by providing natural, healthy products that make you feel like a man and smell like a champion.</p>
         </div>
         <div class="squatch-difference-border"></div>
         <div class="squatch-difference">
@@ -49,6 +49,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/variables/fonts.scss";
+
   .index-squatch-difference{
     display: flex;
     flex-direction: column;
@@ -94,6 +96,11 @@ export default {
             padding:0 15px;
             flex: 0 0 33.3333333333%;
             max-width: 33.3333333333%;
+
+            .subtext{
+              font-family: "adrianna-bold";
+              color:#1a110c;
+            }
           }
 
           .big-cta-button{

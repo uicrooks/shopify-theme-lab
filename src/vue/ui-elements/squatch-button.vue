@@ -57,6 +57,7 @@ export default {
 @import "@/styles/main.scss";
 
 .squatch-button-component {
+  width:256px;
   padding: 12px 15px;
   border-radius: 5px;
   font-size: 15px;

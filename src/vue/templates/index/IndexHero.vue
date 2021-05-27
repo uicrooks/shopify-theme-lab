@@ -30,6 +30,7 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "@/styles/main.scss";
+@import "@/styles/variables/fonts.scss";
 
   .brand-content {
       padding: 0 15px;
@@ -55,20 +56,20 @@ export default {
 
   @media(max-width: 767px) {
     .index-hero {
-        .image-header-bg {
-            .pimg1 {
-                padding-left: 15px;
-                background-image:url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
-                .brand-content {
-                    position: absolute;
-                    bottom: 50px;
-                    text-align: center;
-                    .subheader {
-                        display: none;
-                    }
-                }
+      .image-header-bg {
+        .pimg1 {
+          padding-left: 15px;
+          background-image:url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
+          .brand-content {
+            position: absolute;
+            bottom: 50px;
+            text-align: center;
+            .subheader {
+                display: none;
             }
+          }
         }
+      }
     }
   }
 // @import "../../../css/mixins/media-query";

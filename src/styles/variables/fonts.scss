@@ -3,3 +3,31 @@ $font-body: "adrianna";
 $font-body-bold: "adrianna" bold;
 $font-heading-fallback: Arial;
 $font-body-fallback: Arial;
+
+@font-face {
+  font-family:"adrianna";
+  src:url("https://use.typekit.net/af/66da5c/0000000000000000773597ae/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/66da5c/0000000000000000773597ae/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/66da5c/0000000000000000773597ae/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-display:auto;font-style:normal;font-weight:400;
+}
+
+@font-face {
+  font-family:"worker-3d";
+  src:url("https://use.typekit.net/af/d9770a/00000000000000007735c89c/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff2"),url("https://use.typekit.net/af/d9770a/00000000000000007735c89c/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("woff"),url("https://use.typekit.net/af/d9770a/00000000000000007735c89c/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3") format("opentype");
+  font-display:auto;font-style:normal;font-weight:400;
+}
+
+@font-face {
+  font-family:"adrianna-bold";
+  src:url("https://use.typekit.net/af/c255b5/0000000000000000773597b3/30/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"),url("https://use.typekit.net/af/c255b5/0000000000000000773597b3/30/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"),url("https://use.typekit.net/af/c255b5/0000000000000000773597b3/30/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
+  font-display:auto;font-style:normal;font-weight:600;
+}
+
+
+
+h1, h2, h3, h4, h5, h6{
+  font-family: $font-heading;
+}
+
+p{
+  font-family: $font-body;
+}

@@ -91,6 +91,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/variables/fonts.scss";
 
 .image-mobile{
   @media(min-width:768px){
@@ -118,6 +119,7 @@ export default {
 }
 
 .banner-desktop{
+  padding: 60px 15px 60px 0;
   @media(max-width:767px){
     display: none;
   }

@@ -1,0 +1,85 @@
+<template>
+  <section class="subOfferSection">
+      <div class="subscribe-container">
+        <div class="subscribe-content">
+          <div class="brand-content">
+            <h2>Subscribe &amp; Save 15%</h2> 
+            <p class="subheader">How It Works</p> 
+            <p class="copy">Give our natural products a try! Sudisfactionguaranteed, cancel anytime.</p>
+
+            <div class="image-container">
+              <squatch-button
+                class="big-cta-button"
+                text="Subscribe & Save"
+                path="/pages/subscription-flow#soap"/>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </section>
+</template>
+
+<script>
+import SquatchButton from "@vue/ui-elements/squatch-button";
+export default {
+  name: "IndexSubOffer",
+  components:{
+    SquatchButton,
+  }
+  
+};
+</script>
+
+<style scoped lang="scss">
+@import "@/styles/variables/fonts.scss";
+@import "@/styles/variables/colors.scss";
+
+
+  .subOfferSection{
+    width:100%;
+    max-width: 1400px;
+    margin: 90px auto 45px;
+
+    .subscribe-container{
+      width:100%;
+
+      .subscribe-content{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        
+        .brand-content{
+          padding: 0 15px;
+          align-items: center;
+          color: $brown;
+          text-align: center;
+          display:flex;
+          flex-direction: column;
+
+          h2{
+            color: #1a110c;
+          }
+
+          .subheader{
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-family: "adrianna-bold";
+          }
+
+          .copy{
+            line-height: 1.3;
+            margin-bottom: 30px;
+            font-size: 16px;
+          }
+
+          .image-container{
+            color:white;
+          }
+        }
+      }
+    }
+  }
+</style>
