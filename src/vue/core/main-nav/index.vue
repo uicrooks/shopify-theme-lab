@@ -547,6 +547,7 @@ export default {
     border-top: 2px solid $white-darken;
     background-color: $white;
     position: absolute;
+    z-index: 999;
 
     .submenu-title {
       margin-bottom: 15px;

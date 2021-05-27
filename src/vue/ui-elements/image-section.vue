@@ -6,7 +6,7 @@
           <div class="image-mobile">
             <img :src="this.imageSrc" v-if="this.imageSrc"/>
           </div>
-          <div class="brand-content">
+          <div class="brand-content" :class="this.reversed ? 'reversed' : ''">
 
             <p class="preheader">{{this.preheader}}</p>
             <h1 class="header">{{this.header}}</h1>
@@ -119,7 +119,12 @@ export default {
 }
 
 .banner-desktop{
-  padding: 60px 15px 60px 0;
+  padding: 60px 0px 60px 15px;
+
+  &.reversed{
+    padding: 60px 15px 60px 0;
+  }
+
   @media(max-width:767px){
     display: none;
   }
@@ -141,7 +146,10 @@ export default {
 
     .brand-content{
       padding: 15px;
-      width: 100%;
+      
+      &.reversed{
+        width: 100%;
+      }
       @media(min-width:768px){
         padding: 0 15px;
       }
