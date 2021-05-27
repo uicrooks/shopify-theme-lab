@@ -15,6 +15,12 @@
     <!-- {% render "_head.content-styles" %} -->
 
     {{ content_for_header }}
+
+    <style>
+      #shopify-section-footer {
+        position: relative;
+      }
+    </style>
   </head>
 
   <body
@@ -31,6 +37,7 @@
         {% comment %} Route Specific Content {% endcomment %}
         {{ content_for_layout }}
       </main>
+      {% section 'footer' %}
     </div>
     {{ '_config.static.js' | asset_url | script_tag }}
     <!-- webpack bundle -->
