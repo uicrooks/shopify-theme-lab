@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import CartService from './vue/services/cart.service.js';
 import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
 // CAN WE IMPROVE IMPORT?
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
@@ -67,9 +67,10 @@ Vue.prototype.$axios = axios;
    Vue.component(name, component)
  })
 
-new Vue({
-  el: '#app'
+window.app = new Vue({
+  el: '#app',
 })
+window.app.cart = CartService;
 
 // NOT NEEDED, showing it's okay to delete;
 /*
