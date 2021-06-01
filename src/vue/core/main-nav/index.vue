@@ -254,10 +254,9 @@ export default {
     Cart
   },
   props: {
-    loggedIn: {
-      type: Boolean,
-      required: false,
-      default: false
+    cart: {
+      type: Object,
+      required: true
     }
   },
   data() {
@@ -357,7 +356,7 @@ export default {
       singleMenuItems: [
         {
           name: "Hair Care",
-          path: "/"
+          path: "/collections/hair-care"
         },
         {
           name: "Deodorant",
@@ -412,6 +411,11 @@ export default {
       }
     }
   },
+  computed: {
+    loggedIn() {
+      return window.theme.customerLoggedIn;
+    }
+  },
   methods: {
     navigateTo(path) {
       console.log(path);
@@ -421,6 +425,11 @@ export default {
     toggleCurrency() {
       console.log("toggleCurrency");
     }
+  },
+  mounted() {
+    console.log("main nav");
+    console.log(window);
+    console.log(this.cart);
   }
 }
 </script>

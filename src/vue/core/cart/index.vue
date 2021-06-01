@@ -5,6 +5,7 @@
       icon="cart"
       font-scale="2"
     />
+    <span>{{ numOfItems }}</span>
     <b-sidebar
       id="cart"
       aria-labelledby="cart-title"
@@ -15,20 +16,13 @@
       backdrop
     >
       <template #default="{ hide }">
-        <div class="p-3">
-          <h4 id="cart-title">Your Cart</h4>
-          <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          </p>
-          <nav class="mb-3">
-            <b-nav vertical>
-              <b-nav-item active @click="hide">Active</b-nav-item>
-              <b-nav-item href="#link-1" @click="hide">Link</b-nav-item>
-              <b-nav-item href="#link-2" @click="hide">Another Link</b-nav-item>
-            </b-nav>
-          </nav>
-          <b-button variant="primary" block @click="hide">Close Sidebar</b-button>
+        <div class="cart-title">
+          Your Cart
+          <b-icon
+            v-b-toggle.cart
+            icon="x"
+            font-scale="1.5"
+          />
         </div>
       </template>
     </b-sidebar>
@@ -36,16 +30,37 @@
 </template>
 
 <script>
+import CartService from "@/vue/services/cart.service";
 import StoreService from "@/vue/services/store.service";
 
 export default {
+  data() {
+    return {
+      cart: null
+    }
+  },
+  computed: {
+    numOfItems() {
+      return this.cart && this.cart.item_count ? this.cart.item_count : 0;
+    }
+  },
   async mounted() {
+    this.cart = await CartService.test();
+    console.log(this.cart);
   }
 };
 </script>
 
 <style scoped lang="scss">
 .cart-component {
+
+  .cart-title {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
 
 }
 </style>

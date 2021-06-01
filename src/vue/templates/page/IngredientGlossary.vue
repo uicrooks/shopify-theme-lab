@@ -347,12 +347,18 @@ export default{
           display: flex;
         }
 
+        .noscrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        
         .noscrollbar{
           position: relative;
           width: 100%;
           display: flex;
           flex-direction: row;
           flex-wrap: nowrap;
+          -ms-overflow-style: none;  /* IE and Edge */
+          scrollbar-width: none;  /* Firefox */
 
           label{
             flex: 0 0 33.3333333333%;

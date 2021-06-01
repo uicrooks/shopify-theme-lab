@@ -1,5 +1,4 @@
 import Vue from 'vue';
-if (window.theme.template_name == "account") {
 console.log("layout-account");
 
 const vueComponents = require.context('../vue/templates/account', true, /\.(vue|js)$/);
@@ -14,4 +13,3 @@ vueComponents.keys().forEach(key => {
 new Vue({
   el: '#layout-account',
 })
-}

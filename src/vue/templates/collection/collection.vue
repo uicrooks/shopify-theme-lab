@@ -28,14 +28,18 @@ export default {
     HaircareCollectionContent
   },
   props: {
-    id: {
-      type: String,
-      required: true
-    },
     handle: {
       type: String,
       required: false,
       default: ""
+    },
+    col: {
+      type: Object,
+      required: true
+    },
+    cart: {
+      type: Object,
+      required: true
     }
   },
   data() {
@@ -69,12 +73,13 @@ export default {
     }
   },
   async mounted() {
-    console.log(`collection id: ${this.id}, handle: ${this.handle}`);
-    const result = await StoreService.getCollectionById(this.id);
-    console.log(result);
-    this.collection = result;
-    this.products = result.products;
-    console.log(this.products);
+    // console.log(`collection id: ${this.id}, handle: ${this.handle}`);
+    console.log(this.col);
+// const result = await StoreService.getCollectionById(this.id);
+    // console.log(result);
+    // this.collection = result;
+    // this.products = result.products;
+    // console.log(this.products);
   }
 };
 </script>
