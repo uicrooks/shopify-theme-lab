@@ -1,6 +1,5 @@
 import Vue from 'vue';
 
-if (window.theme.template_name == "page") {
 console.log("layout-page");
 
 const vueComponents = require.context('../vue/templates/page', true, /\.(vue|js)$/);
@@ -15,4 +14,3 @@ vueComponents.keys().forEach(key => {
 new Vue({
   el: '#layout-page',
 })
-}

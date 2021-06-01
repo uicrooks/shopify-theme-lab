@@ -11,6 +11,7 @@ export default {
   name: "IndexHero",
 };
 </script>
+
 // <style scoped lang="scss">
 // @import "../../../css/mixins/media-query";
 // @import "../../../css/mixins/font-style-heading";

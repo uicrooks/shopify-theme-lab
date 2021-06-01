@@ -39,7 +39,7 @@
       </main>
       {% section 'footer' %}
     </div>
-    {% render '_body.globals' %}
+    {{ '_config.static.js' | asset_url | script_tag }}
     <!-- webpack bundle -->
     {% render '_body.content-scripts' %}
     {% render '_body.crawler-schema' %}
