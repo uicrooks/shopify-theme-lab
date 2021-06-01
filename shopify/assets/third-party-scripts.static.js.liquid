@@ -1,0 +1,160 @@
+function loadScriptWithUrl(url, callback, location) {
+  location = location || "body";
+  var s = document.createElement('script');
+  s.setAttribute('src', url);
+  if (callback) {
+    s.onload=callback;
+  }
+  document[location].appendChild(s);
+};
+
+function loadScriptWithText(text, callback, location) {
+  location = location || "body";
+  var s = document.createElement('script');
+  var i = document.createTextNode(text);
+  s.appendChild(i);
+  if (callback) {
+    s.onload=callback
+  }
+  document[location].appendChild(s);
+}
+
+function loadScriptWithImage(url) {
+  var img = document.createElement('img');
+  img.setAttribute('src', url);
+  img.height = 1;img.width = 1;
+  img.style.display = 'none';
+  document.body.appendChild(img);
+}
+
+window.addEventListener('load', function() {
+  // WISTIA
+  loadScriptWithUrl("https://fast.wistia.com/assets/external/E-v1.js");
+  // GTM
+  loadScriptWithText(`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MQXWN9');`);
+  // Yahoo/Gemini
+  loadScriptWithText(`(function(w,d,t,r,u){w[u]=w[u]||[];w[u].push({'projectId':'10000','properties':{'pixelId':'10063850'}});
+  var s=d.createElement(t);s.src=r;s.async=true;s.onload=s.onreadystatechange=function(){var y,rs=this.readyState,c=w[u];if(rs&&rs!="complete"&&rs!="loaded")
+  {return}try{y=YAHOO.ywa.I13N.fireBeacon;w[u]=[];w[u].push=function(p){y([p])};y(c)}catch(e){}};var scr=d.getElementsByTagName(t)[0],
+  par=scr.parentNode;par.insertBefore(s,scr)})(window,document,"script","https://s.yimg.com/wi/ytc.js","dotq");`);
+  // Criteo
+  loadScriptWithUrl("//static.criteo.net/js/ld/ld.js",function() {
+    window.criteo_q = window.criteo_q || [];
+    var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+    var site_type = /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : /iPad/.test(navigator.userAgent) ? "t" : "d";
+    window.criteo_q = window.criteo_q || [];
+    window.criteo_q.push(
+    { event: "setAccount", account: 22076},
+    { event: "setSiteType", type: site_type},
+    {% if customer %}
+    { event: "setEmail", email: ["{{ customer.email }}"]},
+    {% endif %}
+    { event: "manualFlush"});
+
+    {% if template.name == 'index' %}
+      window.criteo_q.push({event: "viewHome" },{event: "flushEvents"});
+    {% endif %}
+    {%- if template == "product" -%}
+      window.criteo_q = window.criteo_q || [];
+      var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+      window.criteo_q.push(
+        { event: "setAccount", account: 22076}, // You should never update this line
+        {% if customer %}
+        { event: "setEmail", email: "{{ customer.email }}"},
+        {% endif %}
+        { event: "setSiteType", type: deviceType},
+        { event: "viewItem", item: "{{ product.id }}" });
+        {%- endif -%}
+        {%- if template.name == "collection" and collection.handle != 'best-sellers' -%}
+          {%- assign product_id = "" -%}
+          {%- for product in collection.products limit: 3 -%}
+          {%- assign product_id =  product_id | append: product.id | append: ',' -%}
+          {%- endfor -%}
+          {%- assign pro_id = product_id | split: ',' | join : ', ' -%}
+              window.criteo_q = window.criteo_q || [];
+              var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+              window.criteo_q.push(
+              { event: "setAccount", account: 22076}, // You should never update this line  
+              {% if customer %}
+              { event: "setEmail", email: "{{ customer.email }}"},
+              {% endif %}
+              { event: "setSiteType", type: deviceType},
+              { event: "viewList", item: [{{pro_id}}] });
+          {%- endif -%}
+  });
+  // Klaviyo
+  loadScriptWithText(`var _learnq = _learnq || [];
+  _learnq.push(['account', 'pWh7nE']);
+  (function () {
+    var b = document.createElement('script'); b.type = 'text/javascript'; b.async = true;
+    b.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'a.klaviyo.com/media/js/analytics/analytics.js';
+    var a = document.getElementsByTagName('script')[0]; a.parentNode.insertBefore(b, a);
+  })();`, function() {
+    if (_learnq.hasOwnProperty('identify')) {
+      app._3p_identify()
+    }
+    {%- if template == 'page.bundles-page' -%}
+      _learnq.push(['track', 'Viewed Bundles']);
+    {%- endif -%}
+    {%- if template == "product" -%}
+      var item = {
+        Name: {{ product.title|json }},
+        ProductID: {{ product.id|json }},
+        Categories: {{ product.collections|map:'title'|json }},
+        ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+        URL: "{{ shop.secure_url }}{{ product.url }}",
+        Brand: {{ product.vendor|json }},
+        Currency: '{{cart.currency}}',
+        Price: {{ product.price|money|json }},
+        CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+      };
+
+      _learnq.push(['track', 'Viewed Product', item]);
+      _learnq.push(['trackViewedItem', {
+        Title: item.Name,
+        ItemId: item.ProductID,
+        Categories: item.Categories,
+        ImageUrl: item.ImageURL,
+        Url: item.URL,
+        Metadata: {
+          Brand: item.Brand,
+          Price: item.Price,
+          CompareAtPrice: item.CompareAtPrice
+        }
+      }]);
+    {%- endif -%}
+  });
+  // Pinterest
+  loadScriptWithText(`!function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(
+    Array.prototype.slice.call(arguments))};var
+    n=window.pintrk;n.queue=[],n.version="3.0";var
+    t=document.createElement("script");t.async=!0,t.src=e;var
+    r=document.getElementsByTagName("script")[0];r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+    pintrk('load', '2617908370808', {em: '{{ customer.email }}'});
+    pintrk('page');`
+  );
+  loadScriptWithImage("https://ct.pinterest.com/v3/?tid=2617908370808&noscript=1")
+  // Survicate
+  {% if template.directory == 'customers' %}
+    {% assign user_id = customer.id %}
+    loadScriptWithText(`(function (w) {
+      var s = document.createElement('script');
+      s.src = '//survey.survicate.com/workspaces/bd0cca1ea338864015e788844bc476de/web_surveys.js';
+      s.async = true;
+      var e = document.getElementsByTagName('script')[0];
+      e.parentNode.insertBefore(s, e);
+    })(window);`, function() {
+      (function(opts) {
+        opts.traits = {
+          "user_id": "{{user_id}}"
+        };
+      })(window._sva = window._sva || {});
+    });
+  {% endif %}
+  // Geist
+  loadScriptWithImage("https://i.geistm.com/x/DrS");
+});
