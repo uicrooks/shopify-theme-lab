@@ -85,7 +85,6 @@ export default {
     }
   },
   mounted(){
-    console.log(this.reversed)
   }
 }
 </script>

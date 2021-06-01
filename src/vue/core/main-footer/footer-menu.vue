@@ -107,7 +107,7 @@ export default {
       }],
       infoMenu: [{
         name: "Ingredients",
-        path: "/test"
+        path: "/pages/glossary"
       }, {
         name: "Hero Discounts",
         path: "/test"
@@ -147,7 +147,8 @@ export default {
   },
   methods: {
     navigateTo(path) {
-      console.log(path);
+      console.log(path)
+      window.location = path
     }
   }
 }
