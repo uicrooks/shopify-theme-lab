@@ -11,6 +11,17 @@ const axiosConfig = {
 };
 
 export default {
+  async test() {
+    try {
+      const res = await axios.get("/cart.js", axiosConfig);
+      if (res.status === 200) {
+        return res.data;
+      }
+    } catch (err) {
+      console.log("failed to fetch cart", err);
+      return null;
+    }
+  },
   sync() {
     return new Promise(resolve => {
       axios.all([axios.get('/cart.js', axiosConfig)]) // removed extra call, hopefully faster?
