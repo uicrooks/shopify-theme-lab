@@ -18,12 +18,20 @@
         <span>{{ product.price }}</span>
         <span>{{ product.compare_at_price }}</span>
       </div>
+      <div class="add-button">
+        <button
+          @click="addToCart"
+        >
+          {{ added ? 'Add More' : 'Add To Cart' }}
+        </button>
+      </div>
     </div>
 
   </div>
 </template>
 
 <script>
+import CartService from "@/vue/services/cart.service";
 import StoreService from "@/vue/services/store.service";
 
 export default {
@@ -32,6 +40,16 @@ export default {
       type: Object,
       required: true,
       default: () => {}
+    }
+  },
+  data() {
+    return {
+      added: false
+    }
+  },
+  methods: {
+    addToCart() {
+      this.added = true;
     }
   },
   async mounted() {
@@ -45,15 +63,14 @@ export default {
 @import "@/styles/main.scss";
 
 .product-card-component {
-  .collection-section-header {
-    margin: 30px 0;
-    padding: 0 15px;
-    @include font-style-heading($size: 23px, $color: $dark-brown, $lh: 23px);
-  }
 
-  .sub-header {
-    margin-top: 7px;
-    @include font-style-body($size: 16px, $color: $brown, $lh: 20px);
+  .image-box {
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 }
 </style>

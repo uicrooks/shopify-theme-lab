@@ -19,6 +19,13 @@
         Cleanse & strengthen your strands
       </div>
     </div>
+    <div class="collection-section">
+      <product-card 
+        v-for="(product, index) of shampoos"
+        :key="`haircare-shampoo-${index}`"
+        :product="product"
+      />
+    </div>
     <div class="collection-section-header">
       Conditioner
       <div class="sub-header">
@@ -30,7 +37,6 @@
 
 <script>
 import productCard from "@/vue/ui-elements/product-card.vue"
-
 
 export default {
   components: { productCard },

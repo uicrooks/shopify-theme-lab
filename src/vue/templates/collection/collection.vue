@@ -33,12 +33,7 @@ export default {
       required: false,
       default: ""
     },
-    col: {
-      type: Object,
-      required: true
-    },
-    cart: {
-      type: Object,
+    productsData: {
       required: true
     }
   },
@@ -70,11 +65,14 @@ export default {
           path: ""
         }
       }
-    }
+    },
+    
   },
   async mounted() {
     // console.log(`collection id: ${this.id}, handle: ${this.handle}`);
-    console.log(this.col);
+    console.log(this.productsData);
+    this.products = JSON.parse(this.productsData);
+    console.log(this.products);
 // const result = await StoreService.getCollectionById(this.id);
     // console.log(result);
     // this.collection = result;

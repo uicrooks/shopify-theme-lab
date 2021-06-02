@@ -2,6 +2,7 @@
   Collection
   {{ collection.id }} - {{ collection.handle }}
   <collection
-    :col="{{collection | json | escape}}"
+    handle="{{ collection.handle }}"
+    :products-data="{{ collection.products | json | json | escape }}"
   ></collection>
 </div>
