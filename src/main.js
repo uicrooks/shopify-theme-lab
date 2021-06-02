@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from 'axios'
-import CartService from './vue/services/cart.service.js';
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Vue from "vue"
+import Vuex from "vuex"
+import axios from "axios"
+import CartService from "./vue/services/cart.service.js";
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue"
+import "bootstrap/dist/css/bootstrap.css"
+import "bootstrap-vue/dist/bootstrap-vue.css"
 // CAN WE IMPROVE IMPORT?
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
@@ -57,18 +57,18 @@ Vue.prototype.$axios = axios;
  * vue components
  * auto-import all Vue core components
  */
- const vueComponents = require.context('./vue/core/', true, /\.(vue|js)$/)
+ const vueComponents = require.context("./vue/core/", true, /\.(vue|js)$/)
 
  vueComponents.keys().forEach(key => {
    const component = vueComponents(key).default
    const name = component.name
      ? component.name
-     : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
+     : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
    Vue.component(name, component)
  })
 
 window.app = new Vue({
-  el: '#app',
+  el: "#app",
 })
 window.app.cart = CartService;
 

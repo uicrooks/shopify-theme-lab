@@ -31,7 +31,7 @@
 
 <script>
 import CartService from "@/vue/services/cart.service";
-import StoreService from "@/vue/services/store.service";
+// import StoreService from "@/vue/services/store.service";
 
 export default {
   data() {

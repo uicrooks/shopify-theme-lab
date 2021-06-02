@@ -1,7 +1,7 @@
 const _mergeObjs = (def, obj) => {
-  if (typeof obj === 'undefined') {
+  if (typeof obj === "undefined") {
     return def;
-  } else if (typeof def === 'undefined') {
+  } else if (typeof def === "undefined") {
     return obj;
   }
   for (const i in obj) {
@@ -17,7 +17,7 @@ const _mergeObjs = (def, obj) => {
 const _cartProcessingPromise = (data) => {
   return new Promise(resolve => {
     data.items.forEach(item => {
-      if (item.properties['subscription_id']) { item.url = "javascript:void(0)" }
+      if (item.properties["subscription_id"]) { item.url = "javascript:void(0)" }
     });
     resolve(data);
   });

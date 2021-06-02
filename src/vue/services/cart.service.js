@@ -1,12 +1,12 @@
-import axios from 'axios';
-import {_mergeObjs, _cartProcessingPromise} from "../helpers/helpers.js";
+import axios from "axios";
+import { _cartProcessingPromise} from "../helpers/helpers.js";
 
 const axiosConfig = {
   headers: {
-    'Cache-Control': 'must-revalidate',
-    'Cache-Control': 'no-cache',
-    'Cache-Control': 'no-store',
-    Pragma: 'no-cache',
+    "Cache-Control": "must-revalidate",
+    "Cache-Control": "no-cache",
+    "Cache-Control": "no-store",
+    Pragma: "no-cache"
   },
 };
 
@@ -24,7 +24,7 @@ export default {
   },
   sync() {
     return new Promise(resolve => {
-      axios.all([axios.get('/cart.js', axiosConfig)]) // removed extra call, hopefully faster?
+      axios.all([axios.get("/cart.js", axiosConfig)]) // removed extra call, hopefully faster?
       .then(axios.spread((basic) => {
           // Both requests are now complete
           const basicCartData = basic.data;
