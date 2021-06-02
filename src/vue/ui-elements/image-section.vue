@@ -1,24 +1,51 @@
 <template>
   <div>
     <div class="banner-display row-element outer-row">
-      <div class="banner-content" :class="this.reversed ? 'reversed' : ''" >
-        <div class="banner-text"  :class="this.reversed ? 'reversed' : ''" >
+      <div 
+        class="banner-content" 
+        :class="reversed ? 'reversed' : ''"
+      >
+        <div 
+          class="banner-text" 
+          :class="reversed ? 'reversed' : ''"
+        >
           <div class="image-mobile">
-            <img :src="this.imageSrc" v-if="this.imageSrc"/>
+            <img 
+              v-if="imageSrc" 
+              :src="imageSrc"
+            >
           </div>
-          <div class="brand-content" :class="this.reversed ? 'reversed' : ''">
-
-            <p class="preheader">{{this.preheader}}</p>
-            <h1 class="header">{{this.header}}</h1>
-            <p class="subheader" v-if="this.subheader">{{this.subheader}}</p>
-
-            <div class="cta-wrapper" v-if="this.path">
+          <div 
+            class="brand-content" 
+            :class="reversed ? 'reversed' : ''"
+          >
+            <p class="preheader">
+              {{ preheader }}
+            </p>
+            <h1 class="header">
+              {{ header }}
+            </h1>
+            <p 
+              v-if="subheader" 
+              class="subheader"
+            >
+              {{ subheader }}
+            </p>
+            <div 
+              v-if="path" 
+              class="cta-wrapper"
+            >
               <squatch-button
+                v-if="cta"
                 class="big-cta-button"
-                :text="this.cta"
-                :path="this.path"
-                v-if="this.cta"/>
-              <a class="link" :href="this.path" v-else>
+                :text="cta"
+                :path="path"
+              />
+              <a 
+                v-else 
+                class="link" 
+                :href="path"
+              >
                 Learn More
               </a>
             </div> 
@@ -26,9 +53,16 @@
         </div>
       </div>
 
-      <div class="banner-image banner-desktop" :class="this.reversed ? 'desktop-image reversed' : 'desktop-image'">
-        <img class="desktop-image" :src="this.imageSrc" v-if="this.imageSrc"/>
-        <!-- <div class="wistia_embed wistia_async_1sri3k4jg1 seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%"  v-if="this.videoId" >
+      <div 
+        class="banner-image banner-desktop" 
+        :class="reversed ? 'desktop-image reversed' : 'desktop-image'"
+      >
+        <img 
+          v-if="imageSrc" 
+          class="desktop-image" 
+          :src="imageSrc"
+        >
+        <!-- <div class="wistia_embed wistia_async_1sri3k4jg1 seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%"  v-if="videoId" >
         </div> -->
       </div>
     </div>
@@ -46,46 +80,52 @@ export default {
     preheader: {
       type: String, 
       required: false,
+      default: "",
     },
     header: {
       type: String,
       required: true,
+      default: "",
     },
     subheader: {
       type: String,
       required: false,
+      default: "",
     },
     imageSrc:{
       type: String,
       required: false,
+      default: "",
     },
     videoId:{
       type: String, 
-      required: false
+      required: false,
+      default: "",
     },
     path:{
       type: String,
       required: false,
+      default: "",
     },
     cta:{
       type: String,
       required: false,
+      default: "",
     },
     reversed: {
       type: Boolean,
       required: true,
+      default: true,
     }
   },
   methods: {
     navigateTo() {
       console.log("navigateTo");
-      if (this.path) {
-        window.location = this.path;
+      if (path) {
+        window.location = path;
       }
     }
   },
-  mounted(){
-  }
 }
 </script>
 

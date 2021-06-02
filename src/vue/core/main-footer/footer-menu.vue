@@ -129,7 +129,7 @@ export default {
         path: "/test"
       }, {
         name: "Shipping",
-        path: "/test"
+        path: "/pages/shipping"
       }, {
         name: "Returns & Refunds",
         path: "/test"

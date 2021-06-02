@@ -19,7 +19,6 @@
         <span>{{ product.compare_at_price }}</span>
       </div>
     </div>
-
   </div>
 </template>
 

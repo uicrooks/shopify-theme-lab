@@ -19,8 +19,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" id="srch_icon" height="24" viewBox="0 0 24 24" width="24" style="position: absolute; top: 0;left:0; bottom: 0; margin: auto; fill: #AFAFAF;"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         </div>
         <div class="carousel-content">
-          <div id="scroll-indicator_right" @click="scrollSlider('right')"><span style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" class="shadow">→</span></div>
-          <div id="scroll-indicator_left" @click="scrollSlider('left')"><span style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" class="shadow">&#8592;</span></div>
+          <div id="scroll-indicator_right" @click="scrollSlider("right")"><span style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" class="shadow">→</span></div>
+          <div id="scroll-indicator_left" @click="scrollSlider("left")"><span style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" class="shadow">&#8592;</span></div>
           <div class="noscrollbar" style="overflow-x:auto;padding-top:10px;">
             <label class="col-4 col-md-2">
               <input type="radio" name="product_category" value="bar-soap" checked v-model="selected">
@@ -63,7 +63,7 @@
               </div>
             </label>
             <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="cologne" v-model="selected">
+              <input type="radio" name="product_category" value="cologne" v-model="selected" >
               <div class="product-category-card text-center">
                 <img style="height:110px;margin:auto;"
                   src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Cologne_collections.png?v=1616615358"/>
@@ -106,12 +106,12 @@
                 <div class="ingredient-badge-container">
                   <div class="ingredient-badge" :class="ingredient.ingredientSource">
                     <img class="icon_img" :src="ingredient.icon1_img"/>
-                    <p class="ingredient-source">{{ingredient.ingredientSource}}</p>
+                    <p class="ingredient-source">{{ ingredient.ingredientSource }}</p>
                   </div>
                   <a class="read-more-link" :href="ingredient.read_more_link" v-if="ingredient.read_more_link">DIVE DEEPER</a>
                 </div>
-                <h3 class="ingredient-title">{{ingredient.ingredient}}</h3>
-                <p class="ingredient-label" v-if="ingredient.onLabel">{{ingredient.onLabel}}</p>
+                <h3 class="ingredient-title">{{ ingredient.ingredient }}</h3>
+                <p class="ingredient-label" v-if="ingredient.onLabel">{{ ingredient.onLabel }}</p>
                 <p style="visibility:hidden;" v-else>blank</p>
               </div>
             </div>
@@ -150,14 +150,14 @@ export default{
     return{
       all_ingredients: [],
       filtered_ingredients: [],
-      filter:'',
-      filter_title:'bar soap',
-      filter_select:'',
-      selected:'bar-soap',
+      filter:"",
+      filter_title:"bar soap",
+      filter_select:"",
+      selected:"bar-soap",
     }
   },
   mounted(){
-    this.all_ingredients = JSON.parse(document.getElementById('glossary-data').innerHTML);
+    this.all_ingredients = JSON.parse(document.getElementById("glossary-data").innerHTML);
     this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
   },
   watch:{
@@ -175,37 +175,37 @@ export default{
       this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes(`${this.selected}`))
       console.log(this.filtered_ingredients)
       switch(this.selected){
-        case 'bar-soap':
-          this.filter_title = 'bar soap'
+        case "bar-soap":
+          this.filter_title = "bar soap"
           break
-        case 'haircare':
-          this.filter_title = 'hair care'
+        case "haircare":
+          this.filter_title = "hair care"
           console.log(this.filter_title)
           break
-        case 'liquid-soap':
-          this.filter_title = 'hand soap'
+        case "liquid-soap":
+          this.filter_title = "hand soap"
           break
-        case 'toothpaste':
-          this.filter_title = 'toothpaste'
+        case "toothpaste":
+          this.filter_title = "toothpaste"
           break
-        case 'deodorant':
-          this.filter_title = 'deodorant'
+        case "deodorant":
+          this.filter_title = "deodorant"
           break
-        case 'cologne':
-          this.filter_title = 'cologne'
+        case "cologne":
+          this.filter_title = "cologne"
           break
-        case 'candle':
-          this.filter_title = 'candles'
+        case "candle":
+          this.filter_title = "candles"
           break
-        case 'sanitizer':
-          this.filter_title = 'hand sanitizer'
+        case "sanitizer":
+          this.filter_title = "hand sanitizer"
           break
       }
     }
   },
   methods:{
     inputEntry(){
-      this.filter_title = ''
+      this.filter_title = ""
     },
     inputExit(){
       if(this.filter === ""){
@@ -214,13 +214,13 @@ export default{
       }
     },
     scrollSlider(direction) {
-        if (direction == 'left') {
-                $('.prod_scroller').animate({
-                scrollLeft: '-=150px',
+        if (direction == "left") {
+                $(".prod_scroller").animate({
+                scrollLeft: "-=150px",
                 });
-        } else if (direction == 'right') {
-                $('.prod_scroller').animate({
-                scrollLeft: '+=150px',
+        } else if (direction == "right") {
+                $(".prod_scroller").animate({
+                scrollLeft: "+=150px",
             });
         }
     },

@@ -3,13 +3,19 @@
     <div class="image-header-bg position-relative">
       <div class="ptext pimg1 flex-outer-center">
         <div class="brand-content offset-md-5 offset-xxl-6">
-          <h1 class="image-bg_title text-white">FEEL LIKE A MAN,</h1>
-          <h1 class="image-bg_title bottom-title text-white">SMELL LIKE A CHAMPION</h1>
-          <p class="subheader text-white">Better smell and better skin, without the harsh chemicals</p>
+          <h1 class="image-bg_title text-white">
+            FEEL LIKE A MAN,
+          </h1>
+          <h1 class="image-bg_title bottom-title text-white">
+            SMELL LIKE A CHAMPION
+          </h1>
+          <p class="subheader text-white">
+            Better smell and better skin, without the harsh chemicals
+          </p>
           <squatch-button
-          class="big-cta-button"
-          text="Subscribe & Save 15%"
-          path="/pages/subscription-flow"
+            class="big-cta-button"
+            text="Subscribe & Save 15%"
+            path="/pages/subscription-flow"
           />
         </div>
       </div>
@@ -33,18 +39,18 @@ export default {
 @import "@/styles/variables/fonts.scss";
 
   .brand-content {
-      padding: 0 15px;
+    padding: 0 15px;
   }
   .bottom-title{
     margin-bottom:20px;
   }
   .index-hero {
     .pimg1 {
-        background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671');
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center top 58%;
-        height: 600px;
+      background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top 58%;
+      height: 600px;
     }
     .flex-outer-center {
       justify-content: start;
@@ -65,24 +71,11 @@ export default {
             bottom: 50px;
             text-align: center;
             .subheader {
-                display: none;
+              display: none;
             }
           }
         }
       }
     }
   }
-
-// <style scoped lang="scss">
-// @import "../../../css/mixins/media-query";
-// @import "../../../css/mixins/font-style-heading";
-
-// .index-hero {
-//   background: #fff;
-//   color: #fff;
-//   @include font-style-heading(40px);
-//   @include media-query($md,'max') {
-//     color: pink !important;
-//   }
-// }
 </style>

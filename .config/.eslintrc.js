@@ -25,6 +25,7 @@ module.exports = {
     // '**/my-directory/*.js'
   ],
   rules: {
+    "quotes":["error","double"]
     /**
      * add custom rules
      * docs: https://eslint.org/docs/rules

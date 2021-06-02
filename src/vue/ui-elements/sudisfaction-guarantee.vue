@@ -1,11 +1,15 @@
 <template>
-<div class="sudisfaction-guarantee">
-  <div class="sudisfaction-container">
-      <img class="foot-icon" src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/SquatchFoot.svg?v=1615322349" alt="squatch-foot"/>
+  <div class="sudisfaction-guarantee">
+    <div class="sudisfaction-container">
+      <img 
+        class="foot-icon" 
+        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/SquatchFoot.svg?v=1615322349" 
+        alt="squatch-foot"
+      >
       <h6>Sudisfaction Guaranteed</h6>
       <p>Rest easy. If this isn't the best natural product you've ever used, it's on us.</p>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
