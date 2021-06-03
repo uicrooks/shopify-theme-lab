@@ -3,8 +3,12 @@
     <div class="preheader-container">
       <div class="featured-products-preheader">
         <div>
-          <h1 class="mb-0">Our Products</h1> 
-          <p class="subheader">Natural products to tame your inner Squatch.</p>
+          <h1 class="mb-0">
+            Our Products
+          </h1> 
+          <p class="subheader">
+            Natural products to tame your inner Squatch.
+          </p>
         </div>
       </div>
     </div>
@@ -13,13 +17,28 @@
         <div class="product-card">
           <div class="product-card-content">
             <a href="/collections/bar-soaps">
-              <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_BarSoaps.jpg?v=1616455751" data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_BarSoaps.jpg?v=1616455751" alt="Bar Soap" class="w-100 ls-is-cached lazyloaded">
+              <img 
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_BarSoaps.jpg?v=1616455751" 
+                data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_BarSoaps.jpg?v=1616455751" 
+                alt="Bar Soap" 
+                class="w-100 ls-is-cached lazyloaded"
+              >
             </a>
             <div class="brand-content">
-              <p class="preheader">Smell Like a Champion</p> 
+              <p class="preheader">
+                Smell Like a Champion
+              </p> 
               <h3>Bar Soaps</h3> 
-              <div class="cta-btns mt-auto" style="margin-bottom: 15px;">
-                <a href="/collections/bar-soaps" class="link">Shop Bar Soap</a>
+              <div 
+                class="cta-btns mt-auto" 
+                style="margin-bottom: 15px;"
+              >
+                <a 
+                  href="/collections/bar-soaps" 
+                  class="link"
+                >
+                  Shop Bar Soap
+                </a>
               </div>
             </div>
           </div>
@@ -27,13 +46,28 @@
         <div class="product-card">
           <div class="product-card-content">
             <a href="/collections/hair-care">
-              <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_HairCare.jpg?v=1616455752" data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_HairCare.jpg?v=1616455752" alt="Hair Care" class="w-100 ls-is-cached lazyloaded">
+              <img 
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_HairCare.jpg?v=1616455752" 
+                data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_HairCare.jpg?v=1616455752" 
+                alt="Hair Care" 
+                class="w-100 ls-is-cached lazyloaded"
+              >
             </a>
             <div class="brand-content">
-              <p class="preheader">Soothe Your Scalp</p> 
+              <p class="preheader">
+                Soothe Your Scalp
+              </p> 
               <h3>Hair Care</h3> 
-              <div class="cta-btns mt-auto" style="margin-bottom: 15px;">
-                <a href="/collections/hair-care" class="link">Shop Hair Care</a>
+              <div 
+                class="cta-btns mt-auto" 
+                style="margin-bottom: 15px;"
+              >
+                <a 
+                  href="/collections/hair-care" 
+                  class="link"
+                >
+                  Shop Hair Care
+                </a>
               </div>
             </div>
           </div>
@@ -41,13 +75,28 @@
         <div class="product-card">
           <div class="product-card-content">
             <a href="/collections/deodorant-4-pack">
-              <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Deodorants.jpg?v=1616455751" data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Deodorants.jpg?v=1616455751" alt="Deodorant" class="w-100 ls-is-cached lazyloaded">
+              <img 
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Deodorants.jpg?v=1616455751" 
+                data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Deodorants.jpg?v=1616455751" 
+                alt="Deodorant" 
+                class="w-100 ls-is-cached lazyloaded"
+              >
             </a>
             <div class="brand-content">
-              <p class="preheader">Give B.O. The Boot</p> 
+              <p class="preheader">
+                Give B.O. The Boot
+              </p> 
               <h3>Deodorant</h3> 
-              <div class="cta-btns mt-auto" style="margin-bottom: 15px;">
-                <a href="/collections/deodorant-4-pack" class="link">Shop Deodorant</a>
+              <div 
+                class="cta-btns mt-auto" 
+                style="margin-bottom: 15px;"
+              >
+                <a 
+                  href="/collections/deodorant-4-pack" 
+                  class="link"
+                >
+                  Shop Deodorant
+                </a>
               </div>
             </div>
           </div>
@@ -55,19 +104,37 @@
         <div class="product-card">
           <div class="product-card-content">
             <a href="/collections/toothpaste">
-              <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Toothpaste.jpg?v=1616455751" data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Toothpaste.jpg?v=1616455751" alt="Toothpaste" class="w-100 ls-is-cached lazyloaded">
+              <img 
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Toothpaste.jpg?v=1616455751" 
+                data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Toothpaste.jpg?v=1616455751" 
+                alt="Toothpaste" 
+                class="w-100 ls-is-cached lazyloaded"
+              >
             </a>
             <div class="brand-content">
-              <p class="preheader">Mens Morning + Night</p> 
+              <p class="preheader">
+                Mens Morning + Night
+              </p> 
               <h3>Toothpaste</h3> 
-              <div class="cta-btns mt-auto" style="margin-bottom: 15px;">
-                <a href="/collections/toothpaste" class="link">Shop Toothpaste</a>
+              <div 
+                class="cta-btns mt-auto" 
+                style="margin-bottom: 15px;"
+              >
+                <a 
+                  href="/collections/toothpaste" 
+                  class="link"
+                >
+                  Shop Toothpaste
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="woodgrain-bg position-absolute w-100 fp-bg" style="z-index: -1;"></div>
+      <div 
+        class="woodgrain-bg position-absolute w-100 fp-bg" 
+        style="z-index: -1;" 
+      />
     </div>
   </div>
 </template>
@@ -83,8 +150,7 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/partials/brand.scss";
-@import "@/styles/variables/colors.scss";
-@import "@/styles/variables/fonts.scss";
+@import "@/styles/main.scss";
 
   .featured-products{
     width: 100%;
@@ -105,7 +171,7 @@ export default {
 
         .subheader{
           color: #5a3714;
-          font-family: 'adrianna-bold';
+          font-family: 'adrianna-bold', sans-serif;
         }
       }
     }
@@ -123,9 +189,10 @@ export default {
         flex-wrap: wrap;
 
 
-        @media(min-width :768px){
+        @media(min-width :$md){
           flex-direction: row;
           padding-top:0;
+          margin:auto
         }
 
         .product-card{
@@ -134,7 +201,7 @@ export default {
           padding-left: 15px;
           margin-bottom: 30px;
           
-          @media(min-width:768px){
+          @media(min-width:$md){
             flex: 0 0 50%;
             max-width: 50%;
           }
@@ -183,7 +250,7 @@ export default {
         bottom:0;
         background-color: $tan;
 
-        @media(min-width: 768px){
+        @media(min-width: $md){
           height: 50%;
         }
       }

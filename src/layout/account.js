@@ -2,6 +2,7 @@ import Vue from "vue";
 console.log("layout-account");
 
 const vueComponents = require.context("../vue/templates/account", true, /\.(vue|js)$/);
+console.log(vueComponents)
 vueComponents.keys().forEach(key => {
   const component = vueComponents(key).default;
   const name = component.name

@@ -131,7 +131,7 @@
           />
         </div>
       </div>
-      <a href="/" >
+      <a href="/">
         <img
           id="drsquatch-logo-desktop"
           src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
@@ -416,6 +416,11 @@ export default {
       return window.theme.customerLoggedIn;
     }
   },
+  mounted() {
+    console.log("main nav");
+    console.log(window);
+    console.log(this.cart);
+  },
   methods: {
     navigateTo(path) {
       console.log(path);
@@ -426,11 +431,7 @@ export default {
       console.log("toggleCurrency");
     }
   },
-  mounted() {
-    console.log("main nav");
-    console.log(window);
-    console.log(this.cart);
-  }
+  
 }
 </script>
 

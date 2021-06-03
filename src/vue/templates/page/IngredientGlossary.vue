@@ -1,145 +1,326 @@
 <template>
-    <div class="ingredient-glossary">
-      <!-- GLOSSARY HEADER  -->
-      <div class="glossary-header">
-        <div class="col-12 col-xl-6 m-auto text-center" style="max-width:646px;padding:0 19px;">
-          <h2 class="text-white">Ingredient Glossary</h2>
-          <p class="header-sub" style="margin: auto; line-height: 1.2;">Changing the way men approach personal care by providing the finest ingredients nature has to offer.</p>
-        </div>
-        <img class="img-btmright" src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/bottomright_desktop.png?v=1594333445"/>
-        <img class="img-topright" src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/topright_desktop.png?v=1594333444"/>
-        <img class="img-btmleft" src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/bottomleft_desktop.png?v=1594361564"/>
-        <img class="img-topleft" src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/topleft_desktop.png?v=1594333445"/>
+  <div class="ingredient-glossary">
+    <!-- GLOSSARY HEADER  -->
+    <div class="glossary-header">
+      <div 
+        class="col-12 col-xl-6 m-auto text-center" 
+        style="max-width:646px;padding:0 19px;"
+      >
+        <h2 class="text-white">
+          Ingredient Glossary
+        </h2>
+        <p 
+          class="header-sub" 
+          style="margin: auto; line-height: 1.2;"
+        >
+          Changing the way men approach personal care by providing the finest ingredients nature has to offer.
+        </p>
       </div>
+      <img 
+        class="img-btmright" 
+        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/bottomright_desktop.png?v=1594333445"
+      >
+      <img 
+        class="img-topright" 
+        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/topright_desktop.png?v=1594333444"
+      >
+      <img 
+        class="img-btmleft" 
+        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/bottomleft_desktop.png?v=1594361564"
+      >
+      <img 
+        class="img-topleft" 
+        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/topleft_desktop.png?v=1594333445"
+      >
+    </div>
 
-      <!-- INPUT FIELD -->
-      <div class="carousel-container">
-        <div style="position:relative">
-          <input type="text" v-model="filter"  @click="inputEntry" @blur="inputExit" placeholder="Search Ingredients..."/>
-          <svg xmlns="http://www.w3.org/2000/svg" id="srch_icon" height="24" viewBox="0 0 24 24" width="24" style="position: absolute; top: 0;left:0; bottom: 0; margin: auto; fill: #AFAFAF;"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        </div>
-        <div class="carousel-content">
-          <div id="scroll-indicator_right" @click="scrollSlider("right")"><span style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" class="shadow">→</span></div>
-          <div id="scroll-indicator_left" @click="scrollSlider("left")"><span style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" class="shadow">&#8592;</span></div>
-          <div class="noscrollbar" style="overflow-x:auto;padding-top:10px;">
-            <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="bar-soap" checked v-model="selected">
-              <div class="product-category-card text-center">
-                <img style="height:110px;margin:auto;"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"/>
-                <p class="mt-2 mb-0 line-height-normal prod_type-label">Bar Soap</p>
-              </div>
-            </label>
-            <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="haircare" v-model="selected">
-              <div class="product-category-card text-center">
-                <img style="height:110px;margin:auto;"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Haricare.png?v=1616443457"/>
-                <p class="mt-2 mb-0 line-height-normal prod_type-label">Hair Care</p>
-              </div>
-            </label>
-            <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="liquid-soap" v-model="selected">
-              <div class="product-category-card text-center">
-                <img style="height:110px;margin:auto;"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/liquidSoap_2pack_large.png?v=1591741590"/>
-                <p class="mt-2 mb-0 line-height-normal prod_type-label">Hand Soap</p>
-              </div>
-            </label>
-            <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="toothpaste" v-model="selected">
-              <div class="product-category-card text-center">
-                <img style="height:110px;margin:auto;"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_toothpaste.png?v=1616443457"/>
-                <p class="mt-2 mb-0 line-height-normal prod_type-label">Toothpaste</p>
-              </div>
-            </label>
-            <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="deodorant" v-model="selected">
-              <div class="product-category-card text-center">
-                <img style="height:110px;margin:auto;"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Deo.png?v=1616443457"/>
-                <p class="mt-2 mb-0 line-height-normal prod_type-label">Deodorant</p>
-              </div>
-            </label>
-            <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="cologne" v-model="selected" >
-              <div class="product-category-card text-center">
-                <img style="height:110px;margin:auto;"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Cologne_collections.png?v=1616615358"/>
-                <p class="mt-2 mb-0 line-height-normal prod_type-label">Cologne &amp; Beard Oil</p>
-              </div>
-            </label>
-            <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="candle" v-model="selected">
-              <div class="product-category-card text-center">
-                <img style="height:110px;margin:auto;"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/Candle-BayRum_1.png?v=1616621024"/>
-                <p class="mt-2 mb-0 line-height-normal prod_type-label">Candle</p>
-              </div>
-            </label>
-            <label class="col-4 col-md-2">
-              <input type="radio" name="product_category" value="sanitizer" v-model="selected">
-              <div class="product-category-card text-center">
-                <img style="height:110px;margin:auto;"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/mixed_sanitizer-2pack_7d2c96c5-6e15-45a4-86a1-3957bc975f9d.png?v=1594068473"/>
-                <p class="mt-2 mb-0 line-height-normal prod_type-label">Hand Sanitizer</p>
-              </div>
-            </label>
-          </div>
-        </div>
+    <!-- INPUT FIELD -->
+    <div class="carousel-container">
+      <div style="position:relative">
+        <input 
+          v-model="filter" 
+          type="text" 
+          placeholder="Search Ingredients..."
+          @click="inputEntry" 
+          @blur="inputExit" 
+        >
+        <svg 
+          id="srch_icon"
+          xmlns="http://www.w3.org/2000/svg" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          width="24" 
+          style="position: absolute; top: 0;left:0; bottom: 0; margin: auto; fill: #AFAFAF;"
+        >
+          <path 
+            d="M0 0h24v24H0V0z" 
+            fill="none" 
+          />
+          <path 
+            d="M15.5 14h-.79l-.28-.27c1.2-1.4 1.82-3.31 1.48-5.34-.47-2.78-2.79-5-5.59-5.34-4.23-.52-7.79 3.04-7.27 7.27.34 2.8 2.56 5.12 5.34 5.59 2.03.34 3.94-.28 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
       </div>
-
-
-      <!-- FILTER TITLE  -->
-      <div class="title-container" v-if="this.filter_title">
-        <h2>{{this.filter_title}}</h2>
-      </div>
-
-
-      <!-- GLOSSARY GRID -->
-      <div class="glossary-grid">
-        <div class="ingredient-container" v-for="ingredient in filtered_ingredients" :key="ingredient.ingredient">
-          <div class="ingredient-card">
-            <div class="card-preheader">
-              <div class="preheader-content">
-                <div class="ingredient-badge-container">
-                  <div class="ingredient-badge" :class="ingredient.ingredientSource">
-                    <img class="icon_img" :src="ingredient.icon1_img"/>
-                    <p class="ingredient-source">{{ ingredient.ingredientSource }}</p>
-                  </div>
-                  <a class="read-more-link" :href="ingredient.read_more_link" v-if="ingredient.read_more_link">DIVE DEEPER</a>
-                </div>
-                <h3 class="ingredient-title">{{ ingredient.ingredient }}</h3>
-                <p class="ingredient-label" v-if="ingredient.onLabel">{{ ingredient.onLabel }}</p>
-                <p style="visibility:hidden;" v-else>blank</p>
-              </div>
+      <div class="carousel-content">
+        <div 
+          id="scroll-indicator_right" 
+          @click="scrollSlider('right')"
+        >
+          <span 
+            style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" 
+            class="shadow"
+          >
+            →
+          </span>
+        </div>
+        <div 
+          id="scroll-indicator_left" 
+          @click="scrollSlider('left')"
+        >
+          <span 
+            style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" 
+            class="shadow"
+          >
+            &#8592;
+          </span>
+        </div>
+        <div 
+          class="noscrollbar" 
+          style="overflow-x:auto;padding-top:10px;"
+        >
+          <label class="col-4 col-md-2">
+            <input 
+              v-model="selected"
+              type="radio" 
+              name="product_category"
+              value="bar-soap" 
+              checked 
+            >
+            <div class="product-category-card text-center">
+              <img 
+                style="height:110px;margin:auto;"
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
+              >
+              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+                Bar Soap
+              </p>
             </div>
-            <div class="ingredient-content">
-              <div>
-                <p class="ingredient-function">{{ingredient.function}}</p>
-              </div>
-              <div class="ingredient-benefits">
-                <p>{{ingredient.additionalBenefits}}</p>
-              </div>
-            </div>  
-            <p class="foundInTitle">Found in</p>
-            <p class="foundIn">{{ingredient.foundIn_titles.join(", ")}}</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="ingredient-disclaimer">
-        <div class="disclaimer-text"> 
-Dr. Squatch uses natural ingredients in all of its products, but it's still possible to experience an adverse reaction to certain ingredients. Always check the ingredient list for each product before purchasing or using the product. You can also review this ingredient glossary to check for known allergens!
-
-We also recommend that you test any new product before regular usage. Apply the product to your wrist and wait 24 hours to see if you have a reaction; if any adverse reaction occurs, discontinue use and consult with a medical professional.
-
-Additionally, some soap bars contain exfoliants; exfoliants can be damaging to your skin if excessive force is used or if used too frequently, so Squatch says don't use on sensitive areas and don't over-exfoliate!
-
+          </label>
+          <label class="col-4 col-md-2">
+            <input 
+              v-model="selected"
+              type="radio" 
+              name="product_category" 
+              value="haircare" 
+            >
+            <div class="product-category-card text-center">
+              <img 
+                style="height:110px;margin:auto;"
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Haricare.png?v=1616443457"
+              >
+              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+                Hair Care
+              </p>
+            </div>
+          </label>
+          <label class="col-4 col-md-2">
+            <input 
+              v-model="selected"
+              type="radio" 
+              name="product_category" 
+              value="liquid-soap" 
+            >
+            <div class="product-category-card text-center">
+              <img 
+                style="height:110px;margin:auto;"
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/liquidSoap_2pack_large.png?v=1591741590"
+              >
+              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+                Hand Soap
+              </p>
+            </div>
+          </label>
+          <label class="col-4 col-md-2">
+            <input 
+              v-model="selected"
+              type="radio" 
+              name="product_category" 
+              value="toothpaste" 
+            >
+            <div class="product-category-card text-center">
+              <img 
+                style="height:110px;margin:auto;"
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_toothpaste.png?v=1616443457"
+              >
+              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+                Toothpaste
+              </p>
+            </div>
+          </label>
+          <label class="col-4 col-md-2">
+            <input 
+              v-model="selected"
+              type="radio" 
+              name="product_category" 
+              value="deodorant" 
+            >
+            <div class="product-category-card text-center">
+              <img 
+                style="height:110px;margin:auto;"
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Deo.png?v=1616443457"
+              >
+              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+                Deodorant
+              </p>
+            </div>
+          </label>
+          <label class="col-4 col-md-2">
+            <input 
+              v-model="selected"
+              type="radio" 
+              name="product_category" 
+              value="cologne" 
+            >
+            <div class="product-category-card text-center">
+              <img 
+                style="height:110px;margin:auto;"
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Cologne_collections.png?v=1616615358"
+              >
+              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+                Cologne &amp; Beard Oil
+              </p>
+            </div>
+          </label>
+          <label class="col-4 col-md-2">
+            <input 
+              v-model="selected"
+              type="radio" 
+              name="product_category" 
+              value="candle" 
+            >
+            <div class="product-category-card text-center">
+              <img 
+                style="height:110px;margin:auto;"
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/Candle-BayRum_1.png?v=1616621024"
+              >
+              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+                Candle
+              </p>
+            </div>
+          </label>
+          <label class="col-4 col-md-2">
+            <input 
+              v-model="selected"
+              type="radio" 
+              name="product_category" 
+              value="sanitizer" 
+            >
+            <div class="product-category-card text-center">
+              <img 
+                style="height:110px;margin:auto;"
+                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/mixed_sanitizer-2pack_7d2c96c5-6e15-45a4-86a1-3957bc975f9d.png?v=1594068473"
+              >
+              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+                Hand Sanitizer
+              </p>
+            </div>
+          </label>
         </div>
       </div>
     </div>
+
+
+    <!-- FILTER TITLE  -->
+    <div 
+      v-if="filter_title"
+      class="title-container"
+    >
+      <h2>
+        {{ filter_title }}
+      </h2>
+    </div>
+
+
+    <!-- GLOSSARY GRID -->
+    <div class="glossary-grid">
+      <div 
+        v-for="ingredient in filtered_ingredients" 
+        :key="ingredient.ingredient"
+        class="ingredient-container" 
+      >
+        <div class="ingredient-card">
+          <div class="card-preheader">
+            <div class="preheader-content">
+              <div class="ingredient-badge-container">
+                <div 
+                  class="ingredient-badge" 
+                  :class="ingredient.ingredientSource"
+                >
+                  <img 
+                    class="icon_img" 
+                    :src="ingredient.icon1_img"
+                  >
+                  <p class="ingredient-source">
+                    {{ ingredient.ingredientSource }}
+                  </p>
+                </div>
+                <a 
+                  v-if="ingredient.read_more_link"
+                  :href="ingredient.read_more_link" 
+                  class="read-more-link" 
+                >
+                  DIVE DEEPER
+                </a>
+              </div>
+              <h3 class="ingredient-title">
+                {{ ingredient.ingredient }}
+              </h3>
+              <p 
+                v-if="ingredient.onLabel"
+                class="ingredient-label" 
+              >
+                {{ ingredient.onLabel }}
+              </p>
+              <p 
+                v-else
+                style="visibility:hidden;" 
+              >
+                blank
+              </p>
+            </div>
+          </div>
+          <div class="ingredient-content">
+            <div>
+              <p class="ingredient-function">
+                {{ ingredient.function }}
+              </p>
+            </div>
+            <div class="ingredient-benefits">
+              <p>
+                {{ ingredient.additionalBenefits }}
+              </p>
+            </div>
+          </div>  
+          <p class="foundInTitle">
+            Found in
+          </p>
+          <p class="foundIn">
+            {{ ingredient.foundIn_titles.join(", ") }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ingredient-disclaimer">
+      <div class="disclaimer-text"> 
+        Dr. Squatch uses natural ingredients in all of its products, but it's still possible to experience an adverse reaction to certain ingredients. Always check the ingredient list for each product before purchasing or using the product. You can also review this ingredient glossary to check for known allergens!
+
+        We also recommend that you test any new product before regular usage. Apply the product to your wrist and wait 24 hours to see if you have a reaction; if any adverse reaction occurs, discontinue use and consult with a medical professional.
+
+        Additionally, some soap bars contain exfoliants; exfoliants can be damaging to your skin if excessive force is used or if used too frequently, so Squatch says don't use on sensitive areas and don't over-exfoliate!
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -155,10 +336,6 @@ export default{
       filter_select:"",
       selected:"bar-soap",
     }
-  },
-  mounted(){
-    this.all_ingredients = JSON.parse(document.getElementById("glossary-data").innerHTML);
-    this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
   },
   watch:{
     filter(){
@@ -203,6 +380,10 @@ export default{
       }
     }
   },
+  mounted(){
+    this.all_ingredients = JSON.parse(document.getElementById("glossary-data").innerHTML);
+    this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
+  },
   methods:{
     inputEntry(){
       this.filter_title = ""
@@ -214,15 +395,16 @@ export default{
       }
     },
     scrollSlider(direction) {
-        if (direction == "left") {
-                $(".prod_scroller").animate({
-                scrollLeft: "-=150px",
-                });
-        } else if (direction == "right") {
-                $(".prod_scroller").animate({
-                scrollLeft: "+=150px",
-            });
-        }
+      console.log(direction)
+        // if (direction == "left") {
+        //         $(".prod_scroller").animate({
+        //         scrollLeft: "-=150px",
+        //         });
+        // } else if (direction == "right") {
+        //         $(".prod_scroller").animate({
+        //         scrollLeft: "+=150px",
+        //     });
+        // }
     },
   }
 
@@ -536,7 +718,7 @@ export default{
 
             .ingredient-function{
               margin-bottom: 10px;
-              font-family: "adrianna-bold";
+              font-family: "adrianna-bold", sans-serif;
               font-size: 14px;
             }
             .ingredient-benefits{
@@ -547,7 +729,7 @@ export default{
 
           .foundInTitle{
               margin-bottom: 10px;
-              font-family: "adrianna-bold";
+              font-family: "adrianna-bold", sans-serif;
               font-size: 14px;
               color:$brown;
           }
@@ -572,7 +754,7 @@ export default{
         font-size: 12px;
         padding: 0 19px;
         color: #352E2E;
-        font-family: "adrianna";
+        font-family: "adrianna", sans-serif;
         font-style: italic;
         white-space: pre-wrap;
 

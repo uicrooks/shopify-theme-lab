@@ -4,8 +4,15 @@
       <div class="newsletter-content">
         <strong>GET 20% OFF YOUR FIRST SUBSCRIPTION!</strong>
         <div class="newsletter-form">
-          <input class="user-email" type="email" required="true" placeholder="Email" />
-          <button class="sign-up">Sign Up</button>
+          <input 
+            class="user-email" 
+            type="email" 
+            required="true" 
+            placeholder="Email"
+          >
+          <button class="sign-up">
+            Sign Up
+          </button>
         </div>
       </div>
     </div>
@@ -87,7 +94,7 @@ export default {
 
 
       strong{
-        font-family: "adrianna-bold";
+        font-family: "adrianna-bold", sans-serif;
         text-align: center;
       }
 

@@ -1,9 +1,13 @@
 <template>
   <div class="index-reviews">
     <div class="review-preheader">
-      <p class="preheader">Don't Just Take Our Word For It</p> 
+      <p class="preheader">
+        Don't Just Take Our Word For It
+      </p> 
       <h3>100,000+ Verified Reviews</h3> 
-      <p style="font-size:14px;">Don't just take our word for it ... hear what guys like you are saying about Dr. Squatch</p>
+      <p style="font-size:14px;">
+        Don't just take our word for it ... hear what guys like you are saying about Dr. Squatch
+      </p>
     </div>
     <div class="review-content">
       <div class="review-table">
@@ -11,16 +15,26 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img class="reviewer-image" src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPReview_1.jpg?v=1616649308" alt="first-review"/>
+                <img 
+                  class="reviewer-image" 
+                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPReview_1.jpg?v=1616649308" 
+                  alt="first-review"
+                >
               </div>
               <div class="customer-review-title">
                 <strong>Best damn soap ever...period.</strong> 
-                <p class="review-stars">★★★★★</p>
+                <p class="review-stars">
+                  ★★★★★
+                </p>
               </div>
             </div>
             <div>
-              <p class="review-text">Super smooth on the skin, smells awesome, makes you feel good showering, and yes....the wife approves.</p>
-              <p class="reviewer-name">James S.</p>
+              <p class="review-text">
+                Super smooth on the skin, smells awesome, makes you feel good showering, and yes....the wife approves.
+              </p>
+              <p class="reviewer-name">
+                James S.
+              </p>
             </div>
           </div>
         </div>
@@ -28,16 +42,26 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img class="reviewer-image" src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPReview_2.jpg?v=1616649308" alt="second-review"/>
+                <img 
+                  class="reviewer-image" 
+                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPReview_2.jpg?v=1616649308" 
+                  alt="second-review"
+                >
               </div>
               <div class="customer-review-title">
                 <strong>Ditch the body wash</strong> 
-                <p class="review-stars">★★★★★</p>
+                <p class="review-stars">
+                  ★★★★★
+                </p>
               </div>
             </div>
             <div>
-              <p class="review-text">It's crazy how clean my skin feels and the lather is outstanding. Guys do yourself a huge favor and get some!</p>
-              <p class="reviewer-name">Stephen B.</p>
+              <p class="review-text">
+                It's crazy how clean my skin feels and the lather is outstanding. Guys do yourself a huge favor and get some!
+              </p>
+              <p class="reviewer-name">
+                Stephen B.
+              </p>
             </div>
           </div>
         </div>
@@ -45,21 +69,34 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img class="reviewer-image" src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPreview_3.jpg?v=1616649308" alt="third-review"/>
+                <img 
+                  class="reviewer-image"
+                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPreview_3.jpg?v=1616649308" 
+                  alt="third-review"
+                >
               </div>
               <div class="customer-review-title">
                 <strong>Made in the USA, smells incredible!</strong> 
-                <p class="review-stars">★★★★★</p>
+                <p class="review-stars">
+                  ★★★★★
+                </p>
               </div>
             </div>
             <div>
-              <p class="review-text">First of all they’re made in the USA! Second of all they are all natural! And third they smell incredible!</p>
-              <p class="reviewer-name">Amanda T.</p>
+              <p class="review-text">
+                First of all they’re made in the USA! Second of all they are all natural! And third they smell incredible!
+              </p>
+              <p class="reviewer-name">
+                Amanda T.
+              </p>
             </div>
           </div>
         </div>
       </div>
-      <div class="woodgrain-bg position-absolute w-100 fp-bg" style="z-index: -1;"></div>
+      <div 
+        class="woodgrain-bg position-absolute w-100 fp-bg" 
+        style="z-index: -1;" 
+      />
     </div>
   </div>
 </template>
@@ -74,8 +111,7 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/partials/brand.scss";
-@import "@/styles/variables/colors.scss";
-@import "@/styles/variables/fonts.scss";
+@import "@/styles/main.scss";
 
 .index-reviews{
   padding: 30px 0;
@@ -90,7 +126,7 @@ export default {
     width:100%;
     position: relative;
 
-    @media(min-width: 768px){
+    @media(min-width: $md){
       padding-bottom:20px;
     }
 
@@ -102,7 +138,7 @@ export default {
       display: flex;
       overflow: scroll;
 
-      @media(min-width: 768px){
+      @media(min-width: $md){
         overflow: hidden;
       }
 
@@ -125,7 +161,7 @@ export default {
           box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
           background-color: white;
 
-          @media(min-width: 768px){
+          @media(min-width: $md){
             width: 100%;
           }
 
@@ -134,7 +170,7 @@ export default {
 
             strong{
               margin-bottom: 15px;
-              font-family: "worker-3d";
+              font-family: "worker-3d", sans-serif;
               font-size: 16px
             }
             
@@ -157,7 +193,7 @@ export default {
             line-height: 1;
           }
           .reviewer-name{
-            font-family: "adrianna-bold";
+            font-family: "adrianna-bold", sans-serif;
             color: rgb(90, 55, 20);
           }
           p{
@@ -171,7 +207,7 @@ export default {
       bottom:0;
       background-color: $tan;
 
-      @media(min-width: 768px){
+      @media(min-width: $md){
         height: 50%;
       }
     }

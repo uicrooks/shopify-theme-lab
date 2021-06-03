@@ -1,22 +1,25 @@
 <template>
   <section class="subOfferSection">
-      <div class="subscribe-container">
-        <div class="subscribe-content">
-          <div class="brand-content">
-            <h2>Subscribe &amp; Save 15%</h2> 
-            <p class="subheader">How It Works</p> 
-            <p class="copy">Give our natural products a try! Sudisfactionguaranteed, cancel anytime.</p>
-
-            <div class="image-container">
-              <squatch-button
-                class="big-cta-button"
-                text="Subscribe & Save"
-                path="/pages/subscription-flow#soap"/>
-            </div>
+    <div class="subscribe-container">
+      <div class="subscribe-content">
+        <div class="brand-content">
+          <h2>Subscribe &amp; Save 15%</h2> 
+          <p class="subheader">
+            How It Works
+          </p> 
+          <p class="copy">
+            Give our natural products a try! Sudisfactionguaranteed, cancel anytime.
+          </p>
+          <div class="image-container">
+            <squatch-button
+              class="big-cta-button"
+              text="Subscribe & Save"
+              path="/pages/subscription-flow#soap"
+            />
           </div>
-
         </div>
       </div>
+    </div>
   </section>
 </template>
 
@@ -32,8 +35,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/variables/fonts.scss";
-@import "@/styles/variables/colors.scss";
+@import "@/styles/main.scss";
 
 
   .subOfferSection{
@@ -66,7 +68,7 @@ export default {
             font-weight: 600;
             margin-bottom: 20px;
             font-size: 20px;
-            font-family: "adrianna-bold";
+            font-family: "adrianna-bold", sans-serif;
           }
 
           .copy{

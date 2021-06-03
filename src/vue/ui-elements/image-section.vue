@@ -121,8 +121,8 @@ export default {
   methods: {
     navigateTo() {
       console.log("navigateTo");
-      if (path) {
-        window.location = path;
+      if (this.path) {
+        window.location = this.path;
       }
     }
   },

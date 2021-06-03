@@ -18,7 +18,7 @@
 <script>
 import Jumbotron from "@/vue/ui-elements/jumbotron";
 import HaircareCollectionContent from "@/vue/templates/collection/haircare-collection-content";
-import StoreService from "@/vue/services/store.service";
+// import StoreService from "@/vue/services/store.service";
 import JumbotronConfigs from "@/configs/collection-jumbotron";
 
 export default {

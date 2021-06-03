@@ -1,15 +1,15 @@
 <template>
   <section class="index-hero">
-    <div class="image-header-bg position-relative">
-      <div class="ptext pimg1 flex-outer-center">
-        <div class="brand-content offset-md-5 offset-xxl-6">
-          <h1 class="image-bg_title text-white">
+    <div class="image-header-bg">
+      <div class="banner-background">
+        <div class="brand-content">
+          <h1 class="image-bg_title">
             FEEL LIKE A MAN,
           </h1>
-          <h1 class="image-bg_title bottom-title text-white">
+          <h1 class="bottom-title">
             SMELL LIKE A CHAMPION
           </h1>
-          <p class="subheader text-white">
+          <p class="subheader">
             Better smell and better skin, without the harsh chemicals
           </p>
           <squatch-button
@@ -38,40 +38,56 @@ export default {
 @import "@/styles/main.scss";
 @import "@/styles/variables/fonts.scss";
 
-  .brand-content {
-    padding: 0 15px;
-  }
-  .bottom-title{
-    margin-bottom:20px;
-  }
   .index-hero {
-    .pimg1 {
-      background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center top 58%;
-      height: 600px;
-    }
-    .flex-outer-center {
-      justify-content: start;
-      padding-left: 50px;
-      display: flex;
-      align-items: center;
-    }
-  }
+    .image-header-bg{
+      position:relative;
+      .banner-background {
+        padding-left: 15px;
+        background-image:url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
+        color: white;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center top 58%;
+        height: 600px;
+        justify-content: start;
+       
+        display: flex;
+        align-items: center;
 
-  @media(max-width: 767px) {
-    .index-hero {
-      .image-header-bg {
-        .pimg1 {
-          padding-left: 15px;
-          background-image:url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
-          .brand-content {
+        @media(min-width: $md){
+          padding-left: 50px;
+          background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671');
+        }
+  
+        .brand-content {
+          padding: 0 15px;
+          display:flex;
+          align-items: center;
+          flex-flow: column wrap;
+          bottom: 50px;
+          text-align: center;
+          position: absolute;
+
+          @media(min-width: $md){
+            margin-left: 42%;
+            align-items: flex-start;
             position: absolute;
-            bottom: 50px;
-            text-align: center;
-            .subheader {
-              display: none;
+            text-align: left;
+            bottom: unset;
+          }
+          @media(min-width: 1400px){
+            margin-left: 50%;
+          }
+          
+          .bottom-title{
+            margin-bottom:20px;
+          }
+          
+          .subheader{
+            display: none;
+
+            @media(min-width: $md){
+              display: block;
             }
           }
         }

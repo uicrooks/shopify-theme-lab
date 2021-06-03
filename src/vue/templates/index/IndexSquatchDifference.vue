@@ -6,31 +6,42 @@
     <div class="squatch-difference-container">
       <div class="squatch-difference-content">
         <div class="brand-content">
-          <h3 class="mb-0">The</h3> 
-          <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_wordmark_black.svg?v=1615332033" class="squatch-difference-logo"> 
-          <h3 >Difference</h3> 
+          <h3 class="mb-0">
+            The
+          </h3> 
+          <img 
+            src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_wordmark_black.svg?v=1615332033" 
+            class="squatch-difference-logo"
+          > 
+          <h3>Difference</h3> 
           <p> Dr. Squatch is changing the way men approach hygiene by providing natural, healthy products that make you feel like a man and smell like a champion.</p>
         </div>
-        <div class="squatch-difference-border"></div>
+        <div class="squatch-difference-border" />
         <div class="squatch-difference">
           <div class="icon-container">
-            <i class="squatch-icon icon-SustainablySourced"></i> 
-            <h6 class="subtext">We Make Natural Products</h6>
+            <i class="squatch-icon icon-SustainablySourced" />
+            <h6 class="subtext">
+              We Make Natural Products
+            </h6>
           </div>
           <div class="icon-container">
-            <i class="squatch-icon icon-NoHarshChemicals"></i> 
-            <h6 class="subtext">We Never Use Harmful Ingredients</h6>
+            <i class="squatch-icon icon-NoHarshChemicals" /> 
+            <h6 class="subtext">
+              We Never Use Harmful Ingredients
+            </h6>
           </div>
           <div class="icon-container">
-            <i class="squatch-icon icon-ColdProcessSoap"></i> 
-            <h6 class="subtext">We Create Products For Men</h6>
+            <i class="squatch-icon icon-ColdProcessSoap" /> 
+            <h6 class="subtext">
+              We Create Products For Men
+            </h6>
           </div>
           <div>
             <squatch-button
-                class="big-cta-button"
-                text="Learn More"
-                path="/pages/about-us"
-                />
+              class="big-cta-button"
+              text="Learn More"
+              path="/pages/about-us"
+            />
           </div>
         </div>
       </div>
@@ -57,6 +68,7 @@ export default {
     width: 100%;
     max-width: 1440px;
     padding: 60px 0;
+    margin:auto;
 
     @media(min-width:768px){
       flex-direction: row;
@@ -98,7 +110,7 @@ export default {
             max-width: 33.3333333333%;
 
             .subtext{
-              font-family: "adrianna-bold";
+              font-family: "adrianna-bold", sans-serif;
               color:#1a110c;
             }
           }

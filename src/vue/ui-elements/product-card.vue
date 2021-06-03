@@ -10,7 +10,7 @@
       <div class="product-title">
         {{ product.title }}
       </div>
-      <div class="yotpo"></div>
+      <div class="yotpo" />
       <p class="product-title">
         {{ product.description }}
       </p>

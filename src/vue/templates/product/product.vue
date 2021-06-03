@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import StoreService from "@/vue/services/store.service";
+// import StoreService from "@/vue/services/store.service";
 
 export default {
   name: "Product",
@@ -16,7 +16,8 @@ export default {
     },
     handle: {
       type: String,
-      required: false
+      required: false,
+      default: ""
     }
   },
   async mounted() {
