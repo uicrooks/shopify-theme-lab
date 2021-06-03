@@ -1,21 +1,28 @@
-import Vue from "vue"
-import Vuex from "vuex"
-import axios from "axios"
+import Vue from "vue";
+import Vuex from "vuex";
+import axios from "axios";
 import CartService from "./vue/services/cart.service.js";
-import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue"
-import "bootstrap/dist/css/bootstrap.css"
-import "bootstrap-vue/dist/bootstrap-vue.css"
-// CAN WE IMPROVE IMPORT?
-Vue.use(BootstrapVue)
-Vue.use(BootstrapVueIcons)
+import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
 
-Vue.config.productionTip = false
+Vue.filter("money", function(val, currency) {
+  if (!val) return "0";
+  const money = val.toString().splice(1, ".");
+  return currency ? `${currency} ${money}` : money;
+});
+
+// CAN WE IMPROVE IMPORT?
+Vue.use(BootstrapVue);
+Vue.use(BootstrapVueIcons);
+
+Vue.config.productionTip = false;
 
 /**
  * vuex
  * auto-import all modules ** CAN WE IMPROVE?
  */
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 /*
 COMMENTED, add back as needed
@@ -57,20 +64,21 @@ Vue.prototype.$axios = axios;
  * vue components
  * auto-import all Vue core components
  */
- const vueComponents = require.context("./vue/core/", true, /\.(vue|js)$/)
+ const vueComponents = require.context("./vue/core/", true, /\.(vue|js)$/);
 
  vueComponents.keys().forEach(key => {
-   const component = vueComponents(key).default
+   const component = vueComponents(key).default;
    const name = component.name
      ? component.name
-     : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
-   Vue.component(name, component)
+     : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+   Vue.component(name, component);
  })
 
-window.app = new Vue({
-  el: "#app",
-})
-window.app.cart = CartService;
+new Vue({
+  el: "#app",  
+});
+// window.app = Vue;
+// window.app.cart = CartService;
 
 // NOT NEEDED, showing it's okay to delete;
 /*
@@ -81,4 +89,4 @@ Shopify.designMode && document.addEventListener('shopify:section:load', (event) 
       store
     })
   }
-})*/
+});*/

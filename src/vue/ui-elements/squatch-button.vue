@@ -36,6 +36,11 @@ export default {
       required: false,
       default: ""
     },
+    action: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
     color: {
       type: String,
       required: false,
@@ -45,6 +50,9 @@ export default {
   methods: {
     navigateTo() {
       console.log("navigateTo");
+      if (this.action) {
+        this.$emit("takeAction");
+      }
       if (this.path) {
         window.location = this.path;
       }

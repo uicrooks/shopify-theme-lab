@@ -11,19 +11,19 @@
         {{ product.title }}
       </div>
       <div class="yotpo"></div>
-      <p class="product-title">
+      <p class="product-description">
         {{ product.description }}
       </p>
       <div class="product-pricing">
-        <span>{{ product.price }}</span>
-        <span>{{ product.compare_at_price }}</span>
+        {{ product.price | money("$") }}
+        <span class="compare-at-pricing">{{ product.compare_at_price | money("$") }}</span>
       </div>
       <div class="add-button">
-        <button
-          @click="addToCart"
-        >
-          {{ added ? 'Add More' : 'Add To Cart' }}
-        </button>
+        <squatch-button
+          :text="added ? 'Add More' : '+ Add To Cart'"
+          :action="true"
+          @takeAction="addToCart"
+        />
       </div>
     </div>
 
@@ -31,10 +31,11 @@
 </template>
 
 <script>
-import CartService from "@/vue/services/cart.service";
+import SquatchButton from "@vue/ui-elements/squatch-button";
 import StoreService from "@/vue/services/store.service";
 
 export default {
+  components: { SquatchButton },
   props: {
     product: {
       type: Object,
@@ -63,14 +64,57 @@ export default {
 @import "@/styles/main.scss";
 
 .product-card-component {
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 35px;
+
+  &:hover {
+    box-shadow: 0 4px 15px 5px rgba(0, 0, 0, .1);
+  }
 
   .image-box {
     width: 100%;
+    background-image: url(https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353);
+    background-size: 200%;
+    background-repeat: repeat;
+    background-color: $sand;
+    padding: 25px;
+    text-align: center;
 
     img {
-      width: 100%;
-      height: auto;
+      height: 295px;
+      width: auto;
+      object-fit: contain;
     }
+  }
+
+  .details-box {
+    padding: 16px 16px 25px 16px;
+
+    .product-title {
+      cursor: pointer;
+      @include font-style-heading($size: 20px, $color: $dark-brown, $lh: 20px);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .product-description {
+      margin-top: 14px;
+      @include font-style-heading($size: 16px, $color: $brown, $lh: 16px);
+    }
+
+    .product-pricing {
+      margin-bottom: 20px;
+      @include font-style-heading($size: 16px, $color: $green, $weight: 700, $lh: 16px);
+
+      .compare-at-pricing {
+        text-decoration: line-through;
+        @include font-style-heading($size: 14px, $color: $gray, $weight: 700, $lh: 14px);
+      }
+    }
+
   }
 }
 </style>
