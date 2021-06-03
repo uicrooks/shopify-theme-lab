@@ -72,13 +72,13 @@ export default {
   // left: 0;
   width: 100%;
 
-  .newsletter{
+  .newsletter {
     width: 100%;
     background-color: $tan;
     padding: 30px 15px;
 
 
-    .newsletter-content{
+    .newsletter-content {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -87,23 +87,23 @@ export default {
       margin:auto;
       flex-direction: column;
 
-      @media(min-width:768px){
+      @media(min-width: $md) {
         max-width: 500px;
       }
 
 
 
-      strong{
+      strong {
         font-family: "adrianna-bold", sans-serif;
         text-align: center;
       }
 
-      .newsletter-form{
+      .newsletter-form {
         display: flex;
         width: 100%;
         justify-content: center;
 
-        .user-email{
+        .user-email {
           box-sizing: border-box;
           border-radius: 2px;
           padding: 0px 0px 0px 16px;
@@ -119,11 +119,11 @@ export default {
           width: 67%;
           outline:black;
 
-          @media(min-width: 768px){
+          @media(min-width: $md) {
             width: 80%;
           }
         }
-        .sign-up{
+        .sign-up {
           position: relative;
           padding: 11px 10px;
           background: rgb(204, 99, 40);
