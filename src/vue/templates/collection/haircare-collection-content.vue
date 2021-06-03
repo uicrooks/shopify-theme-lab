@@ -46,10 +46,7 @@
 </template>
 
 <script>
-import productCard from "@/vue/ui-elements/product-card.vue";
-
 export default {
-  components: { productCard },
   props: {
     products: {
       type: Array,
@@ -79,7 +76,7 @@ export default {
     }
   },
   mounted() {
-    console.log("harcare collection content", this.products);
+    // console.log("harcare collection content", this.products);
   }
 };
 </script>

@@ -14,7 +14,7 @@ export default {
     },
     handle: {
       type: String,
-      required: false
+      required: true
     }
   },
   async mounted() {

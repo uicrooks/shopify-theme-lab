@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: "MainNavSingleMenuItem",
   props: {
     name: {
       type: String,

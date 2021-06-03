@@ -1,6 +1,6 @@
 <template>
   <div class="footer-component">
-    <footer-menu />
+    <main-footer-menu />
     <div class="bottom-row">
       <div class="copyright">
         DR. SQUATCH is a registered trademark of Dr. Squatch, Inc. © 2021, Dr. Squatch, Inc. All rights reserved.
@@ -36,13 +36,8 @@
 </template>
 
 <script>
-import FooterMenu from "@vue/core/main-footer/footer-menu";
-
 export default {
-  name: "MainFooter",
-  components: {
-    FooterMenu
-  }
+  name: "MainFooter"
 };
 </script>
 
@@ -69,8 +64,8 @@ export default {
     
     .copyright {
       width: 100%;
-      text-align: center;
-      @include font-style-body($size: 11px, $color: $sand);
+      text-align: center;@include font-style-body($size: 11px, $color: $sand);
+      
 
       @include layout-lg {
         width: unset;

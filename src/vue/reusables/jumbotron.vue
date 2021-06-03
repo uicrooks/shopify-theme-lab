@@ -32,12 +32,8 @@
 </template>
 
 <script>
-import SquatchButton from "@vue/ui-elements/squatch-button";
-
 export default {
-  components: {
-    SquatchButton
-  },
+  name: "Jumbotron",
   props: {
     videoId: {
       type: String,

@@ -21,6 +21,7 @@
 
 <script>
 export default {
+  name: "SquatchButton",
   props: {
     text: {
       type: String,

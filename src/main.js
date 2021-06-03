@@ -1,42 +1,71 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import store from "@/vue/store";
 import axios from "axios";
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-
-Vue.filter("money", function(val, currency) {
-  if (!val) return "0";
-  const money = val.toString().splice(1, ".");
-  return currency ? `${currency} ${money}` : money;
-});
 
 // CAN WE IMPROVE IMPORT?
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 
 Vue.config.productionTip = false;
+Vue.prototype.$axios = axios;
 
 /**
- * vuex
- * auto-import all modules ** CAN WE IMPROVE?
+ * import core components
  */
-Vue.use(Vuex);
+const coreComponents = require.context("./vue/core/", true, /\.(vue|js)$/);
 
-/*
-COMMENTED, add back as needed
-const vuexModules = require.context('./vue/store/', true, /\.js$/)
-const modules = {}
+coreComponents.keys().forEach(key => {
+  const component = coreComponents(key).default;
+  const name = component.name
+    ? component.name
+    : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+  Vue.component(name, component);
+});
 
-vuexModules.keys().forEach(key => {
-  const name = key.replace(/\.(\/|js)/g, '').replace(/\s/g, '-')
-  modules[name] = vuexModules(key).default
-})
+/**
+ * import reusable components
+ */
+ const reusableComponents = require.context("./vue/reusables/", true, /\.(vue|js)$/);
 
-const store = new Vuex.Store({
-  strict: process.env.NODE_ENV !== 'production',
-  modules
-})*/
+ reusableComponents.keys().forEach(key => {
+   const component = reusableComponents(key).default;
+   const name = component.name
+     ? component.name
+     : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+   Vue.component(name, component);
+ });
+
+ /**
+ * import module specific components
+ */
+if (window.location.pathname.includes("collection")) {
+  console.log("layout-collection");
+  const collectionComponents = require.context("./vue/templates/collection", true, /\.(vue|js)$/);
+  collectionComponents.keys().forEach(key => {
+    const component = collectionComponents(key).default;
+    const name = component.name ?
+      component.name :
+      key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+    Vue.component(name, component);
+  });
+}
+
+Vue.filter("money", (val, currency) => {
+  if (!val) return "N/A";
+  const money = (val / 100).toFixed(2);
+  return currency ? `${currency} ${money}` : money;
+});
+
+new Vue({
+  el: "#app",
+  store
+});
+// window.app = Vue;
+// window.app.cart = CartService;
+
 
 /*
 COMMENTED: add back as needed
@@ -56,28 +85,6 @@ directives.keys().forEach(key => {
   Vue.directive(directive.name, directive.directive)
 })
 */
-
-Vue.prototype.$axios = axios;
-
-/**
- * vue components
- * auto-import all Vue core components
- */
- const vueComponents = require.context("./vue/core/", true, /\.(vue|js)$/);
-
- vueComponents.keys().forEach(key => {
-   const component = vueComponents(key).default;
-   const name = component.name
-     ? component.name
-     : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
-   Vue.component(name, component);
- });
-
-new Vue({
-  el: "#app",  
-});
-// window.app = Vue;
-// window.app.cart = CartService;
 
 // NOT NEEDED, showing it's okay to delete;
 /*

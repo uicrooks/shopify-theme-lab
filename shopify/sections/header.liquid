@@ -1,4 +1,6 @@
 <main-nav
-  :cart="{{cart | json | escape}}"
+  :currency="{
+    'isoCode': '{{ cart.currency.iso_code }}',
+    'symbol': '{{ cart.currency.symbol }}'
+  }"
 ></main-nav>
-

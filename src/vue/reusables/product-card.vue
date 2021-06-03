@@ -10,7 +10,9 @@
       <div class="product-title">
         {{ product.title }}
       </div>
-      <div class="yotpo"></div>
+      <div class="yotpo">
+        <span>review stuff here</span>
+      </div>
       <p class="product-description">
         {{ product.description }}
       </p>
@@ -26,16 +28,14 @@
         />
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-import SquatchButton from "@vue/ui-elements/squatch-button";
-import StoreService from "@/vue/services/store.service";
+import CartService from "@/vue/services/cart.service";
 
 export default {
-  components: { SquatchButton },
+  name: "ProductCard",
   props: {
     product: {
       type: Object,
@@ -49,13 +49,14 @@ export default {
     };
   },
   methods: {
-    addToCart() {
-      this.added = true;
+    async addToCart() {
+      const added = await CartService.addItem(this.product);
+      console.log(added);
+      if (added) {
+        this.$store.dispatch("cart/initialize");
+        this.added = true;
+      }
     }
-  },
-  async mounted() {
-    const result = await StoreService.getProductById(this.product.id);
-    console.log(result);
   }
 };
 </script>

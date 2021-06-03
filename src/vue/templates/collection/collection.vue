@@ -1,6 +1,5 @@
 <template>
   <div class="collection-component">
-    collection component!
     <jumbotron
       :video-id="jumbotronConfig.videoId"
       :pre-header="jumbotronConfig.preHeader"
@@ -16,14 +15,12 @@
 </template>
 
 <script>
-import Jumbotron from "@/vue/ui-elements/jumbotron";
 import HaircareCollectionContent from "@/vue/templates/collection/haircare-collection-content";
 import JumbotronConfigs from "@/configs/collection-jumbotron";
 
 export default {
   name: "Collection",
   components: {
-    Jumbotron,
     HaircareCollectionContent
   },
   props: {
@@ -33,6 +30,7 @@ export default {
       default: ""
     },
     productsData: {
+      type: String,
       required: true
     }
   },
@@ -68,8 +66,6 @@ export default {
     
   },
   async mounted() {
-    // console.log(`collection id: ${this.id}, handle: ${this.handle}`);
-    console.log(this.productsData);
     this.products = JSON.parse(this.productsData);
     console.log(this.products);
 // const result = await StoreService.getCollectionById(this.id);

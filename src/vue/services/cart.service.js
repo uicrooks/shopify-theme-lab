@@ -10,20 +10,59 @@ const axiosConfig = {
 };
 
 export default {
-  async test() {
+  async initCart() {
     try {
       const res = await axios.get("/cart.js", axiosConfig);
       if (res.status === 200) {
         return res.data;
       }
     } catch (err) {
-      console.log("failed to fetch cart", err);
-      return null;
+      console.log("Failed to fetch cart", err);
+      return {};
     }
   },
-  async addItem(variantId) {
-    
+  async addItem(product, variantId = "") {
+    const variant = getMatchingVariantForProduct(product, variantId);
+    if (!variant) {
+      console.log("failed to add an item; item does not have matching variant");
+      return null;
+    }
+    try {
+      const res = await axios.post("/cart/add.js", {
+        quantity: 1,
+        id: variant.id,
+        properties: product.properties ? product.properties : {}
+      });
+      console.log("result", res);
+      if (res.status === 200) {
+        return true;
+      }
+    } catch (err) {
+      console.log("Failed to add an item", err);
+      return false;
+    }
+    // add tracking data
   },
+  getProductSchema(product, variantId) {
+    const variant = getMatchingVariantForProduct(product, variantId);
+    if (!variant) {
+      return null;
+    }
+    return {
+      product_id: product.id,
+      handle: product.handle,
+      type: product.type,
+      variant_id: variant.id,
+      sku: variant.sku,
+      price: variant.price / 100,
+      compare_at_price: variant.compare_at_price / 100,
+      image: variant.image ? variant.image : product.images[0],
+      title: variant.title ? variant.title : product.title,
+      // currency: cart.currency.isoCode,
+      // currency_symbol: cart.currency.symbol,
+      properties: {}
+    };
+  }
   // sync() {
   //   return new Promise(resolve => {
   //     axios.all([axios.get("/cart.js", axiosConfig)]) // removed extra call, hopefully faster?
@@ -43,3 +82,13 @@ export default {
   //   }); 
   // }
 };
+
+function getMatchingVariantForProduct(product, variantId) {
+  let matchingVariant = product.variants && product.variants[0];
+  if (variantId) {
+    matchingVariant = product.variants.filter(variant => {
+      variant.id = variantId;
+    })[0];
+  }
+  return matchingVariant;
+}

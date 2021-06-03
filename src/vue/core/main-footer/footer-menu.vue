@@ -81,6 +81,7 @@
 
 <script>
 export default {
+  name: "MainFooterMenu",
   data() {
     return {
       shopMenu: [{

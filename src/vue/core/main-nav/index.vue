@@ -8,7 +8,9 @@
         alt="Dr.Squatch logo"
       >
       <div class="buttons">
-        <cart />
+        <cart
+          :currency-obj="currency"
+        />
         <b-icon
           v-b-toggle.main-nav-sidebar
           icon="list"
@@ -59,45 +61,45 @@
             color="maroon"
           />
 
-          <grouped-menu-item
+          <main-nav-grouped-menu-item
             :name="soapMenu.name"
             :is-open="soapMenu.isOpen"
             :sub-menu-items="soapMenu.subMenuItems"
             @toggle="soapMenu.isOpen = !soapMenu.isOpen"
           />
-          <single-menu-item
+          <main-nav-single-menu-item
             v-for="(item, index) of singleMenuItems"
             :key="`single-menu-item-${index}`"
             :name="item.name"
             :badge="item.badge"
             :path="item.path"
           />
-          <grouped-menu-item
+          <main-nav-grouped-menu-item
             :name="moreMenu.name"
             :is-open="moreMenu.isOpen"
             :sub-menu-items="moreMenu.subMenuItems"
             @toggle="moreMenu.isOpen = !moreMenu.isOpen"
           />
-          <single-menu-item
+          <main-nav-single-menu-item
             class="soap-quiz-menu"
             name="Take Soap Quiz"
             path="/quiz"
           />
 
           <div class="sidebar-footer">
-            <grouped-menu-item
+            <main-nav-grouped-menu-item
               :name="infoMenu.name"
               :is-open="infoMenu.isOpen"
               :sub-menu-items="infoMenu.subMenuItems"
               @toggle="infoMenu.isOpen = !infoMenu.isOpen"
             />
-            <grouped-menu-item
+            <main-nav-grouped-menu-item
               :name="aboutMenu.name"
               :is-open="aboutMenu.isOpen"
               :sub-menu-items="aboutMenu.subMenuItems"
               @toggle="aboutMenu.isOpen = !aboutMenu.isOpen"
             />
-            <grouped-menu-item
+            <main-nav-grouped-menu-item
               :name="helpMenu.name"
               :is-open="helpMenu.isOpen"
               :sub-menu-items="helpMenu.subMenuItems"
@@ -169,7 +171,9 @@
         <b-collapse id="curreny-options">
           CAD
         </b-collapse>
-        <cart />
+        <cart
+          :currency-obj="currency"
+        />
       </div>
     </div>
     <b-collapse
@@ -238,21 +242,10 @@
 </template>
 
 <script>
-import SquatchButton from "@vue/ui-elements/squatch-button";
-import GroupedMenuItem from "@vue/core/main-nav/grouped-menu-item";
-import SingleMenuItem from "@vue/core/main-nav/single-menu-item";
-import Cart from "@/vue/core/cart";
-
 export default {
   name: "MainNav",
-  components: {
-    SquatchButton,
-    GroupedMenuItem,
-    SingleMenuItem,
-    Cart
-  },
   props: {
-    cart: {
+    currency: {
       type: Object,
       required: true
     }
@@ -424,10 +417,8 @@ export default {
       console.log("toggleCurrency");
     }
   },
-  mounted() {
-    console.log("main nav");
+  async mounted() {
     console.log(window);
-    console.log(this.cart);
   }
 };
 </script>
