@@ -113,24 +113,24 @@ export default {
 @import "@/styles/partials/brand.scss";
 @import "@/styles/main.scss";
 
-.index-reviews{
+.index-reviews {
   padding: 30px 0;
 
-  .review-preheader{
+  .review-preheader {
     text-align: center;
   }
 
-  .review-content{
+  .review-content {
     display: flex;
     justify-content: center;
     width:100%;
     position: relative;
 
-    @media(min-width: $md){
+    @media(min-width: $md) {
       padding-bottom:20px;
     }
 
-    .review-table{
+    .review-table {
       width: 100%;
       max-width:1024px;
       height:100%;
@@ -138,20 +138,20 @@ export default {
       display: flex;
       overflow: scroll;
 
-      @media(min-width: $md){
+      @media(min-width: $md) {
         overflow: hidden;
       }
 
-      .review-container{
+      .review-container {
         flex: 0 0 33.3333333333%;
         width:100%;
         padding:15px;
 
-        @media(min-width: 768px){
+        @media(min-width: 768px) {
           max-width: 33.3333333333%;
           padding: 0 15px;
         }
-        .review-card{
+        .review-card {
           border-radius: 5px;
           padding: 20px 15px;
           display: flex;
@@ -161,53 +161,53 @@ export default {
           box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
           background-color: white;
 
-          @media(min-width: $md){
+          @media(min-width: $md) {
             width: 100%;
           }
 
-          .review-title{
+          .review-title {
             display: flex;
 
-            strong{
+            strong {
               margin-bottom: 15px;
               font-family: "worker-3d", sans-serif;
               font-size: 16px
             }
             
-            .reviewer-image{
+            .reviewer-image {
               width: 50px;
               height: 50px;
               border-radius: 50%;
             }
             
-            .customer-review-title{
+            .customer-review-title {
               padding: 0 15px;
             }
 
-            .review-stars{
+            .review-stars {
               color: #cc6328!important;
             }
           }
 
-          .review-text{
+          .review-text {
             line-height: 1;
           }
-          .reviewer-name{
+          .reviewer-name {
             font-family: "adrianna-bold", sans-serif;
             color: rgb(90, 55, 20);
           }
-          p{
+          p {
             font-size: 14px;
           }
         }
       }
     }
-    .woodgrain-bg{
+    .woodgrain-bg {
       height: 100%;
       bottom:0;
       background-color: $tan;
 
-      @media(min-width: $md){
+      @media(min-width: $md) {
         height: 50%;
       }
     }

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  export default{
+  export default {
     name: "TextOnlyBanner",
     props: {
       bannerText: {
@@ -20,33 +20,32 @@
 
 <style lang="scss">
 @import "@/styles/main.scss";
-@import "@/styles/variables/fonts.scss";
 
-  .banner-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 250px;
+.banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
 
-    @media(min-width:992px){
-      height: 440px;
+  @media(min-width:992px) {
+    height: 440px;
+  }
+
+  .banner-title {
+    padding: 3rem 15px;
+    
+    @media(min-width: $md) {
+      padding: 4.7rem 15px;
     }
+    .banner-text {
+      font-size: calc(1.12188rem + 3.0875vw);
+      margin-bottom:30px;
+      text-align: center;
 
-    .banner-title{
-      padding: 3rem 15px;
-      
-      @media(min-width:768px){
-        padding: 4.7rem 15px;
-      }
-      .banner-text{
-        font-size: calc(1.12188rem + 3.0875vw);
-        margin-bottom:30px;
-        text-align: center;
-
-        @media(min-width: 1200px){
-          font-size: 3.4375rem;
-        }
+      @media(min-width: 1200px) {
+        font-size: 3.4375rem;
       }
     }
   }
+}
 </style>

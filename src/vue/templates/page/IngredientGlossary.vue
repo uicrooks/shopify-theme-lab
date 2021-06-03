@@ -325,10 +325,10 @@
 
 <script>
 
-export default{
+export default {
   name: "IngredientGlossary",
-  data(){
-    return{
+  data() {
+    return {
       all_ingredients: [],
       filtered_ingredients: [],
       filter:"",
@@ -337,21 +337,21 @@ export default{
       selected:"bar-soap",
     }
   },
-  watch:{
-    filter(){
+  watch: {
+    filter() {
       console.log(this.filter)
-      if(this.filter === ""){
+      if(this.filter === "") {
         this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
       }
-      else{
+      else {
         this.filtered_ingredients = this.all_ingredients.filter(element => element.ingredient.toLowerCase().includes(`${this.filter}`))
       }
     },
-    selected(){
+    selected() {
       console.log(this.selected)
       this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes(`${this.selected}`))
       console.log(this.filtered_ingredients)
-      switch(this.selected){
+      switch(this.selected) {
         case "bar-soap":
           this.filter_title = "bar soap"
           break
@@ -380,16 +380,16 @@ export default{
       }
     }
   },
-  mounted(){
+  mounted() {
     this.all_ingredients = JSON.parse(document.getElementById("glossary-data").innerHTML);
     this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
   },
-  methods:{
-    inputEntry(){
+  methods: {
+    inputEntry() {
       this.filter_title = ""
     },
-    inputExit(){
-      if(this.filter === ""){
+    inputExit() {
+      if(this.filter === "") {
         this.filter_title = "Bar Soap"
         this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
       }
@@ -412,362 +412,361 @@ export default{
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/variables/fonts.scss";
-@import "@/styles/variables/colors.scss";
+@import "@/styles/main.scss";
 
-  .ingredient-glossary{
+.ingredient-glossary {
 
-    .glossary-header{
-      background: linear-gradient(180deg,#473729 22.89%,rgba(71,55,41,0) 161.44%),#2d2d2d;
-      height: 367px;
-      color: #fff;
-      padding: 4rem 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+  .glossary-header {
+    background: linear-gradient(180deg,#473729 22.89%,rgba(71,55,41,0) 161.44%),#2d2d2d;
+    height: 367px;
+    color: #fff;
+    padding: 4rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 
-      .img-btmright{
-        position: absolute;
-        bottom:0;
-        right:0;
-        height: 75%;
+    .img-btmright {
+      position: absolute;
+      bottom:0;
+      right:0;
+      height: 75%;
 
-        @media(max-width: 670px){
-          height:35%;
-        }
-      }
-
-      .img-topright{
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 60%;
-      }
-
-      .img-topleft{
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 80%;
-        @media(max-width: 670px){
-          height:47%;
-        }
-      }
-
-      .img-btmleft{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        height: 50%;
-        @media(max-width: 670px){
-          height:31%;
-        }
+      @media(max-width: 670px) {
+        height:35%;
       }
     }
 
-    .carousel-container{
+    .img-topright {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 60%;
+    }
+
+    .img-topleft {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 80%;
+      @media(max-width: 670px) {
+        height:47%;
+      }
+    }
+
+    .img-btmleft {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 50%;
+      @media(max-width: 670px) {
+        height:31%;
+      }
+    }
+  }
+
+  .carousel-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media(min-width: $sm) {
+      max-width: 540px;
+    }
+
+    @media (min-width: $md) {
+      max-width: 720px;
+    }
+
+    @media (min-width: $lg) {
+      max-width: 960px;
+    }
+
+    @media (min-width: $xl) {
+      max-width: 1024px;
+    }
+
+    input {
       width: 100%;
-      padding-right: 15px;
-      padding-left: 15px;
-      margin-right: auto;
-      margin-left: auto;
+      background: transparent;
+      border-top: none;
+      border-right: none;
+      border-bottom: 1px solid gainsboro;
+      border-left: none;
+      border-image: initial;
+      outline: none;
+      padding: .6rem .75rem;
+      padding-left: 40px !important;
+      height: calc(1.3em + 1.2rem + 4px);
+      margin: 20px 0;
+    }
 
-      @media(min-width: 576){
-        max-width: 540px;
+
+    .carousel-content {
+      position: relative;
+      overflow: auto;
+
+      #scroll-indicator_right {
+        position: absolute; 
+        top: 0; 
+        right: 10px; 
+        margin: auto; 
+        bottom: 0; 
+        display: flex;
+        align-items: center;
       }
 
-      @media (min-width: 768px){
-        max-width: 720px;
+      #scroll-indicator_left {
+        position: absolute; 
+        top: 0; 
+        left: 10px; 
+        margin: auto; 
+        bottom: 0; 
+        align-items: center;
+        display: flex;
       }
 
-      @media (min-width: 992px){
-        max-width: 960px;
+      .noscrollbar::-webkit-scrollbar {
+        display: none;
       }
-
-      @media (min-width: 1336px){
-        max-width: 1024px;
-      }
-
-      input{
-        width: 100%;
-        background: transparent;
-        border-top: none;
-        border-right: none;
-        border-bottom: 1px solid gainsboro;
-        border-left: none;
-        border-image: initial;
-        outline: none;
-        padding: .6rem .75rem;
-        padding-left: 40px !important;
-        height: calc(1.3em + 1.2rem + 4px);
-        margin: 20px 0;
-      }
-
-
-      .carousel-content{
+      
+      .noscrollbar {
         position: relative;
-        overflow: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
 
-        #scroll-indicator_right{
-          position: absolute; 
-          top: 0; 
-          right: 10px; 
-          margin: auto; 
-          bottom: 0; 
-          display: flex;
-          align-items: center;
-        }
-
-        #scroll-indicator_left{
-          position: absolute; 
-          top: 0; 
-          left: 10px; 
-          margin: auto; 
-          bottom: 0; 
-          align-items: center;
-          display: flex;
-        }
-
-        .noscrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        
-        .noscrollbar{
+        label {
+          flex: 0 0 33.3333333333%;
+          max-width: 33.3333333333%;
           position: relative;
           width: 100%;
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+          padding-right: 15px;
+          padding-left: 15px;
+          display: inline-block;
+          margin-bottom: .5rem;
 
-          label{
-            flex: 0 0 33.3333333333%;
-            max-width: 33.3333333333%;
-            position: relative;
-            width: 100%;
-            padding-right: 15px;
-            padding-left: 15px;
-            display: inline-block;
-            margin-bottom: .5rem;
+          @media (min-width: 768px) {
+            flex: 0 0 16.6666666667%;
+            max-width: 16.6666666667%;
+          }
 
-            @media (min-width: 768px){
-              flex: 0 0 16.6666666667%;
-              max-width: 16.6666666667%;
-            }
-
-            img{
-              height: 51px !important;
-              margin: auto!important;
-              @media (min-width: 660px){
-                height: 110px !important;
-              }
-            }
-
-            p{
-              font-size: 12px;
-              @media (min-width: 660px){
-                font-size: 16px;
-              }
+          img {
+            height: 51px !important;
+            margin: auto!important;
+            @media (min-width: $sm){
+              height: 110px !important;
             }
           }
-          input{
-            height:0;
+
+          p {
+            font-size: 12px;
+            @media (min-width: $sm) {
+              font-size: 16px;
+            }
           }
         }
-      }
-    }
-
-    .title-container{
-      display:flex;
-      justify-content: center;
-      align-items: center;
-
-      &:after, &:before{
-        background-color: #afafaf;
-        content: "";
-        display: inline-block;
-        height: 1px;
-        position: relative;
-        vertical-align: middle;
-        width: 25%;
-      }
-
-      h2{
-        margin:0 5px;
-      }
-    }
-
-    .glossary-grid{
-      display:grid;
-      max-width: 1300px;
-      margin: auto;
-      margin-bottom: 120px;
-      min-height: 32vh;
-      grid-template-columns: 1fr;
-      
-      justify-items: center;
-      align-items: flex-start;
-
-      @media(min-width:768px){
-        grid-template-columns: 1fr 1fr;
-      }
-
-      @media(min-width:1336px){
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-
-      .ingredient-container{
-        padding: 0 19px;
-        margin: 25px 0;
-        width:100%;
-        height:100%;
-
-        .ingredient-card{
-          padding: 30px;
-          height:100%;
-          box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
-          display:flex;
-          flex-direction: column;
-
-          .card-preheader{
-            border-bottom: 2px solid rgba(53,46,46,.125);
-
-            .preheader-content{
-              padding-bottom: 20px;
-
-              .ingredient-badge-container{
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 10px;
-
-                .ingredient-badge{
-                  border-radius: 24px;
-                  color: rgb(255, 255, 255);
-                  font-weight: 500;
-                  margin-bottom: 10px;
-                  font-size: 13px;
-                  line-height: 0;
-                  display: flex;
-                  align-items: center;
-                  padding: 0 5px;
-
-                  img{
-                    vertical-align: middle;
-                    height: 13px;
-                    margin: 4px;
-                  }
-
-                  .ingredient-source{
-                    font-size: 13px !important;
-                    margin: 0 5px 0;
-                  }
-                }
-
-                .Plant{
-                  background: #91a24f;
-                }
-                .Made{
-                  background: #771214;
-                }
-                .Water{
-                  background: #366db5;
-                }
-                .Vitamins{
-                  background: grey;
-                }
-                .Animal{
-                  background: #b36527;
-                }
-
-                .read-more-link{
-                  color: $orange;
-                  text-decoration: none;
-                  font-size: 12px;
-                  font-weight: 600;
-                  display: flex;
-                  align-items: center;
-
-                  &:hover{
-                    cursor: pointer;
-                  }
-                }
-
-              }
-              .ingredient-title{
-                font-size: 18px;
-
-                @media(min-width: 768px){
-                  font-size: 20px !important;
-                }
-              }
-              .ingredient-label{
-                color: #a9a9a9!important;
-                margin: 0;
-                font-size:14px !important;
-              }
-            }
-          }
-
-          .ingredient-content{
-            padding: 20px 0;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-
-            .ingredient-function{
-              margin-bottom: 10px;
-              font-family: "adrianna-bold", sans-serif;
-              font-size: 14px;
-            }
-            .ingredient-benefits{
-              color: $brown;
-              margin:0;
-            }
-          }
-
-          .foundInTitle{
-              margin-bottom: 10px;
-              font-family: "adrianna-bold", sans-serif;
-              font-size: 14px;
-              color:$brown;
-          }
-          .foundIn{
-            color: $orange;
-            font-size: 14px;
-            margin-bottom:7px;
-          }
-
-        }
-      }
-    }
-
-    .ingredient-disclaimer{
-      margin: auto;
-      max-width: 1300px;
-      margin-bottom: 90px;
-      
-      
-      .disclaimer-text{
-        width: 100%;
-        font-size: 12px;
-        padding: 0 19px;
-        color: #352E2E;
-        font-family: "adrianna", sans-serif;
-        font-style: italic;
-        white-space: pre-wrap;
-
-        @media(min-width: 426px){
-          width: 80% !important;
-          font-size: 14px !important;
-        }
-
-        @media(min-width: 1024px){
-          width: 60% !important;
-          font-size: 16px !important;
+        input {
+          height:0;
         }
       }
     }
   }
+
+  .title-container {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    &:after, &:before {
+      background-color: #afafaf;
+      content: "";
+      display: inline-block;
+      height: 1px;
+      position: relative;
+      vertical-align: middle;
+      width: 25%;
+    }
+
+    h2 {
+      margin:0 5px;
+    }
+  }
+
+  .glossary-grid {
+    display:grid;
+    max-width: 1300px;
+    margin: auto;
+    margin-bottom: 120px;
+    min-height: 32vh;
+    grid-template-columns: 1fr;
+    
+    justify-items: center;
+    align-items: flex-start;
+
+    @media(min-width: $md) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media(min-width: $xl) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .ingredient-container {
+      padding: 0 19px;
+      margin: 25px 0;
+      width:100%;
+      height:100%;
+
+      .ingredient-card {
+        padding: 30px;
+        height:100%;
+        box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
+        display:flex;
+        flex-direction: column;
+
+        .card-preheader {
+          border-bottom: 2px solid rgba(53,46,46,.125);
+
+          .preheader-content {
+            padding-bottom: 20px;
+
+            .ingredient-badge-container {
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 10px;
+
+              .ingredient-badge {
+                border-radius: 24px;
+                color: rgb(255, 255, 255);
+                font-weight: 500;
+                margin-bottom: 10px;
+                font-size: 13px;
+                line-height: 0;
+                display: flex;
+                align-items: center;
+                padding: 0 5px;
+
+                img {
+                  vertical-align: middle;
+                  height: 13px;
+                  margin: 4px;
+                }
+
+                .ingredient-source {
+                  font-size: 13px !important;
+                  margin: 0 5px 0;
+                }
+              }
+
+              .Plant {
+                background: #91a24f;
+              }
+              .Made {
+                background: #771214;
+              }
+              .Water {
+                background: #366db5;
+              }
+              .Vitamins {
+                background: grey;
+              }
+              .Animal {
+                background: #b36527;
+              }
+
+              .read-more-link {
+                color: $orange;
+                text-decoration: none;
+                font-size: 12px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+
+            }
+            .ingredient-title {
+              font-size: 18px;
+
+              @media(min-width: $sm) {
+                font-size: 20px !important;
+              }
+            }
+            .ingredient-label {
+              color: #a9a9a9!important;
+              margin: 0;
+              font-size:14px !important;
+            }
+          }
+        }
+
+        .ingredient-content {
+          padding: 20px 0;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          .ingredient-function {
+            margin-bottom: 10px;
+            font-family: "adrianna-bold", sans-serif;
+            font-size: 14px;
+          }
+          .ingredient-benefits {
+            color: $brown;
+            margin:0;
+          }
+        }
+
+        .foundInTitle {
+            margin-bottom: 10px;
+            font-family: "adrianna-bold", sans-serif;
+            font-size: 14px;
+            color:$brown;
+        }
+        .foundIn {
+          color: $orange;
+          font-size: 14px;
+          margin-bottom:7px;
+        }
+
+      }
+    }
+  }
+
+  .ingredient-disclaimer {
+    margin: auto;
+    max-width: 1300px;
+    margin-bottom: 90px;
+    
+    
+    .disclaimer-text {
+      width: 100%;
+      font-size: 12px;
+      padding: 0 19px;
+      color: #352E2E;
+      font-family: "adrianna", sans-serif;
+      font-style: italic;
+      white-space: pre-wrap;
+
+      @media(min-width: 426px) {
+        width: 80% !important;
+        font-size: 14px !important;
+      }
+
+      @media(min-width: 1024px) {
+        width: 60% !important;
+        font-size: 16px !important;
+      }
+    }
+  }
+}
 </style>

@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.sudisfaction-guarantee:after{
+.sudisfaction-guarantee:after {
   content: "";
   width: 100%;
   height: 1px;
@@ -33,30 +33,30 @@ export default {
   bottom: 0;
   margin: auto;
 }
-.sudisfaction-guarantee{
+.sudisfaction-guarantee {
   text-align: center;
   padding: 15px;
   position: relative;
   z-index: 0;
 
-  @media(max-width:325px){
+  @media(max-width:325px) {
     padding: 0;
   }
 
-  .sudisfaction-container{
+  .sudisfaction-container {
     width: 320px;
     background: #fff;
     margin: auto;
     z-index: 4;
     text-align: center;
 
-    h6{
+    h6 {
       margin-bottom: 8px;
       margin-top: 12px;
       line-height: 1;
     }
 
-    .foot-icon{
+    .foot-icon {
       width: 50px;
     }
   }

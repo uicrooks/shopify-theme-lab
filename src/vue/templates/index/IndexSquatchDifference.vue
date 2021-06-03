@@ -53,7 +53,7 @@
 import SquatchButton from "@vue/ui-elements/squatch-button";
 export default {
   name: "IndexSquatchDifference",
-  components:{
+  components: {
     SquatchButton,
   }
 };
@@ -62,64 +62,64 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/variables/fonts.scss";
 
-  .index-squatch-difference{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1440px;
-    padding: 60px 0;
-    margin:auto;
+.index-squatch-difference {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1440px;
+  padding: 60px 0;
+  margin:auto;
 
-    @media(min-width:768px){
-      flex-direction: row;
-    }
+  @media(min-width:768px) {
+    flex-direction: row;
+  }
 
-    .image-container{
-      width:100%;
-    }
+  .image-container {
+    width:100%;
+  }
 
-    .squatch-difference-container{
-      padding: 0 15px;
+  .squatch-difference-container {
+    padding: 0 15px;
 
-      .squatch-difference-content{
-        padding: 30px 0;
-        text-align: center;
+    .squatch-difference-content {
+      padding: 30px 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      .brand-content {
+        p {
+          text-align: left !important;
+        }
+      }
+
+      .squatch-difference-border {
+        margin: 1.5rem 0;
+        border-top: 2px solid #ddc1a5!important;
+      }
+
+      .squatch-difference {
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        flex-wrap: wrap;
 
-        .brand-content{
-          p{
-            text-align: left !important;
+        .icon-container {
+          width: 100%;
+          padding:0 15px;
+          flex: 0 0 33.3333333333%;
+          max-width: 33.3333333333%;
+
+          .subtext {
+            font-family: "adrianna-bold", sans-serif;
+            color:#1a110c;
           }
         }
 
-        .squatch-difference-border{
-          margin: 1.5rem 0;
-          border-top: 2px solid #ddc1a5!important;
-        }
-
-        .squatch-difference{
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          .icon-container{
-            width: 100%;
-            padding:0 15px;
-            flex: 0 0 33.3333333333%;
-            max-width: 33.3333333333%;
-
-            .subtext{
-              font-family: "adrianna-bold", sans-serif;
-              color:#1a110c;
-            }
-          }
-
-          .big-cta-button{
-            width: 256px;
-          }
+        .big-cta-button {
+          width: 256px;
         }
       }
     }
   }
+}
 </style>

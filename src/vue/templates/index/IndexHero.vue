@@ -36,62 +36,61 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "@/styles/main.scss";
-@import "@/styles/variables/fonts.scss";
 
-  .index-hero {
-    .image-header-bg{
-      position:relative;
-      .banner-background {
-        padding-left: 15px;
-        background-image:url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
-        color: white;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center top 58%;
-        height: 600px;
-        justify-content: start;
-       
-        display: flex;
+.index-hero {
+  .image-header-bg {
+    position:relative;
+    .banner-background {
+      padding-left: 15px;
+      background-image:url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
+      color: white;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center top 58%;
+      height: 600px;
+      justify-content: start;
+      
+      display: flex;
+      align-items: center;
+
+      @media(min-width: $md) {
+        padding-left: 50px;
+        background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671');
+      }
+
+      .brand-content {
+        padding: 0 15px;
+        display:flex;
         align-items: center;
+        flex-flow: column wrap;
+        bottom: 50px;
+        text-align: center;
+        position: absolute;
 
-        @media(min-width: $md){
-          padding-left: 50px;
-          background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671');
-        }
-  
-        .brand-content {
-          padding: 0 15px;
-          display:flex;
-          align-items: center;
-          flex-flow: column wrap;
-          bottom: 50px;
-          text-align: center;
+        @media(min-width: $md) {
+          margin-left: 42%;
+          align-items: flex-start;
           position: absolute;
+          text-align: left;
+          bottom: unset;
+        }
+        @media(min-width: 1400px) {
+          margin-left: 50%;
+        }
+        
+        .bottom-title {
+          margin-bottom:20px;
+        }
+        
+        .subheader {
+          display: none;
 
-          @media(min-width: $md){
-            margin-left: 42%;
-            align-items: flex-start;
-            position: absolute;
-            text-align: left;
-            bottom: unset;
-          }
-          @media(min-width: 1400px){
-            margin-left: 50%;
-          }
-          
-          .bottom-title{
-            margin-bottom:20px;
-          }
-          
-          .subheader{
-            display: none;
-
-            @media(min-width: $md){
-              display: block;
-            }
+          @media(min-width: $md) {
+            display: block;
           }
         }
       }
     }
   }
+}
 </style>

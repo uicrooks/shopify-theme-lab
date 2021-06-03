@@ -92,22 +92,22 @@ export default {
       required: false,
       default: "",
     },
-    imageSrc:{
+    imageSrc: {
       type: String,
       required: false,
       default: "",
     },
-    videoId:{
+    videoId: {
       type: String, 
       required: false,
       default: "",
     },
-    path:{
+    path: {
       type: String,
       required: false,
       default: "",
     },
-    cta:{
+    cta: {
       type: String,
       required: false,
       default: "",
@@ -130,100 +130,100 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/variables/fonts.scss";
+@import "@/styles/main.scss";
 
-.image-mobile{
-  @media(min-width:768px){
+.image-mobile {
+  @media(min-width:$md) {
     display: none;
   }
 
-  img{
+  img {
     width: 100%;
   }
 }
 
-.big-cta-button{
+.big-cta-button {
   width: 256px;
 }
 
-.preheader{
+.preheader {
   margin-bottom: 15px;
   font-size: 16px;
   color: #1a110c;
 }
-.subheader{
+.subheader {
   font-weight: 600;
   margin-bottom: 20px;
   font-size: 20px;
 }
 
-.banner-desktop{
+.banner-desktop {
   padding: 60px 0px 60px 15px;
 
-  &.reversed{
+  &.reversed {
     padding: 60px 15px 60px 0;
   }
 
-  @media(max-width:767px){
+  @media(max-width:767px) {
     display: none;
   }
 }
-.banner-display{
+.banner-display {
     max-width:1440px;
     width:100%;
     margin:auto;
 }
-.outer-row{
+.outer-row {
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
     margin-bottom: 30px;
 
-    @media(max-width:767px){
+    @media(max-width:767px) {
       flex-direction: column;
     }
 
-    .brand-content{
+    .brand-content {
       padding: 15px;
       
-      &.reversed{
+      &.reversed {
         width: 100%;
       }
-      @media(min-width:768px){
+      @media(min-width: $md) {
         padding: 0 15px;
       }
     }
     .banner-image{
         flex: 0 0 100%;
         max-width: 100%;
-        @media(min-width:768px){
+        @media(min-width: $md) {
           flex: 0 0 50%;
           max-width: 50%;
         }
 
-      .desktop-image{
+      .desktop-image {
         width: 100%;
       }
     }
-    .banner-content{
+    .banner-content {
         flex: 0 0 100%;
         max-width: 100%;
         padding: 0;
 
-        &.reversed{
-          @media(min-width:768px){
+        &.reversed {
+          @media(min-width: $md) {
             padding: 0 0 0 15px !important; 
             order:2 !important;
           }
         }
 
-        @media(min-width:768px){
+        @media(min-width: $md) {
           flex: 0 0 50%;
           max-width: 50%;
           padding-right: 15px;
         }
       
-      .banner-text{
+      .banner-text {
         display:flex; 
         align-items:center;
         height:100%;
@@ -232,29 +232,27 @@ export default {
         padding: 0;
         text-align: center;
 
-        @media(min-width:768px){
+        @media(min-width:$md) {
           padding-right: 2.5rem;
           text-align: initial;
         }
 
-        .cta-wrapper{
+        .cta-wrapper {
           display: flex;
           justify-content: center;
 
-          @media(min-width:768px){
+          @media(min-width: $md) {
             justify-content: initial;
           }
         }
 
         &.reversed{
-          @media(min-width:768px){
+          @media(min-width: $md) {
             padding: 0 0 0 2.5rem;
           }
         }
 
       }
-
-
     }
 }
 

@@ -152,109 +152,108 @@ export default {
 @import "@/styles/partials/brand.scss";
 @import "@/styles/main.scss";
 
-  .featured-products{
+.featured-products {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .preheader-container {
     width: 100%;
-    display: flex;
-    flex-direction: column;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 
-    .preheader-container{
+    .featured-products-preheader {
       width: 100%;
-      padding-right: 15px;
-      padding-left: 15px;
-      margin-right: auto;
-      margin-left: auto;
+      padding: 30px 15px 0;
+      text-align: center;
 
-      .featured-products-preheader{
-        width: 100%;
-        padding: 30px 15px 0;
-        text-align: center;
-
-        .subheader{
-          color: #5a3714;
-          font-family: 'adrianna-bold', sans-serif;
-        }
+      .subheader {
+        color: #5a3714;
+        font-family: 'adrianna-bold', sans-serif;
       }
-    }
-
-    .featured-products-container{
-      display:flex;
-      position: relative;
-
-      .featured-products-content{
-        width: 100%;
-        max-width: 1660px;
-        display: flex;
-        flex-direction: column;
-        padding-top:30px;
-        flex-wrap: wrap;
-
-
-        @media(min-width :$md){
-          flex-direction: row;
-          padding-top:0;
-          margin:auto
-        }
-
-        .product-card{
-          width: 100%;
-          padding-right: 15px;
-          padding-left: 15px;
-          margin-bottom: 30px;
-          
-          @media(min-width:$md){
-            flex: 0 0 50%;
-            max-width: 50%;
-          }
-
-          @media(min-width: 1300px){
-            flex: 0 0 25%;
-            max-width: 25%;
-          }
-
-          .product-card-content{
-            height:100%;
-            width:100%;
-            display: flex;
-            flex-direction: column;
-            border: none;
-            border-radius: 5px;
-            background-color: white;
-            overflow: hidden;
-            box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
-
-            .brand-content {
-              padding: 30px 15px 0;
-              text-align: center;
-              h3 {
-                  margin-bottom: 20px;
-              }
-
-              .cta-btns{
-                .link{
-                  color: #cc6328;
-                  text-decoration: none;
-                }
-  
-                a:hover{
-                  cursor: pointer;
-                  transition: all .2s ease-in-out;
-                }
-              }
-
-            }
-          }
-        }
-      }
-      .woodgrain-bg{
-        height: 100%;
-        bottom:0;
-        background-color: $tan;
-
-        @media(min-width: $md){
-          height: 50%;
-        }
-      }
-
     }
   }
+
+  .featured-products-container {
+    display:flex;
+    position: relative;
+
+    .featured-products-content {
+      width: 100%;
+      max-width: 1660px;
+      display: flex;
+      flex-direction: column;
+      padding-top:30px;
+      flex-wrap: wrap;
+
+
+      @media(min-width :$md) {
+        flex-direction: row;
+        padding-top:0;
+        margin:auto
+      }
+
+      .product-card {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-bottom: 30px;
+        
+        @media(min-width:$md) {
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+
+        @media(min-width: 1300px) {
+          flex: 0 0 25%;
+          max-width: 25%;
+        }
+
+        .product-card-content {
+          height:100%;
+          width:100%;
+          display: flex;
+          flex-direction: column;
+          border: none;
+          border-radius: 5px;
+          background-color: white;
+          overflow: hidden;
+          box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
+
+          .brand-content {
+            padding: 30px 15px 0;
+            text-align: center;
+            h3 {
+                margin-bottom: 20px;
+            }
+
+            .cta-btns {
+              .link {
+                color: #cc6328;
+                text-decoration: none;
+              }
+
+              a:hover {
+                cursor: pointer;
+                transition: all .2s ease-in-out;
+              }
+            }
+
+          }
+        }
+      }
+    }
+    .woodgrain-bg {
+      height: 100%;
+      bottom:0;
+      background-color: $tan;
+
+      @media(min-width: $md) {
+        height: 50%;
+      }
+    }
+  }
+}
 </style>
