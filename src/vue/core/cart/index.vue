@@ -19,9 +19,9 @@
         <div class="cart-title">
           Your Cart
           <b-icon
-            v-b-toggle.cart
             icon="x"
             font-scale="1.5"
+            @click="hide"
           />
         </div>
       </template>
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       cart: null
-    }
+    };
   },
   computed: {
     numOfItems() {

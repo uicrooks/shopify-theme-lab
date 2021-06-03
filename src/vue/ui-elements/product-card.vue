@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       added: false
-    }
+    };
   },
   methods: {
     addToCart() {

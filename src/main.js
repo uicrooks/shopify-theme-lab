@@ -1,7 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import CartService from "./vue/services/cart.service.js";
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -72,7 +71,7 @@ Vue.prototype.$axios = axios;
      ? component.name
      : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
    Vue.component(name, component);
- })
+ });
 
 new Vue({
   el: "#app",  

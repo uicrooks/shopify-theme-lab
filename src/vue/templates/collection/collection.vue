@@ -18,7 +18,6 @@
 <script>
 import Jumbotron from "@/vue/ui-elements/jumbotron";
 import HaircareCollectionContent from "@/vue/templates/collection/haircare-collection-content";
-import StoreService from "@/vue/services/store.service";
 import JumbotronConfigs from "@/configs/collection-jumbotron";
 
 export default {
@@ -41,7 +40,7 @@ export default {
     return {
       collection: {},
       products: []
-    }
+    };
   },
   computed: {
     jumbotronConfig() {
@@ -53,7 +52,7 @@ export default {
           header: match.header,
           bodyText: match.bodyText,
           ctaButton: match.ctaButton
-        }
+        };
       }
       return {
         videoId: "",
@@ -64,7 +63,7 @@ export default {
           text: "",
           path: ""
         }
-      }
+      };
     },
     
   },

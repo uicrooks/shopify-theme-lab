@@ -407,7 +407,7 @@ export default {
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }]
       }
-    }
+    };
   },
   computed: {
     loggedIn() {
@@ -429,7 +429,7 @@ export default {
     console.log(window);
     console.log(this.cart);
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

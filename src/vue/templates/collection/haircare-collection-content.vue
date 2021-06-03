@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import productCard from "@/vue/ui-elements/product-card.vue"
+import productCard from "@/vue/ui-elements/product-card.vue";
 
 export default {
   components: { productCard },
@@ -71,7 +71,7 @@ export default {
   mounted() {
     console.log("harcare collection content", this.products);
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

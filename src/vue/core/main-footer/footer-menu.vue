@@ -143,14 +143,14 @@ export default {
         name: "Privacy Policy",
         path: "/test"
       }],
-    }
+    };
   },
   methods: {
     navigateTo(path) {
       console.log(path);
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

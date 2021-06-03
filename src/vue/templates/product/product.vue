@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import StoreService from "@/vue/services/store.service";
-
 export default {
   name: "Product",
   props: {
