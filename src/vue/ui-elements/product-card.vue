@@ -82,8 +82,8 @@ export default {
     text-align: center;
 
     img {
-      height: 295px;
-      width: auto;
+      width: 100%;
+      max-height: 295px;
       object-fit: contain;
     }
   }

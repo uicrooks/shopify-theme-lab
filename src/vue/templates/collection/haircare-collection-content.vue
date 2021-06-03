@@ -11,6 +11,7 @@
         v-for="(product, index) of bundles"
         :key="`haircare-bundle-${index}`"
         :product="product"
+        class="product-card"
       />
     </div>
     <div class="collection-section-header">
@@ -24,6 +25,7 @@
         v-for="(product, index) of shampoos"
         :key="`haircare-shampoo-${index}`"
         :product="product"
+        class="product-card"
       />
     </div>
     <div class="collection-section-header">
@@ -31,6 +33,14 @@
       <div class="sub-header">
         Maintain your mane with natural daily moisture
       </div>
+    </div>
+    <div class="collection-section">
+      <product-card 
+        v-for="(product, index) of conditioners"
+        :key="`haircare-conditioner-${index}`"
+        :product="product"
+        class="product-card"
+      />
     </div>
   </div>
 </template>
@@ -95,7 +105,23 @@ export default {
   }
 
   .collection-section {
-    // padding: 
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+    .product-card {
+      width: 100%;
+
+      @include layout-md {
+        flex: 1;
+        width: unset;
+        max-width: 250px;
+      }
+
+      @include layout-lg {
+        max-width: 300px;
+      }
+    }
   }
 }
 </style>
