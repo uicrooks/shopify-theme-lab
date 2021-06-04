@@ -43,6 +43,21 @@ export default {
     }
     // add tracking data
   },
+  async updateItemQuantity(itemIndex, updatedQuantity) {
+    try {
+      const res = await axios.post("/cart/change.js", {
+        quantity: updatedQuantity,
+        line: itemIndex
+      });
+      console.log("result", res);
+      if (res.status === 200) {
+        return true;
+      }
+    } catch (err) {
+      console.log("Failed to update an item quantity", err);
+      return false;
+    }
+  },
   getProductSchema(product, variantId) {
     const variant = getMatchingVariantForProduct(product, variantId);
     if (!variant) {

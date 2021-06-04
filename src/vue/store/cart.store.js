@@ -25,6 +25,12 @@ const actions = {
     if (itemAdded) {
       dispatch("initialize");
     }
+  },
+  async updateQuantity({ dispatch }, item) {
+    const quantityUpdated = await CartService.updateItemQuantity(item.line, item.quantity);
+    if (quantityUpdated) {
+      dispatch("initialize");
+    }
   }
 };
 
