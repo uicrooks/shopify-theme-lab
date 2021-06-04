@@ -1,13 +1,16 @@
 <template>
   <div class="cart-component">
     <b-icon
-      v-b-toggle.cart
+      aria-controls="cart"
+      :aria-expanded="isOpen"
       icon="cart"
       font-scale="2"
+      @click="toggleCart"
     />
     <span>{{ numberOfItems }}</span>
     <b-sidebar
       id="cart"
+      v-model="isOpen"
       aria-labelledby="cart-title"
       title="Sidebar"
       body-class="cart-body"
@@ -88,12 +91,10 @@
 
 <script>
 import CartService from "@/vue/services/cart.service";
-import QuantitySwitch from "@vue/reusables/quantity-switch.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "Cart",
-  components: { QuantitySwitch },
   props: {
     currencyObj: {
       type: Object,
@@ -101,13 +102,8 @@ export default {
     }
   },
   computed: {
-    // items() {
-    //   return this.$store.getters["cart/items"];
-    // },
-    // numberOfItems() {
-    //   return this.$store.getters["cart/numberOfItems"];
-    // }
     ...mapGetters("cart", [
+      "isOpen",
       "subtotal",
       "items",
       "numberOfItems"
@@ -119,6 +115,9 @@ export default {
     }
   },
   methods: {
+    toggleCart() {
+      this.$store.commit("cart/toggleCart");
+    },
     async updateQuantity(itemIndex, quantity) {
       const updated = await CartService.updateItemQuantity(itemIndex + 1, quantity);
       if (updated) {

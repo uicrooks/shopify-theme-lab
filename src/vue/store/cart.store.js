@@ -3,10 +3,14 @@ import CartService from "@/vue/services/cart.service";
 const state = () => ({
   currencyCode: "USD",
   currencySymbol: "$",
-  cart: {}
+  cart: {},
+  isOpen: false
 });
 
 const getters = {
+  isOpen: (state) => {
+    return state.isOpen;
+  },
   subtotal: (state) => {
     return state.cart.total_price ? state.cart.total_price : 0;
   },
@@ -44,6 +48,9 @@ const mutations = {
   },
   setCart(state, cartData) {
     state.cart = cartData;
+  },
+  toggleCart(state) {
+    state.isOpen = !state.isOpen;
   }
 };
 

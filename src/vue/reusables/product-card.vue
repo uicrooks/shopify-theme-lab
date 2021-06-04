@@ -18,7 +18,12 @@
       </p>
       <div class="product-pricing">
         {{ product.price | money("$") }}
-        <span class="compare-at-pricing">{{ product.compare_at_price | money("$") }}</span>
+        <span
+          v-if="product.compare_at_price"
+          class="compare-at-pricing"
+        >
+          {{ product.compare_at_price | money("$") }}
+        </span>
       </div>
       <div class="add-button">
         <squatch-button
@@ -54,6 +59,7 @@ export default {
       console.log(added);
       if (added) {
         this.$store.dispatch("cart/initialize");
+        this.$store.commit("cart/toggleCart");
         this.added = true;
       }
     }
@@ -94,6 +100,7 @@ export default {
 
     .product-title {
       cursor: pointer;
+      min-height: 42px;
       @include font-style-heading($size: 20px, $color: $dark-brown, $lh: 20px);
 
       &:hover {
@@ -103,6 +110,7 @@ export default {
 
     .product-description {
       margin-top: 14px;
+      min-height: 50px;
       @include font-style-heading($size: 16px, $color: $brown, $lh: 16px);
     }
 
