@@ -22,7 +22,7 @@
                 >
               </div>
               <div class="customer-review-title">
-                <strong>Best damn soap ever...period.</strong> 
+                <strong class="review-title">Best damn soap ever...period.</strong> 
                 <p class="review-stars">
                   ★★★★★
                 </p>
@@ -49,7 +49,7 @@
                 >
               </div>
               <div class="customer-review-title">
-                <strong>Ditch the body wash</strong> 
+                <strong class="review-title">Ditch the body wash</strong> 
                 <p class="review-stars">
                   ★★★★★
                 </p>
@@ -76,7 +76,7 @@
                 >
               </div>
               <div class="customer-review-title">
-                <strong>Made in the USA, smells incredible!</strong> 
+                <strong class="review-title">Made in the USA, smells incredible!</strong> 
                 <p class="review-stars">
                   ★★★★★
                 </p>
@@ -123,29 +123,29 @@ export default {
   .review-content {
     display: flex;
     justify-content: center;
-    width:100%;
+    width: 100%;
     position: relative;
 
-    @media(min-width: $md) {
-      padding-bottom:20px;
+    @include layout-md {
+      padding-bottom: 20px;
     }
 
     .review-table {
       width: 100%;
-      max-width:1024px;
-      height:100%;
-      margin:auto;
+      max-width: 1024px;
+      height: 100%;
+      margin: auto;
       display: flex;
       overflow: scroll;
 
-      @media(min-width: $md) {
+      @include layout-md {
         overflow: hidden;
       }
 
       .review-container {
         flex: 0 0 33.3333333333%;
-        width:100%;
-        padding:15px;
+        width: 100%;
+        padding: 15px;
 
         @media(min-width: 768px) {
           max-width: 33.3333333333%;
@@ -157,21 +157,20 @@ export default {
           display: flex;
           flex-direction: column;
           width: 90vw;
-          height:100%;
-          box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
+          height: 100%;
+          box-shadow: 0 .5rem 1rem rgba(26,17,12,.15);
           background-color: white;
 
-          @media(min-width: $md) {
+          @include layout-md {
             width: 100%;
           }
 
           .review-title {
             display: flex;
 
-            strong {
-              margin-bottom: 15px;
-              font-family: "worker-3d", sans-serif;
-              font-size: 16px
+            .review-title {
+              margin: 0 15px 0 0;
+              @include font-style-heading($size: 16px);
             }
             
             .reviewer-image {
@@ -185,7 +184,7 @@ export default {
             }
 
             .review-stars {
-              color: #cc6328!important;
+              color: $orange!important;
             }
           }
 
@@ -193,8 +192,7 @@ export default {
             line-height: 1;
           }
           .reviewer-name {
-            font-family: "adrianna-bold", sans-serif;
-            color: rgb(90, 55, 20);
+            @include font-style-body-bold($color:$brown);
           }
           p {
             font-size: 14px;
@@ -204,10 +202,10 @@ export default {
     }
     .woodgrain-bg {
       height: 100%;
-      bottom:0;
+      bottom: 0;
       background-color: $tan;
 
-      @media(min-width: $md) {
+      @include layout-md {
         height: 50%;
       }
     }

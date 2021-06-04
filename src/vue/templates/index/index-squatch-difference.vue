@@ -60,22 +60,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/variables/fonts.scss";
+@import "@/styles/main.scss";
 
 .index-squatch-difference {
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   width: 100%;
   max-width: 1440px;
   padding: 60px 0;
-  margin:auto;
+  margin: auto;
 
-  @media(min-width:768px) {
-    flex-direction: row;
+  @include layout-md {
+    flex-flow: row nowrap !important;
   }
 
   .image-container {
-    width:100%;
+    width: 100%;
   }
 
   .squatch-difference-container {
@@ -85,7 +85,7 @@ export default {
       padding: 30px 0;
       text-align: center;
       display: flex;
-      flex-direction: column;
+      flex-flow: column wrap;
 
       .brand-content {
         p {
@@ -105,13 +105,12 @@ export default {
 
         .icon-container {
           width: 100%;
-          padding:0 15px;
+          padding: 0 15px;
           flex: 0 0 33.3333333333%;
           max-width: 33.3333333333%;
 
           .subtext {
-            font-family: "adrianna-bold", sans-serif;
-            color:#1a110c;
+            @include font-style-body-bold($color: #1a110c);
           }
         }
 

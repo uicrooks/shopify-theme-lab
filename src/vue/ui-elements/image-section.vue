@@ -133,7 +133,7 @@ export default {
 @import "@/styles/main.scss";
 
 .image-mobile {
-  @media(min-width:$md) {
+  @include layout-md {
     display: none;
   }
 
@@ -164,14 +164,14 @@ export default {
     padding: 60px 15px 60px 0;
   }
 
-  @media(max-width:767px) {
+  @media(max-width: 767px) {
     display: none;
   }
 }
 .banner-display {
-    max-width:1440px;
-    width:100%;
-    margin:auto;
+    max-width: 1440px;
+    width: 100%;
+    margin: auto;
 }
 .outer-row {
     display: flex;
@@ -189,14 +189,15 @@ export default {
       &.reversed {
         width: 100%;
       }
-      @media(min-width: $md) {
+      @include layout-md {
         padding: 0 15px;
       }
     }
     .banner-image{
         flex: 0 0 100%;
         max-width: 100%;
-        @media(min-width: $md) {
+
+        @include layout-md {
           flex: 0 0 50%;
           max-width: 50%;
         }
@@ -211,13 +212,13 @@ export default {
         padding: 0;
 
         &.reversed {
-          @media(min-width: $md) {
+          @include layout-md {
             padding: 0 0 0 15px !important; 
-            order:2 !important;
+            order: 2 !important;
           }
         }
 
-        @media(min-width: $md) {
+        @include layout-md {
           flex: 0 0 50%;
           max-width: 50%;
           padding-right: 15px;
@@ -232,7 +233,7 @@ export default {
         padding: 0;
         text-align: center;
 
-        @media(min-width:$md) {
+        @include layout-md {
           padding-right: 2.5rem;
           text-align: initial;
         }
@@ -241,13 +242,13 @@ export default {
           display: flex;
           justify-content: center;
 
-          @media(min-width: $md) {
+          @include layout-md {
             justify-content: initial;
           }
         }
 
         &.reversed{
-          @media(min-width: $md) {
+          @include layout-md {
             padding: 0 0 0 2.5rem;
           }
         }

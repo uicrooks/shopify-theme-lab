@@ -2,17 +2,11 @@
   <div class="ingredient-glossary">
     <!-- GLOSSARY HEADER  -->
     <div class="glossary-header">
-      <div 
-        class="col-12 col-xl-6 m-auto text-center" 
-        style="max-width:646px;padding:0 19px;"
-      >
-        <h2 class="text-white">
+      <div class="glossary-header-content">
+        <h2>
           Ingredient Glossary
         </h2>
-        <p 
-          class="header-sub" 
-          style="margin: auto; line-height: 1.2;"
-        >
+        <p class="header-sub">
           Changing the way men approach personal care by providing the finest ingredients nature has to offer.
         </p>
       </div>
@@ -36,7 +30,7 @@
 
     <!-- INPUT FIELD -->
     <div class="carousel-container">
-      <div style="position:relative">
+      <div class="carousel-container-content">
         <input 
           v-model="filter" 
           type="text" 
@@ -50,7 +44,6 @@
           height="24" 
           viewBox="0 0 24 24" 
           width="24" 
-          style="position: absolute; top: 0;left:0; bottom: 0; margin: auto; fill: #AFAFAF;"
         >
           <path 
             d="M0 0h24v24H0V0z" 
@@ -66,10 +59,7 @@
           id="scroll-indicator_right" 
           @click="scrollSlider('right')"
         >
-          <span 
-            style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" 
-            class="shadow"
-          >
+          <span class="shadow arrow">
             →
           </span>
         </div>
@@ -77,18 +67,14 @@
           id="scroll-indicator_left" 
           @click="scrollSlider('left')"
         >
-          <span 
-            style="opacity: .8; background: rgb(61 51 42); color: #fff; padding: 6px 6px 5px; line-height: 1; z-index: 9; border-radius: 50%;cursor:pointer;" 
-            class="shadow"
-          >
+          <span class="shadow arrow">
             &#8592;
           </span>
         </div>
         <div 
           class="noscrollbar" 
-          style="overflow-x:auto;padding-top:10px;"
         >
-          <label class="col-4 col-md-2">
+          <label class="item-label">
             <input 
               v-model="selected"
               type="radio" 
@@ -96,131 +82,131 @@
               value="bar-soap" 
               checked 
             >
-            <div class="product-category-card text-center">
+            <div class="product-category-card">
               <img 
-                style="height:110px;margin:auto;"
+                class="carousel-img"
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
               >
-              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+              <p class="carousel-item-name">
                 Bar Soap
               </p>
             </div>
           </label>
-          <label class="col-4 col-md-2">
+          <label class="item-label">
             <input 
               v-model="selected"
               type="radio" 
               name="product_category" 
               value="haircare" 
             >
-            <div class="product-category-card text-center">
+            <div class="product-category-card">
               <img 
-                style="height:110px;margin:auto;"
+                class="carousel-img"
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Haricare.png?v=1616443457"
               >
-              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+              <p class="carousel-item-name">
                 Hair Care
               </p>
             </div>
           </label>
-          <label class="col-4 col-md-2">
+          <label class="item-label">
             <input 
               v-model="selected"
               type="radio" 
               name="product_category" 
               value="liquid-soap" 
             >
-            <div class="product-category-card text-center">
+            <div class="product-category-card">
               <img 
-                style="height:110px;margin:auto;"
+                class="carousel-img"
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/liquidSoap_2pack_large.png?v=1591741590"
               >
-              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+              <p class="carousel-item-name">
                 Hand Soap
               </p>
             </div>
           </label>
-          <label class="col-4 col-md-2">
+          <label class="item-label">
             <input 
               v-model="selected"
               type="radio" 
               name="product_category" 
               value="toothpaste" 
             >
-            <div class="product-category-card text-center">
+            <div class="product-category-card">
               <img 
-                style="height:110px;margin:auto;"
+                class="carousel-img"
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_toothpaste.png?v=1616443457"
               >
-              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+              <p class="carousel-item-name">
                 Toothpaste
               </p>
             </div>
           </label>
-          <label class="col-4 col-md-2">
+          <label class="item-label">
             <input 
               v-model="selected"
               type="radio" 
               name="product_category" 
               value="deodorant" 
             >
-            <div class="product-category-card text-center">
+            <div class="product-category-card">
               <img 
-                style="height:110px;margin:auto;"
+                class="carousel-img"
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Deo.png?v=1616443457"
               >
-              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+              <p class="carousel-item-name">
                 Deodorant
               </p>
             </div>
           </label>
-          <label class="col-4 col-md-2">
+          <label class="item-label">
             <input 
               v-model="selected"
               type="radio" 
               name="product_category" 
               value="cologne" 
             >
-            <div class="product-category-card text-center">
+            <div class="product-category-card">
               <img 
-                style="height:110px;margin:auto;"
+                class="carousel-img"
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Cologne_collections.png?v=1616615358"
               >
-              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+              <p class="carousel-item-name">
                 Cologne &amp; Beard Oil
               </p>
             </div>
           </label>
-          <label class="col-4 col-md-2">
+          <label class="item-label">
             <input 
               v-model="selected"
               type="radio" 
               name="product_category" 
               value="candle" 
             >
-            <div class="product-category-card text-center">
+            <div class="product-category-card">
               <img 
-                style="height:110px;margin:auto;"
+                class="carousel-img"
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/Candle-BayRum_1.png?v=1616621024"
               >
-              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+              <p class="carousel-item-name">
                 Candle
               </p>
             </div>
           </label>
-          <label class="col-4 col-md-2">
+          <label class="item-label">
             <input 
               v-model="selected"
               type="radio" 
               name="product_category" 
               value="sanitizer" 
             >
-            <div class="product-category-card text-center">
+            <div class="product-category-card">
               <img 
-                style="height:110px;margin:auto;"
+                class="carousel-img"
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/mixed_sanitizer-2pack_7d2c96c5-6e15-45a4-86a1-3957bc975f9d.png?v=1594068473"
               >
-              <p class="mt-2 mb-0 line-height-normal prod_type-label">
+              <p class="carousel-item-name">
                 Hand Sanitizer
               </p>
             </div>
@@ -425,15 +411,26 @@ export default {
     justify-content: center;
     align-items: center;
     position: relative;
+    text-align: center;
+    
+    .glossary-header-content{
+      max-width: 646px;
+      padding: 0 19px;
+
+      .header-sub{
+        margin: auto;
+        line-height: 1.2;
+      }
+    }
 
     .img-btmright {
       position: absolute;
-      bottom:0;
-      right:0;
+      bottom: 0;
+      right: 0;
       height: 75%;
 
       @media(max-width: 670px) {
-        height:35%;
+        height: 35%;
       }
     }
 
@@ -449,6 +446,7 @@ export default {
       top: 0;
       left: 0;
       height: 80%;
+      
       @media(max-width: 670px) {
         height:47%;
       }
@@ -459,6 +457,7 @@ export default {
       bottom: 0;
       left: 0;
       height: 50%;
+
       @media(max-width: 670px) {
         height:31%;
       }
@@ -467,25 +466,36 @@ export default {
 
   .carousel-container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+    padding: 0 15px;
+    margin: 0 auto;
 
-    @media(min-width: $sm) {
+    @include layout-sm {
       max-width: 540px;
     }
 
-    @media (min-width: $md) {
+    @include layout-md{
       max-width: 720px;
     }
 
-    @media (min-width: $lg) {
+    @include layout-lg {
       max-width: 960px;
     }
 
-    @media (min-width: $xl) {
+    @include layout-xl {
       max-width: 1024px;
+    }
+
+    .carousel-container-content{
+      position: relative;
+    }
+
+    .srch_icon {
+      position: absolute; 
+      top: 0;
+      left:0; 
+      bottom: 0; 
+      margin: auto; 
+      fill: #AFAFAF;
     }
 
     input {
@@ -507,6 +517,17 @@ export default {
     .carousel-content {
       position: relative;
       overflow: auto;
+
+      .arrow {
+        opacity: .8; 
+        background: #3d332a; 
+        color: #fff; 
+        padding: 6px 6px 5px; 
+        line-height: 1; 
+        z-index: 9; 
+        border-radius: 50%;
+        cursor: pointer;
+      }
 
       #scroll-indicator_right {
         position: absolute; 
@@ -540,46 +561,56 @@ export default {
         flex-wrap: nowrap;
         -ms-overflow-style: none;  /* IE and Edge */
         scrollbar-width: none;  /* Firefox */
+        overflow-x:auto;
+        padding: 0 10px 0 0;
 
-        label {
-          flex: 0 0 33.3333333333%;
-          max-width: 33.3333333333%;
+        .item-label {
           position: relative;
           width: 100%;
-          padding-right: 15px;
-          padding-left: 15px;
+          padding: 0 15px;
           display: inline-block;
-          margin-bottom: .5rem;
+          margin: 0 0 .5rem 0;
 
-          @media (min-width: 768px) {
+          @include layout-md {
             flex: 0 0 16.6666666667%;
             max-width: 16.6666666667%;
           }
 
-          img {
-            height: 51px !important;
-            margin: auto!important;
-            @media (min-width: $sm){
-              height: 110px !important;
+          .product-category-card{
+            text-align: center;
+
+            .carousel-img {
+              height: 51px;
+              margin: auto;
+  
+              @include layout-sm {
+                height: 110px;
+              }
+            }
+
+            .carousel-item-name{
+              margin: .5rem 0 0 0;
             }
           }
 
+
           p {
             font-size: 12px;
-            @media (min-width: $sm) {
+
+            @include layout-sm {
               font-size: 16px;
             }
           }
         }
         input {
-          height:0;
+          height: 0;
         }
       }
     }
   }
 
   .title-container {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 
@@ -594,12 +625,12 @@ export default {
     }
 
     h2 {
-      margin:0 5px;
+      margin: 0 5px;
     }
   }
 
   .glossary-grid {
-    display:grid;
+    display: grid;
     max-width: 1300px;
     margin: auto;
     margin-bottom: 120px;
@@ -609,25 +640,25 @@ export default {
     justify-items: center;
     align-items: flex-start;
 
-    @media(min-width: $md) {
+    @include layout-md {
       grid-template-columns: 1fr 1fr;
     }
 
-    @media(min-width: $xl) {
+    @include layout-xl {
       grid-template-columns: 1fr 1fr 1fr;
     }
 
     .ingredient-container {
       padding: 0 19px;
       margin: 25px 0;
-      width:100%;
-      height:100%;
+      width: 100%;
+      height: 100%;
 
       .ingredient-card {
         padding: 30px;
-        height:100%;
+        height: 100%;
         box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
-        display:flex;
+        display: flex;
         flex-direction: column;
 
         .card-preheader {
@@ -643,9 +674,9 @@ export default {
 
               .ingredient-badge {
                 border-radius: 24px;
-                color: rgb(255, 255, 255);
+                color: white;
                 font-weight: 500;
-                margin-bottom: 10px;
+                margin: 0 0 10px 0;
                 font-size: 13px;
                 line-height: 0;
                 display: flex;
@@ -697,14 +728,14 @@ export default {
             .ingredient-title {
               font-size: 18px;
 
-              @media(min-width: $sm) {
-                font-size: 20px !important;
+              @include layout-sm {
+                font-size: 20px;
               }
             }
             .ingredient-label {
-              color: #a9a9a9!important;
+              color: #a9a9a9;
               margin: 0;
-              font-size:14px !important;
+              font-size:14px;
             }
           }
         }
@@ -716,26 +747,23 @@ export default {
           width: 100%;
 
           .ingredient-function {
-            margin-bottom: 10px;
-            font-family: "adrianna-bold", sans-serif;
-            font-size: 14px;
+            margin: 0 0 10px 0;
+            @include font-style-body-bold($size:14px);
           }
           .ingredient-benefits {
             color: $brown;
-            margin:0;
+            margin: 0;
           }
         }
 
         .foundInTitle {
-            margin-bottom: 10px;
-            font-family: "adrianna-bold", sans-serif;
-            font-size: 14px;
-            color:$brown;
+          margin: 0 0 10px 0; 
+          @include font-style-body-bold($size:14px, $color:$brown);
         }
         .foundIn {
           color: $orange;
           font-size: 14px;
-          margin-bottom:7px;
+          margin: 0 0 7px 0;
         }
 
       }
@@ -750,12 +778,10 @@ export default {
     
     .disclaimer-text {
       width: 100%;
-      font-size: 12px;
       padding: 0 19px;
-      color: #352E2E;
-      font-family: "adrianna", sans-serif;
+      @include font-style-body($size:12px);
       font-style: italic;
-      white-space: pre-wrap;
+      white-space: pre-line;
 
       @media(min-width: 426px) {
         width: 80% !important;

@@ -3,7 +3,7 @@
     <div class="preheader-container">
       <div class="featured-products-preheader">
         <div>
-          <h1 class="mb-0">
+          <h1>
             Our Products
           </h1> 
           <p class="subheader">
@@ -30,8 +30,7 @@
               </p> 
               <h3>Bar Soaps</h3> 
               <div 
-                class="cta-btns mt-auto" 
-                style="margin-bottom: 15px;"
+                class="cta-btns" 
               >
                 <a 
                   href="/collections/bar-soaps" 
@@ -59,8 +58,7 @@
               </p> 
               <h3>Hair Care</h3> 
               <div 
-                class="cta-btns mt-auto" 
-                style="margin-bottom: 15px;"
+                class="cta-btns" 
               >
                 <a 
                   href="/collections/hair-care" 
@@ -88,8 +86,7 @@
               </p> 
               <h3>Deodorant</h3> 
               <div 
-                class="cta-btns mt-auto" 
-                style="margin-bottom: 15px;"
+                class="cta-btns" 
               >
                 <a 
                   href="/collections/deodorant-4-pack" 
@@ -117,8 +114,7 @@
               </p> 
               <h3>Toothpaste</h3> 
               <div 
-                class="cta-btns mt-auto" 
-                style="margin-bottom: 15px;"
+                class="cta-btns" 
               >
                 <a 
                   href="/collections/toothpaste" 
@@ -155,12 +151,11 @@ export default {
 .featured-products {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
 
   .preheader-container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 0 15px;
     margin-right: auto;
     margin-left: auto;
 
@@ -170,38 +165,36 @@ export default {
       text-align: center;
 
       .subheader {
-        color: #5a3714;
+        color: $brown;
         font-family: 'adrianna-bold', sans-serif;
       }
     }
   }
 
   .featured-products-container {
-    display:flex;
+    display: flex;
     position: relative;
 
     .featured-products-content {
       width: 100%;
       max-width: 1660px;
       display: flex;
-      flex-direction: column;
-      padding-top:30px;
-      flex-wrap: wrap;
+      flex-flow: column wrap;
+      padding: 30px 0 0 0;
 
 
-      @media(min-width :$md) {
-        flex-direction: row;
-        padding-top:0;
-        margin:auto
+      @include layout-md {
+        flex-flow: row wrap;
+        padding-top: 0;
+        margin: auto;
       }
 
       .product-card {
         width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-bottom: 30px;
+        padding: 0 15px;
+        margin: 0 0 30px 0;
         
-        @media(min-width:$md) {
+        @include layout-md {
           flex: 0 0 50%;
           max-width: 50%;
         }
@@ -212,10 +205,10 @@ export default {
         }
 
         .product-card-content {
-          height:100%;
-          width:100%;
+          height: 100%;
+          width: 100%;
           display: flex;
-          flex-direction: column;
+          flex-flow: column wrap;
           border: none;
           border-radius: 5px;
           background-color: white;
@@ -230,6 +223,8 @@ export default {
             }
 
             .cta-btns {
+              margin-bottom: 15px;
+
               .link {
                 color: #cc6328;
                 text-decoration: none;
@@ -247,10 +242,10 @@ export default {
     }
     .woodgrain-bg {
       height: 100%;
-      bottom:0;
+      bottom: 0;
       background-color: $tan;
 
-      @media(min-width: $md) {
+      @include layout-md {
         height: 50%;
       }
     }

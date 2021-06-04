@@ -31,14 +31,14 @@
   height: 250px;
   background-color: #1a110c!important;
 
-  @media(min-width:992px) {
+  @include layout-lg {
     height: 440px;
   }
 
   .banner-title {
     padding: 3rem 15px;
     
-    @media(min-width: $md) {
+    @include layout-md {
       padding: 4.7rem 15px;
     }
     .banner-text {

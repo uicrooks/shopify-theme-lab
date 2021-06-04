@@ -25,6 +25,7 @@
 
 <script>
 import SquatchButton from "@vue/ui-elements/squatch-button";
+
 export default {
   name: "IndexSubOffer",
   components: {
@@ -38,12 +39,12 @@ export default {
 @import "@/styles/main.scss";
 
 .subOfferSection {
-  width:100%;
+  width: 100%;
   max-width: 1400px;
   margin: 90px auto 45px;
 
   .subscribe-container {
-    width:100%;
+    width: 100%;
 
     .subscribe-content {
       display: flex;
@@ -56,7 +57,7 @@ export default {
         align-items: center;
         color: $brown;
         text-align: center;
-        display:flex;
+        display: flex;
         flex-direction: column;
 
         h2 {
@@ -64,10 +65,8 @@ export default {
         }
 
         .subheader {
-          font-weight: 600;
           margin-bottom: 20px;
-          font-size: 20px;
-          font-family: "adrianna-bold", sans-serif;
+          @include font-style-body-bold($size:20px);
         }
 
         .copy {

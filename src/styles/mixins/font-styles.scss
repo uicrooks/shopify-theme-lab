@@ -23,3 +23,16 @@
   @if $weight { font-weight: $weight; }
   @if $lh { line-height: $lh; }
 }
+
+@mixin font-style-body-bold(
+  $size: 14px,
+  $color: false,
+  $weight: 800, 
+  $lh: 14px
+) {
+  font-family: 'adrianna-bold', Arial, sans-serif;
+  @if $size { font-size: $size; }
+  @if $color { color: $color; }
+  @if $weight { font-weight: $weight; }
+  @if $lh { line-height: $lh; }
+}

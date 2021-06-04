@@ -2,7 +2,7 @@
   <div class="footer-component">
     <div class="newsletter woodgrain-bg">
       <div class="newsletter-content">
-        <strong>GET 20% OFF YOUR FIRST SUBSCRIPTION!</strong>
+        <strong class="sub-msg">GET 20% OFF YOUR FIRST SUBSCRIPTION!</strong>
         <div class="newsletter-form">
           <input 
             class="user-email" 
@@ -67,9 +67,6 @@ export default {
 @import "@/styles/partials/brand.scss";
 
 .footer-component {
-  // position: fixed;
-  // bottom: 0;
-  // left: 0;
   width: 100%;
 
   .newsletter {
@@ -84,17 +81,15 @@ export default {
       align-items: center;
       width:100%;
       max-width: 395px;
-      margin:auto;
-      flex-direction: column;
+      margin: auto;
+      flex-flow: column wrap;
 
-      @media(min-width: $md) {
+      @include layout-md {
         max-width: 500px;
       }
 
-
-
-      strong {
-        font-family: "adrianna-bold", sans-serif;
+      .sub-msg {
+        @include font-style-body-bold;
         text-align: center;
       }
 
@@ -109,29 +104,29 @@ export default {
           padding: 0px 0px 0px 16px;
           height: 48px;
           text-align: left;
-          color: rgb(36, 36, 36);
+          color: black;
           font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
           font-size: 16px;
           font-weight: 400;
           letter-spacing: 0px;
-          background-color: rgb(255, 255, 255);
-          border: 1px solid rgb(36, 36, 36);
+          background-color: white;
+          border: 1px solid black;
           width: 67%;
           outline:black;
 
-          @media(min-width: $md) {
+          @include layout-md {
             width: 80%;
           }
         }
         .sign-up {
           position: relative;
           padding: 11px 10px;
-          background: rgb(204, 99, 40);
+          background: $orange;
           border-radius: 0px;
           border-style: solid;
-          border-color: rgb(204, 99, 40);
+          border-color: $orange;
           border-width: 5px;
-          color: rgb(255, 255, 255);
+          color: white;
           font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
           font-size: 16px;
           font-weight: 700;

@@ -44,7 +44,7 @@
             For other international orders, please note we are not responsible for any additional duties or tariffs that may be accumulated upon arrival to the destination country.
             <br>
             <br>
-            In addition, please note that our free shipping handling policies <strong>do not apply to orders shipping to international countries other than Canada.</strong>
+            In addition, please note that our free shipping handling policies <strong class="bolded-text">do not apply to orders shipping to international countries other than Canada.</strong>
           </p>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default {
         text-align: center;
         margin-bottom: 28px;
 
-        @media(min-width: $md) {
+        @include layout-md {
           text-align: left;
         }
 
@@ -97,15 +97,15 @@ export default {
           font-size: calc(1.04375rem + 1.10833vw);
 
           @media(min-width: 1200px) {
-            font-size: 1.875 rem;
+            font-size: 1.875rem;
           } 
         }
         .shipping-description {
           font-size: 14px;
           color: $brown;
 
-          strong {
-            font-family: "adrianna-bold", sans-serif;
+          .bolded-text {
+            @include font-style-body-bold;
           }
           
         }

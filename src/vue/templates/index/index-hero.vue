@@ -39,10 +39,10 @@ export default {
 
 .index-hero {
   .image-header-bg {
-    position:relative;
+    position: relative;
     .banner-background {
       padding-left: 15px;
-      background-image:url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
+      background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
       color: white;
       background-repeat: no-repeat;
       background-size: cover;
@@ -53,7 +53,7 @@ export default {
       display: flex;
       align-items: center;
 
-      @media(min-width: $md) {
+      @include layout-md {
         padding-left: 50px;
         background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671');
       }
@@ -67,7 +67,7 @@ export default {
         text-align: center;
         position: absolute;
 
-        @media(min-width: $md) {
+        @include layout-md {
           margin-left: 42%;
           align-items: flex-start;
           position: absolute;
@@ -79,13 +79,13 @@ export default {
         }
         
         .bottom-title {
-          margin-bottom:20px;
+          margin-bottom: 20px;
         }
         
         .subheader {
           display: none;
 
-          @media(min-width: $md) {
+          @include layout-md {
             display: block;
           }
         }
