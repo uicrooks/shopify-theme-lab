@@ -7,6 +7,9 @@ const state = () => ({
 });
 
 const getters = {
+  subtotal: (state) => {
+    return state.cart.total_price ? state.cart.total_price : 0;
+  },
   items: (state) => {
     return state.cart.items;
   },

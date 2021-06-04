@@ -33,7 +33,6 @@ export default {
         id: variant.id,
         properties: product.properties ? product.properties : {}
       });
-      console.log("result", res);
       if (res.status === 200) {
         return true;
       }
@@ -49,7 +48,6 @@ export default {
         quantity: updatedQuantity,
         line: itemIndex
       });
-      console.log("result", res);
       if (res.status === 200) {
         return true;
       }

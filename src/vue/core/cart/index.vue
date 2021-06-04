@@ -11,11 +11,12 @@
       aria-labelledby="cart-title"
       title="Sidebar"
       body-class="cart-body"
+      sidebar-class="cart-drawer"
+      :lazy="true"
       right
       no-header
       shadow
       backdrop
-      lazy
     >
       <template #default="{ hide }">
         <div class="cart-title">
@@ -31,8 +32,12 @@
             v-for="(item, index) of items"
             :key="`cart-item-${index}`"
             class="item"
+            :class="{'last-item': index === items.length - 1}"
           >
-            <a :href="item.url">
+            <a
+              :href="item.url"
+              class="item-image-wrapper"  
+            >
               <img
                 :src="item.image"
                 :alt="`${item.product_title} image`"
@@ -46,20 +51,36 @@
               >
                 {{ item.product_title }}
               </a>
+              <b-icon
+                icon="x"
+                class="remove-icon"
+                scale="2"
+                @click="updateQuantity(index, 0)"
+              />
               <div class="item-variant-title">
                 {{ item.variant_title }}
               </div>
               <div class="item-pricing">
                 <quantity-switch
                   :quantity="item.quantity"
-                  @decrease="decreaseQuantity(index)"
-                  @increase="increaseQuantity(index)"
+                  @decrease="updateQuantity(index, item.quantity - 1)"
+                  @increase="updateQuantity(index, item.quantity + 1)"
                 />
                 <span>{{ item.line_price | money("$") }}</span>
               </div>
             </div>
           </div>
+          <div class="sub-total">
+            SubTotal
+            <span>
+              {{ subtotal | money("$") }}
+            </span>
+          </div>
         </div>
+        <squatch-button
+          text="Checkout"
+          class="checkout-button"
+        />
       </template>
     </b-sidebar>
   </div>
@@ -68,10 +89,11 @@
 <script>
 import CartService from "@/vue/services/cart.service";
 import QuantitySwitch from "@vue/reusables/quantity-switch.vue";
+import { mapGetters } from "vuex";
 
 export default {
-  components: { QuantitySwitch },
   name: "Cart",
+  components: { QuantitySwitch },
   props: {
     currencyObj: {
       type: Object,
@@ -79,16 +101,17 @@ export default {
     }
   },
   computed: {
-    items() {
-      return this.$store.getters["cart/items"];
-    },
-    numberOfItems() {
-      return this.$store.getters["cart/numberOfItems"];
-    }
-  //   ...mapGetters('some/nested/module', [
-  //   'someGetter', // -> this.someGetter
-  //   'someOtherGetter', // -> this.someOtherGetter
-  // ])
+    // items() {
+    //   return this.$store.getters["cart/items"];
+    // },
+    // numberOfItems() {
+    //   return this.$store.getters["cart/numberOfItems"];
+    // }
+    ...mapGetters("cart", [
+      "subtotal",
+      "items",
+      "numberOfItems"
+    ])
   },
   watch: {
     items(val) {
@@ -96,24 +119,18 @@ export default {
     }
   },
   methods: {
-    async decreaseQuantity(itemIndex) {
-      console.log("itemIndex", itemIndex);
-      console.log(this.items[itemIndex]);
-      const updated = await CartService.updateItemQuantity(itemIndex + 1, this.items[itemIndex].quantity--);
-      console.log(updated);
+    async updateQuantity(itemIndex, quantity) {
+      const updated = await CartService.updateItemQuantity(itemIndex + 1, quantity);
       if (updated) {
         this.$store.dispatch("cart/initialize");
       }
-      // this.$store.dispatch("cart/updateQuantity", { line: itemIndex + 1, quantity: this.items[itemIndex].quantity-- });
-    },
-    increaseQuantity(itemIndex) {
-
     }
   },
   async mounted() {
     this.$store.dispatch("cart/initialize");
     this.$store.commit("cart/setCurrency", this.currencyObj);
-    console.log(this.items);
+    console.log("items", this.items);
+    console.log("cart", this.$store.state.cart);
   }
 };
 </script>
@@ -133,43 +150,88 @@ export default {
     @include font-style-heading($size: 23px, $color: $white, $lh: 23px);
   }
 
-  .item {
-    display: flex;
-    flex-flow: row nowrap;
-    border-bottom: 1px solid $off-white;
-    padding: 14px;
+  .cart-content {
+    padding: 10px 0 0;
+    background-color: $white;
 
-    .item-image {
-      max-height: 80px;
-      width: auto;
-      cursor: pointer;
-      margin-right: 10px;
-    }
+    .item {
+      display: flex;
+      flex-flow: row nowrap;
+      border-bottom: 1px solid $off-white;
+      padding: 14px 0;
+      margin: 0 14px;
 
-    .item-details {
-      flex: 1;
+      &.last-item {
+        border-bottom: none;
+      }
 
-      .item-title {
-        text-decoration: none;
-        cursor: pointer;
-        @include font-style-heading($size: 14px, $color: $dark-brown, $lh: 14px);
+      .item-image-wrapper {
+        flex: 1;
+        text-align: center;
+        margin-right: 16px;
 
-        &:hover {
-          color: $orange;
+        .item-image {
+          max-height: 80px;
+          width: auto;
+          cursor: pointer;
         }
       }
 
-      .item-variant-title {
-        margin: 7px 0;
-        @include font-style-body($color: $brown);
+
+      .item-details {
+        flex: 3;
+        position: relative;
+
+        .item-title {
+          text-decoration: none;
+          cursor: pointer;
+          @include font-style-heading($size: 14px, $color: $dark-brown, $lh: 14px);
+
+          &:hover {
+            color: $orange;
+          }
+        }
+
+        .item-variant-title {
+          margin: 7px 0;
+          @include font-style-body($color: $brown);
+        }
+
+        .remove-icon {
+          position: absolute;
+          top: 6px;
+          right: 0;
+          color: $maroon;
+          cursor: pointer;
+        }
+      }
+
+      .item-pricing {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        font-size: 15px;
       }
     }
 
-    .item-pricing {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
+    .sub-total {
+      position: relative;
+      padding: 15px 15px 15px 30px;
+      border-top: 1px solid $off-white;
+      @include font-style-body($color: $dark-brown);
+
+      span {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        @include font-style-body($size: 15px, $color: $green, $weight: 600);
+      }
     }
+  }
+
+  .checkout-button {
+    margin: 20px 30px;
+    padding: 16px;
   }
 }
 </style>
@@ -177,7 +239,16 @@ export default {
 <style lang="scss">
 @import "@/styles/main.scss";
 
+.cart-drawer {
+  width: 100%;
+  min-width: 320px;
+
+  @include layout-md {
+    width: 440px;
+  }
+}
+
 .cart-body {
-  background-color: $white;
+  background-color: $off-white;
 }
 </style>

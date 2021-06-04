@@ -56,7 +56,7 @@ if (window.location.pathname.includes("collection")) {
 Vue.filter("money", (val, currency) => {
   if (!val) return "N/A";
   const money = (val / 100).toFixed(2);
-  return currency ? `${currency} ${money}` : money;
+  return currency ? `${currency}${money}` : money;
 });
 
 new Vue({
