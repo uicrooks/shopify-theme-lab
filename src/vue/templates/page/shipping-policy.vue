@@ -55,7 +55,6 @@
 <script>
 import TextOnlyBanner from "@vue/ui-elements/text-only-banner";
 
-
 export default {
   name: "ShippingPolicy",
   components: {
@@ -97,7 +96,7 @@ export default {
           font-size: calc(1.04375rem + 1.10833vw);
 
           @media(min-width: 1200px) {
-            font-size: 1.875 rem;
+            font-size: 1.875rem;
           } 
         }
         .shipping-description {

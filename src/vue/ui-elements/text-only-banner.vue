@@ -36,10 +36,20 @@
   }
 
   .banner-title {
-    padding: 3rem 15px;
+    padding: 0 15px;
+    margin: auto;
     
+    @media(min-width: $sm) {
+      max-width: 540px;
+    }
     @media(min-width: $md) {
-      padding: 4.7rem 15px;
+      max-width: 720px;
+    }
+    @media(min-width: $lg) {
+      max-width: 960px;
+    }
+    @media(min-width: $xl) {
+      max-width: 1024px;
     }
     .banner-text {
       font-size: calc(1.12188rem + 3.0875vw);
