@@ -1,5 +1,8 @@
 <template>
   <div class="collection-component">
+    <new-look-banner
+      v-if="handle === 'bar-soaps'"
+    />
     <jumbotron
       v-if="jumbotronConfig"
       :video-id="jumbotronConfig.videoId"
@@ -34,6 +37,7 @@
 import DefaultCollectionContent from "@/vue/templates/collection/default-collection-content";
 import HaircareCollectionContent from "@/vue/templates/collection/haircare-collection-content";
 import JumbotronConfigs from "@/configs/collection-jumbotron";
+import StoreService from "@/vue/services/store.service";
 
 export default {
   name: "Collection",
@@ -69,11 +73,6 @@ export default {
     console.log("collection component, handle:", this.handle);
     this.products = JSON.parse(this.productsData);
     console.log(this.products);
-// const result = await StoreService.getCollectionById(this.id);
-    // console.log(result);
-    // this.collection = result;
-    // this.products = result.products;
-    // console.log(this.products);
   }
 };
 </script>

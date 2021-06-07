@@ -1,6 +1,9 @@
 <div id="layout-collection">
+  {% if collection.handle == 'best-sellers' %} {% assign products =
+  collections['collection-page-best-sellers'].products %} {% else %} {% assign
+  products = collection.products %} {% endif %}
   <collection
     handle="{{ collection.handle }}"
-    :products-data="{{ collection.products | json | json | escape }}"
+    :products-data="{{ products | json | json | escape }}"
   ></collection>
 </div>

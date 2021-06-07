@@ -270,27 +270,27 @@ export default {
         name: "Shop More Products",
         isOpen: false,
         subMenuItems: [{ 
-          name: "Colonge",
-          path: "/test"
+          name: "Cologne",
+          path: "/collections/colognes"
         }, {
           name: "Beard Oil",
-          path: "/test"
+          path: "/collections/beard-oil"
         }, {
           name: "Hand Sanitizer",
-          path: "/test"
+          path: "/collections/hand-sanitizer"
         }, {
           name: "Hand Soap",
-          path: "/test"
+          path: "/collections/hand-soap"
         }, {
           name: "Gift Cards",
           badge: "New!",
-          path: "/test"
+          path: "/products/squatch-gift-card"
         }, {
           name: "Candles",
-          path: "/test"
+          path: "/products/bay-rum-candle"
         }, {
           name: "Gear",
-          path: "/test"
+          path: "/collections/gear"
         }]
       },
       infoMenu: {
@@ -351,7 +351,7 @@ export default {
         },
         {
           name: "Deodorant",
-          path: "/",
+          path: "/collections/deodorant",
           badge: "New!"
         },
         {
@@ -375,7 +375,7 @@ export default {
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457"
         }, {
           name: "Bar Soaps",
-          path: "/test",
+          path: "/collections/bar-soaps",
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }, {
           name: "Hair Care",
@@ -383,7 +383,7 @@ export default {
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }, {
           name: "Deodorant",
-          path: "/test",
+          path: "/collections/deodorants",
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
           badge: "New!"
         }, {
@@ -545,6 +545,7 @@ export default {
     border-top: 2px solid $white-darken;
     background-color: $white;
     position: absolute;
+    z-index: 9;
 
     .submenu-title {
       margin-bottom: 15px;
@@ -633,10 +634,6 @@ export default {
 </style>
 
 <style lang="scss">
-.b-sidebar-body {
-  overflow-y: hidden !important;
-}
-
 .squatch-button-component.big-cta-button {
   padding: 20px 15px;
   margin: 16px;
