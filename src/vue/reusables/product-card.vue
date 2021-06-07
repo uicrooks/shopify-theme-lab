@@ -90,7 +90,7 @@ export default {
 
     img {
       width: 100%;
-      max-height: 295px;
+      height: 295px;
       object-fit: contain;
     }
   }

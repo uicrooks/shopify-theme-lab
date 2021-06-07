@@ -1,26 +1,44 @@
 <template>
   <div class="collection-component">
     <jumbotron
+      v-if="jumbotronConfig"
       :video-id="jumbotronConfig.videoId"
+      :image-src="jumbotronConfig.imageSrc"
       :pre-header="jumbotronConfig.preHeader"
       :header="jumbotronConfig.header"
       :body-text="jumbotronConfig.bodyText"
       :cta-button="jumbotronConfig.ctaButton"
     />
+    <div
+      v-else
+      class="default-jumbotron"
+    >
+      <h1>Our Products</h1>
+      <p>
+        Handmade, natural products to tame your inner Squatch.
+      </p>
+    </div>
+
     <haircare-collection-content
       v-if="handle === 'hair-care'"
+      :products="products"
+    />
+    <default-collection-content
+      v-else
       :products="products"
     />
   </div>
 </template>
 
 <script>
+import DefaultCollectionContent from "@/vue/templates/collection/default-collection-content";
 import HaircareCollectionContent from "@/vue/templates/collection/haircare-collection-content";
 import JumbotronConfigs from "@/configs/collection-jumbotron";
 
 export default {
   name: "Collection",
   components: {
+    DefaultCollectionContent,
     HaircareCollectionContent
   },
   props: {
@@ -43,29 +61,12 @@ export default {
   computed: {
     jumbotronConfig() {
       const match = JumbotronConfigs[this.handle];
-      if (match) {
-        return {
-          videoId: match.videoId,
-          preHeader: match.preHeader,
-          header: match.header,
-          bodyText: match.bodyText,
-          ctaButton: match.ctaButton
-        };
-      }
-      return {
-        videoId: "",
-        preHeader: "",
-        header: "",
-        bodyText: "",
-        ctaButton: {
-          text: "",
-          path: ""
-        }
-      };
+      return match ? match : null;
     },
     
   },
   async mounted() {
+    console.log("collection component, handle:", this.handle);
     this.products = JSON.parse(this.productsData);
     console.log(this.products);
 // const result = await StoreService.getCollectionById(this.id);
@@ -76,3 +77,29 @@ export default {
   }
 };
 </script>
+
+<style scoped lang="scss">
+@import "@/styles/main.scss";
+
+.collection-component {
+
+  h1 {
+    margin-bottom: 14px;
+    @include font-style-heading($size: 32px, $lh: 32px, $color: $white);
+  }
+
+  p {
+    margin-bottom: 0;
+    @include font-style-body($color: $white);
+  }
+
+  .default-jumbotron {
+    background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/dsq-woodgrain_texture-DARK.svg?v=1616535182");
+    background-size: 200%;
+    background-repeat: repeat;
+    background-color: $dark-brown;
+    padding: 42px 0;
+    text-align: center;
+  }
+}
+</style>

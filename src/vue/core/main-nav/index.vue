@@ -356,15 +356,15 @@ export default {
         },
         {
           name: "Toothpaste",
-          path: "/"
+          path: "/collections/toothpaste"
         },
         {
           name: "Shower Boosters",
-          path: "/"
+          path: "/collections/shower-boosters"
         },
         {
           name: "Best Sellers",
-          path: "/"
+          path: "/collections/best-sellers"
         }
       ],
       productsSubMenuOpen: false,
@@ -379,7 +379,7 @@ export default {
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }, {
           name: "Hair Care",
-          path: "/test",
+          path: "/collections/hair-care",
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }, {
           name: "Deodorant",
@@ -388,15 +388,15 @@ export default {
           badge: "New!"
         }, {
           name: "Toothpaste",
-          path: "/test",
+          path: "/collections/toothpaste",
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }, {
           name: "Shower Boosters",
-          path: "/test",
+          path: "/collections/shower-boosters",
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }, {
           name: "Best Sellers",
-          path: "/test",
+          path: "/collections/bset-sellers",
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }]
       }
