@@ -18,6 +18,7 @@
 <script>
 import ImageSection from "@vue/ui-elements/image-section";
 import SudisfactionGuarantee from "@vue/ui-elements/sudisfaction-guarantee"
+
 export default {
   name: "IndexQuiz",
   components: {

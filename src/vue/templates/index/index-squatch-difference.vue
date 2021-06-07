@@ -1,5 +1,5 @@
 <template>
-  <div class="index-squatch-difference">
+  <div class="index-squatch-difference-component">
     <div class="image-container">
       placeholder until figure out how to embed videos
     </div>
@@ -51,6 +51,7 @@
 
 <script>
 import SquatchButton from "@vue/ui-elements/squatch-button";
+
 export default {
   name: "IndexSquatchDifference",
   components: {
@@ -62,7 +63,7 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.index-squatch-difference {
+.index-squatch-difference-component {
   display: flex;
   flex-flow: column wrap;
   width: 100%;
@@ -89,13 +90,13 @@ export default {
 
       .brand-content {
         p {
-          text-align: left !important;
+          text-align: left;
         }
       }
 
       .squatch-difference-border {
         margin: 1.5rem 0;
-        border-top: 2px solid #ddc1a5!important;
+        border-top: 2px solid #ddc1a5;
       }
 
       .squatch-difference {
@@ -106,11 +107,11 @@ export default {
         .icon-container {
           width: 100%;
           padding: 0 15px;
-          flex: 0 0 33.3333333333%;
-          max-width: 33.3333333333%;
+          flex: 0 0 33.3%;
+          max-width: 33.3%;
 
           .subtext {
-            @include font-style-body-bold($color: #1a110c);
+            @include font-style-body-bold($color: $dark-brown);
           }
         }
 

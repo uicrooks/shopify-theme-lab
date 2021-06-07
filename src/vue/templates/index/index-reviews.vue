@@ -1,5 +1,5 @@
 <template>
-  <div class="index-reviews">
+  <div class="index-reviews-component">
     <div class="review-preheader">
       <p class="preheader">
         Don't Just Take Our Word For It
@@ -113,7 +113,7 @@ export default {
 @import "@/styles/partials/brand.scss";
 @import "@/styles/main.scss";
 
-.index-reviews {
+.index-reviews-component {
   padding: 30px 0;
 
   .review-preheader {

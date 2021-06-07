@@ -1,5 +1,5 @@
 <template>
-  <section class="subOfferSection">
+  <section class="index-sub-offer-component">
     <div class="subscribe-container">
       <div class="subscribe-content">
         <div class="brand-content">
@@ -38,7 +38,7 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.subOfferSection {
+.index-sub-offer-component {
   width: 100%;
   max-width: 1400px;
   margin: 90px auto 45px;
@@ -61,12 +61,12 @@ export default {
         flex-direction: column;
 
         h2 {
-          color: #1a110c;
+          color: $dark-brown;
         }
 
         .subheader {
           margin-bottom: 20px;
-          @include font-style-body-bold($size:20px);
+          @include font-style-body-bold($size: 20px);
         }
 
         .copy {
@@ -76,7 +76,7 @@ export default {
         }
 
         .image-container {
-          color:white;
+          color: $white;
         }
       }
     }

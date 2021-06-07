@@ -1,5 +1,5 @@
 <template>
-  <div class="featured-products">
+  <div class="index-featured-products-component">
     <div class="preheader-container">
       <div class="featured-products-preheader">
         <div>
@@ -137,10 +137,7 @@
 
 <script>
 export default {
-  name: "IndexFeaturedProducts",
-  components: {
-
-  }
+  name: "IndexFeaturedProducts"
 };
 </script>
 
@@ -148,7 +145,7 @@ export default {
 @import "@/styles/partials/brand.scss";
 @import "@/styles/main.scss";
 
-.featured-products {
+.index-featured-products-component {
   width: 100%;
   display: flex;
   flex-flow: column wrap;
@@ -218,8 +215,9 @@ export default {
           .brand-content {
             padding: 30px 15px 0;
             text-align: center;
+            
             h3 {
-                margin-bottom: 20px;
+              margin-bottom: 20px;
             }
 
             .cta-btns {
@@ -240,6 +238,7 @@ export default {
         }
       }
     }
+
     .woodgrain-bg {
       height: 100%;
       bottom: 0;

@@ -1,6 +1,5 @@
 <template>
-  <div class="ingredient-glossary">
-    <!-- GLOSSARY HEADER  -->
+  <div class="ingredient-glossary-component">
     <div class="glossary-header">
       <div class="glossary-header-content">
         <h2>
@@ -32,11 +31,10 @@
     <div class="carousel-container">
       <div class="carousel-container-content">
         <input 
-          v-model="filter" 
+          v-model="searchKeyword" 
           type="text" 
           placeholder="Search Ingredients..."
-          @click="inputEntry" 
-          @blur="inputExit" 
+          @click="searchKeyword = ''"
         >
         <svg 
           id="srch_icon"
@@ -56,7 +54,7 @@
       </div>
       <div class="carousel-content">
         <div 
-          id="scroll-indicator_right" 
+          id="scroll-indicator-right" 
           @click="scrollSlider('right')"
         >
           <span class="shadow arrow">
@@ -64,150 +62,33 @@
           </span>
         </div>
         <div 
-          id="scroll-indicator_left" 
+          id="scroll-indicator-left" 
           @click="scrollSlider('left')"
         >
           <span class="shadow arrow">
             &#8592;
           </span>
         </div>
-        <div 
-          class="noscrollbar" 
-        >
-          <label class="item-label">
+
+        <div class="noscrollbar">
+          <label
+            v-for="(category, index) of categories"
+            :key="`category-${index}`"
+            class="item-label"
+          >
             <input 
               v-model="selected"
               type="radio" 
-              name="product_category"
-              value="bar-soap" 
-              checked 
+              name="category"
+              :value="category" 
             >
             <div class="product-category-card">
               <img 
                 class="carousel-img"
-                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
+                :src="category.imageSrc"
               >
               <p class="carousel-item-name">
-                Bar Soap
-              </p>
-            </div>
-          </label>
-          <label class="item-label">
-            <input 
-              v-model="selected"
-              type="radio" 
-              name="product_category" 
-              value="haircare" 
-            >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img"
-                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Haricare.png?v=1616443457"
-              >
-              <p class="carousel-item-name">
-                Hair Care
-              </p>
-            </div>
-          </label>
-          <label class="item-label">
-            <input 
-              v-model="selected"
-              type="radio" 
-              name="product_category" 
-              value="liquid-soap" 
-            >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img"
-                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/liquidSoap_2pack_large.png?v=1591741590"
-              >
-              <p class="carousel-item-name">
-                Hand Soap
-              </p>
-            </div>
-          </label>
-          <label class="item-label">
-            <input 
-              v-model="selected"
-              type="radio" 
-              name="product_category" 
-              value="toothpaste" 
-            >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img"
-                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_toothpaste.png?v=1616443457"
-              >
-              <p class="carousel-item-name">
-                Toothpaste
-              </p>
-            </div>
-          </label>
-          <label class="item-label">
-            <input 
-              v-model="selected"
-              type="radio" 
-              name="product_category" 
-              value="deodorant" 
-            >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img"
-                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Deo.png?v=1616443457"
-              >
-              <p class="carousel-item-name">
-                Deodorant
-              </p>
-            </div>
-          </label>
-          <label class="item-label">
-            <input 
-              v-model="selected"
-              type="radio" 
-              name="product_category" 
-              value="cologne" 
-            >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img"
-                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Cologne_collections.png?v=1616615358"
-              >
-              <p class="carousel-item-name">
-                Cologne &amp; Beard Oil
-              </p>
-            </div>
-          </label>
-          <label class="item-label">
-            <input 
-              v-model="selected"
-              type="radio" 
-              name="product_category" 
-              value="candle" 
-            >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img"
-                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/Candle-BayRum_1.png?v=1616621024"
-              >
-              <p class="carousel-item-name">
-                Candle
-              </p>
-            </div>
-          </label>
-          <label class="item-label">
-            <input 
-              v-model="selected"
-              type="radio" 
-              name="product_category" 
-              value="sanitizer" 
-            >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img"
-                src="https://cdn.shopify.com/s/files/1/0275/7784/3817/products/mixed_sanitizer-2pack_7d2c96c5-6e15-45a4-86a1-3957bc975f9d.png?v=1594068473"
-              >
-              <p class="carousel-item-name">
-                Hand Sanitizer
+                {{ category.title }}
               </p>
             </div>
           </label>
@@ -218,11 +99,11 @@
 
     <!-- FILTER TITLE  -->
     <div 
-      v-if="filter_title"
+      v-if="selected && !searchKeyword"
       class="title-container"
     >
       <h2>
-        {{ filter_title }}
+        {{ selected.label }}
       </h2>
     </div>
 
@@ -230,8 +111,8 @@
     <!-- GLOSSARY GRID -->
     <div class="glossary-grid">
       <div 
-        v-for="ingredient in filtered_ingredients" 
-        :key="ingredient.ingredient"
+        v-for="ingredient in filteredIngredients" 
+        :key="ingredient.name"
         class="ingredient-container" 
       >
         <div class="ingredient-card">
@@ -240,36 +121,36 @@
               <div class="ingredient-badge-container">
                 <div 
                   class="ingredient-badge" 
-                  :class="ingredient.ingredientSource"
+                  :class="ingredient.source"
                 >
                   <img 
                     class="icon_img" 
-                    :src="ingredient.icon1_img"
+                    :src="ingredient.imageSrc"
                   >
                   <p class="ingredient-source">
-                    {{ ingredient.ingredientSource }}
+                    {{ ingredient.source }}
                   </p>
                 </div>
                 <a 
-                  v-if="ingredient.read_more_link"
-                  :href="ingredient.read_more_link" 
+                  v-if="ingredient.readMoreLink"
+                  :href="ingredient.readMoreLink" 
                   class="read-more-link" 
                 >
                   DIVE DEEPER
                 </a>
               </div>
               <h3 class="ingredient-title">
-                {{ ingredient.ingredient }}
+                {{ ingredient.name }}
               </h3>
               <p 
-                v-if="ingredient.onLabel"
+                v-if="ingredient.nameOnLabel"
                 class="ingredient-label" 
               >
-                {{ ingredient.onLabel }}
+                {{ ingredient.nameOnLabel }}
               </p>
               <p 
                 v-else
-                style="visibility:hidden;" 
+                class="ingredient-label blank"
               >
                 blank
               </p>
@@ -283,7 +164,7 @@
             </div>
             <div class="ingredient-benefits">
               <p>
-                {{ ingredient.additionalBenefits }}
+                {{ ingredient.benefits }}
               </p>
             </div>
           </div>  
@@ -291,7 +172,7 @@
             Found in
           </p>
           <p class="foundIn">
-            {{ ingredient.foundIn_titles.join(", ") }}
+            {{ ingredient.foundInTitles.join(", ") }}
           </p>
         </div>
       </div>
@@ -310,76 +191,68 @@
 </template>
 
 <script>
+import IngredientsList from "@/configs/page-ingredients";
 
 export default {
   name: "IngredientGlossary",
   data() {
     return {
-      all_ingredients: [],
-      filtered_ingredients: [],
-      filter:"",
-      filter_title:"bar soap",
-      filter_select:"",
-      selected:"bar-soap",
+      ingredients: IngredientsList,
+      categories: [{
+        label: "Bar Soap",
+        value: "bar-soap",
+        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
+      }, {
+        label: "Hair Care",
+        value: "haircare",
+        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Haricare.png?v=1616443457"
+      }, {
+        label: "Hand Soap",
+        value: "liquid-soap",
+        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/products/liquidSoap_2pack_large.png?v=1591741590"
+      }, {
+        label: "Toothpaste",
+        value: "toothpaste",
+        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_toothpaste.png?v=1616443457"
+      }, {
+        label: "Deodorant",
+        value: "deodorant",
+        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Deo.png?v=1616443457"
+      }, {
+        label: "Cologne & Beard Oil",
+        value: "cologne",
+        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Cologne_collections.png?v=1616615358"
+      }, {
+        label: "Candle",
+        value: "candle",
+        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/products/Candle-BayRum_1.png?v=1616621024"
+      }, {
+        label: "Hand Sanitizer",
+        value: "sanitizer",
+        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/products/mixed_sanitizer-2pack_7d2c96c5-6e15-45a4-86a1-3957bc975f9d.png?v=1594068473"
+      }],
+      selected: {
+        label: "",
+        value: "",
+        imageSrc: ""
+      },
+      searchKeyword: ""
     }
   },
-  watch: {
-    filter() {
-      console.log(this.filter)
-      if(this.filter === "") {
-        this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
+  computed: {
+    filteredIngredients() {
+      if (this.searchKeyword === "") {
+        return this.ingredients.filter(ingredient => {
+          return ingredient.foundInTags.includes(this.selected ? this.selected.value : "bar-soap");
+        });
       }
-      else {
-        this.filtered_ingredients = this.all_ingredients.filter(element => element.ingredient.toLowerCase().includes(`${this.filter}`))
-      }
-    },
-    selected() {
-      console.log(this.selected)
-      this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes(`${this.selected}`))
-      console.log(this.filtered_ingredients)
-      switch(this.selected) {
-        case "bar-soap":
-          this.filter_title = "bar soap"
-          break
-        case "haircare":
-          this.filter_title = "hair care"
-          console.log(this.filter_title)
-          break
-        case "liquid-soap":
-          this.filter_title = "hand soap"
-          break
-        case "toothpaste":
-          this.filter_title = "toothpaste"
-          break
-        case "deodorant":
-          this.filter_title = "deodorant"
-          break
-        case "cologne":
-          this.filter_title = "cologne"
-          break
-        case "candle":
-          this.filter_title = "candles"
-          break
-        case "sanitizer":
-          this.filter_title = "hand sanitizer"
-          break
-      }
+      return this.ingredients.filter(ingredeint => {
+        return ingredeint.name.toLowerCase().includes(this.searchKeyword.toLowerCase());
+      });
     }
   },
-  mounted() {
-    this.all_ingredients = JSON.parse(document.getElementById("glossary-data").innerHTML);
-    this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
-  },
+
   methods: {
-    inputEntry() {
-      this.filter_title = ""
-    },
-    inputExit() {
-      if(this.filter === "") {
-        this.filter_title = "Bar Soap"
-        this.filtered_ingredients = this.all_ingredients.filter(element => element.foundIn_tags.includes("bar-soap"))
-      }
-    },
     scrollSlider(direction) {
       console.log(direction)
         // if (direction == "left") {
@@ -392,20 +265,22 @@ export default {
         //     });
         // }
     },
+  },
+  mounted() {
+    this.selected = this.categories[0];
   }
-
 };
 </script>
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.ingredient-glossary {
+.ingredient-glossary-component {
 
   .glossary-header {
-    background: linear-gradient(180deg,#473729 22.89%,rgba(71,55,41,0) 161.44%),#2d2d2d;
+    background: linear-gradient(180deg, #473729 22.89%, rgba(71,55,41,0) 161.44%), #2d2d2d;
     height: 367px;
-    color: #fff;
+    color: $white;
     padding: 4rem 0;
     display: flex;
     justify-content: center;
@@ -448,7 +323,7 @@ export default {
       height: 80%;
       
       @media(max-width: 670px) {
-        height:47%;
+        height: 47%;
       }
     }
 
@@ -459,7 +334,7 @@ export default {
       height: 50%;
 
       @media(max-width: 670px) {
-        height:31%;
+        height: 31%;
       }
     }
   }
@@ -473,7 +348,7 @@ export default {
       max-width: 540px;
     }
 
-    @include layout-md{
+    @include layout-md {
       max-width: 720px;
     }
 
@@ -485,7 +360,7 @@ export default {
       max-width: 1024px;
     }
 
-    .carousel-container-content{
+    .carousel-container-content {
       position: relative;
     }
 
@@ -521,7 +396,7 @@ export default {
       .arrow {
         opacity: .8; 
         background: #3d332a; 
-        color: #fff; 
+        color: $white; 
         padding: 6px 6px 5px; 
         line-height: 1; 
         z-index: 9; 
@@ -529,7 +404,7 @@ export default {
         cursor: pointer;
       }
 
-      #scroll-indicator_right {
+      #scroll-indicator-right {
         position: absolute; 
         top: 0; 
         right: 10px; 
@@ -539,7 +414,7 @@ export default {
         align-items: center;
       }
 
-      #scroll-indicator_left {
+      #scroll-indicator-left {
         position: absolute; 
         top: 0; 
         left: 10px; 
@@ -576,7 +451,7 @@ export default {
             max-width: 16.6666666667%;
           }
 
-          .product-category-card{
+          .product-category-card {
             text-align: center;
 
             .carousel-img {
@@ -636,7 +511,6 @@ export default {
     margin-bottom: 120px;
     min-height: 32vh;
     grid-template-columns: 1fr;
-    
     justify-items: center;
     align-items: flex-start;
 
@@ -662,7 +536,7 @@ export default {
         flex-direction: column;
 
         .card-preheader {
-          border-bottom: 2px solid rgba(53,46,46,.125);
+          border-bottom: 2px solid rgba(53, 46, 46, .125);
 
           .preheader-content {
             padding-bottom: 20px;
@@ -698,15 +572,19 @@ export default {
               .Plant {
                 background: #91a24f;
               }
+
               .Made {
                 background: #771214;
               }
+
               .Water {
                 background: #366db5;
               }
+
               .Vitamins {
                 background: grey;
               }
+              
               .Animal {
                 background: #b36527;
               }
@@ -725,6 +603,7 @@ export default {
               }
 
             }
+
             .ingredient-title {
               font-size: 18px;
 
@@ -732,10 +611,16 @@ export default {
                 font-size: 20px;
               }
             }
+
             .ingredient-label {
               color: #a9a9a9;
               margin: 0;
               font-size:14px;
+
+
+              &.blank {
+                visibility: hidden;
+              }
             }
           }
         }
@@ -750,6 +635,7 @@ export default {
             margin: 0 0 10px 0;
             @include font-style-body-bold($size:14px);
           }
+
           .ingredient-benefits {
             color: $brown;
             margin: 0;
@@ -758,8 +644,9 @@ export default {
 
         .foundInTitle {
           margin: 0 0 10px 0; 
-          @include font-style-body-bold($size:14px, $color:$brown);
+          @include font-style-body-bold($size:14px, $color: $brown);
         }
+
         .foundIn {
           color: $orange;
           font-size: 14px;
@@ -779,9 +666,9 @@ export default {
     .disclaimer-text {
       width: 100%;
       padding: 0 19px;
-      @include font-style-body($size:12px);
       font-style: italic;
       white-space: pre-line;
+      @include font-style-body($size:12px);
 
       @media(min-width: 426px) {
         width: 80% !important;
