@@ -21,7 +21,7 @@
 
 Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
 
-> Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
+> Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or vuejs
 
 **TL;DR** Go to [Installing](#installing), then go to [Getting started](#getting-started). Now you're ready to start 🔥
 <!-- title / description (end) -->
