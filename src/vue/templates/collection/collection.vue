@@ -1,7 +1,7 @@
 <template>
   <div class="collection-component">
     <new-look-banner
-      v-if="handle === 'bar-soaps'"
+      :handle="handle"
     />
     <jumbotron
       v-if="jumbotronConfig"
@@ -22,8 +22,12 @@
       </p>
     </div>
 
+    <best-sellers-collection-content
+      v-if="handle === 'collection-page-best-sellers'"
+      :products="products"
+    />
     <haircare-collection-content
-      v-if="handle === 'hair-care'"
+      v-else-if="handle === 'hair-care'"
       :products="products"
     />
     <default-collection-content
@@ -34,14 +38,15 @@
 </template>
 
 <script>
+import BestSellersCollectionContent from "@/vue/templates/collection/best-sellers-collection-content";
 import DefaultCollectionContent from "@/vue/templates/collection/default-collection-content";
 import HaircareCollectionContent from "@/vue/templates/collection/haircare-collection-content";
 import JumbotronConfigs from "@/configs/collection-jumbotron";
-import StoreService from "@/vue/services/store.service";
 
 export default {
   name: "Collection",
   components: {
+    BestSellersCollectionContent,
     DefaultCollectionContent,
     HaircareCollectionContent
   },

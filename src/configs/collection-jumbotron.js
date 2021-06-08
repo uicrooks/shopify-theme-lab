@@ -59,6 +59,16 @@ export default {
       path: ""
     }
   },
+  "beard": {
+    videoId: "m6jwduexpz",
+    preHeader: "",
+    header: "Beard Oil",
+    bodyText: "Protect & moisturize your man mane.",
+    ctaButton: {
+      text: "",
+      path: ""
+    }
+  },
   "gear": {
     imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/gearmerch_3.png?v=1620848436",
     preHeader: "",

@@ -257,13 +257,13 @@ export default {
         isOpen: false,
         subMenuItems: [{ 
           name: "Subscribe & Save",
-          path: "/test"
+          path: "/pages/subscription-flow"
         }, {
           name: "Starter Bundles",
-          path: "/test"
+          path: "/pages/bundle-offers"
         }, {
           name: "Shop Bar Soaps",
-          path: "/test"
+          path: "/collections/bar-soaps"
         }]
       },
       moreMenu: {
@@ -274,7 +274,7 @@ export default {
           path: "/collections/colognes"
         }, {
           name: "Beard Oil",
-          path: "/collections/beard-oil"
+          path: "/collections/beard"
         }, {
           name: "Hand Sanitizer",
           path: "/collections/hand-sanitizer"

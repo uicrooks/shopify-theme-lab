@@ -83,6 +83,8 @@
         <squatch-button
           text="Checkout"
           class="checkout-button"
+          :action="true"
+          @takeAction="checkout"
         />
       </template>
     </b-sidebar>
@@ -111,7 +113,7 @@ export default {
   },
   watch: {
     items(val) {
-      console.log("watching cart items", val);
+      // console.log("watching cart items", val);
     }
   },
   methods: {
@@ -123,13 +125,14 @@ export default {
       if (updated) {
         this.$store.dispatch("cart/initialize");
       }
+    },
+    checkout() {
+      CartService.redirectToCheckout();
     }
   },
   async mounted() {
     this.$store.dispatch("cart/initialize");
     this.$store.commit("cart/setCurrency", this.currencyObj);
-    console.log("items", this.items);
-    console.log("cart", this.$store.state.cart);
   }
 };
 </script>

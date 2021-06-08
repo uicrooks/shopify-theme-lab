@@ -45,11 +45,13 @@ export default {
   props: {
     videoId: {
       type: String,
-      required: false
+      required: false,
+      default: ""
     },
     imageSrc: {
       type: String,
-      required: false
+      required: false,
+      default: ""
     },
     header: {
       type: String,
