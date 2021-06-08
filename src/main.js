@@ -1,92 +1,93 @@
 /**
  * imports
  */
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createApp } from 'vue'
+import { createStore } from 'vuex'
 import axios from 'axios'
 import './css/main.css'
 
 /**
- * vue settings
+ * create vue instance function
  */
-Vue.config.productionTip = false
+const createVueApp = () => {
+  const app = createApp({})
+
+  /**
+   * vue components
+   * auto-import all vue components
+   */
+  const vueComponents = require.context('./vue/components/', true, /\.(vue|js)$/)
+
+  vueComponents.keys().forEach(key => {
+    const component = vueComponents(key).default
+
+    // if a component has a name defined use the name, else use the path as the component name
+    const name = component.name
+      ? component.name
+      : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
+
+    app.component(name, component)
+  })
+
+  /**
+   * vuex
+   * auto-import all modules
+   */
+  const vuexModules = require.context('./vue/store/', true, /\.js$/)
+  const modules = {}
+
+  vuexModules.keys().forEach(key => {
+    const name = key.replace(/\.(\/|js)/g, '').replace(/\s/g, '-')
+    modules[name] = vuexModules(key).default
+  })
+
+  const store = createStore({
+    strict: process.env.NODE_ENV !== 'production',
+    modules
+  })
+
+  app.use(store)
+
+  /**
+   * vue mixins
+   * auto-register all mixins with a 'global' keyword in their filename
+   */
+  const mixins = require.context('./vue/mixins/', true, /.*global.*\.js$/)
+
+  mixins.keys().forEach(key => {
+    app.mixin(mixins(key).default)
+  })
+
+  /**
+   * vue directives
+   * auto-register all directives with a 'global' keyword in their filename
+   */
+  const directives = require.context('./vue/directives/', true, /.*global.*\.js$/)
+
+  directives.keys().forEach(key => {
+    const directive = directives(key).default
+    app.directive(directive.name, directive.directive)
+  })
+
+  /**
+   * vue config
+   * extend with additional features
+   */
+  app.config.globalProperties.$axios = axios
+
+  /**
+   * vue plugins
+   * extend with additional features
+   */
+  // app.use(MyPlugin)
+
+  return app
+}
 
 /**
- * vue components
- * auto-import all vue components
+ * create and mount vue instance
  */
-const vueComponents = require.context('./vue/components/', true, /\.(vue|js)$/)
-
-vueComponents.keys().forEach(key => {
-  const component = vueComponents(key).default
-
-  // if a component has a name defined use the name, else use the path as the component name
-  const name = component.name
-    ? component.name
-    : key.replace(/\.(\/|vue|js)/g, '').replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase())
-
-  Vue.component(name, component)
-})
-
-/**
- * vuex
- * auto-import all modules
- */
-Vue.use(Vuex)
-
-const vuexModules = require.context('./vue/store/', true, /\.js$/)
-const modules = {}
-
-vuexModules.keys().forEach(key => {
-  const name = key.replace(/\.(\/|js)/g, '').replace(/\s/g, '-')
-  modules[name] = vuexModules(key).default
-})
-
-const store = new Vuex.Store({
-  strict: process.env.NODE_ENV !== 'production',
-  modules
-})
-
-/**
- * vue mixins
- * auto-register all mixins with a 'global' keyword in their filename
- */
-const mixins = require.context('./vue/mixins/', true, /.*global.*\.js$/)
-
-mixins.keys().forEach(key => {
-  Vue.mixin(mixins(key).default)
-})
-
-/**
- * vue directives
- * auto-register all directives with a 'global' keyword in their filename
- */
-const directives = require.context('./vue/directives/', true, /.*global.*\.js$/)
-
-directives.keys().forEach(key => {
-  const directive = directives(key).default
-  Vue.directive(directive.name, directive.directive)
-})
-
-/**
- * vue prototype
- * extend with additional features
- */
-Vue.prototype.$axios = axios
-
-/**
- * vue plugins
- * extend with additional features
- */
-// register additional plugins here
-
-/**
- * create vue instance
- */
-new Vue({
-  el: '#app',
-  store
-})
+createVueApp().mount('#app')
 
 /**
  * fix: properly render vue components inside sections on user insert in the theme editor
@@ -100,9 +101,6 @@ new Vue({
 // eslint-disable-next-line
 Shopify.designMode && document.addEventListener('shopify:section:load', (event) => {
   if (event.target.classList.value.includes('vue')) {
-    new Vue({
-      el: event.target,
-      store
-    })
+    createVueApp().mount(event.target)
   }
 })

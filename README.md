@@ -21,7 +21,7 @@
 
 Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
 
-> Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or Vue.org
+> Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or vuejs
 
 **TL;DR** Go to [Installing](#installing), then go to [Getting started](#getting-started). Now you're ready to start 🔥
 <!-- title / description (end) -->
@@ -388,12 +388,12 @@ $ yarn add bulma
 
 #### npm
 ```sh
-$ npm uninstall vue vuex vue-loader vue-template-compiler
+$ npm uninstall vue vuex vue-loader @vue/compiler-sfc
 ```
 
 #### yarn
 ```sh
-$ yarn remove vue vuex vue-loader vue-template-compiler
+$ yarn remove vue vuex vue-loader @vue/compiler-sfc
 ```
 
 2. Remove [vue](src/vue) directory:
@@ -410,7 +410,7 @@ $ rm -r src/vue # or delete manually
   ...
   extends: [
     ...
-    'plugin:vue/recommended' // remove 'plugin:vue/recommended'
+    'plugin:vue/vue3-recommended' // remove 'plugin:vue/vue3-recommended'
     ...
   ],
   plugins: [
@@ -424,7 +424,8 @@ $ rm -r src/vue # or delete manually
 
 ```js
 ...
-const VueLoaderPlugin = require('vue-loader/lib/plugin') // remove VueLoaderPlugin require
+const webpack = require('webpack') // remove explicit webpack require
+const { VueLoaderPlugin } = require('vue-loader') // remove VueLoaderPlugin require
 ...
 ```
 
@@ -446,7 +447,12 @@ module: {
 {
   plugins: [
     ...
-    new VueLoaderPlugin() // remove VueLoaderPlugin
+    // remove VueLoaderPlugin and webpack.DefinePlugin
+    new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: 'true',
+      __VUE_PROD_DEVTOOLS__: 'false'
+    })
     ...
   ]
 }
@@ -546,7 +552,7 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 - All webpack configs are inside `.config/webpack/` directory
 - [main.js](src/main.js) is webpack's main entry point
 - All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins and directives with `global` in their filename. Everything is defined in `src/main.js`
-- Vue components can be either used as regular single-file-components or as [renderless components](https://css-tricks.com/building-renderless-vue-components) without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
+- Vue components can be either used as regular single-file-components or as renderless components without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build.
 
 ### Shopify remote auto-reloading
