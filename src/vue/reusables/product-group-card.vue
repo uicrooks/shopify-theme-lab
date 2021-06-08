@@ -1,6 +1,8 @@
 <template>
   <div class="product-group-card-component">
-    <div class="image-box">
+    <div
+      class="image-box"
+    >
       <div class="free-shipping">
         Free Shipping!
       </div>
@@ -18,7 +20,27 @@
           Off!
         </span>
         <div class="discount-bubble">
-          
+        </div>
+      </div>
+    </div>
+    <div
+      v-if="includedList"
+      :class="{'hidden': !showIncludedBox}"
+      class="included-box"
+    >
+      <h3>What's Inside</h3>
+      <div class="included-list">
+        <div
+          v-for="(category, index) of Object.keys(includedList)"
+          :key="`included-list-category-${index}`"
+          class="category"
+        > 
+          <div class="category-name">
+            {{ category }}
+          </div>
+          <div class="category-values">
+            {{ includedList[category].join(", ") }}
+          </div>
         </div>
       </div>
     </div>
@@ -38,7 +60,10 @@
       <p class="product-description">
         {{ product.description }}
       </p>
-      <div class="see-included-link">
+      <div
+        class="see-included-link"
+        @click="toggleIncludedBox"
+      >
         <b-icon
           icon="search"
         />
@@ -57,6 +82,7 @@
 
 <script>
 import CartService from "@/vue/services/cart.service";
+import IncludedList from "@/configs/product-group-card-included-list";
 
 export default {
   name: "ProductGroupCard",
@@ -69,7 +95,9 @@ export default {
   },
   data() {
     return {
-      added: false
+      added: false,
+      showIncludedBox: false,
+      includedList: IncludedList[this.product.handle]
     };
   },
   computed: {
@@ -92,7 +120,14 @@ export default {
         this.$store.commit("cart/toggleCart");
         this.added = true;
       }
+    },
+    toggleIncludedBox() {
+      this.showIncludedBox = !this.showIncludedBox;
     }
+  },
+  mounted() {
+    console.log(this.product.handle);
+    console.log(this.includedList);
   }
 };
 </script>
@@ -101,6 +136,7 @@ export default {
 @import "@/styles/main.scss";
 
 .product-group-card-component {
+  position: relative;
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 25px;
@@ -161,6 +197,53 @@ export default {
       }
     }
   }
+
+  .included-box {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 345px;
+    padding: 25px;
+    background-color: #203620;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.8s;
+
+    &.hidden {
+      opacity: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 295px;
+      object-fit: contain;
+    }
+
+    h3 {
+      margin: 8px 0 24px;
+      @include font-style-heading($size: 25px, $color: $white, $weight: 400);
+    }
+
+    .included-list {
+      height: 88%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+    }
+
+    .category {
+      margin-bottom: 20px;
+
+      .category-name {
+        margin-bottom: 13px;
+        @include font-style-body($size: 18px, $color: $white, $weight: 700);
+      }
+
+      .category-values {
+        @include font-style-body($size: 14px, $color: #bc9887, $lh: 21px);
+      }
+    }
+}
 
   .details-box {
     padding: 16px 16px 25px 16px;
