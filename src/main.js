@@ -41,7 +41,7 @@ coreComponents.keys().forEach(key => {
  /**
  * import module specific components
  */
-if (window.location.pathname.includes("collection")) {
+if (window.location.pathname.includes("/collection")) {
   console.log("layout-collection");
   const collectionComponents = require.context("./vue/templates/collection", true, /\.(vue|js)$/);
   collectionComponents.keys().forEach(key => {
@@ -51,11 +51,21 @@ if (window.location.pathname.includes("collection")) {
       key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
     Vue.component(name, component);
   });
+} else if (window.location.pathname.includes("/pages")) {
+  console.log("layout-page");
+  const components = require.context("./vue/templates/page", true, /\.(vue|js)$/);
+  components.keys().forEach(key => {
+    const component = components(key).default;
+    const name = component.name ?
+      component.name :
+      key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+    Vue.component(name, component);
+  });
 }
 
-Vue.filter("money", (val, currency) => {
+Vue.filter("money", (val, currency, toFixedVal = 2) => {
   if (!val) return "N/A";
-  const money = (val / 100).toFixed(2);
+  const money = (val / 100).toFixed(toFixedVal);
   return currency ? `${currency}${money}` : money;
 });
 
@@ -63,7 +73,7 @@ new Vue({
   el: "#app",
   store
 });
-// window.app = Vue;
+window.app = Vue;
 // window.app.cart = CartService;
 
 

@@ -9,7 +9,6 @@ module.exports = {
   entry: {
     main: path.resolve(__dirname, '../../src/main.js'),
     index: path.resolve(__dirname, '../../src/layout/index.js'),
-    page: path.resolve(__dirname, '../../src/layout/page.js'),
     product: path.resolve(__dirname, '../../src/layout/product.js'),
     cart: path.resolve(__dirname, '../../src/layout/cart.js'),
     account: path.resolve(__dirname, '../../src/layout/account.js'),
