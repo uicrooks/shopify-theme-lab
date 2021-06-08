@@ -1,13 +1,13 @@
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:vue/recommended' // use 'plugin:vue/essential' for less strict linting rules - https://eslint.vuejs.org/rules
+    'plugin:vue/vue3-recommended' // use 'plugin:vue/vue3-essential' for less strict linting rules - https://eslint.vuejs.org/rules
   ],
   plugins: [
     'vue'
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2021,
     sourceType: 'module'
   },
   env: {

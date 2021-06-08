@@ -1,21 +1,14 @@
 <script>
-import { mapState, mapActions } from 'vuex'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
-  computed: {
-    ...mapState({
-      visible: state => state['my-module'].visible
-    })
-  },
-  methods: {
-    ...mapActions({
-      toggle: 'my-module/toggle'
-    })
-  },
-  render () {
-    return this.$scopedSlots.default({
-      visible: this.visible,
-      toggle: this.toggle
+  setup(props, { slots }) {
+    const store = useStore()
+
+    return () => slots.default({
+      visible: computed(() => store.state['my-module'].visible).value,
+      toggle: () => store.dispatch('my-module/toggle')
     })
   }
 }

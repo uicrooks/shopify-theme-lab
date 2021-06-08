@@ -7,6 +7,7 @@
 const path = require('path')
 
 module.exports = {
+  // mode: 'jit',
   theme: {
     extend: {},
     container: {
