@@ -1,4 +1,8 @@
 export default {
+  "squatch-bundle": "Bar Soaps (3) & Soap Saver",
+  "fresh-bundle": "Bar Soaps (3), Soap Saver, Deodorant & Hair Care Kit",
+  "forest-bundle": "Bar Soaps (3), Soap Saver & Hair Care Kit",
+  "beach-bundle": "Bar Soaps (3), Soap Saver, Deodorant, Hair Care Kit & Toothpaste Kit",
   "try-em-all-bundle": {
     "11 Bar Soaps": ["Pine Tar", "Cedar Citrus", "Bay Rum", "Gold Moss", "Deep Sea Goat's Milk", "Alpine Sage", "Spearmint Basil", "Grapefruit IPA", "Cold Brew Cleanse", "Cool Fresh Aloe & Eucalyptus Yogurt"]
   },

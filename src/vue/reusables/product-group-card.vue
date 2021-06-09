@@ -1,8 +1,6 @@
 <template>
   <div class="product-group-card-component">
-    <div
-      class="image-box"
-    >
+    <div class="image-box">
       <div class="free-shipping">
         Free Shipping!
       </div>
@@ -124,10 +122,6 @@ export default {
     toggleIncludedBox() {
       this.showIncludedBox = !this.showIncludedBox;
     }
-  },
-  mounted() {
-    console.log(this.product.handle);
-    console.log(this.includedList);
   }
 };
 </script>
@@ -139,11 +133,11 @@ export default {
   position: relative;
   border-radius: 5px;
   overflow: hidden;
-  margin-bottom: 25px;
+  // margin-bottom: 25px;
 
-  @include layout-lg {
-    margin-bottom: 35px;
-  }
+  // @include layout-lg {
+  //   margin-bottom: 35px;
+  // }
 
   &:hover {
     box-shadow: 0 4px 15px 5px rgba(0, 0, 0, .1);

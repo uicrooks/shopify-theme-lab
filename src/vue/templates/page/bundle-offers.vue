@@ -35,7 +35,23 @@
         <p>
           {{ getSectionDescription(index) }}
         </p>
-        <div class="products">
+        <div
+          v-if="index === 1"
+          class="products"
+        >
+          <customizable-product-group-card
+            v-for="(product, productIndex) of getSectionProducts(index)"
+            :key="`bundles-section-${index}-product-${productIndex}`"
+            class="customizable-product-group-card"
+            :product="product"
+            :selected="selectedStarterBundleIndex === productIndex"
+            @selectStarterBundle="selectStarterBundle"
+          />
+        </div>
+        <div
+          v-else
+          class="products"
+        >
           <product-group-card
             v-for="(product, productIndex) of getSectionProducts(index)"
             :key="`bundles-section-${index}-product-${productIndex}`"
@@ -86,7 +102,8 @@ export default {
           description: "Go all in on one of our signature scents"
         }
       ],
-      currentTabIndex: 0
+      currentTabIndex: 0,
+      selectedStarterBundleIndex: null
     };
   },
   methods: {
@@ -104,6 +121,18 @@ export default {
     },
     getSectionProducts(index) {
       return this.bundles[this.tabs[index].name];
+    },
+    selectStarterBundle(handle) {
+      this.selectedStarterBundleIndex = findMatchingStarterBundleIndex(handle, this.bundles['Starter Bundles']);
+
+      function findMatchingStarterBundleIndex(handle, bundles) {
+        for (let i = 0; i < bundles.length; i++) {
+          if (bundles[i].handle === handle) {
+            return i;
+          }
+        }
+        return null;
+      }
     }
   },
   async mounted() {
@@ -152,9 +181,12 @@ export default {
       flex-flow: row nowrap;
       margin: 10px 0;
       overflow-x: auto;
-      // overflow-x: scroll;
       scrollbar-width: none; /* Firefox */
       -ms-overflow-style: none;  /* Internet Explorer 10+ */
+
+      @media(min-width: 825px) {
+        justify-content: center;
+      }
     }
 
     .tabs::-webkit-scrollbar { /* WebKit */
@@ -163,8 +195,6 @@ export default {
     }
 
     .tab {
-      // flex: 1;
-      // min-width: 80px;
       text-align: center;
       padding: 0 12px;
 
@@ -187,12 +217,7 @@ export default {
   }
 
   .section-wrapper {
-    padding: 30px 15px;
     background-color: $white-off;
-
-    @include layout-md {
-      padding: 30px 40px;
-    }
 
     &.hidden {
       display: none;
@@ -205,9 +230,14 @@ export default {
     section {
       max-width: 1000px;
       margin: auto;
+      padding: 30px 15px;
+
+      @include layout-md {
+        padding: 30px 40px;
+      }
 
       h2 {
-        margin-bottom: 13px;
+        margin: 15px 0;
         @include font-style-heading($size: 30px, $color: $dark-brown);
       }
 
@@ -224,14 +254,32 @@ export default {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
-        
-        .product-group-card {
-          
+
+        .customizable-product-group-card {
+          width: 100%;
+          margin-bottom: 10px;
+
           @include layout-md {
+            margin-bottom: 25px;
             max-width: 870px;
           }
 
           @include layout-lg {
+            margin-bottom: 35px;
+            max-width: 410px;
+          }
+        }
+        
+        .product-group-card {
+          margin-bottom: 15px;
+          
+          @include layout-md {
+            margin-bottom: 25px;
+            max-width: 870px;
+          }
+
+          @include layout-lg {
+            margin-bottom: 35px;
             max-width: 410px;
           }
         }
