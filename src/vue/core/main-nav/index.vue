@@ -427,12 +427,19 @@ export default {
 @import "@/styles/main.scss";
 
 .main-nav-component {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+  z-index: 10;
   font-size: 16px;
 
   .mobile-nav {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    align-items: center;
     padding: 15px;
 
     @include layout-lg {
