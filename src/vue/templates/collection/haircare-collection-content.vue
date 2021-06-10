@@ -112,10 +112,6 @@ export default {
       @include layout-md {
         flex: 1;
         width: unset;
-        max-width: 250px;
-      }
-
-      @include layout-lg {
         max-width: 300px;
       }
     }

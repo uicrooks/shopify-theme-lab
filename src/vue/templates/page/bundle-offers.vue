@@ -46,6 +46,7 @@
             :product="product"
             :selected="selectedStarterBundleIndex === productIndex"
             @selectStarterBundle="selectStarterBundle"
+            @openScentSelection="scentSelectionFlag = true"
           />
         </div>
         <div
@@ -61,12 +62,15 @@
         </div>
       </section>
     </div>
+    <product-customization-sidebar
+      :isOpen="scentSelectionFlag"
+      :product="selectedStarterBundle"
+      @close="scentSelectionFlag = false"
+    />
   </div>
 </template>
 
 <script>
-import StoreService from "@/vue/services/store.service";
-
 export default {
   props: {
     bundles: {
@@ -103,8 +107,20 @@ export default {
         }
       ],
       currentTabIndex: 0,
-      selectedStarterBundleIndex: null
+      selectedStarterBundleIndex: null,
+      scentSelectionFlag: false
     };
+  },
+  computed: {
+    selectedStarterBundle: {
+      get() {
+        const starterBundles = this.bundles["Starter Bundles"];
+        return starterBundles && this.selectedStarterBundleIndex !== null ? starterBundles[this.selectedStarterBundleIndex] : {};
+      },
+      set(val) {
+        return val;
+      }
+    }
   },
   methods: {
     selectTab(index) {

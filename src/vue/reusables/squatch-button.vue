@@ -50,9 +50,9 @@ export default {
   },
   methods: {
     navigateTo() {
-      console.log("navigateTo");
       if (this.action) {
         this.$emit("takeAction");
+        return;
       }
       if (this.path) {
         window.location = this.path;

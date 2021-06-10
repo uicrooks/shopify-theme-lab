@@ -1,4 +1,6 @@
 import axios from "axios";
+import TrackingService from "@/vue/services/tracking.service";
+import CookieService from "@/vue/services/cookie.service";
 
 const axiosConfig = {
   headers: {
@@ -55,6 +57,24 @@ export default {
       console.log("Failed to update an item quantity", err);
       return false;
     }
+  },
+  redirectToCheckout() {
+    console.log(window.location);
+    const cartCookieValue = CookieService.get("cart");
+    console.log(cartCookieValue);
+    const host = window.location.host;
+    CookieService.set("cart", cartCookieValue, { domain: host });
+    CookieService.set("cart", cartCookieValue, { domain: `.${host}` });
+
+    // if subscription item is included, go to recharge checkout
+    
+    let url = "/checkout";
+    // check for discount code
+    let discountCode = "";
+    if (discountCode) {
+      url += `?discount=${discountCode}`;
+    }
+    window.location.href = url;
   },
   getProductSchema(product, variantId) {
     const variant = getMatchingVariantForProduct(product, variantId);

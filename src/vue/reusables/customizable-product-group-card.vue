@@ -6,10 +6,16 @@
   >
     <div class="image-box">
       <div class="banners">
-        <span class="discount">
+        <span
+          v-if="discountAmount"
+          class="discount"
+        >
           {{ discountAmount | money("$", 0) }} Off
         </span>
-        <span class="free-shipping">
+        <span
+          v-if="isFreeShipping"
+          class="free-shipping"
+        >
           Free Shipping!
         </span>
       </div>
@@ -20,15 +26,21 @@
     </div>
     <div class="details-box">
       <div class="product-preheader">
-        <span class="discount">
+        <span
+          v-if="discountAmount"
+          class="discount"
+        >
           {{ discountAmount | money("$", 0) }} Off
         </span>
-        <span class="free-shipping">
+        <span
+          v-if="isFreeShipping"
+          class="free-shipping"
+        >
           Free Shipping!
         </span>
       </div>
       <div class="product-header">
-        <h4>{{ product.title }}</h4>
+        <h4>{{ product.title.split(" ")[0] }}</h4>
         <div class="product-pricing">
           {{ product.price | money("$", 0) }}
           <span
@@ -40,20 +52,19 @@
         </div>
       </div>
       <p class="product-description">
-        {{ includedList ? includedList : product.description }}
+        {{ includedList.join(", ") }}
       </p>
       <squatch-button
         v-if="selected"
         text="Select Scents"
         :action="true"
-        @takeAction="openScentSelection"
+        @takeAction="$emit('openScentSelection')"
       />
     </div>
   </div>
 </template>
 
 <script>
-import CartService from "@/vue/services/cart.service";
 import IncludedList from "@/configs/product-group-card-included-list";
 
 export default {
@@ -77,7 +88,7 @@ export default {
   },
   computed: {
     isFreeShipping() {
-      return this.prodcut.price >= 3900;
+      return this.product.price >= 3900;
     },
     // TODO: add new label
     isNew() {
@@ -85,11 +96,12 @@ export default {
     },
     discountAmount() {
       return this.product.compare_at_price - this.product.price;
-    },
+    }
   },
   methods: {
     openScentSelection() {
       console.log("selec scents");
+      this.scentSelectionFlag = true;
     }
   }
 };
@@ -113,6 +125,7 @@ export default {
   .image-box {
     position: relative;
     width: 40%;
+    padding: 10px 0;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;

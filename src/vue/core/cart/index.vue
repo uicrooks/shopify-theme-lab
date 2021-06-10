@@ -30,7 +30,10 @@
             @click="hide"
           />
         </div>
-        <div class="cart-content">
+        <div
+          v-if="items.length > 0"
+          class="cart-content"
+        >
           <div
             v-for="(item, index) of items"
             :key="`cart-item-${index}`"
@@ -80,7 +83,20 @@
             </span>
           </div>
         </div>
+        <div
+          v-else
+          class="cart-content empty"
+        >
+          <h3>Your Cart is empty</h3>
+          <squatch-button
+            text="Continue Browsing"
+            :action="true"
+            @takeAction="hide"
+            class="cta-button"
+          />
+        </div>
         <squatch-button
+          v-if="items.length > 0"
           text="Checkout"
           class="checkout-button"
           :action="true"
@@ -147,7 +163,7 @@ export default {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 15px 20px;
     background-color: $black;
     @include font-style-heading($size: 23px, $color: $white, $lh: 23px);
   }
@@ -155,6 +171,21 @@ export default {
   .cart-content {
     padding: 10px 0 0;
     background-color: $white;
+
+    &.empty {
+      padding: 45px 0;
+      text-align: center;
+
+      h3 {
+        margin-bottom: 15px;
+        @include font-style-heading($size: 16px, $color: $dark-brown);
+      }
+
+      .cta-button {
+        width: 70%;
+        margin: auto;
+      }
+    }
 
     .item {
       display: flex;

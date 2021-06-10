@@ -1,7 +1,10 @@
 <template>
   <div class="product-group-card-component">
     <div class="image-box">
-      <div class="free-shipping">
+      <div
+        v-if="isFreeShipping"
+        class="free-shipping"
+      >
         Free Shipping!
       </div>
       <img
@@ -100,7 +103,7 @@ export default {
   },
   computed: {
     isFreeShipping() {
-      return this.prodcut.price >= 3900;
+      return this.product.price >= 3900;
     },
     // TODO: add new label
     isNew() {

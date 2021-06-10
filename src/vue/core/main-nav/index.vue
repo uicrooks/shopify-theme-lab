@@ -51,13 +51,13 @@
             class="big-cta-button"
             text="The Subscription"
             sub-text="Save 15% on your favorite soap and get free shipping for life!"
-            path="/test"
+            path="/pages/subscription-flow"
           />
           <squatch-button
             class="big-cta-button"
             text="Starter Bundles"
             sub-text="Your choice of our curated best sellers"
-            path="/test"
+            path="/pages/bundle-offers"
             color="maroon"
           />
 
@@ -119,7 +119,7 @@
         />
         <div
           class="menu-item"
-          @click="navigateToPath('/test')"
+          @click="navigateToPath('/pages/bundle-offers')"
         >
           Bundles
         </div>

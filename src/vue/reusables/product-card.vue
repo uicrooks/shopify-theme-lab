@@ -56,7 +56,6 @@ export default {
   methods: {
     async addToCart() {
       const added = await CartService.addItem(this.product);
-      console.log(added);
       if (added) {
         this.$store.dispatch("cart/initialize");
         this.$store.commit("cart/toggleCart");
