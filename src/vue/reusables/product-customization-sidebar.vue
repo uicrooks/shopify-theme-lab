@@ -155,7 +155,7 @@ export default {
       return this.product.variants ? this.product.variants[this.selectedVariantIndex] : null;
     },
     includedListCategories() {
-      return this.product.handle ? IncludedList[this.product.handle] : []
+      return this.product.handle ? IncludedList[this.product.handle] : [];
     }
   },
   methods: {

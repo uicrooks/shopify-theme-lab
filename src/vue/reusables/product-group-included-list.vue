@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       products: []
-    }
+    };
   },
   methods: {
     async fetchProduct(handle) {

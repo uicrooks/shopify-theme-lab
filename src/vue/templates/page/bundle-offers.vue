@@ -139,7 +139,7 @@ export default {
       return this.bundles[this.tabs[index].name];
     },
     selectStarterBundle(handle) {
-      this.selectedStarterBundleIndex = findMatchingStarterBundleIndex(handle, this.bundles['Starter Bundles']);
+      this.selectedStarterBundleIndex = findMatchingStarterBundleIndex(handle, this.bundles["Starter Bundles"]);
 
       function findMatchingStarterBundleIndex(handle, bundles) {
         for (let i = 0; i < bundles.length; i++) {

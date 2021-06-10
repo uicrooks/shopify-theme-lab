@@ -1,5 +1,8 @@
 <template>
-  <div class="product-card-component">
+  <div
+    class="product-card-component"
+    @click="goToProductPage()"
+  >
     <div class="image-box">
       <img
         :src="product.featured_image"
@@ -61,6 +64,9 @@ export default {
         this.$store.commit("cart/toggleCart");
         this.added = true;
       }
+    },
+    goToProductPage() {
+      window.location = `${window.location.pathname}/products/${this.product.handle}`;
     }
   }
 };
@@ -73,6 +79,7 @@ export default {
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 35px;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 4px 15px 5px rgba(0, 0, 0, .1);
