@@ -50,7 +50,7 @@
           :alt="`${selectedVariant.title} image`"
         >
         <h2>{{ product.title.split(" ")[0] }}</h2>
-        <p>{{ selectedVariant.option1 }}</p>
+        <p>{{ getVariantName(selectedVariant) }}</p>
         <div class="product-pricing">
           {{ product.price | money("$", 0) }}
           <span
@@ -79,7 +79,7 @@
             >
               Icon
             </div>
-            <span>{{ variant.option1 }}</span>
+            <span>{{ getVariantName(variant) }}</span>
           </div>
         </div>
         <h4>See what's included!</h4>
@@ -88,12 +88,15 @@
         <h3>What's Inside</h3>
         <div
           v-for="(category, categoryIndex) of includedListCategories"
-          :key="`varint-${selectedVariantIndex}-category-${categoryIndex}`"
+          :key="`category-${categoryIndex}`"
           class="included-category"
         >
           <h4>{{ category }}</h4>
           <product-group-included-list
-            :productHandles="getIncludedListForCategory(category)"
+            v-for="(variant, variantIndex) of product.variants"
+            :key="`variant-${variantIndex}`"
+            :productHandles="getIncludedListForCategory(variant, category)"
+            :hidden="variantIndex !== selectedVariantIndex"
           />
         </div>
       </div>
@@ -156,15 +159,21 @@ export default {
     },
     includedListCategories() {
       return this.product.handle ? IncludedList[this.product.handle] : [];
+    },
+    starterBundlesVariants() {
+      return this.$store.state.products.starterBundlesVariants;
     }
   },
   methods: {
-    getIncludedListForCategory(category) {
-      const variantName = this.selectedVariant ? this.selectedVariant.option1.toLowerCase() : null;
+    getVariantName(variant) {
+      return variant.option1;
+    },
+    getIncludedListForCategory(variant, category) {
+      const variantName = this.getVariantName(variant);
       if (!category || !variantName) {
         return [];
       }
-      return this.includedListByVariant[variantName][category];
+      return this.includedListByVariant[variantName.toLowerCase()][category];
     },
     async checkout() {
       const added = await CartService.addItem(this.product);

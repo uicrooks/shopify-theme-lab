@@ -1,5 +1,8 @@
 <template>
-  <div class="product-group-included-list-component">
+  <div
+    v-if="!hidden"
+    class="product-group-included-list-component"
+  >
     <div
       v-for="(product, index) of products"
       :key="`product-${index}`"
@@ -28,6 +31,11 @@ export default {
       type: Array,
       required: true,
       default: () => []
+    },
+    hidden: {
+      type: Boolean,
+      required: true,
+      default: false
     }
   },
   data() {
