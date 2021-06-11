@@ -5,7 +5,7 @@
   >
     <img
       src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/new_packaging-1?v=1616520305"
-    />
+    >
     <h6>
       New look, same Squatch!
     </h6>

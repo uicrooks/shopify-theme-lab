@@ -15,7 +15,8 @@
             :class="{'active': currentTabIndex === index}"
             class="tab-name"
             @click="selectTab(index)"
-          >{{ tab.name }}
+          >
+            {{ tab.name }}
           </div>
         </div>
       </div>
@@ -63,7 +64,7 @@
       </section>
     </div>
     <product-customization-sidebar
-      :isOpen="scentSelectionFlag"
+      :is-open="scentSelectionFlag"
       :product="selectedStarterBundle"
       @close="scentSelectionFlag = false"
     />
@@ -75,7 +76,8 @@ export default {
   props: {
     bundles: {
       type: Object,
-      required: false
+      required: false,
+      default: () => {}
     },
     oosData: {
       type: Object

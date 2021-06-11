@@ -91,8 +91,8 @@
           <squatch-button
             text="Continue Browsing"
             :action="true"
-            @takeAction="hide"
             class="cta-button"
+            @takeAction="hide"
           />
         </div>
         <squatch-button
@@ -121,11 +121,18 @@ export default {
   },
   computed: {
     ...mapGetters("cart", [
-      "isOpen",
       "subtotal",
       "items",
       "numberOfItems"
-    ])
+    ]),
+    isOpen: {
+      get() {
+        return this.$store.state.cart.isOpen;
+      },
+      set() {
+        this.$store.commit("cart/toggleCart");
+      }
+    }
   },
   watch: {
     items(val) {

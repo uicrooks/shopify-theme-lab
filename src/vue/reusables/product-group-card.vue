@@ -20,8 +20,7 @@
           <br>
           Off!
         </span>
-        <div class="discount-bubble">
-        </div>
+        <div class="discount-bubble" />
       </div>
     </div>
     <div

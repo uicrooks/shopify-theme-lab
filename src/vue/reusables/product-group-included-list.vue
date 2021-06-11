@@ -53,7 +53,6 @@ export default {
     }
   },
   async mounted() {
-    console.log("product handles", this.productHandles);
     for (let i = 0; i < this.productHandles.length; i++) {
       const product = await this.fetchProduct(this.productHandles[i]);
       if (product) {

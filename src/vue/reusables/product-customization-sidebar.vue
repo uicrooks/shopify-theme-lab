@@ -62,7 +62,7 @@
         </div>
       </div>
       <div
-         v-if="product.variants"
+        v-if="product.variants"
         class="variants-box"
       >
         <h3>Choose Your Scent Profile:</h3>
@@ -95,7 +95,7 @@
           <product-group-included-list
             v-for="(variant, variantIndex) of product.variants"
             :key="`variant-${variantIndex}`"
-            :productHandles="getIncludedListForCategory(variant, category)"
+            :product-handles="getIncludedListForCategory(variant, category)"
             :hidden="variantIndex !== selectedVariantIndex"
           />
         </div>
