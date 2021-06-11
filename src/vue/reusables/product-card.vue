@@ -1,17 +1,20 @@
 <template>
   <div
     class="product-card-component"
-    @click="goToProductPage()"
   >
     <div class="image-box">
-      <img
-        :src="product.featured_image"
-        :alt="`${product.title} image`"
-      >
+      <a :href="productDetailPageLink">
+        <img
+          :src="product.featured_image"
+          :alt="`${product.title} image`"
+        >
+      </a>
     </div>
     <div class="details-box">
       <div class="product-title">
-        {{ product.title }}
+        <a :href="productDetailPageLink">
+          {{ product.title }}
+        </a>
       </div>
       <div class="yotpo">
         <span>review stuff here</span>
@@ -56,6 +59,11 @@ export default {
       added: false
     };
   },
+  computed: {
+    productDetailPageLink() {
+      return `${window.location.pathname}/products/${this.product.handle}`;
+    }
+  },
   methods: {
     async addToCart() {
       const added = await CartService.addItem(this.product);
@@ -64,9 +72,6 @@ export default {
         this.$store.commit("cart/toggleCart");
         this.added = true;
       }
-    },
-    goToProductPage() {
-      window.location = `${window.location.pathname}/products/${this.product.handle}`;
     }
   }
 };
@@ -79,10 +84,14 @@ export default {
   border-radius: 5px;
   overflow: hidden;
   margin-bottom: 35px;
-  cursor: pointer;
 
   &:hover {
     box-shadow: 0 4px 15px 5px rgba(0, 0, 0, .1);
+  }
+
+  a, a:hover, a:active, a:visited {
+    text-decoration: none;
+    color: inherit;
   }
 
   .image-box {
@@ -98,6 +107,7 @@ export default {
       width: 100%;
       height: 295px;
       object-fit: contain;
+      cursor: pointer;
     }
   }
 
