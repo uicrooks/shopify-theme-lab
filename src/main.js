@@ -41,11 +41,11 @@ coreComponents.keys().forEach(key => {
  /**
  * import module specific components
  */
-if (window.location.pathname.includes("/collection")) {
-  console.log("layout-collection");
-  const collectionComponents = require.context("./vue/templates/collection", true, /\.(vue|js)$/);
-  collectionComponents.keys().forEach(key => {
-    const component = collectionComponents(key).default;
+if (window.location.pathname.includes("/products")) {
+  console.log("layout-product");
+  const components = require.context("./vue/templates/product", true, /\.(vue|js)$/);
+  components.keys().forEach(key => {
+    const component = components(key).default;
     const name = component.name ?
       component.name :
       key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
@@ -56,6 +56,16 @@ if (window.location.pathname.includes("/collection")) {
   const components = require.context("./vue/templates/page", true, /\.(vue|js)$/);
   components.keys().forEach(key => {
     const component = components(key).default;
+    const name = component.name ?
+      component.name :
+      key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+    Vue.component(name, component);
+  });
+} else if (window.location.pathname.includes("/collections")) {
+  console.log("layout-collection");
+  const collectionComponents = require.context("./vue/templates/collection", true, /\.(vue|js)$/);
+  collectionComponents.keys().forEach(key => {
+    const component = collectionComponents(key).default;
     const name = component.name ?
       component.name :
       key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
