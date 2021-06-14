@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     showBanner() {
-      return ["bar-soaps", "deodorant", "colognes", "beard"].includes(this.handle) || !['toothpaste', 'shower-boosters', 'best-sellers', 'hand-sanitizer', 'hand-soap', 'squatch-gift-card', 'gear', 'bay-rum-candle'].includes(this.handle) || this.handle.includes("deodorant");
+      return ["bar-soaps", "deodorant", "colognes", "beard"].includes(this.handle) || !["toothpaste", "shower-boosters", "best-sellers", "hand-sanitizer", "hand-soap", "squatch-gift-card", "gear", "bay-rum-candle"].includes(this.handle) || this.handle.includes("deodorant");
     }
   }
 };
