@@ -506,7 +506,7 @@ export default {
   .desktop-nav {
     display: none;
     width: 100%;
-    padding: 14px 30px;
+    padding: 9px 30px;
 
     @include layout-lg {
       display: flex;

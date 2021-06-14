@@ -1,6 +1,8 @@
 <template>
   <div class="product-component">
-    product component!
+    <new-look-banner
+      :handle="handle"
+    />
   </div>
 </template>
 
