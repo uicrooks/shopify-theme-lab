@@ -396,7 +396,7 @@ export default {
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }, {
           name: "Best Sellers",
-          path: "/collections/bset-sellers",
+          path: "/collections/best-sellers",
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }]
       }

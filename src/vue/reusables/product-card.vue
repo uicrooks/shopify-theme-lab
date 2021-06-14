@@ -69,7 +69,7 @@ export default {
       const added = await CartService.addItem(this.product);
       if (added) {
         this.$store.dispatch("cart/initialize");
-        this.$store.commit("cart/toggleCart");
+        this.$store.commit("cart/toggleIsOpen");
         this.added = true;
       }
     }

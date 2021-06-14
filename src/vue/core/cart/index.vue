@@ -5,6 +5,7 @@
       :aria-expanded="isOpen"
       icon="cart"
       font-scale="2"
+      class="cart-icon"
       @click="toggleCart"
     />
     <span>{{ numberOfItems }}</span>
@@ -120,19 +121,19 @@ export default {
     }
   },
   computed: {
+    isOpen: {
+      get() {
+        return this.$store.state.cart.isOpen;
+      },
+      set(val) {
+        this.$store.commit("cart/setIsOpen", val);
+      }
+    },
     ...mapGetters("cart", [
       "subtotal",
       "items",
       "numberOfItems"
     ]),
-    isOpen: {
-      get() {
-        return this.$store.state.cart.isOpen;
-      },
-      set() {
-        this.$store.commit("cart/toggleCart");
-      }
-    }
   },
   watch: {
     items(val) {
@@ -141,7 +142,8 @@ export default {
   },
   methods: {
     toggleCart() {
-      this.$store.commit("cart/toggleCart");
+      console.log("toggleCart");
+      this.$store.commit("cart/toggleIsOpen");
     },
     async updateQuantity(itemIndex, quantity) {
       const updated = await CartService.updateItemQuantity(itemIndex + 1, quantity);
@@ -164,6 +166,10 @@ export default {
 @import "@/styles/main.scss";
 
 .cart-component {
+
+  .cart-icon {
+    cursor: pointer;
+  }
 
   .cart-title {
     display: flex;

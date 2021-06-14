@@ -49,8 +49,11 @@ const mutations = {
   setCart(state, cartData) {
     state.cart = cartData;
   },
-  toggleCart(state) {
+  toggleIsOpen(state) {
     state.isOpen = !state.isOpen;
+  },
+  setIsOpen(state, val) {
+    state.isOpen = val;
   }
 };
 

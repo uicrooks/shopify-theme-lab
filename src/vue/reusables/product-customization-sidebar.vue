@@ -180,7 +180,7 @@ export default {
       if (added) {
         this.$emit("close");
         this.$store.dispatch("cart/initialize");
-        this.$store.commit("cart/toggleCart");
+        this.$store.commit("cart/toggleIsOpen");
         console.log("go to checkout!");
         // go to checkout
       }
