@@ -20,7 +20,7 @@ export default {
       }
     } catch (err) {
       console.log("Failed to fetch cart", err);
-      return {};
+      return null;
     }
   },
   async addItem(product, variantId = "") {

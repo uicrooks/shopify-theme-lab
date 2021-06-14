@@ -178,11 +178,15 @@ export default {
     async checkout() {
       const added = await CartService.addItem(this.product);
       if (added) {
-        this.$emit("close");
-        this.$store.dispatch("cart/initialize");
-        this.$store.commit("cart/toggleIsOpen");
-        console.log("go to checkout!");
-        // go to checkout
+        this.added = true;
+        const cart = await CartService.initCart();
+        if (cart) {
+          this.$store.commit("cart/setCart", cart);
+          this.$emit("close");
+          CartService.redirectToCheckout();
+        } else {
+          // error handling
+        }
       }
     }
   }

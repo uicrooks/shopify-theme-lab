@@ -116,9 +116,14 @@ export default {
     async addToCart() {
       const added = await CartService.addItem(this.product);
       if (added) {
-        this.$store.dispatch("cart/initialize");
-        this.$store.commit("cart/toggleIsOpen");
         this.added = true;
+        const cart = await CartService.initCart();
+        if (cart) {
+          this.$store.commit("cart/setCart", cart);
+          this.$store.commit("cart/toggleIsOpen");
+        } else {
+          // error handling
+        }
       }
     },
     toggleIncludedBox() {

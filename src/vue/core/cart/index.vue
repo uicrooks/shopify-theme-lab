@@ -156,8 +156,13 @@ export default {
     }
   },
   async mounted() {
-    this.$store.dispatch("cart/initialize");
     this.$store.commit("cart/setCurrency", this.currencyObj);
+    const cart = await CartService.initCart();
+    if (cart) {
+      this.$store.commit("cart/setCart", cart);
+    } else {
+      // error handling
+    }
   }
 };
 </script>
