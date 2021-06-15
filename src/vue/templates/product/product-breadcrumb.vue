@@ -25,11 +25,6 @@ export default {
       links: []
     };
   },
-  methods: {
-    runTest() {
-      console.log("ADfadsfadf");
-    }
-  },
   mounted() {
     const pathArray = window.location.pathname.split("/");
     this.links = [
