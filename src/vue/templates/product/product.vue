@@ -2,6 +2,7 @@
   <div class="product-component">
     <new-look-banner
       :handle="handle"
+      :title="product.title"
     />
     <product-breadcrumb
       :collection="collection"

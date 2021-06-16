@@ -4,7 +4,18 @@
     class="new-look-banner-component"
   >
     <div
-      v-if="!['deodorant', 'colognes', 'beard'].includes(handle)"
+      v-if="hasOldPackaging"
+      class="old-packaging"
+    >
+      <h6>
+        New look, same Squatch!
+      </h6>
+      <p>
+        Our upgrade is in progress so some products may ship with older packaging.
+      </p>
+    </div>
+    <div
+      v-else
       class="new-packaging"
     >
       <img
@@ -17,17 +28,6 @@
         Everything you know and love about Dr. Squatch but with a fresh new look.
       </p>
     </div>
-    <div
-      v-else
-      class="old-packaging"
-    >
-      <h6>
-        New look, same Squatch!
-      </h6>
-      <p>
-        Our upgrade is in progress so some products may ship with older packaging.
-      </p>
-    </div>
   </div>
 </template>
 
@@ -38,11 +38,21 @@ export default {
     handle: {
       type: String,
       required: true
+    },
+    title: {
+      type: String,
+      required: false
     }
   },
   computed: {
     showBanner() {
-      return ["bar-soaps", "deodorant", "colognes", "beard"].includes(this.handle) || !["toothpaste", "shower-boosters", "best-sellers", "hand-sanitizer", "hand-soap", "squatch-gift-card", "gear", "bay-rum-candle"].includes(this.handle) || this.handle.includes("deodorant");
+      if (["toothpaste", "shower-boosters", "best-sellers", "hand-sanitizer", "hand-soap", "squatch-gift-card", "gear", "bay-rum-candle"].includes(this.handle)) {
+        return false;
+      }
+      return ["bar-soaps", "hair-care", "deodorant", "colognes", "beard"].includes(this.handle) || this.handle.includes("deodorant") || this.handle.includes("hair-care-kit") || this.handle.includes("shampoo") || this.handle.includes("conditioner");
+    },
+    hasOldPackaging() {
+      return ["deodorant", "colognes", "beard"].includes(handle) || title.includes("Cypress");
     }
   }
 };
