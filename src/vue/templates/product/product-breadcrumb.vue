@@ -1,37 +1,51 @@
 <template>
   <div class="product-breadcrumb-component">
     <div
-      v-for="(link, index) of links"
-      :key="`breadcrum-link-${index}`"
       class="link-box"
-      :class="{'active': index === links.length - 1}"
     >
       <a
-        :href="link.path"
+        href="/"
         class="link-label"
-      >{{ link.label }}</a>
+      >
+        Home
+      </a>
       <b-icon
         class="chevron-icon"
         icon="chevron-right"
       />
+      <a
+        :href="`/collections/${collection}`"
+        class="link-label"
+      >
+        {{ collection | readableHandle }}
+      </a>
+      <b-icon
+        class="chevron-icon"
+        icon="chevron-right"
+      />
+      <a
+        href="#"
+        class="link-label active"
+      >
+        {{ product.title }}
+      </a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      links: []
-    };
-  },
-  mounted() {
-    const pathArray = window.location.pathname.split("/");
-    this.links = [
-      { label: "Home", path: "/" },
-      { label: pathArray[2].split("-").join(" "), path: `/collections/${pathArray[2]}` },
-      { label: pathArray[4].split("-").join(" "), path: `/collections/${pathArray[2]}/products/${pathArray[4]}` }
-    ];
+  props: {
+    collection: {
+      type: String,
+      required: true,
+      default: ""
+    },
+    product: {
+      type: Object,
+      required: true,
+      default: () => {}
+    }
   }
 };
 </script>
@@ -50,17 +64,6 @@ export default {
     flex-flow: row wrap;
     align-items: center;
     padding-right: 9px;
-
-    &.active {
-
-      .link-label {
-        color: $orange;
-      }
-
-      .chevron-icon {
-        display:  none;
-      }
-    }
 
     a, a:hover, a:visited {
       text-decoration: none;
@@ -83,6 +86,7 @@ export default {
 
     .chevron-icon {
       color: #dcdcdc;
+      margin-right: 9px;
     }
   }
 

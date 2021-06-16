@@ -79,6 +79,14 @@ Vue.filter("money", (val, currency, toFixedVal = 2) => {
   return currency ? `${currency}${money}` : money;
 });
 
+Vue.filter("readableHandle", (val) => {
+  if (!val) return "";
+  const capitalized = val.split("-").map(word => {
+    return word[0].toUpperCase() + word.slice(1);
+  });
+  return capitalized.join(" ");
+});
+
 new Vue({
   el: "#app",
   store

@@ -28,9 +28,9 @@
       class="image-slider"
     >
       <img
+        :key="currentImageIndex"
         :src="product.images[currentImageIndex]"
         :alt="`${product.title} image`"
-        :key="currentImageIndex"
         class="image"
       >
       <!-- <div
@@ -190,6 +190,7 @@ export default {
         @include layout-md {
           display: inline-block;
           width: 100%;
+          max-height: 100%;
           object-fit: contain;
           opacity: .5;
 
