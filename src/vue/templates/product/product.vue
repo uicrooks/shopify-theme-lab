@@ -13,6 +13,11 @@
       :collection="collection"
       :product="product"
     />
+    <haircare-product-header
+      v-else-if="isHairCare"
+      :collection="collection"
+      :product="product"
+    />
   </div>
 </template>
 
@@ -46,6 +51,9 @@ export default {
     },
     isBarSoap() {
       return this.product.tags && this.product.tags.includes("bar-soap") && !this.product.tags.includes("shower-booster");
+    },
+    isHairCare() {
+      return this.product.tags && this.product.tags.includes("hair-care");
     },
     isShowerBooster() {
       return this.product.tags && this.product.tags.includes("shower-booster");

@@ -41,7 +41,8 @@ export default {
     },
     title: {
       type: String,
-      required: false
+      required: false,
+      default: ""
     }
   },
   computed: {
@@ -52,7 +53,7 @@ export default {
       return ["bar-soaps", "hair-care", "deodorant", "colognes", "beard"].includes(this.handle) || this.handle.includes("deodorant") || this.handle.includes("hair-care-kit") || this.handle.includes("shampoo") || this.handle.includes("conditioner");
     },
     hasOldPackaging() {
-      return ["deodorant", "colognes", "beard"].includes(handle) || title.includes("Cypress");
+      return ["deodorant", "colognes", "beard"].includes(this.handle) || this.title.includes("Cypress");
     }
   }
 };
