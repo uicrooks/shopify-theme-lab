@@ -17,7 +17,7 @@
             </span>
           </span>
           <span
-            v-if="purchaseType === 'subscription'"
+            v-if="isSubscription"
             class="discount"
           >
             (Save $1!)
@@ -28,58 +28,29 @@
           :handle="product.handle"
           :items="iconDescriptionItems"
         />
-        <div
+        <product-quantity-selector
+          :quantity="quantity"
           class="quantity-selector"
-        >
-          <h6>Quantity</h6>
-          <div class="quantity-options">
-            <div
-              v-for="(option, index) of quantityOptions"
-              :key="`quantity-option-${index}`"
-              class="option"
-              :class="{'selected': option === quantity}"
-              @click="selectQuantityOption(option)"
-            >
-              {{ showQuantityOption(option) }}
-            </div>
-          </div>
-        </div>
-        <div class="purchase-type-selector">
-          <div
-            class="purchase-type-option"
-            :class="{'selected': purchaseType === 'one-time'}"
-            @click="purchaseType = 'one-time'"
-          >
-            <div class="radio-button">
-              <span></span>
-            </div>
-            <span>One-time</span>
-            <span class="pricing">
-              {{ product.price | money("$", 0) }} / {{ unit }}
-            </span>
-          </div>
-          <div
-            class="purchase-type-option"
-            :class="{'selected': purchaseType === 'subscription'}"
-            @click="purchaseType = 'subscription'"
-          >
-            <div class="radio-button">
-              <span></span>
-            </div>
-            <div class="subscribe">
-              <h6>Subscribe & Save {{ totalDiscountAmountForSubscriptionOption | money("$", 0) }} </h6>
-              + Get Free Shipping For Life!
-            </div>
-          </div>
-        </div>
+          @increase="updateQuantity(true)"
+          @decrease="updateQuantity(false)"
+        />
+        <product-purchase-type-selector
+          :is-subscription="isSubscription"
+          :unit="unit"
+          :price="product.price"
+          :quantity="quantity"
+          :discount-for-subscription="discountForSubscription"
+          class="purchase-type-selector"
+          @updatePurchaseType="isSubscription = !isSubscription"
+        />
       </div>
       <div class="cta-button-box">
         <div class="free-shipping-banner">
-          Free Shipping {{ purchaseType === 'one-time' ? 'over $40' : 'for life!'}}
+          Free Shipping {{ isSubscription ? 'for life!' : 'over $40' }}
         </div>
         <div class="squatch-button-wrapper">
           <squatch-button
-            :text="purchaseType === 'one-time' ? !added ? `$${totalPrice.toFixed(0)} | Add To Cart` : 'Add More' : 'Subscribe & Save'"
+            :text="isSubscription ? 'Subscribe & Save' : !added ? `$${totalPrice.toFixed(0)} | Add To Cart` : 'Add More'"
             :action="true"
             @takeAction="addToCart"
           />
@@ -115,62 +86,72 @@ export default {
   data() {
     return {
       unit: "bottle",
-      iconDescriptionItems: [
+      isSubscription: false,
+      quantity: 1,
+      discountForSubscription: this.isKit ? 400 : 200,
+      added: false
+    };
+  },
+  computed: {
+    isKit() {
+      return this.product.handle.includes("hair-care-kit");
+    },
+    pricePerUnit() {
+      return this.isSubscription ? this.product.price - this.discountAmountForSubscriptionOption : this.product.price;
+    },
+    totalPrice() {
+      return this.product.price * this.quantity / 100;
+    },
+    iconDescriptionItems() {
+      return this.isKit ? [
+        {
+          iconName: this.product.handle,
+          label: "Smells Like:",
+          description: "Default description, update later"
+        }
+      ] : [
         {
           iconName: this.product.handle,
           label: "Smells Like:",
           description: "Default description, update later"
         },
         {
-          iconName: "ColdProcessSoap",
-          label: "Exfoliation:",
+          iconName: "NaturalOils",
+          label: "Featuring:",
           description: "Default description, update later"
         }
-      ],
-      purchaseType: "one-time",
-      quantityOptions: [2, 1, 3],
-      quantity: 2,
-      discountAmountForSubscriptionOption: 100,
-      added: false
-    };
-  },
-  computed: {
-    pricePerUnit() {
-      if (this.purchaseType === "one-time") {
-        return this.product.price;
-      }
-      return this.product.price - this.discountAmountForSubscriptionOption;
-    },
-    totalPrice() {
-      return this.product.price * this.quantity / 100;
-    },
-    totalDiscountAmountForSubscriptionOption() {
-      return this.discountAmountForSubscriptionOption * this.quantity;
+      ];
     }
   },
   methods: {
     showQuantityOption(num) {
       return num > 1 ? `${num} Soaps` : `${num} Soap`;
     },
-    selectQuantityOption(qty) {
-      this.quantity = qty;
+    updateQuantity(increase = true) {
+      if (increase) {
+        this.quantity++;
+        return;
+      }
+      if (this.quantity > 1) {
+        this.quantity--;
+      }
     },
     async addToCart() {
-      if (this.purchaseType === "one-time") {
-        const added = await CartService.addItem(this.product);
-        if (added) {
-          this.added = true;
-          const cart = await CartService.initCart();
-          if (cart) {
-            this.$store.commit("cart/setCart", cart);
-            this.$store.commit("cart/toggleIsOpen");
-          } else {
-            // error handling
-          }
-        }
-        return;  
+      if (this.isSubscription) {
+        window.location = "/pages/subscription-flow";
+        return;
       }
-      window.location = "/pages/subscription-flow";
+      const added = await CartService.addItem(this.product);
+      if (added) {
+        this.added = true;
+        const cart = await CartService.initCart();
+        if (cart) {
+          this.$store.commit("cart/setCart", cart);
+          this.$store.commit("cart/toggleIsOpen");
+        } else {
+          // error handling
+        }
+      }
     }
   }
 };
@@ -179,7 +160,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/main.scss";
 
-.haircare-header-component {
+.haircare-product-header-component {
 
   @include layout-md {
     display: flex;
@@ -242,88 +223,10 @@ export default {
 
     .quantity-selector {
       margin: 15px 0 30px;
-
-      h6 {
-        margin-bottom: 7px;
-        @include font-style-accent($size: 12px, $lh: 12px, $color: $brown);
-      }
-
-      .quantity-options {
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-
-        .option {
-          min-width: 30px;
-          padding: 8px 14px;
-          text-align: center;
-          border-radius: 5px;
-          cursor: pointer;
-          margin-right: 14px;
-          @include font-style-body($weight: 600, $color: $brown);
-
-          &:hover {
-            background-color: #cc63287a;
-          }
-
-          &.selected {
-            background-color: #cc63287a;
-          }
-        }
-      }
     }
 
     .purchase-type-selector {
       margin-top: 15px;
-      
-      .purchase-type-option {
-        padding: 10px 15px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        cursor: pointer;
-        @include font-style-body($weight: 500, $color: $brown);
-
-        &:hover {
-          background-color: #f4f2f0;
-        }
-
-        &.selected {
-          background-color: $off-white;
-          
-          .radio-button {
-            border: 6px solid $orange;
-          }
-
-          .pricing {
-            visibility: visible;
-          }
-        }
-
-        .radio-button {
-          height: 20px;
-          width: 20px;
-          border-radius: 50%;
-          border: 2px solid $orange;
-          margin-right: 5px;
-          background-color: $white;
-        }
-
-        .pricing {
-          visibility: hidden;
-          margin-left: 14px;
-        }
-
-        .subscribe {
-
-          h6 {
-            margin: 0;
-            @include font-style-body($weight: 800, $color: $brown);
-          }
-        }
-      }
     }
 
     .cta-button-box {
