@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  name: "ProductBreadcrumb",
   props: {
     collection: {
       type: String,

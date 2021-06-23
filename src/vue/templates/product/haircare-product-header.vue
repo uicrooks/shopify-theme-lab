@@ -61,16 +61,10 @@
 </template>
 
 <script>
-import ProductGallery from "@/vue/templates/product/product-gallery";
-import ProductIconDescriptions from "@/vue/templates/product/product-icon-descriptions";
 import CartService from "@/vue/services/cart.service";
 
 export default {
   name: "HaircareProductHeader",
-  components: {
-    ProductGallery,
-    ProductIconDescriptions
-  },
   props: {
     collection: {
       type: String,

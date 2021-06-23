@@ -22,13 +22,8 @@
 </template>
 
 <script>
-import ProductBreadcrumb from "@/vue/templates/product/product-breadcrumb";
-
 export default {
   name: "Product",
-  components: {
-    ProductBreadcrumb
-  },
   props: {
     handle: {
       type: String,
