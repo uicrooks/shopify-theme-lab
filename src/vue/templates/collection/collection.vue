@@ -89,7 +89,7 @@ export default {
 
   h1 {
     margin-bottom: 14px;
-    @include font-style-heading($size: 32px, $lh: 32px, $color: $white);
+    @include font-style-heading($size: 32px, $color: $white);
   }
 
   p {

@@ -91,7 +91,7 @@ export default {
       padding-left: 20px;
 
       h3 {
-        @include font-style-heading($size: 14px, $lh: 14px, $color: $dark-brown);
+        @include font-style-heading($size: 14px);
       }
 
       p {

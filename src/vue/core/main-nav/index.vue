@@ -47,19 +47,25 @@
         </template>
 
         <template #default>
-          <squatch-button
-            class="big-cta-button"
-            text="The Subscription"
-            sub-text="Save 15% on your favorite soap and get free shipping for life!"
-            path="/pages/subscription-flow"
-          />
-          <squatch-button
-            class="big-cta-button"
-            text="Starter Bundles"
-            sub-text="Your choice of our curated best sellers"
-            path="/pages/bundle-offers"
-            color="maroon"
-          />
+
+          <button
+            class="big-cta-link"
+            @click="navigateTo('/pages/subscription-flow')"
+          >
+            <span class="title">
+              The Subscription
+            </span>
+            Save 15% on your favorite soap and get free shipping for life!
+          </button>
+          <button
+            class="big-cta-link maroon"
+            @click="navigateTo('/pages/bundle-offers')"
+          >
+            <span class="title">
+              Starter Bundles
+            </span>
+            Your choice of our curated best sellers
+          </button>
 
           <main-nav-grouped-menu-item
             :name="soapMenu.name"
@@ -113,13 +119,14 @@
     <div class="desktop-nav">
       <div class="left-section">
         <squatch-button
-          text="Subscribe"
-          path="/test"
-          color="hover-lighten"
-        />
+          path="/pages/subscription-flow"
+          class="subscribe-button"
+        >
+          Subscribe
+        </squatch-button>
         <div
           class="menu-item"
-          @click="navigateToPath('/pages/bundle-offers')"
+          @click="navigateTo('/pages/bundle-offers')"
         >
           Bundles
         </div>
@@ -492,7 +499,38 @@ export default {
         }
       }
     }
-    
+
+    .big-cta-link  {
+      padding: 20px 15px;
+      margin: 10px 16px;
+      background-color: $orange;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      @include font-style-body($size: 15px, $color: $white);
+
+      .title {
+        display: block;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        @include font-style-heading($size: 16px, $color: $white);
+      }
+
+      &:hover {
+        background-color: $orange-darken;
+        color: $white-darken;
+      }
+
+      &.maroon {
+        background-color: $maroon;
+
+        &:hover {
+          background-color: $maroon-darken;
+          color: $white-darken;
+        }
+      }
+    }
+
     .soap-quiz-menu {
       border-top: 1px solid $off-white;
       font-weight: 400;
@@ -517,6 +555,11 @@ export default {
       flex-flow: row nowrap;
       align-items: center;
       flex: 1;
+
+      .subscribe-button {
+        padding: 15px 22px;
+        @include font-style-heading($size: 14px, $weight: 400, $color: $white);
+      }
     }
 
     #drsquatch-logo-desktop {
@@ -557,7 +600,7 @@ export default {
     .submenu-title {
       margin-bottom: 15px;
       padding-left: 15px;
-      @include font-style-heading($color: $dark-brown);
+      @include font-style-heading();
     }
 
     .essentials {
@@ -604,7 +647,7 @@ export default {
 
         .item-name {
           text-align: center;
-          @include font-style-heading($size: 14px, $color: $dark-brown)
+          @include font-style-heading($size: 14px);
         }
       }
     }
@@ -623,7 +666,7 @@ export default {
         .more-item {
           width: 160px;
           margin: 0 0 14px 15px;
-          @include font-style-body($color: $dark-brown, $weight: 600);
+          @include font-style-body($weight: 600);
           cursor: pointer;
 
           &:hover {
@@ -632,7 +675,7 @@ export default {
         }
 
         .more-item-shop-all {
-          @include font-style-heading($size: 14px, $color: $dark-brown, $weight: 600);
+          @include font-style-heading($size: 14px, $weight: 600);
         }
       }
     }
@@ -641,13 +684,13 @@ export default {
 </style>
 
 <style lang="scss">
-.squatch-button-component.big-cta-button {
+@import "@/styles/main.scss";
+
+.squatch-button-component.big-cta-link  {
   padding: 20px 15px;
   margin: 16px;
-
-  .button-text {
-    font-size: 16px;
-    text-transform: uppercase;
-  }
+  background-color: $orange;
+  text-align: center;
+  @include font-style-heading($size: 16px, $color: $white);
 }
 </style>

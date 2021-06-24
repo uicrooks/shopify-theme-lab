@@ -109,7 +109,7 @@ export default {
         }
       ],
       currentTabIndex: 0,
-      selectedStarterBundleIndex: null,
+      selectedStarterBundleIndex: 1,
       scentSelectionFlag: false
     };
   },
@@ -185,7 +185,7 @@ export default {
 
       h1 {
         margin-bottom: 13px;
-        @include font-style-heading($size: 46px, $color: $white, $lh: 46px);
+        @include font-style-heading($size: 46px, $color: $white);
 
         @include layout-md {
           font-size: 28px;
@@ -220,7 +220,7 @@ export default {
         padding: 6px;
         white-space: nowrap;
         cursor: pointer;
-        @include font-style-body($weight: 600, $color: $dark-brown);
+        @include font-style-body($weight: 600);
 
         &:hover {
           border-bottom: 2px solid $orange;
@@ -256,12 +256,12 @@ export default {
 
       h2 {
         margin: 15px 0;
-        @include font-style-heading($size: 30px, $color: $dark-brown);
+        @include font-style-heading($size: 30px);
       }
 
       p {
         margin-bottom: 20px;
-        @include font-style-body($size: 16px, $color: $brown, $lh: 16px);
+        @include font-style-body($size: 16px, $color: $brown);
 
         @include layout-md {
           margin-bottom: 30px;

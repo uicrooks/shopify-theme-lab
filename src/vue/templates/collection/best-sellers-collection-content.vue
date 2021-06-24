@@ -19,10 +19,11 @@
             Review Stuff here
           </div>
           <squatch-button
-            text="Subscribe & Save 15%"
             path="/pages/subscription-flow"
             class="cta-button"
-          />
+          >
+            Subscribe & Save 15%
+          </squatch-button>
           <p>
             Soap Delivered Automatically, Free Shipping
           </p>
@@ -46,10 +47,11 @@
             Review Stuff here
           </div>
           <squatch-button
-            text="Shop Starter Bundles"
             path="/pages/bundle-offers"
             class="cta-button"
-          />
+          >
+            Shop Starter Bundles
+          </squatch-button>
           <p>
             Your choice of our curated best sellers. Treat your skin right with three of our best-smelling, best-selling soaps - and our Soap Saver to keep them fresh.
           </p>

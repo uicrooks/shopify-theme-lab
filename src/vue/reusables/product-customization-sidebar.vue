@@ -102,10 +102,11 @@
       </div>
       <template #footer>
         <squatch-button
-          text="Finish"
-          :action="true"
-          @takeAction="checkout"
-        />
+          class="finish-button"
+          @clickd="checkout"
+        >
+          Finish
+        </squatch-button>
       </template>
     </b-sidebar>
   </div>
@@ -230,7 +231,7 @@ export default {
 
     h2 {
       margin: 13px 0 17px;
-      @include font-style-heading($size: 25px, $color: $dark-brown);
+      @include font-style-heading($size: 25px);
 
       @include layout-md {
         font-size: 30px;
@@ -246,7 +247,7 @@ export default {
     }
 
     .product-pricing {
-      @include font-style-body($size: 20px, $weight: 600, $color: $green, $lh: 20px);
+      @include font-style-body($size: 20px, $weight: 600, $color: $green);
 
       .compare-at-pricing {
         text-decoration: line-through;
@@ -264,7 +265,7 @@ export default {
 
     h3 {
       margin-left: 9px;
-      @include font-style-body($size: 16px, $lh: 16px, $color: $brown);
+      @include font-style-body($size: 16px, $color: $brown);
     }
 
     .variants {
@@ -311,7 +312,7 @@ export default {
 
     h3 {
       margin-bottom: 15px;
-      @include font-style-heading($color: $dark-brown);
+      @include font-style-heading();
     }
 
     .included-category {
@@ -321,10 +322,15 @@ export default {
         padding-bottom: 9px;
         border-bottom: 1px solid $off-white;
         margin-bottom: 15px;
-        @include font-style-body($size: 16px, $lh: 16px, $color: $brown);
+        @include font-style-body($size: 16px, $color: $brown);
       }
     }
 
+  }
+
+  .finish-button {
+    text-transform: uppercase;
+    @include font-style-heading($size: 14px, $weight: 400, $color: $white);
   }
 }
 </style>

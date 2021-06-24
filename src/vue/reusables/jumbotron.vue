@@ -32,9 +32,10 @@
       </p>
       <squatch-button
         v-if="ctaButton.text && ctaButton.path"
-        :text="ctaButton.text"
         :path="ctaButton.path"
-      />
+      >
+        {{ ctaButton.text }}
+      </squatch-button>
     </div>
   </div>
 </template>
@@ -121,12 +122,12 @@ export default {
 
     .pre-header {
       margin-bottom: 15px;
-      @include font-style-body($size: 16px, $color: $white, $lh: 16px);
+      @include font-style-body($size: 16px, $color: $white);
     }
 
     .header {
       margin-bottom: 30px;
-      @include font-style-heading($size: 28px, $color: $white, $lh: 28px);
+      @include font-style-heading($size: 28px, $color: $white);
     }
 
     .body-text {

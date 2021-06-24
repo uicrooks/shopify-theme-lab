@@ -56,10 +56,10 @@
       </p>
       <squatch-button
         v-if="selected"
-        text="Select Scents"
-        :action="true"
-        @takeAction="$emit('openScentSelection')"
-      />
+        @clicked="$emit('openScentSelection')"
+      >
+        Select Scents
+      </squatch-button>
     </div>
   </div>
 </template>
@@ -216,7 +216,7 @@ export default {
 
       h4 {
         margin: 0 5px 0 0;
-        @include font-style-heading($size: 21px, $color: $dark-brown);
+        @include font-style-heading($size: 21px);
 
         @include layout-md {
           margin: 0 0 8px 0;

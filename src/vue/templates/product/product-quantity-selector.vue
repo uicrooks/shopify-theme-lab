@@ -40,7 +40,7 @@ export default {
 .product-quantity-selector-component {
   h6 {
     margin-bottom: 14px;
-    @include font-style-accent($size: 12px, $lh: 12px, $color: $brown);
+    @include font-style-accent($size: 12px, $color: $brown);
   }
 
   .quantity-selector {
@@ -63,7 +63,7 @@ export default {
     width: 32px;
     padding: 0 7px;
     text-align: center;
-    @include font-style-body($color: $dark-brown);
+    @include font-style-body();
   }
 }
 </style>

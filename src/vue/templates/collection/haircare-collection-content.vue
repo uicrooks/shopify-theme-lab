@@ -89,7 +89,7 @@ export default {
     margin: 30px 0;
     padding: 0 15px;
     text-align: center;
-    @include font-style-heading($size: 23px, $color: $dark-brown, $lh: 23px);
+    @include font-style-heading($size: 23px);
 
     @include layout-md {
       text-align: left;

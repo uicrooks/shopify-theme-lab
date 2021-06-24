@@ -49,7 +49,7 @@ export default {
 .product-quantity-options-component {
   h6 {
     margin-bottom: 7px;
-    @include font-style-accent($size: 12px, $lh: 12px, $color: $brown);
+    @include font-style-accent($size: 12px, $color: $brown);
   }
 
   .quantity-options {

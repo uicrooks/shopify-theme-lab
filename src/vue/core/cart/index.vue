@@ -90,19 +90,20 @@
         >
           <h3>Your Cart is empty</h3>
           <squatch-button
-            text="Continue Browsing"
-            :action="true"
             class="cta-button"
-            @takeAction="hide"
-          />
+            @clicked="hide"
+          >
+            Continue Browsing
+          </squatch-button>
         </div>
         <squatch-button
           v-if="items.length > 0"
           text="Checkout"
           class="checkout-button"
-          :action="true"
-          @takeAction="checkout"
-        />
+          @clicked="checkout"
+        >
+          Checkout
+        </squatch-button>
       </template>
     </b-sidebar>
   </div>
@@ -135,14 +136,8 @@ export default {
       "numberOfItems"
     ]),
   },
-  watch: {
-    items(val) {
-      // console.log("watching cart items", val);
-    }
-  },
   methods: {
     toggleCart() {
-      console.log("toggleCart");
       this.$store.commit("cart/toggleIsOpen");
     },
     async updateQuantity(itemIndex, quantity) {
@@ -183,7 +178,7 @@ export default {
     align-items: center;
     padding: 15px 20px;
     background-color: $black;
-    @include font-style-heading($size: 23px, $color: $white, $lh: 23px);
+    @include font-style-heading($size: 23px, $color: $white);
   }
 
   .cart-content {
@@ -196,7 +191,7 @@ export default {
 
       h3 {
         margin-bottom: 15px;
-        @include font-style-heading($size: 16px, $color: $dark-brown);
+        @include font-style-heading($size: 16px);
       }
 
       .cta-button {
@@ -236,7 +231,7 @@ export default {
         .item-title {
           text-decoration: none;
           cursor: pointer;
-          @include font-style-heading($size: 14px, $color: $dark-brown, $lh: 14px);
+          @include font-style-heading($size: 14px);
 
           &:hover {
             color: $orange;
@@ -269,7 +264,7 @@ export default {
       position: relative;
       padding: 15px 15px 15px 30px;
       border-top: 1px solid $off-white;
-      @include font-style-body($color: $dark-brown);
+      @include font-style-body();
 
       span {
         position: absolute;

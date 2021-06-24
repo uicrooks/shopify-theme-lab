@@ -68,7 +68,7 @@ export default {
     padding: 3px 7px;
     border: 2px solid #999;
     text-align: center;
-    @include font-style-body($color: $dark-brown, $lh: 17px);
+    @include font-style-body($lh: 17px);
   }
 }
 </style>

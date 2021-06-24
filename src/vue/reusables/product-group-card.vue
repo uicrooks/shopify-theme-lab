@@ -71,10 +71,10 @@
       </div>
       <div class="add-button">
         <squatch-button
-          :text="added ? 'Add More' : '+ Add To Cart'"
-          :action="true"
-          @takeAction="addToCart"
-        />
+          @clicked="addToCart"
+        >
+          {{ added ? 'Add More' : '+ Add To Cart' }}
+        </squatch-button>
       </div>
     </div>
   </div>
@@ -252,28 +252,28 @@ export default {
 
     .product-title {
       min-height: 42px;
-      @include font-style-heading($size: 20px, $color: $dark-brown, $lh: 20px);
+      @include font-style-heading($size: 20px);
     }
 
     .product-description {
       min-height: 32px;
-      @include font-style-heading($size: 16px, $color: $brown, $lh: 16px);
+      @include font-style-heading($size: 16px, $color: $brown);
     }
 
     .product-pricing {
       margin-bottom: 20px;
-      @include font-style-heading($size: 16px, $color: $green, $weight: 700, $lh: 16px);
+      @include font-style-heading($size: 16px, $color: $green, $weight: 700);
 
       .compare-at-pricing {
         text-decoration: line-through;
-        @include font-style-heading($size: 14px, $color: $gray, $weight: 700, $lh: 14px);
+        @include font-style-heading($size: 14px, $color: $gray, $weight: 700);
       }
     }
 
     .see-included-link {
       margin-bottom: 15px;
       cursor: pointer;
-      @include font-style-heading($size: 12px, $color: $brown, $lh: 12px);
+      @include font-style-heading($size: 12px, $color: $brown);
     }
   }
 }

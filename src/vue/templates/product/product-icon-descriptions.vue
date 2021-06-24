@@ -61,7 +61,7 @@ export default {
 
       h6 {
         margin: 0;
-        @include font-style-heading($size: 14px, $lh: 14px, $color: $dark-brown);
+        @include font-style-heading($size: 14px);
       }
     }
   }
