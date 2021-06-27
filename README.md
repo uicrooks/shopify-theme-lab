@@ -96,9 +96,9 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - Default Shopify theme directory structure with unstyled `.liquid` files
   - A batch of `npm scripts` to run common tasks
 - JavaScript
-  - [Vue](https://vuejs.org)
-  - [Vuex](https://vuex.vuejs.org)
-  - Swap Vue with any other framework e.g. [Alpine.js](https://github.com/alpinejs/alpine)
+  - [Vue](https://v3.vuejs.org)
+  - [Vuex](https://next.vuex.vuejs.org)
+  - Swap Vue with any other framework e.g. [Alpine.js](https://alpinejs.dev)
   - [Axios](https://github.com/axios/axios)
   - Extend with [npm packages](https://www.npmjs.com) 📦
 - CSS
@@ -459,7 +459,7 @@ module: {
 ```
 
 ### Alpine.js
-If you want to use something lighter than Vue, a good alternative is [Alpine.js](https://github.com/alpinejs/alpine).
+If you want to use something lighter than Vue, a good alternative is [Alpine.js](https://alpinejs.dev).
 
 1. Install package:
 
