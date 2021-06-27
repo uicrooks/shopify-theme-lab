@@ -1,3 +1,5 @@
+const isDevelopment = process.env.NODE_ENV === 'development'
+
 module.exports = {
   extends: [
     'eslint:recommended',
@@ -29,6 +31,7 @@ module.exports = {
      * add custom rules
      * docs: https://eslint.org/docs/rules
      */
+    'no-unused-vars': isDevelopment ? 'off' : 'error',
     // 'quotes': ['error', 'single'],
     // 'semi': ['error', 'never']
   }
