@@ -28,7 +28,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 
 <!-- button-youtube-quick-start (start) -->
 <p>
-  <a href="https://youtu.be/_jFoPw_n9g4">
+  <a href="https://www.youtube.com/watch?v=y_1vCwzB9BA&list=PLG6jOAX6V-52wKN4AhFRxhtHk1FpRKgo0">
     <img src=".github/img/button-youtube-quick-start.svg" width="250px">
   </a>
 </p>
@@ -162,7 +162,7 @@ $ yarn install --force
 > `npm` requires the extra `--` before any arguments! When using `yarn` you can omit them.
 
 ```sh
-$ npm run shopify:init -- --password [your-password] --store [your-store.myshopify.com] --env [dev or live] --name [theme-name]
+$ npm run shopify:init -- --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name [theme-name]
 ```
 
 3. Publish the new theme through the Shopify panel: **your-store.myshopify.com/admin/themes**
@@ -201,7 +201,7 @@ The `shopify:init` task always creates a new theme with a unique ID for the prov
 1. Run the following command to list all themes from the provided store and write down the ID for the theme in question:
 
 ```sh
-$ npm run shopify:themes -- --password [your-password] --store [your-store.myshopify.com]
+$ npm run shopify:themes -- --password [your-api-password] --store [your-store.myshopify.com]
 ```
 
 2. Copy and rename the Shopify sample config file:
@@ -219,7 +219,7 @@ $ cp .config/shopify/shopify.sample.yml .config/shopify/shopify.live.yml # or co
 1. Add the following four secrets to your Shopify Theme Lab repo in `settings` → `secrets`:
 
 ```sh
-SHOPIFY_PASSWORD # your-password
+SHOPIFY_API_PASSWORD # your-api-password
 SHOPIFY_STORE_URL # your-store.myshopify.com
 SHOPIFY_ENV # dev or live
 SHOPIFY_THEME_ID # theme-id (without quotation marks) - find the id either in shopify.[env].config.yml or with shopify:themes task
@@ -268,7 +268,7 @@ jobs:
         # 3. deploys the shopify/ directory to the remote store
       - name: Deploy to Shopify store
         run: |
-          npx themelab shopify:init -p ${{ secrets.SHOPIFY_PASSWORD }} -s ${{ secrets.SHOPIFY_STORE_URL }} -e ${{ secrets.SHOPIFY_ENV }} -i ${{ secrets.SHOPIFY_THEME_ID }}
+          npx themelab shopify:init -p ${{ secrets.SHOPIFY_API_PASSWORD }} -s ${{ secrets.SHOPIFY_STORE_URL }} -e ${{ secrets.SHOPIFY_ENV }} -i ${{ secrets.SHOPIFY_THEME_ID }}
           npm run settings:${{ secrets.SHOPIFY_ENV }}
           npm run deploy:${{ secrets.SHOPIFY_ENV }} -- --allow-live
 ```
