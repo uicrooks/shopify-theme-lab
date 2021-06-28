@@ -9,8 +9,23 @@
         <span />
       </div>
       <span>One-time</span>
-      <span class="pricing">
-        {{ price | money("$", 0) }} {{ unit ? `/ ${unit}` : "" }}
+      <span
+        v-if="quantity === 1"
+        class="pricing"
+      >
+        {{ product.price | money("$", 0) }} {{ unit ? `/ ${unit}` : "" }}
+      </span>
+      <span
+        v-else
+        class="pricing"
+      >
+        {{ product.price * quantity | money("$", 0) }}
+      </span>
+      <span
+        v-if="product.compare_at_price && product.price !== product.compare_at_price"
+        class="pricing-discount"
+      >
+        <span class="original">{{ product.compare_at_price | money("$", 0) }}</span>({{ (product.compare_at_price - product.price) * quantity | money("$", 0) }} Off!)
       </span>
     </div>
     <div
@@ -43,10 +58,15 @@ export default {
       required: false,
       default: ""
     },
-    price: {
+    product: {
+      type: Object,
+      required: true,
+      default: () => {}
+    },
+    quantity: {
       type: Number,
       required: true,
-      default: 0
+      default: 1
     },
     totalDiscountForSubscription: {
       type: Number,
@@ -85,7 +105,7 @@ export default {
         border: 6px solid $orange;
       }
 
-      .pricing {
+      .pricing, .pricing-discount {
         visibility: visible;
       }
     }
@@ -102,6 +122,19 @@ export default {
     .pricing {
       visibility: hidden;
       margin-left: 14px;
+      @include font-style-body($color: $green);
+    }
+
+    .pricing-discount {
+      visibility: hidden;
+      margin-left: 8px;
+      @include font-style-body();
+
+      .original {
+        text-decoration: line-through;
+        margin-right: 3px;
+        @include font-style-body($color: grey);
+      }
     }
 
     .subscribe {

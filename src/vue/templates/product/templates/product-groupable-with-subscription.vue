@@ -1,11 +1,12 @@
 <template>
-  <div class="product-individual-only-with-subscription-component">
+  <div class="product-groupable-with-subscription-component">
     <product-base-template
       :product="product"
       :collection-name="collectionName"
     >
       <template #page-banner>
         <new-look-banner
+          v-if="type === 'deodorant'"
           :has-old-packaging="hasOldPackaging"
         />
       </template>
@@ -17,27 +18,26 @@
         >
           (Save {{ totalDiscountForSubscription | money("$", 0) }}!)
         </span>
+        <span
+          v-else-if="isGrouped"
+          class="discount strikethrough"
+        >
+          {{ product.compare_at_price | money("$", 0) }}
+        </span>
       </template>
       <template #product-options>
         <product-feature-descriptions
           :handle="product.handle"
           :items="iconDescriptionItems"
         />
-        <div v-if="!isSubscription">
-          <product-quantity-options
-            v-if="type === 'barsoap'"
-            product-unit="Soap"
-            :quantity-options="quantityOptions"
-            :selected="quantity"
-            class="product-quantity-options"
-            @quantitySelected="selectQuantity"
-          />
-          <product-quantity-selector
-            v-else
-            :quantity="quantity"
-            @quantityUpdated="selectQuantity"
-          />
-        </div>
+        <product-grouping-selector
+          :groupings="groupings"
+          :selected="product"
+        />
+        <product-quantity-selector
+          :quantity="quantity"
+          @quantityUpdated="selectQuantity"
+        />
         <product-purchase-type-selector
           :is-subscription="isSubscription"
           :unit="unit"
@@ -46,7 +46,9 @@
           :total-discount-for-subscription="totalDiscountForSubscription"
           class="purchase-type-selector"
           @updatePurchaseType="isSubscription = !isSubscription"
-        />
+        >
+          {{ }}
+        </product-purchase-type-selector>
       </template>
       <template #cta-banner>
         <div class="free-shipping-banner">
@@ -66,40 +68,36 @@
 
 <script>
 import CartService from "@/vue/services/cart.service";
+import StoreService from "@/vue/services/store.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
 
 const units = {
-  "barsoap": "bar",
-  "haircare-kit": "kit",
-  "haircare-shampoo": "bottle",
-  "haircare-conditioner": "bottle"
+  "deodorant": "stick",
+  "toothpaste-kit": "",
+  "toothpaste": "tube",
 };
 const featureDescriptions = {
-  "barsoap": [
+  "deodorant": [
     { label: "Smells Like:", metafieldName: "scent", iconName: "" },
     { label: "Exfoliation:", metafieldName: "exfol_lvl", iconName: "ColdProcessSoap" }
   ],
-  "haircare-kit": [
-    { label: "Smells Like:", metafieldName: "scent", iconName: "" },
+  "toothpaste-kit": [
+    { label: "Flavor:", metafieldName: "scent", iconName: "spearmint-basil" },
+    { label: "Featuring:", metafieldName: "featuring", iconName: "tooth-bun_whitens" }
   ],
-  "haircare-shampoo": [
-    { label: "Smells Like:", metafieldName: "scent", iconName: "" },
-    { label: "Featuring:", metafieldName: "exfol_lvl", iconName: "NaturalOils" }
-  ],
-  "haircare-conditioner": [
-    { label: "Smells Like:", metafieldName: "scent", iconName: "" },
-    { label: "Featuring:", metafieldName: "exfol_lvl", iconName: "NaturalOils" }
+  "toothpaste": [
+    { label: "Flavor:", metafieldName: "scent", iconName: "" },
+    { label: "Featuring:", metafieldName: "featuring", iconName: "tooth-bun_whitens" }
   ],
 };
 const discountForSubscription = {
-  "barsoap": 100,
-  "haircare-kit": 400,
-  "haircare-shampoo": 200,
-  "haircare-conditioner": 200
+  "deodorant": 100,
+  "toothpaste-kit": 400,
+  "toothpaste": 200
 }
 
 export default {
-  name: "ProductIndividualOnlyWithSubscription",
+  name: "ProductGroupableWithSubscription",
   props: {
     product: {
       type: Object,
@@ -116,6 +114,8 @@ export default {
     return {
       type: "",
       productIdentity: "",
+      collection: {},
+      groupings: {},
       isSubscription: false,
       quantity: 1,
       quantityOptions: [2, 1, 3],
@@ -131,6 +131,9 @@ export default {
     },
     discountForSubscription() {
       return discountForSubscription[this.productIdentity];
+    },
+    isGrouped() {
+      return ["toothpaste-kit"].includes(this.productIdentity);
     },
     freeShippingVerbatim() {
       const verbatim = this.isSubscription ? "for life" : `over $${this.$store.state.core.freeShippingMinimum}`;
@@ -152,7 +155,7 @@ export default {
       return this.discountForSubscription * this.quantity;
     },
     hasOldPackaging() {
-      return this.product.title && this.product.title === "Fresh Falls";
+      return true;
     }
   },
   methods: {
@@ -177,11 +180,23 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
     this.type = ProductIdentifier.getType(this.product);
     this.productIdentity = ProductIdentifier.identify(this.product);
-    if (this.type === "barsoap") {
-      this.quantity = 2;
+    const collectionId = this.type === "toothpaste" ? "170016243817" : "";
+    const collection = await StoreService.getCollectionById(collectionId);
+    if (collection && collection.products) {
+      let groups = [];
+      let individuals = [];
+      collection.products.forEach(product => {
+        const isGrouped = ProductIdentifier.isGrouped(product);
+        isGrouped ? groups.push(product) : individuals.push(product);
+      });
+      this.groupings = {
+        "bundles": groups,
+        "individuals": individuals
+      };
+      console.log(this.groupings);
     }
   }
 };
@@ -190,11 +205,15 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/main.scss";
 
-.product-individual-only-with-subscription-component {
+.product-groupable-with-subscription-component {
 
   .discount {
     margin-left: 8px;
     @include font-style-body($weight: 800, $color: $tan);
+
+    &.strikethrough {
+      text-decoration: line-through;
+    }
   }
 }
 </style>

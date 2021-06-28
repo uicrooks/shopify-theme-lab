@@ -390,7 +390,7 @@ export default {
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
         }, {
           name: "Deodorant",
-          path: "/collections/deodorants",
+          path: "/collections/deodorant",
           imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
           badge: "New!"
         }, {
