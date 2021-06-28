@@ -1,7 +1,8 @@
 <template>
   <div class="collection-component">
     <new-look-banner
-      :handle="handle"
+      v-if="hasNewLookBanner"
+      :hasOldPackaging="hasOldPackaging"
     />
     <jumbotron
       v-if="jumbotronConfig"
@@ -60,6 +61,12 @@ export default {
     };
   },
   computed: {
+    hasNewLookBanner() {
+      return !["toothpaste", "shower-boosters", "collection-page-best-sellers", "hand-sanitizer", "hand-soap", "gear"].includes(this.handle);
+    },
+    hasOldPackaging() {
+      return ["beard", "colognes"].includes(this.handle);
+    },
     jumbotronConfig() {
       const match = JumbotronConfigs[this.handle];
       return match ? match : null;
