@@ -4,7 +4,7 @@
 # if you are manually initializing the local config:
 # don't forget to set the correct environment on the next line, either 'dev:' or 'live:'
 dev:
-  password: [your-password]
+  password: [your-api-password]
   theme_id: "[your-theme-id]"
   store: [your-store].myshopify.com
   directory: shopify
