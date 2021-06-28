@@ -40,7 +40,7 @@
           v-if="index === 1"
           class="products"
         >
-          <customizable-product-group-card
+          <custom-product-group-card
             v-for="(product, productIndex) of getSectionProducts(index)"
             :key="`bundles-section-${index}-product-${productIndex}`"
             class="customizable-product-group-card"
@@ -63,7 +63,7 @@
         </div>
       </section>
     </div>
-    <product-customization-sidebar
+    <custom-product-group-customization-sidebar
       :is-open="scentSelectionFlag"
       :product="selectedStarterBundle"
       @close="scentSelectionFlag = false"
@@ -73,6 +73,7 @@
 
 <script>
 export default {
+  name: "BundleOffers",
   props: {
     bundles: {
       type: Object,

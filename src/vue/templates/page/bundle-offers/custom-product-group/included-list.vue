@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="!hidden"
-    class="product-group-included-list-component"
+    class="custom-product-group-included-list-component"
   >
     <div
       v-for="(product, index) of products"
@@ -26,6 +26,7 @@
 import StoreService from "@/vue/services/store.service";
 
 export default {
+  name: "CustomProductGroupIncludedList",
   props: {
     productHandles: {
       type: Array,
@@ -66,7 +67,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/main.scss";
 
-.product-group-included-list-component {
+.custom-product-group-included-list-component {
 
   .product {
     width: 100%;

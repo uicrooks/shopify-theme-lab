@@ -14,10 +14,10 @@
         icon="chevron-right"
       />
       <a
-        :href="`/collections/${collection}`"
+        :href="`/collections/${collectionName}`"
         class="link-label"
       >
-        {{ collection | readableHandle }}
+        {{ collectionName | readableHandle }}
       </a>
       <b-icon
         class="chevron-icon"
@@ -37,7 +37,7 @@
 export default {
   name: "ProductBreadcrumb",
   props: {
-    collection: {
+    collectionName: {
       type: String,
       required: true,
       default: ""

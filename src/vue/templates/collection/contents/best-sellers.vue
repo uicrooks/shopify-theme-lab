@@ -1,5 +1,5 @@
 <template>
-  <div class="best-sellers-collection-content-component">
+  <div class="collection-best-sellers-content-component">
     <div class="upsell-items">
       <div class="upsell-item-wrapper">
         <a href="/pages/subscription-flow">
@@ -58,16 +58,15 @@
         </div>
       </div>
     </div>
-    <default-collection-content
+    <collection-default-content
       :products="products"
     />
   </div>
 </template>
 
 <script>
-import DefaultCollectionContent from "@/vue/templates/collection/default-collection-content";
 export default {
-  components: { DefaultCollectionContent },
+  name: "CollectionBestSellersContent",
   props: {
     products: {
       type: Array,
@@ -80,7 +79,7 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.best-sellers-collection-content-component {
+.collection-best-sellers-content-component {
 
   .upsell-items {
     display: flex;

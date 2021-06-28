@@ -4,7 +4,7 @@
     <div class="quantity-selector">
       <button
         class="decrease-button"
-        @click="$emit('decrease')"
+        @click="decrease"
       >
         -
       </button>
@@ -13,7 +13,7 @@
       </div>
       <button
         class="increase-button"
-        @click="$emit('increase')"
+        @click="increase"
       >
         +
       </button>
@@ -30,6 +30,16 @@ export default {
       required: true,
       default: 0
     }
+  },
+  methods: {
+    decrease() {
+      let newQty = this.quantity > 1 ? this.quantity - 1 : this.quantity;
+      this.$emit("quantityUpdated", newQty);
+    },
+    increase() {
+      let newQty = this.quantity + 1;
+      this.$emit("quantityUpdated", newQty);
+    }
   }
 };
 </script>
@@ -38,6 +48,8 @@ export default {
 @import "@/styles/main.scss";
 
 .product-quantity-selector-component {
+  margin: 15px 0;
+  
   h6 {
     margin-bottom: 14px;
     @include font-style-accent($size: 12px, $color: $brown);

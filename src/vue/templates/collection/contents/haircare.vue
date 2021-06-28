@@ -1,5 +1,5 @@
 <template>
-  <div class="haircare-collection-content-component">
+  <div class="collection-haircare-content-component">
     <div class="collection-section-header">
       Kits + Bundles
       <div class="sub-header">
@@ -47,6 +47,7 @@
 
 <script>
 export default {
+  name: "CollectionHaircareContent",
   props: {
     products: {
       type: Array,
@@ -84,7 +85,7 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.haircare-collection-content-component {
+.collection-haircare-content-component {
   .collection-section-header {
     margin: 30px 0;
     padding: 0 15px;

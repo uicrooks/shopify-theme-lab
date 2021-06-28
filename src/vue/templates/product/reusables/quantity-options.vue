@@ -19,15 +19,15 @@
 export default {
   name: "ProductQuantityOptions",
   props: {
-    quantityOptions: {
-      type: Array,
-      required: true,
-      default: () => []
-    },
     productUnit: {
       type: String,
       required: false,
       default: ""
+    },
+    quantityOptions: {
+      type: Array,
+      required: true,
+      default: () => []
     },
     selected: {
       type: Number,
@@ -47,6 +47,8 @@ export default {
 @import "@/styles/main.scss";
 
 .product-quantity-options-component {
+  margin: 15px 0 25px 0;
+
   h6 {
     margin-bottom: 7px;
     @include font-style-accent($size: 12px, $color: $brown);

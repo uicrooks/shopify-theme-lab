@@ -1,5 +1,5 @@
 <template>
-  <div class="default-collection-content-component">
+  <div class="collection-default-content-component">
     <product-card 
       v-for="(product, index) of products"
       :key="`collection-product-${index}`"
@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: "CollectionDefaultContent",
   props: {
     products: {
       type: Array,
@@ -26,7 +27,7 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.default-collection-content-component {
+.collection-default-content-component {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;

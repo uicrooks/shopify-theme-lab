@@ -22,15 +22,15 @@
       </p>
     </div>
 
-    <best-sellers-collection-content
+    <collection-best-sellers-content
       v-if="handle === 'collection-page-best-sellers'"
       :products="products"
     />
-    <haircare-collection-content
+    <collection-haircare-content
       v-else-if="handle === 'hair-care'"
       :products="products"
     />
-    <default-collection-content
+    <collection-default-content
       v-else
       :products="products"
     />
@@ -38,18 +38,10 @@
 </template>
 
 <script>
-import BestSellersCollectionContent from "@/vue/templates/collection/best-sellers-collection-content";
-import DefaultCollectionContent from "@/vue/templates/collection/default-collection-content";
-import HaircareCollectionContent from "@/vue/templates/collection/haircare-collection-content";
 import JumbotronConfigs from "@/configs/collection-jumbotron";
 
 export default {
   name: "Collection",
-  components: {
-    BestSellersCollectionContent,
-    DefaultCollectionContent,
-    HaircareCollectionContent
-  },
   props: {
     handle: {
       type: String,

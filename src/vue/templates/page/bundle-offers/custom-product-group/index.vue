@@ -68,7 +68,7 @@
 import IncludedList from "@/configs/product-group-card-included-list";
 
 export default {
-  name: "CustomizableProductGroupCard",
+  name: "CustomProductGroupCard",
   props: {
     product: {
       type: Object,

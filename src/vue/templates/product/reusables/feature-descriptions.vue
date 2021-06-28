@@ -1,5 +1,5 @@
 <template>
-  <div class="product-icon-descriptions-component">
+  <div class="product-feature-descriptions-component">
     <div
       v-for="(item, index) of items"
       :key="`product-icon-desc-item-${index}`"
@@ -8,15 +8,15 @@
       <i :class="['squatch-icon', `icon-${item.iconName}`]" />
       <div class="description">
         <h6>{{ item.label }}</h6>
-        {{ item.description }}
+        {{ item.metafieldName }}
       </div>
-    </div>
+    </div> 
   </div>
 </template>
 
 <script>
 export default {
-  name: "ProductIconDescriptions",
+  name: "ProductFeatureDescriptions",
   props: {
     items: {
       type: Array,
@@ -28,9 +28,6 @@ export default {
       required: true,
       default: ""
     }
-  },
-  mounted() {
-    console.log(this.items);
   }
 };
 </script>
@@ -38,7 +35,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/main.scss";
 
-.product-icon-descriptions-component {
+.product-feature-descriptions-component {
   border-top: 1px solid $tan;
   border-bottom: 1px solid $tan;
 
@@ -57,7 +54,8 @@ export default {
     }
 
     .description {
-      @include font-style-body();
+      padding-right: 15px;
+      @include font-style-body($color: inherit);
 
       h6 {
         margin: 0;

@@ -10,7 +10,7 @@
       </div>
       <span>One-time</span>
       <span class="pricing">
-        {{ price | money("$", 0) }} / {{ unit }}
+        {{ price | money("$", 0) }} {{ unit ? `/ ${unit}` : "" }}
       </span>
     </div>
     <div
@@ -48,20 +48,10 @@ export default {
       required: true,
       default: 0
     },
-    quantity: {
+    totalDiscountForSubscription: {
       type: Number,
       required: true,
       default: 0
-    },
-    discountForSubscription: {
-      type: Number,
-      required: true,
-      default: 0
-    }
-  },
-  computed: {
-    totalDiscountForSubscription() {
-      return this.discountForSubscription * this.quantity;
     }
   }
 };
@@ -72,6 +62,8 @@ export default {
 @import "@/styles/main.scss";
 
 .product-purchase-type-selector-component {
+  margin-top: 15px;
+  
   .purchase-type-option {
     padding: 10px 15px;
     margin-bottom: 10px;

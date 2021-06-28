@@ -1,16 +1,16 @@
 <template>
   <div
     v-if="product.title"
-    class="product-customization-sidebar-component"
+    class="custom-product-group-customization-sidebar-component"
   >
     <b-icon
       class="hidden-icon"
-      aria-controls="product-customization-sidebar"
+      aria-controls="customization-sidebar"
       :aria-expanded="isSidebarOpen"
       icon="cart"
     />
     <b-sidebar
-      id="product-customization-sidebar"
+      id="customization-sidebar"
       v-model="isSidebarOpen"
       title="Sidebar"
       header-class="sidebar-header"
@@ -92,7 +92,7 @@
           class="included-category"
         >
           <h4>{{ category }}</h4>
-          <product-group-included-list
+          <custom-product-group-included-list
             v-for="(variant, variantIndex) of product.variants"
             :key="`variant-${variantIndex}`"
             :product-handles="getIncludedListForCategory(variant, category)"
@@ -117,7 +117,7 @@ import CartService from "@/vue/services/cart.service";
 import IncludedList from "@/configs/product-group-card-included-list";
 
 export default {
-  name: "ProductCustomizationSidebar",
+  name: "CustomProductGroupCustomizationSidebar",
   props: {
     isOpen: {
       type: Boolean,
@@ -197,7 +197,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/main.scss";
 
-.product-customization-sidebar-component {
+.custom-product-group-customization-sidebar-component {
   
   .hidden-icon {
     display: none;
