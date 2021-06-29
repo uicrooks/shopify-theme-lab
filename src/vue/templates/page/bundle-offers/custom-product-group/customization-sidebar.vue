@@ -103,7 +103,7 @@
       <template #footer>
         <squatch-button
           class="finish-button"
-          @clickd="checkout"
+          @clicked="checkout"
         >
           Finish
         </squatch-button>

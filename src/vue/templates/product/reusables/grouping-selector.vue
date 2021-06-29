@@ -14,7 +14,7 @@
           :key="`grouping-product-${index}`"
           class="product"
           :class="{selected: product.title === selected.title}"
-          @click="goToProduct(product)"
+          @click="$emit('selected', product)"
         >
           <img
             :src="product.images[0].src"

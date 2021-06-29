@@ -2,7 +2,7 @@
   <div class="collection-component">
     <new-look-banner
       v-if="hasNewLookBanner"
-      :hasOldPackaging="hasOldPackaging"
+      :has-old-packaging="hasOldPackaging"
     />
     <jumbotron
       v-if="jumbotronConfig"

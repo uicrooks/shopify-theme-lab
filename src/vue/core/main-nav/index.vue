@@ -47,7 +47,6 @@
         </template>
 
         <template #default>
-
           <button
             class="big-cta-link"
             @click="navigateTo('/pages/subscription-flow')"

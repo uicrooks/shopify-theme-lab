@@ -2,11 +2,11 @@
   <div class="product-groupable-with-subscription-component">
     <product-base-template
       :product="product"
-      :collection-name="collectionName"
+      :collection="collection"
     >
       <template #page-banner>
         <new-look-banner
-          v-if="type === 'deodorant'"
+          v-if="showBanner"
           :has-old-packaging="hasOldPackaging"
         />
       </template>
@@ -18,12 +18,12 @@
         >
           (Save {{ totalDiscountForSubscription | money("$", 0) }}!)
         </span>
-        <span
+        <!-- <span
           v-else-if="isGrouped"
           class="discount strikethrough"
         >
           {{ product.compare_at_price | money("$", 0) }}
-        </span>
+        </span> -->
       </template>
       <template #product-options>
         <product-feature-descriptions
@@ -32,13 +32,15 @@
         />
         <product-grouping-selector
           :groupings="groupings"
-          :selected="product"
+          :selected="currentProduct"
+          @selected="selectProduct"
         />
         <product-quantity-selector
           :quantity="quantity"
           @quantityUpdated="selectQuantity"
         />
         <product-purchase-type-selector
+          v-if="hasSubscriptionOption"
           :is-subscription="isSubscription"
           :unit="unit"
           :product="product"
@@ -46,9 +48,7 @@
           :total-discount-for-subscription="totalDiscountForSubscription"
           class="purchase-type-selector"
           @updatePurchaseType="isSubscription = !isSubscription"
-        >
-          {{ }}
-        </product-purchase-type-selector>
+        />
       </template>
       <template #cta-banner>
         <div class="free-shipping-banner">
@@ -72,11 +72,15 @@ import StoreService from "@/vue/services/store.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
 
 const units = {
+  "deodorant-bundle": "",
+  "deodorant-pack": "",
   "deodorant": "stick",
   "toothpaste-kit": "",
   "toothpaste": "tube",
 };
 const featureDescriptions = {
+  "deodorant-bundle": [],
+  "deodorant-pack": [],
   "deodorant": [
     { label: "Smells Like:", metafieldName: "scent", iconName: "" },
     { label: "Exfoliation:", metafieldName: "exfol_lvl", iconName: "ColdProcessSoap" }
@@ -91,10 +95,12 @@ const featureDescriptions = {
   ],
 };
 const discountForSubscription = {
+  "deodorant-bundle": null,
+  "deodorant-pack": null,
   "deodorant": 100,
   "toothpaste-kit": 400,
   "toothpaste": 200
-}
+};
 
 export default {
   name: "ProductGroupableWithSubscription",
@@ -104,17 +110,15 @@ export default {
       required: true,
       default: () => {}
     },
-    collectionName: {
-      type: String,
+    collection: {
+      type: Object,
       required: true,
-      default: ""
+      default: () => {}
     }
   },
   data() {
     return {
-      type: "",
-      productIdentity: "",
-      collection: {},
+      currentProduct: {},
       groupings: {},
       isSubscription: false,
       quantity: 1,
@@ -123,6 +127,9 @@ export default {
     };
   },
   computed: {
+    productIdentity() {
+      return this.currentProduct ? ProductIdentifier.identify(this.currentProduct) : [];
+    },
     unit() {
       return units[this.productIdentity];
     },
@@ -132,19 +139,19 @@ export default {
     discountForSubscription() {
       return discountForSubscription[this.productIdentity];
     },
-    isGrouped() {
-      return ["toothpaste-kit"].includes(this.productIdentity);
+    hasSubscriptionOption() {
+      return !["deodorant-bundle", "deodorant-pack"].includes(this.productIdentity);
     },
     freeShippingVerbatim() {
       const verbatim = this.isSubscription ? "for life" : `over $${this.$store.state.core.freeShippingMinimum}`;
-      return `Free Shipping ${verbatim}`
+      return `Free Shipping ${verbatim}`;
     },
     addToCartVerbatim() {
       if (this.isSubscription) {
         return "Subscribe & Save";
       }
       const totalPrice = this.product.price * this.quantity;
-      return this.added ? 'Add More' : `${this.$options.filters.money(totalPrice, "$", 0)} | Add To Cart`;
+      return this.added ? "Add More" : `${this.$options.filters.money(totalPrice, "$", 0)} | Add To Cart`;
     },
     pricingVerbatim() {
       const val = this.isSubscription ? this.product.price - this.discountForSubscription : this.product.price;
@@ -154,11 +161,38 @@ export default {
     totalDiscountForSubscription() {
       return this.discountForSubscription * this.quantity;
     },
+    showBanner() {
+      const productIdentity = ProductIdentifier.identify(this.product);
+      return productIdentity[0] === "deodorant"; 
+    },
     hasOldPackaging() {
-      return true;
+      const productIdentity = ProductIdentifier.identify(this.product);
+      return productIdentity[0] === "deodorant"; 
+    }
+  },
+  watch: {
+    productGroups(val) {
+      console.log(val);
+      let groups = [];
+      let individuals = [];
+      val.forEach(product => {
+        const grouped = ProductIdentifier.checkIfGroupedByHandle(product.handle);
+        grouped ? groups.push(product) : individuals.push(product);
+      });
+      this.groupings = {
+        bundles: groups,
+        individuals: individuals
+      };
+      console.log(this.groupings);
     }
   },
   methods: {
+    async selectProduct(product) {
+      console.log("selectProduct", product);
+      // this.currentProduct = product;
+      const fullProductData = await StoreService.getProductByHandle(product.handle);
+      console.log(fullProductData); 
+    },
     selectQuantity(qty) {
       this.quantity = qty;
     },
@@ -181,23 +215,8 @@ export default {
     }
   },
   async mounted() {
-    this.type = ProductIdentifier.getType(this.product);
-    this.productIdentity = ProductIdentifier.identify(this.product);
-    const collectionId = this.type === "toothpaste" ? "170016243817" : "";
-    const collection = await StoreService.getCollectionById(collectionId);
-    if (collection && collection.products) {
-      let groups = [];
-      let individuals = [];
-      collection.products.forEach(product => {
-        const isGrouped = ProductIdentifier.isGrouped(product);
-        isGrouped ? groups.push(product) : individuals.push(product);
-      });
-      this.groupings = {
-        "bundles": groups,
-        "individuals": individuals
-      };
-      console.log(this.groupings);
-    }
+    console.log(this.productGroups);
+    this.currentProduct = this.product;
   }
 };
 </script>

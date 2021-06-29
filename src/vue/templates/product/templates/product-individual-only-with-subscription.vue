@@ -2,7 +2,7 @@
   <div class="product-individual-only-with-subscription-component">
     <product-base-template
       :product="product"
-      :collection-name="collectionName"
+      :collection="collection"
     >
       <template #page-banner>
         <new-look-banner
@@ -96,7 +96,7 @@ const discountForSubscription = {
   "haircare-kit": 400,
   "haircare-shampoo": 200,
   "haircare-conditioner": 200
-}
+};
 
 export default {
   name: "ProductIndividualOnlyWithSubscription",
@@ -106,10 +106,10 @@ export default {
       required: true,
       default: () => {}
     },
-    collectionName: {
-      type: String,
+    collection: {
+      type: Object,
       required: true,
-      default: ""
+      default: () => {}
     }
   },
   data() {
@@ -134,14 +134,14 @@ export default {
     },
     freeShippingVerbatim() {
       const verbatim = this.isSubscription ? "for life" : `over $${this.$store.state.core.freeShippingMinimum}`;
-      return `Free Shipping ${verbatim}`
+      return `Free Shipping ${verbatim}`;
     },
     addToCartVerbatim() {
       if (this.isSubscription) {
         return "Subscribe & Save";
       }
       const totalPrice = this.product.price * this.quantity;
-      return this.added ? 'Add More' : `${this.$options.filters.money(totalPrice, "$", 0)} | Add To Cart`;
+      return this.added ? "Add More" : `${this.$options.filters.money(totalPrice, "$", 0)} | Add To Cart`;
     },
     pricingVerbatim() {
       const val = this.isSubscription ? this.product.price - this.discountForSubscription : this.product.price;

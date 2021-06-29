@@ -3,12 +3,12 @@
     <product-individual-only-with-subscription
       v-if="individualOnlyWithSubscription"
       :product="product"
-      :collection-name="collectionName"
+      :collection="collection"
     />
     <product-groupable-with-subscription
       v-else-if="groupableWithSubscription"
       :product="product"
-      :collection-name="collectionName"
+      :collection="collection"
     />
   </div>
 </template>
@@ -21,35 +21,36 @@ export default {
   props: {
     handle: {
       type: String,
-      required: true
+      required: true,
+      default: ""
     },
-    productData: {
+    productDataString: {
       type: String,
-      required: true
+      required: true,
+      default: ""
+    },
+    collection: {
+      type: Object,
+      required: true,
+      default: () => {}
     }
-  },
-  data() {
-    return {
-      product: {},
-      type: "",
-      collectionName: ""
-    };
   },
   computed: {
+    product() {
+      return JSON.parse(this.productDataString);
+    },
+    productIdentity() {
+      return ProductIdentifier.identify(this.product);
+    },
     individualOnlyWithSubscription() {
-      return ["barsoap", "haircare"].includes(this.type);
+      return ["barsoap", "haircare"].includes(this.productIdentity[0]);
     },
     groupableWithSubscription() {
-      return ["deodorant", "toothpaste"].includes(this.type);
+      return ["toothpaste", "deodorant"].includes(this.productIdentity[0]);
     }
   },
-  methods: {
-  },
-  mounted() {
-    this.product = JSON.parse(this.productData);
-    this.type = ProductIdentifier.getType(this.product);
-    const pathArray = window.location.pathname.split("/");
-    this.collectionName = pathArray[2];
+  async mounted() {
+    console.log(this.collection);
     console.log(this.handle, this.product);
   }
 };

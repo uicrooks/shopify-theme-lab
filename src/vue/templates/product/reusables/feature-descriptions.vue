@@ -1,5 +1,8 @@
 <template>
-  <div class="product-feature-descriptions-component">
+  <div
+    v-if="items.length"
+    class="product-feature-descriptions-component"
+  >
     <div
       v-for="(item, index) of items"
       :key="`product-icon-desc-item-${index}`"

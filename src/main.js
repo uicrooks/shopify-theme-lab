@@ -63,9 +63,9 @@ if (window.location.pathname.includes("/products")) {
   });
 } else if (window.location.pathname.includes("/collections")) {
   console.log("layout-collection");
-  const collectionComponents = require.context("./vue/templates/collection", true, /\.(vue|js)$/);
-  collectionComponents.keys().forEach(key => {
-    const component = collectionComponents(key).default;
+  const components = require.context("./vue/templates/collection", true, /\.(vue|js)$/);
+  components.keys().forEach(key => {
+    const component = components(key).default;
     const name = component.name ?
       component.name :
       key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
@@ -77,6 +77,11 @@ Vue.filter("money", (val, currency, toFixedVal = 2) => {
   if (!val) return "N/A";
   const money = (val / 100).toFixed(toFixedVal);
   return currency ? `${currency}${money}` : money;
+});
+
+Vue.filter("singularize", (val) => {
+  if (!val) return "";
+  return val.slice(0, -1);
 });
 
 Vue.filter("readableHandle", (val) => {

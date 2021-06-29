@@ -1,10 +1,10 @@
 <template>
   <div class="product-template-component">
     <div class="page-banner-slot">
-      <slot name="page-banner"></slot>
+      <slot name="page-banner" />
     </div>
     <product-breadcrumb
-      :collectionName="collectionName"
+      :collection="collection"
       :product="product"
     />
     <section class="product-header">
@@ -15,7 +15,7 @@
       <div class="product-header-col">
         <div class="info-box">
           <div class="info-row">
-            <h4>{{ collectionName | readableHandle }}</h4>
+            <h4>{{ collection.title | singularize }}</h4>
             <h2>{{ product.title }}</h2>
             <p>{{ product.description }}</p>
           </div>  
@@ -53,10 +53,10 @@ export default {
       required: true,
       default: () => {}
     },
-    collectionName: {
-      type: String,
+    collection: {
+      type: Object,
       required: true,
-      default: ""
+      default: () => {}
     }
   }
 };

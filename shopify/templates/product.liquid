@@ -1,6 +1,17 @@
+{% if product.type == "Deodorant" or product.handle == "soap-deo-duo" or product.handle == "deodorant-soap-set"%}
+  {% assign collectionMatch = collections["deodorant"] %}
+{% elsif product.type == "Toothpaste" %}
+  {% assign collectionMatch = collections["toothpaste"] %}
+{% endif %}
 <div id="layout-product">
   <product
     handle="{{ product.handle }}"
-    :product-data="{{ product | json | json | escape }}"
+    :product-data-string="{{ product | json | json | escape }}"
+    :collection="{
+      title: '{{ collectionMatch.title }}',
+      handle: '{{ collectionMatch.handle }}',
+      path: '{{ collectionMatch.url }}',
+      products: {{ collectionMatch.products | json | escape }}
+    }"
   ></product>
 </div>
