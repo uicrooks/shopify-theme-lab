@@ -1,6 +1,6 @@
 <template>
   <div class="product-grouping-selector-component">
-    <div
+    <!-- <div
       v-for="name of groupingNames"
       :key="`grouping-${name}`"
       class="grouping"
@@ -25,18 +25,18 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 export default {
-  name: "ProductGroupingSelector",
+  name: "ProductGroupableSelector",
   props: {
-    groupings: {
-      type: Object,
+    productGroups: {
+      type: Array,
       required: true,
-      default: () => {}
+      default: () => []
     },
     selected: {
       type: Object,

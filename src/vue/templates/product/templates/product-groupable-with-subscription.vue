@@ -30,8 +30,8 @@
           :handle="product.handle"
           :items="iconDescriptionItems"
         />
-        <product-grouping-selector
-          :groupings="groupings"
+        <product-groupable-selector
+          :product-groups="collection.products ? collection.products : {}"
           :selected="currentProduct"
           @selected="selectProduct"
         />
@@ -42,7 +42,6 @@
         <product-purchase-type-selector
           v-if="hasSubscriptionOption"
           :is-subscription="isSubscription"
-          :unit="unit"
           :product="product"
           :quantity="quantity"
           :total-discount-for-subscription="totalDiscountForSubscription"
@@ -68,39 +67,8 @@
 
 <script>
 import CartService from "@/vue/services/cart.service";
-import StoreService from "@/vue/services/store.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
-
-const units = {
-  "deodorant-bundle": "",
-  "deodorant-pack": "",
-  "deodorant": "stick",
-  "toothpaste-kit": "",
-  "toothpaste": "tube",
-};
-const featureDescriptions = {
-  "deodorant-bundle": [],
-  "deodorant-pack": [],
-  "deodorant": [
-    { label: "Smells Like:", metafieldName: "scent", iconName: "" },
-    { label: "Exfoliation:", metafieldName: "exfol_lvl", iconName: "ColdProcessSoap" }
-  ],
-  "toothpaste-kit": [
-    { label: "Flavor:", metafieldName: "scent", iconName: "spearmint-basil" },
-    { label: "Featuring:", metafieldName: "featuring", iconName: "tooth-bun_whitens" }
-  ],
-  "toothpaste": [
-    { label: "Flavor:", metafieldName: "scent", iconName: "" },
-    { label: "Featuring:", metafieldName: "featuring", iconName: "tooth-bun_whitens" }
-  ],
-};
-const discountForSubscription = {
-  "deodorant-bundle": null,
-  "deodorant-pack": null,
-  "deodorant": 100,
-  "toothpaste-kit": 400,
-  "toothpaste": 200
-};
+import ProductDetails from "@/configs/product-details";
 
 export default {
   name: "ProductGroupableWithSubscription",
@@ -118,8 +86,9 @@ export default {
   },
   data() {
     return {
+      productIdentityTags: [],
+      productIdentityString: "",
       currentProduct: {},
-      groupings: {},
       isSubscription: false,
       quantity: 1,
       quantityOptions: [2, 1, 3],
@@ -131,13 +100,13 @@ export default {
       return this.currentProduct ? ProductIdentifier.identify(this.currentProduct) : [];
     },
     unit() {
-      return units[this.productIdentity];
+      return ProductDetails.units[this.productIdentityString];
     },
     iconDescriptionItems() {
-      return featureDescriptions[this.productIdentity];
+      return ProductDetails.featureDescriptions[this.productIdentityString];
     },
     discountForSubscription() {
-      return discountForSubscription[this.productIdentity];
+      return ProductDetails.discountForSubscription[this.productIdentityString];
     },
     hasSubscriptionOption() {
       return !["deodorant-bundle", "deodorant-pack"].includes(this.productIdentity);
@@ -190,8 +159,6 @@ export default {
     async selectProduct(product) {
       console.log("selectProduct", product);
       // this.currentProduct = product;
-      const fullProductData = await StoreService.getProductByHandle(product.handle);
-      console.log(fullProductData); 
     },
     selectQuantity(qty) {
       this.quantity = qty;
@@ -215,8 +182,9 @@ export default {
     }
   },
   async mounted() {
-    console.log(this.productGroups);
     this.currentProduct = this.product;
+    this.productIdentityTags = ProductIdentifier.identify(this.product);
+    this.productIdentityString = this.productIdentityTags.join("-");
   }
 };
 </script>

@@ -33,7 +33,12 @@ export default {
       type: Object,
       required: true,
       default: () => {}
-    }
+    },
+    collectionsData: {
+      type: String,
+      required: true,
+      default: ""
+    },
   },
   computed: {
     product() {
@@ -49,9 +54,10 @@ export default {
       return ["toothpaste", "deodorant"].includes(this.productIdentity[0]);
     }
   },
-  async mounted() {
+  mounted() {
     console.log(this.collection);
     console.log(this.handle, this.product);
+    console.log(JSON.parse(this.collectionsData));
   }
 };
 </script>

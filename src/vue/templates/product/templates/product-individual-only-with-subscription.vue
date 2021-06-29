@@ -25,7 +25,7 @@
         />
         <div v-if="!isSubscription">
           <product-quantity-options
-            v-if="type === 'barsoap'"
+            v-if="isBarsoap"
             product-unit="Soap"
             :quantity-options="quantityOptions"
             :selected="quantity"
@@ -40,7 +40,6 @@
         </div>
         <product-purchase-type-selector
           :is-subscription="isSubscription"
-          :unit="unit"
           :product="product"
           :quantity="quantity"
           :total-discount-for-subscription="totalDiscountForSubscription"
@@ -67,36 +66,7 @@
 <script>
 import CartService from "@/vue/services/cart.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
-
-const units = {
-  "barsoap": "bar",
-  "haircare-kit": "kit",
-  "haircare-shampoo": "bottle",
-  "haircare-conditioner": "bottle"
-};
-const featureDescriptions = {
-  "barsoap": [
-    { label: "Smells Like:", metafieldName: "scent", iconName: "" },
-    { label: "Exfoliation:", metafieldName: "exfol_lvl", iconName: "ColdProcessSoap" }
-  ],
-  "haircare-kit": [
-    { label: "Smells Like:", metafieldName: "scent", iconName: "" },
-  ],
-  "haircare-shampoo": [
-    { label: "Smells Like:", metafieldName: "scent", iconName: "" },
-    { label: "Featuring:", metafieldName: "exfol_lvl", iconName: "NaturalOils" }
-  ],
-  "haircare-conditioner": [
-    { label: "Smells Like:", metafieldName: "scent", iconName: "" },
-    { label: "Featuring:", metafieldName: "exfol_lvl", iconName: "NaturalOils" }
-  ],
-};
-const discountForSubscription = {
-  "barsoap": 100,
-  "haircare-kit": 400,
-  "haircare-shampoo": 200,
-  "haircare-conditioner": 200
-};
+import ProductDetails from "@/configs/product-details";
 
 export default {
   name: "ProductIndividualOnlyWithSubscription",
@@ -114,8 +84,8 @@ export default {
   },
   data() {
     return {
-      type: "",
-      productIdentity: "",
+      productIdentityTags: [],
+      productIdentityString: "",
       isSubscription: false,
       quantity: 1,
       quantityOptions: [2, 1, 3],
@@ -123,14 +93,17 @@ export default {
     };
   },
   computed: {
+    isBarsoap() {
+      return this.productIdentityString === "barsoap";
+    },
     unit() {
-      return units[this.productIdentity];
+      return ProductDetails.units[this.productIdentityString];
     },
     iconDescriptionItems() {
-      return featureDescriptions[this.productIdentity];
+      return ProductDetails.featureDescriptions[this.productIdentityString];
     },
     discountForSubscription() {
-      return discountForSubscription[this.productIdentity];
+      return ProductDetails.discountForSubscription[this.productIdentityString];
     },
     freeShippingVerbatim() {
       const verbatim = this.isSubscription ? "for life" : `over $${this.$store.state.core.freeShippingMinimum}`;
@@ -157,6 +130,7 @@ export default {
   },
   methods: {
     selectQuantity(qty) {
+      console.log(qty);
       this.quantity = qty;
     },
     async addToCart() {
@@ -178,9 +152,9 @@ export default {
     }
   },
   mounted() {
-    this.type = ProductIdentifier.getType(this.product);
-    this.productIdentity = ProductIdentifier.identify(this.product);
-    if (this.type === "barsoap") {
+    this.productIdentityTags = ProductIdentifier.identify(this.product);
+    this.productIdentityString = this.productIdentityTags.join("-");
+    if (this.isBarsoap) {
       this.quantity = 2;
     }
   }

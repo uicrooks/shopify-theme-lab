@@ -9,23 +9,14 @@
         <span />
       </div>
       <span>One-time</span>
-      <span
-        v-if="quantity === 1"
-        class="pricing"
-      >
-        {{ product.price | money("$", 0) }} {{ unit ? `/ ${unit}` : "" }}
-      </span>
-      <span
-        v-else
-        class="pricing"
-      >
-        {{ product.price * quantity | money("$", 0) }}
+      <span class="pricing">
+        {{ product.price | money("$", 0) }}
       </span>
       <span
         v-if="product.compare_at_price && product.price !== product.compare_at_price"
         class="pricing-discount"
       >
-        <span class="original">{{ product.compare_at_price | money("$", 0) }}</span>({{ (product.compare_at_price - product.price) * quantity | money("$", 0) }} Off!)
+        <span class="original">{{ product.compare_at_price | money("$", 0) }}</span>({{ product.compare_at_price - product.price | money("$", 0) }} Off!)
       </span>
     </div>
     <div
@@ -52,11 +43,6 @@ export default {
       type: Boolean,
       required: true,
       default: false
-    },
-    unit: {
-      type: String,
-      required: false,
-      default: ""
     },
     product: {
       type: Object,
