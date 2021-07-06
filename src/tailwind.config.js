@@ -7,7 +7,7 @@
 const path = require('path')
 
 module.exports = {
-  // mode: 'jit', // https://tailwindcss.com/docs/just-in-time-mode
+  mode: 'jit',
   darkMode: false,
   theme: {
     extend: {},
