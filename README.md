@@ -518,25 +518,16 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 
 | Task | Description |
 | - | - |
-| start | run `dev`, `reloader` and `shopify:watch` tasks simultaneously in parallel |
-| dev | bundle and watch for changes in `src/` files with webpack |
-| build | create minified production files for Shopify in `shopify/assets/` directory |
-| reloader | run an HTTP server and WebSocket server for remote auto-reloading |
+| start | run `shopify:serve` and `webpack:watch` tasks simultaneously in parallel |
+| webpack:watch | bundle and watch for changes in `src/` files with webpack |
+| webpack:build | create minified production files for Shopify in `shopify/assets/` directory |
+| shopify:serve | upload the current theme as a development theme to the store that you're connected to |
 | lint | run `lint:js` and `lint:css` tasks in sequence |
 | lint:js | lint `.js` and `.vue` files inside the `src/` directory |
 | lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
 | fix | same as `lint` task but also fixes any fixable errors |
 | fix:js | same as `lint:js` task but also fixes any fixable errors |
 | fix:css | same as `lint:css` task but also fixes any fixable errors |
-| shopify:watch | watch for changes in the `shopify/` directory and upload to the dev store |
-| shopify:init | initialize a theme on remote Shopify store and create a Shopify config file for the specified environment (Run in the root directory of your project) |
-| shopify:themes | list all themes with IDs from the provided store. Takes two arguments `--password` and `--store` |
-| deploy:dev | upload the `shopify/` directory to the dev store |
-| deploy:live | upload the `shopify/` directory to the live store |
-| settings:dev | download `settings_data.json` from the dev store |
-| settings:live | download `settings_data.json` from the live store |
-| open:dev | open/preview theme on the dev store |
-| open:live | open/preview theme on the live store |
 <!-- tasks (end) -->
 
 <!-- development environment concepts (start) -->
