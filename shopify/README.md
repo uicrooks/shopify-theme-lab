@@ -1,6 +1,6 @@
 ## Shopify
-Shopify theme structure and a minimal theme setup. For detailed templates and code examples have a look at the **Shopify Theme Lab** [Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme), or one of the many [free Shopify themes](https://themes.shopify.com/themes?sort_by=most_recent&price%5B%5D=free).
+Shopify theme structure and a minimal theme setup. For detailed templates and code examples have a look at the **Shopify Theme Lab** [Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme), or the official [Shopify Dawn Theme](https://github.com/Shopify/dawn).
 
 ## Links
-- [Shopify Dev Docs](https://shopify.dev/docs)
+- [Shopify Theme Docs](https://shopify.dev/themes)
 - [Shopify Cheat Sheet](https://www.shopify.com/partners/shopify-cheat-sheet)
