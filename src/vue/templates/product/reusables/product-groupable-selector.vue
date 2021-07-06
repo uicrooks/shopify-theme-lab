@@ -1,23 +1,19 @@
 <template>
-  <div class="product-grouping-selector-component">
-    <!-- <div
-      v-for="name of groupingNames"
-      :key="`grouping-${name}`"
-      class="grouping"
-    >
+  <div class="product-groupable-selector-component">
+    <div class="grouping">
       <h6>
-        {{ name }}
+        {{ groupUnit }}
       </h6>
       <div class="grouping-products">
         <div
-          v-for="(product, index) of groupings[name]"
-          :key="`grouping-product-${index}`"
+          v-for="(product, index) of groupedProducts"
+          :key="`grouped-product-${index}`"
           class="product"
           :class="{selected: product.title === selected.title}"
           @click="$emit('selected', product)"
         >
           <img
-            :src="product.images[0].src"
+            :src="product.images[0]"
             :alt="`${product.title} image`"
           >
           <div class="product-title">
@@ -25,14 +21,43 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
+    <div class="grouping">
+      <h6>
+        Individuals
+      </h6>
+      <div class="grouping-products">
+        <div
+          v-for="(product, index) of individualProducts"
+          :key="`individual-product-${index}`"
+          class="product"
+          :class="{selected: product.title === selected.title}"
+          @click="$emit('selected', product)"
+        >
+          <img
+            :src="product.images[0]"
+            :alt="`${product.title} image`"
+          >
+          <div class="product-title">
+            {{ product.title }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import ProductIdentifier from "@/vue/services/product-identifier";
+
 export default {
   name: "ProductGroupableSelector",
   props: {
+    groupUnit: {
+      type: String,
+      required: false,
+      default: "Bundles"
+    },
     productGroups: {
       type: Array,
       required: true,
@@ -44,9 +69,23 @@ export default {
       default: () => {}
     }
   },
+  watch: {
+    selected(val) {
+      console.log("selected", val);
+    },
+  },
   computed: {
-    groupingNames() {
-      return Object.keys(this.groupings);
+    groupedProducts() {
+      return this.productGroups.filter(product => {
+        const isGrouped = ProductIdentifier.checkIfGrouped(product);
+        return isGrouped;
+      });
+    },
+    individualProducts() {
+      return this.productGroups.filter(product => {
+        const isGrouped = ProductIdentifier.checkIfGrouped(product);
+        return !isGrouped;
+      });
     }
   },
   methods: {
@@ -62,7 +101,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/main.scss";
 
-.product-grouping-selector-component {
+.product-groupable-selector-component {
   margin: 20px 0 0 0;
 
   .grouping {

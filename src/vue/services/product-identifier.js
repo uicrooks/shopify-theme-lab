@@ -46,7 +46,9 @@ export default {
   //   const title = product.title && product.title.toLowerCase();
   //   return type === "bundle" || title.includes("kit") || title.includes("pack")
   // },
-  checkIfGroupedByHandle(handle) {
-    return handle.includes("kit") || handle.includes("bundle") || handle.includes("set") || handle.includes("pack") || handle.includes("duo");
+  checkIfGrouped(product) {
+    const handle = product.handle.toLowerCase();
+    const title = product.title.toLowerCase();
+    return handle.includes("kit") || handle.includes("bundle") || handle.includes("set") || handle.includes("pack") || handle.includes("duo") || title.includes("kit") || title.includes("bundle") || title.includes("set") || title.includes("pack") || title.includes("duo");
   }
 };

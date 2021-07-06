@@ -1,7 +1,7 @@
 <template>
   <div class="product-groupable-with-subscription-component">
     <product-base-template
-      :product="product"
+      :product="currentProduct"
       :collection="collection"
     >
       <template #page-banner>
@@ -18,16 +18,16 @@
         >
           (Save {{ totalDiscountForSubscription | money("$", 0) }}!)
         </span>
-        <!-- <span
-          v-else-if="isGrouped"
+        <span
+          v-else-if="currentProduct.compare_at_price && currentProduct.price !== currentProduct.compare_at_price"
           class="discount strikethrough"
         >
-          {{ product.compare_at_price | money("$", 0) }}
-        </span> -->
+          {{ currentProduct.compare_at_price | money("$", 0) }}
+        </span>
       </template>
       <template #product-options>
         <product-feature-descriptions
-          :handle="product.handle"
+          :handle="currentProduct.handle"
           :items="iconDescriptionItems"
         />
         <product-groupable-selector
@@ -42,7 +42,7 @@
         <product-purchase-type-selector
           v-if="hasSubscriptionOption"
           :is-subscription="isSubscription"
-          :product="product"
+          :product="currentProduct"
           :quantity="quantity"
           :total-discount-for-subscription="totalDiscountForSubscription"
           class="purchase-type-selector"
@@ -119,11 +119,11 @@ export default {
       if (this.isSubscription) {
         return "Subscribe & Save";
       }
-      const totalPrice = this.product.price * this.quantity;
+      const totalPrice = this.currentProduct.price * this.quantity;
       return this.added ? "Add More" : `${this.$options.filters.money(totalPrice, "$", 0)} | Add To Cart`;
     },
     pricingVerbatim() {
-      const val = this.isSubscription ? this.product.price - this.discountForSubscription : this.product.price;
+      const val = this.isSubscription ? this.currentProduct.price - this.discountForSubscription : this.currentProduct.price;
       const price = this.$options.filters.money(val, "$", 0);
       return this.unit ? `${price} / ${this.unit}` : price;
     },
@@ -131,34 +131,19 @@ export default {
       return this.discountForSubscription * this.quantity;
     },
     showBanner() {
-      const productIdentity = ProductIdentifier.identify(this.product);
-      return productIdentity[0] === "deodorant"; 
+      return this.productIdentityTags[0] === "deodorant"; 
     },
     hasOldPackaging() {
-      const productIdentity = ProductIdentifier.identify(this.product);
-      return productIdentity[0] === "deodorant"; 
-    }
-  },
-  watch: {
-    productGroups(val) {
-      console.log(val);
-      let groups = [];
-      let individuals = [];
-      val.forEach(product => {
-        const grouped = ProductIdentifier.checkIfGroupedByHandle(product.handle);
-        grouped ? groups.push(product) : individuals.push(product);
-      });
-      this.groupings = {
-        bundles: groups,
-        individuals: individuals
-      };
-      console.log(this.groupings);
+      return this.productIdentityTags[0] === "deodorant"; 
+    },
+    hasSubscriptionOption() {
+      
     }
   },
   methods: {
     async selectProduct(product) {
       console.log("selectProduct", product);
-      // this.currentProduct = product;
+      this.currentProduct = product;
     },
     selectQuantity(qty) {
       this.quantity = qty;
@@ -168,7 +153,7 @@ export default {
         window.location = "/pages/subscription-flow";
         return;
       }
-      const added = await CartService.addItem(this.product);
+      const added = await CartService.addItem(this.currentProduct);
       if (added) {
         this.added = true;
         const cart = await CartService.initCart();

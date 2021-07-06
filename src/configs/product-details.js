@@ -49,7 +49,7 @@ export default {
     "deodorant-bundle": null,
     "deodorant-pack": null,
     "deodorant": 100,
-    "toothpaste-kit": 400,
+    "toothpaste-kit": 200,
     "toothpaste": 200
   }
 };
