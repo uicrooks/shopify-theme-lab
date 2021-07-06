@@ -3,13 +3,6 @@ node_modules/
 .DS_Store
 *.log
 
-# shopify config files
-shopify.dev.yml
-shopify.live.yml
-
-# ignored by default, remove next line to include 'settings_data.json' in version control
-shopify/config/settings_data.json
-
 # ignore all files inside shopify/assets/ except files with 'static' keyword in their filename
 shopify/assets/*
 !shopify/assets/*static*
