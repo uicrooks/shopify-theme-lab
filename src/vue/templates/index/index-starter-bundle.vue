@@ -1,5 +1,5 @@
 <template>
-  <div class="index-starter-bundle">
+  <div class="index-starter-bundle-component">
     <image-section
       preheader="Bundle & Save"
       header="Starter Bundles"
@@ -14,6 +14,7 @@
 
 <script>
 import ImageSection from "@vue/ui-elements/image-section";
+
 export default {
   name: "IndexBundle",
   components: {

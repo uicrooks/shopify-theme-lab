@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="image-section-component">
     <div class="banner-display row-element outer-row">
       <div 
         class="banner-content" 
@@ -131,9 +131,10 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
+$black : #1a110c;
 
 .image-mobile {
-  @media(min-width:$md) {
+  @include layout-md {
     display: none;
   }
 
@@ -147,14 +148,20 @@ export default {
 }
 
 .preheader {
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: #1a110c;
+  margin: 0 0 15px 0;
+  @include font-style-body($size: 16px, $color: $black);
 }
+
+.header {
+  font-family: $font-heading;
+  color: $black;
+}
+
 .subheader {
   font-weight: 600;
-  margin-bottom: 20px;
-  font-size: 20px;
+  margin: 0 0 20px 0;
+  @include font-style-body-bold($size: 20px, $color: $black);
+
 }
 
 .banner-desktop {
@@ -164,20 +171,19 @@ export default {
     padding: 60px 15px 60px 0;
   }
 
-  @media(max-width:767px) {
+  @media(max-width: 767px) {
     display: none;
   }
 }
 .banner-display {
-    max-width:1440px;
-    width:100%;
-    margin:auto;
+    max-width: 1440px;
+    width: 100%;
+    margin: auto;
 }
 .outer-row {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px 0;
 
     @media(max-width:767px) {
       flex-direction: column;
@@ -189,14 +195,15 @@ export default {
       &.reversed {
         width: 100%;
       }
-      @media(min-width: $md) {
+      @include layout-md {
         padding: 0 15px;
       }
     }
     .banner-image{
         flex: 0 0 100%;
         max-width: 100%;
-        @media(min-width: $md) {
+
+        @include layout-md {
           flex: 0 0 50%;
           max-width: 50%;
         }
@@ -211,13 +218,13 @@ export default {
         padding: 0;
 
         &.reversed {
-          @media(min-width: $md) {
+          @include layout-md {
             padding: 0 0 0 15px !important; 
-            order:2 !important;
+            order: 2 !important;
           }
         }
 
-        @media(min-width: $md) {
+        @include layout-md {
           flex: 0 0 50%;
           max-width: 50%;
           padding-right: 15px;
@@ -232,7 +239,7 @@ export default {
         padding: 0;
         text-align: center;
 
-        @media(min-width:$md) {
+        @include layout-md {
           padding-right: 2.5rem;
           text-align: initial;
         }
@@ -241,13 +248,13 @@ export default {
           display: flex;
           justify-content: center;
 
-          @media(min-width: $md) {
+          @include layout-md {
             justify-content: initial;
           }
         }
 
         &.reversed{
-          @media(min-width: $md) {
+          @include layout-md {
             padding: 0 0 0 2.5rem;
           }
         }

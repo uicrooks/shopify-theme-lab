@@ -1,11 +1,11 @@
 <template>
-  <div class="index-reviews">
+  <div class="index-reviews-component">
     <div class="review-preheader">
       <p class="preheader">
         Don't Just Take Our Word For It
       </p> 
-      <h3>100,000+ Verified Reviews</h3> 
-      <p style="font-size:14px;">
+      <h3 class="review-copy">100,000+ Verified Reviews</h3> 
+      <p class="review-subheader">
         Don't just take our word for it ... hear what guys like you are saying about Dr. Squatch
       </p>
     </div>
@@ -22,13 +22,13 @@
                 >
               </div>
               <div class="customer-review-title">
-                <strong>Best damn soap ever...period.</strong> 
+                <strong class="review-title">Best damn soap ever...period.</strong> 
                 <p class="review-stars">
                   ★★★★★
                 </p>
               </div>
             </div>
-            <div>
+            <div class="review-text-container">
               <p class="review-text">
                 Super smooth on the skin, smells awesome, makes you feel good showering, and yes....the wife approves.
               </p>
@@ -49,13 +49,13 @@
                 >
               </div>
               <div class="customer-review-title">
-                <strong>Ditch the body wash</strong> 
+                <strong class="review-title">Ditch the body wash</strong> 
                 <p class="review-stars">
                   ★★★★★
                 </p>
               </div>
             </div>
-            <div>
+            <div class="review-text-container">
               <p class="review-text">
                 It's crazy how clean my skin feels and the lather is outstanding. Guys do yourself a huge favor and get some!
               </p>
@@ -76,13 +76,13 @@
                 >
               </div>
               <div class="customer-review-title">
-                <strong>Made in the USA, smells incredible!</strong> 
+                <strong class="review-title">Made in the USA, smells incredible!</strong> 
                 <p class="review-stars">
                   ★★★★★
                 </p>
               </div>
             </div>
-            <div>
+            <div class="review-text-container">
               <p class="review-text">
                 First of all they’re made in the USA! Second of all they are all natural! And third they smell incredible!
               </p>
@@ -110,45 +110,57 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/partials/brand.scss";
 @import "@/styles/main.scss";
 
-.index-reviews {
+.index-reviews-component {
   padding: 30px 0;
 
   .review-preheader {
     text-align: center;
+
+    .preheader {
+      font-family: $font-body;
+    }
+
+    .review-copy {
+      font-family: $font-heading;
+    }
+
+    .review-subheader {
+      font-family: $font-body;
+      font-size: 14px;
+    }
   }
 
   .review-content {
     display: flex;
     justify-content: center;
-    width:100%;
+    width: 100%;
     position: relative;
 
-    @media(min-width: $md) {
-      padding-bottom:20px;
+    @include layout-md {
+      padding-bottom: 20px;
     }
 
     .review-table {
       width: 100%;
-      max-width:1024px;
-      height:100%;
-      margin:auto;
+      max-width: 1024px;
+      height: 100%;
+      margin: auto;
       display: flex;
       overflow: scroll;
 
-      @media(min-width: $md) {
+      @include layout-md {
         overflow: hidden;
       }
 
       .review-container {
         flex: 0 0 33.3333333333%;
-        width:100%;
-        padding:15px;
+        width: 100%;
+        padding: 15px;
 
         @media(min-width: 768px) {
-          max-width: 33.3333333333%;
+          max-width: 33.3%;
           padding: 0 15px;
         }
         .review-card {
@@ -157,21 +169,20 @@ export default {
           display: flex;
           flex-direction: column;
           width: 90vw;
-          height:100%;
-          box-shadow: 0 .5rem 1rem rgba(26,17,12,.15)!important;
+          height: 100%;
+          box-shadow: 0 .5rem 1rem rgba(26,17,12,.15);
           background-color: white;
 
-          @media(min-width: $md) {
+          @include layout-md {
             width: 100%;
           }
 
           .review-title {
             display: flex;
 
-            strong {
-              margin-bottom: 15px;
-              font-family: "worker-3d", sans-serif;
-              font-size: 16px
+            .review-title {
+              margin: 0 15px 0 0;
+              @include font-style-heading($size: 16px);
             }
             
             .reviewer-image {
@@ -185,29 +196,30 @@ export default {
             }
 
             .review-stars {
-              color: #cc6328!important;
+              color: $orange!important;
             }
           }
 
-          .review-text {
-            line-height: 1;
-          }
-          .reviewer-name {
-            font-family: "adrianna-bold", sans-serif;
-            color: rgb(90, 55, 20);
-          }
-          p {
-            font-size: 14px;
+          .review-text-container {
+            @include font-style-body($size:14px);
+
+            .review-text {
+              line-height: 1;
+              font-family: $font-body;
+            }
+            .reviewer-name {
+              @include font-style-body-bold($color:$brown);
+            }
           }
         }
       }
     }
     .woodgrain-bg {
       height: 100%;
-      bottom:0;
+      bottom: 0;
       background-color: $tan;
 
-      @media(min-width: $md) {
+      @include layout-md {
         height: 50%;
       }
     }

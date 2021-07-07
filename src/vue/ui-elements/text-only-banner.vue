@@ -31,7 +31,7 @@
   height: 250px;
   background-color: #1a110c!important;
 
-  @media(min-width:992px) {
+  @include layout-lg {
     height: 440px;
   }
 
@@ -39,17 +39,8 @@
     padding: 0 15px;
     margin: auto;
     
-    @media(min-width: $sm) {
-      max-width: 540px;
-    }
-    @media(min-width: $md) {
-      max-width: 720px;
-    }
-    @media(min-width: $lg) {
-      max-width: 960px;
-    }
-    @media(min-width: $xl) {
-      max-width: 1024px;
+    @include layout-md {
+      padding: 4.7rem 15px;
     }
     .banner-text {
       font-size: calc(1.12188rem + 3.0875vw);

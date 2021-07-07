@@ -1,9 +1,9 @@
-<template>
-  <div class="featured-products">
+<template class="index-featured-products-component">
+  <div class="index-featured-products-component">
     <div class="preheader-container">
       <div class="featured-products-preheader">
         <div>
-          <h1 class="mb-0">
+          <h1 class="header">
             Our Products
           </h1> 
           <p class="subheader">
@@ -28,10 +28,9 @@
               <p class="preheader">
                 Smell Like a Champion
               </p> 
-              <h3>Bar Soaps</h3> 
+              <h3 class="product-type">Bar Soaps</h3> 
               <div 
-                class="cta-btns mt-auto" 
-                style="margin-bottom: 15px;"
+                class="cta-btns" 
               >
                 <a 
                   href="/collections/bar-soaps" 
@@ -57,10 +56,9 @@
               <p class="preheader">
                 Soothe Your Scalp
               </p> 
-              <h3>Hair Care</h3> 
+              <h3 class="product-type">Hair Care</h3> 
               <div 
-                class="cta-btns mt-auto" 
-                style="margin-bottom: 15px;"
+                class="cta-btns" 
               >
                 <a 
                   href="/collections/hair-care" 
@@ -86,10 +84,9 @@
               <p class="preheader">
                 Give B.O. The Boot
               </p> 
-              <h3>Deodorant</h3> 
+              <h3 class="product-type">Deodorant</h3> 
               <div 
-                class="cta-btns mt-auto" 
-                style="margin-bottom: 15px;"
+                class="cta-btns" 
               >
                 <a 
                   href="/collections/deodorant-4-pack" 
@@ -115,10 +112,9 @@
               <p class="preheader">
                 Mens Morning + Night
               </p> 
-              <h3>Toothpaste</h3> 
+              <h3 class="product-type">Toothpaste</h3> 
               <div 
-                class="cta-btns mt-auto" 
-                style="margin-bottom: 15px;"
+                class="cta-btns" 
               >
                 <a 
                   href="/collections/toothpaste" 
@@ -141,26 +137,21 @@
 
 <script>
 export default {
-  name: "IndexFeaturedProducts",
-  components: {
-
-  }
+  name: "IndexFeaturedProducts"
 };
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/partials/brand.scss";
 @import "@/styles/main.scss";
 
-.featured-products {
+.index-featured-products-component {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
 
   .preheader-container {
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 0 15px;
     margin-right: auto;
     margin-left: auto;
 
@@ -169,39 +160,41 @@ export default {
       padding: 30px 15px 0;
       text-align: center;
 
+      .header {
+        font-family: $font-heading;
+      }
+
       .subheader {
-        color: #5a3714;
-        font-family: 'adrianna-bold', sans-serif;
+        color: $brown;
+        font-family: $font-body-bold;
       }
     }
   }
 
   .featured-products-container {
-    display:flex;
+    display: flex;
     position: relative;
 
     .featured-products-content {
       width: 100%;
       max-width: 1660px;
       display: flex;
-      flex-direction: column;
-      padding-top:30px;
-      flex-wrap: wrap;
+      flex-flow: column wrap;
+      padding: 30px 0 0 0;
 
 
-      @media(min-width :$md) {
-        flex-direction: row;
-        padding-top:0;
-        margin:auto
+      @include layout-md {
+        flex-flow: row wrap;
+        padding-top: 0;
+        margin: auto;
       }
 
       .product-card {
         width: 100%;
-        padding-right: 15px;
-        padding-left: 15px;
-        margin-bottom: 30px;
+        padding: 0 15px;
+        margin: 0 0 30px 0;
         
-        @media(min-width:$md) {
+        @include layout-md {
           flex: 0 0 50%;
           max-width: 50%;
         }
@@ -212,10 +205,10 @@ export default {
         }
 
         .product-card-content {
-          height:100%;
-          width:100%;
+          height: 100%;
+          width: 100%;
           display: flex;
-          flex-direction: column;
+          flex-flow: column wrap;
           border: none;
           border-radius: 5px;
           background-color: white;
@@ -225,14 +218,25 @@ export default {
           .brand-content {
             padding: 30px 15px 0;
             text-align: center;
-            h3 {
-                margin-bottom: 20px;
+            
+            .preheader {
+              font-family: $font-body, sans-serif;
+            }
+
+
+
+            .product-type {
+              margin-bottom: 20px;
+              font-family: $font-heading;
             }
 
             .cta-btns {
+              margin-bottom: 15px;
+
               .link {
                 color: #cc6328;
                 text-decoration: none;
+                font-family: $font-heading;
               }
 
               a:hover {
@@ -245,12 +249,13 @@ export default {
         }
       }
     }
+
     .woodgrain-bg {
       height: 100%;
-      bottom:0;
+      bottom: 0;
       background-color: $tan;
 
-      @media(min-width: $md) {
+      @include layout-md {
         height: 50%;
       }
     }

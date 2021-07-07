@@ -1,20 +1,20 @@
 <template>
-  <div class="index-squatch-difference">
+  <div class="index-squatch-difference-component">
     <div class="image-container">
       placeholder until figure out how to embed videos
     </div>
     <div class="squatch-difference-container">
       <div class="squatch-difference-content">
         <div class="brand-content">
-          <h3 class="mb-0">
+          <h3 class="squatch-difference-title">
             The
           </h3> 
           <img 
             src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_wordmark_black.svg?v=1615332033" 
             class="squatch-difference-logo"
           > 
-          <h3>Difference</h3> 
-          <p> Dr. Squatch is changing the way men approach hygiene by providing natural, healthy products that make you feel like a man and smell like a champion.</p>
+          <h3 class="squatch-difference-title">Difference</h3> 
+          <p class="squatch-difference-copy"> Dr. Squatch is changing the way men approach hygiene by providing natural, healthy products that make you feel like a man and smell like a champion.</p>
         </div>
         <div class="squatch-difference-border" />
         <div class="squatch-difference">
@@ -36,7 +36,7 @@
               We Create Products For Men
             </h6>
           </div>
-          <div>
+          <div class="button-container">
             <squatch-button
               class="big-cta-button"
               text="Learn More"
@@ -51,6 +51,7 @@
 
 <script>
 import SquatchButton from "@vue/ui-elements/squatch-button";
+
 export default {
   name: "IndexSquatchDifference",
   components: {
@@ -60,22 +61,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/variables/fonts.scss";
+@import "@/styles/main.scss";
 
-.index-squatch-difference {
+.index-squatch-difference-component {
   display: flex;
-  flex-direction: column;
+  flex-flow: column wrap;
   width: 100%;
   max-width: 1440px;
   padding: 60px 0;
-  margin:auto;
+  margin: auto;
 
-  @media(min-width:768px) {
-    flex-direction: row;
+  @include layout-md {
+    flex-flow: row nowrap !important;
   }
 
   .image-container {
-    width:100%;
+    width: 100%;
   }
 
   .squatch-difference-container {
@@ -85,17 +86,24 @@ export default {
       padding: 30px 0;
       text-align: center;
       display: flex;
-      flex-direction: column;
+      flex-flow: column wrap;
 
       .brand-content {
-        p {
-          text-align: left !important;
+        .squatch-difference-title {
+          font-family: $font-heading;
+          margin: 0;
+        }
+
+        .squatch-difference-copy {
+          text-align: left;
+          margin: 5px 0 0 0;
+          color: $brown;
         }
       }
 
       .squatch-difference-border {
         margin: 1.5rem 0;
-        border-top: 2px solid #ddc1a5!important;
+        border-top: 2px solid #ddc1a5;
       }
 
       .squatch-difference {
@@ -105,18 +113,21 @@ export default {
 
         .icon-container {
           width: 100%;
-          padding:0 15px;
-          flex: 0 0 33.3333333333%;
-          max-width: 33.3333333333%;
+          padding: 0 15px;
+          flex: 0 0 33.3%;
+          max-width: 33.3%;
 
           .subtext {
-            font-family: "adrianna-bold", sans-serif;
-            color:#1a110c;
+            @include font-style-body-bold($color: $dark-brown);
           }
         }
 
-        .big-cta-button {
-          width: 256px;
+        .button-container {
+          margin: 10px 0 0 0;
+          
+          .big-cta-button {
+            width: 256px;
+          }
         }
       }
     }

@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Cocoa Butter",
+    "nameOnLabel": "Theobroma Cacao",
+    "source": "Plant",
+    "function": "Base Cleanser + Skin Softener",
+    "benefits": "Due to its high amount of fatty acids like stearic, oleic and lauric acids, cacao butter puts a barrier on the skin, locking in hydration.",
+    "readMoreLink": "",
+    "foundInTitles": ["Shave Bar"],
+    "foundInHandles": ["shave-bar"],
+    "foundInTags": ["shave"],
+    "imageSrc": "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/plantbased_white.svg?v=1594323689"
+  },
+  {
+    "name": "Coconut Oil",
+    "nameOnLabel": "Cocos Nucifera",
+    "source": "Plant",
+    "function": "Base Cleanser",
+    "benefits": "The fatty acids in coconut oil make it extra soothing on the skin, scalp, or oral cavity. It is a natural detoxifier, pulling dirt and grime to the surface so that it can be easily washed away.",
+    "readMoreLink": "http://blog.drsquatch.com/benefits-of-coconut-oil-soap/",
+    "foundInTitles": [
+      "Bar Soaps",
+      "Hand Soap",
+      "Conditioner",
+      "Toothpaste",
+      "Deodorants"
+    ],
+    "foundInHandles": [
+      "barsoaps",
+      "liquidsoaps",
+      "conditioner",
+      "toothpaste",
+      "deodorants"
+    ],
+    "foundInTags": [
+      "bar-soap",
+      "haircare",
+      "liquid-soap",
+      "toothpaste",
+      "deodorant"
+    ],
+    "imageSrc": "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/plantbased_white.svg?v=1594323689"
+  }
+]

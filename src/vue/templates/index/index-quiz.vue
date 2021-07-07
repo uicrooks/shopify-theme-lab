@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="index-quiz-component">
     <sudisfaction-guarantee />
     <div class="test-hero">
       <image-section
@@ -18,6 +18,7 @@
 <script>
 import ImageSection from "@vue/ui-elements/image-section";
 import SudisfactionGuarantee from "@vue/ui-elements/sudisfaction-guarantee"
+
 export default {
   name: "IndexQuiz",
   components: {
