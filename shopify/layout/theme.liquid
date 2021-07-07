@@ -36,6 +36,6 @@
     </div>
 
     <!-- webpack bundle -->
-    {{ 'bundle.js' | asset_url | script_tag }}
+    <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
