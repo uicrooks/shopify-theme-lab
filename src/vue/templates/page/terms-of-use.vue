@@ -20,49 +20,124 @@
           <p class="terms-description">
             <ol>
               <li>
-                <a href="#agreement">Agreement, Acknowledgement, and Acceptance of Terms</a>
+                <a
+                  class="section-link"
+                  href="#agreement"
+                >
+                  Agreement, Acknowledgement, and Acceptance of Terms
+                </a>
               </li>
               <li>
-                <a href="#ownership">Ownership of Service</a>
+                <a
+                  class="section-link"
+                  href="#ownership"
+                >
+                  Ownership of Service
+                </a>
               </li>
               <li>
-                <a href="#shipping">Shipping and Returns</a>
+                <a
+                  class="section-link"
+                  href="#shipping"
+                >
+                  Shipping and Returns
+                </a>
               </li>
               <li>
-                <a href="#disclaimer">Disclaimer and Limitations of Liability</a>
+                <a
+                  class="section-link"
+                  href="#disclaimer"
+                >
+                  Disclaimer and Limitations of Liability
+                </a>
               </li>
               <li>
-                <a href="#indemnification">Indemnification</a>
+                <a
+                  class="section-link"
+                  href="#indemnification"
+                >
+                  Indemnification
+                </a>
               </li>
               <li>
-                <a href="#materials">Links to Other Materials</a>
+                <a
+                  class="section-link"
+                  href="#materials"
+                >
+                  Links to Other Materials
+                </a>
               </li>
               <li>
-                <a href="#law">Governing Law</a>
+                <a
+                  class="section-link"
+                  href="#law"
+                >
+                  Governing Law
+                </a>
               </li>
               <li>
-                <a href="#arbitration">Arbitration</a>
+                <a
+                  class="section-link"
+                  href="#arbitration"
+                >
+                  Arbitration
+                </a>
               </li>
               <li>
-                <a href="#caw">Class Action Waiver</a>
+                <a
+                  class="section-link"
+                  href="#caw"
+                >
+                  Class Action Waiver
+                </a>
               </li>
               <li>
-                <a href="#misc">Miscellaneous Terms</a>
+                <a
+                  class="section-link"
+                  href="#misc"
+                >
+                  Miscellaneous Terms
+                </a>
               </li>
               <li>
-                <a href="#copyright">Copyright Policy</a>
+                <a
+                  class="section-link"
+                  href="#copyright"
+                >
+                  Copyright Policy
+                </a>
               </li>
               <li>
-                <a href="#sms">SMS/MMS Mobile Messaging Marketing Program</a>
+                <a
+                  class="section-link"
+                  href="#sms"
+                >
+                  SMS/MMS Mobile Messaging Marketing Program
+                </a>
               </li>
               <li>
-                <a href="#perks">Squatch Perks</a>
+                <a
+                  class="section-link"
+                  href="#perks"
+                >
+                  Squatch Perks
+                </a>
               </li>
               <li>
-                <a href="#refer">Refer-A-Friend Program</a>
+                <a
+                  class="section-link"
+                  href="#refer"
+                >
+                  Refer-A-Friend Program
+                </a>
               </li>
               <li>
-                <a href="#contact">Contact Us</a>
+                <a
+                  class="section-link"
+                  href="#contact"
+                >
+                  Contact Us
+                </a>
               </li>
             </ol>
           </p>
@@ -338,31 +413,31 @@
             <br>
             <ul>
               <li>
-                <strong>General.</strong> Rewards Points and Rewards accumulated under the Squatch Perks program are promotional only and are non-transferable, non-refundable, have no monetary value, and cannot be redeemed for cash. No other compensation of any kind is payable to you in connection with your participation in Squatch Perks. 
+                <strong class="bold-text">General.</strong> Rewards Points and Rewards accumulated under the Squatch Perks program are promotional only and are non-transferable, non-refundable, have no monetary value, and cannot be redeemed for cash. No other compensation of any kind is payable to you in connection with your participation in Squatch Perks. 
               </li>
               <li>
-                <strong>Eligibility.</strong> You may participate in Squatch Perks if you are a United States resident and 18 years of age or older. No corporations, partnerships, limited liability companies, or other legal entities can participate in Squatch Perks. No bots or computer programs may be used to participate in Squatch Perks.
+                <strong class="bold-text">Eligibility.</strong> You may participate in Squatch Perks if you are a United States resident and 18 years of age or older. No corporations, partnerships, limited liability companies, or other legal entities can participate in Squatch Perks. No bots or computer programs may be used to participate in Squatch Perks.
               </li>
               <li>
-                <strong>Account.</strong> You will need a Dr. Squatch account to participate in Squatch Perks and redeem your Reward Points. You can earn points without having an account but you must have an account and be logged in to redeem points. Your account is personal to you and may not be sold, transferred, assigned to, or shared with family, friends or others. You may have only one Dr. Squatch account. 
+                <strong class="bold-text">Account.</strong> You will need a Dr. Squatch account to participate in Squatch Perks and redeem your Reward Points. You can earn points without having an account but you must have an account and be logged in to redeem points. Your account is personal to you and may not be sold, transferred, assigned to, or shared with family, friends or others. You may have only one Dr. Squatch account. 
               </li>
               <li>
-                <strong>Promotional Messages.</strong> As a part of your participation in Squatch Perks, you consent to receiving transactional, informational, and promotional messages and offers from Dr. Squatch. If your contact information changes, or if you wish to change your contact information or the method by which we send you messages, please log into your account and update your contact information or preferences. You may also click the unsubscribe button in the marketing email you receive. You will not be able to opt out of emails related to the administration of your account or any transactions made, such as any email required to re-set your password or to notify you of changes applicable to your account.
+                <strong class="bold-text">Promotional Messages.</strong> As a part of your participation in Squatch Perks, you consent to receiving transactional, informational, and promotional messages and offers from Dr. Squatch. If your contact information changes, or if you wish to change your contact information or the method by which we send you messages, please log into your account and update your contact information or preferences. You may also click the unsubscribe button in the marketing email you receive. You will not be able to opt out of emails related to the administration of your account or any transactions made, such as any email required to re-set your password or to notify you of changes applicable to your account.
               </li>
               <li>
-                <strong>Qualifying Purchase.</strong> Squatch Perks members can earn and receive points towards rewards by making qualified purchases through the Dr. Squatch website. You will earn one Reward Point per $1.00 USD purchased. Your purchase will be rounded down to the closest point for purposes of calculating Rewards Points. For example, if you spend $1.51 then you will receive one point. If you spend $1.95, then you will receive one point.
+                <strong class="bold-text">Qualifying Purchase.</strong> Squatch Perks members can earn and receive points towards rewards by making qualified purchases through the Dr. Squatch website. You will earn one Reward Point per $1.00 USD purchased. Your purchase will be rounded down to the closest point for purposes of calculating Rewards Points. For example, if you spend $1.51 then you will receive one point. If you spend $1.95, then you will receive one point.
               </li>
               <li>
-                <strong>Subscriptions.</strong> You can also earn 15 Rewards Points when you first subscribe to each of Dr. Squatch’s subscription plans. Reward Points are awarded per category of products subscribed to (bar soap, deodorant, toothpaste, hair care, etc.). For example, your first enrollment in a bar soap subscription will earn you 15 points and you can also earn another 15 points for your first enrollment in a deodorant subscription. You can earn an additional 15 points for your first renewal of any subscription. If you cancel your subscription and later re-subscribe, you will not be eligible to receive additional Rewards Points.
+                <strong class="bold-text">Subscriptions.</strong> You can also earn 15 Rewards Points when you first subscribe to each of Dr. Squatch’s subscription plans. Reward Points are awarded per category of products subscribed to (bar soap, deodorant, toothpaste, hair care, etc.). For example, your first enrollment in a bar soap subscription will earn you 15 points and you can also earn another 15 points for your first enrollment in a deodorant subscription. You can earn an additional 15 points for your first renewal of any subscription. If you cancel your subscription and later re-subscribe, you will not be eligible to receive additional Rewards Points.
               </li>
               <li>
-                <strong>Referrals.</strong> You can also receive Rewards Points for every friend you refer who makes a purchase of $25+ on the Dr. Squatch website. These Reward Points will not be awarded until the referred member makes a purchase. Please see Dr. Squatch’s Refer-A-Friend Program for more details.
+                <strong class="bold-text">Referrals.</strong> You can also receive Rewards Points for every friend you refer who makes a purchase of $25+ on the Dr. Squatch website. These Reward Points will not be awarded until the referred member makes a purchase. Please see Dr. Squatch’s Refer-A-Friend Program for more details.
               </li>
               <li>
-                <strong>Additional Rewards Points.</strong> Dr. Squatch reserves the right to award Points or Rewards on a discretionary basis for promotional purposes.
+                <strong class="bold-text">Additional Rewards Points.</strong> Dr. Squatch reserves the right to award Points or Rewards on a discretionary basis for promotional purposes.
               </li>
               <li>
-                <strong>Rewards.</strong> By accumulating a certain number of Reward Points, you will earn rewards as follows. Reward Points below or in excess of these amounts will not be redeemed. You may continue to accumulate Reward Points beyond the maximum Reward, but can only redeem up to 200 points at a time.
+                <strong class="bold-text">Rewards.</strong> By accumulating a certain number of Reward Points, you will earn rewards as follows. Reward Points below or in excess of these amounts will not be redeemed. You may continue to accumulate Reward Points beyond the maximum Reward, but can only redeem up to 200 points at a time.
               </li>
               
               <ul>
@@ -385,13 +460,13 @@
             <br>
             <ul>
               <li>
-                <strong>Expiration.</strong> Reward Points will expire and be deleted from your account after six (6) months of account inactivity meaning six (6) months without a qualifying purchase, referral, or a redemption of Rewards Points on the Dr. Squatch website.
+                <strong class="bold-text">Expiration.</strong> Reward Points will expire and be deleted from your account after six (6) months of account inactivity meaning six (6) months without a qualifying purchase, referral, or a redemption of Rewards Points on the Dr. Squatch website.
               </li>
               <li>
-                <strong>Refunds.</strong> If you return items for a refund, the refund will be for the purchase price of the items. You will not be refunded for any Rewards Points. Rewards Points are not refundable. 
+                <strong class="bold-text">Refunds.</strong> If you return items for a refund, the refund will be for the purchase price of the items. You will not be refunded for any Rewards Points. Rewards Points are not refundable. 
               </li>
               <li>
-                <strong>Cancellation of Squatch Perks.</strong> Dr. Squatch reserves the right to terminate your account and your current or future participation in Squatch Perks if we determine in our sole discretion that you have violated these Terms, including but not limited to if you have more than one account, or that the use of your account is unauthorized, deceptive, fraudulent or otherwise unlawful. Dr. Squatch has the right at any time, with or without giving you prior notice, to end or cancel Squatch Perks or any specific Reward; change any Reward or other Squatch Perks benefit we offer; change the requirements for earning a particular Reward; change the time you have in which to earn a particular Reward; or change any other feature of Squatch Perks. If we end Squatch Perks, Reward Points you have earned but not used will expire on the end date, and you may not redeem any Rewards or use any credits after the end date. 
+                <strong class="bold-text">Cancellation of Squatch Perks.</strong> Dr. Squatch reserves the right to terminate your account and your current or future participation in Squatch Perks if we determine in our sole discretion that you have violated these Terms, including but not limited to if you have more than one account, or that the use of your account is unauthorized, deceptive, fraudulent or otherwise unlawful. Dr. Squatch has the right at any time, with or without giving you prior notice, to end or cancel Squatch Perks or any specific Reward; change any Reward or other Squatch Perks benefit we offer; change the requirements for earning a particular Reward; change the time you have in which to earn a particular Reward; or change any other feature of Squatch Perks. If we end Squatch Perks, Reward Points you have earned but not used will expire on the end date, and you may not redeem any Rewards or use any credits after the end date. 
               </li>
             </ul>
           </p>
@@ -408,34 +483,34 @@
             <br>
             <ul>
               <li> 
-                <strong>Referral Process.</strong> To participate in the Program, you should login to your Squatch account and share your referral code. Eligible Referrers will be provided with an individualized Refer-a-Friend program link to provide to others. You may provide this link on your social media, on your website or blog, or via electronic transmission provided such use is in compliance with all applicable laws and the terms and conditions of each platform. There is no requirement to make any payment or purchase or to provide any credit card information to sign up for the Dr. Squatch Refer-A-Friend Program.
+                <strong class="bold-text">Referral Process.</strong> To participate in the Program, you should login to your Squatch account and share your referral code. Eligible Referrers will be provided with an individualized Refer-a-Friend program link to provide to others. You may provide this link on your social media, on your website or blog, or via electronic transmission provided such use is in compliance with all applicable laws and the terms and conditions of each platform. There is no requirement to make any payment or purchase or to provide any credit card information to sign up for the Dr. Squatch Refer-A-Friend Program.
               </li>
               <li>
-                <strong>Prohibited Use.</strong> You may not post your Refer-a-Friend Program link to any third party website or public forum, manipulate or change your individualized link, attempt to redirect or mask the origin of the party clicking the link, purchase or run adds using the link, make any false, misleading or disparaging representations or statements with regard Dr. Squatch, engage in any unfair or deceptive trade practice, use any “spam” or similar unwanted advertising or promotional materials, or sell your referral link. 
+                <strong class="bold-text">Prohibited Use.</strong> You may not post your Refer-a-Friend Program link to any third party website or public forum, manipulate or change your individualized link, attempt to redirect or mask the origin of the party clicking the link, purchase or run adds using the link, make any false, misleading or disparaging representations or statements with regard Dr. Squatch, engage in any unfair or deceptive trade practice, use any “spam” or similar unwanted advertising or promotional materials, or sell your referral link. 
               </li>
               <li>
-                <strong>Disclosure.</strong> If you recommend or endorse Dr. Squatch in connection with any referral link posted on your website, blog, social media, or other location you must comply with the Federal Trade Commission’s disclosure requirements and include a disclosure statement in your post that clearly and concisely states that you are being compensated when people make purchases through the link you provided.
+                <strong class="bold-text">Disclosure.</strong> If you recommend or endorse Dr. Squatch in connection with any referral link posted on your website, blog, social media, or other location you must comply with the Federal Trade Commission’s disclosure requirements and include a disclosure statement in your post that clearly and concisely states that you are being compensated when people make purchases through the link you provided.
               </li>
               <li>
-                <strong>Qualified Referral.</strong> A Qualified Referral is defined as a purchase made at www.drsquatch.com by a person (a “Referred Customer”) who arrives to our website by clicking your Refer-a-Friend program link. You are limited to one Qualified Referral for each Referred Customer; in other words, additional or repeat purchases made by the same Referred Customer are not counted as additional Qualified Referrals and will not earn you additional rewards. Qualified Referrals are subject to verification and Dr. Squatch may deny issuance of rewards at its sole discretion.
+                <strong class="bold-text">Qualified Referral.</strong> A Qualified Referral is defined as a purchase made at www.drsquatch.com by a person (a “Referred Customer”) who arrives to our website by clicking your Refer-a-Friend program link. You are limited to one Qualified Referral for each Referred Customer; in other words, additional or repeat purchases made by the same Referred Customer are not counted as additional Qualified Referrals and will not earn you additional rewards. Qualified Referrals are subject to verification and Dr. Squatch may deny issuance of rewards at its sole discretion.
               </li>
               <li>
-                <strong>Referred Customer.</strong> The Referred Customer and the Referrer cannot be the same person. You are expressly prohibited from using multiple email addresses to generate referrals.  The Referred Customer will receive a code for $10 off of orders of $25+ made on the Dr. Squatch website. 
+                <strong class="bold-text">Referred Customer.</strong> The Referred Customer and the Referrer cannot be the same person. You are expressly prohibited from using multiple email addresses to generate referrals.  The Referred Customer will receive a code for $10 off of orders of $25+ made on the Dr. Squatch website. 
               </li>
               <li>
-                <strong>Reward Points.</strong>  Referrer shall receive one hundred Reward Points for every Qualified Referral to be redeemed for Dr. Squatch products at www.drsquatch.com. Reward Points have no monetary value and cannot be redeemed for cash. Reward Points cannot be combined with other offers or discounts. Reward Points are not transferrable and may not be traded or sold. No other compensation of any kind is payable to you in connection with your participation in the Refer-a-Friend Program.
+                <strong class="bold-text">Reward Points.</strong>  Referrer shall receive one hundred Reward Points for every Qualified Referral to be redeemed for Dr. Squatch products at www.drsquatch.com. Reward Points have no monetary value and cannot be redeemed for cash. Reward Points cannot be combined with other offers or discounts. Reward Points are not transferrable and may not be traded or sold. No other compensation of any kind is payable to you in connection with your participation in the Refer-a-Friend Program.
               </li>
               <li>
-                <strong>Eligibility.</strong>  Referrers and Referred Customers must both be United States residents who are 18 years of age or older. Dr. Squatch’s Refer-a-Friend Program is available only to individuals for their personal use and cannot be used by businesses for affiliate lead generation as determined in Dr. Squatch’s sole discretion.
+                <strong class="bold-text">Eligibility.</strong>  Referrers and Referred Customers must both be United States residents who are 18 years of age or older. Dr. Squatch’s Refer-a-Friend Program is available only to individuals for their personal use and cannot be used by businesses for affiliate lead generation as determined in Dr. Squatch’s sole discretion.
               </li>
               <li>
-                <strong>No Spam.</strong> You must comply with all applicable laws regarding “spam” emails. Emails enclosing your Refer-a-Friend program link must be created and distributed in a personal manner and bulk email distribution is strongly discouraged. Any distribution of your referral link that could constitute unsolicited commercial email or “spam” under any applicable law or regulation is expressly prohibited and will be grounds for immediate termination of your account and exclusion from Dr. Squatch’s Refer-a-Friend Program.
+                <strong class="bold-text">No Spam.</strong> You must comply with all applicable laws regarding “spam” emails. Emails enclosing your Refer-a-Friend program link must be created and distributed in a personal manner and bulk email distribution is strongly discouraged. Any distribution of your referral link that could constitute unsolicited commercial email or “spam” under any applicable law or regulation is expressly prohibited and will be grounds for immediate termination of your account and exclusion from Dr. Squatch’s Refer-a-Friend Program.
               </li>
               <li>
-                <strong>Right to Close Accounts.</strong> Dr. Squatch reserves the right to close the account(s) of any Referrer or Referred Customer and to deny or invalidate Reward Points if the Referrer or Referred Customer attempts to use the Dr. Squatch Refer-a-Friend program in a questionable manner or breaches any of Dr. Squatch’s terms and conditions or is in violation of any law, statute or governmental regulation. Dr. Squatch reserves the right to seek payment for any redeemed Reward Points which were acquired under false pretenses or in violation of these terms.
+                <strong class="bold-text">Right to Close Accounts.</strong> Dr. Squatch reserves the right to close the account(s) of any Referrer or Referred Customer and to deny or invalidate Reward Points if the Referrer or Referred Customer attempts to use the Dr. Squatch Refer-a-Friend program in a questionable manner or breaches any of Dr. Squatch’s terms and conditions or is in violation of any law, statute or governmental regulation. Dr. Squatch reserves the right to seek payment for any redeemed Reward Points which were acquired under false pretenses or in violation of these terms.
               </li>
             </ul>
-            <strong>Right to Cancel Program or Change Terms.</strong> Dr. Squatch reserves the right to cancel the Refer-a-Friend Program or to change these Terms & Conditions at any time in its sole discretion. Any unclaimed or unused Referral Coupons will be forfeited at that time.   
+            <strong class="bold-text">Right to Cancel Program or Change Terms.</strong> Dr. Squatch reserves the right to cancel the Refer-a-Friend Program or to change these Terms & Conditions at any time in its sole discretion. Any unclaimed or unused Referral Coupons will be forfeited at that time.   
           </p>
         </div>
         <div 
@@ -510,7 +585,8 @@ export default {
         .terms-title {
           font-weight: 400;
           font-size: calc(1.04375rem + 1.10833vw);
-          margin-bottom: 30px;
+          margin: 0 0 30px 0;
+          font-family: $font-heading;
 
           @media(min-width: 1200px) {
             font-size: 1.875rem;
@@ -519,15 +595,16 @@ export default {
         .terms-description {
           font-size: 14px;
           color: $brown;
+          font-family: $font-body;
 
-          a {
+          .section-link {
             color: $orange;
             outline: none;
             text-decoration: none;
           }
 
-          strong {
-            font-family: "adrianna-bold", sans-serif;
+          .bold-text {
+            font-family: $font-body-bold;
           }
         }
       }

@@ -20,58 +20,148 @@
           <p class="privacy-description">
             <ol>
               <li>
-                <a href="#collection">Collection of Personal Information</a>
+                <a 
+                  class="section-link"
+                  href="#collection"
+                >
+                  Collection of Personal Information
+                </a>
               </li>
               <li>
-                <a href="#categories">Categories of Personal Information and Purpose for Collection</a>
+                <a 
+                  class="section-link"
+                  href="#categories"
+                >
+                  Categories of Personal Information and Purpose for Collection
+                </a>
               </li>
               <li>
-                <a href="#financial">Financial Information</a>
+                <a 
+                  class="section-link"
+                  href="#financial"
+                >
+                  Financial Information
+                </a>
               </li>
               <li>
-                <a href="#disclosure">Disclosure of Personal Information</a>
+                <a 
+                  class="section-link"
+                  href="#disclosure"
+                >
+                  Disclosure of Personal Information
+                </a>
               </li>
               <li>
-                <a href="#tracking">Do Not Track Signals, Cookies, and Other Technologies</a>
+                <a 
+                  class="section-link"
+                  href="#tracking"
+                >
+                  Do Not Track Signals, Cookies, and Other Technologies
+                </a>
               </li>
               <li>
-                <a href="#children">Children's Privacy</a>
+                <a 
+                  class="section-link"
+                  href="#children"
+                >
+                  Children's Privacy
+                </a>
               </li>
               <li>
-                <a href="#california">Special Note to California Residents</a>
+                <a 
+                  class="section-link"
+                  href="#california"
+                >
+                  Special Note to California Residents
+                </a>
               </li>
               <li>
-                <a href="#nevada">Special Notice for Nevada Residents</a>
+                <a 
+                  class="section-link"
+                  href="#nevada"
+                >
+                  Special Notice for Nevada Residents
+                </a>
               </li>
               <li>
-                <a href="#canada">Special Notice for Canadian Residents</a>
+                <a 
+                  class="section-link"
+                  href="#canada"
+                >
+                  Special Notice for Canadian Residents
+                </a>
               </li>
               <li>
-                <a href="#sites">Linked Sites</a>
+                <a 
+                  class="section-link"
+                  href="#sites"
+                >
+                  Linked Sites
+                </a>
               </li>
               <li>
-                <a href="#content">User Content</a>
+                <a 
+                  class="section-link"
+                  href="#content"
+                >
+                  User Content
+                </a>
               </li>
               <li>
-                <a href="#emails">Opting Out of Emails</a>
+                <a 
+                  class="section-link"
+                  href="#emails"
+                >
+                  Opting Out of Emails
+                </a>
               </li>
               <li>
-                <a href="#info">Security of Your Information</a>
+                <a 
+                  class="section-link"
+                  href="#info"
+                >
+                  Security of Your Information
+                </a>
               </li>
               <li>
-                <a href="#consent">Consent To Processing & International Transfers</a>
+                <a 
+                  class="section-link"
+                  href="#consent"
+                >
+                  Consent To Processing & International Transfers
+                </a>
               </li>
               <li>
-                <a href="#refer">Refer-A-Friend Program</a>
+                <a 
+                  class="section-link"
+                  href="#refer"
+                >
+                  Refer-A-Friend Program
+                </a>
               </li>
               <li>
-                <a href="#sms">SMS/MMS Mobile Messaging Marketing Program</a>
+                <a 
+                  class="section-link"
+                  href="#sms"
+                >
+                  SMS/MMS Mobile Messaging Marketing Program
+                </a>
               </li>
               <li>
-                <a href="#privacy">Changes to the Privacy Policy</a>
+                <a 
+                  class="section-link"
+                  href="#privacy"
+                >
+                  Changes to the Privacy Policy
+                </a>
               </li>
               <li>
-                <a href="#contact">How to Contact Us</a>
+                <a 
+                  class="section-link"
+                  href="#contact"
+                >
+                  How to Contact Us
+                </a>
               </li>
             </ol>
             Dr. Squatch, Inc. and its subsidiaries, divisions, and affiliates (“Dr. Squatch”) recognize the importance of protecting the privacy of the personal information you provide to us. Accordingly, we have developed this Privacy Policy (“Policy”) in order for you to understand how we collect, use, communicate, disclose, and otherwise manage the personal information you entrust to us by engaging our services on the website, social media, email exchanges, mobile apps, and other online services on which this Policy is posted (the “Service”). The following outlines our Policy.
@@ -145,13 +235,13 @@
             Dr. Squatch does not trade, rent, or sell your personal information to third parties.  We may share or disclose your personal information for the following limited purposes: 
             <ul>
               <li>
-                <strong>Third Parties Providing Services on Our Behalf.</strong> We may share information with Service Providers, such as the Payment Processor, who perform services and functions on our behalf to support our interactions with you. These Service Providers may assist with technical operation of our Site, provide analytics, process orders, transactions and payments, or provide customer service. We may also share non-identifying information, such as aggregate statistics or usage information, with third parties.
+                <strong class="bold-text">Third Parties Providing Services on Our Behalf.</strong> We may share information with Service Providers, such as the Payment Processor, who perform services and functions on our behalf to support our interactions with you. These Service Providers may assist with technical operation of our Site, provide analytics, process orders, transactions and payments, or provide customer service. We may also share non-identifying information, such as aggregate statistics or usage information, with third parties.
               </li>
               <li>
-                <strong>Your Consent to Have Your Personal Information Shared. </strong> In connection with your use of the Site, you may be asked to opt-in to receive informational or marketing offers, or to otherwise consent to the sharing of your information with a third party, including social networking sites such as Facebook Instagram, or Twitter. If you agree to have your personal information shared with a third party, your personal information will be disclosed to the third party and will be subject to the privacy policy and business practices of that third party.
+                <strong class="bold-text">Your Consent to Have Your Personal Information Shared. </strong> In connection with your use of the Site, you may be asked to opt-in to receive informational or marketing offers, or to otherwise consent to the sharing of your information with a third party, including social networking sites such as Facebook Instagram, or Twitter. If you agree to have your personal information shared with a third party, your personal information will be disclosed to the third party and will be subject to the privacy policy and business practices of that third party.
               </li>
               <li>
-                <strong>Legal Disclosure.</strong>  We may transfer and disclose information, including your personal information, usage information and device identifier, (including IP address), to third parties to comply with a legal obligation; when we believe in good faith that the law requires it; at the request of governmental authorities conducting an investigation; to verify or enforce our agreements, <a href="/pages/terms-of-use">terms of use</a>, or other applicable policies; to respond to an emergency; or otherwise to protect the rights, property, safety, or security of third parties, visitors to our Site, or the public.  
+                <strong class="bold-text">Legal Disclosure.</strong>  We may transfer and disclose information, including your personal information, usage information and device identifier, (including IP address), to third parties to comply with a legal obligation; when we believe in good faith that the law requires it; at the request of governmental authorities conducting an investigation; to verify or enforce our agreements, <a href="/pages/terms-of-use">terms of use</a>, or other applicable policies; to respond to an emergency; or otherwise to protect the rights, property, safety, or security of third parties, visitors to our Site, or the public.  
               </li>
             </ul>          
           </p>
@@ -195,15 +285,15 @@
             “Personal information” means information that identifies, relates to, describes, is capable of being associated with, or could reasonably be linked, directly or indirectly, with a particular consumer or household. “Personal information” does not include publicly available information. 
             <ol>
               <li>
-                <strong>Request to Access.</strong> You may submit a Consumer Request to obtain a copy of or access to the personal information that Dr. Squatch has collected on you. 
+                <strong class="bold-text">Request to Access.</strong> You may submit a Consumer Request to obtain a copy of or access to the personal information that Dr. Squatch has collected on you. 
               </li>
               <li>
-                <strong>Request to Know.</strong> You may submit a Consumer Request to receive information about Dr. Squatch’s data collection practices. You may request information on the categories of personal information (as defined by California law) Dr. Squatch has collected about you; the categories of data collection sources; Dr. Squatch’s business or commercial purpose for collecting or selling personal information; the categories of third parties with whom Dr. Squatch shares personal information, if any; and the specific pieces of personal information we have collected about you. 
+                <strong class="bold-text">Request to Know.</strong> You may submit a Consumer Request to receive information about Dr. Squatch’s data collection practices. You may request information on the categories of personal information (as defined by California law) Dr. Squatch has collected about you; the categories of data collection sources; Dr. Squatch’s business or commercial purpose for collecting or selling personal information; the categories of third parties with whom Dr. Squatch shares personal information, if any; and the specific pieces of personal information we have collected about you. 
                 <br>
                 Please note that the categories of personal information and sources will not exceed what is contained in this Policy. Additionally, Dr. Squatch is not required to retain any information about you if it is only used for a one-time transaction and would not be maintained in the ordinary course of business. Dr. Squatch is also not required to reidentify personal information if it is not stored in that manner already, nor is it required to provide the personal information to you more than twice in a twelve-month period.
               </li>
               <li>
-                <strong>Request to Delete.</strong> You may request that Dr. Squatch delete your personal information. Subject to certain exceptions set out below we will, on receipt of a verifiable Consumer Request, delete your personal information from our records and direct any service providers to do the same.Please note that we may not delete your personal information if it is necessary to:
+                <strong class="bold-text">Request to Delete.</strong> You may request that Dr. Squatch delete your personal information. Subject to certain exceptions set out below we will, on receipt of a verifiable Consumer Request, delete your personal information from our records and direct any service providers to do the same.Please note that we may not delete your personal information if it is necessary to:
               </li>
               <ul>
                 <li>
@@ -267,13 +357,13 @@
             <br>
             <ol>
               <li>
-                <strong>Request to Access.</strong> You may submit a request to obtain a copy of or access to the personal information that Dr. Squatch has collected on you including what the information is, how it’s been used, and who it’s been disclosed to. Your personal information may no longer be available because it has been destroyed, erased, or made anonymous in accordance with Dr. Squatch’s information retention policies in which case we will provide you with the reasons why the personal information no longer exists where possible. 
+                <strong class="bold-text">Request to Access.</strong> You may submit a request to obtain a copy of or access to the personal information that Dr. Squatch has collected on you including what the information is, how it’s been used, and who it’s been disclosed to. Your personal information may no longer be available because it has been destroyed, erased, or made anonymous in accordance with Dr. Squatch’s information retention policies in which case we will provide you with the reasons why the personal information no longer exists where possible. 
               </li>
               <li>
-                <strong>Request to Correct.</strong> You may correct or update your personal information at any time by logging into your account or by contacting us.
+                <strong class="bold-text">Request to Correct.</strong> You may correct or update your personal information at any time by logging into your account or by contacting us.
               </li>
               <li>
-                <strong>Request to Withdraw Consent.</strong> If at any time you wish to stop receiving communications from us, please just let us know by updating your settings, using the unsubscribe feature in the marketing email you received, or by contacting us. In your correspondence to us, please indicate that you wish to “unsubscribe.” If you wish to otherwise withdraw your consent to Dr. Squatch’s collection, use, or disclosure of your personal information, you may do so at any time by contacting us.
+                <strong class="bold-text">Request to Withdraw Consent.</strong> If at any time you wish to stop receiving communications from us, please just let us know by updating your settings, using the unsubscribe feature in the marketing email you received, or by contacting us. In your correspondence to us, please indicate that you wish to “unsubscribe.” If you wish to otherwise withdraw your consent to Dr. Squatch’s collection, use, or disclosure of your personal information, you may do so at any time by contacting us.
               </li>
             </ol>
             <br>
@@ -358,28 +448,28 @@
             As a Refer-a-Friend member (a “Referrer”), you are subject to Dr. Squatch’s Terms of Use and this Policy, both available on www.Dr. Squatch.com, as well as the following additional <a href="/pages/terms-of-use">Terms & Conditions</a> for Dr. Squatch’s Refer-a-Friend Program:
             <ul>
               <li>
-                <strong>Qualified Referral.</strong> A Qualified Referral is defined as a purchase made at www.drsquatch.com by a person (a “Referred Customer”) who arrives to our website by clicking your Refer-a-Friend program link. You are limited to one Qualified Referral for each Referred Customer; in other words, additional or repeat purchases made by a Referred Customer are not counted as additional Qualified Referrals.
+                <strong class="bold-text">Qualified Referral.</strong> A Qualified Referral is defined as a purchase made at www.drsquatch.com by a person (a “Referred Customer”) who arrives to our website by clicking your Refer-a-Friend program link. You are limited to one Qualified Referral for each Referred Customer; in other words, additional or repeat purchases made by a Referred Customer are not counted as additional Qualified Referrals.
               </li>
               <li>
-                <strong>Referred Customer.</strong> The Referred Customer and the Referrer cannot be the same person,—for example, by using a different email address.
+                <strong class="bold-text">Referred Customer.</strong> The Referred Customer and the Referrer cannot be the same person,—for example, by using a different email address.
               </li>
               <li>
-                <strong>Referral Rewards.</strong> For you to earn referral rewards as a Referrer, the Referred Customer must complete an order.
+                <strong class="bold-text">Referral Rewards.</strong> For you to earn referral rewards as a Referrer, the Referred Customer must complete an order.
               </li>
               <li>
-                <strong>Reward Payments.</strong> Rewards are payable in customer added bar(s) of soap through the ‘Redeem’ feature on the ‘Refer A Friend’ page; applied at your next checkout.
+                <strong class="bold-text">Reward Payments.</strong> Rewards are payable in customer added bar(s) of soap through the ‘Redeem’ feature on the ‘Refer A Friend’ page; applied at your next checkout.
               </li>
               <li>
-                <strong>Eligibility.</strong> Eligibility is limited to individuals only. Dr. Squatch’s Refer-a-Friend Program cannot be used by businesses for affiliate lead generation as determined in Dr. Squatch’s sole discretion.  
+                <strong class="bold-text">Eligibility.</strong> Eligibility is limited to individuals only. Dr. Squatch’s Refer-a-Friend Program cannot be used by businesses for affiliate lead generation as determined in Dr. Squatch’s sole discretion.  
               </li>
               <li>
-                <strong>No Spam.</strong> You must comply with all up-to-date “SPAM” laws. For example, emails must be created and distributed in a personal manner and bulk email distribution is strongly discouraged. Any distribution of your referral link that could constitute unsolicited commercial email or “spam” under any applicable law or regulation is expressly prohibited and will be grounds for immediate termination of your account and exclusion from Dr. Squatch’s Refer-a-Friend program.
+                <strong class="bold-text">No Spam.</strong> You must comply with all up-to-date “SPAM” laws. For example, emails must be created and distributed in a personal manner and bulk email distribution is strongly discouraged. Any distribution of your referral link that could constitute unsolicited commercial email or “spam” under any applicable law or regulation is expressly prohibited and will be grounds for immediate termination of your account and exclusion from Dr. Squatch’s Refer-a-Friend program.
               </li>
               <li>
-                <strong>Right to Close Accounts.</strong> Dr. Squatch reserves the right to close the account(s) of any Referrer and/or Referred Customer and to request proper payment if the Referrer and/or Referred Customer attempts to use the Dr. Squatch Refer-a-Friend program in a questionable manner or breaches any of these Terms & Conditions or is in violation of any law, statute or governmental regulation.
+                <strong class="bold-text">Right to Close Accounts.</strong> Dr. Squatch reserves the right to close the account(s) of any Referrer and/or Referred Customer and to request proper payment if the Referrer and/or Referred Customer attempts to use the Dr. Squatch Refer-a-Friend program in a questionable manner or breaches any of these Terms & Conditions or is in violation of any law, statute or governmental regulation.
               </li>
               <li>
-                <strong>Right to Cancel Program or Change Terms.</strong> Dr. Squatch reserves the right to cancel the Refer-a-Friend Program or to change these Terms & Conditions at any time in its sole discretion. Any unclaimed referral rewards will be forfeited at that time.
+                <strong class="bold-text">Right to Cancel Program or Change Terms.</strong> Dr. Squatch reserves the right to cancel the Refer-a-Friend Program or to change these Terms & Conditions at any time in its sole discretion. Any unclaimed referral rewards will be forfeited at that time.
               </li>
             </ul>
           </p>
@@ -482,23 +572,23 @@ export default {
           font-weight: 400;
           font-size: calc(1.04375rem + 1.10833vw);
           margin-bottom: 30px;
+          font-family: $font-heading;
 
           @media(min-width: 1200px) {
             font-size: 1.875rem;
           } 
         }
         .privacy-description {
-          font-size: 14px;
-          color: $brown;
+          @include font-style-body($size: 14px, $color: $brown);
 
-          a {
+          .section-link {
             color: $orange;
             outline: none;
             text-decoration: none;
           }
 
-          strong {
-            font-family: "adrianna-bold", sans-serif;
+          .bold-text {
+            font-family: $font-body-bold;
           }
         }
       }
