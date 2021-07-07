@@ -3,7 +3,7 @@
     <div class="image-header-bg">
       <div class="banner-background">
         <div class="brand-content">
-          <h1 class="image-bg_title">
+          <h1 class="image-bg-title">
             FEEL LIKE A MAN,
           </h1>
           <h1 class="bottom-title">
@@ -68,6 +68,7 @@ export default {
         bottom: 50px;
         text-align: center;
         position: absolute;
+        font-family: $font-heading;
 
         @include layout-md {
           margin-left: 42%;
@@ -87,6 +88,7 @@ export default {
         
         .subheader {
           display: none;
+          font-family: $font-body;
 
           @include layout-md {
             display: block;

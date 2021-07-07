@@ -4,8 +4,8 @@
       <p class="preheader">
         Don't Just Take Our Word For It
       </p> 
-      <h3>100,000+ Verified Reviews</h3> 
-      <p style="font-size:14px;">
+      <h3 class="review-copy">100,000+ Verified Reviews</h3> 
+      <p class="review-subheader">
         Don't just take our word for it ... hear what guys like you are saying about Dr. Squatch
       </p>
     </div>
@@ -28,7 +28,7 @@
                 </p>
               </div>
             </div>
-            <div>
+            <div class="review-text-container">
               <p class="review-text">
                 Super smooth on the skin, smells awesome, makes you feel good showering, and yes....the wife approves.
               </p>
@@ -55,7 +55,7 @@
                 </p>
               </div>
             </div>
-            <div>
+            <div class="review-text-container">
               <p class="review-text">
                 It's crazy how clean my skin feels and the lather is outstanding. Guys do yourself a huge favor and get some!
               </p>
@@ -82,7 +82,7 @@
                 </p>
               </div>
             </div>
-            <div>
+            <div class="review-text-container">
               <p class="review-text">
                 First of all they’re made in the USA! Second of all they are all natural! And third they smell incredible!
               </p>
@@ -110,7 +110,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/partials/brand.scss";
 @import "@/styles/main.scss";
 
 .index-reviews-component {
@@ -118,6 +117,19 @@ export default {
 
   .review-preheader {
     text-align: center;
+
+    .preheader {
+      font-family: $font-body;
+    }
+
+    .review-copy {
+      font-family: $font-heading;
+    }
+
+    .review-subheader {
+      font-family: $font-body;
+      font-size: 14px;
+    }
   }
 
   .review-content {
@@ -148,7 +160,7 @@ export default {
         padding: 15px;
 
         @media(min-width: 768px) {
-          max-width: 33.3333333333%;
+          max-width: 33.3%;
           padding: 0 15px;
         }
         .review-card {
@@ -188,14 +200,16 @@ export default {
             }
           }
 
-          .review-text {
-            line-height: 1;
-          }
-          .reviewer-name {
-            @include font-style-body-bold($color:$brown);
-          }
-          p {
-            font-size: 14px;
+          .review-text-container {
+            @include font-style-body($size:14px);
+
+            .review-text {
+              line-height: 1;
+              font-family: $font-body;
+            }
+            .reviewer-name {
+              @include font-style-body-bold($color:$brown);
+            }
           }
         }
       }

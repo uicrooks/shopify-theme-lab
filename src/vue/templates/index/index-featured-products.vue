@@ -1,9 +1,9 @@
-<template>
+<template class="index-featured-products-component">
   <div class="index-featured-products-component">
     <div class="preheader-container">
       <div class="featured-products-preheader">
         <div>
-          <h1>
+          <h1 class="header">
             Our Products
           </h1> 
           <p class="subheader">
@@ -28,7 +28,7 @@
               <p class="preheader">
                 Smell Like a Champion
               </p> 
-              <h3>Bar Soaps</h3> 
+              <h3 class="product-type">Bar Soaps</h3> 
               <div 
                 class="cta-btns" 
               >
@@ -56,7 +56,7 @@
               <p class="preheader">
                 Soothe Your Scalp
               </p> 
-              <h3>Hair Care</h3> 
+              <h3 class="product-type">Hair Care</h3> 
               <div 
                 class="cta-btns" 
               >
@@ -84,7 +84,7 @@
               <p class="preheader">
                 Give B.O. The Boot
               </p> 
-              <h3>Deodorant</h3> 
+              <h3 class="product-type">Deodorant</h3> 
               <div 
                 class="cta-btns" 
               >
@@ -112,7 +112,7 @@
               <p class="preheader">
                 Mens Morning + Night
               </p> 
-              <h3>Toothpaste</h3> 
+              <h3 class="product-type">Toothpaste</h3> 
               <div 
                 class="cta-btns" 
               >
@@ -142,7 +142,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/partials/brand.scss";
 @import "@/styles/main.scss";
 
 .index-featured-products-component {
@@ -161,9 +160,13 @@ export default {
       padding: 30px 15px 0;
       text-align: center;
 
+      .header {
+        font-family: $font-heading;
+      }
+
       .subheader {
         color: $brown;
-        font-family: 'adrianna-bold', sans-serif;
+        font-family: $font-body-bold;
       }
     }
   }
@@ -216,8 +219,15 @@ export default {
             padding: 30px 15px 0;
             text-align: center;
             
-            h3 {
+            .preheader {
+              font-family: $font-body, sans-serif;
+            }
+
+
+
+            .product-type {
               margin-bottom: 20px;
+              font-family: $font-heading;
             }
 
             .cta-btns {
@@ -226,6 +236,7 @@ export default {
               .link {
                 color: #cc6328;
                 text-decoration: none;
+                font-family: $font-heading;
               }
 
               a:hover {

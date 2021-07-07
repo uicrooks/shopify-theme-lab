@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="index-quiz-component">
     <sudisfaction-guarantee />
     <div class="test-hero">
       <image-section

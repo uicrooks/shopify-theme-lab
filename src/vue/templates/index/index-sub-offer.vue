@@ -3,7 +3,7 @@
     <div class="subscribe-container">
       <div class="subscribe-content">
         <div class="brand-content">
-          <h2>Subscribe &amp; Save 15%</h2> 
+          <h2 class="header">Subscribe &amp; Save 15%</h2> 
           <p class="subheader">
             How It Works
           </p> 
@@ -60,8 +60,9 @@ export default {
         display: flex;
         flex-direction: column;
 
-        h2 {
-          color: $dark-brown;
+        .header {
+          font-family: $font-heading;
+          color: black;
         }
 
         .subheader {
@@ -72,7 +73,7 @@ export default {
         .copy {
           line-height: 1.3;
           margin-bottom: 30px;
-          font-size: 16px;
+          @include font-style-body($size: 16px);
         }
 
         .image-container {

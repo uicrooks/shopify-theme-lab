@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="image-section-component">
     <div class="banner-display row-element outer-row">
       <div 
         class="banner-content" 
@@ -131,6 +131,7 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
+$black : #1a110c;
 
 .image-mobile {
   @include layout-md {
@@ -147,14 +148,20 @@ export default {
 }
 
 .preheader {
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: #1a110c;
+  margin: 0 0 15px 0;
+  @include font-style-body($size: 16px, $color: $black);
 }
+
+.header {
+  font-family: $font-heading;
+  color: $black;
+}
+
 .subheader {
   font-weight: 600;
-  margin-bottom: 20px;
-  font-size: 20px;
+  margin: 0 0 20px 0;
+  @include font-style-body-bold($size: 20px, $color: $black);
+
 }
 
 .banner-desktop {
@@ -176,8 +183,7 @@ export default {
 .outer-row {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: 30px 0;
 
     @media(max-width:767px) {
       flex-direction: column;
