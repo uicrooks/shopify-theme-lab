@@ -1,10 +1,14 @@
 {
   "sections": {
+    "vue-examples": {
+      "type": "vue-examples"
+    },
     "main": {
       "type": "main-index"
     }
   },
   "order": [
+    "vue-examples",
     "main"
   ]
 }
