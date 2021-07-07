@@ -12,11 +12,11 @@
     "settings": [
       {
         "type": "header",
-        "content": "t:settings_schema.custom_settings.header"
+        "content": "t:settings_schema.custom_settings.settings.header"
       },
       {
         "type": "paragraph",
-        "content": "t:settings_schema.custom_settings.paragraph"
+        "content": "t:settings_schema.custom_settings.settings.paragraph"
       }
     ]
   }
