@@ -485,9 +485,6 @@ import 'alpinejs'
 ```text
 shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 ├── .config/                   📁 development environment files and configs
-│   ├── shopify/               📁 Shopify credential-configs
-│   │   ├── .shopifyignore     📄 files and directories that won't be uploaded to Shopify
-│   │   └── ...
 │   ├── webpack/               📁 webpack configs
 │   │   ├── webpack.common.js  📄 webpack shared config used in development and production
 │   │   ├── webpack.dev.js     📄 webpack development config
@@ -613,7 +610,6 @@ body {
 ## Limitations
 
 - When the development task is running, the browser console throws a `bundle.css` missing error
-- Already running Shopify tasks only upload files which are changed, a simple re-save of a file, without editing it, won't upload the file to the remote store
 - Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
 <!-- limitations (end) -->
 
