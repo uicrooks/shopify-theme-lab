@@ -1,5 +1,5 @@
 <template>
-  <section class="index-hero">
+  <section class="index-hero-component">
     <div class="image-header-bg">
       <div class="banner-background">
         <div class="brand-content">
@@ -37,10 +37,15 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.index-hero {
+.index-hero-component {
+
   .image-header-bg {
+
     position: relative;
+
     .banner-background {
+      display: flex;
+      align-items: center;
       padding-left: 15px;
       background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613');
       color: white;
@@ -49,9 +54,6 @@ export default {
       background-position: center top 58%;
       height: 600px;
       justify-content: start;
-      
-      display: flex;
-      align-items: center;
 
       @include layout-md {
         padding-left: 50px;
@@ -74,6 +76,7 @@ export default {
           text-align: left;
           bottom: unset;
         }
+
         @media(min-width: 1400px) {
           margin-left: 50%;
         }

@@ -79,7 +79,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      width:100%;
+      width: 100%;
       max-width: 395px;
       margin: auto;
       flex-flow: column wrap;
