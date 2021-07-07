@@ -1,0 +1,9 @@
+{
+  "settings_schema": {
+    "custom_settings": {
+      "name": "Custom settings",
+      "header": "About JSON settings",
+      "paragraph": "The settings_schema.json file controls the content of the Theme settings area of the theme editor. Settings in this file translate to global theme settings, which can be accessed through the Liquid settings object. [Learn more](https://shopify.dev/themes/architecture/settings)"
+    }
+  }
+}
