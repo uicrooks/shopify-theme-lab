@@ -1,0 +1,38 @@
+{% capture randomFile %}{{ 'get-asset-url.js' | asset_url }}{% endcapture %}
+{% assign assetsPath = randomFile | split: 'get-asset-url.js' | first %}
+window.theme = {
+          myshopify_domain: '{{ shop.permanent_domain }}',
+          request_host: '{{ request.host }}',
+          assets_path: "{{ assetsPath }}",
+          moneyFormat: {{ shop.money_format | json }},
+          productExcludeTag: {{ settings.product_exclude_tag_text | json }},
+          oosProductSkus: {{ settings.oos_sku_array | json }},
+          utilitiesAppEnabled: {{ settings.enable_utilities_app | json }},
+          customerLoggedIn: {% if customer %}true{% else %}false{% endif %},
+          isSubscriber: {% if customer.tags contains 'Active Subscriber' %}true{% else %}false{% endif %},
+          customersID: {% if customer %}{{ customer.id }}{% else %}null{% endif %},
+          customerEmail: {% if customer %}'{{ customer.email }}'{% else %}null{% endif %},
+          template_name: "{{template.name}}",
+          template_suffix: "{{template.suffix}}"
+        };
+        function uuidv4() {
+            // generates RFC version 4 compliant id 
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+        function setSessionId() {
+            var session_id = sessionStorage.getItem('session_id');
+            if (!session_id) {
+                session_id = uuidv4();
+                sessionStorage.setItem('session_id', session_id);
+            }
+            return session_id
+        }
+        window.session_id = setSessionId();
+        {% if customer %}
+        window.customerEmail = "{{ customer.email }}";
+        window.customerId = "{{ customer.id }}";
+        {% endif %}
+    

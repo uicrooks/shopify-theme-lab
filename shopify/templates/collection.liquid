@@ -1,1 +1,10 @@
-<!-- collection.liquid -->
+<div id="layout-collection">
+  {% if collection.handle == 'best-sellers' %} {% assign products =
+  collections['collection-page-best-sellers'].products %} {% assign handle =
+  'collection-page-best-sellers' %} {% else %} {% assign products =
+  collection.products %} {% assign handle = collection.handle %} {% endif %}
+  <collection
+    handle="{{ handle }}"
+    :products-data="{{ products | json | json | escape }}"
+  ></collection>
+</div>

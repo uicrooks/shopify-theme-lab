@@ -1,0 +1,38 @@
+.ju_Con {
+  z-index: 1049 !important;
+}
+.ju_overlay {
+  z-index: 1048 !important;
+}
+#ju_Con_704509,
+#ju_Con_703176 {
+  height: 50px !important;
+}
+#ju_Con_704511,
+#ju_Con_703339 {
+  height: 100px !important;
+}
+.open-drawer #gorgias-chat-container #chat-button,
+.open-drawer #gorgias-chat-container #chat-campaigns {
+  display: none;
+}
+#reviews-sectionNew {
+  max-width: 1440px;
+  margin: auto;
+}
+
+.yotpo .text-m {
+  font-family: "adrianna" !important;
+}
+@media (max-width: 767px) {
+  #gorgias-chat-container #chat-button {
+    bottom: 50px;
+  }
+  #gorgias-chat-container #chat-campaigns {
+    bottom: 128px;
+  }
+}
+
+.swell-tab {
+  display: none !important;
+}

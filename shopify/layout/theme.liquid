@@ -4,38 +4,53 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="google-site-verification" content='{{"google716dea4c6d410cfc.static.html" | asset_url }}'>
+    {% render "_head.og-meta" %}
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="shortcut icon" href="{{ settings.favicon_image | img_url: '32x32' }}" type="image/png">
 
-    <title>{{ page_title | escape }}</title>
+    {% render "_head.seo" %}
+    <!-- {% render "_head.content-styles" %} -->
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
-
-    {% comment %}
-      css bundle is not loaded during the development task, instead it displays a 404 error in the web console
-    {% endcomment %}
-    {{ 'bundle.css' | asset_url | stylesheet_tag }}
-
-    <!-- header hook for Shopify plugins -->
     {{ content_for_header }}
+
+    <style>
+      #app {
+        min-width: 320px !important;
+      }
+      
+      #main {
+        margin-top: 75px;
+      }
+      
+      #shopify-section-footer {
+        position: relative;
+      }
+    </style>
   </head>
 
-  <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}">
-    <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
+  <body
+    id="{{ page_title | handle }}"
+    class="template-{{ request.page_type | handle }}"
+  >
+    <div
+      {% unless request.page_type == 'captcha' %}
+        id="app"
+      {% endunless %}
+    >
       {% section 'header' %}
-
       <main id="main" role="main">
+        {% comment %} Route Specific Content {% endcomment %}
         {{ content_for_layout }}
       </main>
-
       {% section 'footer' %}
     </div>
-
+    {{ '_config.static.js' | asset_url | script_tag }}
     <!-- webpack bundle -->
-    {{ 'bundle.js' | asset_url | script_tag }}
+    {% render '_body.content-scripts' %}
+    {% render '_body.crawler-schema' %}
+    {% render '_body.live-chat' %}
   </body>
 </html>
