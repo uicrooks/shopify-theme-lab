@@ -36,14 +36,16 @@
   }
 
   .banner-title {
-    padding: 3rem 15px;
+    padding: 0 15px;
+    margin: auto;
     
     @include layout-md {
       padding: 4.7rem 15px;
     }
     .banner-text {
+      font-family: $font-heading;
       font-size: calc(1.12188rem + 3.0875vw);
-      margin-bottom:30px;
+      margin: 0 0 30px 0;
       text-align: center;
       color:white;
 

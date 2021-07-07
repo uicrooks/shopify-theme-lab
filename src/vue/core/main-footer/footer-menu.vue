@@ -138,10 +138,10 @@ export default {
         path: "/test"
       }, {
         name: "Terms of Use",
-        path: "/test"
+        path: "/pages/terms-of-use"
       }, {
         name: "Privacy Policy",
-        path: "/test"
+        path: "/pages/privacy-policy"
       }],
     }
   },

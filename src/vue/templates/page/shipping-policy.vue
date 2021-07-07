@@ -55,7 +55,6 @@
 <script>
 import TextOnlyBanner from "@vue/ui-elements/text-only-banner";
 
-
 export default {
   name: "ShippingPolicy",
   components: {
