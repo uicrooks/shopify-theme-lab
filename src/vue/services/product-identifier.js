@@ -39,6 +39,13 @@ export default {
       }
       return arr;
     }
+    if (type === "sanitizer" || type === "liquidsoap") {
+      arr.push(type);
+      if (title.includes("pack")) {
+        arr.push("pack");
+      }
+      return arr;
+    }
     return [type];
   },
   // isGrouped(product) {

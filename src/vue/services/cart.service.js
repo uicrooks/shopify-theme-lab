@@ -23,7 +23,7 @@ export default {
       return null;
     }
   },
-  async addItem(product, variantId = "") {
+  async addItem(product, qty = 1, variantId = "") {
     const variant = getMatchingVariantForProduct(product, variantId);
     if (!variant) {
       console.log("failed to add an item; item does not have matching variant");
@@ -31,7 +31,7 @@ export default {
     }
     try {
       const res = await axios.post("/cart/add.js", {
-        quantity: 1,
+        quantity: qty,
         id: variant.id,
         properties: product.properties ? product.properties : {}
       });

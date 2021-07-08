@@ -6,6 +6,16 @@
   {% assign collectionMatch = collections["deodorant"] %}
 {% elsif product.type == "Toothpaste" %}
   {% assign collectionMatch = collections["toothpaste"] %}
+{% elsif product.type == "Cologne" %}
+  {% assign collectionMatch = collections["colognes"] %}
+{% elsif product.type == "Beard" %}
+  {% assign collectionMatch = collections["beard"] %}
+{% elsif product.type == "Sanitizer" %}
+  {% assign collectionMatch = collections["hand-sanitizer"] %}
+{% elsif product.type == "LiquidSoap" %}
+  {% assign collectionMatch = collections["hand-soap"] %}
+{% elsif product.type == "Gear" %}
+  {% assign collectionMatch = collections["gear"] %}
 {% endif %}
 <div id="layout-product">
   <product

@@ -1,12 +1,7 @@
 <template>
   <div class="product-component">
-    <product-individual-only-with-subscription
-      v-if="individualOnlyWithSubscription"
-      :product="product"
-      :collection="collection"
-    />
-    <product-groupable-with-subscription
-      v-else-if="groupableWithSubscription"
+    <product-onetime-only
+      v-if="onetimeOnlyProduct"
       :product="product"
       :collection="collection"
     />
@@ -44,19 +39,20 @@ export default {
     product() {
       return JSON.parse(this.productDataString);
     },
-    productIdentity() {
+    productIdentityTags() {
       return ProductIdentifier.identify(this.product);
     },
-    individualOnlyWithSubscription() {
-      return ["barsoap", "haircare"].includes(this.productIdentity[0]);
+    productIdentityString() {
+      return this.productIdentityTags ? this.productIdentityTags.join("-") : "";
     },
-    groupableWithSubscription() {
-      return ["toothpaste", "deodorant"].includes(this.productIdentity[0]);
+    onetimeOnlyProduct() {
+      return ["deodorant-bundle", "booster", "cologne", "beard", "sanitizer-pack", "sanitizer", "liquidsoap-pack", "liquidsoap", "candle", "gear"].includes(this.productIdentityString);
     }
   },
   mounted() {
-    console.log(this.collection);
     console.log(this.handle, this.product);
+    console.log(this.productIdentityTags);
+    console.log(this.collection);
     console.log(JSON.parse(this.collectionsData));
   }
 };
