@@ -2,7 +2,7 @@
   <div class="ingredient-glossary-component">
     <div class="glossary-header">
       <div class="glossary-header-content">
-        <h2>
+        <h2 class="glossary-title">
           Ingredient Glossary
         </h2>
         <p class="header-sub">
@@ -102,7 +102,7 @@
       v-if="selected && !searchKeyword"
       class="title-container"
     >
-      <h2>
+      <h2 class="selected-label">
         {{ selected.label }}
       </h2>
     </div>
@@ -292,6 +292,10 @@ export default {
       max-width: 646px;
       padding: 0 19px;
 
+      .glossary-title {
+        font-family: $font-heading;
+      }
+      
       .header-sub{
         margin: auto;
         line-height: 1.2;
@@ -499,7 +503,7 @@ export default {
       width: 25%;
     }
 
-    h2 {
+    .selected-label {
       margin: 0 5px;
     }
   }
