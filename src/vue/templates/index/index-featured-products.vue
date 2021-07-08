@@ -28,7 +28,11 @@
               <p class="preheader">
                 Smell Like a Champion
               </p> 
-              <h3 class="product-type">Bar Soaps</h3> 
+              <h3 
+                class="product-type"
+              >
+                Bar Soaps
+              </h3> 
               <div 
                 class="cta-btns" 
               >
@@ -56,7 +60,9 @@
               <p class="preheader">
                 Soothe Your Scalp
               </p> 
-              <h3 class="product-type">Hair Care</h3> 
+              <h3 class="product-type">
+                Hair Care
+              </h3> 
               <div 
                 class="cta-btns" 
               >
@@ -84,7 +90,9 @@
               <p class="preheader">
                 Give B.O. The Boot
               </p> 
-              <h3 class="product-type">Deodorant</h3> 
+              <h3 class="product-type">
+                Deodorant
+              </h3> 
               <div 
                 class="cta-btns" 
               >
@@ -112,7 +120,9 @@
               <p class="preheader">
                 Mens Morning + Night
               </p> 
-              <h3 class="product-type">Toothpaste</h3> 
+              <h3 class="product-type">
+                Toothpaste
+              </h3> 
               <div 
                 class="cta-btns" 
               >

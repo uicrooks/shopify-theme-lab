@@ -13,8 +13,12 @@
             src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_wordmark_black.svg?v=1615332033" 
             class="squatch-difference-logo"
           > 
-          <h3 class="squatch-difference-title">Difference</h3> 
-          <p class="squatch-difference-copy"> Dr. Squatch is changing the way men approach hygiene by providing natural, healthy products that make you feel like a man and smell like a champion.</p>
+          <h3 class="squatch-difference-title">
+            Difference
+          </h3> 
+          <p class="squatch-difference-copy"> 
+            Dr. Squatch is changing the way men approach hygiene by providing natural, healthy products that make you feel like a man and smell like a champion.
+          </p>
         </div>
         <div class="squatch-difference-border" />
         <div class="squatch-difference">

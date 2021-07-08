@@ -1,0 +1,302 @@
+<template>
+  <div class="hero-display-component">
+    <div class="inner-wrapper">
+      <div :class="reversed ? 'content-box reversed' : 'content-box'">
+        something
+        <div 
+          v-if="!subBelow"
+          class="sub-header" 
+        >
+          {{ subHeader }}
+        </div>
+
+        <div class="header">
+          {{ header }}
+        </div>
+
+        <div class="image-mobile">
+          <img 
+            v-if="imageSrc"
+            :src="imageSrc"
+          >
+          <!-- <div 
+            v-else-if="videoId"
+            class="wistia_embed wistia_async_{{ videoId }} seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%"
+          >
+          </div> -->
+        </div>
+        <div class="text">
+          <div class="text-heading">
+            {{ textHeading }}
+          </div>
+          {{ text }}
+        </div>
+
+        <div 
+          v-if="subBelow"
+          class="sub-header"
+        >
+          {{ subHeader }}
+        </div>
+
+        <div 
+          v-if="ctaPath"
+          class="cta-wrapper"
+        >
+          <squatch-button
+            :text="ctaText ? ctaText : 'Learn more'"
+            path="/pages/about-us"
+          />
+        </div>
+
+      </div>
+      <div :class="reversed ? 'image-tablet reversed' : 'image-tablet'">
+          <img 
+            v-if="imageSrc"
+            :src="imageSrc"
+          >
+          <!-- <div 
+            v-else-if="videoId"
+            class="wistia_embed wistia_async_{{ videoId }} seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%">
+          </div> -->
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import SquatchButton from "@vue/ui-elements/squatch-button";
+
+export default {
+  name: "HeroDisplay",
+  components: {
+    SquatchButton
+  },
+  props: {
+    reversed: {
+      type: Boolean,
+      required: true
+    },
+    subBelow: {
+      type: Boolean,
+      required: true
+    },
+    subHeader: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    header: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    imageSrc: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    videoId: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    textHeading: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    text: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    ctaPath: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    ctaText: {
+      type: String,
+      required: false,
+      default: ""  
+    }
+  },
+  mounted() {
+    console.log(typeof(this.reversed))
+    console.log(this.subBelow)
+    console.log(this.subHeader)
+
+  }
+}
+</script>
+
+<style scoped lang="scss">
+$orange: #CC6328;
+$darker-brown: #1A110C;
+$dark-brown: #473729;
+$brown: #5A3714;
+$sand: #E5D0BB;
+$off-white: #F0EEEB;
+$main-font: "worker-3d", aerial;
+$sub-font: "adrianna", aerial;
+$md-breakpoint: 768px;
+$lg-breakpoint: 993px;
+$xl-breakpoint: 1200px;
+
+.hero-display-component {
+  width: 100%;
+  
+  .inner-wrapper {
+    padding: 30px 0;
+    margin: auto;
+  
+    @media (min-width: $md-breakpoint) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (min-width: $lg-breakpoint) {
+      max-width: 979px;
+    }
+
+    @media (min-width: $xl-breakpoint) {
+      max-width: 1200px;
+    }
+  }
+
+  .content-box {
+
+
+    &.reversed {
+      @media (min-width: $md-breakpoint) {
+        order: 2;
+        padding: 0 0 0 15px;
+      }
+    }
+
+    @media (min-width: $md-breakpoint) {
+      width: 50%;
+      margin: 0 10px;
+    }
+
+    .sub-header {
+      font-size: 14px;
+      line-height: 130%;
+      font-weight: 700;
+      padding: 0 18px;
+
+      @media (min-width: $md-breakpoint) {
+        font-size: 16px;
+        line-height: 110%;
+      }
+    }
+  
+    .header {
+      margin: 12px 0 17px 0;
+      padding: 0 0 0 18px;
+      font-family: $main-font;
+      font-size: 30px;
+      line-height: 100%;
+
+      @media (min-width: $md-breakpoint) {
+        font-size: 40px !important;
+      }
+
+      @media(min-width: $lg-breakpoint) {
+        font-size: 50px !important;
+      }
+    }
+    
+    .image-mobile {
+      padding: 0 20px;
+      width: 100%;
+
+      @media (min-width: $md-breakpoint) {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .text {
+      font-size: 14px;
+      line-height: 130%;
+      padding: 0 18px;
+      margin: 20px 0 10px 0;
+
+      @media (min-width: $xl-breakpoint) {
+        font-size: 15px;
+      }
+
+      @media (min-width: $xl-breakpoint) {
+        font-size: 16px;
+      }
+      
+      .text-heading {
+        font-weight: 600;
+        margin-bottom: 10px;
+
+        @media (min-width: $xl-breakpoint) {
+          font-size: 18px;
+          line-height: 100%;
+        }
+      }
+    }
+
+    .cta-wrapper {
+      margin: 30px 0 0 0;
+      text-align: center;
+  
+      @media (min-width: $md-breakpoint) {
+        text-align: left;
+        padding: 0 18px;
+      }
+   
+      .link {
+        display: inline-block;
+        width: 80%;
+        margin: auto;
+        border-radius: 5px;
+        background-color: $orange;
+        border: none;
+        padding: 15px 0 11px 0;
+        text-transform: uppercase;
+        font-family: $main-font;
+        font-size: 14px;
+        line-height: 17px;
+        color: #ffffff;
+        text-align: center;
+
+        @media (min-width: $md-breakpoint) {
+          width: 70%;
+        }
+      }
+    }
+  
+  }
+
+  .image-tablet {
+    display: none;
+
+    &.reversed {
+      @media (min-width: $md-breakpoint) {
+        order: 1;
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+
+    @media (min-width: $md-breakpoint) {
+      display: inline-block;
+      width: 50%;
+    }
+
+  }
+}
+</style>

@@ -4,7 +4,9 @@
       <p class="preheader">
         Don't Just Take Our Word For It
       </p> 
-      <h3 class="review-copy">100,000+ Verified Reviews</h3> 
+      <h3 class="review-copy">
+        100,000+ Verified Reviews
+      </h3> 
       <p class="review-subheader">
         Don't just take our word for it ... hear what guys like you are saying about Dr. Squatch
       </p>

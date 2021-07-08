@@ -3,7 +3,9 @@
     <div class="subscribe-container">
       <div class="subscribe-content">
         <div class="brand-content">
-          <h2 class="header">Subscribe &amp; Save 15%</h2> 
+          <h2 class="header">
+            Subscribe &amp; Save 15%
+          </h2> 
           <p class="subheader">
             How It Works
           </p> 
