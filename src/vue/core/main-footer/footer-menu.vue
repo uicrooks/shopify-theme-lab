@@ -81,6 +81,7 @@
 
 <script>
 export default {
+  name: "MainFooterMenu",
   data() {
     return {
       shopMenu: [{
@@ -143,7 +144,7 @@ export default {
         name: "Privacy Policy",
         path: "/pages/privacy-policy"
       }],
-    }
+    };
   },
   methods: {
     navigateTo(path) {
@@ -151,7 +152,7 @@ export default {
       window.location = path
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

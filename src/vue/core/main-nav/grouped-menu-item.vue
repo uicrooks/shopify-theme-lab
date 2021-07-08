@@ -39,6 +39,7 @@
 
 <script>
 export default {
+  name: "MainNavGroupedMenuItem",
   props: {
     name: {
       type: String,
@@ -80,7 +81,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

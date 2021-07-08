@@ -10,8 +10,6 @@ module.exports = merge(common, {
     main: [path.resolve(__dirname, '../../src/main.js'),path.resolve(__dirname, '../../node_modules/shopify-theme-lab-reloader/client.autoload')],
     index: path.resolve(__dirname, '../../src/layout/index.js'),
     page: path.resolve(__dirname, '../../src/layout/page.js'),
-    collection: path.resolve(__dirname, '../../src/layout/collection.js'),
-    product: path.resolve(__dirname, '../../src/layout/product.js'),
     cart: path.resolve(__dirname, '../../src/layout/cart.js'),
     account: path.resolve(__dirname, '../../src/layout/account.js')
   },

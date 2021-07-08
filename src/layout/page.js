@@ -1,5 +1,4 @@
 import Vue from "vue";
-
 console.log("layout-page");
 
 const vueComponents = require.context("../vue/templates/page", true, /\.(vue|js)$/);
@@ -9,8 +8,8 @@ vueComponents.keys().forEach(key => {
     ? component.name
     : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
   Vue.component(name, component);
-})
+});
 
 new Vue({
   el: "#layout-page",
-})
+});

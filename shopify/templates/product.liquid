@@ -1,8 +1,22 @@
+{% if product.type == "BarSoap" %}
+  {% assign collectionMatch = collections["bar-soaps"] %}
+{% elsif product.type == "HairCare" %}
+  {% assign collectionMatch = collections["hair-care"] %}
+{% elsif product.type == "Deodorant" or product.handle == "soap-deo-duo" or product.handle == "deodorant-soap-set"%}
+  {% assign collectionMatch = collections["deodorant"] %}
+{% elsif product.type == "Toothpaste" %}
+  {% assign collectionMatch = collections["toothpaste"] %}
+{% endif %}
 <div id="layout-product">
-  Product template
-  {{ product.id }} {{ product.title }} - {{ product.handle }}
   <product
-    id="{{ product.id }}"
     handle="{{ product.handle }}"
+    :product-data-string="{{ product | json | json | escape }}"
+    :collections-data="{{ collections | json | json | escape }}"
+    :collection="{
+      title: '{{ collectionMatch.title }}',
+      handle: '{{ collectionMatch.handle }}',
+      path: '{{ collectionMatch.url }}',
+      products: {{ collectionMatch.products | json | escape }}
+    }"
   ></product>
 </div>

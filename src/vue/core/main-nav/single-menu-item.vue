@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  name: "MainNavSingleMenuItem",
   props: {
     name: {
       type: String,
@@ -41,7 +42,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
