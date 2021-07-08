@@ -8,7 +8,7 @@
         v-for="(item, index) of shopMenu"
         :key="`shop-menu-${index}`"
         class="menu-item"
-        :class="{'last': index === shopMenu.length - 1}"
+        :class="{ last: index === shopMenu.length - 1 }"
         @click="navigateTo(item.path)"
       >
         {{ item.name }}
@@ -22,7 +22,7 @@
         v-for="(item, index) of infoMenu"
         :key="`info-menu-${index}`"
         class="menu-item"
-        :class="{'last': index === infoMenu.length - 1}"
+        :class="{ last: index === infoMenu.length - 1 }"
         @click="navigateTo(item.path)"
       >
         {{ item.name }}
@@ -36,7 +36,7 @@
         v-for="(item, index) of helpMenu"
         :key="`help-menu-${index}`"
         class="menu-item"
-        :class="{'last': index === helpMenu.length - 1}"
+        :class="{ last: index === helpMenu.length - 1 }"
         @click="navigateTo(item.path)"
       >
         {{ item.name }}
@@ -50,29 +50,19 @@
       >
       <div class="social-links">
         <a href="/test">
-          <b-icon
-            icon="instagram"
-          />
+          <b-icon icon="instagram" />
         </a>
         <a href="/test">
-          <b-icon
-            icon="youtube"
-          />
+          <b-icon icon="youtube" />
         </a>
         <a href="/test">
-          <b-icon
-            icon="facebook"
-          />
+          <b-icon icon="facebook" />
         </a>
         <a href="/test">
-          <b-icon
-            icon="twitter"
-          />
+          <b-icon icon="twitter" />
         </a>
         <a href="/test">
-          <b-icon
-            icon="linkedin"
-          />
+          <b-icon icon="linkedin" />
         </a>
       </div>
     </div>
@@ -84,74 +74,96 @@ export default {
   name: "MainFooterMenu",
   data() {
     return {
-      shopMenu: [{
-        name: "Bar Soaps",
-        path: "/test"
-      }, {
-        name: "Deodorant",
-        path: "/test"
-      }, {
-        name: "Toothpaste",
-        path: "/test"
-      }, {
-        name: "Hair Care",
-        path: "/test"
-      }, {
-        name: "Bundles",
-        path: "/test"
-      }, {
-        name: "Subscription",
-        path: "/test"
-      }, {
-        name: "Loyalty Rewards",
-        path: "/test"
-      }],
-      infoMenu: [{
-        name: "Ingredients",
-        path: "/pages/glossary"
-      }, {
-        name: "Hero Discounts",
-        path: "/test"
-      }, {
-        name: "About Us",
-        path: "/test"
-      }, {
-        name: "Wholesale",
-        path: "/test"
-      }, {
-        name: "Blog",
-        path: "/test"
-      }, {
-        name: "Gift Card Balance",
-        path: "/test"
-      }],
-      helpMenu: [{
-        name: "FAQ",
-        path: "/test"
-      }, {
-        name: "Shipping",
-        path: "/pages/shipping"
-      }, {
-        name: "Returns & Refunds",
-        path: "/test"
-      }, {
-        name: "Contact Us",
-        path: "/test"
-      }, {
-        name: "Terms of Use",
-        path: "/pages/terms-of-use"
-      }, {
-        name: "Privacy Policy",
-        path: "/pages/privacy-policy"
-      }],
+      shopMenu: [
+        {
+          name: "Bar Soaps",
+          path: "/test",
+        },
+        {
+          name: "Deodorant",
+          path: "/test",
+        },
+        {
+          name: "Toothpaste",
+          path: "/test",
+        },
+        {
+          name: "Hair Care",
+          path: "/test",
+        },
+        {
+          name: "Bundles",
+          path: "/test",
+        },
+        {
+          name: "Subscription",
+          path: "/test",
+        },
+        {
+          name: "Loyalty Rewards",
+          path: "/test",
+        },
+      ],
+      infoMenu: [
+        {
+          name: "Ingredients",
+          path: "/pages/glossary",
+        },
+        {
+          name: "Hero Discounts",
+          path: "/test",
+        },
+        {
+          name: "About Us",
+          path: "/test",
+        },
+        {
+          name: "Wholesale",
+          path: "/test",
+        },
+        {
+          name: "Blog",
+          path: "/test",
+        },
+        {
+          name: "Gift Card Balance",
+          path: "/test",
+        },
+      ],
+      helpMenu: [
+        {
+          name: "FAQ",
+          path: "/test",
+        },
+        {
+          name: "Shipping",
+          path: "/pages/shipping",
+        },
+        {
+          name: "Returns & Refunds",
+          path: "/test",
+        },
+        {
+          name: "Contact Us",
+          path: "/test",
+        },
+        {
+          name: "Terms of Use",
+          path: "/pages/terms-of-use",
+        },
+        {
+          name: "Privacy Policy",
+          path: "/pages/privacy-policy",
+        },
+      ],
     };
   },
   methods: {
     navigateTo(path) {
-      console.log(path)
-      window.location = path
-    }
-  }
+      console.log(path);
+      window.location = path;
+    },
+  },
 };
 </script>
 
@@ -233,8 +245,9 @@ export default {
     }
 
     .social-links {
-      
-      a, a:hover, a:visited {
+      a,
+      a:hover,
+      a:visited {
         font-size: 22px;
         color: $white;
         text-decoration: none;
@@ -242,6 +255,5 @@ export default {
       }
     }
   }
-
 }
 </style>

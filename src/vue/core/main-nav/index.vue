@@ -6,7 +6,7 @@
         id="drsquatch-logo-mobile"
         src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
         alt="Dr.Squatch logo"
-      />
+      >
       <div class="buttons">
         <cart :currency-obj="currency" />
         <b-icon
@@ -29,9 +29,16 @@
               id="drsquatch-logo-mobile-sidebar"
               src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
               alt="Dr.Squatch logo"
-            />
-            <div class="account-icon-box" @click="navigateTo('/account/login')">
-              <b-icon icon="person-fill" font-scale="2.5" class="person-icon" />
+            >
+            <div 
+              class="account-icon-box" 
+              @click="navigateTo('/account/login')"
+            >
+              <b-icon 
+                icon="person-fill" 
+                font-scale="2.5" 
+                class="person-icon" 
+              />
               <span>Log In</span>
             </div>
           </div>
@@ -110,12 +117,21 @@
         >
           Subscribe
         </squatch-button>
-        <div class="menu-item" @click="navigateTo('/pages/bundle-offers')">
+        <div 
+          class="menu-item" 
+          @click="navigateTo('/pages/bundle-offers')"
+        >
           Bundles
         </div>
-        <div v-b-toggle.products-menu class="menu-item">
+        <div 
+          v-b-toggle.products-menu 
+          class="menu-item"
+        >
           Products
-          <b-icon :icon="productsSubMenuOpen ? 'x' : 'chevron-down'" />
+
+          <b-icon 
+            :icon="productsSubMenuOpen ? 'x' : 'chevron-down'" 
+          />
         </div>
       </div>
       <a href="/">
@@ -123,26 +139,50 @@
           id="drsquatch-logo-desktop"
           src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
           alt="Dr.Squatch logo"
-        />
+        >
       </a>
       <div class="right-section">
-        <div class="menu-item" @click="navigateTo('/test')">Take Quiz</div>
-        <div v-if="loggedIn" class="menu-item" @click="navigateTo('/account')">
+        <div 
+          class="menu-item" 
+          @click="navigateTo('/test')"
+        >
+          Take Quiz
+        </div>
+        <div 
+          v-if="loggedIn" 
+          class="menu-item" 
+          @click="navigateTo('/account')"
+        >
           Account
         </div>
-        <div v-else class="menu-item" @click="navigateTo('/account/login')">
+        <div 
+          v-else 
+          class="menu-item" 
+          @click="navigateTo('/account/login')"
+        >
           Log In
         </div>
-        <div v-b-toggle.currency-options class="menu-item">
+        <div 
+          v-b-toggle.currency-options 
+          class="menu-item"
+        >
           USD
           <b-icon icon="caret-down-fill" />
         </div>
-        <b-collapse id="curreny-options"> CAD </b-collapse>
+
+        <b-collapse id="curreny-options"> 
+          CAD 
+        </b-collapse>
         <cart :currency-obj="currency" />
       </div>
     </div>
-    <b-collapse id="products-menu" v-model="productsSubMenuOpen">
-      <h6 class="submenu-title">Essentials</h6>
+    <b-collapse 
+      id="products-menu" 
+      v-model="productsSubMenuOpen"
+    >
+      <h6 class="submenu-title">
+        Essentials
+      </h6>
       <div class="essentials">
         <div
           v-for="(item, index) of productsSubMenuItems.essentials"
@@ -150,16 +190,26 @@
           class="essential-item"
           @click="navigateTo(item.path)"
         >
-          <span v-if="item.badge" class="badge">{{ item.badge }}</span>
+          <span 
+            v-if="item.badge"
+            class="badge"
+          >
+            {{ item.badge }}
+          </span>
           <div class="item-image-wrapper">
-            <img :src="item.imageSrc" :alt="`${item.name} image`" />
+            <img 
+              :src="item.imageSrc" 
+              :alt="`${item.name} image`" 
+            >
           </div>
           <div class="item-name">
             {{ item.name }}
           </div>
         </div>
       </div>
-      <h6 class="submenu-title">More Products</h6>
+      <h6 class="submenu-title">
+        More Products
+      </h6>
       <div class="more">
         <div class="more-col">
           <div
@@ -179,7 +229,10 @@
             Shop All
             <b-icon icon="arrow-right" />
           </div>
-          <div class="more-item" @click="navigateTo('/test')">
+          <div 
+            class="more-item" 
+            @click="navigateTo('/test')"
+          >
             Take Soap Quiz
           </div>
         </div>
@@ -396,11 +449,6 @@ export default {
       return window.theme.customerLoggedIn;
     },
   },
-  mounted() {
-    console.log("main nav");
-    console.log(window);
-    console.log(this.cart);
-  },
   methods: {
     navigateTo(path) {
       console.log(path);
@@ -410,6 +458,11 @@ export default {
     toggleCurrency() {
       console.log("toggleCurrency");
     },
+  },
+  mounted() {
+    console.log("main nav");
+    console.log(window);
+    console.log(this.cart);
   },
   async mounted() {
     console.log(window);
@@ -487,7 +540,7 @@ export default {
       }
     }
 
-    .big-cta-link  {
+    .big-cta-link {
       padding: 20px 15px;
       margin: 10px 16px;
       background-color: $orange;
@@ -582,11 +635,7 @@ export default {
     border-top: 2px solid $white-darken;
     background-color: $white;
     position: absolute;
-<<<<<<< HEAD
-    z-index: 999;
-=======
     z-index: 9;
->>>>>>> 034992856fc857cf5fc6965521032358bfa963b4
 
     .submenu-title {
       margin-bottom: 15px;
@@ -616,11 +665,11 @@ export default {
           font-weight: 400;
           background-color: $orange;
           border-radius: 11px;
-          padding: 4px 7px; 
+          padding: 4px 7px;
           text-transform: uppercase;
           margin-left: 8px;
         }
-        
+
         .item-image-wrapper {
           border-radius: 100%;
           width: 80px;
@@ -646,7 +695,7 @@ export default {
     .more {
       display: flex;
       flex-flow: row nowrap;
-      
+
       .more-col {
         height: 120px;
         display: flex;

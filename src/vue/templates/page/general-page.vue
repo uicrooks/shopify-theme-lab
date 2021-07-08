@@ -1,11 +1,9 @@
 <template>
-  <div>
-    test
-  </div>
+  <div>test</div>
 </template>
 
 <script>
 export default {
-  name: "GenericPage"
-}
+  name: "GenericPage",
+};
 </script>

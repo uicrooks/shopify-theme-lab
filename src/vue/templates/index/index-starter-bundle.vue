@@ -13,12 +13,12 @@
 </template>
 
 <script>
-import ImageSection from "@vue/ui-elements/image-section";
+import ImageSection from "@/vue/reusables/image-section";
 
 export default {
   name: "IndexBundle",
   components: {
     ImageSection,
-  }
+  },
 };
 </script>

@@ -25,24 +25,37 @@
       <template #default="{ hide }">
         <div class="cart-title">
           Your Cart
-          <b-icon icon="x" font-scale="1.5" @click="hide" />
+          <b-icon 
+            icon="x" 
+            font-scale="1.5" 
+            @click="hide" 
+          />
         </div>
-        <div v-if="items.length > 0" class="cart-content">
+        <div 
+          v-if="items.length > 0" 
+          class="cart-content"
+        >
           <div
             v-for="(item, index) of items"
             :key="`cart-item-${index}`"
             class="item"
             :class="{ 'last-item': index === items.length - 1 }"
           >
-            <a :href="item.url" class="item-image-wrapper">
+            <a 
+              :href="item.url" 
+              class="item-image-wrapper"
+            >
               <img
                 :src="item.image"
                 :alt="`${item.product_title} image`"
                 class="item-image"
-              />
+              >
             </a>
             <div class="item-details">
-              <a :href="item.url" class="item-title">
+              <a 
+                :href="item.url"
+                class="item-title"
+              >
                 {{ item.product_title }}
               </a>
               <b-icon
@@ -71,9 +84,17 @@
             </span>
           </div>
         </div>
-        <div v-else class="cart-content empty">
-          <h3>Your Cart is empty</h3>
-          <squatch-button class="cta-button" @clicked="hide">
+        <div 
+          v-else 
+          class="cart-content empty"
+        >
+          <h3>
+            Your Cart is empty
+          </h3>
+          <squatch-button 
+            class="cta-button"
+            @clicked="hide"
+          >
             Continue Browsing
           </squatch-button>
         </div>

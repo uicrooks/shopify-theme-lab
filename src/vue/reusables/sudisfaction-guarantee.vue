@@ -1,22 +1,22 @@
 <template>
   <div class="sudisfaction-guarantee">
     <div class="sudisfaction-container">
-      <img 
-        class="foot-icon" 
-        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/SquatchFoot.svg?v=1615322349" 
+      <img
+        class="foot-icon"
+        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/SquatchFoot.svg?v=1615322349"
         alt="squatch-foot"
       >
       <h6>Sudisfaction Guaranteed</h6>
-      <p>Rest easy. If this isn't the best natural product you've ever used, it's on us.</p>
+      <p>
+        Rest easy. If this isn't the best natural product you've ever used, it's
+        on us.
+      </p>
     </div>
   </div>
 </template>
 
 <script>
-
-export default {
-
-}
+export default {};
 </script>
 
 <style scoped lang="scss">
@@ -39,7 +39,7 @@ export default {
   position: relative;
   z-index: 0;
 
-  @media(max-width:325px) {
+  @media (max-width: 325px) {
     padding: 0;
   }
 

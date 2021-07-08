@@ -81,7 +81,8 @@ export default {
       default: () => {}
     },
     oosData: {
-      type: Object
+      type: Object,
+      default: () => {}
     }
   },
   data() {

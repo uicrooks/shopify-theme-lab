@@ -544,32 +544,32 @@
 </template>
 
 <script>
-import TextOnlyBanner from "@vue/ui-elements/text-only-banner";
+import TextOnlyBanner from "@/vue/reusables/text-only-banner";
 
 export default {
   name: "TermsOfUse",
   components: {
-    TextOnlyBanner
+    TextOnlyBanner,
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.terms-of-use{
+.terms-of-use {
   .terms-container {
     padding: 2.5rem 0;
 
-    @media(min-width: $md) {
+    @media (min-width: $md) {
       padding: 5rem 0;
     }
 
-    @media(min-width: $xl) {
+    @media (min-width: $xl) {
       padding: 5rem 2rem;
     }
 
-    .terms-content{
+    .terms-content {
       padding: 0 15px;
       margin: auto;
       max-width: 1300px;
@@ -578,7 +578,7 @@ export default {
         text-align: center;
         margin-bottom: 28px;
 
-        @media(min-width: $md) {
+        @media (min-width: $md) {
           text-align: left;
         }
 
@@ -588,9 +588,9 @@ export default {
           margin: 0 0 30px 0;
           font-family: $font-heading;
 
-          @media(min-width: 1200px) {
+          @media (min-width: 1200px) {
             font-size: 1.875rem;
-          } 
+          }
         }
         .terms-description {
           font-size: 14px;

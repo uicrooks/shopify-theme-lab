@@ -1,17 +1,17 @@
 <template>
-  <div
-    class="squatch-button-component"
-    :class="color"
+  <div 
+    class="squatch-button-component" 
+    :class="color" 
     @click="navigateTo"
   >
-    <div
-      class="button-text"
-      :class="{'as-header': subText}"
+    <div 
+      class="button-text" 
+      :class="{ 'as-header': subText }"
     >
       {{ text }}
     </div>
-    <div
-      v-if="subText"
+    <div 
+      v-if="subText" 
       class="button-sub-text"
     >
       {{ subText }}
@@ -30,18 +30,18 @@ export default {
     subText: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     path: {
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     color: {
       type: String,
       required: false,
-      default: ""
-    }
+      default: "",
+    },
   },
   methods: {
     navigateTo() {
@@ -49,9 +49,9 @@ export default {
       if (this.path) {
         window.location = this.path;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -90,7 +90,12 @@ export default {
   .button-text {
     font-size: 14px;
     font-weight: 500;
-    @include font-style-heading($size: 14px, $color: $white, $weight: 400, $lh: 14px);
+    @include font-style-heading(
+      $size: 14px,
+      $color: $white,
+      $weight: 400,
+      $lh: 14px
+    );
 
     &.as-header {
       font-size: 16px;
