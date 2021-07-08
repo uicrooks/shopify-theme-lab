@@ -6,18 +6,20 @@
   "license": "MIT",
   "scripts": {
     "start": "run-p -sr shopify:serve webpack:watch",
-    "deploy": "run-s webpack:build shopify:push",
+    "deploy": "run-s webpack:build && cd shopify && shopify theme push",
+    "deploy:new": "run-s webpack:build && cd shopify && shopify theme push --unpublished",
     "webpack:watch": "cross-env NODE_ENV=development BROWSERSLIST_ENV=development BROWSERSLIST_CONFIG=.config/.browserslistrc webpack --config .config/webpack/webpack.dev.js --watch --progress",
     "webpack:build": "cross-env NODE_ENV=production BROWSERSLIST_ENV=production BROWSERSLIST_CONFIG=.config/.browserslistrc webpack --config .config/webpack/webpack.prod.js --progress",
     "shopify:serve": "cd shopify && shopify theme serve",
-    "shopify:push": "cd shopify && shopify theme push",
-    "shopify:check": "cd shopify && shopify theme check",
+    "shopify:pull": "cd shopify && shopify theme pull",
     "lint": "run-s -c lint:*",
     "lint:js": "eslint src/**/*.{js,vue} --config .config/.eslintrc.js",
     "lint:css": "stylelint src/**/*.{vue,css,sass,scss} --config .config/.stylelintrc.js",
+    "lint:shopify": "cd shopify && shopify theme check",
     "fix": "run-s -c fix:*",
     "fix:js": "eslint src/**/*.{js,vue} --config .config/.eslintrc.js --fix",
-    "fix:css": "stylelint src/**/*.{vue,css,sass,scss} --config .config/.stylelintrc.js --fix"
+    "fix:css": "stylelint src/**/*.{vue,css,sass,scss} --config .config/.stylelintrc.js --fix",
+    "fix:shopify": "cd shopify && shopify theme check -a"
   },
   "dependencies": {
     "axios": "^0.21.1",
