@@ -95,7 +95,7 @@ $ npm run start
 
 <!-- deploying (start) -->
 ## Deploying
-Create a new theme on the store that you're connected to:
+Create aand deploy to a new theme on the store that you're connected to:
 ```sh
 $ npm run deploy:new
 ```
