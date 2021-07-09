@@ -91,17 +91,17 @@ $ npm run start
 
 <!-- deploying (start) -->
 ## Deploying
-Create a new theme on the Shopify store:
+Create a new theme on the store that you're connected to:
 ```sh
 $ npm run deploy:new
 ```
 
-Deploy to an existing theme:
+Deploy to an existing theme on the store that you're connected to:
 ```sh
 $ npm run deploy
 ```
 
-> ⚠ The deploy task overrides all files on the remote store! If any changes were made through the Shopify theme editor you might want to download the theme files before deploying:
+> ⚠ The deploy task overrides all files on the remote theme! If any changes were made through the Shopify theme editor you might want to download the theme files before deploying:
 
 1. Make sure you have a clean git history and committed all files.
 
