@@ -81,7 +81,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 $ shopify theme init -u https://github.com/uicrooks/shopify-theme-lab
 ```
 
-5. Log in into your development store from the root directory of your project:
+5. Log into your development store from the root directory of your project:
 ```sh
 $ shopify login --store <your-store.myshopify.com>
 ```
