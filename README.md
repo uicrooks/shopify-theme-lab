@@ -1,10 +1,10 @@
 <!-- logo (start) -->
 <p align="center">
-  <img src=".github/img/logo.svg" width="250px">
+  <img src="https://raw.githubusercontent.com/uicrooks/shopify-theme-lab/master/.github/img/logo.svg" width="250px">
 </p>
 
 <p align="center">
-  <img src=".github/img/banner.svg" width="400px">
+  <img src="https://raw.githubusercontent.com/uicrooks/shopify-theme-lab/master/.github/img/banner.svg" width="400px">
 </p>
 <!-- logo (end) -->
 
@@ -19,7 +19,7 @@
 <!-- title / description (start) -->
 <h2 align="center">Shopify Theme Lab</h2>
 
-Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
+Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. It is build on top of the [Shopify CLI](https://shopify.dev/themes/tools/cli). By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
 <!-- title / description (end) -->
 
 <!-- ecosystem (start) -->
@@ -59,8 +59,9 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 <!-- system requirements (start) -->
 ## System requirements
 
-- Node.js >= `14.0.0`
-- npm or yarn
+- [Ruby](https://www.ruby-lang.org/en)
+- [Shopify CLI](https://shopify.dev/themes/tools/cli)
+- [Node.js](https://nodejs.org/en) >= `14.0.0`
 <!-- system requirements (end) -->
 
 <!-- getting started (start) -->
