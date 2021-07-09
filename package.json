@@ -1,7 +1,7 @@
 {
   "name": "shopify-theme-lab",
   "description": "Customizable modular development environment for blazing-fast Shopify theme creation",
-  "author": "Sergej Samsonenko <contact@sergej.codes>",
+  "author": "Sergej Samsonenko",
   "version": "4.0.0-next",
   "license": "MIT",
   "scripts": {
