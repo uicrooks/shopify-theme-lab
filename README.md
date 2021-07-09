@@ -20,6 +20,8 @@
 <h2 align="center">Shopify Theme Lab</h2>
 
 Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. It is build on top of the [Shopify CLI](https://shopify.dev/themes/tools/cli). By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
+
+> If you are looking for the old Theme Lab it's here: [Legacy Version 3 branch](https://github.com/uicrooks/shopify-theme-lab/tree/legacy-v3)
 <!-- title / description (end) -->
 
 <!-- ecosystem (start) -->
