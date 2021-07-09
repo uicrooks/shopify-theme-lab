@@ -101,11 +101,11 @@ Let's you select a theme you want to deploy to:
 $ npm run deploy
 ```
 
-> The deploy task overrides all files on the remote store, if any changes were made through the Shopify theme editor you might want to download files before deploying:
+> ⚠ The deploy task overrides all files on the remote store, if any changes were made through the Shopify theme editor you might want to download files before deploying:
 
 1. Make sure you have a clean git history and committed all files.
 
-2. run
+2. Run the `shopify:pull` command:
 ```sh
 $ npm run shopify:pull
 ```
