@@ -126,7 +126,7 @@ shopify-theme-lab/             📁 directory (not connected to any git repos)
 └── dist-code/                 📁 directory for dist code (connected to a github repo)
 ```
 
-When you are ready to publish the theme to a live store simply run `npm run webpack:build` and move the contents of the `shopify` directory from the `source-code` directory to the `dist-code` directory.
+When you are ready to publish the theme to a live store simply run `npm run webpack:build` and move the contents of the `shopify` directory from the `source-code` to the `dist-code` directory.
 
 The [Shopify docs](https://shopify.dev/themes/best-practices/version-control) describe several other ways how to setup version control.
 <!-- version control (end) -->
