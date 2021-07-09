@@ -62,7 +62,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 ## System requirements
 
 - [Ruby](https://www.ruby-lang.org/en)
-- [Shopify CLI](https://shopify.dev/themes/tools/cli)
+- [Shopify CLI](https://shopify.dev/themes/tools/cli/installation)
 - [Node.js](https://nodejs.org/en) >= `14.0.0`
 <!-- system requirements (end) -->
 
@@ -96,7 +96,7 @@ Create a new theme on the Shopify store:
 $ npm run deploy:new
 ```
 
-Let'y you select a theme you want to deploy to:
+Let's you select a theme you want to deploy to:
 ```sh
 $ npm run deploy
 ```
