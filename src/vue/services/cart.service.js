@@ -67,7 +67,7 @@ export default {
     CookieService.set("cart", cartCookieValue, { domain: `.${host}` });
 
     // if subscription item is included, go to recharge checkout
-    
+
     let url = "/checkout";
     // check for discount code
     let discountCode = "";

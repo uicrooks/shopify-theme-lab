@@ -22,22 +22,22 @@ export default {
     handle: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
     productDataString: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
     collection: {
       type: Object,
       required: true,
-      default: () => {}
+      default: () => {},
     },
     collectionsData: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
   },
   computed: {
@@ -52,12 +52,12 @@ export default {
     },
     groupableWithSubscription() {
       return ["toothpaste", "deodorant"].includes(this.productIdentity[0]);
-    }
+    },
   },
   mounted() {
     console.log(this.collection);
     console.log(this.handle, this.product);
     console.log(JSON.parse(this.collectionsData));
-  }
+  },
 };
 </script>

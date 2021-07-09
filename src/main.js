@@ -28,19 +28,19 @@ coreComponents.keys().forEach(key => {
 /**
  * import reusable components
  */
- const reusableComponents = require.context("./vue/reusables/", true, /\.(vue|js)$/);
+const reusableComponents = require.context("./vue/reusables/", true, /\.(vue|js)$/);
 
- reusableComponents.keys().forEach(key => {
-   const component = reusableComponents(key).default;
-   const name = component.name
-     ? component.name
-     : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
-   Vue.component(name, component);
- });
+reusableComponents.keys().forEach(key => {
+  const component = reusableComponents(key).default;
+  const name = component.name
+    ? component.name
+    : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+  Vue.component(name, component);
+});
 
- /**
- * import module specific components
- */
+/**
+* import module specific components
+*/
 if (window.location.pathname.includes("/products")) {
   console.log("layout-product");
   const components = require.context("./vue/templates/product", true, /\.(vue|js)$/);
@@ -102,7 +102,7 @@ window.app = Vue;
 
 /*
 COMMENTED: add back as needed
-const mixins = require.context('./vue/mixins/', true, /.*global.*\.js$/)
+const mixins = require.context("./vue/mixins/", true, /.*global.*\.js$/)
 
 mixins.keys().forEach(key => {
   Vue.mixin(mixins(key).default)
@@ -111,7 +111,7 @@ mixins.keys().forEach(key => {
 
 /*
 COMMENTED: add back as needed
-const directives = require.context('./vue/directives/', true, /.*global.*\.js$/)
+const directives = require.context("./vue/directives/", true, /.*global.*\.js$/)
 
 directives.keys().forEach(key => {
   const directive = directives(key).default
@@ -121,8 +121,8 @@ directives.keys().forEach(key => {
 
 // NOT NEEDED, showing it's okay to delete;
 /*
-Shopify.designMode && document.addEventListener('shopify:section:load', (event) => {
-  if (event.target.classList.value.includes('vue')) {
+Shopify.designMode && document.addEventListener("shopify:section:load", (event) => {
+  if (event.target.classList.value.includes("vue")) {
     new Vue({
       el: event.target,
       store

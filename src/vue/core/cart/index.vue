@@ -25,25 +25,25 @@
       <template #default="{ hide }">
         <div class="cart-title">
           Your Cart
-          <b-icon
-            icon="x"
-            font-scale="1.5"
-            @click="hide"
+          <b-icon 
+            icon="x" 
+            font-scale="1.5" 
+            @click="hide" 
           />
         </div>
-        <div
-          v-if="items.length > 0"
+        <div 
+          v-if="items.length > 0" 
           class="cart-content"
         >
           <div
             v-for="(item, index) of items"
             :key="`cart-item-${index}`"
             class="item"
-            :class="{'last-item': index === items.length - 1}"
+            :class="{ 'last-item': index === items.length - 1 }"
           >
-            <a
-              :href="item.url"
-              class="item-image-wrapper"  
+            <a 
+              :href="item.url" 
+              class="item-image-wrapper"
             >
               <img
                 :src="item.image"
@@ -52,7 +52,7 @@
               >
             </a>
             <div class="item-details">
-              <a
+              <a 
                 :href="item.url"
                 class="item-title"
               >
@@ -84,12 +84,14 @@
             </span>
           </div>
         </div>
-        <div
-          v-else
+        <div 
+          v-else 
           class="cart-content empty"
         >
-          <h3>Your Cart is empty</h3>
-          <squatch-button
+          <h3>
+            Your Cart is empty
+          </h3>
+          <squatch-button 
             class="cta-button"
             @clicked="hide"
           >
@@ -118,8 +120,8 @@ export default {
   props: {
     currencyObj: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     isOpen: {
@@ -128,27 +130,26 @@ export default {
       },
       set(val) {
         this.$store.commit("cart/setIsOpen", val);
-      }
+      },
     },
-    ...mapGetters("cart", [
-      "subtotal",
-      "items",
-      "numberOfItems"
-    ]),
+    ...mapGetters("cart", ["subtotal", "items", "numberOfItems"]),
   },
   methods: {
     toggleCart() {
       this.$store.commit("cart/toggleIsOpen");
     },
     async updateQuantity(itemIndex, quantity) {
-      const updated = await CartService.updateItemQuantity(itemIndex + 1, quantity);
+      const updated = await CartService.updateItemQuantity(
+        itemIndex + 1,
+        quantity
+      );
       if (updated) {
         this.$store.dispatch("cart/initialize");
       }
     },
     checkout() {
       CartService.redirectToCheckout();
-    }
+    },
   },
   async mounted() {
     this.$store.commit("cart/setCurrency", this.currencyObj);
@@ -158,7 +159,7 @@ export default {
     } else {
       // error handling
     }
-  }
+  },
 };
 </script>
 
@@ -166,7 +167,6 @@ export default {
 @import "@/styles/main.scss";
 
 .cart-component {
-
   .cart-icon {
     cursor: pointer;
   }
@@ -222,7 +222,6 @@ export default {
           cursor: pointer;
         }
       }
-
 
       .item-details {
         flex: 3;

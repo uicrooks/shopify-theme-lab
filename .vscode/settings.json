@@ -6,5 +6,5 @@
   "eslint.validate": [
     "javascript"
   ],
-  "editor.formatOnSave": true
+  "editor.formatOnSave": null
 }
