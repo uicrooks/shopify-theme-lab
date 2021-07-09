@@ -3,7 +3,6 @@
  */
 import { createApp } from 'vue'
 import { createStore } from 'vuex'
-import axios from 'axios'
 import './css/main.css'
 
 /**
@@ -68,12 +67,6 @@ const createVueApp = () => {
     const directive = directives(key).default
     app.directive(directive.name, directive.directive)
   })
-
-  /**
-   * vue config
-   * extend with additional features
-   */
-  app.config.globalProperties.$axios = axios
 
   /**
    * vue plugins
