@@ -61,8 +61,8 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 <!-- system requirements (start) -->
 ## System requirements
 
-- [Ruby](https://www.ruby-lang.org/en)
-- [Shopify CLI](https://shopify.dev/themes/tools/cli/installation)
+- [Ruby](https://www.ruby-lang.org/en) >= `2.7.0`
+- [Shopify CLI](https://shopify.dev/themes/tools/cli/installation) >= `2.0.0`
 - [Node.js](https://nodejs.org/en) >= `14.0.0`
 <!-- system requirements (end) -->
 
