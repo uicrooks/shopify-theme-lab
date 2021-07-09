@@ -72,7 +72,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 
 2. Create a [development store](https://shopify.dev/themes/tools/development-stores#create-a-development-store-to-build-and-test-your-theme).
 
-3. Log out of your newly created store and then log in again using the `your-store.myshopify.com/admin` url
+3. Log out of your newly created store and then log in again using the `your-store.myshopify.com/admin` URL
 
 > ⚠ If you're the owner of the development store, then you need to log in to the store using the store URL at least once (for example, using your-store.myshopify.com/admin) before you can start using the Shopify CLI.
 
