@@ -374,7 +374,7 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 
 - All webpack configs are inside `.config/webpack/` directory
 - [main.js](src/main.js) is webpack's main entry point
-- All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins and directives with `global` in their filename. Everything is defined in `src/main.js`
+- All Vue-related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins and directives with `global` in their filename. Everything is defined in `src/main.js`
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build.
 <!-- webpack (end) -->
 
