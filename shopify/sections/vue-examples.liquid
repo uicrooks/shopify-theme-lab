@@ -10,7 +10,7 @@
 
     <div class="shopify-theme-lab__examples">
       <!--
-        * if "name: 'myComponent'" is defined inside a vue file, it can be referenced as <my-component></my-component>
+        * if "name: 'MyComponent'" is defined inside a vue file, it can be referenced as <my-component></my-component>
         * otherwise the component will be named after the file path starting from the components/ directory
         * for src/vue/components/render/my-component.vue it's: <render-my-component></render-my-component>
       -->
@@ -148,3 +148,15 @@
   background: rgb(70,70,70);
 }
 </component>
+
+{% schema %}
+{
+  "name": "Vue examples",
+  "class": "vue-section",
+  "presets": [
+    {
+      "name": "Vue examples"
+    }
+  ]
+}
+{% endschema %}

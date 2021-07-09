@@ -2,7 +2,7 @@
 <html lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
@@ -24,11 +24,8 @@
     {{ content_for_header }}
   </head>
 
-  <body id="{{ page_title | handle }}" class="template-{{ request.page_type | handle }}">
+  <body>
     <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
-      <!-- vue examples -->
-      {% render 'vue-examples' %}
-
       {% section 'header' %}
 
       <main id="main" role="main">
@@ -39,6 +36,6 @@
     </div>
 
     <!-- webpack bundle -->
-    {{ 'bundle.js' | asset_url | script_tag }}
+    <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>
