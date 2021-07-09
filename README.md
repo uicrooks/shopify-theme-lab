@@ -70,14 +70,14 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 ## Getting started
 1. Install the [Shopify CLI](https://github.com/Shopify/shopify-cli) by following [these steps](https://shopify.dev/themes/tools/cli/installation).
 
-2. Create a [development store](https://shopify.dev/themes/tools/development-stores).
+2. Create a [development store](https://shopify.dev/themes/tools/development-stores#create-a-development-store-to-build-and-test-your-theme).
 
 3. Clone this repo or simply run the following `Shopify CLI` command:
 ```sh
 $ shopify theme init -u https://github.com/uicrooks/shopify-theme-lab
 ```
 
-4. Login into your development store:
+4. Login into your development store from the root directory of your project:
 ```sh
 $ shopify login --store <your-store.myshopify.com>
 ```
