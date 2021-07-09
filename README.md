@@ -19,7 +19,7 @@
 <!-- title / description (start) -->
 <h2 align="center">Shopify Theme Lab</h2>
 
-Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. It is build on top of the [Shopify CLI](https://shopify.dev/themes/tools/cli). By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
+Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. It is built on top of the [Shopify CLI](https://shopify.dev/themes/tools/cli). By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
 
 > If you are looking for the old Theme Lab it's here: [Legacy Version 3 branch](https://github.com/uicrooks/shopify-theme-lab/tree/legacy-v3)
 <!-- title / description (end) -->
@@ -77,7 +77,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 $ shopify theme init -u https://github.com/uicrooks/shopify-theme-lab
 ```
 
-4. Login into the your development store:
+4. Login into your development store:
 ```sh
 $ shopify login --store <your-store.myshopify.com>
 ```
@@ -96,7 +96,7 @@ Create a new theme on the Shopify store:
 $ npm run deploy:new
 ```
 
-Let's you select a theme you want to deploy to:
+Deploy to an existing theme:
 ```sh
 $ npm run deploy
 ```
@@ -353,8 +353,8 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | Task | Description |
 | - | - |
 | start | run `shopify:serve` and `webpack:watch` tasks simultaneously in parallel |
-| deploy | upload local files from the `shopify` directory to Shopify |
-| deploy:new | same as `deploy` but creates a new unpublished theme on the Shopify store |
+| deploy | upload local files from the `shopify` directory to the store that you're connected to |
+| deploy:new | same as `deploy` but creates a new unpublished theme |
 | webpack:watch | bundle and watch for changes in `src/` files with webpack |
 | webpack:build | create minified production files for Shopify in `shopify/assets/` directory |
 | shopify:serve | upload the current theme as a development theme to the store that you're connected to |
