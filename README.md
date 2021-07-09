@@ -101,7 +101,7 @@ Deploy to an existing theme on the store that you're connected to:
 $ npm run deploy
 ```
 
-> ⚠ The deploy task overrides all files on the remote theme! If any changes were made through the Shopify theme editor you might want to download the theme files before deploying:
+> ⚠ The deploy task overrides all files of the remote theme! If any changes were made through the Shopify theme editor you might want to download the theme files before deploying:
 
 1. Make sure you have a clean git history and committed all files.
 
