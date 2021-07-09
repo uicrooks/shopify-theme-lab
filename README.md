@@ -20,69 +20,14 @@
 <h2 align="center">Shopify Theme Lab</h2>
 
 Shopify Theme Lab is a customizable modular development environment for blazing-fast Shopify theme creation. By default, it's bundled with Vue.js and Tailwind CSS, but you can swap them for pretty much anything. Build a custom Shopify theme from scratch with a modern stack!
-
-> Disclaimer: This project is not affiliated with Shopify Inc., Tailwind Labs Inc. or vuejs
-
-**TL;DR** Go to [Installing](#installing), then go to [Getting started](#getting-started). Now you're ready to start 🔥
 <!-- title / description (end) -->
-
-<!-- button-youtube-quick-start (start) -->
-<p>
-  <a href="https://www.youtube.com/watch?v=y_1vCwzB9BA&list=PLG6jOAX6V-52wKN4AhFRxhtHk1FpRKgo0">
-    <img src=".github/img/button-youtube-quick-start.svg" width="250px">
-  </a>
-</p>
-<!-- button-youtube-quick-start (end) -->
-
-<!-- toc (start) -->
-## Table of contents
-
-- [Ecosystem](#ecosystem)
-- [Features](#features)
-- [System requirements](#system-requirements)
-- [Installing](#installing)
-- [Getting started](#getting-started)
-- [Deploying](#deploying)
-  - [Teams](#teams)
-  - [CI/CD](#cicd)
-- [CSS preprocessors](#css-preprocessors)
-  - [SASS/SCSS](#sassscss)
-  - [LESS](#less)
-  - [Stylus](#stylus)
-- [Swapping CSS framework](#swapping-css-framework)
-  - [Removing Tailwind CSS](#removing-tailwind-css)
-  - [Bulma](#bulma)
-- [Swapping JavaScript framework](#swapping-javascript-framework)
-  - [Removing Vue](#removing-vue)
-  - [Alpine.js](#alpinejs)
-- [Project structure](#project-structure)
-- [Tasks](#tasks)
-- [Development environment concepts](#development-environment-concepts)
-  - [CLI](#cli)
-  - [Configs](#configs)
-  - [Shopify & environment initialization](#shopify--environment-initialization)
-  - [Shopify + webpack](#shopify--webpack)
-  - [Shopify remote auto-reloading](#shopify-remote-auto-reloading)
-- [Static files](#static-files)
-- [Local fonts](#local-fonts)
-- [Common pitfalls](#common-pitfalls)
-- [Limitations](#limitations)
-- [Contributing](#contributing)
-<!-- toc (end) -->
 
 <!-- ecosystem (start) -->
 ## Ecosystem
-<p align="center">
-  <img src=".github/img/ecosystem.svg">
-</p>
-
 | Project | Status | Description |
 | - | - | - |
 | [Shopify Theme Lab](https://github.com/uicrooks/shopify-theme-lab) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff"> | Modular development environment for blazing-fast Shopify theming |
-| [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab-cli?color=%236e78ff"> | Command Line Interface for Shopify Theme Lab |
 | [Shopify Theme Lab Plugins](https://github.com/uicrooks/shopify-theme-lab-plugins) | <img src="https://img.shields.io/static/v1?label=version&message=misc&color=%236e78ff"> | Official Shopify Theme Lab plugins |
-| [Shopify Settings Control](https://github.com/uicrooks/shopify-settings-control) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-settings-control?color=%236e78ff"> | Automatic Git version control for Shopify `settings_data.json` |
-| [Shopify Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-foundation-theme?color=%236e78ff"> | A modern Shopify starter theme built with Vue and Tailwind CSS |
 <!-- ecosystem (end) -->
 
 <!-- features (start) -->
@@ -127,150 +72,48 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 - npm or yarn
 <!-- system requirements (end) -->
 
-<!-- installing (start) -->
-## Installing
-1. Clone this repo or simply run the following command in your terminal:
-
-```sh
-$ npx themelab create <directory-name>
-```
-
-2. Run the following command(s) with your preferred package manager:
-
-### npm
-```sh
-$ npm install
-```
-
-### yarn
-```sh
-$ yarn import # migrate package-lock.json to yarn.lock
-$ rm package-lock.json # or delete manually
-$ yarn install --force
-```
-
-> If you migrated to yarn, you can replace `npm run` with `yarn` when executing upcoming commands.
-<!-- installing (end) -->
-
 <!-- getting started (start) -->
 ## Getting started
+1. Install the [Shopify CLI](https://github.com/Shopify/shopify-cli) by following [these steps](https://shopify.dev/themes/tools/cli/installation).
 
-1. Get Shopify Theme Kit access: [Instructions at Theme Kit Docs](https://shopify.dev/tools/theme-kit/manage-theme-kit-access)
+2. Create a [development store](https://shopify.dev/themes/tools/development-stores).
 
-2. Initialize theme on Shopify store with credentials from the first step. Either for **dev** or **live** environment:
-
-> `npm` requires the extra `--` before any arguments! When using `yarn` you can omit them.
-
+3. Clone this repo or simply run the following `Shopify CLI` command:
 ```sh
-$ npm run shopify:init -- --password [your-api-password] --store [your-store.myshopify.com] --env [dev or live] --name [theme-name]
+$ shopify theme init -u https://github.com/uicrooks/shopify-theme-lab
 ```
 
-3. Publish the new theme through the Shopify panel: **your-store.myshopify.com/admin/themes**
-
-4. Start developing:
+4. Login into the your development store:
 ```sh
+$ shopify login --store <your-store.myshopify.com>
+```
+
+5. Install dependencies and run the `start` task:
+```sh
+$ npm install
 $ npm run start
-$ npm run open:dev # open/preview theme in default browser
 ```
 <!-- getting started (end) -->
 
 <!-- deploying (start) -->
 ## Deploying
-> first, make sure the configuration for the `live` environment is initialized.
-
+Create a new theme on the Shopify store:
 ```sh
-$ npm run build # bundle css and js
-$ npm run deploy:live # deploy shopify/ directory
+$ npm run deploy:new
 ```
 
-> There is a safety mechanism in place, which won't allow you to deploy to an already published theme on the **live** store. If you want to deploy regardless use the `--allow-live` flag.
-
+Let'y you select a theme you want to deploy to:
 ```sh
-$ npm run deploy:live -- --allow-live
+$ npm run deploy
 ```
 
-> By default, the deploy task overrides all files on the remote store, if any changes were made through the Shopify theme editor you might want to download the `settings_data.json` file before deploying:
+> The deploy task overrides all files on the remote store, if any changes were made through the Shopify theme editor you might want to download files before deploying:
 
+1. Make sure you have a clean git history and committed all files.
+
+2. run
 ```sh
-$ npm run settings:live
-```
-
-### Teams
-The `shopify:init` task always creates a new theme with a unique ID for the provided store. Sometimes it can be useful to connect to an existing initialized theme (e.g. when multiple people deploy to the same live environment).
-
-1. Run the following command to list all themes from the provided store and write down the ID for the theme in question:
-
-```sh
-$ npm run shopify:themes -- --password [your-api-password] --store [your-store.myshopify.com]
-```
-
-2. Copy and rename the Shopify sample config file:
-
-```sh
-$ cp .config/shopify/shopify.sample.yml .config/shopify/shopify.live.yml # or copy and rename manually
-```
-
-3. Adjust the contents of the newly created `shopify.live.yml` file.
-
-### CI/CD
-
-#### GitHub actions
-
-1. Add the following four secrets to your Shopify Theme Lab repo in `settings` → `secrets`:
-
-```sh
-SHOPIFY_API_PASSWORD # your-api-password
-SHOPIFY_STORE_URL # your-store.myshopify.com
-SHOPIFY_ENV # dev or live
-SHOPIFY_THEME_ID # theme-id (without quotation marks) - find the id either in shopify.[env].config.yml or with shopify:themes task
-```
-
-2. Copy and paste into a GitHub action (adjust contents if necessary):
-
-```yml
-# Shopify Theme Lab CI/CD integration for GitHub actions
-name: Shopify Theme Lab CI/CD
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-  workflow_dispatch: # allows to manually run from GitHub actions panel
-
-jobs:
-  build-and-deploy:
-    name: Build and Deploy
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 14.x ]
-
-    steps:
-      - name: Checkout master branch
-        uses: actions/checkout@v2
-
-      - name: Use Node.js
-        uses: actions/setup-node@v2.1.4
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install dependencies and build dist files
-        run: |
-          npm install
-          npm run build
-
-        # first, make sure the theme is already initialized on the Shopify store in question
-        #
-        # Below "run" commands explained:
-        # 1. creates a Shopify credential config
-        # 2. downloads settings_data.json from the remote store
-        # 3. deploys the shopify/ directory to the remote store
-      - name: Deploy to Shopify store
-        run: |
-          npx themelab shopify:init -p ${{ secrets.SHOPIFY_API_PASSWORD }} -s ${{ secrets.SHOPIFY_STORE_URL }} -e ${{ secrets.SHOPIFY_ENV }} -i ${{ secrets.SHOPIFY_THEME_ID }}
-          npm run settings:${{ secrets.SHOPIFY_ENV }}
-          npm run deploy:${{ secrets.SHOPIFY_ENV }} -- --allow-live
+$ npm run shopify:pull
 ```
 <!-- deploying (end) -->
 
@@ -516,28 +359,27 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | Task | Description |
 | - | - |
 | start | run `shopify:serve` and `webpack:watch` tasks simultaneously in parallel |
+| deploy | upload local theme files from the `shopify` directory to Shopify |
+| deploy:new | same as `deploy` but creates a new unpublished theme on the Shopify store |
 | webpack:watch | bundle and watch for changes in `src/` files with webpack |
 | webpack:build | create minified production files for Shopify in `shopify/assets/` directory |
 | shopify:serve | upload the current theme as a development theme to the store that you're connected to |
-| lint | run `lint:js` and `lint:css` tasks in sequence |
-| lint:js | lint `.js` and `.vue` files inside the `src/` directory |
-| lint:css | lint the `<style></style>` section of `.vue` files, `.css`, `.sass` and `.scss` files inside the `src/` directory |
+| shopify:pull | retrieves theme files from Shopify |
+| lint | run all `lint:*` tasks in sequence |
+| lint:js | lint JavaScript code inside the `src/` directory |
+| lint:css | lint styles inside the `src/` directory |
+| lint:shopify | run `shopify theme check` in the `shopify` directory |
 | fix | same as `lint` task but also fixes any fixable errors |
 | fix:js | same as `lint:js` task but also fixes any fixable errors |
 | fix:css | same as `lint:css` task but also fixes any fixable errors |
+| fix:shopify | same as `lint:shopify` task but also fixes any fixable errors |
 <!-- tasks (end) -->
 
 <!-- development environment concepts (start) -->
 ## Development environment concepts
 
-### CLI
-Under the hood Shopify Theme Lab uses the [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli) for some tasks. You can also use the CLI independantly from included tasks.
-
 ### Configs
 Inside `.configs/` are multiple pre-configured config files. You should be able to work from start to finish, without ever going into this directory. But if you feel the need to adjust some configs to your liking, go for it!
-
-### Shopify & environment initialization
-By running `shopify:init` and entering credentials, the task initializes a new theme from `shopify/` directory to the provided Shopify store. It also saves a configuration file for the specified environment inside `.config/shopify/` directory. This file will be ignored by git and shouldn't be tracked for security reasons. All tasks regarding Shopify will use the credentials from the saved configuration file.
 
 ### Shopify + webpack
 - All webpack configs are inside `.config/webpack/` directory
@@ -545,9 +387,6 @@ By running `shopify:init` and entering credentials, the task initializes a new t
 - All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins and directives with `global` in their filename. Everything is defined in `src/main.js`
 - Vue components can be either used as regular single-file-components or as renderless components without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build.
-
-### Shopify remote auto-reloading
-While `npm run start` task is running: The `shopify/` directory is being watched for changes and all changed files are uploaded to the Shopify remote server. After the upload is finished, a request is sent to a `localhost:port` address (specified in `package.json`) and the [shopify-theme-lab-reloader](https://github.com/uicrooks/shopify-theme-lab-plugins/tree/master/packages/reloader) package reloads all connected Shopify store sites. *Open the web console to check if a site is connected.*
 <!-- development environment concepts (end) -->
 
 <!-- static files (start) -->
@@ -609,7 +448,7 @@ body {
 <!-- limitations (start) -->
 ## Limitations
 
-- When the development task is running, the browser console throws a `bundle.css` missing error
+- When the `start` task is running, the browser console throws a `bundle.css` missing error
 - Vue components inside `.liquid` files can only be used in a non-self-closing `<kebab-case></kebap-case>` manner
 <!-- limitations (end) -->
 
