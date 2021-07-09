@@ -8,14 +8,6 @@
 </p>
 <!-- logo (end) -->
 
-<!-- badges (start) -->
-<p align="center">
-  <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff">
-  <img src="https://img.shields.io/github/package-json/dependency-version/uicrooks/shopify-theme-lab/vue?color=%234fc08d">
-  <img src="https://img.shields.io/github/package-json/dependency-version/uicrooks/shopify-theme-lab/tailwindcss?color=%2306b6d4">
-</p>
-<!-- badges (end) -->
-
 <!-- title / description (start) -->
 <h2 align="center">Shopify Theme Lab</h2>
 
