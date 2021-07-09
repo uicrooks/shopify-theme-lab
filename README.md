@@ -34,17 +34,12 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 ## Features
 
 - Shopify
-  - Self-contained, no need to install external tools
-  - [Shopify Theme Kit](https://www.npmjs.com/package/@shopify/themekit) npm package included
-  - Quick Shopify theme setup on a remote store with `npm run shopify:init`
-  - CI/CD integration with [Shopify Theme Lab CLI](https://github.com/uicrooks/shopify-theme-lab-cli)
-  - Default Shopify theme directory structure with unstyled `.liquid` files
-  - A batch of `npm scripts` to run common tasks
+  - Integrates with the [Shopify CLI](https://shopify.dev/themes/tools/cli)
+  - Online Store 2.0 support
 - JavaScript
   - [Vue](https://v3.vuejs.org)
   - [Vuex](https://next.vuex.vuejs.org)
   - Swap Vue with any other framework e.g. [Alpine.js](https://alpinejs.dev)
-  - [Axios](https://github.com/axios/axios)
   - Extend with [npm packages](https://www.npmjs.com) 📦
 - CSS
   - [Tailwind CSS](https://tailwindcss.com)
@@ -58,11 +53,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
   - [stylelint](https://stylelint.io)
   - [Browserslist](https://github.com/browserslist/browserslist)
   - [Autoprefixer](https://github.com/postcss/autoprefixer)
-  - [PurgeCSS](https://tailwindcss.com/docs/optimizing-for-production#removing-unused-css) integrated in Tailwind CSS
-  - Shopify remote theme auto-reloading with [shopify-theme-lab-reloader](https://github.com/uicrooks/shopify-theme-lab-plugins/tree/master/packages/reloader)
-  - Auto-loading of Vue `components`, `mixins` and `directives` as well as Vuex `modules` with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext)
-  - Clean [config structure](.config/)
-  - Easily adjustable/extendable configurations
+  - Easily adjustable/extendable [configurations](.config/)
 <!-- features (end) -->
 
 <!-- system requirements (start) -->
