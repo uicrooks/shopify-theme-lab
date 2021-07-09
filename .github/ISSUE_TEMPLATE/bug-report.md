@@ -6,7 +6,7 @@ labels: 'bug-report'
 assignees: ''
 ---
 
-<!-- 👍 A properly detailed bug report can save a LOT of time and help fixing issues as soon as possible. -->
+<!-- 👍 A properly detailed bug report can save a LOT of time and help fixing issues as soon as possible. If you simply have a question please use the Discussions section. -->
 
 ### Version and operating system
 

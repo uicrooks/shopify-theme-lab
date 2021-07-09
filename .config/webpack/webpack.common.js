@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const ProgressPlugin = require('progress-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 
@@ -39,7 +38,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new ProgressPlugin(),
     /**
      * don't clean files with the 'static' keyword in their filename
      * docs: https://github.com/johnagan/clean-webpack-plugin

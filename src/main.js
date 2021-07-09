@@ -3,7 +3,6 @@
  */
 import { createApp } from 'vue'
 import { createStore } from 'vuex'
-import axios from 'axios'
 import './css/main.css'
 
 /**
@@ -70,12 +69,6 @@ const createVueApp = () => {
   })
 
   /**
-   * vue config
-   * extend with additional features
-   */
-  app.config.globalProperties.$axios = axios
-
-  /**
    * vue plugins
    * extend with additional features
    */
@@ -94,11 +87,10 @@ createVueApp().mount('#app')
  * add the 'vue' keyword to the section's wrapper classes e.g.:
  * {% schema %}
  * {
- *   "class": "shopify-section-vue"
+ *   "class": "vue-section"
  * }
  * {% endschema %}
  */
-// eslint-disable-next-line
 Shopify.designMode && document.addEventListener('shopify:section:load', (event) => {
   if (event.target.classList.value.includes('vue')) {
     createVueApp().mount(event.target)

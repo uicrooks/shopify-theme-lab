@@ -18,6 +18,9 @@ module.exports = {
     browser: true,
     es6: true
   },
+  globals: {
+    Shopify: 'readonly'
+  },
   ignorePatterns: [
     /**
      * ignore certain files
