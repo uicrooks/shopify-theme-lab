@@ -101,7 +101,7 @@ Let's you select a theme you want to deploy to:
 $ npm run deploy
 ```
 
-> ⚠ The deploy task overrides all files on the remote store, if any changes were made through the Shopify theme editor you might want to download files before deploying:
+> ⚠ The deploy task overrides all files on the remote store! If any changes were made through the Shopify theme editor you might want to download the theme files before deploying:
 
 1. Make sure you have a clean git history and committed all files.
 
@@ -113,7 +113,7 @@ $ npm run shopify:pull
 
 <!-- css preprocessors (start) -->
 ## CSS preprocessors
-> For the most cohesive development experience, it's recommended that you use PostCSS exclusively when working with [Tailwind CSS](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus).
+> ℹ️ For the most cohesive development experience, it's recommended that you use PostCSS exclusively when working with [Tailwind CSS](https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus).
 
 By default, only PostCSS with `postcss-preset-env` is installed. [postcss-preset-env](https://preset-env.cssdb.org/features) lets you use tomorrow’s CSS today. If you want to use a preprocessor it's recommended to use `SASS/SCSS` since it's the most compatible with a variety of CSS frameworks.
 
@@ -353,12 +353,12 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | Task | Description |
 | - | - |
 | start | run `shopify:serve` and `webpack:watch` tasks simultaneously in parallel |
-| deploy | upload local theme files from the `shopify` directory to Shopify |
+| deploy | upload local files from the `shopify` directory to Shopify |
 | deploy:new | same as `deploy` but creates a new unpublished theme on the Shopify store |
 | webpack:watch | bundle and watch for changes in `src/` files with webpack |
 | webpack:build | create minified production files for Shopify in `shopify/assets/` directory |
 | shopify:serve | upload the current theme as a development theme to the store that you're connected to |
-| shopify:pull | retrieves theme files from Shopify |
+| shopify:pull | retrieve theme files from Shopify |
 | lint | run all `lint:*` tasks in sequence |
 | lint:js | lint JavaScript code inside the `src/` directory |
 | lint:css | lint styles inside the `src/` directory |
@@ -369,19 +369,14 @@ shopify-theme-lab/             📁 root of your Shopify Theme Lab project
 | fix:shopify | same as `lint:shopify` task but also fixes any fixable errors |
 <!-- tasks (end) -->
 
-<!-- development environment concepts (start) -->
-## Development environment concepts
+<!-- webpack (start) -->
+## Webpack
 
-### Configs
-Inside `.configs/` are multiple pre-configured config files. You should be able to work from start to finish, without ever going into this directory. But if you feel the need to adjust some configs to your liking, go for it!
-
-### Shopify + webpack
 - All webpack configs are inside `.config/webpack/` directory
 - [main.js](src/main.js) is webpack's main entry point
 - All Vue related files are auto-loaded by webpack with [require.context](https://webpack.js.org/guides/dependency-management/#requirecontext) - Vue components, Vuex modules, as well as mixins and directives with `global` in their filename. Everything is defined in `src/main.js`
-- Vue components can be either used as regular single-file-components or as renderless components without `<template></template>` tags (You can use Liquid templating while hooking in Vue functionality).
 - The webpack bundle and all other assets are outputted to `shopify/assets/` directory. This directory is cleaned on every build.
-<!-- development environment concepts (end) -->
+<!-- webpack (end) -->
 
 <!-- static files (start) -->
 ## Static files
