@@ -116,19 +116,19 @@ $ npm run shopify:pull
 <!-- version control (start) -->
 ## Version control
 
-> ℹ️ Sice Theme Lab uses a custom build workflow it's not out of the box compatible with the [Shopify github integration](https://shopify.dev/themes/tools/github).
+> ℹ️ Sice Theme Lab uses a custom build workflow it's not out of the box compatible with the [Shopify GitHub integration](https://shopify.dev/themes/tools/github).
 
-One of the simplest ways to achieve version control for a live store is to use 2 separate repos. One for your source code and one for your dist code. That way yo can use the Shopify github integration for your dist repo.
+One of the simplest ways to achieve version control for a live store is to use 2 separate repos. One for your source code and one for your dist code. That way you can use the Shopify GitHub integration for your dist repo.
 
 ```text
 shopify-theme-lab/             📁 directory (not connected to any git repos)
-├── source-code/               📁 directory for source code (connected to a github repo)
-└── dist-code/                 📁 directory for dist code (connected to a github repo)
+├── source-code/               📁 directory for source code (connected to a GitHub repo)
+└── dist-code/                 📁 directory for dist code (connected to a GitHub repo)
 ```
 
 When you are ready to publish the theme to a live store simply run `npm run webpack:build` and move the contents of the `shopify` directory from the `source-code` to the `dist-code` directory.
 
-The [Shopify docs](https://shopify.dev/themes/best-practices/version-control) describe several other ways how to setup version control.
+The [Shopify docs](https://shopify.dev/themes/best-practices/version-control) describe several other ways how to set up version control.
 <!-- version control (end) -->
 
 <!-- css preprocessors (start) -->
