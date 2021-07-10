@@ -29,6 +29,7 @@ Shopify Theme Lab is a customizable modular development environment for blazing-
 | Project | Status | Description |
 | - | - | - |
 | [Shopify Theme Lab](https://github.com/uicrooks/shopify-theme-lab) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-theme-lab?color=%236e78ff"> | Modular development environment for blazing-fast Shopify theming |
+| [Shopify Foundation Theme](https://github.com/uicrooks/shopify-foundation-theme) | <img src="https://img.shields.io/github/package-json/v/uicrooks/shopify-foundation-theme?color=%236e78ff"> | A modern Shopify starter theme built with Vue and Tailwind CSS |
 | [Shopify Theme Lab Plugins](https://github.com/uicrooks/shopify-theme-lab-plugins) | <img src="https://img.shields.io/static/v1?label=version&message=misc&color=%236e78ff"> | Official Shopify Theme Lab plugins |
 <!-- ecosystem (end) -->
 
@@ -120,7 +121,7 @@ $ npm run shopify:pull
 <!-- version control (start) -->
 ## Version control
 
-> ℹ️ Sice Theme Lab uses a custom build workflow it's not out of the box compatible with the [Shopify GitHub integration](https://shopify.dev/themes/tools/github).
+> ℹ️ Since Theme Lab uses a custom build workflow it's not out of the box compatible with the [Shopify GitHub integration](https://shopify.dev/themes/tools/github).
 
 One of the simplest ways to achieve version control for a live store is to use 2 separate repos. One for your source code and one for your dist code. That way you can use the Shopify GitHub integration for your dist repo.
 
