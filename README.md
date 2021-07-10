@@ -120,7 +120,7 @@ $ npm run shopify:pull
 <!-- version control (start) -->
 ## Version control
 
-> ℹ️ Sice Theme Lab uses a custom build workflow it's not out of the box compatible with the [Shopify GitHub integration](https://shopify.dev/themes/tools/github).
+> ℹ️ Since Theme Lab uses a custom build workflow it's not out of the box compatible with the [Shopify GitHub integration](https://shopify.dev/themes/tools/github).
 
 One of the simplest ways to achieve version control for a live store is to use 2 separate repos. One for your source code and one for your dist code. That way you can use the Shopify GitHub integration for your dist repo.
 
