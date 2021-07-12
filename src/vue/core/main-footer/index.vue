@@ -1,9 +1,10 @@
 <template>
   <div class="footer-component">
-    <footer-menu />
+    <main-footer-menu />
     <div class="bottom-row">
       <div class="copyright">
-        DR. SQUATCH is a registered trademark of Dr. Squatch, Inc. © 2021, Dr. Squatch, Inc. All rights reserved.
+        DR. SQUATCH is a registered trademark of Dr. Squatch, Inc. © 2021, Dr.
+        Squatch, Inc. All rights reserved.
       </div>
       <div class="payment-methods">
         <img
@@ -30,30 +31,95 @@
           src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-googlepay.svg?v=1617925436"
           alt="Google Pay logo"
         >
-      </div>      
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import FooterMenu from "@vue/core/main-footer/footer-menu";
-
 export default {
   name: "MainFooter",
-  components: {
-    FooterMenu
-  }
 };
 </script>
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
+@import "@/styles/partials/brand.scss";
 
 .footer-component {
-  // position: fixed;
-  // bottom: 0;
-  // left: 0;
   width: 100%;
+
+  .newsletter {
+    width: 100%;
+    background-color: $tan;
+    padding: 30px 15px;
+
+    .newsletter-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 395px;
+      margin: auto;
+      flex-flow: column wrap;
+
+      @include layout-md {
+        max-width: 500px;
+      }
+
+      .sub-msg {
+        @include font-style-body-bold;
+        text-align: center;
+      }
+
+      .newsletter-form {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+
+        .user-email {
+          box-sizing: border-box;
+          border-radius: 2px;
+          padding: 0px 0px 0px 16px;
+          height: 48px;
+          text-align: left;
+          color: black;
+          font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          letter-spacing: 0px;
+          background-color: white;
+          border: 1px solid black;
+          width: 67%;
+          outline: black;
+
+          @include layout-md {
+            width: 80%;
+          }
+        }
+        .sign-up {
+          position: relative;
+          padding: 11px 10px;
+          background: $orange;
+          border-radius: 0px;
+          border-style: solid;
+          border-color: $orange;
+          border-width: 5px;
+          color: white;
+          font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 0px;
+          line-height: 1;
+          white-space: normal;
+          text-align: center;
+          word-break: break-word;
+          align-self: flex-end;
+          cursor: pointer;
+        }
+      }
+    }
+  }
 
   .bottom-row {
     display: flex;
@@ -66,7 +132,7 @@ export default {
       align-items: center;
       justify-content: center;
     }
-    
+
     .copyright {
       width: 100%;
       text-align: center;
@@ -95,5 +161,4 @@ export default {
     }
   }
 }
-
 </style>

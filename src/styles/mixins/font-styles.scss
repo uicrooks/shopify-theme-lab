@@ -1,25 +1,91 @@
 @mixin font-style-heading(
   $size: 18px,
-  $color: false,
-  $weight: 500, 
-  $lh: 18px
+  $color: #1a110c,
+  $weight: 500,
+  $lh: false
 ) {
-  font-family: 'worker-3d', Arial, sans-serif;
-  @if $size { font-size: $size; }
-  @if $color { color: $color; }
-  @if $weight { font-weight: $weight; }
-  @if $lh { line-height: $lh; }
+  font-family: "worker-3d", Arial, sans-serif;
+  @if $size {
+    font-size: $size;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $lh {
+    line-height: $lh;
+  } @else {
+    line-height: $size;
+  }
 }
 
 @mixin font-style-body(
-  $size: 14px,
-  $color: false,
+  $size: 14px, 
+  $color: #1a110c, 
   $weight: 400, 
-  $lh: 14px
+  $lh: false
 ) {
-  font-family: 'adrianna', Arial, sans-serif;
-  @if $size { font-size: $size; }
-  @if $color { color: $color; }
-  @if $weight { font-weight: $weight; }
-  @if $lh { line-height: $lh; }
+  font-family: "adrianna", Arial, sans-serif;
+  @if $size {
+    font-size: $size;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $lh {
+    line-height: $lh;
+  } @else {
+    line-height: $size;
+  }
+}
+
+@mixin font-style-accent(
+  $size: 14px,
+  $color: #1a110c,
+  $weight: 600,
+  $lh: false
+) {
+  font-family: "MetropolisBold", Arial, sans-serif;
+  @if $size {
+    font-size: $size;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $lh {
+    line-height: $lh;
+  } @else {
+    line-height: $size;
+  }
+}
+
+@mixin font-style-body-bold(
+  $size: 14px, 
+  $color: #1a110c, 
+  $weight: 400, 
+  $lh: false
+) {
+  font-family: "adrianna-bold", Arial, sans-serif;
+  @if $size {
+    font-size: $size;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $lh {
+    line-height: $lh;
+  } @else {
+    line-height: $size;
+  }
 }

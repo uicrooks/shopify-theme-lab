@@ -9,9 +9,6 @@ module.exports = {
   entry: {
     main: path.resolve(__dirname, '../../src/main.js'),
     index: path.resolve(__dirname, '../../src/layout/index.js'),
-    page: path.resolve(__dirname, '../../src/layout/page.js'),
-    collection: path.resolve(__dirname, '../../src/layout/collection.js'),
-    product: path.resolve(__dirname, '../../src/layout/product.js'),
     cart: path.resolve(__dirname, '../../src/layout/cart.js'),
     account: path.resolve(__dirname, '../../src/layout/account.js'),
   },
@@ -23,9 +20,7 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': path.resolve(__dirname, '../../src/'),
-      '@shopify': path.resolve(__dirname, '../../shopify/'),
-      '@vue': path.resolve(__dirname, '../../src/vue'),
+      '@': path.resolve(__dirname, '../../src/')
     }
   },
   module: {

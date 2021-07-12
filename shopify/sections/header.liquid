@@ -1,12 +1,6 @@
 <main-nav
-  :logged-in="{% if customer %}true{% else %}false{% endif %}"
+  :currency="{
+    'isoCode': '{{ cart.currency.iso_code }}',
+    'symbol': '{{ cart.currency.symbol }}'
+  }"
 ></main-nav>
-<!-- 
-{% if customer %}
-A
-<main-nav
-  :logged-in="true"
-></main-nav>
-{% else %}
-not
-{% endif %} -->

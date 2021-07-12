@@ -10,7 +10,7 @@
       <div class="product-title">
         {{ product.title }}
       </div>
-      <div class="yotpo"></div>
+      <div class="yotpo" />
       <p class="product-title">
         {{ product.description }}
       </p>
@@ -19,7 +19,6 @@
         <span>{{ product.compare_at_price }}</span>
       </div>
     </div>
-
   </div>
 </template>
 
