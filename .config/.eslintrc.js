@@ -1,14 +1,14 @@
 module.exports = {
   extends: [
-    'eslint:recommended',
-    'plugin:vue/recommended' // use 'plugin:vue/essential' for less strict linting rules - https://eslint.vuejs.org/rules
+    "eslint:recommended",
+    "plugin:vue/recommended"
   ],
   plugins: [
-    'vue'
+    "vue"
   ],
   parserOptions: {
     ecmaVersion: 2020,
-    sourceType: 'module'
+    sourceType: "module"
   },
   env: {
     node: true,
@@ -25,12 +25,44 @@ module.exports = {
     // '**/my-directory/*.js'
   ],
   rules: {
-    "quotes":["error","double"]
-    /**
-     * add custom rules
-     * docs: https://eslint.org/docs/rules
-     */
-    // 'quotes': ['error', 'single'],
-    // 'semi': ['error', 'never']
+    "quotes": ["error", "double"],
+    "semi": ["error", "always"],
+    "vue/order-in-components": ["error", {
+      "order": [
+        "el",
+        "name",
+        "key",
+        "parent",
+        "functional",
+        ["delimiters", "comments"],
+        ["components", "directives", "filters"],
+        "extends",
+        "mixins",
+        ["provide", "inject"],
+        "ROUTER_GUARDS",
+        "layout",
+        "middleware",
+        "validate",
+        "scrollToTop",
+        "transition",
+        "loading",
+        "inheritAttrs",
+        "model",
+        ["props", "propsData"],
+        "emits",
+        "setup",
+        "asyncData",
+        "data",
+        "fetch",
+        "head",
+        "computed",
+        "watch",
+        "watchQuery",
+        "methods",
+        ["template", "render"],
+        "renderError",
+        "LIFECYCLE_HOOKS",
+      ]
+    }]
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="haircare-collection-content-component">
+  <div class="collection-haircare-content-component">
     <div class="collection-section-header">
       Kits + Bundles
       <div class="sub-header">
@@ -11,6 +11,7 @@
         v-for="(product, index) of bundles"
         :key="`haircare-bundle-${index}`"
         :product="product"
+        class="product-card"
       />
     </div>
     <div class="collection-section-header">
@@ -19,21 +20,34 @@
         Cleanse & strengthen your strands
       </div>
     </div>
+    <div class="collection-section">
+      <product-card 
+        v-for="(product, index) of shampoos"
+        :key="`haircare-shampoo-${index}`"
+        :product="product"
+        class="product-card"
+      />
+    </div>
     <div class="collection-section-header">
       Conditioner
       <div class="sub-header">
         Maintain your mane with natural daily moisture
       </div>
     </div>
+    <div class="collection-section">
+      <product-card 
+        v-for="(product, index) of conditioners"
+        :key="`haircare-conditioner-${index}`"
+        :product="product"
+        class="product-card"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import productCard from "@/vue/ui-elements/product-card.vue"
-
-
 export default {
-  components: { productCard },
+  name: "CollectionHaircareContent",
   props: {
     products: {
       type: Array,
@@ -63,20 +77,25 @@ export default {
     }
   },
   mounted() {
-    console.log("harcare collection content", this.products);
+    // console.log("harcare collection content", this.products);
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.haircare-collection-content-component {
+.collection-haircare-content-component {
   .collection-section-header {
     margin: 30px 0;
     padding: 0 15px;
-    @include font-style-heading($size: 23px, $color: $dark-brown, $lh: 23px);
-  }
+    text-align: center;
+    @include font-style-heading($size: 23px);
+
+    @include layout-md {
+      text-align: left;
+    }
+}
 
   .sub-header {
     margin-top: 7px;
@@ -84,7 +103,19 @@ export default {
   }
 
   .collection-section {
-    // padding: 
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+    .product-card {
+      width: 100%;
+
+      @include layout-md {
+        flex: 1;
+        width: unset;
+        max-width: 300px;
+      }
+    }
   }
 }
 </style>

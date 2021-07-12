@@ -1,25 +1,10 @@
 <template>
   <div class="footer-component">
-    <div class="newsletter woodgrain-bg">
-      <div class="newsletter-content">
-        <strong class="sub-msg">GET 20% OFF YOUR FIRST SUBSCRIPTION!</strong>
-        <div class="newsletter-form">
-          <input 
-            class="user-email" 
-            type="email" 
-            required="true" 
-            placeholder="Email"
-          >
-          <button class="sign-up">
-            Sign Up
-          </button>
-        </div>
-      </div>
-    </div>
-    <footer-menu />
+    <main-footer-menu />
     <div class="bottom-row">
       <div class="copyright">
-        DR. SQUATCH is a registered trademark of Dr. Squatch, Inc. © 2021, Dr. Squatch, Inc. All rights reserved.
+        DR. SQUATCH is a registered trademark of Dr. Squatch, Inc. © 2021, Dr.
+        Squatch, Inc. All rights reserved.
       </div>
       <div class="payment-methods">
         <img
@@ -46,19 +31,14 @@
           src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/asset-icon-googlepay.svg?v=1617925436"
           alt="Google Pay logo"
         >
-      </div>      
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import FooterMenu from "@vue/core/main-footer/footer-menu";
-
 export default {
   name: "MainFooter",
-  components: {
-    FooterMenu
-  }
 };
 </script>
 
@@ -73,7 +53,6 @@ export default {
     width: 100%;
     background-color: $tan;
     padding: 30px 15px;
-
 
     .newsletter-content {
       display: flex;
@@ -112,7 +91,7 @@ export default {
           background-color: white;
           border: 1px solid black;
           width: 67%;
-          outline:black;
+          outline: black;
 
           @include layout-md {
             width: 80%;
@@ -140,7 +119,6 @@ export default {
         }
       }
     }
-
   }
 
   .bottom-row {
@@ -154,7 +132,7 @@ export default {
       align-items: center;
       justify-content: center;
     }
-    
+
     .copyright {
       width: 100%;
       text-align: center;
@@ -183,5 +161,4 @@ export default {
     }
   }
 }
-
 </style>

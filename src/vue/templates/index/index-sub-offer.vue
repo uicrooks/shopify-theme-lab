@@ -5,12 +5,13 @@
         <div class="brand-content">
           <h2 class="header">
             Subscribe &amp; Save 15%
-          </h2> 
+          </h2>
           <p class="subheader">
             How It Works
-          </p> 
+          </p>
           <p class="copy">
-            Give our natural products a try! Sudisfactionguaranteed, cancel anytime.
+            Give our natural products a try! Sudisfaction guaranteed, cancel
+            anytime.
           </p>
           <div class="image-container">
             <squatch-button
@@ -26,14 +27,13 @@
 </template>
 
 <script>
-import SquatchButton from "@vue/ui-elements/squatch-button";
+import SquatchButton from "@/vue/ui-elements/squatch-button";
 
 export default {
   name: "IndexSubOffer",
   components: {
     SquatchButton,
-  }
-  
+  },
 };
 </script>
 
@@ -53,7 +53,7 @@ export default {
       align-items: center;
       justify-content: center;
       height: 100%;
-      
+
       .brand-content {
         padding: 0 15px;
         align-items: center;

@@ -8,7 +8,7 @@
         alt="Dr.Squatch logo"
       >
       <div class="buttons">
-        <cart />
+        <cart :currency-obj="currency" />
         <b-icon
           v-b-toggle.main-nav-sidebar
           icon="list"
@@ -28,16 +28,16 @@
             <img
               id="drsquatch-logo-mobile-sidebar"
               src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
-              alt="Dr.Squatch logo"   
+              alt="Dr.Squatch logo"
             >
-            <div
-              class="account-icon-box"
+            <div 
+              class="account-icon-box" 
               @click="navigateTo('/account/login')"
             >
-              <b-icon
-                icon="person-fill"
-                font-scale="2.5"
-                class="person-icon"
+              <b-icon 
+                icon="person-fill" 
+                font-scale="2.5" 
+                class="person-icon" 
               />
               <span>Log In</span>
             </div>
@@ -45,59 +45,60 @@
         </template>
 
         <template #default>
-          <squatch-button
-            class="big-cta-button"
-            text="The Subscription"
-            sub-text="Save 15% on your favorite soap and get free shipping for life!"
-            path="/test"
-          />
-          <squatch-button
-            class="big-cta-button"
-            text="Starter Bundles"
-            sub-text="Your choice of our curated best sellers"
-            path="/test"
-            color="maroon"
-          />
+          <button
+            class="big-cta-link"
+            @click="navigateTo('/pages/subscription-flow')"
+          >
+            <span class="title"> The Subscription </span>
+            Save 15% on your favorite soap and get free shipping for life!
+          </button>
+          <button
+            class="big-cta-link maroon"
+            @click="navigateTo('/pages/bundle-offers')"
+          >
+            <span class="title"> Starter Bundles </span>
+            Your choice of our curated best sellers
+          </button>
 
-          <grouped-menu-item
+          <main-nav-grouped-menu-item
             :name="soapMenu.name"
             :is-open="soapMenu.isOpen"
             :sub-menu-items="soapMenu.subMenuItems"
             @toggle="soapMenu.isOpen = !soapMenu.isOpen"
           />
-          <single-menu-item
+          <main-nav-single-menu-item
             v-for="(item, index) of singleMenuItems"
             :key="`single-menu-item-${index}`"
             :name="item.name"
             :badge="item.badge"
             :path="item.path"
           />
-          <grouped-menu-item
+          <main-nav-grouped-menu-item
             :name="moreMenu.name"
             :is-open="moreMenu.isOpen"
             :sub-menu-items="moreMenu.subMenuItems"
             @toggle="moreMenu.isOpen = !moreMenu.isOpen"
           />
-          <single-menu-item
+          <main-nav-single-menu-item
             class="soap-quiz-menu"
             name="Take Soap Quiz"
             path="/quiz"
           />
 
           <div class="sidebar-footer">
-            <grouped-menu-item
+            <main-nav-grouped-menu-item
               :name="infoMenu.name"
               :is-open="infoMenu.isOpen"
               :sub-menu-items="infoMenu.subMenuItems"
               @toggle="infoMenu.isOpen = !infoMenu.isOpen"
             />
-            <grouped-menu-item
+            <main-nav-grouped-menu-item
               :name="aboutMenu.name"
               :is-open="aboutMenu.isOpen"
               :sub-menu-items="aboutMenu.subMenuItems"
               @toggle="aboutMenu.isOpen = !aboutMenu.isOpen"
             />
-            <grouped-menu-item
+            <main-nav-grouped-menu-item
               :name="helpMenu.name"
               :is-open="helpMenu.isOpen"
               :sub-menu-items="helpMenu.subMenuItems"
@@ -111,23 +112,25 @@
     <div class="desktop-nav">
       <div class="left-section">
         <squatch-button
-          text="Subscribe"
-          path="/test"
-          color="hover-lighten"
-        />
-        <div
-          class="menu-item"
-          @click="navigateToPath('/test')"
+          path="/pages/subscription-flow"
+          class="subscribe-button"
+        >
+          Subscribe
+        </squatch-button>
+        <div 
+          class="menu-item" 
+          @click="navigateTo('/pages/bundle-offers')"
         >
           Bundles
         </div>
-        <div
-          v-b-toggle.products-menu  
+        <div 
+          v-b-toggle.products-menu 
           class="menu-item"
         >
           Products
-          <b-icon
-            :icon="productsSubMenuOpen ? 'x' : 'chevron-down'"
+
+          <b-icon 
+            :icon="productsSubMenuOpen ? 'x' : 'chevron-down'" 
           />
         </div>
       </div>
@@ -139,43 +142,42 @@
         >
       </a>
       <div class="right-section">
-        <div
-          class="menu-item"
+        <div 
+          class="menu-item" 
           @click="navigateTo('/test')"
         >
           Take Quiz
         </div>
-        <div
-          v-if="loggedIn"
-          class="menu-item"
+        <div 
+          v-if="loggedIn" 
+          class="menu-item" 
           @click="navigateTo('/account')"
         >
           Account
         </div>
-        <div
-          v-else
-          class="menu-item"
+        <div 
+          v-else 
+          class="menu-item" 
           @click="navigateTo('/account/login')"
         >
           Log In
         </div>
-        <div
-          v-b-toggle.currency-options  
+        <div 
+          v-b-toggle.currency-options 
           class="menu-item"
         >
           USD
-          <b-icon
-            icon="caret-down-fill"
-          />
+          <b-icon icon="caret-down-fill" />
         </div>
-        <b-collapse id="curreny-options">
-          CAD
+
+        <b-collapse id="curreny-options"> 
+          CAD 
         </b-collapse>
-        <cart />
+        <cart :currency-obj="currency" />
       </div>
     </div>
-    <b-collapse
-      id="products-menu"
+    <b-collapse 
+      id="products-menu" 
       v-model="productsSubMenuOpen"
     >
       <h6 class="submenu-title">
@@ -188,14 +190,16 @@
           class="essential-item"
           @click="navigateTo(item.path)"
         >
-          <span
+          <span 
             v-if="item.badge"
             class="badge"
-          >{{ item.badge }}</span>
+          >
+            {{ item.badge }}
+          </span>
           <div class="item-image-wrapper">
             <img 
-              :src="item.imageSrc"
-              :alt="`${item.name} image`"
+              :src="item.imageSrc" 
+              :alt="`${item.name} image`" 
             >
           </div>
           <div class="item-name">
@@ -223,12 +227,10 @@
             @click="navigateTo('/test')"
           >
             Shop All
-            <b-icon
-              icon="arrow-right"
-            />
+            <b-icon icon="arrow-right" />
           </div>
-          <div
-            class="more-item"
+          <div 
+            class="more-item" 
             @click="navigateTo('/test')"
           >
             Take Soap Quiz
@@ -240,186 +242,212 @@
 </template>
 
 <script>
-import SquatchButton from "@vue/ui-elements/squatch-button";
-import GroupedMenuItem from "@vue/core/main-nav/grouped-menu-item";
-import SingleMenuItem from "@vue/core/main-nav/single-menu-item";
-import Cart from "@/vue/core/cart";
-
 export default {
   name: "MainNav",
-  components: {
-    SquatchButton,
-    GroupedMenuItem,
-    SingleMenuItem,
-    Cart
-  },
   props: {
-    cart: {
+    currency: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       soapMenu: {
         name: "Bar Soaps",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "Subscribe & Save",
-          path: "/test"
-        }, {
-          name: "Starter Bundles",
-          path: "/test"
-        }, {
-          name: "Shop Bar Soaps",
-          path: "/test"
-        }]
+        subMenuItems: [
+          {
+            name: "Subscribe & Save",
+            path: "/pages/subscription-flow",
+          },
+          {
+            name: "Starter Bundles",
+            path: "/pages/bundle-offers",
+          },
+          {
+            name: "Shop Bar Soaps",
+            path: "/collections/bar-soaps",
+          },
+        ],
       },
       moreMenu: {
         name: "Shop More Products",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "Colonge",
-          path: "/test"
-        }, {
-          name: "Beard Oil",
-          path: "/test"
-        }, {
-          name: "Hand Sanitizer",
-          path: "/test"
-        }, {
-          name: "Hand Soap",
-          path: "/test"
-        }, {
-          name: "Gift Cards",
-          badge: "New!",
-          path: "/test"
-        }, {
-          name: "Candles",
-          path: "/test"
-        }, {
-          name: "Gear",
-          path: "/test"
-        }]
+        subMenuItems: [
+          {
+            name: "Cologne",
+            path: "/collections/colognes",
+          },
+          {
+            name: "Beard Oil",
+            path: "/collections/beard",
+          },
+          {
+            name: "Hand Sanitizer",
+            path: "/collections/hand-sanitizer",
+          },
+          {
+            name: "Hand Soap",
+            path: "/collections/hand-soap",
+          },
+          {
+            name: "Gift Cards",
+            badge: "New!",
+            path: "/products/squatch-gift-card",
+          },
+          {
+            name: "Candles",
+            path: "/products/bay-rum-candle",
+          },
+          {
+            name: "Gear",
+            path: "/collections/gear",
+          },
+        ],
       },
       infoMenu: {
         name: "Info",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "Ingredients",
-          path: "/test"
-        }, {
-          name: "Hero Discounts",
-          path: "/test"
-        }, {
-          name: "Wholesale",
-          path: "/test"
-        }, {
-          name: "Check Gift Card Balance",
-          path: "/test"
-        }]
+        subMenuItems: [
+          {
+            name: "Ingredients",
+            path: "/test",
+          },
+          {
+            name: "Hero Discounts",
+            path: "/test",
+          },
+          {
+            name: "Wholesale",
+            path: "/test",
+          },
+          {
+            name: "Check Gift Card Balance",
+            path: "/test",
+          },
+        ],
       },
       aboutMenu: {
         name: "About Us",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "About Us",
-          path: "/test"
-        }, {
-          name: "Blog",
-          path: "/test"
-        }]
+        subMenuItems: [
+          {
+            name: "About Us",
+            path: "/test",
+          },
+          {
+            name: "Blog",
+            path: "/test",
+          },
+        ],
       },
       helpMenu: {
         name: "Help & Support",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "FAQs",
-          path: "/test"
-        }, {
-          name: "Shipping",
-          path: "/test"
-        }, {
-          name: "Returns & Refunds",
-          path: "/test"
-        }, {
-          name: "Contact Us",
-          path: "/test"
-        }, {
-          name: "Terms of Use",
-          path: "/test"
-        }, {
-          name: "Privacy Policy",
-          path: "/test"
-        }]
+        subMenuItems: [
+          {
+            name: "FAQs",
+            path: "/test",
+          },
+          {
+            name: "Shipping",
+            path: "/test",
+          },
+          {
+            name: "Returns & Refunds",
+            path: "/test",
+          },
+          {
+            name: "Contact Us",
+            path: "/test",
+          },
+          {
+            name: "Terms of Use",
+            path: "/test",
+          },
+          {
+            name: "Privacy Policy",
+            path: "/test",
+          },
+        ],
       },
       singleMenuItems: [
         {
           name: "Hair Care",
-          path: "/collections/hair-care"
+          path: "/collections/hair-care",
         },
         {
           name: "Deodorant",
-          path: "/",
-          badge: "New!"
+          path: "/collections/deodorant",
+          badge: "New!",
         },
         {
           name: "Toothpaste",
-          path: "/"
+          path: "/collections/toothpaste",
         },
         {
           name: "Shower Boosters",
-          path: "/"
+          path: "/collections/shower-boosters",
         },
         {
           name: "Best Sellers",
-          path: "/"
-        }
+          path: "/collections/best-sellers",
+        },
       ],
       productsSubMenuOpen: false,
       productsSubMenuItems: {
-        essentials: [{
-          name: "Shop Bundles",
-          path: "/test",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457"
-        }, {
-          name: "Bar Soaps",
-          path: "/test",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }, {
-          name: "Hair Care",
-          path: "/test",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }, {
-          name: "Deodorant",
-          path: "/test",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
-          badge: "New!"
-        }, {
-          name: "Toothpaste",
-          path: "/test",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }, {
-          name: "Shower Boosters",
-          path: "/test",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }, {
-          name: "Best Sellers",
-          path: "/test",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }]
-      }
-    }
+        essentials: [
+          {
+            name: "Shop Bundles",
+            path: "/test",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457",
+          },
+          {
+            name: "Bar Soaps",
+            path: "/collections/bar-soaps",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+          {
+            name: "Hair Care",
+            path: "/collections/hair-care",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+          {
+            name: "Deodorant",
+            path: "/collections/deodorant",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+            badge: "New!",
+          },
+          {
+            name: "Toothpaste",
+            path: "/collections/toothpaste",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+          {
+            name: "Shower Boosters",
+            path: "/collections/shower-boosters",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+          {
+            name: "Best Sellers",
+            path: "/collections/best-sellers",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+        ],
+      },
+    };
   },
   computed: {
     loggedIn() {
       return window.theme.customerLoggedIn;
-    }
-  },
-  mounted() {
-    console.log("main nav");
-    console.log(window);
-    console.log(this.cart);
+    },
   },
   methods: {
     navigateTo(path) {
@@ -429,22 +457,36 @@ export default {
     },
     toggleCurrency() {
       console.log("toggleCurrency");
-    }
+    },
   },
-  
-}
+  mounted() {
+    console.log("main nav");
+    console.log(window);
+    console.log(this.cart);
+  },
+  async mounted() {
+    console.log(window);
+  },
+};
 </script>
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
 .main-nav-component {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+  z-index: 10;
   font-size: 16px;
 
   .mobile-nav {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    align-items: center;
     padding: 15px;
 
     @include layout-lg {
@@ -497,7 +539,38 @@ export default {
         }
       }
     }
-    
+
+    .big-cta-link {
+      padding: 20px 15px;
+      margin: 10px 16px;
+      background-color: $orange;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      @include font-style-body($size: 15px, $color: $white);
+
+      .title {
+        display: block;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        @include font-style-heading($size: 16px, $color: $white);
+      }
+
+      &:hover {
+        background-color: $orange-darken;
+        color: $white-darken;
+      }
+
+      &.maroon {
+        background-color: $maroon;
+
+        &:hover {
+          background-color: $maroon-darken;
+          color: $white-darken;
+        }
+      }
+    }
+
     .soap-quiz-menu {
       border-top: 1px solid $off-white;
       font-weight: 400;
@@ -511,7 +584,7 @@ export default {
   .desktop-nav {
     display: none;
     width: 100%;
-    padding: 14px 30px;
+    padding: 9px 30px;
 
     @include layout-lg {
       display: flex;
@@ -522,6 +595,11 @@ export default {
       flex-flow: row nowrap;
       align-items: center;
       flex: 1;
+
+      .subscribe-button {
+        padding: 15px 22px;
+        @include font-style-heading($size: 14px, $weight: 400, $color: $white);
+      }
     }
 
     #drsquatch-logo-desktop {
@@ -557,12 +635,12 @@ export default {
     border-top: 2px solid $white-darken;
     background-color: $white;
     position: absolute;
-    z-index: 999;
+    z-index: 9;
 
     .submenu-title {
       margin-bottom: 15px;
       padding-left: 15px;
-      @include font-style-heading($color: $dark-brown);
+      @include font-style-heading();
     }
 
     .essentials {
@@ -587,11 +665,11 @@ export default {
           font-weight: 400;
           background-color: $orange;
           border-radius: 11px;
-          padding: 4px 7px; 
+          padding: 4px 7px;
           text-transform: uppercase;
           margin-left: 8px;
         }
-        
+
         .item-image-wrapper {
           border-radius: 100%;
           width: 80px;
@@ -609,7 +687,7 @@ export default {
 
         .item-name {
           text-align: center;
-          @include font-style-heading($size: 14px, $color: $dark-brown)
+          @include font-style-heading($size: 14px);
         }
       }
     }
@@ -617,7 +695,7 @@ export default {
     .more {
       display: flex;
       flex-flow: row nowrap;
-      
+
       .more-col {
         height: 120px;
         display: flex;
@@ -628,7 +706,7 @@ export default {
         .more-item {
           width: 160px;
           margin: 0 0 14px 15px;
-          @include font-style-body($color: $dark-brown, $weight: 600);
+          @include font-style-body($weight: 600);
           cursor: pointer;
 
           &:hover {
@@ -637,7 +715,7 @@ export default {
         }
 
         .more-item-shop-all {
-          @include font-style-heading($size: 14px, $color: $dark-brown, $weight: 600);
+          @include font-style-heading($size: 14px, $weight: 600);
         }
       }
     }
@@ -646,17 +724,13 @@ export default {
 </style>
 
 <style lang="scss">
-.b-sidebar-body {
-  overflow-y: hidden !important;
-}
+@import "@/styles/main.scss";
 
-.squatch-button-component.big-cta-button {
+.squatch-button-component.big-cta-link {
   padding: 20px 15px;
   margin: 16px;
-
-  .button-text {
-    font-size: 16px;
-    text-transform: uppercase;
-  }
+  background-color: $orange;
+  text-align: center;
+  @include font-style-heading($size: 16px, $color: $white);
 }
 </style>

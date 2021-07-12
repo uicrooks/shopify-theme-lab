@@ -12,7 +12,7 @@
           <div class="image-mobile">
             <img 
               v-if="imageSrc" 
-              :src="imageSrc"
+              :src="imageSrc" 
             >
           </div>
           <div 
@@ -45,22 +45,22 @@
                 v-else 
                 class="link" 
                 :href="path"
-              >
-                Learn More
+              > 
+                Learn More 
               </a>
-            </div> 
+            </div>
           </div>
         </div>
       </div>
 
-      <div 
-        class="banner-image banner-desktop" 
+      <div
+        class="banner-image banner-desktop"
         :class="reversed ? 'desktop-image reversed' : 'desktop-image'"
       >
         <img 
-          v-if="imageSrc" 
+          v-if="imageSrc"
           class="desktop-image" 
-          :src="imageSrc"
+          :src="imageSrc" 
         >
         <!-- <div class="wistia_embed wistia_async_1sri3k4jg1 seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%"  v-if="videoId" >
         </div> -->
@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import SquatchButton from "@vue/ui-elements/squatch-button";
+import SquatchButton from "@/vue/ui-elements/squatch-button";
 
 export default {
   components: {
@@ -78,7 +78,7 @@ export default {
   },
   props: {
     preheader: {
-      type: String, 
+      type: String,
       required: false,
       default: "",
     },
@@ -98,7 +98,7 @@ export default {
       default: "",
     },
     videoId: {
-      type: String, 
+      type: String,
       required: false,
       default: "",
     },
@@ -116,7 +116,7 @@ export default {
       type: Boolean,
       required: true,
       default: true,
-    }
+    },
   },
   methods: {
     navigateTo() {
@@ -124,14 +124,14 @@ export default {
       if (this.path) {
         window.location = this.path;
       }
-    }
+    },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
-$black : #1a110c;
+$black: #1a110c;
 
 .image-mobile {
   @include layout-md {
@@ -161,7 +161,6 @@ $black : #1a110c;
   font-weight: 600;
   margin: 0 0 20px 0;
   @include font-style-body-bold($size: 20px, $color: $black);
-
 }
 
 .banner-desktop {
@@ -171,96 +170,94 @@ $black : #1a110c;
     padding: 60px 15px 60px 0;
   }
 
-  @media(max-width: 767px) {
+  @media (max-width: 767px) {
     display: none;
   }
 }
 .banner-display {
-    max-width: 1440px;
-    width: 100%;
-    margin: auto;
+  max-width: 1440px;
+  width: 100%;
+  margin: auto;
 }
 .outer-row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 30px 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 30px 0;
 
-    @media(max-width:767px) {
-      flex-direction: column;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+
+  .brand-content {
+    padding: 15px;
+
+    &.reversed {
+      width: 100%;
+    }
+    @include layout-md {
+      padding: 0 15px;
+    }
+  }
+  .banner-image {
+    flex: 0 0 100%;
+    max-width: 100%;
+
+    @include layout-md {
+      flex: 0 0 50%;
+      max-width: 50%;
     }
 
-    .brand-content {
-      padding: 15px;
-      
-      &.reversed {
-        width: 100%;
-      }
+    .desktop-image {
+      width: 100%;
+    }
+  }
+  .banner-content {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
+
+    &.reversed {
       @include layout-md {
-        padding: 0 15px;
+        padding: 0 0 0 15px !important;
+        order: 2 !important;
       }
     }
-    .banner-image{
-        flex: 0 0 100%;
-        max-width: 100%;
 
-        @include layout-md {
-          flex: 0 0 50%;
-          max-width: 50%;
-        }
-
-      .desktop-image {
-        width: 100%;
-      }
+    @include layout-md {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding-right: 15px;
     }
-    .banner-content {
-        flex: 0 0 100%;
-        max-width: 100%;
-        padding: 0;
 
-        &.reversed {
-          @include layout-md {
-            padding: 0 0 0 15px !important; 
-            order: 2 !important;
-          }
-        }
+    .banner-text {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0;
+      text-align: center;
 
-        @include layout-md {
-          flex: 0 0 50%;
-          max-width: 50%;
-          padding-right: 15px;
-        }
-      
-      .banner-text {
-        display:flex; 
-        align-items:center;
-        height:100%;
-        flex-direction: column;
+      @include layout-md {
+        padding-right: 2.5rem;
+        text-align: initial;
+      }
+
+      .cta-wrapper {
+        display: flex;
         justify-content: center;
-        padding: 0;
-        text-align: center;
 
         @include layout-md {
-          padding-right: 2.5rem;
-          text-align: initial;
+          justify-content: initial;
         }
+      }
 
-        .cta-wrapper {
-          display: flex;
-          justify-content: center;
-
-          @include layout-md {
-            justify-content: initial;
-          }
+      &.reversed {
+        @include layout-md {
+          padding: 0 0 0 2.5rem;
         }
-
-        &.reversed{
-          @include layout-md {
-            padding: 0 0 0 2.5rem;
-          }
-        }
-
       }
     }
+  }
 }
-
 </style>
