@@ -1,7 +1,12 @@
 <template>
   <div class="product-component">
+    <product-with-subscription-flow
+      v-if="subscriptionFlowProduct"
+      :product="product"
+      :collection="collection"
+    />
     <product-onetime-only
-      v-if="onetimeOnlyProduct"
+      v-else-if="onetimeOnlyProduct"
       :product="product"
       :collection="collection"
     />
@@ -45,8 +50,11 @@ export default {
     productIdentityString() {
       return this.productIdentityTags ? this.productIdentityTags.join("-") : "";
     },
+    subscriptionFlowProduct() {
+      return  ["barsoap", "haircare-kit", "haircare-shampoo", "haircare-conditioner"].includes(this.productIdentityString);
+    },
     onetimeOnlyProduct() {
-      return ["deodorant-bundle", "booster", "cologne", "beard", "sanitizer-pack", "sanitizer", "liquidsoap-pack", "liquidsoap", "candle", "gear"].includes(this.productIdentityString);
+      return ["deodorant-bundle", "deodorant-pack", "booster", "cologne", "beard", "sanitizer-pack", "sanitizer", "liquidsoap-pack", "liquidsoap", "candle", "gear"].includes(this.productIdentityString);
     }
   },
   mounted() {

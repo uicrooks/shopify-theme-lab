@@ -1,10 +1,9 @@
 {
   "java.saveActions.organizeImports": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": false
   },
   "eslint.validate": [
     "javascript"
-  ],
-  "editor.formatOnSave": true
+  ]
 }

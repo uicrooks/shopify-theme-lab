@@ -9,9 +9,6 @@
         <span />
       </div>
       <span>One-time</span>
-      <span class="pricing">
-        {{ product.price | money("$", 0) }}
-      </span>
       <span
         v-if="product.compare_at_price && product.price !== product.compare_at_price"
         class="pricing-discount"
@@ -28,7 +25,9 @@
         <span />
       </div>
       <div class="subscribe">
-        <h6>Subscribe & Save {{ totalDiscountForSubscription | money("$", 0) }} </h6>
+        <h6>
+          Subscribe & Save {{ discountForSubscription | money("$", 0) }}
+        </h6>
         + Get Free Shipping For Life!
       </div>
     </div>
@@ -49,12 +48,7 @@ export default {
       required: true,
       default: () => {}
     },
-    quantity: {
-      type: Number,
-      required: true,
-      default: 1
-    },
-    totalDiscountForSubscription: {
+    discountForSubscription: {
       type: Number,
       required: true,
       default: 0
