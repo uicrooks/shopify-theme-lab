@@ -2,7 +2,6 @@
   <div class="hero-display-component">
     <div class="inner-wrapper">
       <div :class="reversed ? 'content-box reversed' : 'content-box'">
-        something
         <div 
           v-if="!subBelow"
           class="sub-header" 
@@ -65,7 +64,7 @@
 </template>
 
 <script>
-import SquatchButton from "@vue/ui-elements/squatch-button";
+import SquatchButton from "@/vue/ui-elements/squatch-button";
 
 export default {
   name: "HeroDisplay",
@@ -132,17 +131,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$orange: #CC6328;
-$darker-brown: #1A110C;
-$dark-brown: #473729;
-$brown: #5A3714;
-$sand: #E5D0BB;
-$off-white: #F0EEEB;
-$main-font: "worker-3d", aerial;
-$sub-font: "adrianna", aerial;
-$md-breakpoint: 768px;
-$lg-breakpoint: 993px;
-$xl-breakpoint: 1200px;
+@import "@/styles/main.scss";
 
 .hero-display-component {
   width: 100%;
@@ -151,17 +140,17 @@ $xl-breakpoint: 1200px;
     padding: 30px 0;
     margin: auto;
   
-    @media (min-width: $md-breakpoint) {
+    @media (min-width: $md) {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    @media (min-width: $lg-breakpoint) {
+    @media (min-width: $lg) {
       max-width: 979px;
     }
 
-    @media (min-width: $xl-breakpoint) {
+    @media (min-width: $xl) {
       max-width: 1200px;
     }
   }
@@ -170,13 +159,13 @@ $xl-breakpoint: 1200px;
 
 
     &.reversed {
-      @media (min-width: $md-breakpoint) {
+      @media (min-width: $md) {
         order: 2;
         padding: 0 0 0 15px;
       }
     }
 
-    @media (min-width: $md-breakpoint) {
+    @media (min-width: $md) {
       width: 50%;
       margin: 0 10px;
     }
@@ -187,7 +176,7 @@ $xl-breakpoint: 1200px;
       font-weight: 700;
       padding: 0 18px;
 
-      @media (min-width: $md-breakpoint) {
+      @media (min-width: $md) {
         font-size: 16px;
         line-height: 110%;
       }
@@ -196,15 +185,15 @@ $xl-breakpoint: 1200px;
     .header {
       margin: 12px 0 17px 0;
       padding: 0 0 0 18px;
-      font-family: $main-font;
+      font-family: $font-heading;
       font-size: 30px;
       line-height: 100%;
 
-      @media (min-width: $md-breakpoint) {
+      @media (min-width: $md) {
         font-size: 40px !important;
       }
 
-      @media(min-width: $lg-breakpoint) {
+      @media(min-width: $lg) {
         font-size: 50px !important;
       }
     }
@@ -213,7 +202,7 @@ $xl-breakpoint: 1200px;
       padding: 0 20px;
       width: 100%;
 
-      @media (min-width: $md-breakpoint) {
+      @media (min-width: $md) {
         display: none;
       }
 
@@ -223,16 +212,17 @@ $xl-breakpoint: 1200px;
     }
 
     .text {
+      font-family: $font-body;
       font-size: 14px;
       line-height: 130%;
       padding: 0 18px;
       margin: 20px 0 10px 0;
 
-      @media (min-width: $xl-breakpoint) {
+      @media (min-width: $xl) {
         font-size: 15px;
       }
 
-      @media (min-width: $xl-breakpoint) {
+      @media (min-width: $xl) {
         font-size: 16px;
       }
       
@@ -240,7 +230,7 @@ $xl-breakpoint: 1200px;
         font-weight: 600;
         margin-bottom: 10px;
 
-        @media (min-width: $xl-breakpoint) {
+        @media (min-width: $xl) {
           font-size: 18px;
           line-height: 100%;
         }
@@ -250,10 +240,13 @@ $xl-breakpoint: 1200px;
     .cta-wrapper {
       margin: 30px 0 0 0;
       text-align: center;
+      display: flex;
+      justify-content: center;
   
-      @media (min-width: $md-breakpoint) {
+      @media (min-width: $md) {
         text-align: left;
         padding: 0 18px;
+        justify-content: flex-start;
       }
    
       .link {
@@ -265,13 +258,13 @@ $xl-breakpoint: 1200px;
         border: none;
         padding: 15px 0 11px 0;
         text-transform: uppercase;
-        font-family: $main-font;
+        font-family: $font-heading;
         font-size: 14px;
         line-height: 17px;
         color: #ffffff;
         text-align: center;
 
-        @media (min-width: $md-breakpoint) {
+        @media (min-width: $md) {
           width: 70%;
         }
       }
@@ -283,7 +276,7 @@ $xl-breakpoint: 1200px;
     display: none;
 
     &.reversed {
-      @media (min-width: $md-breakpoint) {
+      @media (min-width: $md) {
         order: 1;
       }
     }
@@ -292,7 +285,7 @@ $xl-breakpoint: 1200px;
       width: 100%;
     }
 
-    @media (min-width: $md-breakpoint) {
+    @media (min-width: $md) {
       display: inline-block;
       width: 50%;
     }

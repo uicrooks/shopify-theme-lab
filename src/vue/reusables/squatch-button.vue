@@ -19,6 +19,7 @@ export default {
   },
   methods: {
     takeAction() {
+      console.log('hello there')
       if (this.path) {
         window.location = this.path;
         return;
