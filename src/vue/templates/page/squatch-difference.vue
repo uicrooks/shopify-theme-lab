@@ -18,7 +18,7 @@
         Raising The Bar On Men’s<br> Personal Care Products
       </div>
       <difference-cardnav  
-        selectedTab="landing"
+        selected-tab="landing"
       />
     </div>
 
@@ -48,7 +48,7 @@
 
 
     <div class="quote-display">
-      <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-icon-quote.svg?v=1619134106" />
+      <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-icon-quote.svg?v=1619134106">
       <div class="quote-text">
         Our goal is to inspire and educate men to be happier and healthier.
       </div>
@@ -69,14 +69,14 @@
       />    
     </div>
     <div class="guarantee">
-      <sudisfaction-guarantee></sudisfaction-guarantee>
+      <sudisfaction-guarantee />
     </div>
   </div>
 </template>
 
 <script>
-import HeroDisplay from "@/vue/ui-elements/squatch-difference/hero-display";
-import DifferenceCardnav from "@/vue/ui-elements/squatch-difference/UI-squatch-difference-cardnav";
+import HeroDisplay from "@/vue/reusables/squatch-difference/hero-display";
+import DifferenceCardnav from "@/vue/reusables/squatch-difference/UI-squatch-difference-cardnav";
 import SudisfactionGuarantee from '@/vue/reusables/sudisfaction-guarantee';
 
 export default {
@@ -156,7 +156,6 @@ export default {
     line-height: 100%;
     font-family: $font-heading;
     font-size: 30px;
-    color: $dark-brown;
     text-align: center;
     margin-bottom:20px;
     color: white;

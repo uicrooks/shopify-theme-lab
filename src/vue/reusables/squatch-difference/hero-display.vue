@@ -50,10 +50,10 @@
 
       </div>
       <div :class="reversed ? 'image-tablet reversed' : 'image-tablet'">
-          <img 
-            v-if="imageSrc"
-            :src="imageSrc"
-          >
+        <img 
+          v-if="imageSrc"
+          :src="imageSrc"
+        >
           <!-- <div 
             v-else-if="videoId"
             class="wistia_embed wistia_async_{{ videoId }} seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%">
