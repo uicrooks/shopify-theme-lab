@@ -1,0 +1,179 @@
+{% layout 'theme-branding' %}
+{% assign oosItems = settings.oos_sku_array | downcase | split: ',' %}
+
+{% assign soapSubscriptions = collections['soap-subscriptions'].products %}
+{% assign hairSubscriptions = collections['haircare-subscriptions'].products %}
+{% assign deodorantSubscriptions = collections['deodorant-subscriptions'].products %}
+{% assign toothpasteSubscriptions = collections['toothpaste-subscriptions'].products %} 
+
+
+{% capture soapSubDetails %}
+[
+  {% for product in soapSubscriptions %}
+  {
+    "title": "{{product.title | split: ' Deodorant' | first | split: ' Hair Care Kit' | first | split: ' Shampoo' | first| split: ' Conditioner' | first }}",
+    "product_id": {{product.id}},
+    "variant_id": {{product.variants[0].id}},
+    "sku": "{{product.variants[0].sku | downcase }}",
+    "type": "{{product.type}}",
+    "price": {{product.variants[0].price | divided_by: 100 }},
+    "compare_at_price": {{product.variants[0].compare_at_price | divided_by: 100 }},
+    "scents": [],
+    {% case product.type %}
+      {% when "BarSoap" %}
+      "unit_subPrice": {% if product.id == 4375471390825 %}{{ product.variants[0].price | divided_by: 200.0 | round: 2 }}{% elsif product.id == 4375468114025 %}{{ product.variants[0].price | divided_by: 300.0 | round: 2 }}{% else %}{{soapSubscriptions[1].variants[0].price | divided_by: 600.0 | round: 2 }}{% endif %},
+      "unit_name": "Bar"
+      {% when "HairCare" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0 | round: 2 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Bottle{% endif %}"
+      {% when "Deodorant" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0 | round: 2 }},
+      "unit_name": "Stick"
+      {% when "Toothpaste" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0  | round: 2 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Tube{% endif %}"
+      {% else %}
+    {% endcase %}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+{% endcapture %}
+{% capture haircareSubDetails %}
+[
+  {% for product in hairSubscriptions %}
+  {
+    "title": "{{product.title | split: ' Deodorant' | first | split: ' Hair Care Kit' | first | split: ' Shampoo' | first| split: ' Conditioner' | first }}",
+    "product_id": {{product.id}},
+    "variant_id": {{product.variants[0].id}},
+    "sku": "{{product.variants[0].sku | downcase }}",
+    "type": "{{product.type}}",
+    "price": {{product.variants[0].price | divided_by: 100 }},
+    "compare_at_price": {{product.variants[0].compare_at_price | divided_by: 100 }},
+    "scents": [],
+    {% case product.type %}
+      {% when "BarSoap" %}
+      "unit_subPrice": {% if product.id == 4375471390825 %}{{ product.variants[0].price | divided_by: 200.0 | round: 2 }}{% elsif product.id == 4375468114025 %}{{ product.variants[0].price | divided_by: 300.0 | round: 2 }}{% else %}{{soapSubscriptions[1].variants[0].price | divided_by: 600.0 | round: 2 }}{% endif %},
+      "unit_name": "Bar"
+      {% when "HairCare" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0 | round: 2 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Bottle{% endif %}"
+      {% when "Deodorant" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0 | round: 2 }},
+      "unit_name": "Stick"
+      {% when "Toothpaste" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0  | round: 2 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Tube{% endif %}"
+      {% else %}
+    {% endcase %}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+{% endcapture %}
+{% capture deodorantSubDetails %}
+[
+  {% for product in deodorantSubscriptions %}
+  {
+    "title": "{{product.title | split: ' Deodorant' | first | split: ' Hair Care Kit' | first | split: ' Shampoo' | first| split: ' Conditioner' | first }}",
+    "product_id": {{product.id}},
+    "variant_id": {{product.variants[0].id}},
+    "sku": "{{product.variants[0].sku | downcase }}",
+    "type": "{{product.type}}",
+    "price": {{product.variants[0].price | divided_by: 100 }},
+    "compare_at_price": {{product.variants[0].compare_at_price | divided_by: 100 }},
+    "scents": [],
+    {% case product.type %}
+      {% when "BarSoap" %}
+      "unit_subPrice": {% if product.id == 4375471390825 %}{{ product.variants[0].price | divided_by: 200.0 | round: 2 }}{% elsif product.id == 4375468114025 %}{{ product.variants[0].price | divided_by: 300.0 | round: 2 }}{% else %}{{soapSubscriptions[1].variants[0].price | divided_by: 600.0 | round: 2 }}{% endif %},
+      "unit_name": "Bar"
+      {% when "HairCare" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0 | round: 2 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Bottle{% endif %}"
+      {% when "Deodorant" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0 | round: 2 }},
+      "unit_name": "Stick"
+      {% when "Toothpaste" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0  | round: 2 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Tube{% endif %}"
+      {% else %}
+    {% endcase %}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+{% endcapture %}
+{% capture toothpasteSubDetails %}
+[
+  {% for product in toothpasteSubscriptions %}
+  {
+    "title": "{{product.title | split: ' Deodorant' | first | split: ' Hair Care Kit' | first | split: ' Shampoo' | first| split: ' Conditioner' | first }}",
+    "product_id": {{product.id}},
+    "variant_id": {{product.variants[0].id}},
+    "sku": "{{product.variants[0].sku | downcase }}",
+    "type": "{{product.type}}",
+    "price": {{product.variants[0].price | divided_by: 100 }},
+    "compare_at_price": {{product.variants[0].compare_at_price | divided_by: 100 }},
+    "scents": [],
+    {% case product.type %}
+      {% when "BarSoap" %}
+      "unit_subPrice": {% if product.id == 4375471390825 %}{{ product.variants[0].price | divided_by: 200.0 | round: 2 }}{% elsif product.id == 4375468114025 %}{{ product.variants[0].price | divided_by: 300.0 | round: 2 }}{% else %}{{soapSubscriptions[1].variants[0].price | divided_by: 600.0 | round: 2 }}{% endif %},
+      "unit_name": "Bar"
+      {% when "HairCare" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0 | round: 2 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Bottle{% endif %}"
+      {% when "Deodorant" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0 | round: 2 }},
+      "unit_name": "Stick"
+      {% when "Toothpaste" %}
+      "unit_subPrice": {{product.variants[0].price | divided_by: 100.0  | round: 2 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Tube{% endif %}"
+      {% else %}
+    {% endcase %}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+{% endcapture %}
+
+
+{% assign subFlowScents = collections['subscription-flow-scents'].products %}
+{% capture productDetails %}
+[
+  {% for product in subFlowScents %}
+  {
+    "title": "{{product.title | split: ' Deodorant' | split: ' Hair Care Kit' | split: ' Shampoo' | split: ' Conditioner'}}",
+    "product_id": {{product.id}},
+    "variant_id": {{product.variants[0].id}},
+    "sku": "{{product.variants[0].sku | downcase }}",
+    "handle": "{{product.handle}}",
+    "type": "{{product.type}}",
+    "images": {{product.images | json }},
+    "pdp_metafields": {{product.metafields.pdp2 | json }},
+    "qty": 0,
+    "price": {{product.variants[0].price | divided_by: 100 }},
+    "compare_at_price": {{product.variants[0].compare_at_price | divided_by: 100 }},
+    {% case product.type %}
+      {% when "BarSoap" %}
+      "unit_subPrice": {{soapSubscriptions[1].variants[0].price | divided_by: 600 }},
+      "unit_name": "Bar"
+      {% when "HairCare" %}
+      "unit_subPrice":{{hairSubscriptions[0].variants[0].price | divided_by: 100 }},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Bottle{% endif %}"
+      {% when "Deodorant" %}
+      "unit_subPrice": {{deodorantSubscriptions[0].variants[0].price | divided_by: 100 }},
+      "unit_name": "Stick"
+      {% when "Toothpaste" %}
+      "unit_subPrice": {% if product.title contains 'Kit' %}{{hairSubscriptions[0].variants[0].price | divided_by: 100 }}{% elsif product.title contains 'Shampoo' %}{{hairSubscriptions[1].variants[0].price | divided_by: 100 }}{% else %}{{hairSubscriptions[2].variants[0].price | divided_by: 100 }}{% endif %},
+      "unit_name": "{% if product.title contains 'Kit' %}Kit{% else %}Tube{% endif %}"
+      {% else %}
+    {% endcase %}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]
+{% endcapture %}
+
+<subscription-flow
+  :soapSubDetails="{{soapSubDetails | json | replace: '"', "'" }}"
+  :deodorantSubDetails="{{deodorantSubDetails | json | replace: '"', "'" }}"
+  :haircareSubDetails="{{haircareSubDetails | json | replace: '"', "'" }}"
+  :toothpasteSubDetails="{{toothpasteSubDetails | json | replace: '"', "'" }}"
+  :productDetails="{{productDetails | json | replace: '"', "'" }}"
+></subscription-flow>
+
