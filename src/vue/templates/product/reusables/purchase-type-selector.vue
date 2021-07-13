@@ -9,12 +9,6 @@
         <span />
       </div>
       <span>One-time</span>
-      <span
-        v-if="product.compare_at_price && product.price !== product.compare_at_price"
-        class="pricing-discount"
-      >
-        <span class="original">{{ product.compare_at_price | money("$", 0) }}</span>({{ product.compare_at_price - product.price | money("$", 0) }} Off!)
-      </span>
     </div>
     <div
       class="purchase-type-option"

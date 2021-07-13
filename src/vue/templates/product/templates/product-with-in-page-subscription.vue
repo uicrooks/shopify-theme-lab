@@ -1,5 +1,5 @@
 <template>
-  <div class="product-with-subscription-flow-component">
+  <div class="product-with-in-page-subscription-component">
     <product-base-template
       :product="product"
       :collection="collection"
@@ -12,13 +12,13 @@
       </template>
       <template #pricing>
         <div v-if="isSubscription">
-          {{ subscriptionPrice | money("$", 0) }} / {{ unit }}
+          {{ subscriptionProduct.price | money("$", 0) }} <span v-if="unit">/ {{ unit }}</span>
           <span class="discount">
             (Save {{ discountForSubscription | money("$", 0) }}!)
           </span>
         </div>
         <div v-else>
-          {{ product.price | money("$", 0) }} / {{ unit }}
+          {{ product.price | money("$", 0) }} <span v-if="unit">/ {{ unit }}</span>
           <span
             v-if="product.compare_at_price && product.price !== product.compare_at_price"
             class="original-pricing"
@@ -32,15 +32,8 @@
           :handle="product.handle"
           :items="iconDescriptionItems"
         />
-        <product-quantity-options
-          v-if="productIdentityString === 'barsoap'"
-          product-unit="soap"
-          :quantity-options="[2, 1, 3]"
-          :selected="quantity"
-          @quantitySelected="selectQuantity"
-        />
         <product-quantity-selector
-          v-else
+          v-if="!isSubscription"
           :quantity="quantity"
           @quantityUpdated="selectQuantity"
         />
@@ -59,7 +52,7 @@
       <template #cta-button>
         <squatch-button
           v-if="isSubscription"
-          path="/pages/subscription-flow"
+          @clicked="addToCart"
         >
           Subscribe & Save
         </squatch-button>
@@ -80,7 +73,7 @@ import ProductIdentifier from "@/vue/services/product-identifier";
 import ProductDetails from "@/configs/product-details";
 
 export default {
-  name: "ProductWithSubscriptionFlow",
+  name: "ProductWithInPageSubscription",
   props: {
     product: {
       type: Object,
@@ -88,6 +81,11 @@ export default {
       default: () => {}
     },
     collection: {
+      type: Object,
+      required: true,
+      default: () => {}
+    },
+    subscriptionCollection: {
       type: Object,
       required: true,
       default: () => {}
@@ -104,10 +102,10 @@ export default {
   },
   computed: {
     showBanner() {
-      return true;
+      return this.productIdentityTags[0] !== "toothpaste";
     },
     hasOldPackaging() {
-      return [].includes(this.productIdentityTags[0]);
+      return ["deodorant"].includes(this.productIdentityTags[0]);
     },
     freeShippingMinimum() {
       return this.$store.state.core.freeShippingMinimum;
@@ -118,19 +116,27 @@ export default {
     iconDescriptionItems() {
       return ProductDetails.featureDescriptions[this.productIdentityString];
     },
+    subscriptionProduct() {
+      if (this.productIdentityString === "toothpaste-kit") {
+        return this.subscriptionCollection.products[0];
+      }
+    },
     discountForSubscription() {
+      if (this.subscriptionProduct && this.subscriptionProduct.price && this.subscriptionProduct.compare_at_price) {
+        return this.subscriptionProduct.compare_at_price - this.subscriptionProduct.price;
+      }
       return ProductDetails.discountForSubscription[this.productIdentityString];
     },
-    subscriptionPrice() {
-      return this.product.price - this.discountForSubscription; 
-    }
   },
   methods: {
     selectQuantity(qty) {
       this.quantity = qty;
     },
     async addToCart() {
-      const added = await CartService.addItem(this.product, this.quantity);
+      const qty = this.isSubscription ? 1 : this.quantity;
+      const product = this.isSubscription ? this.subscriptionProduct : this.product;
+      console.log(product);
+      const added = await CartService.addItem(product, qty);
       if (added) {
         this.added = true;
         const cart = await CartService.initCart();
@@ -146,9 +152,13 @@ export default {
   mounted() {
     this.productIdentityTags = ProductIdentifier.identify(this.product);
     this.productIdentityString = this.productIdentityTags.join("-");
-    if (this.productIdentityString === "barsoap") {
+    if (this.productIdentityTags[0] === "deodorant") {
       this.quantity = 2;
     }
+    console.log("subsCol", this.subscriptionCollection);
+    //TODO:
+    //toothpaste: change onetime product to subscription before adding to cart
+
   }
 };
 </script>
@@ -156,7 +166,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/main.scss";
 
-.product-with-subscription-flow-component {
+.product-with-in-page-subscription-component {
 
   .discount {
     margin-left: 8px;
