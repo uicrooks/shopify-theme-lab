@@ -34,17 +34,17 @@ export default {
     productDataString: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
     collection: {
       type: Object,
       required: true,
-      default: () => {}
+      default: () => {},
     },
     collectionsData: {
       type: String,
       required: true,
-      default: ""
+      default: "",
     },
     subscriptionCollection: {
       type: Object,

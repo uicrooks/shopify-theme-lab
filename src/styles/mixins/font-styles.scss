@@ -21,7 +21,12 @@
   }
 }
 
-@mixin font-style-body($size: 14px, $color: #1a110c, $weight: 400, $lh: false) {
+@mixin font-style-body(
+  $size: 14px, 
+  $color: #1a110c, 
+  $weight: 400, 
+  $lh: false
+) {
   font-family: "adrianna", Arial, sans-serif;
   @if $size {
     font-size: $size;
@@ -46,6 +51,29 @@
   $lh: false
 ) {
   font-family: "MetropolisBold", Arial, sans-serif;
+  @if $size {
+    font-size: $size;
+  }
+  @if $color {
+    color: $color;
+  }
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $lh {
+    line-height: $lh;
+  } @else {
+    line-height: $size;
+  }
+}
+
+@mixin font-style-body-bold(
+  $size: 14px, 
+  $color: #1a110c, 
+  $weight: 400, 
+  $lh: false
+) {
+  font-family: "adrianna-bold", Arial, sans-serif;
   @if $size {
     font-size: $size;
   }

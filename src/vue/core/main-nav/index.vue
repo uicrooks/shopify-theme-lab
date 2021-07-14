@@ -8,9 +8,7 @@
         alt="Dr.Squatch logo"
       >
       <div class="buttons">
-        <cart
-          :currency-obj="currency"
-        />
+        <cart :currency-obj="currency" />
         <b-icon
           v-b-toggle.main-nav-sidebar
           icon="list"
@@ -30,16 +28,16 @@
             <img
               id="drsquatch-logo-mobile-sidebar"
               src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
-              alt="Dr.Squatch logo"   
+              alt="Dr.Squatch logo"
             >
-            <div
-              class="account-icon-box"
+            <div 
+              class="account-icon-box" 
               @click="navigateTo('/account/login')"
             >
-              <b-icon
-                icon="person-fill"
-                font-scale="2.5"
-                class="person-icon"
+              <b-icon 
+                icon="person-fill" 
+                font-scale="2.5" 
+                class="person-icon" 
               />
               <span>Log In</span>
             </div>
@@ -51,18 +49,14 @@
             class="big-cta-link"
             @click="navigateTo('/pages/subscription-flow')"
           >
-            <span class="title">
-              The Subscription
-            </span>
+            <span class="title"> The Subscription </span>
             Save 15% on your favorite soap and get free shipping for life!
           </button>
           <button
             class="big-cta-link maroon"
             @click="navigateTo('/pages/bundle-offers')"
           >
-            <span class="title">
-              Starter Bundles
-            </span>
+            <span class="title"> Starter Bundles </span>
             Your choice of our curated best sellers
           </button>
 
@@ -123,67 +117,67 @@
         >
           Subscribe
         </squatch-button>
-        <div
-          class="menu-item"
+        <div 
+          class="menu-item" 
           @click="navigateTo('/pages/bundle-offers')"
         >
           Bundles
         </div>
-        <div
-          v-b-toggle.products-menu  
+        <div 
+          v-b-toggle.products-menu 
           class="menu-item"
         >
           Products
-          <b-icon
-            :icon="productsSubMenuOpen ? 'x' : 'chevron-down'"
+
+          <b-icon 
+            :icon="productsSubMenuOpen ? 'x' : 'chevron-down'" 
           />
         </div>
       </div>
-      <img
-        id="drsquatch-logo-desktop"
-        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
-        alt="Dr.Squatch logo"
-      >
+      <a href="/">
+        <img
+          id="drsquatch-logo-desktop"
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
+          alt="Dr.Squatch logo"
+        >
+      </a>
       <div class="right-section">
-        <div
-          class="menu-item"
+        <div 
+          class="menu-item" 
           @click="navigateTo('/test')"
         >
           Take Quiz
         </div>
-        <div
-          v-if="loggedIn"
-          class="menu-item"
+        <div 
+          v-if="loggedIn" 
+          class="menu-item" 
           @click="navigateTo('/account')"
         >
           Account
         </div>
-        <div
-          v-else
-          class="menu-item"
+        <div 
+          v-else 
+          class="menu-item" 
           @click="navigateTo('/account/login')"
         >
           Log In
         </div>
-        <div
-          v-b-toggle.currency-options  
+        <div 
+          v-b-toggle.currency-options 
           class="menu-item"
         >
           USD
-          <b-icon
-            icon="caret-down-fill"
-          />
+          <b-icon icon="caret-down-fill" />
         </div>
-        <b-collapse id="curreny-options">
-          CAD
+
+        <b-collapse id="curreny-options"> 
+          CAD 
         </b-collapse>
-        <cart
-          :currency-obj="currency"
-        />
+        <cart :currency-obj="currency" />
       </div>
     </div>
-    <b-collapse
-      id="products-menu"
+    <b-collapse 
+      id="products-menu" 
       v-model="productsSubMenuOpen"
     >
       <h6 class="submenu-title">
@@ -196,14 +190,16 @@
           class="essential-item"
           @click="navigateTo(item.path)"
         >
-          <span
+          <span 
             v-if="item.badge"
             class="badge"
-          >{{ item.badge }}</span>
+          >
+            {{ item.badge }}
+          </span>
           <div class="item-image-wrapper">
             <img 
-              :src="item.imageSrc"
-              :alt="`${item.name} image`"
+              :src="item.imageSrc" 
+              :alt="`${item.name} image`" 
             >
           </div>
           <div class="item-name">
@@ -231,12 +227,10 @@
             @click="navigateTo('/test')"
           >
             Shop All
-            <b-icon
-              icon="arrow-right"
-            />
+            <b-icon icon="arrow-right" />
           </div>
-          <div
-            class="more-item"
+          <div 
+            class="more-item" 
             @click="navigateTo('/test')"
           >
             Take Soap Quiz
@@ -253,165 +247,207 @@ export default {
   props: {
     currency: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       soapMenu: {
         name: "Bar Soaps",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "Subscribe & Save",
-          path: "/pages/subscription-flow"
-        }, {
-          name: "Starter Bundles",
-          path: "/pages/bundle-offers"
-        }, {
-          name: "Shop Bar Soaps",
-          path: "/collections/bar-soaps"
-        }]
+        subMenuItems: [
+          {
+            name: "Subscribe & Save",
+            path: "/pages/subscription-flow",
+          },
+          {
+            name: "Starter Bundles",
+            path: "/pages/bundle-offers",
+          },
+          {
+            name: "Shop Bar Soaps",
+            path: "/collections/bar-soaps",
+          },
+        ],
       },
       moreMenu: {
         name: "Shop More Products",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "Cologne",
-          path: "/collections/colognes"
-        }, {
-          name: "Beard Oil",
-          path: "/collections/beard"
-        }, {
-          name: "Hand Sanitizer",
-          path: "/collections/hand-sanitizer"
-        }, {
-          name: "Hand Soap",
-          path: "/collections/hand-soap"
-        }, {
-          name: "Gift Cards",
-          badge: "New!",
-          path: "/products/squatch-gift-card"
-        }, {
-          name: "Candles",
-          path: "/products/bay-rum-candle"
-        }, {
-          name: "Gear",
-          path: "/collections/gear"
-        }]
+        subMenuItems: [
+          {
+            name: "Cologne",
+            path: "/collections/colognes",
+          },
+          {
+            name: "Beard Oil",
+            path: "/collections/beard",
+          },
+          {
+            name: "Hand Sanitizer",
+            path: "/collections/hand-sanitizer",
+          },
+          {
+            name: "Hand Soap",
+            path: "/collections/hand-soap",
+          },
+          {
+            name: "Gift Cards",
+            badge: "New!",
+            path: "/products/squatch-gift-card",
+          },
+          {
+            name: "Candles",
+            path: "/products/bay-rum-candle",
+          },
+          {
+            name: "Gear",
+            path: "/collections/gear",
+          },
+        ],
       },
       infoMenu: {
         name: "Info",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "Ingredients",
-          path: "/test"
-        }, {
-          name: "Hero Discounts",
-          path: "/test"
-        }, {
-          name: "Wholesale",
-          path: "/test"
-        }, {
-          name: "Check Gift Card Balance",
-          path: "/test"
-        }]
+        subMenuItems: [
+          {
+            name: "Ingredients",
+            path: "/test",
+          },
+          {
+            name: "Hero Discounts",
+            path: "/test",
+          },
+          {
+            name: "Wholesale",
+            path: "/test",
+          },
+          {
+            name: "Check Gift Card Balance",
+            path: "/test",
+          },
+        ],
       },
       aboutMenu: {
         name: "About Us",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "About Us",
-          path: "/test"
-        }, {
-          name: "Blog",
-          path: "/test"
-        }]
+        subMenuItems: [
+          {
+            name: "About Us",
+            path: "/test",
+          },
+          {
+            name: "Blog",
+            path: "/test",
+          },
+        ],
       },
       helpMenu: {
         name: "Help & Support",
         isOpen: false,
-        subMenuItems: [{ 
-          name: "FAQs",
-          path: "/test"
-        }, {
-          name: "Shipping",
-          path: "/test"
-        }, {
-          name: "Returns & Refunds",
-          path: "/test"
-        }, {
-          name: "Contact Us",
-          path: "/test"
-        }, {
-          name: "Terms of Use",
-          path: "/test"
-        }, {
-          name: "Privacy Policy",
-          path: "/test"
-        }]
+        subMenuItems: [
+          {
+            name: "FAQs",
+            path: "/test",
+          },
+          {
+            name: "Shipping",
+            path: "/test",
+          },
+          {
+            name: "Returns & Refunds",
+            path: "/test",
+          },
+          {
+            name: "Contact Us",
+            path: "/test",
+          },
+          {
+            name: "Terms of Use",
+            path: "/test",
+          },
+          {
+            name: "Privacy Policy",
+            path: "/test",
+          },
+        ],
       },
       singleMenuItems: [
         {
           name: "Hair Care",
-          path: "/collections/hair-care"
+          path: "/collections/hair-care",
         },
         {
           name: "Deodorant",
           path: "/collections/deodorant",
-          badge: "New!"
+          badge: "New!",
         },
         {
           name: "Toothpaste",
-          path: "/collections/toothpaste"
+          path: "/collections/toothpaste",
         },
         {
           name: "Shower Boosters",
-          path: "/collections/shower-boosters"
+          path: "/collections/shower-boosters",
         },
         {
           name: "Best Sellers",
-          path: "/collections/best-sellers"
-        }
+          path: "/collections/best-sellers",
+        },
       ],
       productsSubMenuOpen: false,
       productsSubMenuItems: {
-        essentials: [{
-          name: "Shop Bundles",
-          path: "/test",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457"
-        }, {
-          name: "Bar Soaps",
-          path: "/collections/bar-soaps",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }, {
-          name: "Hair Care",
-          path: "/collections/hair-care",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }, {
-          name: "Deodorant",
-          path: "/collections/deodorant",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
-          badge: "New!"
-        }, {
-          name: "Toothpaste",
-          path: "/collections/toothpaste",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }, {
-          name: "Shower Boosters",
-          path: "/collections/shower-boosters",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }, {
-          name: "Best Sellers",
-          path: "/collections/best-sellers",
-          imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457"
-        }]
-      }
+        essentials: [
+          {
+            name: "Shop Bundles",
+            path: "/test",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457",
+          },
+          {
+            name: "Bar Soaps",
+            path: "/collections/bar-soaps",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+          {
+            name: "Hair Care",
+            path: "/collections/hair-care",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+          {
+            name: "Deodorant",
+            path: "/collections/deodorant",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+            badge: "New!",
+          },
+          {
+            name: "Toothpaste",
+            path: "/collections/toothpaste",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+          {
+            name: "Shower Boosters",
+            path: "/collections/shower-boosters",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+          {
+            name: "Best Sellers",
+            path: "/collections/best-sellers",
+            imageSrc:
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+          },
+        ],
+      },
     };
   },
   computed: {
     loggedIn() {
       return window.theme.customerLoggedIn;
-    }
+    },
   },
   methods: {
     navigateTo(path) {
@@ -421,11 +457,16 @@ export default {
     },
     toggleCurrency() {
       console.log("toggleCurrency");
-    }
+    },
+  },
+  mounted() {
+    console.log("main nav");
+    console.log(window);
+    console.log(this.cart);
   },
   async mounted() {
     console.log(window);
-  }
+  },
 };
 </script>
 
@@ -499,7 +540,7 @@ export default {
       }
     }
 
-    .big-cta-link  {
+    .big-cta-link {
       padding: 20px 15px;
       margin: 10px 16px;
       background-color: $orange;
@@ -624,11 +665,11 @@ export default {
           font-weight: 400;
           background-color: $orange;
           border-radius: 11px;
-          padding: 4px 7px; 
+          padding: 4px 7px;
           text-transform: uppercase;
           margin-left: 8px;
         }
-        
+
         .item-image-wrapper {
           border-radius: 100%;
           width: 80px;
@@ -654,7 +695,7 @@ export default {
     .more {
       display: flex;
       flex-flow: row nowrap;
-      
+
       .more-col {
         height: 120px;
         display: flex;
@@ -685,7 +726,7 @@ export default {
 <style lang="scss">
 @import "@/styles/main.scss";
 
-.squatch-button-component.big-cta-link  {
+.squatch-button-component.big-cta-link {
   padding: 20px 15px;
   margin: 16px;
   background-color: $orange;
