@@ -153,8 +153,10 @@ $black: #1a110c;
 }
 
 .header {
-  font-family: $font-heading;
-  color: $black;
+  @include font-style-heading($size: 3.4375rem, $color: $black);
+
+  
+
 }
 
 .subheader {

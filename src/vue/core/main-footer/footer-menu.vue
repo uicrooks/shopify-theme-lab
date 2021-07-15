@@ -111,7 +111,7 @@ export default {
         },
         {
           name: "Hero Discounts",
-          path: "/test",
+          path: "/pages/hero-discounts",
         },
         {
           name: "About Us",
@@ -141,7 +141,7 @@ export default {
         },
         {
           name: "Returns & Refunds",
-          path: "/test",
+          path: "/pages/returns",
         },
         {
           name: "Contact Us",

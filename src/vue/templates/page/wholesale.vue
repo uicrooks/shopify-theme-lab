@@ -19,7 +19,7 @@
         </button>
         <button 
           class="login-button button"
-          href="https://wholesale.drsquatch.com/"
+          @click="loginRoute"
         >
           Log In
         </button>
@@ -53,15 +53,17 @@
 </template>
 
 <script>
-
-  export default {
-    name: "Wholesale",
-    methods: {
-      scroll() {
-        console.log('clicked on button')
-      }
+export default {
+  name: "Wholesale",
+  methods: {
+    scroll() {
+      console.log('clicked on button')
+    },
+    loginRoute() {
+      window.location.href = "https://wholesale.drsquatch.com/"
     }
   }
+}
 </script>
 
 <style scoped lang="scss">
