@@ -4,14 +4,14 @@
       <div :class="reversed ? 'content-box reversed' : 'content-box'">
         <div 
           v-if="!subBelow"
-          class="sub-header" 
-        >
-          {{ subHeader }}
-        </div>
+          class="sub-header"
+          v-html="subHeader" 
+        />
 
-        <div class="header">
-          {{ header }}
-        </div>
+        <div 
+          class="header"
+          v-html="header"
+        />
 
         <div class="image-mobile">
           <img 
@@ -24,19 +24,23 @@
           >
           </div> -->
         </div>
-        <div class="text">
+        <div 
+          class="text-container"
+        >
           <div class="text-heading">
             {{ textHeading }}
           </div>
-          {{ text }}
+          <span 
+            class="text"
+            v-html="text"
+          />
         </div>
 
         <div 
           v-if="subBelow"
           class="sub-header"
-        >
-          {{ subHeader }}
-        </div>
+          v-html="subHeader"
+        />
 
         <div 
           v-if="ctaPath"
@@ -78,7 +82,8 @@ export default {
     },
     subBelow: {
       type: Boolean,
-      required: true
+      required: false,
+      default: false
     },
     subHeader: {
       type: String,
@@ -120,12 +125,6 @@ export default {
       required: false,
       default: ""  
     }
-  },
-  mounted() {
-    console.log(typeof(this.reversed))
-    console.log(this.subBelow)
-    console.log(this.subHeader)
-
   }
 }
 </script>
@@ -211,20 +210,10 @@ export default {
       }
     }
 
-    .text {
-      font-family: $font-body;
-      font-size: 14px;
-      line-height: 130%;
+    .text-container {
       padding: 0 18px;
       margin: 20px 0 10px 0;
 
-      @media (min-width: $xl) {
-        font-size: 15px;
-      }
-
-      @media (min-width: $xl) {
-        font-size: 16px;
-      }
       
       .text-heading {
         font-weight: 600;
@@ -233,6 +222,20 @@ export default {
         @media (min-width: $xl) {
           font-size: 18px;
           line-height: 100%;
+        }
+      }
+
+      .text {
+        font-family: $font-body;
+        font-size: 14px;
+        line-height: 130%;
+
+        @media (min-width: $xl) {
+          font-size: 15px;
+        }
+
+        @media (min-width: $xl) {
+          font-size: 16px;
         }
       }
     }

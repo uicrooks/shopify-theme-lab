@@ -14,7 +14,7 @@
     <squatch-difference-subnav 
       tab="nontoxic"
     />
-    <!-- {% include 'UI-squatch-difference-subnav', selectedTab: 'nontoxic' % -->
+
     <div class="hero-display-middle">
       <hero-display 
         :reversed="true"
@@ -23,6 +23,10 @@
         text="Meet our Sh*t List, a roster of nasty, harmful ingredients that we vow to never use in any of our products. We refuse to cut corners and we avoid both common and lesser-known chemicals, synthetics and preservatives that can have a range of adverse effects on your skin and body."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-men-everymorning.gif?v=1619543543"
       />
+    </div>
+
+    <div class="toxic-ingredients-table-display">
+      <ui-squatch-difference-accordian />
     </div>
 
     <div class="hero-display-middle">
@@ -61,17 +65,19 @@
 <script>
 import HeroDisplay from "@/vue/reusables/squatch-difference/hero-display";
 import SquatchDifferenceSubnav from "@/vue/reusables/squatch-difference/UI-squatch-difference-subnav"
-import SudisfactionGuarantee from '@/vue/reusables/sudisfaction-guarantee';
+import SudisfactionGuarantee from "@/vue/reusables/sudisfaction-guarantee";
 import DifferenceCardnav from "@/vue/reusables/squatch-difference/UI-squatch-difference-cardnav";
+import UISquatchDifferenceAccordian from "@/vue/reusables/squatch-difference/UI-squatch-difference-accordian";
 
 
   export default {
-    name: "SquatchNontoxic",
+    name: "SquatchDifferenceNontoxic",
     components: {
       HeroDisplay,
       SquatchDifferenceSubnav,
       SudisfactionGuarantee,
-      DifferenceCardnav
+      DifferenceCardnav,
+      UISquatchDifferenceAccordian
     }
   }
 </script>
@@ -140,7 +146,7 @@ import DifferenceCardnav from "@/vue/reusables/squatch-difference/UI-squatch-dif
       text-align: center;
     }
 
-    .UI-squatch-difference-accordion-table {
+    .ui-squatch-difference-accordion-component {
       margin-top: 20px;
     }
   }

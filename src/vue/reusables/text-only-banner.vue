@@ -22,7 +22,6 @@ export default {
 
 <style lang="scss">
 @import "@/styles/main.scss";
-@import "@/styles/partials/brand.scss";
 
 .banner-container {
   display: flex;

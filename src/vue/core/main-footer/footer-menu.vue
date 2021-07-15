@@ -119,7 +119,7 @@ export default {
         },
         {
           name: "Wholesale",
-          path: "/test",
+          path: "/pages/wholesale",
         },
         {
           name: "Blog",
