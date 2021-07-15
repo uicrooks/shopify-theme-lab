@@ -34,6 +34,8 @@
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0",
     "bootstrap-vue": "^2.21.2",
+    "shopify-buy": "^2.11.0",
+    "universal-cookie": "^4.0.4",
     "vue": "^2.6.12",
     "vuex": "^3.6.2"
   },

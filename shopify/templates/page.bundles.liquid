@@ -1,15 +1,4 @@
-{% layout 'theme' %}
-
-<h1>Bundles Page</h1>
-<render-my-component
-:shopify-data="{
-  shopName: '{{ shop.name }}',
-  shopDomain: '{{ shop.domain }}',
-  shopEmail: '{{ shop.email }}',
-  shopCurrency: '{{ shop.currency }}'
-}"
->
-<div class="shopify-theme-lab__subline">
-  Vue component with slots and props
+<div id="layout-product">
+  <bundles-component></bundles-component>
+  <!-- NOTE: you need to keep the same page.[naming].liquid from old repo -->
 </div>
-</render-my-component>

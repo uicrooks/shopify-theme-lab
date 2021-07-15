@@ -1,19 +1,6 @@
-<section-header-nav></section-header-nav>
-    <!-- {% render 'layout-menu' %}
-  <div>
-    {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-        <a href="{{ routes.account_url }}">
-          {{ 'action.account' | t }}
-        </a>
-        {{ 'action.log_out' | t | customer_logout_link }}
-      {% else %}
-        {{ 'action.log_in' | t | customer_login_link }}
-        {{ 'action.register' | t | customer_register_link }}
-      {% endif %}
-    {% endif %}
-
-    <a href="{{ routes.cart_url }}">
-      {{ 'action.cart' | t }}
-    </a>
-  </div> -->
+<main-nav
+  :currency="{
+    'isoCode': '{{ cart.currency.iso_code }}',
+    'symbol': '{{ cart.currency.symbol }}'
+  }"
+></main-nav>

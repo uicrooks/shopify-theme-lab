@@ -6,10 +6,13 @@ const common = require('./webpack.common.js')
 
 module.exports = merge(common, {
   mode: 'development',
-  entry: [
-    path.resolve(__dirname, '../../src/main.js'),
-    path.resolve(__dirname, '../../node_modules/shopify-theme-lab-reloader/client.autoload') // add reloader to the bundle
-  ],
+  entry: {
+    main: [path.resolve(__dirname, '../../src/main.js'),path.resolve(__dirname, '../../node_modules/shopify-theme-lab-reloader/client.autoload')],
+    index: path.resolve(__dirname, '../../src/layout/index.js'),
+    page: path.resolve(__dirname, '../../src/layout/page.js'),
+    cart: path.resolve(__dirname, '../../src/layout/cart.js'),
+    account: path.resolve(__dirname, '../../src/layout/account.js')
+  },
   module: {
     rules: [
       ... (() => {
