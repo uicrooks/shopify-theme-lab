@@ -45,9 +45,10 @@
           <div class="button-container">
             <squatch-button
               class="big-cta-button"
-              text="Learn More"
               path="/pages/about-us"
-            />
+            >
+              Learn More
+            </squatch-button>
           </div>
         </div>
       </div>
@@ -56,7 +57,7 @@
 </template>
 
 <script>
-import SquatchButton from "@/vue/ui-elements/squatch-button";
+import SquatchButton from "@/vue/reusables/squatch-button";
 
 export default {
   name: "IndexSquatchDifference",

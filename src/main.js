@@ -71,6 +71,16 @@ if (window.location.pathname.includes("/products")) {
       key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
     Vue.component(name, component);
   });
+} else {
+  console.log("layout-index");
+  const components = require.context("./vue/templates/index", true, /\.(vue|js)$/);
+  components.keys().forEach(key => {
+    const component = components(key).default;
+    const name = component.name ?
+      component.name :
+      key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+    Vue.component(name, component);
+  });
 }
 
 Vue.filter("money", (val, currency, toFixedVal = 2) => {

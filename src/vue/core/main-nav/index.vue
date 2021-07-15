@@ -2,11 +2,13 @@
   <div class="main-nav-component">
     <!-- Mobile sidebar navigation -->
     <div class="mobile-nav">
-      <img
-        id="drsquatch-logo-mobile"
-        src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
-        alt="Dr.Squatch logo"
-      >
+      <a href="/">
+        <img
+          id="drsquatch-logo-mobile"
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
+          alt="Dr.Squatch logo"
+        >
+      </a>
       <div class="buttons">
         <cart :currency-obj="currency" />
         <b-icon
