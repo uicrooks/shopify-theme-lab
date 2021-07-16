@@ -30,10 +30,9 @@
           <div class="text-heading">
             {{ textHeading }}
           </div>
-          <span 
-            class="text"
-            v-html="text"
-          />
+          <span class="text">
+            <slot/>
+          </span>
         </div>
 
         <div 
@@ -216,7 +215,7 @@ export default {
 
       
       .text-heading {
-        font-weight: 600;
+        @include font-style-body-bold;
         margin-bottom: 10px;
 
         @media (min-width: $xl) {

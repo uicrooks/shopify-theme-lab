@@ -6,9 +6,10 @@
         header="Ingredients We Never Use"
         sub-header="Nature Good, Harmful Chemicals Bad"
         text-heading="We’re taking a stand."
-        text="Traditional brands, and even some so-called “natural” brands, use harsh chemicals and harmful ingredients that are brutal on your skin, hair and body. But at Dr. Squatch we’re proudly standing on top of the mountain, triumphantly yelling “Hell no!” and taking a stand."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/no_aluminum.jpg?v=1621972410"
-      />
+      >
+        Traditional brands, and even some so-called “natural” brands, use harsh chemicals and harmful ingredients that are brutal on your skin, hair and body. But at Dr. Squatch we’re proudly standing on top of the mountain, triumphantly yelling “Hell no!” and taking a stand.
+      </hero-display>
     </div>
 
     <squatch-difference-subnav 
@@ -20,9 +21,10 @@
         :reversed="true"
         header="The Sh*t List"
         sub-header="Ingredients We Never Use"
-        text="Meet our Sh*t List, a roster of nasty, harmful ingredients that we vow to never use in any of our products. We refuse to cut corners and we avoid both common and lesser-known chemicals, synthetics and preservatives that can have a range of adverse effects on your skin and body."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-men-everymorning.gif?v=1619543543"
-      />
+      >
+        Meet our Sh*t List, a roster of nasty, harmful ingredients that we vow to never use in any of our products. We refuse to cut corners and we avoid both common and lesser-known chemicals, synthetics and preservatives that can have a range of adverse effects on your skin and body.
+      </hero-display>
     </div>
 
     <div class="toxic-ingredients-table-display">
@@ -34,9 +36,10 @@
         :reversed="false"
         header="Rigorous Testing and Quality Control"
         sub-header="Safety First"
-        text="Not only do we give a damn about what we put in our products, but we’re committed to going the extra mile for safety. That’s why our products go through extensive testing and toxicology risk assessments, which is 'scientist' for “making sure they're safe for you.” We always want to make sure that both the individual ingredients and our final formulas are safe and effective."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-men-qc.svg?v=1619129137"
-      />  
+      >
+        Not only do we give a damn about what we put in our products, but we’re committed to going the extra mile for safety. That’s why our products go through extensive testing and toxicology risk assessments, which is 'scientist' for “making sure they're safe for you.” We always want to make sure that both the individual ingredients and our final formulas are safe and effective.
+      </hero-display>  
     </div>
 
     <difference-cardnav  
@@ -49,11 +52,12 @@
         header="Natural Hair Care"
         sub-header="Respect your roots"
         text-heading="Maintain your manly mane the natural way."
-        text="Cleanse, fortify and restore your hair and scalp without harsh chemicals."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/drs_ff-haircare.jpg?v=1623193441"
         cta-path="/collections/hair-care"
         cta-text="Shop Natural Hair Care"
-      />
+      >
+        Cleanse, fortify and restore your hair and scalp without harsh chemicals.
+      </hero-display>
     </div>
 
     <div class="guarantee">

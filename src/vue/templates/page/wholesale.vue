@@ -45,7 +45,13 @@
         </ul>
 
         <p class="application-link">
-          Fill out my <a href="https://dantestforms.wufoo.com/forms/mtpgldh1c0we1p" class="link">online form </a>
+          Fill out my 
+          <a 
+            href="https://dantestforms.wufoo.com/forms/mtpgldh1c0we1p" 
+            class="link"
+          >
+            online form 
+          </a>
         </p>
       </div>
     </div>

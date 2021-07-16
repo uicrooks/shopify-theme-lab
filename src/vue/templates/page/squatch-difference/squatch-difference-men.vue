@@ -6,9 +6,10 @@
         header="Performance Without Compromise"
         sub-header="Formulated For Men"
         text-heading="You've got needs. We've got the goods"
-        text="We’re harnessing the power of Mother Nature and putting it to work in all of our products, so they can work for you. How’s that for teamwork?"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/soap-inuse-closeup-2.png?v=1593397621"
-      />
+      >
+        We’re harnessing the power of Mother Nature and putting it to work in all of our products, so they can work for you. How’s that for teamwork?
+      </hero-display>
     </div>
 
     <squatch-difference-subnav 
@@ -20,9 +21,10 @@
         :reversed="true"
         header="Products Built For You"
         text-heading="We develop products specifically with men's needs in mind."
-        text="Let’s face it, men have different needs for their skin, pits and hair. Plus, they naturally deal with higher levels of sweat, dirt and stink on the regular. That’s why we’re dedicated to male-specific formulations that directly address the personal care demands of men everywhere."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/mh-1_copy.gif?v=1624577360"
-      />
+      >
+        Let’s face it, men have different needs for their skin, pits and hair. Plus, they naturally deal with higher levels of sweat, dirt and stink on the regular. That’s why we’re dedicated to male-specific formulations that directly address the personal care demands of men everywhere.
+      </hero-display>
     </div>
 
     <div class="toxic-ingredients-display">
@@ -165,9 +167,10 @@
         :reversed="true"
         header="Smell Like A Man"
         text-heading="We source the best nature has to offer to help you smell damn good."
-        text="Too many personal care products for men smell like the chemicals they're made of and give us flashbacks to our middel school locker room. You're a man, it's time to smell like one!"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/smell-like-a-man.png?v=1621972315"
-      />
+      >
+        Too many personal care products for men smell like the chemicals they're made of and give us flashbacks to our middel school locker room. You're a man, it's time to smell like one!
+      </hero-display>
     </div>
 
     <difference-cardnav  
@@ -180,11 +183,12 @@
         header="Natural Toothpaste"
         sub-header="Treat your pearly whites right"
         text-heading="Still brushing your teeth with synthetic goo?"
-        text="Fight cavities, protect enamel and gently whiten teeth without harsh chemicals."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-men-holding-toothpaste.svg?v=1619128825"
         cta-path="/products/toothpaste"
         cta-text="Shop Natural Toothpaste"
-      />
+      >
+        Fight cavities, protect enamel and gently whiten teeth without harsh chemicals.
+      </hero-display>
     </div>
 
     <div class="guarantee">
@@ -346,7 +350,7 @@ export default {
       }
 
       .men-ingredients-title {
-        font-size: 20px;
+        @include font-style-heading($size: 20px);
         margin-bottom: 15px;
 
         @media (min-width: $md) {
@@ -355,7 +359,8 @@ export default {
       }
 
       .men-ingredients-text {
-
+        @include font-style-body;
+        
         @media (min-width: $md) {
           font-size: 16px;
         }
@@ -370,8 +375,7 @@ export default {
           padding-bottom: 15px;
 
           .ingredient-title {
-            font-weight: 700;
-            color: black;
+            @include font-style-body-bold;
             margin: 0;
             padding-left: 10px;
           }

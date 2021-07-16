@@ -6,9 +6,10 @@
         header="We Give A Damn About Natural"
         sub-header="Raising The Bar"
         text-heading="Here's why you should too."
-        text="Too many products use synthetic detergents and harsh chemicals, wreaking havoc on your skin and body. At Dr. Squatch we’re dedicated to using the finest natural ingredients that will have you looking, smelling and feeling your best, day in and day out."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-natural-spearmint-basil.png?v=1618943722"
-      />
+      >
+        Too many products use synthetic detergents and harsh chemicals, wreaking havoc on your skin and body. At Dr. Squatch we’re dedicated to using the finest natural ingredients that will have you looking, smelling and feeling your best, day in and day out.
+      </hero-display>
     </div>
 
 
@@ -21,9 +22,10 @@
         :reversed="true"
         header='We Hold "Natural" To A Higher Standard'
         sub-header="We've Got Standards"
-        text='Sure, you hear the term “natural” a lot. But what does "natural" really mean? How do we measure it? Great questions, we’ve got you.'
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-natural-meaning.png?v=1618943851"
-      />
+      >
+        Sure, you hear the term “natural” a lot. But what does "natural" really mean? How do we measure it? Great questions, we’ve got you.
+      </hero-display>
     </div>
 
     <div class="toxic-ingredients-display">
@@ -86,9 +88,10 @@
         :sub-below="true"
         header="We’re serious about transparency"
         sub-header='Looking to learn more about all of our ingredients? <br><br><a href="/pages/glossary" style="color: #cc6328;">Check out our Ingredient Glossary.</a>'
-        text="At Dr. Squatch we’re not hiding behind false promises and we strive to be as transparent as possible with all of our products and ingredients. <br>That’s why every single ingredient that goes into each product is listed on its product page."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/were_serious_about_transparency.jpg?v=1621967909"
-      />
+      >
+        At Dr. Squatch we’re not hiding behind false promises and we strive to be as transparent as possible with all of our products and ingredients. <br>That’s why every single ingredient that goes into each product is listed on its product page.
+      </hero-display>
     </div>
 
     <div class="hero-display-middle middle-bottom">
@@ -96,9 +99,10 @@
         :reversed="true"
         header="The Truth About Natural Products"
         sub-header="Walking The Walk"
-        text="There are a lot of so-called “natural” products out there, but the truth is, many of them aren’t really that natural at all. That’s why we’re dedicated to sharing how we make our products and what we put in them."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Grapefruit-IPA-Select-4_2.jpg?v=1621965804"
-      />
+      >
+        There are a lot of so-called “natural” products out there, but the truth is, many of them aren’t really that natural at all. That’s why we’re dedicated to sharing how we make our products and what we put in them.
+      </hero-display>
     </div>
 
     <div class="scents-display">
@@ -191,11 +195,12 @@
         header="Natural Deodorant"
         sub-header="Give B.O. the Boot"
         text-heading="Our Odor-Squatching&reg; System attacks stink from every angle"
-        text="Squatch stank and detox from aluminum? Say less. Our powerful, natural deodorants contain charcoal powder to block odor, probiotics to help prevent the growth of odor-causing bacteria, and arrowroot powder to absorb moisture, leaving you feeling fresh all day. So go ahead and turn those bad pitts into Brad Pitts."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-natural-deo.png?v=1618944216"
         cta-path="/collections/deodorant"
         cta-text="Shop Natural Deodorant"
-      />
+      >
+        Squatch stank and detox from aluminum? Say less. Our powerful, natural deodorants contain charcoal powder to block odor, probiotics to help prevent the growth of odor-causing bacteria, and arrowroot powder to absorb moisture, leaving you feeling fresh all day. So go ahead and turn those bad pitts into Brad Pitts.
+      </hero-display>
     </div>
 
     <div class="guarantee">

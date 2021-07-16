@@ -5,9 +5,10 @@
         :reversed="false"
         header="The Squatch Difference"
         sub-header="About Us"
-        text="We craft natural, high-performance personal care products in manly scents with only the finest ingredients Mother Nature has to offer."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-landing-1.svg?v=1619129565"
-      />
+      >
+        We craft natural, high-performance personal care products in manly scents with only the finest ingredients Mother Nature has to offer.
+      </hero-display>
     </div>
 
     <div class="mission-display">
@@ -31,9 +32,10 @@
         :reversed="true"
         sub-header="The Problem"
         header="The Personal Care Industry Needs Cleaning"
-        text="For generations traditional mass-market brands have been stripping natural ingredients from personal care products to make production cheaper and faster. Men have been forced to settle for lackluster products that are packed with harsh ingredients, chemical irritants and unnatural smells. But one courageous Squatch hadn’t given up on natural products."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Bundles_home-2.jpg?v=1616626929"
-      />    
+      >
+        For generations traditional mass-market brands have been stripping natural ingredients from personal care products to make production cheaper and faster. Men have been forced to settle for lackluster products that are packed with harsh ingredients, chemical irritants and unnatural smells. But one courageous Squatch hadn’t given up on natural products.
+      </hero-display>    
     </div>
 
     <div class="hero-display-middle bottom">
@@ -41,9 +43,10 @@
         :reversed="false"
         sub-header="Changing The Game"
         header="The Squatch Story"
-        text="Inspired by a love of natural products, our founder Jack began creating his own natural soap in his garage. He also knew there must be other guys out there who wanted better products with natural ingredients and manly scents. With that, Dr. Squatch was born! Millions of happy customers later, the Dr. Squatch mission remains the same - to raise the bar for natural products and change the way men approach their personal care."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-jack.png?v=1618880952"
-      />    
+      >
+        Inspired by a love of natural products, our founder Jack began creating his own natural soap in his garage. He also knew there must be other guys out there who wanted better products with natural ingredients and manly scents. With that, Dr. Squatch was born! Millions of happy customers later, the Dr. Squatch mission remains the same - to raise the bar for natural products and change the way men approach their personal care.
+      </hero-display>    
     </div>
 
 
@@ -62,11 +65,12 @@
         :reversed="true"
         sub-header="Bag A Bundle"
         header="Upgrade Your Whole Routine"
-        text="Take your whole routine up a notch with our curated bundles of best-selling Squatch favorites."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/drs_products_bathroom.jpg?v=1621972629"
         cta-path="/pages/bundle-offers"
         cta-text="Shop Bundles"
-      />    
+      >
+        Take your whole routine up a notch with our curated bundles of best-selling Squatch favorites.
+      </hero-display>    
     </div>
     <div class="guarantee">
       <sudisfaction-guarantee />
