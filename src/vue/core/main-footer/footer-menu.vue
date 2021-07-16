@@ -77,31 +77,31 @@ export default {
       shopMenu: [
         {
           name: "Bar Soaps",
-          path: "/test",
+          path: "/collections/bar-soaps",
         },
         {
           name: "Deodorant",
-          path: "/test",
+          path: "/collections/deodorant",
         },
         {
           name: "Toothpaste",
-          path: "/test",
+          path: "/collections/toothpaste",
         },
         {
           name: "Hair Care",
-          path: "/test",
+          path: "/collections/hair-care",
         },
         {
           name: "Bundles",
-          path: "/test",
+          path: "/collections/bundle-offers",
         },
         {
           name: "Subscription",
-          path: "/test",
+          path: "/pages/subscription-flow",
         },
         {
           name: "Loyalty Rewards",
-          path: "/test",
+          path: "/pages/loyalty-rewards",
         },
       ],
       infoMenu: [
@@ -123,17 +123,17 @@ export default {
         },
         {
           name: "Blog",
-          path: "/test",
+          path: "https://blog.drsquatch.com/",
         },
         {
           name: "Gift Card Balance",
-          path: "/test",
+          path: "/pages/check-gift-card-balance",
         },
       ],
       helpMenu: [
         {
           name: "FAQ",
-          path: "/test",
+          path: "https://help.drsquatch.com/",
         },
         {
           name: "Shipping",
@@ -145,7 +145,7 @@ export default {
         },
         {
           name: "Contact Us",
-          path: "/test",
+          path: "https://help.drsquatch.com/",
         },
         {
           name: "Terms of Use",
