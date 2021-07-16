@@ -16,7 +16,6 @@
         <h1 class="header">
           Not All Heroes Wear Capes
         </h1>
-
         <p class="text">
           At Dr. Squatch, we’re proud that our natural products are made right here in the USA. We want to honor the brave heroes who work tirelessly on the frontlines to keep us and our great country safe. 
         </p>
@@ -77,15 +76,56 @@
                 style="background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/military.jpg?v=1601620020')"
               >
               </div>
-              <h3>
+              <h3 class="card-title">
                 Military
               </h3>
-              <p>
+              <p class="card-description">
                 Active Duty Personnel, Veterans & Dependents 
               </p>
+              <button class="code-btn">
+                Get Code
+              </button>
             </div>
           </div>
-        </div>
+
+          <div class="bottom-card">
+            <div class="bottom-card-body">
+              <div
+                class="card-image"
+                style="background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/firefighter.jpg?v=1601620020')"
+              >
+              </div>
+              <h3 class="card-title">
+                First Responder
+              </h3>
+              <p class="card-description">
+                Law Enforcement, Firefighters, EMTs & EMS
+              </p>
+              <button class="code-btn">
+                Get Code
+              </button>
+            </div>
+          </div>
+
+          <div class="bottom-card">
+            <div class="bottom-card-body">
+              <div
+                class="card-image"
+                style="background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/medical.png?v=1589310169')"
+              >
+              </div>
+              <h3 class="card-title">
+                Medical
+              </h3>
+              <p class="card-description">
+                Doctors, Nurses, PAs & Hospital Staff
+              </p>
+              <button class="code-btn">
+                Get Code
+              </button>
+            </div>
+          </div>
+        </div>        
       </div>
     </div>
   </div>
@@ -234,6 +274,7 @@ export default {
         display: flex;
         flex-flow: column nowrap;
         width: 100%;
+        margin: 0 0 30px 0;
 
         @media(min-width: $md) {
           flex-flow: row nowrap;
@@ -262,11 +303,29 @@ export default {
               background-position: center;
             }
 
+            .card-title {
+              max-width: 200px;
+              margin: 18px auto 10px;
+              @include font-style-heading($size: 16px);
+            }
+
             .card-description {
               max-width: 200px;
               margin: auto;
               height: 43px;
-              @include font-style-body;
+              @include font-style-body($size: 15px, $color: $brown);
+            }
+
+            .code-btn {
+              text-align: center;
+              padding: 0px;
+              height: 54px;
+              width: 121px;
+              cursor: pointer;
+              background-color: $orange;
+              border: 2px solid transparent;
+              border-radius: 5px;
+              @include font-style-heading($size: 1rem, $color: $white);
             }
           }
         }
