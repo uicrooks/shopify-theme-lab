@@ -17,7 +17,7 @@
           <div class="info-row">
             <h4>{{ collection.title | singularize }}</h4>
             <h2>{{ product.title }}</h2>
-            <p>{{ product.description }}</p>
+            <p v-html="product.description"></p>
           </div>  
           <div class="info-row pricing">
             <div class="pricing-slot">

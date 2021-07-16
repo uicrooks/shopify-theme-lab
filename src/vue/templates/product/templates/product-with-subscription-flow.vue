@@ -1,62 +1,73 @@
 <template>
-  <div class="product-individual-only-with-subscription-component">
+  <div class="product-with-subscription-flow-component">
     <product-base-template
       :product="product"
       :collection="collection"
     >
       <template #page-banner>
         <new-look-banner
+          v-if="showBanner"
           :has-old-packaging="hasOldPackaging"
         />
       </template>
       <template #pricing>
-        {{ pricingVerbatim }}
-        <span
-          v-if="isSubscription"
-          class="discount"
-        >
-          (Save {{ totalDiscountForSubscription | money("$", 0) }}!)
-        </span>
+        <div v-if="isSubscription">
+          {{ subscriptionPrice | money("$", 0) }} / {{ unit }}
+          <span class="discount">
+            (Save {{ discountForSubscription | money("$", 0) }}!)
+          </span>
+        </div>
+        <div v-else>
+          {{ product.price | money("$", 0) }} / {{ unit }}
+          <span
+            v-if="product.compare_at_price && product.price !== product.compare_at_price"
+            class="original-pricing"
+          >
+            {{ product.compare_at_price | money("$", 0) }}
+          </span>
+        </div>
       </template>
       <template #product-options>
         <product-feature-descriptions
           :handle="product.handle"
           :items="iconDescriptionItems"
         />
-        <div v-if="!isSubscription">
-          <product-quantity-options
-            v-if="isBarsoap"
-            product-unit="Soap"
-            :quantity-options="quantityOptions"
-            :selected="quantity"
-            class="product-quantity-options"
-            @quantitySelected="selectQuantity"
-          />
-          <product-quantity-selector
-            v-else
-            :quantity="quantity"
-            @quantityUpdated="selectQuantity"
-          />
-        </div>
+        <product-quantity-options
+          v-if="productIdentityString === 'barsoap'"
+          product-unit="soap"
+          :quantity-options="[2, 1, 3]"
+          :selected="quantity"
+          @quantitySelected="selectQuantity"
+        />
+        <product-quantity-selector
+          v-else
+          :quantity="quantity"
+          @quantityUpdated="selectQuantity"
+        />
         <product-purchase-type-selector
           :is-subscription="isSubscription"
           :product="product"
-          :quantity="quantity"
-          :total-discount-for-subscription="totalDiscountForSubscription"
-          class="purchase-type-selector"
+          :discount-for-subscription="discountForSubscription"
           @updatePurchaseType="isSubscription = !isSubscription"
         />
       </template>
       <template #cta-banner>
         <div class="free-shipping-banner">
-          {{ freeShippingVerbatim }}
+          Free Shipping over ${{ freeShippingMinimum }}
         </div>
       </template>
       <template #cta-button>
         <squatch-button
+          v-if="isSubscription"
+          path="/pages/subscription-flow"
+        >
+          Subscribe & Save
+        </squatch-button>
+        <squatch-button
+          v-else
           @clicked="addToCart"
         >
-          {{ addToCartVerbatim }}
+          {{ added ? "Add More" : "Add To Cart" }}
         </squatch-button>
       </template>
     </product-base-template>
@@ -69,7 +80,7 @@ import ProductIdentifier from "@/vue/services/product-identifier";
 import ProductDetails from "@/configs/product-details";
 
 export default {
-  name: "ProductIndividualOnlyWithSubscription",
+  name: "ProductWithSubscriptionFlow",
   props: {
     product: {
       type: Object,
@@ -86,15 +97,20 @@ export default {
     return {
       productIdentityTags: [],
       productIdentityString: "",
-      isSubscription: false,
       quantity: 1,
-      quantityOptions: [2, 1, 3],
       added: false,
+      isSubscription: false
     };
   },
   computed: {
-    isBarsoap() {
-      return this.productIdentityString === "barsoap";
+    showBanner() {
+      return true;
+    },
+    hasOldPackaging() {
+      return [].includes(this.productIdentityTags[0]);
+    },
+    freeShippingMinimum() {
+      return this.$store.state.core.freeShippingMinimum;
     },
     unit() {
       return ProductDetails.units[this.productIdentityString];
@@ -105,40 +121,16 @@ export default {
     discountForSubscription() {
       return ProductDetails.discountForSubscription[this.productIdentityString];
     },
-    freeShippingVerbatim() {
-      const verbatim = this.isSubscription ? "for life" : `over $${this.$store.state.core.freeShippingMinimum}`;
-      return `Free Shipping ${verbatim}`;
-    },
-    addToCartVerbatim() {
-      if (this.isSubscription) {
-        return "Subscribe & Save";
-      }
-      const totalPrice = this.product.price * this.quantity;
-      return this.added ? "Add More" : `${this.$options.filters.money(totalPrice, "$", 0)} | Add To Cart`;
-    },
-    pricingVerbatim() {
-      const val = this.isSubscription ? this.product.price - this.discountForSubscription : this.product.price;
-      const price = this.$options.filters.money(val, "$", 0);
-      return this.unit ? `${price} / ${this.unit}` : price;
-    },
-    totalDiscountForSubscription() {
-      return this.discountForSubscription * this.quantity;
-    },
-    hasOldPackaging() {
-      return this.product.title && this.product.title === "Fresh Falls";
+    subscriptionPrice() {
+      return this.product.price - this.discountForSubscription; 
     }
   },
   methods: {
     selectQuantity(qty) {
-      console.log(qty);
       this.quantity = qty;
     },
     async addToCart() {
-      if (this.isSubscription) {
-        window.location = "/pages/subscription-flow";
-        return;
-      }
-      const added = await CartService.addItem(this.product);
+      const added = await CartService.addItem(this.product, this.quantity);
       if (added) {
         this.added = true;
         const cart = await CartService.initCart();
@@ -154,7 +146,7 @@ export default {
   mounted() {
     this.productIdentityTags = ProductIdentifier.identify(this.product);
     this.productIdentityString = this.productIdentityTags.join("-");
-    if (this.isBarsoap) {
+    if (this.productIdentityString === "barsoap") {
       this.quantity = 2;
     }
   }
@@ -164,11 +156,17 @@ export default {
 <style lang="scss" scoped>
 @import "@/styles/main.scss";
 
-.product-individual-only-with-subscription-component {
+.product-with-subscription-flow-component {
 
   .discount {
     margin-left: 8px;
-    @include font-style-body($weight: 800, $color: $tan);
+    @include font-style-body($weight: 600, $color: $gray);
+  }
+
+  .original-pricing {
+    margin-left: 8px;
+    text-decoration: line-through;
+    @include font-style-body($weight: 600, $color: $gray);
   }
 }
 </style>

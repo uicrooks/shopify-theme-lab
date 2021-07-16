@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="product-card-component"
-  >
+  <div class="product-card-component">
     <div class="image-box">
       <a :href="productDetailPageLink">
         <img
@@ -19,9 +17,10 @@
       <div class="yotpo">
         <span>review stuff here</span>
       </div>
-      <p class="product-description">
-        {{ product.description }}
-      </p>
+      <p
+        v-html="product.description"
+        class="product-description"
+      />
       <div class="product-pricing">
         {{ product.price | money("$") }}
         <span

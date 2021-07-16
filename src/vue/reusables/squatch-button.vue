@@ -1,6 +1,7 @@
 <template>
   <div
     class="squatch-button-component"
+    :class="{'disabled': disabled}"
     @click="takeAction"
   >
     <slot />
@@ -15,6 +16,11 @@ export default {
       type: String,
       required: false,
       default: ""
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   methods: {
@@ -42,6 +48,11 @@ export default {
   @include font-style-heading($size: 15px, $color: $white);
 
   &:hover {
+    background-color: $orange-lighten;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
     background-color: $orange-lighten;
   }
 }

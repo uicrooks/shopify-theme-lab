@@ -14,12 +14,14 @@
         icon="chevron-right"
       />
       <a
+        v-if="collection.title && collection.path"
         :href="collection.path"
         class="link-label"
       >
         {{ collection.title | singularize }}
       </a>
       <b-icon
+        v-if="collection.title && collection.path"
         class="chevron-icon"
         icon="chevron-right"
       />

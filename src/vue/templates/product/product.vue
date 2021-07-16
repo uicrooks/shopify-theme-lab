@@ -1,12 +1,24 @@
 <template>
   <div class="product-component">
-    <product-individual-only-with-subscription
-      v-if="individualOnlyWithSubscription"
+    <product-with-subscription-flow
+      v-if="subscriptionFlowProduct"
       :product="product"
       :collection="collection"
     />
-    <product-groupable-with-subscription
-      v-else-if="groupableWithSubscription"
+    <product-with-in-page-subscription
+      v-else-if="inPageSubscriptionProduct"
+      :product="product"
+      :collection="collection"
+      :subscription-collection="subscriptionCollection"
+    />
+    <product-with-in-page-custom-subscription
+      v-else-if="inPageCustomSubscriptionProduct"
+      :product="product"
+      :collection="collection"
+      :subscription-collection="subscriptionCollection"
+    />
+    <product-onetime-only
+      v-else
       :product="product"
       :collection="collection"
     />
@@ -19,11 +31,6 @@ import ProductIdentifier from "@/vue/services/product-identifier";
 export default {
   name: "Product",
   props: {
-    handle: {
-      type: String,
-      required: true,
-      default: "",
-    },
     productDataString: {
       type: String,
       required: true,
@@ -39,25 +46,46 @@ export default {
       required: true,
       default: "",
     },
+    subscriptionCollection: {
+      type: Object,
+      required: false,
+      default: () => {}
+    },
+    test: {
+      type: String,
+      required: false,
+      default: ""
+    }
   },
   computed: {
     product() {
       return JSON.parse(this.productDataString);
     },
-    productIdentity() {
+    productIdentityTags() {
       return ProductIdentifier.identify(this.product);
     },
-    individualOnlyWithSubscription() {
-      return ["barsoap", "haircare"].includes(this.productIdentity[0]);
+    productIdentityString() {
+      return this.productIdentityTags ? this.productIdentityTags.join("-") : "";
     },
-    groupableWithSubscription() {
-      return ["toothpaste", "deodorant"].includes(this.productIdentity[0]);
+    subscriptionFlowProduct() {
+      return ["barsoap", "haircare-kit", "haircare-shampoo", "haircare-conditioner"].includes(this.productIdentityString);
     },
+    inPageSubscriptionProduct() {
+      return ["toothpaste-kit"].includes(this.productIdentityString);
+    },
+    inPageCustomSubscriptionProduct() {
+      return ["deodorant"].includes(this.productIdentityString);
+    },
+    // onetimeOnlyProduct() {
+    //   return ["toothpaste", "deodorant-bundle", "deodorant-pack", "booster", "cologne", "beard", "sanitizer-pack", "sanitizer", "liquidsoap-pack", "liquidsoap", "candle", "gear"].includes(this.productIdentityString);
+    // }
   },
   mounted() {
+    console.log(this.product);
+    console.log(this.productIdentityTags);
     console.log(this.collection);
-    console.log(this.handle, this.product);
     console.log(JSON.parse(this.collectionsData));
-  },
+    console.log(this.subscriptionCollection);
+  }
 };
 </script>
