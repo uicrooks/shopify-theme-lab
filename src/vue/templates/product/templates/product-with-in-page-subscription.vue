@@ -46,7 +46,7 @@
       </template>
       <template #cta-banner>
         <div class="free-shipping-banner">
-          Free Shipping over ${{ freeShippingMinimum }}
+          Free Shipping over {{ freeShippingMinimum | money("$", 0) }}
         </div>
       </template>
       <template #cta-button>
