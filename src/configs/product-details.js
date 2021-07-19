@@ -95,7 +95,7 @@ export default {
       _recurring_shipping_interval_frequency: 3,
       _inventory_type: true
     },
-    "deodorant-subscription-2-sticks": {
+    "deodorant-subscription-3-sticks": {
       type: "deodorant",
       subscription_id: 280396,
       discount_variant_id: 32890840678505,
