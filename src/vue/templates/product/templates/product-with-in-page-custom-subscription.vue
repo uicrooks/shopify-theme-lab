@@ -154,6 +154,7 @@ export default {
           return !ProductIdentifier.checkIfGrouped(product);
         });
       }
+      return [];
     }
   },
   methods: {
@@ -161,6 +162,15 @@ export default {
       this.quantity = qty;
     },
     selectOptions(option, add = true) {
+      function findMatchingIndex(option, selectedOptions) {
+        for (let i = 0; i < selectedOptions.length; i++) {
+          if (selectedOptions[i].handle == option.handle) {
+            return i;
+          }
+        }
+        return null;
+      }
+
       if (add) {
         this.selectedCustomOptions.push(option);
       } else {
@@ -168,17 +178,7 @@ export default {
         if (index !== null) {
           this.selectedCustomOptions.splice(index, 1);
         }
-
-        function findMatchingIndex(option, selectedOptions) {
-          for (let i = 0; i < selectedOptions.length; i++) {
-            if (selectedOptions[i].handle == option.handle) {
-              return i;
-            }
-          }
-          return null;
-        }
       }
-      console.log(this.selectedCustomOptions);
       this.quantity = this.selectedCustomOptions.length;
     },
     async addToCart() {

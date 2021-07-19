@@ -465,10 +465,7 @@ export default {
     console.log("main nav");
     console.log(window);
     console.log(this.cart);
-  },
-  async mounted() {
-    console.log(window);
-  },
+  }
 };
 </script>
 
