@@ -1,5 +1,5 @@
 const state = () => ({
-  freeShippingMinimum: 40
+  freeShippingMinimum: 4000
 });
 
 const getters = {
