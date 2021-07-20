@@ -1,14 +1,18 @@
 <template>
   <div class="cart-component">
-    <b-icon
-      aria-controls="cart"
-      :aria-expanded="isOpen"
-      icon="cart"
-      font-scale="2"
+    <div
       class="cart-icon"
       @click="toggleCart"
-    />
-    <span>{{ numberOfItems }}</span>
+    >
+      <i
+        aria-controls="cart"
+        :aria-expanded="isOpen"
+        class="icon-squatch icon-cart"
+      />
+      <div class="item-total">
+        <span>{{ numberOfItems }}</span>
+      </div>
+    </div>
     <b-sidebar
       id="cart"
       v-model="isOpen"
@@ -25,10 +29,9 @@
       <template #default="{ hide }">
         <div class="cart-title">
           Your Cart
-          <b-icon 
-            icon="x" 
-            font-scale="1.5" 
-            @click="hide" 
+          <i
+            class="icon-squatch icon-cross icon-size-xs"
+            @click="hide"
           />
         </div>
         <div
@@ -45,7 +48,8 @@
             :value="subtotal"
             :max="freeShippingMinimum"
             height="7px"
-            striped animated
+            striped
+            animated
             class="progress-bar-wrapper"
             :class="{'fulfilled': amountTillFreeShipping <= 0}"
           />
@@ -190,8 +194,38 @@ export default {
 @import "@/styles/main.scss";
 
 .cart-component {
+  margin-right: 25px;
+
+  @include layout-md {
+    margin-right: 15px;
+  }
+
   .cart-icon {
-    cursor: pointer;
+    position: relative;
+    
+    .icon-cart {
+      cursor: pointer;
+  
+      &:hover {
+        color: $orange;
+      }
+    }
+
+    .item-total {
+      position: absolute;
+      top: -10px;
+      left: 18px;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: $orange;
+      text-align: center;
+      @include font-style-body($color: $white);
+    }
   }
 
   .cart-title {
@@ -202,6 +236,13 @@ export default {
     padding: 15px 20px;
     background-color: $black;
     @include font-style-heading($size: 23px, $color: $white);
+
+    .icon-cross {
+
+      &:hover {
+        color: #d9d9d9;
+      }
+    }
   }
 
   .free-shipping-display {

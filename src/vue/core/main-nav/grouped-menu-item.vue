@@ -87,44 +87,47 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.menu-item {
-  width: 100%;
-  padding: 11px 16px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  position: relative;
+.grouped-menu-item-component {
 
-  .badge {
-    font-size: 10px;
-    font-weight: 400;
-    background-color: $orange;
-    border-radius: 11px;
-    padding: 4px 7px; 
-    text-transform: uppercase;
-    margin-left: 8px;
-  }
+  .menu-item {
+    width: 100%;
+    padding: 16px;
+    cursor: pointer;
+    position: relative;
+    @include font-style-body($weight: 700, $color: inherit);
 
-  .arrow-icon {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-  }
+    .badge {
+      font-size: 10px;
+      font-weight: 400;
+      background-color: $orange;
+      border-radius: 11px;
+      padding: 4px 7px; 
+      text-transform: uppercase;
+      margin-left: 8px;
+    }
 
-  &:hover {
-    color: $orange;
-  }
-
-  &.sub {
-    justify-content: flex-start;
-    background-color: #F2F2F2;
+    .arrow-icon {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
 
     &:hover {
       color: $orange;
-      background-color: rgba(204, 99, 40, .1);
+    }
+
+    &.sub {
+      justify-content: flex-start;
+      background-color: #F2F2F2;
+
+      &:hover {
+        color: $orange;
+        background-color: rgba(204, 99, 40, .1);
+      }
     }
   }
 }
+
 </style>
 
 
