@@ -55,7 +55,7 @@ export default {};
     text-align: center;
 
     .title {
-      font-family: $font-heading;
+      @include font-style-heading($size: 16px);
       font-size: 1rem;
       margin-bottom: 8px;
       margin-top: 12px;
@@ -63,7 +63,7 @@ export default {};
     }
 
     .text {
-      font-family: $font-body;
+      @include font-style-body($size: 16px);
       font-size: 1rem;
       color: $brown;
     }

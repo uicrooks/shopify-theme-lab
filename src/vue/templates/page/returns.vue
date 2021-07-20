@@ -12,11 +12,17 @@
           We understand that everyone is different — we're happy to help you find a replacement scent that you absolutely love. If we're not a great match, no hard feelings! We'll refund your order!
         </p>
         <p class="text">
-          If you aren't 100% satisfied with your Dr. Squatch products, please <a class="link" href="https://help.drsquatch.com/"><strong>contact us</strong></a> within 30 days of your order delivery date!
+          If you aren't 100% satisfied with your Dr. Squatch products, please 
+          <a 
+            class="link" 
+            href="https://help.drsquatch.com/"
+          >
+            <strong>contact us</strong>
+          </a> 
+          within 30 days of your order delivery date!
         </p>
       </div>
     </div>
-
   </div>
 </template>
 

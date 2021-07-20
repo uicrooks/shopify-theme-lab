@@ -74,8 +74,7 @@
               <div
                 class="card-image"
                 style="background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/military.jpg?v=1601620020')"
-              >
-              </div>
+              />
               <h3 class="card-title">
                 Military
               </h3>
@@ -93,8 +92,7 @@
               <div
                 class="card-image"
                 style="background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/firefighter.jpg?v=1601620020')"
-              >
-              </div>
+              />
               <h3 class="card-title">
                 First Responder
               </h3>
@@ -112,8 +110,7 @@
               <div
                 class="card-image"
                 style="background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/medical.png?v=1589310169')"
-              >
-              </div>
+              />
               <h3 class="card-title">
                 Medical
               </h3>

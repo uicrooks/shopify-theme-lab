@@ -5,7 +5,7 @@
     />
 
     <div class="card-balance-container">
-      <div id="GiftWizard-account__div"></div>
+      <div id="GiftWizard-account__div" />
     </div>
   </div>
 </template>

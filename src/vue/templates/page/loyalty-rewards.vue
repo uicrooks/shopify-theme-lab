@@ -1,6 +1,9 @@
 <template>
   <div class="loyalty-rewards-component">
-    <div class="yotpo-widget-instance" data-yotpo-instance-id="25655"></div>
+    <div 
+      class="yotpo-widget-instance" 
+      data-yotpo-instance-id="25655" 
+    />
   </div>
 </template>
 
