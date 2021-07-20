@@ -130,9 +130,9 @@
           class="menu-item"
         >
           Products
-
-          <b-icon 
-            :icon="productsSubMenuOpen ? 'x' : 'chevron-down'" 
+          <i 
+            class="icon-squatch icon-size-xs"
+            :class="[productsSubMenuOpen ? 'icon-cross' : 'icon-chevron-down']"
           />
         </div>
       </div>
@@ -165,16 +165,37 @@
           Log In
         </div>
         <div 
-          v-b-toggle.currency-options 
+          v-b-toggle.currency-menu
           class="menu-item"
         >
-          USD
+          <div class="currency-box">
+            <img
+              :src="currencySelected.imageSrc"
+              :alt="`${currencySelected.currency} image`"
+              class="currency-flag-image"
+            >
+            <span class="currency">
+              {{ currencySelected.currency }}
+            </span>
+          </div>
           <b-icon icon="caret-down-fill" />
+          <b-collapse id="currency-menu"> 
+            <div
+              v-for="(currencyOption, index) of currencyMenu"
+              :key="`currecny-option-${index}`"
+              class="currency-option"
+            >
+              <img
+                :src="currencyOption.imageSrc"
+                :alt="`${currencyOption.currency} image`"
+                class="currency-flag-image"
+              >
+              <span class="currency">
+                {{ currencyOption.currency }}
+              </span>
+            </div>
+          </b-collapse>
         </div>
-
-        <b-collapse id="curreny-options"> 
-          CAD 
-        </b-collapse>
         <cart :currency-obj="currency" />
       </div>
     </div>
@@ -254,6 +275,10 @@ export default {
   },
   data() {
     return {
+      currencyOptions: [
+        { currency: "USD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_the_U.S..svg?v=1613061492" },
+        { currency: "CAD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_Canada.svg?v=1613061492" },
+      ],
       soapMenu: {
         name: "Bar Soaps",
         isOpen: false,
@@ -450,6 +475,18 @@ export default {
     loggedIn() {
       return window.theme.customerLoggedIn;
     },
+    currencySelected() {
+      const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
+      return this.currencyOptions.filter(option => {
+        return currency === option.currency;
+      })[0];
+    },
+    currencyMenu() {
+      const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
+      return this.currencyOptions.filter(option => {
+        return currency !== option.currency;
+      });
+    }
   },
   methods: {
     navigateTo(path) {
@@ -463,8 +500,8 @@ export default {
   },
   mounted() {
     console.log("main nav");
-    console.log(window);
     console.log(this.cart);
+    console.log(this.currency);
   }
 };
 </script>
@@ -596,8 +633,7 @@ export default {
       flex: 1;
 
       .subscribe-button {
-        padding: 15px 22px;
-        @include font-style-heading($size: 14px, $weight: 400, $color: $white);
+        width: 124px;
       }
     }
 
@@ -614,18 +650,63 @@ export default {
     }
 
     .menu-item {
+      position: relative;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
       margin: 0 16px;
       cursor: pointer;
-      @include font-style-body();
+      @include font-style-body($weight: 600);
 
       &:hover {
         color: $orange;
       }
+
+      .icon-squatch {
+        margin-left: 7px;
+      }
+
+      .currency-box {
+        margin-right: 2px;
+
+        .currency-flag-image {
+          width: 32px;
+          height: auto;
+        }
+
+        .currency {
+          text-align: center;
+          @include font-style-body($size: 11px, $color: inherit);
+        }
+      }
     }
   }
 
-  #currency-options {
+  #currency-menu {
     position: absolute;
+    top: 28px;
+    padding: 14px;
+    background-color: $off-white;
+
+    .currency-option {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      .currency-flag-image {
+        width: 32px;
+        height: auto;
+      }
+
+      .currency {
+        margin-left: 3px;
+        @include font-style-body($size: 12px);
+
+        &:hover {
+          color: $orange;
+        }
+      }
+    }
   }
 
   #products-menu {
