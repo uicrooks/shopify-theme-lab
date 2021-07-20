@@ -14,7 +14,8 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': path.resolve(__dirname, '../../src/')
+      '@': path.resolve(__dirname, '../../src/'),
+      '$': path.resolve(__dirname, '../../shopify/')
     }
   },
   module: {
@@ -30,6 +31,18 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8192
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '/'
             }
           }
         ]
