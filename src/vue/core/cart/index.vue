@@ -48,7 +48,8 @@
             :value="subtotal"
             :max="freeShippingMinimum"
             height="7px"
-            striped animated
+            striped
+            animated
             class="progress-bar-wrapper"
             :class="{'fulfilled': amountTillFreeShipping <= 0}"
           />
@@ -193,6 +194,11 @@ export default {
 @import "@/styles/main.scss";
 
 .cart-component {
+  margin-right: 25px;
+
+  @include layout-md {
+    margin-right: 15px;
+  }
 
   .cart-icon {
     position: relative;
@@ -232,7 +238,7 @@ export default {
     @include font-style-heading($size: 23px, $color: $white);
 
     .icon-cross {
-      
+
       &:hover {
         color: #d9d9d9;
       }

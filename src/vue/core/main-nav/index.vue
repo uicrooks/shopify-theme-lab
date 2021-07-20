@@ -11,11 +11,9 @@
       </a>
       <div class="buttons">
         <cart :currency-obj="currency" />
-        <b-icon
+        <i
           v-b-toggle.main-nav-sidebar
-          icon="list"
-          font-scale="2"
-          class="burger-icon"
+          class="icon-squatch icon-burger"
         />
       </div>
 
@@ -36,56 +34,102 @@
               class="account-icon-box" 
               @click="navigateTo('/account/login')"
             >
-              <b-icon 
-                icon="person-fill" 
-                font-scale="2.5" 
-                class="person-icon" 
-              />
+              <i class="icon-squatch icon-user m-auto" />
               <span>Log In</span>
             </div>
           </div>
         </template>
 
         <template #default>
-          <button
-            class="big-cta-link"
-            @click="navigateTo('/pages/subscription-flow')"
-          >
-            <span class="title"> The Subscription </span>
-            Save 15% on your favorite soap and get free shipping for life!
-          </button>
-          <button
-            class="big-cta-link maroon"
-            @click="navigateTo('/pages/bundle-offers')"
-          >
-            <span class="title"> Starter Bundles </span>
-            Your choice of our curated best sellers
-          </button>
+          <div class="sidebar-main-header">
+            <div class="currency-display">
+              <div
+                class="menu-item"
+                :class="isCurrencyMenuOpen ? null : 'collapsed'"
+                :aria-expanded="isCurrencyMenuOpen ? 'true' : 'false'"
+                aria-controls="currency-menu-in-sidebar"
+                @click="isCurrencyMenuOpen = !isCurrencyMenuOpen"
+              >
+                <div class="currency-selected">
+                  You're Shopping In
+                  <div class="currency-box">
+                    <img
+                      :src="currencySelected.imageSrc"
+                      :alt="`${currencySelected.currency} image`"
+                      class="currency-flag-image"
+                    >
+                    <span class="currency">
+                      {{ currencySelected.currency }}
+                    </span>
+                  </div>
+                </div>
+                <b-icon
+                  class="arrow-icon"
+                  :icon="isCurrencyMenuOpen ? 'chevron-up' : 'chevron-down'"
+                /> 
+              </div>
+              <b-collapse
+                id="currency-menu-in-sidebar"
+                v-model="isCurrencyMenuOpen"
+              >
+                <div
+                  v-for="(currencyOption, index) of currencyMenu"
+                  :key="`currecny-option-${index}`"
+                  class="currency-option"
+                >
+                  <img
+                    :src="currencyOption.imageSrc"
+                    :alt="`${currencyOption.currency} image`"
+                    class="currency-flag-image"
+                  >
+                  <span class="currency">
+                    {{ currencyOption.currency }}
+                  </span>
+                </div>
+              </b-collapse>
+            </div>
+            <!-- <button
+              class="big-cta-link"
+              @click="navigateTo('/pages/subscription-flow')"
+            >
+              <span class="title"> The Subscription </span>
+              Save 15% on your favorite soap and get free shipping for life!
+            </button>
+            <button
+              class="big-cta-link maroon"
+              @click="navigateTo('/pages/bundle-offers')"
+            >
+              <span class="title"> Starter Bundles </span>
+              Your choice of our curated best sellers
+            </button> -->
+          </div>
 
-          <main-nav-grouped-menu-item
-            :name="soapMenu.name"
-            :is-open="soapMenu.isOpen"
-            :sub-menu-items="soapMenu.subMenuItems"
-            @toggle="soapMenu.isOpen = !soapMenu.isOpen"
-          />
-          <main-nav-single-menu-item
-            v-for="(item, index) of singleMenuItems"
-            :key="`single-menu-item-${index}`"
-            :name="item.name"
-            :badge="item.badge"
-            :path="item.path"
-          />
-          <main-nav-grouped-menu-item
-            :name="moreMenu.name"
-            :is-open="moreMenu.isOpen"
-            :sub-menu-items="moreMenu.subMenuItems"
-            @toggle="moreMenu.isOpen = !moreMenu.isOpen"
-          />
-          <main-nav-single-menu-item
-            class="soap-quiz-menu"
-            name="Take Soap Quiz"
-            path="/quiz"
-          />
+          <div class="sidebar-main-content">
+            <main-nav-grouped-menu-item
+              :name="soapMenu.name"
+              :is-open="soapMenu.isOpen"
+              :sub-menu-items="soapMenu.subMenuItems"
+              @toggle="soapMenu.isOpen = !soapMenu.isOpen"
+            />
+            <main-nav-single-menu-item
+              v-for="(item, index) of singleMenuItems"
+              :key="`single-menu-item-${index}`"
+              :name="item.name"
+              :badge="item.badge"
+              :path="item.path"
+            />
+            <main-nav-grouped-menu-item
+              :name="moreMenu.name"
+              :is-open="moreMenu.isOpen"
+              :sub-menu-items="moreMenu.subMenuItems"
+              @toggle="moreMenu.isOpen = !moreMenu.isOpen"
+            />
+            <main-nav-single-menu-item
+              class="soap-quiz-menu"
+              name="Take Soap Quiz"
+              path="/quiz"
+            />
+          </div>
 
           <div class="sidebar-footer">
             <main-nav-grouped-menu-item
@@ -279,6 +323,7 @@ export default {
         { currency: "USD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_the_U.S..svg?v=1613061492" },
         { currency: "CAD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_Canada.svg?v=1613061492" },
       ],
+      isCurrencyMenuOpen: false,
       soapMenu: {
         name: "Bar Soaps",
         isOpen: false,
@@ -494,14 +539,9 @@ export default {
       if (path === "/test") return;
       window.location = path;
     },
-    toggleCurrency() {
-      console.log("toggleCurrency");
-    },
-  },
-  mounted() {
-    console.log("main nav");
-    console.log(this.cart);
-    console.log(this.currency);
+    toggleCurrencyMenu() {
+
+    }
   }
 };
 </script>
@@ -538,7 +578,7 @@ export default {
       flex-flow: row nowrap;
       justify-content: flex-end;
 
-      .burger-icon {
+      .icon-burger {
         margin-left: 8px;
       }
     }
@@ -565,7 +605,7 @@ export default {
         font-size: 11px;
         cursor: pointer;
 
-        .person-icon {
+        .icon-user {
           color: $orange;
         }
 
@@ -576,40 +616,117 @@ export default {
       }
     }
 
-    .big-cta-link {
-      padding: 20px 15px;
-      margin: 10px 16px;
-      background-color: $orange;
-      border: none;
-      border-radius: 5px;
-      text-align: center;
-      @include font-style-body($size: 15px, $color: $white);
 
-      .title {
-        display: block;
-        margin-bottom: 4px;
-        text-transform: uppercase;
-        @include font-style-heading($size: 16px, $color: $white);
+    .sidebar-main-header {
+      background-color: $white;
+      @include font-style-body();
+
+      .currency-display {   
+        position: relative;
+        background-color: $off-white;
+        
+        .menu-item {
+          padding: 16px 16px 12px 16px;
+          cursor: pointer;
+          width: 100%;
+          border-bottom: 1px solid $dark-brown;
+          
+          .currency-selected {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 30px;
+            font-family: "adrianna-bold";
+
+            .currency-box {
+              display: flex;
+              flex-flow: row nowrap;
+              align-items: center;
+
+              .currency-flag-image {
+                width: 32px;
+                height: auto;
+                margin-right: 4px;
+              }
+            }
+          }
+
+          .arrow-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+          }
+        }
+
+        #currency-menu-in-sidebar {
+  
+
+          .currency-option {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            padding: 10px 20px;
+            cursor: pointer;
+
+            &:hover {
+              color: $orange;
+              background-color: rgba(204, 99, 40, .18039);
+            }
+
+            .currency-flag-image {
+              width: 32px;
+              height: auto;
+            }
+
+            .currency {
+              margin-left: 8px;
+              @include font-style-body($color: inherit);
+              
+            }
+          }
+        }
       }
 
-      &:hover {
-        background-color: $orange-darken;
-        color: $white-darken;
-      }
-
-      &.maroon {
-        background-color: $maroon;
-
+      .big-cta-link {
+        padding: 20px 15px;
+        margin: 10px 16px;
+        background-color: $orange;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        @include font-style-body($size: 15px, $color: $white);
+  
+        .title {
+          display: block;
+          margin-bottom: 4px;
+          text-transform: uppercase;
+          @include font-style-heading($size: 16px, $color: $white);
+        }
+  
         &:hover {
-          background-color: $maroon-darken;
+          background-color: $orange-darken;
           color: $white-darken;
+        }
+  
+        &.maroon {
+          background-color: $maroon;
+  
+          &:hover {
+            background-color: $maroon-darken;
+            color: $white-darken;
+          }
         }
       }
     }
 
-    .soap-quiz-menu {
-      border-top: 1px solid $off-white;
-      font-weight: 400;
+    .sidebar-main-content {
+      background-color: $white;
+
+      .soap-quiz-menu {
+        border-top: 1px solid $off-white;
+        font-weight: 400;
+      }
     }
 
     .sidebar-footer {
@@ -805,6 +922,17 @@ export default {
 
 <style lang="scss">
 @import "@/styles/main.scss";
+
+.b-sidebar-header {
+  background-color: $white;
+}
+.b-sidebar-body {
+  background-color: $off-white;
+}
+
+.grouped-menu-item-component, .single-menu-item-component {
+  background-color: inherit;
+}
 
 .squatch-button-component.big-cta-link {
   padding: 20px 15px;
