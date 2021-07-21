@@ -1,5 +1,3 @@
-{{ "styling.css" | asset_url | stylesheet_tag }}
-
 <div class="login-page-container">
 
   {% form 'create_customer' %}
@@ -22,10 +20,9 @@
       </p>
 
       {% if form.errors %}
-        <div class="form-errors">
-          {{ form.errors | default_errors }}
-        </div>
+        {% render "_form.errors", errors: form.errors %}
       {% endif %}
+
       <div class="form-field-wrapper">
         <input 
           type="text"
