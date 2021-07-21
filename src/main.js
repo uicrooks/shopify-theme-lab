@@ -41,20 +41,9 @@ reusableComponents.keys().forEach(key => {
 /**
 * import module specific components
 */
-console.log(window.location);
-if (window.location.pathname.includes("/products")) {
-  console.log("layout-product");
-  const components = require.context("./vue/templates/product", true, /\.(vue|js)$/);
-  components.keys().forEach(key => {
-    const component = components(key).default;
-    const name = component.name ?
-      component.name :
-      key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
-    Vue.component(name, component);
-  });
-} else if (window.location.pathname.includes("/pages") || window.location.pathname.includes("/account/")) {
-  console.log("layout-page");
-  const components = require.context("./vue/templates/page", true, /\.(vue|js)$/);
+if (window.location.pathname.includes("/account")) {
+  console.log("vue module: account");
+  const components = require.context("./vue/templates/account", true, /\.(vue|js)$/);
   components.keys().forEach(key => {
     const component = components(key).default;
     const name = component.name ?
@@ -63,7 +52,7 @@ if (window.location.pathname.includes("/products")) {
     Vue.component(name, component);
   });
 } else if (window.location.pathname.includes("/collections")) {
-  console.log("layout-collection");
+  console.log("vue module: collection");
   const components = require.context("./vue/templates/collection", true, /\.(vue|js)$/);
   components.keys().forEach(key => {
     const component = components(key).default;
@@ -72,8 +61,28 @@ if (window.location.pathname.includes("/products")) {
       key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
     Vue.component(name, component);
   });
+} else if (window.location.pathname.includes("/pages")) {
+  console.log("vue module: page");
+  const components = require.context("./vue/templates/page", true, /\.(vue|js)$/);
+  components.keys().forEach(key => {
+    const component = components(key).default;
+    const name = component.name ?
+      component.name :
+      key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+    Vue.component(name, component);
+  });
+} else if (window.location.pathname.includes("/products")) {
+  console.log("vue module: product");
+  const components = require.context("./vue/templates/product", true, /\.(vue|js)$/);
+  components.keys().forEach(key => {
+    const component = components(key).default;
+    const name = component.name ?
+      component.name :
+      key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
+    Vue.component(name, component);
+  });
 } else {
-  console.log("layout-index");
+  console.log("vue module: index");
   const components = require.context("./vue/templates/index", true, /\.(vue|js)$/);
   components.keys().forEach(key => {
     const component = components(key).default;

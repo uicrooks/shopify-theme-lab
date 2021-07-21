@@ -10,6 +10,69 @@ const client = Client.buildClient({
 
 
 export default {
+  async login(authInput) {
+    return await axios({
+      url: "https://drsquatchsoapco.myshopify.com/api/2021-07/graphql.json",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": "c0a2971fcd589c75363ab578e0bc4a10"
+      },
+      data: {
+        query: `
+          mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+            customerAccessTokenCreate(input: $input) {
+              customerAccessToken {
+                accessToken
+                expiresAt
+              }
+              customerUserErrors {
+                code
+                field
+                message
+              }
+            }
+          }
+        `,
+        variables: {
+          input: {
+            "email": "will@drsquatch.com",
+            "password": "letmein"
+          }
+        }
+      },
+    });
+  },
+  getCustomer(accessToken) {
+    return axios({
+      url: "https://drsquatchsoapco.myshopify.com/api/2021-07/graphql.json",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": "c0a2971fcd589c75363ab578e0bc4a10"
+      },
+      data: {
+        query: `
+          customer(customerAccessToken: $accessToken) {
+            email
+            displayName
+            orders(first:10) {
+              edges {
+                node {
+                  id
+                }
+              }
+            }
+          }
+        `,
+        variables: {
+          accessToken: accessToken
+        }
+      },
+      
+    });
+    console.log(result);
+  },
   getAllProducts() {
     return client.product.fetchAll();
   },
