@@ -1,5 +1,5 @@
 module.exports = {
-  extends: [
+ /* extends: [
     "eslint:recommended",
     "plugin:vue/recommended"
   ],
@@ -23,8 +23,8 @@ module.exports = {
      */
     // 'my-file.js',
     // '**/my-directory/*.js'
-  ],
-  rules: {
+  //],
+  /*rules: {
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
     "vue/order-in-components": ["error", {
@@ -64,5 +64,5 @@ module.exports = {
         "LIFECYCLE_HOOKS",
       ]
     }]
-  }
+  }*/
 }

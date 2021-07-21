@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from "vue";
 import store from "@/vue/store";
 import axios from "axios";

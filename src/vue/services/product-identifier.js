@@ -22,14 +22,14 @@ export default {
       }
       return arr;
     }
-    if (type === "toothpaste" || product.tags.includes("toothpaste")) {
+    if (type === "toothpaste" ||  product.tags && product.tags.includes("toothpaste")) {
       arr.push("toothpaste");
       if (title.includes("kit")) {
         arr.push("kit");
       }
       return arr;
     }
-    if (type === "deodorant" || product.tags.includes("deodorant")) {
+    if (type === "deodorant" || product.tags && product.tags.includes("deodorant")) {
       arr.push("deodorant");
       if (type === "bundle") {
         arr.push("bundle");

@@ -1,0 +1,106 @@
+<template>
+  <section class="sub-flow-footer shadow" data-site-header>
+        <nav></nav>
+        <div class="align-items-center d-flex shadow sub-flow-nav">
+          <a href="/" class="navbar-brand py-lg-3 position-xl-absolute" name="Dr. Squatch | Home" title="Dr. Squatch | Home" aria-label="Dr. Squatch | Home">
+            <img src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033" alt="Dr. Squatch | Home" class="flow-logo" />
+          </a>
+          <div class="step-tracker d-flex align-items-center w-100">
+            <div class="progress-step" @click="navigateToScreen(step.handle)" v-for="(step,i) in steps" :class="{'active' : step.handle == screen.handle, 'finished' : i < current_step_index, 'last': i == steps.length-1 }"  :key="'navHeader__'+step.handle">
+              <i class="squatch-icon" :class="'icon-'+step.handle"></i>
+              <p class="mb-0 text-primary" v-if="current_step_index == i">{{step.title}}</p>
+            </div>
+            <div class="progress__bg"></div>
+          </div>
+        </div>
+        <div>
+
+        <transition name="fade" mode="out-in">
+          <barsoap-toggle
+            v-if="currentHandle == 'BarSoap'"
+            :key="'BarSoap_tabs'"
+            :products="subProductsBarsoap"
+          />
+          <barsoap-toggle
+            v-if="currentHandle == 'Deodorant'"
+            :key="'Deodorant_tabs'"
+            :products="subProductsDeodorant"
+          />
+          <barsoap-toggle
+            v-if="currentHandle == 'HairCare'"
+            :key="'HairCare_tabs'"
+            :products="subProductsHaircare"
+          />
+          <barsoap-toggle
+            v-if="currentHandle == 'Toothpaste'"
+            :key="'Toothpaste_tabs'"
+            :products="subProductsToothpaste"
+          />
+        </transition>
+
+        </div>
+  </section>
+</template>
+
+<script>
+import { mapGetters } from "vuex";
+export default {
+  name: "SubscriptionFlowHeader",
+  props: {
+    subProductsBarsoap: {required: true},
+    subProductsDeodorant: {required: true},
+    subProductsToothpaste: {required: true},
+    subProductsHaircare: {required: true},
+  },
+  computed: {
+    ...mapGetters("subFlow", ["screen","steps","choicesRequired"]),
+    currentHandle() {
+      return this.screen.handle
+    },
+    current_step_index() {
+      let index = 0;
+      for (var i in this.steps) {
+        if (this.steps[i].handle == this.screen.handle) {
+          index = i;
+          break;
+        }
+      }
+      return Number(index);
+    }
+  },
+  mounted() {
+    window.test_header = this;
+  },
+  methods: {
+    navigateToScreen(handle) {
+      if (!this.choicesRequired) {
+        this.$store.commit("subFlow/setCurrentScreen", handle);
+      }
+    }
+  }
+}
+</script>
+<style scoped lang="scss">
+.progress-step {
+    width: 50px;
+    height: 50px;
+    background: #e9cfb8;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    cursor:pointer;
+    &.last {
+      margin-right: 0;
+    }
+}
+.flow-logo {
+  width: 170px;
+}
+.step-tracker {
+  justify-content: center;
+  left: 0px;
+  position: absolute;
+}
+</style>
