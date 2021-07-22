@@ -6,7 +6,7 @@
     <div
       v-for="(item, index) of items"
       :key="`product-icon-desc-item-${index}`"
-      :class="['description-item', `text-${handle}`]"
+      :class="['description-item', `text-${handleBasedClassName}`]"
     >
       <i :class="['squatch-icon', `icon-${item.iconName}`]" />
       <div class="description">
@@ -30,6 +30,12 @@ export default {
       type: String,
       required: true,
       default: ""
+    }
+  },
+  computed: {
+    handleBasedClassName() {
+      const arr = this.handle.split("-");
+      return arr.slice(0, -1).join("-");
     }
   }
 };

@@ -4,12 +4,23 @@
   {% assign collectionMatch = collections["hair-care"] %}
 {% elsif product.type == "Deodorant" or product.handle == "soap-deo-duo" or product.handle == "deodorant-soap-set"%}
   {% assign collectionMatch = collections["deodorant"] %}
+  {% assign subsCollection = collections["deodorant-subscriptions"] %}
 {% elsif product.type == "Toothpaste" %}
   {% assign collectionMatch = collections["toothpaste"] %}
+  {% assign subsCollection = collections["toothpaste-subscriptions"] %}
+{% elsif product.type == "Cologne" %}
+  {% assign collectionMatch = collections["colognes"] %}
+{% elsif product.type == "Beard" %}
+  {% assign collectionMatch = collections["beard"] %}
+{% elsif product.type == "Sanitizer" %}
+  {% assign collectionMatch = collections["hand-sanitizer"] %}
+{% elsif product.type == "LiquidSoap" %}
+  {% assign collectionMatch = collections["hand-soap"] %}
+{% elsif product.type == "Gear" %}
+  {% assign collectionMatch = collections["gear"] %}
 {% endif %}
 <div id="layout-product">
   <product
-    handle="{{ product.handle }}"
     :product-data-string="{{ product | json | json | escape }}"
     :collections-data="{{ collections | json | json | escape }}"
     :collection="{
@@ -17,6 +28,10 @@
       handle: '{{ collectionMatch.handle }}',
       path: '{{ collectionMatch.url }}',
       products: {{ collectionMatch.products | json | escape }}
+    }"
+    :subscription-collection="{
+      handle: '{{ subsCollection.handle }}',
+      products: {{ subsCollection.products | json | escape }}
     }"
   ></product>
 </div>

@@ -14,9 +14,10 @@
           </p>
           <squatch-button
             class="big-cta-button"
-            text="Subscribe & Save 15%"
             path="/pages/subscription-flow"
-          />
+          >
+            Subscribe & Save 15%
+          </squatch-button>
         </div>
       </div>
     </div>
@@ -24,19 +25,16 @@
 </template>
 
 <script>
-import SquatchButton from "@/vue/ui-elements/squatch-button";
-
 export default {
-  name: "IndexHero",
-  components: {
-    SquatchButton,
-  },
+  name: "IndexHero"
 };
 </script>
+
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
 .index-hero-component {
+
   .image-header-bg {
     position: relative;
 

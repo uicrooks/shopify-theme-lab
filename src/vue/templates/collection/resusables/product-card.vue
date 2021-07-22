@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="product-card-component"
-  >
+  <div class="product-card-component">
     <div class="image-box">
       <a :href="productDetailPageLink">
         <img
@@ -19,9 +17,10 @@
       <div class="yotpo">
         <span>review stuff here</span>
       </div>
-      <p class="product-description">
-        {{ product.description }}
-      </p>
+      <p
+        v-html="product.description"
+        class="product-description"
+      />
       <div class="product-pricing">
         {{ product.price | money("$") }}
         <span
@@ -132,16 +131,16 @@ export default {
     .product-description {
       margin-top: 14px;
       min-height: 50px;
-      @include font-style-heading($size: 16px, $color: $brown);
+      @include font-style-body($size: 16px, $color: $brown);
     }
 
     .product-pricing {
       margin-bottom: 20px;
-      @include font-style-heading($size: 16px, $color: $green, $weight: 700);
+      @include font-style-body($size: 16px, $color: $green, $weight: 700);
 
       .compare-at-pricing {
         text-decoration: line-through;
-        @include font-style-heading($size: 14px, $color: $gray, $weight: 700);
+        @include font-style-body($size: 14px, $color: $gray, $weight: 700);
       }
     }
 

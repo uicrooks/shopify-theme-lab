@@ -23,17 +23,18 @@ export default {
       return null;
     }
   },
-  async addItem(product, variantId = "") {
+  async addItem(product, qty = 1, variantId = "", payload = {}) {
     const variant = getMatchingVariantForProduct(product, variantId);
     if (!variant) {
       console.log("failed to add an item; item does not have matching variant");
       return null;
     }
+    const props = product.properties ? { ...product.properties, ...payload } : { ...payload };
     try {
       const res = await axios.post("/cart/add.js", {
-        quantity: 1,
+        quantity: qty,
         id: variant.id,
-        properties: product.properties ? product.properties : {}
+        properties: props
       });
       if (res.status === 200) {
         return true;
@@ -65,9 +66,7 @@ export default {
     const host = window.location.host;
     CookieService.set("cart", cartCookieValue, { domain: host });
     CookieService.set("cart", cartCookieValue, { domain: `.${host}` });
-
     // if subscription item is included, go to recharge checkout
-
     let url = "/checkout";
     // check for discount code
     let discountCode = "";
@@ -96,24 +95,6 @@ export default {
       properties: {}
     };
   }
-  // sync() {
-  //   return new Promise(resolve => {
-  //     axios.all([axios.get("/cart.js", axiosConfig)]) // removed extra call, hopefully faster?
-  //     .then(axios.spread((basic) => {
-  //         // Both requests are now complete
-  //         const basicCartData = basic.data;
-
-  //         basicCartData.items.forEach((item) => {
-  //           item.properties = item.properties || [];
-  //         });
-
-  //         _cartProcessingPromise(basicCartData).then((data) => {
-  //             console.log(data);
-  //             resolve(data);
-  //         });
-  //     }));
-  //   }); 
-  // }
 };
 
 function getMatchingVariantForProduct(product, variantId) {
