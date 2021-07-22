@@ -23,7 +23,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  name: "BarsoapToggle",
+  name: "SubProductToggle",
   props: {
     products: {required: true}
   },

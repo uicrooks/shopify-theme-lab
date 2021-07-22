@@ -47,11 +47,28 @@ const state = () => ({
       if (step.required || step.chosenSku) {
         const selectedSku = step.selectedSku(),
         match = this.skuPrices[selectedSku]
-        total+=Number(match.price);
-        compare_at_price+=Number(match.compare_at_price);
+        total+=(Number(match.price) * step.numSubs);
+        compare_at_price+=Number(match.compare_at_price * step.numSubs);
       }
     })
     return {total, compare_at_price}
+  },
+  selectedScentsOnScreen: function() {
+    const match = this.scents[this.screen.handle];
+    if (!match) { return []; }
+    let arr = [];
+    match.forEach(scent => {
+      if (scent.qty) {
+        for (let i = 0; i < scent.qty; i++) {
+          arr.push({
+            sku: scent.sku,
+            title: scent.title,
+            handle: scent.handle
+          });
+        }
+      }
+    });
+    return arr;
   }
 });
 
@@ -73,6 +90,9 @@ const getters = {
   },
   flowSummary: (state) => {
     return state.flowSummary();
+  },
+  selectedScentsOnScreen: (state) => {
+    return state.selectedScentsOnScreen();
   }
 };
 
@@ -118,6 +138,16 @@ const mutations = {
     for (var i in state.steps) {
       if (state.steps[i].handle == currentHandle) {
         state.steps[i].chosenSku = sku;
+        break;
+      }
+    }
+  },
+  setScreenSubQuantity(state, val) {
+    state.screen.numSubs = val;
+    let currentHandle = state.screen.handle;
+    for (var i in state.steps) {
+      if (state.steps[i].handle == currentHandle) {
+        state.steps[i].numSubs = val;
         break;
       }
     }

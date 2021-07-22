@@ -40,7 +40,7 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
-  name: "BarSoapScreen",
+  name: "ScentScreen",
   props: {
     scents: {required: true}
   },
@@ -81,12 +81,23 @@ export default {
       if (this.numSelected+1 <= this.maxNumber) {
         let qty = scent.qty+1;
         this.$store.commit("subFlow/changeScentQty",{qty, index: i});
+        this.$store.commit("subFlow/setChosenScreenSku", this.screen.selectedSku());
+        this.handleHcTpQty(this.currentHandle, qty);
       }
     },
     decreaseScentQty(scent,i) {
+      let qty = scent.qty-1;
       if (this.numSelected>=1) {
-        let qty = scent.qty-1;
         this.$store.commit("subFlow/changeScentQty",{qty, index: i});
+      }
+      if (qty == 0) {
+        this.$store.commit("subFlow/setChosenScreenSku", "")
+      }
+      this.handleHcTpQty(this.currentHandle, qty);
+    },
+    handleHcTpQty(type, qty) {
+      if (["HairCare","Toothpaste"].indexOf(type)>-1 && qty>0) {
+        this.$store.commit("subFlow/setScreenSubQuantity",qty);
       }
     }
   }

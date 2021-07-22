@@ -14,22 +14,22 @@
 
       <transition name="fade" mode="out-in">
 
-        <BarSoapScreen
+        <ScentScreen
           :scents="scents['BarSoap']"
           v-if="currentHandle == 'BarSoap'"
           :key="currentHandle+'_screen'"
         />
-        <BarSoapScreen
+        <ScentScreen
           :scents="scents['Deodorant']"
           v-if="currentHandle == 'Deodorant'"
           :key="currentHandle+'_screen'"
         />
-        <BarSoapScreen
+        <ScentScreen
           :scents="scents['HairCare']"
           v-if="currentHandle == 'HairCare'"
           :key="currentHandle+'_screen'"
         />
-        <BarSoapScreen
+        <ScentScreen
           :scents="scents['Toothpaste']"
           v-if="currentHandle == 'Toothpaste'"
           :key="currentHandle+'_screen'"
@@ -93,6 +93,7 @@ export default {
         required: true,
         chosenSku: "",
         choicesRequired: false,
+        numSubs: 1,
       },{
         handle: "Deodorant",
         title: "Deodorant",
@@ -100,6 +101,7 @@ export default {
         required: false,
         chosenSku: "",
         choicesRequired: true,
+        numSubs: 1,
       },{
         handle: "HairCare",
         title: "Hair Care",
@@ -107,6 +109,7 @@ export default {
         required: true,
         chosenSku: "",
         choicesRequired: false,
+        numSubs: 1,
       },{
         handle: "Toothpaste",
         title: "Toothpaste",
@@ -114,6 +117,7 @@ export default {
         required: false,
         chosenSku: "",
         choicesRequired: false,
+        numSubs:1,
       },{
         handle: "Addons",
         title: "Add-ons",

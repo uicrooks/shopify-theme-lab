@@ -16,22 +16,22 @@
         <div>
 
         <transition name="fade" mode="out-in">
-          <barsoap-toggle
+          <SubProductToggle
             v-if="currentHandle == 'BarSoap'"
             :key="'BarSoap_tabs'"
             :products="subProductsBarsoap"
           />
-          <barsoap-toggle
+          <SubProductToggle
             v-if="currentHandle == 'Deodorant'"
             :key="'Deodorant_tabs'"
             :products="subProductsDeodorant"
           />
-          <barsoap-toggle
+          <SubProductToggle
             v-if="currentHandle == 'HairCare'"
             :key="'HairCare_tabs'"
             :products="subProductsHaircare"
           />
-          <barsoap-toggle
+          <SubProductToggle
             v-if="currentHandle == 'Toothpaste'"
             :key="'Toothpaste_tabs'"
             :products="subProductsToothpaste"
@@ -93,6 +93,11 @@ export default {
     cursor:pointer;
     &.last {
       margin-right: 0;
+    }
+    p {
+      position: absolute;
+      bottom: -18px;
+      font-size: 12px;
     }
 }
 .flow-logo {
