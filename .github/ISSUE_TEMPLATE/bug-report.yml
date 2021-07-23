@@ -1,0 +1,92 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: YOUR TITLE HERE"
+labels: [bug]
+body:
+  -
+    type: markdown
+    attributes:
+      value: "## Setup"
+  -
+    type: input
+    attributes:
+      label: Operating system
+      description: Which operating system/version are you using?
+      placeholder: Windows 10
+    validations:
+      required: true
+  -
+    type: input
+    attributes:
+      label: Node.js version
+      description: Which Node.js version are you using?
+      placeholder: 14.0.0
+    validations:
+      required: true
+  -
+    type: input
+    attributes:
+      label: Shopify CLI version
+      description: Which Shopify CLI version are you using?
+      placeholder: 2.0.0
+    validations:
+      required: true
+  -
+    type: dropdown
+    id: browsers
+    attributes:
+      label: Browsers
+      description: Which browsers are you seeing the problem on?
+      multiple: true
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Microsoft Edge
+  -
+    type: markdown
+    attributes:
+      value: "## Software"
+  -
+    type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: Which version of our software are you running?
+      options:
+        - 4 (Current)
+        - 3 (Legacy)
+    validations:
+      required: true
+  -
+    type: textarea
+    id: modifications
+    attributes:
+      label: Modifications
+      description: Did you modify our software? If yes, please describe how you altered it from the base state.
+      placeholder: |
+        I added framework X.
+        I removed component Y.
+  -
+    type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Tell us what happened and the steps to reproduce the issue. Have you tried anything to solve the issue yourself? Images and videos can be a great help!
+      placeholder: |
+        1. I installed the software
+        2. I ran command X
+        3. An error occurred
+        Solution Y from Z didn't help.
+    validations:
+      required: true
+  -
+    type: checkboxes
+    id: notice
+    attributes:
+      label: Notice
+      description: |
+        A detailed bug report helps tremendously in tracking down and fixing possible issues. We aren't going to waste time chasing you after missing information. If you provided insufficient details, your bug report might get closed without any assistance.
+      options:
+        - label: I read the notice
+          required: true
