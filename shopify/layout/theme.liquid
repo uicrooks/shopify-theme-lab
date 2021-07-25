@@ -15,9 +15,6 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
 
-    {% comment %}
-      css bundle is not loaded during the development task, instead it displays a 404 error in the web console
-    {% endcomment %}
     {{ 'bundle.css' | asset_url | stylesheet_tag }}
 
     <!-- header hook for Shopify plugins -->
