@@ -214,6 +214,7 @@ export default {
     if (this.productIdentityString === "deodorant") {
       this.quantity = 2;
     }
+    // eslint-disable-next-line no-unused-vars
     this.selectedCustomOptions = Array.from({ length: this.quantity }, i => this.product);
   }
 };

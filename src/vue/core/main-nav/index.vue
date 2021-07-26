@@ -639,7 +639,7 @@ export default {
             justify-content: space-between;
             align-items: center;
             padding-right: 30px;
-            font-family: "adrianna-bold";
+            @include font-style-body-bold();
 
             .currency-box {
               display: flex;

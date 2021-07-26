@@ -1,5 +1,5 @@
 import axios from "axios";
-import TrackingService from "@/vue/services/tracking.service";
+// import TrackingService from "@/vue/services/tracking.service";
 import CookieService from "@/vue/services/cookie.service";
 
 const axiosConfig = {
