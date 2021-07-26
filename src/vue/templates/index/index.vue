@@ -1,5 +1,7 @@
 <template>
-  <div class="index-landing-component"></div>
+  <div class="index-landing-component">
+    <!-- stuff -->
+  </div>
 </template>
 
 <script>

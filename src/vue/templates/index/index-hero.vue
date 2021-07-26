@@ -48,7 +48,7 @@ export default {
       background-size: cover;
       background-position: center top 58%;
       height: 600px;
-      justify-content: start;
+      justify-content: flex-start;
 
       @include layout-md {
         padding-left: 50px;

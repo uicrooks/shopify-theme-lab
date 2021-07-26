@@ -18,8 +18,8 @@
         <span>review stuff here</span>
       </div>
       <p
-        v-html="product.description"
         class="product-description"
+        v-html="product.description"
       />
       <div class="product-pricing">
         {{ product.price | money("$") }}

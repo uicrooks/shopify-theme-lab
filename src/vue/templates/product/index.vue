@@ -41,6 +41,7 @@ export default {
       required: true,
       default: () => {},
     },
+    // to remove
     collectionsData: {
       type: String,
       required: true,

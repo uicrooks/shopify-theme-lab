@@ -32,10 +32,10 @@
             >
             <div 
               class="account-icon-box" 
-              @click="navigateTo('/account/login')"
+              @click="logIn"
             >
               <i class="icon-squatch icon-user m-auto" />
-              <span>Log In</span>
+              <span>{{ loggedIn ? 'Account' : 'Log In' }}</span>
             </div>
           </div>
         </template>
@@ -88,7 +88,7 @@
                 </div>
               </b-collapse>
             </div>
-            <!-- <button
+            <button
               class="big-cta-link"
               @click="navigateTo('/pages/subscription-flow')"
             >
@@ -101,7 +101,7 @@
             >
               <span class="title"> Starter Bundles </span>
               Your choice of our curated best sellers
-            </button> -->
+            </button>
           </div>
 
           <div class="sidebar-main-content">
@@ -195,19 +195,12 @@
           Take Quiz
         </div>
         <div 
-          v-if="loggedIn" 
           class="menu-item" 
-          @click="navigateTo('/account')"
+          @click="logIn"
         >
-          Account
+          {{ loggedIn ? 'Account' : 'Log In' }}
         </div>
-        <div 
-          v-else 
-          class="menu-item" 
-          @click="navigateTo('/account/login')"
-        >
-          Log In
-        </div>
+  
         <div 
           v-b-toggle.currency-menu
           class="menu-item"
@@ -316,6 +309,10 @@ export default {
       type: Object,
       required: true,
     },
+    loggedIn: {
+      type: Boolean,
+      required: true
+    }
   },
   data() {
     return {
@@ -517,9 +514,6 @@ export default {
     };
   },
   computed: {
-    loggedIn() {
-      return window.theme.customerLoggedIn;
-    },
     currencySelected() {
       const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
       return this.currencyOptions.filter(option => {
@@ -533,15 +527,23 @@ export default {
       });
     }
   },
+  watch: {
+    loggedIn(val) {
+      this.$store.commit("core/setLoggedIn", val);
+    }
+  },
   methods: {
+    logIn() {
+      window.location = this.loggedIn ? "/account" : "/account/login";
+    },
     navigateTo(path) {
-      console.log(path);
       if (path === "/test") return;
       window.location = path;
-    },
-    toggleCurrencyMenu() {
-
     }
+  },
+  mounted() {
+    console.log(this.loggedIn);
+    this.$store.commit("core/setLoggedIn", this.loggedIn);
   }
 };
 </script>
@@ -637,7 +639,7 @@ export default {
             justify-content: space-between;
             align-items: center;
             padding-right: 30px;
-            font-family: "adrianna-bold";
+            @include font-style-body-bold();
 
             .currency-box {
               display: flex;

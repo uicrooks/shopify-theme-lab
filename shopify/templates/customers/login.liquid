@@ -1,6 +1,41 @@
-{{ "styling.css" | asset_url | stylesheet_tag }}
-
 <div class="login-page-container">
+  {% form 'recover_customer_password' %}
+  <div id="password-recovery-form" class="hidden">
+    <h2 class="login-page-title">Recover Password</h2>
+
+    <p class="login-text">
+      Enter your email address and we will send you an email with instructions to reset your password.
+    </p>
+
+    {% if form.errors %}
+      {% render "_form.errors", errors: form.errors %}
+    {% endif %}
+
+    <div class="form-field-wrapper">
+      <input 
+        type="email"
+        name="email"
+        placeholder="Email"
+        autocorrect="off"
+        autocapitalize="off"
+        autocomplete="email"
+        required
+        class="form-field"
+      />
+    </div>
+    <div class="form-submit-wrapper">
+      <input
+        type="submit"
+        value="Submit"
+        class="submit-button"
+      />
+      <a
+        href="#"
+        class="password-recovery-link"
+      >Cancel</a>
+    </div>
+  </div>
+{% endform %}
 
   {% form 'customer_login' %}
     <div id="login-form">
@@ -22,10 +57,9 @@
       </p>
 
       {% if form.errors %}
-        <div class="form-errors">
-          {{ form.errors | default_errors }}
-        </div>
+        {% render "_form.errors", errors: form.errors %}
       {% endif %}
+
       <div class="form-field-wrapper">
         <input 
           type="email"
@@ -60,47 +94,6 @@
           href="#recover"
           class="password-recovery-link"
         >Forgot your password?</a>
-      </div>
-    </div>
-  {% endform %}
-
-
-  {% form 'recover_customer_password' %}
-    <div id="password-recovery-form" class="hidden">
-      <h2 class="login-page-title">Recover Password</h2>
-
-      <p class="login-text">
-        Enter your email address and we will send you an email with instructions to reset your password.
-      </p>
-
-      {% if form.errors %}
-        <div class="form-errors">
-          {{ form.errors | default_errors }}
-        </div>
-      {% endif %}
-
-      <div class="form-field-wrapper">
-        <input 
-          type="email"
-          name="email"
-          placeholder="Email"
-          autocorrect="off"
-          autocapitalize="off"
-          autocomplete="email"
-          required
-          class="form-field"
-        />
-      </div>
-      <div class="form-submit-wrapper">
-        <input
-          type="submit"
-          value="Submit"
-          class="submit-button"
-        />
-        <a
-          href="#"
-          class="password-recovery-link"
-        >Cancel</a>
       </div>
     </div>
   {% endform %}
