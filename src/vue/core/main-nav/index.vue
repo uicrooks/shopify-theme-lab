@@ -34,7 +34,7 @@
               class="account-icon-box" 
               @click="logIn"
             >
-              <i class="icon-squatch icon-user m-auto" />
+              <i class="icon-squatch icon-user" />
               <span>{{ loggedIn ? 'Account' : 'Log In' }}</span>
             </div>
           </div>
@@ -194,16 +194,38 @@
         >
           Take Quiz
         </div>
+        <div
+          v-if="loggedIn"
+          v-b-toggle.account-menu
+          class="menu-item account"
+        >
+          <i class="icon-squatch icon-user" />
+          <b-icon icon="caret-down-fill" />
+          <b-collapse
+            v-model="accountSubMenuOpen"
+            id="account-menu"
+            class="sub-menu"
+          >
+            <div class="account-menu-option">
+              <a href="/account">Account</a>
+            </div>
+            <div class="account-menu-option">
+              <a href="/account/logout">Log Out</a>
+            </div>
+          </b-collapse>
+        </div>
         <div 
+          v-else
           class="menu-item" 
           @click="logIn"
         >
-          {{ loggedIn ? 'Account' : 'Log In' }}
+          Log In
         </div>
   
         <div 
           v-b-toggle.currency-menu
           class="menu-item"
+          :class="{'active': currencySubMenuOpen}"
         >
           <div class="currency-box">
             <img
@@ -216,7 +238,11 @@
             </span>
           </div>
           <b-icon icon="caret-down-fill" />
-          <b-collapse id="currency-menu"> 
+          <b-collapse
+            v-model="currencySubMenuOpen"
+            id="currency-menu"
+            class="sub-menu"
+          >
             <div
               v-for="(currencyOption, index) of currencyMenu"
               :key="`currecny-option-${index}`"
@@ -511,6 +537,8 @@ export default {
           },
         ],
       },
+      accountSubMenuOpen: false,
+      currencySubMenuOpen: false
     };
   },
   computed: {
@@ -530,6 +558,24 @@ export default {
   watch: {
     loggedIn(val) {
       this.$store.commit("core/setLoggedIn", val);
+    },
+    productsSubMenuOpen(val) {
+      if (val) {
+        this.accountSubMenuOpen = false;
+        this.currencySubMenuOpen = false;
+      }
+    },
+    accountSubMenuOpen(val) {
+      if (val) {
+        this.productsSubMenuOpen = false;
+        this.currencySubMenuOpen = false;
+      }
+    },
+    currencySubMenuOpen(val) {
+      if (val) {
+        this.productsSubMenuOpen = false;
+        this.accountSubMenuOpen = false;
+      }
     }
   },
   methods: {
@@ -618,7 +664,6 @@ export default {
       }
     }
 
-
     .sidebar-main-header {
       background-color: $white;
       @include font-style-body();
@@ -663,7 +708,6 @@ export default {
 
         #currency-menu-in-sidebar {
   
-
           .currency-option {
             display: flex;
             flex-flow: row nowrap;
@@ -781,6 +825,18 @@ export default {
         color: $orange;
       }
 
+      &.active {
+        color: $orange;
+      }
+
+      &.account {
+        color: $orange;
+
+        .icon-squatch {
+          font-size: 1.3rem;
+        }
+      }
+
       .icon-squatch {
         margin-left: 7px;
       }
@@ -801,24 +857,18 @@ export default {
     }
   }
 
-  #currency-menu {
+  .sub-menu {
     position: absolute;
-    top: 28px;
-    padding: 14px;
+    right: 0;
     background-color: $off-white;
 
-    .currency-option {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
+    &#account-menu {
+      top: 30px;
+      padding: 7px 14px;
 
-      .currency-flag-image {
-        width: 32px;
-        height: auto;
-      }
-
-      .currency {
-        margin-left: 3px;
+      .account-menu-option {
+        padding: 7px 0;
+        white-space: nowrap;
         @include font-style-body($size: 12px);
 
         &:hover {
@@ -826,6 +876,32 @@ export default {
         }
       }
     }
+
+    &#currency-menu {
+      top: 28px;
+      padding: 14px;
+
+      .currency-option {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        .currency-flag-image {
+          width: 32px;
+          height: auto;
+        }
+
+        .currency {
+          margin-left: 3px;
+          @include font-style-body($size: 12px);
+
+          &:hover {
+            color: $orange;
+          }
+        }
+      }
+    }
+
   }
 
   #products-menu {
