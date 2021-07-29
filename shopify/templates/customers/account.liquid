@@ -1,6 +1,9 @@
-<!-- account.liquid -->
-<a href="/account/logout">Log Out</a>
-<account
+<div class="account-page-container">
+  <h1 class="account-page-heading">Overview</h1>
+  {% render "account-recent-orders" %}
+</div>
+
+<!-- <account
   :user="{
     id: '{{ customer.id }}',
     tagString: '{{ customer.tags | join: "; " }}',
@@ -17,4 +20,4 @@
     financialStatus: '{{ customer.orders | map: 'financial_status' | join: "; " }}'
   }"
 >
-</account>
+</account> -->
