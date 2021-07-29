@@ -202,8 +202,8 @@
           <i class="icon-squatch icon-user" />
           <b-icon icon="caret-down-fill" />
           <b-collapse
-            v-model="accountSubMenuOpen"
             id="account-menu"
+            v-model="accountSubMenuOpen"
             class="sub-menu"
           >
             <div class="account-menu-option">
@@ -239,8 +239,8 @@
           </div>
           <b-icon icon="caret-down-fill" />
           <b-collapse
-            v-model="currencySubMenuOpen"
             id="currency-menu"
+            v-model="currencySubMenuOpen"
             class="sub-menu"
           >
             <div
