@@ -69,6 +69,7 @@ export default {
     haircaresubdetails: {required: true, type: String},
     toothpastesubdetails: {required: true, type: String},
     productdetails: {required: true, type: String},
+    addons: {required: true, type: String}
   },
   components: {
     BarSoapScreen,
@@ -84,7 +85,6 @@ export default {
       subProducts_HairCare: [],
       subProducts_Deodorant: [],
       subProducts_Toothpaste: [],
-      addons: {},
       screens: ["BarSoap","HairCare","Deodorant","Toothpaste"],
       steps: [{
         handle: "BarSoap",
@@ -142,6 +142,8 @@ export default {
     window.tStore=store;
     let scents = {};
     let skuPrices = {};
+    let addons = {};
+    const that = this;
     ["BarSoap","HairCare","Deodorant","Toothpaste"].forEach(type => {
       // Parse Subscription Products To Variables
       this[`subProducts_${type}`] = JSON.parse(this[`${type.toLowerCase()}subdetails`]);
@@ -152,16 +154,17 @@ export default {
       for (var i in this.steps) {
         if (this.steps[i].handle == type) {
           this.steps[i].selectedSku = function() {
+            const subFlowState = that.$store.state["subFlow"]
+            let defaultSku = subFlowState.defaultSubSkus ? subFlowState.defaultSubSkus[this.handle] : "";
             if (this.required) {
-              return this.chosenSku || store.state().defaultSubSkus[this.handle];
+              return this.chosenSku || defaultSku;
             } else {
-              return this.chosenSku || store.state().defaultSubSkus[this.handle];
+              return this.chosenSku || defaultSku;
             }
           }
           this.steps[i].selectedScents = function() {
-            const scents = store.state().scents[this.handle] || [];
-            console.log(this.handle)
-            console.log(scents)
+            const subFlowState = that.$store.state["subFlow"]
+            const scents = subFlowState.scents ? subFlowState.scents[this.handle] : [];
             return scents.filter(s=> {
               return s.qty>0;
             });
@@ -199,8 +202,19 @@ export default {
         scents[scent.type] = [scent];
       }
     });
+    JSON.parse(this.addons).forEach(addon => {
+      addon.count = function() {
+        return this.qty;
+      }
+      if (addons[addon.type]) {
+        addons[addon.type].push(addon);
+      } else {
+        addons[addon.type] = [addon];
+      }
+    });
     this.$store.commit("subFlow/setSteps", this.steps);
     this.$store.commit("subFlow/setScents", scents);
+    this.$store.commit("subFlow/setAddons", addons);
     this.$store.commit("subFlow/setSkuPrices", skuPrices);
     this.$store.commit('subFlow/setCurrentScreen', 'BarSoap');
   }
@@ -209,7 +223,8 @@ export default {
 <style lang="scss">
 @import "@/styles/main.scss";
 .new-sub-flow {
-  overflow-x:hidden;
+  background: $black;
+  min-height: 100vh;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .1s;

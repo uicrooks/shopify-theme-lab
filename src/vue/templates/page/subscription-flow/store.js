@@ -2,6 +2,8 @@ const state = () => ({
   screen: {},
   steps: [],
   scents: {},
+  addons: {},
+  viewedAddons: false,
   defaultSubSkus: {
     BarSoap: "sq8300569",
     HairCare: "sq5357184",
@@ -44,13 +46,24 @@ const state = () => ({
     let total = 0,
     compare_at_price = 0;
     this.steps.forEach(step => {
-      if (step.required || step.chosenSku) {
+      if (step.required || (step.chosenSku && this.selectedScentsOnScreen().length)) {
         const selectedSku = step.selectedSku(),
         match = this.skuPrices[selectedSku]
         total+=(Number(match.price) * step.numSubs);
         compare_at_price+=Number(match.compare_at_price * step.numSubs);
       }
-    })
+    });
+    if (this.viewedAddons) {
+      for (var i in this.addons) {
+        let addonGroup = this.addons[i];
+        addonGroup.forEach(addon => {
+          if (addon.qty) {
+            total+=(Number(addon.price)*addon.qty)
+            compare_at_price+=(Number(addon.price)*addon.qty)
+          }
+        });
+      }
+    }
     return {total, compare_at_price}
   },
   selectedScentsOnScreen: function() {
@@ -69,7 +82,7 @@ const state = () => ({
       }
     });
     return arr;
-  }
+  },
 });
 
 const getters = {
@@ -81,6 +94,9 @@ const getters = {
   },
   scents: (state) => {
     return state.scents;
+  },
+  addons: (state) => {
+    return state.addons;
   },
   skuLimits: (state) => {
     return state.skuLimits;
@@ -97,11 +113,160 @@ const getters = {
 };
 
 const actions = {
-  async finish({ dispatch }, item) {
-    const quantityUpdated = await CartService.updateItemQuantity(item.line, item.quantity);
+  async finishSubFlow({state}) {
+    var finalAddToCart = [];
+    const skuPrices = state.skuPrices;
+    // Get All Scents
+    state.steps.forEach(step => {
+      let selectedScents = step.selectedScents ? step.selectedScents() : [],
+      selectedSku = step.selectedSku ? step.selectedSku() : "",
+      isRequired = step.isRequired,
+      numSubs = step.numSubs;
+
+      var subProdMatch;
+      switch(step.handle) {
+        case "BarSoap":
+          if (selectedScents.length || step.required) {
+            subProdMatch = skuPrices[selectedSku];
+            if (subProdMatch) {
+              subProdMatch = JSON.parse(JSON.stringify(subProdMatch));
+              var scent_arr = [];
+              selectedScents.forEach(scent => {
+                for (var i = 0; i < scent.qty; i++) {
+                  scent_arr.push(scent.sku);
+                }
+              });
+              let unPickedScents = state.skuLimits[selectedSku] - scent_arr.length;
+              if (unPickedScents>0) {
+                for (var i = 0; i < unPickedScents; i++) {
+                  scent_arr.push("squatch-picks");
+                }
+              }
+              var fulfillmentScents = {};
+              scent_arr.forEach((sku, i) => {
+                fulfillmentScents[`_fulfillment_Scent${i+1}`] = sku;
+              });
+              subProdMatch.properties = subProdMatch.properties || {};
+              Object.assign(subProdMatch.properties, fulfillmentScents);
+              subProdMatch.qty = 1;
+              finalAddToCart.push({
+                variant_id: subProdMatch.variant_id,
+                quantity: subProdMatch.qty,
+                properties: subProdMatch.properties
+              });
+            }
+          }
+          break;
+        case "HairCare":
+          if (selectedScents.length) {
+            subProdMatch = skuPrices[selectedSku];
+            if (subProdMatch) {
+              selectedScents.forEach(scent => {
+                var scent_arr = [];
+                subProdMatch = JSON.parse(JSON.stringify(subProdMatch));
+                  if (scent.sku == 'hair-kit-1') {
+                    scent_arr.push("smp-cyp-01");
+                    scent_arr.push("con-clc-01")
+                  } else if (scent.sku == "hair-kit-fresh") {
+                    scent_arr.push("smp-ffl-01");
+                    scent_arr.push("con-ffl-01")
+                  } else {
+                    scent_arr.push(scent.sku);
+                  }
+                  var fulfillmentScents = {};
+                  scent_arr.forEach((sku, i) => {
+                    fulfillmentScents[`_fulfillment_Scent${i+1}`] = sku;
+                  });
+                  subProdMatch.properties = subProdMatch.properties || {};
+                  Object.assign(subProdMatch.properties, fulfillmentScents);
+                  subProdMatch.qty = scent.qty;
+                  finalAddToCart.push({
+                    variant_id: subProdMatch.variant_id,
+                    quantity: subProdMatch.qty,
+                    properties: subProdMatch.properties
+                  });
+              });
+            }
+          }
+          break;
+        case "Deodorant":
+          if (selectedScents.length) {
+            subProdMatch = skuPrices[selectedSku];
+            if (subProdMatch) {
+              subProdMatch = JSON.parse(JSON.stringify(subProdMatch));
+              var scent_arr = [];
+              selectedScents.forEach(scent => {
+                for (var i = 0; i < scent.qty; i++) {
+                  scent_arr.push(scent.sku);
+                }
+              });
+              var fulfillmentScents = {};
+              scent_arr.forEach((sku, i) => {
+                fulfillmentScents[`_fulfillment_Scent${i+1}`] = sku;
+              });
+              subProdMatch.properties = subProdMatch.properties || {};
+              Object.assign(subProdMatch.properties, fulfillmentScents);
+              subProdMatch.qty = 1;
+              finalAddToCart.push({
+                variant_id: subProdMatch.variant_id,
+                quantity: subProdMatch.qty,
+                properties: subProdMatch.properties
+              });
+            }
+          }
+          break;
+        case "Toothpaste":
+          if (selectedScents.length) {
+            subProdMatch = skuPrices[selectedSku];
+            if (subProdMatch) {
+              selectedScents.forEach(scent => {
+                var scent_arr = [];
+                subProdMatch = JSON.parse(JSON.stringify(subProdMatch));
+                  if (scent.sku == 'tooth-bun') {
+                    scent_arr.push("tooth-cm-mng");
+                    scent_arr.push("tooth-ss-nht")
+                  } else {
+                    scent_arr.push(scent.sku);
+                  }
+                  var fulfillmentScents = {};
+                  scent_arr.forEach((sku, i) => {
+                    fulfillmentScents[`_fulfillment_Scent${i+1}`] = sku;
+                  });
+                  subProdMatch.properties = subProdMatch.properties || {};
+                  Object.assign(subProdMatch.properties, fulfillmentScents);
+                  subProdMatch.qty = scent.qty;
+                  finalAddToCart.push({
+                    variant_id: subProdMatch.variant_id,
+                    quantity: subProdMatch.qty,
+                    properties: subProdMatch.properties
+                  });
+              });
+            }
+          }
+          break;
+        case "Addons":
+          for (var prodType in state.addons) {
+            var prods = state.addons[prodType];
+            prods.forEach(prod => {
+              if (prod.qty) {
+                finalAddToCart.push({
+                  variant_id: prod.variant_id,
+                  qty: prod.qty,
+                  properties: {}
+                });
+              }
+            });
+          }
+          break;
+        default:
+          break;
+      }
+    });
+    console.log(finalAddToCart)
+    /*const quantityUpdated = await CartService.updateItemQuantity(item.line, item.quantity);
     if (quantityUpdated) {
       dispatch("initialize");
-    }
+    }*/
   },
 };
 
@@ -110,15 +275,35 @@ const mutations = {
     let match = state.steps.filter(s => {return s.handle == step_handle })[0];
     if (match) {
       state.screen = match;
+      window.scrollTo(0,0);
     }
   },
   setScents(state, scents) {
     state.scents = scents;
   },
+  setAddons(state, addons) {
+    state.addons = addons;
+  },
+  setViewedAddons(state, status) {
+    state.viewedAddons = status;
+  },
   changeScentQty(state,obj) {
     const {qty, index} = obj;
     let currentHandle = state.screen.handle;
     state.scents[currentHandle][index].qty = qty;
+  },
+  changeAddonQty(state, obj) {
+    const {qty, variant_id, type} = obj;
+    var addons = state.addons[type] || [],
+    match_i;
+    for (var i in addons) {
+      if (addons[i].variant_id == variant_id) {
+        match_i = i;
+        break;
+      }
+    }
+    if (!match_i) {return}
+    state.addons[type][match_i].qty = qty;;
   },
   setSteps(state, steps) {
     state.steps = steps;

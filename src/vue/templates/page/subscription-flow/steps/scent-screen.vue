@@ -5,6 +5,7 @@
         <b-col
           v-for="(scent,i) in c_scents" :key="scent.sku"
           v-if="filterOnTab(scent)"
+          class="scent-col"
           cols="6"
           sm="6"
           md="4"
@@ -90,9 +91,6 @@ export default {
       if (this.numSelected>=1) {
         this.$store.commit("subFlow/changeScentQty",{qty, index: i});
       }
-      if (qty == 0) {
-        this.$store.commit("subFlow/setChosenScreenSku", "")
-      }
       this.handleHcTpQty(this.currentHandle, qty);
     },
     handleHcTpQty(type, qty) {
@@ -121,15 +119,23 @@ export default {
   margin-right: auto;
   margin-bottom: 50px;
 }
+.scent-col {
+  margin-bottom: 25px;
+}
 .scent__card {
   margin-bottom: 30px;
   height: 100%;
   display:flex;
   flex-direction: column;
+  background: #fff;
+  border-radius: 6px;
   .scent__card-image {
     background-color: $sand;
+    text-align: center;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
     img {
-      width: 100%;
+      width: calc(100% - 30px);
       padding: 15px;
     }
   }

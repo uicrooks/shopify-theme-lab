@@ -1,5 +1,5 @@
 <template>
-  <section class="sub-flow-footer shadow" data-site-header>
+  <section class="sub-flow-header shadow" data-site-header>
         <nav></nav>
         <div class="align-items-center d-flex shadow sub-flow-nav">
           <a href="/" class="navbar-brand py-lg-3 position-xl-absolute" name="Dr. Squatch | Home" title="Dr. Squatch | Home" aria-label="Dr. Squatch | Home">
@@ -81,6 +81,17 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+.sub-flow-header {
+  background: #fff;
+  padding: 0 15px;
+  position: sticky;
+  padding: 0 15px;
+  top: -164px;
+  transition: top 0.3s linear;
+}
+body.scroll-up .sub-flow-header {
+    top: 0px;
+}
 .progress-step {
     width: 50px;
     height: 50px;

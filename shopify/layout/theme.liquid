@@ -20,11 +20,15 @@
       #app {
         min-width: 320px !important;
       }
-      
-      #main {
-        margin-top: 75px;
+      #shopify-section-header {
+        position: sticky;
+        top: -76px;
+        transition: top 0.3s linear;
+        z-index: 99;
       }
-      
+      body.scroll-up #shopify-section-header {
+        top: 0px;
+      }
       #shopify-section-footer {
         position: relative;
       }
