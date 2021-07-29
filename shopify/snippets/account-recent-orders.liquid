@@ -1,15 +1,14 @@
-<!-- Overview Recent-Orders Card -->
 <div class="account-recent-orders-container">
-  <h4 class="account-page-section-heading">Recent Orders</h4>
+  <h4>Recent Orders</h4>
   {% if customer.orders.size > 0 %}
     <div class="view-all-wrapper">
-      <a href="/" class="account-link view-all">View All</a>
+      <a href="#order-history">View Order History</a>
     </div>
   {% endif %}
   {% paginate customer.orders by 3 %}
-    {% if customer.orders.size > 0 %}
-      <div class="account-recent-orders-table-wrapper">
-        <table class="account-recent-orders-table">
+    <div class="account-recent-orders-table-wrapper">
+      {% if customer.orders.size > 0 %}  
+        <table>
           <thead class="account-table-head">
             <tr class="account-table-row">
               <td class="account-col-heading">
@@ -26,7 +25,7 @@
               </td>
             </tr>
           </thead>
-          <tbody class="account-table-body">
+          <tbody>
             {% for order in customer.orders %}
               {% for line in order.line_items %}
                 {% if line.fulfillment.tracking_number %}
@@ -58,12 +57,12 @@
                   {% assign tag = order.tags | join: '|' | remove:" " %}
                 {% endif %}
 
-                {% capture wismo_status_url %}https://{{ WISMOhandle }}.wismolabs.com/{{ WISMOhandle }}/shopify?TRK={{ line.fulfillment.tracking_number }}&CAR={{ line.fulfillment.tracking_company }}&SERV={{ order.shipping_methods[0].handle }}&ON={{ order.order_number }}&OD={{ order.created_at | date: "%Y-%m-%d"  }}&SD={{ line.fulfillment.created_at | date: "%Y-%m-%d" }}&name={{ order.customer.first_name | default: order.billing_address.first_name }}&oZIP={{ shop.address.zip }}&dZIP={{ order.shipping_address.zip }}&dCountry={{ order.shipping_address.country }}&PID={{ SKUs }}&CID={{ cids }}&TAG={{ tag }}{% endcapture %}
+                {% capture wismo_status_url %}https://{{ wismoHandle }}.wismolabs.com/{{ wismoHandle }}/shopify?TRK={{ line.fulfillment.tracking_number }}&CAR={{ line.fulfillment.tracking_company }}&SERV={{ order.shipping_methods[0].handle }}&ON={{ order.order_number }}&OD={{ order.created_at | date: "%Y-%m-%d"  }}&SD={{ line.fulfillment.created_at | date: "%Y-%m-%d" }}&name={{ order.customer.first_name | default: order.billing_address.first_name }}&oZIP={{ shop.address.zip }}&dZIP={{ order.shipping_address.zip }}&dCountry={{ order.shipping_address.country }}&PID={{ SKUs }}&CID={{ cids }}&TAG={{ tag }}{% endcapture %}
 
               {% endfor %}
               <tr class="account-table-row">
                 <td class="account-col">
-                  <a class="account-link" target="_blank" href="{{order.customer_url | replace: 'https://drsquatch.com/account/', 'https://drsquatch.com/27577843817/' }}">
+                  <a class="account-order-tracking-link" target="_blank" href="{{order.customer_url | replace: 'https://drsquatch.com/account/', 'https://drsquatch.com/27577843817/' }}">
                     #{{ order.order_number}}
                   </a>
                 </td>
@@ -75,7 +74,7 @@
                 </td>
                 <td class="account-col">
                   {% if order.fulfillment_status == 'fulfilled' %}
-                    <a class="account-link green" target="_blank" href="{{wismo_status_url}}">
+                    <a class="account-order-tracking-link-green" target="_blank" href="{{wismo_status_url}}">
                       Shipped
                     </a>
                   {% else %}
@@ -96,6 +95,11 @@
             {% endfor %}  
           </tbody>
         </table>
-      </div>
-    {% endif %}
+      {% else %}
+        <div class="no-orders-alert">
+          <p>No orders found</p>
+          <a class="btn liquid-squatch-button" href="/collections/best-sellers">Shop Now</a>
+        </div>
+      {% endif %}
+    </div>
   {% endpaginate %}

@@ -1,23 +1,18 @@
 <div class="account-page-container">
-  <h1 class="account-page-heading">Overview</h1>
-  {% render "account-recent-orders" %}
+  <account
+    :user="{
+      id: '{{ customer.id }}',
+      tagString: '{{ customer.tags | join: "; " }}',
+      firstName: '{{ customer.first_name }}',
+      lastName: '{{ customer.last_name }}',
+      email: '{{ customer.email }}'
+    }"
+  >
+    <template #recent-orders>
+      {% render "account-recent-orders" %}
+    </template>
+    <template #order-history>
+      {% render "account-vue-order-history" %}
+    </template>
+  </account>
 </div>
-
-<!-- <account
-  :user="{
-    id: '{{ customer.id }}',
-    tagString: '{{ customer.tags | join: "; " }}',
-    firstName: '{{ customer.first_name }}',
-    lastName: '{{ customer.last_name }}',
-    email: '{{ customer.email }}'
-  }"
-  :orders-data="{
-    id: '{{ customer.orders | map: 'id' | join: "; " }}',
-    orderNumber: '{{ customer.orders | map: 'order_number' | join: "; " }}',
-    createdAt: '{{ customer.orders | map: 'created_at' | join: "; " }}',
-    totalPrice: '{{ customer.orders | map: 'total_price' | join: "; " }}',
-    fulfillmentStatus: '{{ customer.orders | map: 'fulfillment_status' | join: "; " }}',
-    financialStatus: '{{ customer.orders | map: 'financial_status' | join: "; " }}'
-  }"
->
-</account> -->

@@ -1,5 +1,4 @@
 const state = () => ({
-  orders: [],
   userTags: [],
   rechargeUser: {},
   subscriptions: [],
@@ -7,9 +6,6 @@ const state = () => ({
 });
 
 const getters = {
-  orders: (state) => {
-    return state.orders;
-  },
   userTags: (state) => {
     return state.userTags;
   },
@@ -29,10 +25,6 @@ const actions = {
 };
 
 const mutations = {
-  setOrders: (state, orders) => {
-    state.orders = orders;
-    console.log(state);
-  },
   setUserTags: (state, tags) => {
     state.userTags = tags;
   },
