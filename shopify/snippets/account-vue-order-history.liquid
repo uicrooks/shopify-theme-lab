@@ -12,6 +12,9 @@
           {% endfor %}
           {% assign SKUs = SKUs | remove_first: ',' %}
           {% assign cids = ' ' %}
+
+          {% capture statusUrl %}https://{{ wismoHandle }}.wismolabs.com/{{ wismoHandle }}/shopify?TRK={{ line.fulfillment.tracking_number }}&CAR={{ line.fulfillment.tracking_company }}&SERV={{ order.shipping_methods[0].handle }}&ON={{ order.order_number }}&OD={{ order.created_at | date: "%Y-%m-%d"  }}&SD={{ line.fulfillment.created_at | date: "%Y-%m-%d" }}&name={{ order.customer.first_name | default: order.billing_address.first_name }}&oZIP={{ shop.address.zip }}&dZIP={{ order.shipping_address.zip }}&dCountry={{ order.shipping_address.country }}&PID={{ SKUs }}&CID={{ cids }}&TAG={{ tag }}{% endcapture %}
+
         {% endif %}
         {% for col in line.product.collections %}
           {% assign search = ' ' | append: col.id | append: ' ' %}
@@ -31,7 +34,7 @@
           {% assign tag = order.tags | join: '|' | remove:" " %}
         {% endif %}
 
-        {% capture wismo_status_url %}https://{{ wismoHandle }}.wismolabs.com/{{ wismoHandle }}/shopify?TRK={{ line.fulfillment.tracking_number }}&CAR={{ line.fulfillment.tracking_company }}&SERV={{ order.shipping_methods[0].handle }}&ON={{ order.order_number }}&OD={{ order.created_at | date: "%Y-%m-%d"  }}&SD={{ line.fulfillment.created_at | date: "%Y-%m-%d" }}&name={{ order.customer.first_name | default: order.billing_address.first_name }}&oZIP={{ shop.address.zip }}&dZIP={{ order.shipping_address.zip }}&dCountry={{ order.shipping_address.country }}&PID={{ SKUs }}&CID={{ cids }}&TAG={{ tag }}{% endcapture %}
+        {% capture lineItems %}{ title: '{{ line.product.title }}', image: '{{ line.image }}', quantity: '{{ line.quantity }}', properties: '{{ line.properties }}', variants: '{{ line.variants }}' }{% endcapture %}
       {% endfor %}
       <account-order-card
         :order="{
@@ -41,7 +44,7 @@
           cancelled: '{{ order.cancelled | json }}',
           financialStatus: '{{ order.financial_status }}',
           fulfillmentStatus: '{{ order.fulfillment_status }}',
-          lineItems: '{{ order.line_items | json | replace: '"', "'" }}'
+          statusUrl: '{{ statusUrl }}',
         }"
       >
       </account-order-card>

@@ -45,10 +45,10 @@
             <div class="currency-display">
               <div
                 class="menu-item"
-                :class="isCurrencyMenuOpen ? null : 'collapsed'"
-                :aria-expanded="isCurrencyMenuOpen ? 'true' : 'false'"
+                :class="currencyMobileSubMenuOpen ? null : 'collapsed'"
+                :aria-expanded="currencyMobileSubMenuOpen ? 'true' : 'false'"
                 aria-controls="currency-menu-in-sidebar"
-                @click="isCurrencyMenuOpen = !isCurrencyMenuOpen"
+                @click="currencyMobileSubMenuOpen = !currencyMobileSubMenuOpen"
               >
                 <div class="currency-selected">
                   You're Shopping In
@@ -65,12 +65,12 @@
                 </div>
                 <b-icon
                   class="arrow-icon"
-                  :icon="isCurrencyMenuOpen ? 'chevron-up' : 'chevron-down'"
+                  :icon="currencyMobileSubMenuOpen ? 'chevron-up' : 'chevron-down'"
                 /> 
               </div>
               <b-collapse
                 id="currency-menu-in-sidebar"
-                v-model="isCurrencyMenuOpen"
+                v-model="currencyMobileSubMenuOpen"
               >
                 <div
                   v-for="(currencyOption, index) of currencyMenu"
@@ -170,8 +170,8 @@
           Bundles
         </div>
         <div 
-          v-b-toggle.products-menu 
           class="menu-item"
+          @click="productsSubMenuOpen = !productsSubMenuOpen"
         >
           Products
           <i 
@@ -242,6 +242,7 @@
             id="currency-menu"
             v-model="currencySubMenuOpen"
             class="sub-menu"
+            is-nav
           >
             <div
               v-for="(currencyOption, index) of currencyMenu"
@@ -263,7 +264,7 @@
       </div>
     </div>
     <b-collapse 
-      id="products-menu" 
+      id="products-menu"
       v-model="productsSubMenuOpen"
     >
       <h6 class="submenu-title">
@@ -342,11 +343,6 @@ export default {
   },
   data() {
     return {
-      currencyOptions: [
-        { currency: "USD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_the_U.S..svg?v=1613061492" },
-        { currency: "CAD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_Canada.svg?v=1613061492" },
-      ],
-      isCurrencyMenuOpen: false,
       soapMenu: {
         name: "Bar Soaps",
         isOpen: false,
@@ -538,7 +534,12 @@ export default {
         ],
       },
       accountSubMenuOpen: false,
-      currencySubMenuOpen: false
+      currencySubMenuOpen: false,
+      currencyMobileSubMenuOpen: false,
+      currencyOptions: [
+        { currency: "USD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_the_U.S..svg?v=1613061492" },
+        { currency: "CAD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_Canada.svg?v=1613061492" },
+      ],
     };
   },
   computed: {
