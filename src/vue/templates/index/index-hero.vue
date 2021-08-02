@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .index-hero-component {
 
@@ -41,6 +41,7 @@ export default {
     .banner-background {
       display: flex;
       align-items: center;
+      background: global.$orange;
       padding-left: 15px;
       background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613");
       color: white;
@@ -50,7 +51,7 @@ export default {
       height: 600px;
       justify-content: flex-start;
 
-      @include layout-md {
+      @include global.layout-md {
         padding-left: 50px;
         background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671");
       }
@@ -63,9 +64,9 @@ export default {
         bottom: 50px;
         text-align: center;
         position: absolute;
-        font-family: $font-heading;
+        font-family: global.$font-heading;
 
-        @include layout-md {
+        @include global.layout-md {
           margin-left: 42%;
           align-items: flex-start;
           position: absolute;
@@ -83,9 +84,9 @@ export default {
 
         .subheader {
           display: none;
-          font-family: $font-body;
+          font-family: global.$font-body;
 
-          @include layout-md {
+          @include global.layout-md {
             display: block;
           }
         }

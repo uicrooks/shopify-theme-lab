@@ -1,16 +1,26 @@
-const path = require('path')
-const ProgressPlugin = require('progress-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const path = require('path');
+const glob = require('glob');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProgressPlugin = require('progress-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+
+const entries = glob.sync(path.resolve(__dirname,'../../src/layout/*')).reduce((entries, entry) => {
+  console.log(entry)
+  const entryName = path.parse(entry).name
+  entries[`layout-${entryName}`] = path.resolve(__dirname, entry);
+  return entries
+}, {});
 
 module.exports = {
   stats: 'minimal',
-  entry: {
+  entry: entries,
+  /*entry: {
     main: path.resolve(__dirname, '../../src/main.js')
-  },
+  },*/
   output: {
     path: path.resolve(__dirname, '../../shopify/assets/'),
-    filename: 'layout-[name].js',
+    filename: '[name].js',
     clean: {
       dry: true
     }
@@ -62,6 +72,28 @@ module.exports = {
      */
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/*', '!*static*']
+    }),
+    new HtmlWebpackPlugin({
+      excludeChunks: ['static'],
+      template: path.resolve(__dirname, './script-tags.html'),
+      filename: path.resolve(__dirname, '../../shopify/snippets/script-tags.liquid'),
+      inject: false,
+      minify: {
+        removeComments: true,
+        removeAttributeQuotes: false,
+        //collapseWhitespace: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      excludeChunks: ['static'],
+      template: path.resolve(__dirname, './style-tags.html'),
+      filename: path.resolve(__dirname, '../../shopify/snippets/style-tags.liquid'),
+      inject: false,
+      minify: {
+        removeComments: true,
+        removeAttributeQuotes: false,
+        //collapseWhitespace: true,
+      },
     }),
     new VueLoaderPlugin()
   ]

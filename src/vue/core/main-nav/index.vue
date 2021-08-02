@@ -302,8 +302,14 @@
 </template>
 
 <script>
+import GroupedMenuItem from "./grouped-menu-item.vue";
+import SingleMenuItem from "./single-menu-item.vue";
 export default {
   name: "MainNav",
+  components: {
+    GroupedMenuItem,
+    SingleMenuItem
+  },
   props: {
     currency: {
       type: Object,
@@ -549,14 +555,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
-
+@use "@/styles/main" as global;
 .main-nav-component {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: $white;
+  background-color: global.$white;
   z-index: 10;
   font-size: 16px;
 
@@ -567,7 +572,7 @@ export default {
     align-items: center;
     padding: 15px;
 
-    @include layout-lg {
+    @include global.layout-lg {
       display: none;
     }
 
@@ -603,12 +608,12 @@ export default {
         align-items: center;
         position: relative;
         width: 40px;
-        color: $orange;
+        color: global.$orange;
         font-size: 11px;
         cursor: pointer;
 
         .icon-user {
-          color: $orange;
+          color: global.$orange;
         }
 
         span {
@@ -620,18 +625,18 @@ export default {
 
 
     .sidebar-main-header {
-      background-color: $white;
-      @include font-style-body();
+      background-color: global.$white;
+      @include global.font-style-body();
 
       .currency-display {   
         position: relative;
-        background-color: $off-white;
+        background-color: global.$off-white;
         
         .menu-item {
           padding: 16px 16px 12px 16px;
           cursor: pointer;
           width: 100%;
-          border-bottom: 1px solid $dark-brown;
+          border-bottom: 1px solid global.$dark-brown;
           
           .currency-selected {
             display: flex;
@@ -639,7 +644,7 @@ export default {
             justify-content: space-between;
             align-items: center;
             padding-right: 30px;
-            @include font-style-body-bold();
+            @include global.font-style-body-bold();
 
             .currency-box {
               display: flex;
@@ -672,7 +677,7 @@ export default {
             cursor: pointer;
 
             &:hover {
-              color: $orange;
+              color: global.$orange;
               background-color: rgba(204, 99, 40, .18039);
             }
 
@@ -683,7 +688,7 @@ export default {
 
             .currency {
               margin-left: 8px;
-              @include font-style-body($color: inherit);
+              @include global.font-style-body($color: inherit);
               
             }
           }
@@ -693,46 +698,46 @@ export default {
       .big-cta-link {
         padding: 20px 15px;
         margin: 10px 16px;
-        background-color: $orange;
+        background-color: global.$orange;
         border: none;
         border-radius: 5px;
         text-align: center;
-        @include font-style-body($size: 15px, $color: $white);
+        @include global.font-style-body($size: 15px, $color: global.$white);
   
         .title {
           display: block;
           margin-bottom: 4px;
           text-transform: uppercase;
-          @include font-style-heading($size: 16px, $color: $white);
+          @include global.font-style-heading($size: 16px, $color: global.$white);
         }
   
         &:hover {
-          background-color: $orange-darken;
-          color: $white-darken;
+          background-color: global.$orange-darken;
+          color: global.$white-darken;
         }
   
         &.maroon {
-          background-color: $maroon;
+          background-color: global.$maroon;
   
           &:hover {
-            background-color: $maroon-darken;
-            color: $white-darken;
+            background-color: global.$maroon-darken;
+            color: global.$white-darken;
           }
         }
       }
     }
 
     .sidebar-main-content {
-      background-color: $white;
+      background-color: global.$white;
 
       .soap-quiz-menu {
-        border-top: 1px solid $off-white;
+        border-top: 1px solid global.$off-white;
         font-weight: 400;
       }
     }
 
     .sidebar-footer {
-      background-color: $off-white;
+      background-color: global.$off-white;
     }
   }
 
@@ -741,7 +746,7 @@ export default {
     width: 100%;
     padding: 9px 30px;
 
-    @include layout-lg {
+    @include global.layout-lg {
       display: flex;
     }
 
@@ -775,10 +780,10 @@ export default {
       align-items: center;
       margin: 0 16px;
       cursor: pointer;
-      @include font-style-body($weight: 600);
+      @include global.font-style-body($weight: 600);
 
       &:hover {
-        color: $orange;
+        color: global.$orange;
       }
 
       .icon-squatch {
@@ -795,7 +800,7 @@ export default {
 
         .currency {
           text-align: center;
-          @include font-style-body($size: 11px, $color: inherit);
+          @include global.font-style-body($size: 11px, $color: inherit);
         }
       }
     }
@@ -805,7 +810,7 @@ export default {
     position: absolute;
     top: 28px;
     padding: 14px;
-    background-color: $off-white;
+    background-color: global.$off-white;
 
     .currency-option {
       display: flex;
@@ -819,10 +824,10 @@ export default {
 
       .currency {
         margin-left: 3px;
-        @include font-style-body($size: 12px);
+        @include global.font-style-body($size: 12px);
 
         &:hover {
-          color: $orange;
+          color: global.$orange;
         }
       }
     }
@@ -831,15 +836,15 @@ export default {
   #products-menu {
     width: 100%;
     padding: 20px 15px;
-    border-top: 2px solid $white-darken;
-    background-color: $white;
+    border-top: 2px solid global.$white-darken;
+    background-color: global.$white;
     position: absolute;
     z-index: 9;
 
     .submenu-title {
       margin-bottom: 15px;
       padding-left: 15px;
-      @include font-style-heading();
+      @include global.font-style-heading();
     }
 
     .essentials {
@@ -862,7 +867,7 @@ export default {
           left: 39px;
           font-size: 10px;
           font-weight: 400;
-          background-color: $orange;
+          background-color: global.$orange;
           border-radius: 11px;
           padding: 4px 7px;
           text-transform: uppercase;
@@ -875,7 +880,7 @@ export default {
           text-align: center;
 
           &:hover {
-            background-color: $white-darken;
+            background-color: global.$white-darken;
           }
 
           img {
@@ -886,7 +891,7 @@ export default {
 
         .item-name {
           text-align: center;
-          @include font-style-heading($size: 14px);
+          @include global.font-style-heading($size: 14px);
         }
       }
     }
@@ -905,16 +910,16 @@ export default {
         .more-item {
           width: 160px;
           margin: 0 0 14px 15px;
-          @include font-style-body($weight: 600);
+          @include global.font-style-body($weight: 600);
           cursor: pointer;
 
           &:hover {
-            color: $orange;
+            color: global.$orange;
           }
         }
 
         .more-item-shop-all {
-          @include font-style-heading($size: 14px, $weight: 600);
+          @include global.font-style-heading($size: 14px, $weight: 600);
         }
       }
     }
@@ -923,13 +928,13 @@ export default {
 </style>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .b-sidebar-header {
-  background-color: $white;
+  background-color: global.$white;
 }
 .b-sidebar-body {
-  background-color: $off-white;
+  background-color: global.$off-white;
 }
 
 .grouped-menu-item-component, .single-menu-item-component {
@@ -939,8 +944,8 @@ export default {
 .squatch-button-component.big-cta-link {
   padding: 20px 15px;
   margin: 16px;
-  background-color: $orange;
+  background-color: global.$orange;
   text-align: center;
-  @include font-style-heading($size: 16px, $color: $white);
+  @include global.font-style-heading($size: 16px, $color: global.$white);
 }
 </style>

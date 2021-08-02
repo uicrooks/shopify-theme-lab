@@ -1,11 +1,23 @@
 <template>
-  <div class="index-landing-component">
-    <!-- stuff -->
+  <div id="layout-index">
+    <index-hero></index-hero>
+    <!--
+    <index-starter-bundle></index-starter-bundle>
+    <index-featured-products></index-featured-products>
+    <index-subscription-offer></index-subscription-offer>
+    <index-quiz></index-quiz>
+    <index-reviews></index-reviews>
+    <index-squatch-difference></index-squatch-difference>
+    -->
   </div>
 </template>
 
 <script>
+import IndexHero from "./index-hero.vue";
 export default {
-  name: "IndexLanding"
+  name: "IndexTemplate",
+  components: {
+    IndexHero
+  }
 };
 </script>
