@@ -83,16 +83,31 @@ const createVueApp = () => {
 createVueApp().mount('#app')
 
 /**
- * fix: properly render vue components inside sections on user insert in the theme editor
- * add the 'vue' keyword to the section's wrapper classes e.g.:
+ * fixes for Shopify sections
+ * 1. properly render vue components on user insert in the theme editor
+ * 2. reload the current page to rerender async inserted sections with vue components
+ *
+ * add the 'vue' keyword to the section's wrapper classes if the section uses any vue functionality e.g.:
  * {% schema %}
  * {
  *   "class": "vue-section"
  * }
  * {% endschema %}
  */
-Shopify.designMode && document.addEventListener('shopify:section:load', (event) => {
-  if (event.target.classList.value.includes('vue')) {
-    createVueApp().mount(event.target)
-  }
-})
+if (Shopify.designMode) {
+  document.addEventListener('shopify:section:load', (event) => {
+    if (event.target.classList.value.includes('vue')) {
+      createVueApp().mount(event.target)
+    }
+  })
+} else if (!Shopify.designMode && process.env.NODE_ENV === 'development') {
+  new MutationObserver((mutationsList) => {
+    mutationsList.forEach(record => {
+      const vue = Array.from(record.addedNodes).find(node => node.classList && node.classList.value.includes('vue'))
+      if (vue) window.location.reload()
+    })
+  }).observe(document.body, {
+    childList: true,
+    subtree: true
+  })
+}
