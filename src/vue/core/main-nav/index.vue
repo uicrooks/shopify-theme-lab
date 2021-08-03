@@ -25,11 +25,11 @@
       >
         <template #header>
           <div class="sidebar-header">
-            <img
+            <b-img-lazy
               id="drsquatch-logo-mobile-sidebar"
               src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
               alt="Dr.Squatch logo"
-            >
+            ></b-img-lazy>
             <div 
               class="account-icon-box" 
               @click="logIn"
@@ -53,11 +53,11 @@
                 <div class="currency-selected">
                   You're Shopping In
                   <div class="currency-box">
-                    <img
+                    <b-img-lazy
                       :src="currencySelected.imageSrc"
                       :alt="`${currencySelected.currency} image`"
                       class="currency-flag-image"
-                    >
+                    ></b-img-lazy>
                     <span class="currency">
                       {{ currencySelected.currency }}
                     </span>
@@ -77,11 +77,11 @@
                   :key="`currecny-option-${index}`"
                   class="currency-option"
                 >
-                  <img
+                  <b-img-lazy
                     :src="currencyOption.imageSrc"
                     :alt="`${currencyOption.currency} image`"
                     class="currency-flag-image"
-                  >
+                  ></b-img-lazy>
                   <span class="currency">
                     {{ currencyOption.currency }}
                   </span>
@@ -206,11 +206,11 @@
           class="menu-item"
         >
           <div class="currency-box">
-            <img
+            <b-img-lazy
               :src="currencySelected.imageSrc"
               :alt="`${currencySelected.currency} image`"
               class="currency-flag-image"
-            >
+            ></b-img-lazy>
             <span class="currency">
               {{ currencySelected.currency }}
             </span>
@@ -222,11 +222,11 @@
               :key="`currecny-option-${index}`"
               class="currency-option"
             >
-              <img
+              <b-img-lazy
                 :src="currencyOption.imageSrc"
                 :alt="`${currencyOption.currency} image`"
                 class="currency-flag-image"
-              >
+              ></b-img-lazy>
               <span class="currency">
                 {{ currencyOption.currency }}
               </span>
@@ -257,10 +257,10 @@
             {{ item.badge }}
           </span>
           <div class="item-image-wrapper">
-            <img 
+            <b-img-lazy
               :src="item.imageSrc" 
               :alt="`${item.name} image`" 
-            >
+            ></b-img-lazy>
           </div>
           <div class="item-name">
             {{ item.name }}
@@ -557,7 +557,6 @@ export default {
 <style scoped lang="scss">
 @use "@/styles/main" as global;
 .main-nav-component {
-  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -948,4 +947,13 @@ export default {
   text-align: center;
   @include global.font-style-heading($size: 16px, $color: global.$white);
 }
+#shopify-section-header {
+        position: sticky;
+        top: -76px;
+        transition: top 0.3s linear;
+        z-index: 99;
+      }
+      body.scroll-up #shopify-section-header {
+        top: 0px;
+      }
 </style>

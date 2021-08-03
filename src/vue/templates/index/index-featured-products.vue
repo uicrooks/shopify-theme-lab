@@ -17,12 +17,12 @@
         <div class="product-card">
           <div class="product-card-content">
             <a href="/collections/bar-soaps">
-              <img
+              <b-img-lazy
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_BarSoaps.jpg?v=1616455751"
                 data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_BarSoaps.jpg?v=1616455751"
                 alt="Bar Soap"
                 class="w-100 ls-is-cached lazyloaded"
-              >
+              ></b-img-lazy>
             </a>
             <div class="brand-content">
               <p class="preheader">
@@ -45,12 +45,12 @@
         <div class="product-card">
           <div class="product-card-content">
             <a href="/collections/hair-care">
-              <img
+              <b-img-lazy
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_HairCare.jpg?v=1616455752"
                 data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_HairCare.jpg?v=1616455752"
                 alt="Hair Care"
                 class="w-100 ls-is-cached lazyloaded"
-              >
+              ></b-img-lazy>
             </a>
             <div class="brand-content">
               <p class="preheader">
@@ -73,12 +73,12 @@
         <div class="product-card">
           <div class="product-card-content">
             <a href="/collections/deodorant-4-pack">
-              <img
+              <b-img-lazy
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Deodorants.jpg?v=1616455751"
                 data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Deodorants.jpg?v=1616455751"
                 alt="Deodorant"
                 class="w-100 ls-is-cached lazyloaded"
-              >
+              ></b-img-lazy>
             </a>
             <div class="brand-content">
               <p class="preheader">
@@ -101,12 +101,12 @@
         <div class="product-card">
           <div class="product-card-content">
             <a href="/collections/toothpaste">
-              <img
+              <b-img-lazy
                 src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Toothpaste.jpg?v=1616455751"
                 data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Toothpaste.jpg?v=1616455751"
                 alt="Toothpaste"
                 class="w-100 ls-is-cached lazyloaded"
-              >
+              ></b-img-lazy>
             </a>
             <div class="brand-content">
               <p class="preheader">

@@ -67,9 +67,7 @@ module.exports = merge(common, {
     new PurgeCSSPlugin({
       //paths: glob.sync(path.resolve(__dirname,'../../src/assets/**/*.js'))
       paths: glob.sync([
-        path.join(__dirname, '../../src/**/*.vue'),
-        path.join(__dirname, '../../src/**/*.js'),
-        path.join(__dirname, '../../shopify/**/*.liquid'),
+        path.resolve(__dirname, '../../src/**/*.vue'),
       ]),
       safelist: { greedy: [ /data-v-.*/ ]	}
     })

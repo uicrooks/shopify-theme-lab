@@ -43,11 +43,11 @@
       </div>
     </div>
     <div class="footer-nav-section brand">
-      <img
+      <b-img-lazy
         id="drsquatch-logo"
         src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_FULLCOLOR_White_text.svg?v=1615332033"
         alt="Dr.Squatch logo"
-      >
+      ></b-img-lazy>
       <div class="social-links">
         <a href="/test">
           <b-icon icon="instagram" />

@@ -1,16 +1,20 @@
 import Vue from "vue";
 import store from "@/vue/store";
 import axios from "axios";
-import { BootstrapVue } from 'bootstrap-vue';
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
 
 // Import core components
-const MainNav = () => import(/* webpackChunkName: "core" */"./vue/core/main-nav/index.vue");
+const MainNav = () => import(
+  /* webpackChunkName: "core" */
+  /* webpackPreload: true */
+  "./vue/core/main-nav/index.vue");
 const MainFooter = () => import(/* webpackChunkName: "core" */"./vue/core/main-footer/index.vue");
 const CartDrawer = () => import(/* webpackChunkName: "core" */"./vue/core/cart/index.vue");
 Vue.component("MainNav", MainNav);

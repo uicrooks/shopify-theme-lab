@@ -9,10 +9,10 @@
           <h3 class="squatch-difference-title">
             The
           </h3>
-          <img
+          <b-img-lazy
             src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_wordmark_black.svg?v=1615332033"
             class="squatch-difference-logo"
-          >
+          ></b-img-lazy>
           <h3 class="squatch-difference-title">
             Difference
           </h3>

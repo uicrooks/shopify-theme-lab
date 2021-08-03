@@ -38,13 +38,8 @@
 </template>
 
 <script>
-//import { 	BCollapse, BIcon } from "bootstrap-vue";
 export default {
   name: "MainNavGroupedMenuItem",
-  components: {
-    //BCollapse,
-   // BIcon
-  },
   props: {
     name: {
       type: String,

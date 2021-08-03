@@ -18,11 +18,11 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img
+                <b-img-lazy
                   class="reviewer-image"
                   src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPReview_1.jpg?v=1616649308"
                   alt="first-review"
-                >
+                ></b-img-lazy>
               </div>
               <div class="customer-review-title">
                 <strong class="review-title">
@@ -48,11 +48,11 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img
+                <b-img-lazy
                   class="reviewer-image"
                   src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPReview_2.jpg?v=1616649308"
                   alt="second-review"
-                >
+                ></b-img-lazy>
               </div>
               <div class="customer-review-title">
                 <strong class="review-title">
@@ -78,11 +78,11 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img
+                <b-img-lazy
                   class="reviewer-image"
                   src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPreview_3.jpg?v=1616649308"
                   alt="third-review"
-                >
+                ></b-img-lazy>
               </div>
               <div class="customer-review-title">
                 <strong class="review-title">
