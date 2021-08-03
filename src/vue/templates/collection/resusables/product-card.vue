@@ -31,6 +31,15 @@
         </span>
       </div>
       <div class="add-button">
+        <b-form-select
+          v-if="showQuantitySelector"
+          v-model="quantity"
+          :options="quantityOptions"
+          :clearable="false"
+          :searchable="false"
+          label="Qty"
+          class="qty-selector"
+        />
         <squatch-button
           @clicked="addToCart"
         >
@@ -43,6 +52,7 @@
 
 <script>
 import CartService from "@/vue/services/cart.service";
+import ProductIdentifier from "@/vue/services/product-identifier";
 
 export default {
   name: "ProductCard",
@@ -55,17 +65,25 @@ export default {
   },
   data() {
     return {
+      quantity: 1,
+      quantityOptions: [1, 2, 3, 4, 5],
       added: false
     };
   },
   computed: {
+    productIdentityString() {
+      return ProductIdentifier.identify(this.product).join("-");
+    },
     productDetailPageLink() {
       return `${window.location.pathname}/products/${this.product.handle}`;
+    },
+    showQuantitySelector() {
+      return ["barsoap", "booster"].includes(this.productIdentityString);
     }
   },
   methods: {
     async addToCart() {
-      const added = await CartService.addItem(this.product);
+      const added = await CartService.addItem(this.product, this.quantity);
       if (added) {
         this.added = true;
         const cart = await CartService.initCart();
@@ -141,6 +159,19 @@ export default {
       .compare-at-pricing {
         text-decoration: line-through;
         @include font-style-body($size: 14px, $color: $gray, $weight: 700);
+      }
+    }
+
+    .add-button {
+      display: flex;
+      flex-flow: row nowrap;
+
+      .qty-selector {
+        padding: 0 12px;
+        margin-right: 15px;
+        color: $dark-brown;
+        border: 1px solid $brown;
+        border-radius: 5px;
       }
     }
 
