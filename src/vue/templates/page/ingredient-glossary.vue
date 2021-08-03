@@ -273,9 +273,6 @@ export default {
       });
     },
   },
-  mounted() {
-    this.selected = this.categories[0];
-  },
   methods: {
     scrollSlider(direction) {
       console.log(direction);

@@ -18,7 +18,7 @@ export default {
   components: {
     TextOnlyBanner,
   },
-}
+};
 </script>
 
 <style scoped lang="scss">

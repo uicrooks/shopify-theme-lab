@@ -28,7 +28,7 @@
 
 <script>
 import TextOnlyBanner from "@/vue/reusables/text-only-banner";
-import SudisfactionGuarantee from "@/vue/reusables/sudisfaction-guarantee"
+import SudisfactionGuarantee from "@/vue/reusables/sudisfaction-guarantee";
 
 
 export default {
@@ -37,7 +37,7 @@ export default {
     TextOnlyBanner,
     SudisfactionGuarantee
   },
-}
+};
 </script>
 
 <style scoped lang="scss">

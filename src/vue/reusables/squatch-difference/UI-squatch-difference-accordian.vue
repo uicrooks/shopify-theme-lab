@@ -41,26 +41,26 @@
 </template>
 
 <script>
-import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
+import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients";
 
   export default {
     name: "UiSquatchDifferenceAccordian",
     data() {
       return {
         toxic: toxicIngredients,
-      }
+      };
     },
     methods: {
       greet: function (event) {
         // `this` inside methods points to the Vue instance
-        alert('Hello ' + this.name + '!')
+        alert('Hello ' + this.name + '!');
         // `event` is the native DOM event
         if (event) {
-          alert(event.target.tagName)
+          alert(event.target.tagName);
         }
       }
     }
-  }
+  };
 </script>
 
 <style scoped lang="scss">

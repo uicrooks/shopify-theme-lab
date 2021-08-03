@@ -59,17 +59,18 @@
 </template>
 
 <script>
+
 export default {
   name: "Wholesale",
   methods: {
     scroll() {
-      console.log('clicked on button')
+      console.log("clicked on button");
     },
     loginRoute() {
-      window.location.href = "https://wholesale.drsquatch.com/"
+      window.location.href = "https://wholesale.drsquatch.com/";
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

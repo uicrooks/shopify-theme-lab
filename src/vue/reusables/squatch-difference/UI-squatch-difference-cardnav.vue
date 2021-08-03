@@ -69,22 +69,20 @@
 </template>
 
 <script>
-import DifferenceCardbox from "@/vue/reusables/UI-cardbox"
+import DifferenceCardbox from "@/vue/reusables/UI-cardbox";
 
-  export default {
-    name: "DifferenceCardnav",
-    coomponents: {
-      DifferenceCardbox
-    },
-    props: {
-      selectedTab: {
-        type: String,
-        required: true
-      }
+export default {
+  name: "DifferenceCardnav",
+  coomponents: {
+    DifferenceCardbox
+  },
+  props: {
+    selectedTab: {
+      type: String,
+      required: true
     }
   }
-
-
+};
 </script>
 
 <style scoped lang="scss">

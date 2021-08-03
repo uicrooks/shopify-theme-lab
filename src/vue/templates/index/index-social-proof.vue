@@ -55,7 +55,7 @@
 <script>
 export default {
   name: "IndexSocialProof"
-}
+};
 </script>
 
 <style scoped lang="scss">

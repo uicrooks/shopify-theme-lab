@@ -12,18 +12,18 @@
 export default {
   name: "LoyaltyRewards",
   mounted() {
-    let testScript = document.createElement('script')
-    testScript.setAttribute('src', 'https://cdn-widgetsrepository.yotpo.com/v1/loader/aVmUCojw7M4SVKvRhQWlyw')
-    document.head.appendChild(testScript)
+    let testScript = document.createElement("script");
+    testScript.setAttribute("src", "https://cdn-widgetsrepository.yotpo.com/v1/loader/aVmUCojw7M4SVKvRhQWlyw");
+    document.head.appendChild(testScript);
 
-    window.addEventListener('load', function() {
-      jQuery172('.yotpo-customer-logged-out-buttons button').on('click', function() {
+    window.addEventListener("load", function() {
+      jQuery172(".yotpo-customer-logged-out-buttons button").on("click", function() {
           var current_url = window.location.href;
           window.location.href=`https://drsquatch.com/account/login?checkout_url=${current_url}`;
-      })
+      });
     });
   }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -76,9 +76,8 @@ export default {
   left: 0;
   right: 0;
 }
-.yotpo-coupons-redemption-widget .yotpo-redemption-coupon-background 
-.yotpo-action-button-widget .yotpo-button-style { 
- 	width: initial !important;
+.yotpo-coupons-redemption-widget .yotpo-redemption-coupon-background .yotpo-action-button-widget .yotpo-button-style { 
+  width: initial !important;
   margin-top: 12px;
 }
 

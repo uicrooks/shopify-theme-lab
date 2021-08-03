@@ -81,7 +81,7 @@
 <script>
 import HeroDisplay from "@/vue/reusables/squatch-difference/hero-display";
 import DifferenceCardnav from "@/vue/reusables/squatch-difference/UI-squatch-difference-cardnav";
-import SudisfactionGuarantee from '@/vue/reusables/sudisfaction-guarantee';
+import SudisfactionGuarantee from "@/vue/reusables/sudisfaction-guarantee";
 
 export default {
   name: "SquatchDifference",
@@ -90,7 +90,7 @@ export default {
     DifferenceCardnav,
     SudisfactionGuarantee
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

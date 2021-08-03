@@ -68,7 +68,7 @@
 
 <script>
 import HeroDisplay from "@/vue/reusables/squatch-difference/hero-display";
-import SquatchDifferenceSubnav from "@/vue/reusables/squatch-difference/UI-squatch-difference-subnav"
+import SquatchDifferenceSubnav from "@/vue/reusables/squatch-difference/UI-squatch-difference-subnav";
 import SudisfactionGuarantee from "@/vue/reusables/sudisfaction-guarantee";
 import DifferenceCardnav from "@/vue/reusables/squatch-difference/UI-squatch-difference-cardnav";
 import UISquatchDifferenceAccordian from "@/vue/reusables/squatch-difference/UI-squatch-difference-accordian";
@@ -83,7 +83,7 @@ import UISquatchDifferenceAccordian from "@/vue/reusables/squatch-difference/UI-
       DifferenceCardnav,
       UISquatchDifferenceAccordian
     }
-  }
+  };
 </script>
 
 <style scoped lang="scss">

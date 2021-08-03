@@ -132,7 +132,7 @@
 
 export default {
   name: "HeroDiscount"
-}
+};
 </script>
 
 <style scoped lang="scss">

@@ -37,6 +37,7 @@
     "shopify-buy": "^2.11.0",
     "universal-cookie": "^4.0.4",
     "vue": "^2.6.12",
+    "vue-slick-carousel": "^1.0.6",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

@@ -144,7 +144,7 @@
       <div class="right-section">
         <div 
           class="menu-item" 
-          @click="navigateTo('/test')"
+          @click="navigateTo('/pages/quiz-1')"
         >
           Take Quiz
         </div>
