@@ -1,5 +1,5 @@
 <template>
-  <section class="index-sub-offer-component">
+  <section class="index-subscription-offer-component">
     <div class="subscribe-container">
       <div class="subscribe-content">
         <div class="brand-content">
@@ -16,9 +16,10 @@
           <div class="image-container">
             <squatch-button
               class="big-cta-button"
-              text="Subscribe & Save"
               path="/pages/subscription-flow#soap"
-            />
+            >
+              Subscribe & Save
+            </squatch-button>
           </div>
         </div>
       </div>
@@ -27,20 +28,15 @@
 </template>
 
 <script>
-import SquatchButton from "@/vue/ui-elements/squatch-button";
-
 export default {
-  name: "IndexSubOffer",
-  components: {
-    SquatchButton,
-  },
+  name: "IndexSubscriptionOffer"
 };
 </script>
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
 
-.index-sub-offer-component {
+.index-subscription-offer-component {
   width: 100%;
   max-width: 1400px;
   margin: 90px auto 45px;

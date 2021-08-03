@@ -1,14 +1,18 @@
 <template>
   <div class="cart-component">
-    <b-icon
-      aria-controls="cart"
-      :aria-expanded="isOpen"
-      icon="cart"
-      font-scale="2"
+    <div
       class="cart-icon"
       @click="toggleCart"
-    />
-    <span>{{ numberOfItems }}</span>
+    >
+      <i
+        aria-controls="cart"
+        :aria-expanded="isOpen"
+        class="icon-squatch icon-cart"
+      />
+      <div class="item-total">
+        <span>{{ numberOfItems }}</span>
+      </div>
+    </div>
     <b-sidebar
       id="cart"
       v-model="isOpen"
@@ -25,10 +29,29 @@
       <template #default="{ hide }">
         <div class="cart-title">
           Your Cart
-          <b-icon 
-            icon="x" 
-            font-scale="1.5" 
-            @click="hide" 
+          <i
+            class="icon-squatch icon-cross icon-size-xs"
+            @click="hide"
+          />
+        </div>
+        <div
+          v-if="items.length > 0"
+          class="free-shipping-display"
+        >
+          <div v-if="amountTillFreeShipping > 0">
+            Free Shipping is only <span class="accent">{{ amountTillFreeShipping | money("$", 0) }}</span> away!
+          </div>
+          <div v-else>
+            Free Shipping Unlocked at Checkout!
+          </div>
+          <b-progress
+            :value="subtotal"
+            :max="freeShippingMinimum"
+            height="7px"
+            striped
+            animated
+            class="progress-bar-wrapper"
+            :class="{'fulfilled': amountTillFreeShipping <= 0}"
           />
         </div>
         <div 
@@ -39,7 +62,7 @@
             v-for="(item, index) of items"
             :key="`cart-item-${index}`"
             class="item"
-            :class="{ 'last-item': index === items.length - 1 }"
+            :class="{'last-item': index === items.length - 1}"
           >
             <a 
               :href="item.url" 
@@ -98,14 +121,14 @@
             Continue Browsing
           </squatch-button>
         </div>
-        <squatch-button
-          v-if="items.length > 0"
-          text="Checkout"
-          class="checkout-button"
-          @clicked="checkout"
-        >
-          Checkout
-        </squatch-button>
+        <div class="checkout-button-wrapper">
+          <squatch-button
+            v-if="items.length > 0"
+            @clicked="checkout"
+          >
+            Checkout
+          </squatch-button>
+        </div>
       </template>
     </b-sidebar>
   </div>
@@ -133,6 +156,10 @@ export default {
       },
     },
     ...mapGetters("cart", ["subtotal", "items", "numberOfItems"]),
+    ...mapGetters("core", ["freeShippingMinimum"]),
+    amountTillFreeShipping() {
+      return this.freeShippingMinimum - this.subtotal;
+    }
   },
   methods: {
     toggleCart() {
@@ -167,8 +194,38 @@ export default {
 @import "@/styles/main.scss";
 
 .cart-component {
+  margin-right: 25px;
+
+  @include layout-md {
+    margin-right: 15px;
+  }
+
   .cart-icon {
-    cursor: pointer;
+    position: relative;
+    
+    .icon-cart {
+      cursor: pointer;
+  
+      &:hover {
+        color: $orange;
+      }
+    }
+
+    .item-total {
+      position: absolute;
+      top: -10px;
+      left: 18px;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      justify-content: center;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background-color: $orange;
+      text-align: center;
+      @include font-style-body($color: $white);
+    }
   }
 
   .cart-title {
@@ -179,6 +236,28 @@ export default {
     padding: 15px 20px;
     background-color: $black;
     @include font-style-heading($size: 23px, $color: $white);
+
+    .icon-cross {
+
+      &:hover {
+        color: #d9d9d9;
+      }
+    }
+  }
+
+  .free-shipping-display {
+    background-color: $off-white;
+    padding: 16px 7px 10px;
+    text-align: center;
+    @include font-style-heading($size: 14px, $weight: 500);
+
+    .accent {
+      color: $orange;
+    }
+
+    .progress-bar-wrapper {
+      margin: 5px 30px 7px;
+    }
   }
 
   .cart-content {
@@ -230,6 +309,7 @@ export default {
         .item-title {
           text-decoration: none;
           cursor: pointer;
+          padding-right: 15px;
           @include font-style-heading($size: 14px);
 
           &:hover {
@@ -261,7 +341,7 @@ export default {
 
     .sub-total {
       position: relative;
-      padding: 15px 15px 15px 30px;
+      padding: 15px 14px 15px 30px;
       border-top: 1px solid $off-white;
       @include font-style-body();
 
@@ -274,9 +354,9 @@ export default {
     }
   }
 
-  .checkout-button {
-    margin: 20px 30px;
-    padding: 16px;
+  .checkout-button-wrapper {
+    width: 100%;
+    padding: 20px;
   }
 }
 </style>
@@ -295,5 +375,19 @@ export default {
 
 .cart-body {
   background-color: $off-white;
+}
+
+.progress-bar-wrapper {
+  background-color: #fbf6f0;
+
+  .progress-bar {
+    background-color: $orange;
+  }
+
+  &.fulfilled {
+    .progress-bar {
+      background-color: #6c8128;
+    }
+  }
 }
 </style>

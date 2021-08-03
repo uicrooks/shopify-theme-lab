@@ -38,9 +38,10 @@
               <squatch-button
                 v-if="cta"
                 class="big-cta-button"
-                :text="cta"
                 :path="path"
-              />
+              >
+                {{ cta }}
+              </squatch-button>
               <a 
                 v-else 
                 class="link" 
@@ -70,12 +71,7 @@
 </template>
 
 <script>
-import SquatchButton from "@/vue/ui-elements/squatch-button";
-
 export default {
-  components: {
-    SquatchButton,
-  },
   props: {
     preheader: {
       type: String,
@@ -120,7 +116,6 @@ export default {
   },
   methods: {
     navigateTo() {
-      console.log("navigateTo");
       if (this.path) {
         window.location = this.path;
       }
@@ -131,7 +126,6 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/main.scss";
-$black: #1a110c;
 
 .image-mobile {
   @include layout-md {
@@ -149,20 +143,17 @@ $black: #1a110c;
 
 .preheader {
   margin: 0 0 15px 0;
-  @include font-style-body($size: 16px, $color: $black);
+  @include font-style-body($size: 16px);
 }
 
 .header {
-  @include font-style-heading($size: 3.4375rem, $color: $black);
-
-  
-
+  @include font-style-heading($size: calc(1.12188rem + 3.0875vw));
 }
 
 .subheader {
   font-weight: 600;
   margin: 0 0 20px 0;
-  @include font-style-body-bold($size: 20px, $color: $black);
+  @include font-style-body-bold($size: 20px);
 }
 
 .banner-desktop {

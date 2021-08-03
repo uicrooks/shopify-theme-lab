@@ -1,11 +1,11 @@
 <template>
-  <div
+  <button
     class="squatch-button-component"
     :class="{'disabled': disabled}"
     @click="takeAction"
   >
     <slot />
-  </div>
+  </button>
 </template>
 
 <script>
@@ -39,12 +39,13 @@ export default {
 @import "@/styles/main.scss";
 
 .squatch-button-component {
-  padding: 12px 15px;
+  width: 100%;
+  padding: 17px 15px 13px;
   border-radius: 5px;
+  border: none;
   text-align: center;
   background-color: $orange;
-  cursor: pointer;
-  @include font-style-heading($size: 15px, $color: $white);
+  @include font-style-heading($size: 14px, $color: $white);
 
   &:hover {
     background-color: $orange-lighten;

@@ -1,22 +1,2 @@
-<link rel="preload" href="{{ 'layout-main.css' | asset_url }}" as="style">
 {{ 'layout-main.css' | asset_url | stylesheet_tag }}
-
-{% if template.name == "index" %}
-  <link rel="preload" href="{{ 'layout-index.css' | asset_url }}" as="style">
-  {{ "layout-index.css" | asset_url | stylesheet_tag }}
-{% elsif template.name == "product" %}
-  <link rel="preload" href="{{ 'layout-product.css' | asset_url }}" as="style">
-  {{ "layout-product.css" | asset_url | stylesheet_tag }}
-{% elsif template.name == "page" %}
-  <link rel="preload" href="{{ 'layout-page.css' | asset_url }}" as="style">
-  {{ "layout-page.css" | asset_url | stylesheet_tag }}
-{% elsif template.name == "collection" %}
-  <link rel="preload" href="{{ 'layout-collection.css' | asset_url }}" as="style">
-  {{ "layout-collection.css" | asset_url | stylesheet_tag }}
-{% elsif template.name == "account" %}
-  <link rel="preload" href="{{ 'layout-account.css' | asset_url }}" as="style">
-  {{ "layout-account.css" | asset_url | stylesheet_tag }}
-{% elsif template.name == "cart" %}
-  <link rel="preload" href="{{ 'layout-cart.css' | asset_url }}" as="style">
-  {{ "layout-cart.css" | asset_url | stylesheet_tag }}
-{% endif %}
+{{ 'style.css' | asset_url | stylesheet_tag }}

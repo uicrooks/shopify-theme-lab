@@ -1,4 +1,4 @@
-<template class="index-featured-products-component">
+<template>
   <div class="index-featured-products-component">
     <div class="preheader-container">
       <div class="featured-products-preheader">
@@ -152,8 +152,7 @@ export default {
   .preheader-container {
     width: 100%;
     padding: 0 15px;
-    margin-right: auto;
-    margin-left: auto;
+    margin: 0 auto;
 
     .featured-products-preheader {
       width: 100%;

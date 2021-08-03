@@ -1,0 +1,435 @@
+.icon-squatch {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "DrSquatch-icon" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  vertical-align: sub;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-size-xl {
+  font-size: 1.7rem !important;
+}
+
+.icon-size-lg {
+  font-size: 1.6rem !important;
+}
+
+.icon-size-md {
+  font-size: 1.4rem !important;
+}
+
+.icon-size-sm {
+font-size: 1.2rem !important;
+}
+
+.icon-size-xs {
+  font-size: 1rem !important;
+}
+
+.icon-cart::before {
+  content: "\e92a";
+}
+
+.icon-angle-down::before {
+  content: "\e900";
+}
+
+.icon-angle-left::before {
+  content: "\e901";
+}
+
+.icon-angle-right::before {
+  content: "\e902";
+}
+
+.icon-angle-up::before {
+  content: "\e903";
+}
+
+.icon-check::before {
+  content: "\e904";
+}
+
+.icon-chevron-down::before {
+  content: "\e905";
+}
+
+.icon-chevron-left::before {
+  content: "\e906";
+}
+
+.icon-chevron-right::before {
+  content: "\e907";
+}
+
+.icon-chevron-up::before {
+  content: "\e908";
+}
+
+.icon-plus::before {
+  content: "\e909";
+}
+
+.icon-minus::before {
+  content: "\e90a";
+}
+
+.icon-cross-circle::before {
+  content: "\e90b";
+}
+
+.icon-cross::before {
+  content: "\e90c";
+}
+
+.icon-flag::before {
+  content: "\e90d";
+}
+
+.icon-Glorious-Lather::before {
+  content: "\e90e";
+}
+
+.icon-ico-call::before {
+  content: "\e90f";
+}
+
+.icon-champion::before {
+  content: "\e910";
+}
+
+.icon-no-chemical::before {
+  content: "\e911";
+}
+
+.icon-no-glycerin::before {
+  content: "\e912";
+}
+
+.icon-Masculine-scents::before {
+  content: "\e913";
+}
+
+.icon-plants-oil::before {
+  content: "\e914";
+}
+
+.icon-preservatives::before {
+  content: "\e915";
+}
+
+.icon-chemicals-added::before {
+  content: "\e916";
+}
+
+.icon-question-circle::before {
+  content: "\e917";
+}
+
+.icon-burger::before {
+  content: "\e918";
+}
+
+.icon-search::before {
+  content: "\e919";
+}
+
+.icon-star-fill::before {
+  content: "\e91a";
+}
+
+.icon-star-half::before {
+  content: "\e91b";
+}
+
+.icon-star::before {
+  content: "\e91c";
+}
+
+.icon-twitter-square::before {
+  content: "\e91d";
+}
+
+.icon-twitter::before {
+  content: "\e91e";
+}
+
+.icon-user::before {
+  content: "\e91f";
+}
+
+.icon-pinterest-square::before {
+  content: "\e920";
+}
+
+.icon-pinterest::before {
+  content: "\e921";
+}
+
+.icon-youtube-square::before {
+  content: "\e922";
+}
+
+.icon-youtube::before {
+  content: "\e923";
+}
+
+.icon-google-plus-square::before {
+  content: "\e924";
+}
+
+.icon-google-plus-g::before {
+  content: "\e925";
+}
+
+.icon-facebook::before {
+  content: "\e926";
+}
+
+.icon-facebook-f::before {
+  content: "\e927";
+}
+
+.icon-instagram::before {
+  content: "\e928";
+}
+
+.icon-linkedin::before {
+  content: "\e929";
+}
+
+.icon-envelope::before {
+  content: "\e92e";
+}
+
+.icon-tag::before {
+  content: "\e92b";
+}
+
+.icon-monthly::before {
+  content: "\e92c";
+}
+
+.icon-quarterly::before {
+  content: "\e92d";
+}
+
+.icon-icon-stars::before {
+  content: "\e92f";
+}
+
+.icon-mailbox::before {
+  content: "\e930";
+}
+
+.icon-foot-print::before {
+  content: "\e931";
+}
+
+.icon-featuring_goat::before {
+  content: "\e932";
+}
+
+.icon-christmas::before {
+  content: "\e933";
+}
+
+.icon-gripper_step2::before {
+  content: "\e934";
+}
+
+.icon-gripper__step3::before {
+  content: "\e935";
+}
+
+.icon-gripper_step1::before {
+  content: "\e936";
+}
+
+.icon-soap::before {
+  content: "\e937";
+}
+
+.icon-snugly::before {
+  content: "\e938";
+}
+
+.icon-water_element::before {
+  content: "\e939";
+}
+
+.icon-water_drop::before {
+  content: "\e93a";
+}
+
+.icon-wheat::before {
+  content: "\e93b";
+}
+
+.icon-leaf::before {
+  content: "\e93c";
+}
+
+.icon-no_exfoliation::before {
+  content: "\e93d";
+}
+
+.icon-oak_moss::before {
+  content: "\e93e";
+}
+
+.icon-rinse::before {
+  content: "\e93f";
+}
+
+.icon-sailing_ship::before {
+  content: "\e940";
+}
+
+.icon-sandalwood::before {
+  content: "\e941";
+}
+
+.icon-scent_cedar::before {
+  content: "\e942";
+}
+
+.icon-scent_floral::before {
+  content: "\e943";
+}
+
+.icon-scent_forest::before {
+  content: "\e944";
+}
+
+.icon-scent_natural::before {
+  content: "\e945";
+}
+
+.icon-scrub::before {
+  content: "\e946";
+}
+
+.icon-shea::before {
+  content: "\e947";
+}
+
+.icon-featuring_mint::before {
+  content: "\e948";
+}
+
+.icon-featuring_pine::before {
+  content: "\e949";
+}
+
+.icon-featuring_salt::before {
+  content: "\e94a";
+}
+
+.icon-grapefruit::before {
+  content: "\e94b";
+}
+
+.icon-exfoliation_mint::before {
+  content: "\e94c";
+}
+
+.icon-exfoliation_oatmeal::before {
+  content: "\e94d";
+}
+
+.icon-exfoliation-oatmeal-green-3::before {
+  content: "\e94e";
+}
+
+.icon-featuring_cedar::before {
+  content: "\e94f";
+}
+
+.icon-featuring_hemp::before {
+  content: "\e950";
+}
+
+.icon-lather::before {
+  content: "\e951";
+}
+
+.icon-deciduous_tree::before {
+  content: "\e952";
+}
+
+.icon-euc-leaf::before {
+  content: "\e953";
+}
+
+.icon-shea_butter::before {
+  content: "\e954";
+}
+
+.icon-bowl::before {
+  content: "\e955";
+}
+
+.icon-calendar_day::before {
+  content: "\e956";
+}
+
+.icon-calendar_week::before {
+  content: "\e957";
+}
+
+.icon-cedarwood::before {
+  content: "\e958";
+}
+
+.icon-tropics_spice::before {
+  content: "\e959";
+}
+
+.icon-tropic-red::before {
+  content: "\e95a";
+}
+
+.icon-frown::before {
+  content: "\e95b";
+}
+
+.icon-bag-icon::before {
+  content: "\e95c";
+}
+
+.icon-list-ol::before {
+  content: "\e95d";
+}
+
+.icon-soap-star::before {
+  content: "\e95e";
+}
+
+.icon-flag-soap::before {
+  content: "\e95f";
+}
+
+.icon-hand-leaf::before {
+  content: "\e960";
+}
+
+.icon-info::before {
+  content: "\e961";
+}
+
+.icon-coffee-grounds::before {
+  content: "\e962";
+}
+
+.icon-fresh-brewed-coffee::before {
+  content: "\e963";
+}

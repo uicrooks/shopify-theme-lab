@@ -1,1 +1,90 @@
-<!-- register.liquid -->
+<div class="login-page-container">
+
+  {% form 'create_customer' %}
+    <div id="register-form">
+      <h2 class="login-page-title">Get Started</h2>
+
+      <div class="login-page-related-links">
+        <a
+          href="/account/login"
+          class="login-page-link inactive-link"
+        >Login</a>
+        <a
+          href="/account/register"
+          class="login-page-link active-link"
+        >Create Account</a>
+      </div>
+
+      <p class="login-text">
+        Create an account to manage your subscription, checkout faster, and view your order history!
+      </p>
+
+      {% if form.errors %}
+        {% render "_form.errors", errors: form.errors %}
+      {% endif %}
+
+      <div class="form-field-wrapper">
+        <input 
+          type="text"
+          name="customer[first_name]"
+          placeholder="First Name"
+          autocorrect="off"
+          autocapitalize="on"
+          required
+          class="form-field"
+        />
+      </div>
+      <div class="form-field-wrapper">
+        <input 
+          type="text"
+          name="customer[last_name]"
+          placeholder="Last Name"
+          autocorrect="off"
+          autocapitalize="on"
+          required
+          class="form-field"
+        />
+      </div>
+      <div class="form-field-wrapper">
+        <input 
+          type="email"
+          name="customer[email]"
+          placeholder="Email"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          required
+          class="form-field"
+        />
+      </div>
+      <div class="form-field-wrapper">
+        <input
+          type="password"
+          name="customer[password]"
+          placeholder="Password"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          required
+          class="form-field"
+        />
+      </div>
+      <div class="form-field-wrapper checkbox">
+        <input
+          type="checkbox"
+          name="customer[accepts_marketing]"
+          aria-label="newsletter subscription" class="form-field-checkbox"
+          checked
+        />
+        <span class="form-field-checkbox-label">Be the first to know about new arrivals, sales, exclusive content and more! You can opt-out at any time.</span>
+      </div>
+      <div class="form-submit-wrapper">
+        <input
+          type="submit"
+          value="Create"
+          class="submit-button"
+        />
+      </div>
+    </div>
+  {% endform %}
+</div>

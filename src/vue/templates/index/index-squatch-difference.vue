@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import SquatchButton from "@/vue/ui-elements/squatch-button";
+import SquatchButton from "@/vue/reusables/squatch-button";
 
 export default {
   name: "IndexSquatchDifference",

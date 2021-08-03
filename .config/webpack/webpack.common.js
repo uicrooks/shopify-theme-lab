@@ -5,22 +5,22 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   stats: 'minimal',
-  //entry: path.resolve(__dirname, '../../src/main.js'),
   entry: {
-    main: path.resolve(__dirname, '../../src/main.js'),
-    index: path.resolve(__dirname, '../../src/layout/index.js'),
-    cart: path.resolve(__dirname, '../../src/layout/cart.js'),
-    account: path.resolve(__dirname, '../../src/layout/account.js'),
+    main: path.resolve(__dirname, '../../src/main.js')
   },
   output: {
     path: path.resolve(__dirname, '../../shopify/assets/'),
-    filename: 'layout-[name].js'
+    filename: 'layout-[name].js',
+    clean: {
+      dry: true
+    }
   },
   resolve: {
     extensions: ['*', '.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': path.resolve(__dirname, '../../src/')
+      '@': path.resolve(__dirname, '../../src/'),
+      '$': path.resolve(__dirname, '../../shopify/')
     }
   },
   module: {
@@ -36,6 +36,18 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8192
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '/'
             }
           }
         ]

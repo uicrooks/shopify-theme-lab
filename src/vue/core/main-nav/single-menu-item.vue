@@ -50,11 +50,10 @@ export default {
 
 .single-menu-item-component {
   width: 100%;
-  padding: 11px 16px;
+  padding: 16px;
   cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
   position: relative;
+  @include font-style-body($weight: 700, $color: inherit);
 
   .badge {
     font-size: 10px;
