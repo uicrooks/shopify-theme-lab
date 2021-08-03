@@ -7,7 +7,7 @@ const IndexTemplate = () => import(/* webpackChunkName: "index-main" */"../vue/t
 new Vue({
   el: "#app",
   components: {
-    IndexTemplate
+    IndexTemplate,
   },
   store,
   mounted() {

@@ -1,7 +1,11 @@
 import Vue from "vue";
 import store from "@/vue/store";
 import axios from "axios";
+import { BootstrapVue } from 'bootstrap-vue';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
 
+Vue.use(BootstrapVue)
 Vue.config.productionTip = false;
 Vue.prototype.$axios = axios;
 
@@ -12,14 +16,6 @@ const CartDrawer = () => import(/* webpackChunkName: "core" */"./vue/core/cart/i
 Vue.component("MainNav", MainNav);
 Vue.component("MainFooter", MainFooter);
 Vue.component("CartDrawer", CartDrawer);
-/*
-// Import Filters
-const filters = require.context("./vue/filters/", true, /\.(vue|js)$/);
-filters.keys().forEach(key => {
-  const filterMethod = filters(key);
-  const name = key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
-  Vue.filter(name, filterMethod);
-});
 
 const body = document.body;
 const scrollUp = "scroll-up";
@@ -45,6 +41,6 @@ window.addEventListener("scroll", () => {
     body.classList.add(scrollUp);
   }
   lastScroll = currentScroll;
-});*/
-console.log(Vue)
+});
+
 export { Vue, store };

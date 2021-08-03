@@ -16,8 +16,12 @@
 </template>
 
 <script>
+//import { BIcon } from "bootstrap-vue";
 export default {
   name: "MainNavSingleMenuItem",
+  components: {
+    //BIcon
+  },
   props: {
     name: {
       type: String,

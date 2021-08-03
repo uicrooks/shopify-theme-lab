@@ -1,3 +1,4 @@
+<link type="text/css" href="{{ 'core.css' | | asset_url }}" rel="stylesheet">
 <% for (var chunk in htmlWebpackPlugin.files.js) { %>
   <% var layoutEntry = htmlWebpackPlugin.files.js[chunk] %>
   <% var layoutEntry_name = layoutEntry.replace('../assets/', '').replace('.js', '').replace("layout-", '') %>

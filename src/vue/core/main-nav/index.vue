@@ -308,7 +308,7 @@ export default {
   name: "MainNav",
   components: {
     GroupedMenuItem,
-    SingleMenuItem
+    SingleMenuItem,
   },
   props: {
     currency: {
@@ -548,7 +548,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.loggedIn);
+    console.log(this);
     this.$store.commit("core/setLoggedIn", this.loggedIn);
   }
 };
