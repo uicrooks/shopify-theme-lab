@@ -490,7 +490,7 @@ export default {
         essentials: [
           {
             name: "Shop Bundles",
-            path: "/test",
+            path: "/pages/bundle-offers",
             imageSrc:
               "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457",
           },
@@ -584,7 +584,6 @@ export default {
       window.location = this.loggedIn ? "/account" : "/account/login";
     },
     navigateTo(path) {
-      if (path === "/test") return;
       window.location = path;
     }
   },

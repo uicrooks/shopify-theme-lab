@@ -1,9 +1,9 @@
 <template>
   <div class="collection-component">
-    <new-look-banner
+    <!-- <new-look-banner
       v-if="hasNewLookBanner"
       :has-old-packaging="hasOldPackaging"
-    />
+    /> -->
     <jumbotron
       v-if="jumbotronConfig"
       :video-id="jumbotronConfig.videoId"
@@ -22,19 +22,21 @@
         Handmade, natural products to tame your inner Squatch.
       </p>
     </div>
-
-    <collection-best-sellers-content
-      v-if="handle === 'collection-page-best-sellers'"
-      :products="products"
-    />
-    <collection-haircare-content
-      v-else-if="handle === 'hair-care'"
-      :products="products"
-    />
-    <collection-default-content
-      v-else
-      :products="products"
-    />
+    <div class="content-container">
+      <collection-nav />
+      <collection-best-sellers-content
+        v-if="handle === 'collection-page-best-sellers'"
+        :products="products"
+      />
+      <collection-haircare-content
+        v-else-if="handle === 'hair-care'"
+        :products="products"
+      />
+      <collection-default-content
+        v-else
+        :products="products"
+      />
+    </div>
   </div>
 </template>
 
@@ -86,23 +88,42 @@ export default {
 
 .collection-component {
 
-  h1 {
-    margin-bottom: 14px;
-    @include font-style-heading($size: 32px, $color: $white);
+  .collection-nav-component {
+    position: fixed;
+    bottom: 0;
+
+      @media (min-width: 1153px) {
+        position: relative;
+        width: 200px;
+        margin-right: 15px;
+      }
   }
 
-  p {
-    margin-bottom: 0;
-    @include font-style-body($color: $white);
-  }
+  .content-container {
 
-  .default-jumbotron {
-    background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/dsq-woodgrain_texture-DARK.svg?v=1616535182");
-    background-size: 200%;
-    background-repeat: repeat;
-    background-color: $dark-brown;
-    padding: 42px 0;
-    text-align: center;
+    @media (min-width: 1153px) {
+      display: flex;
+      flex-flow: row nowrap;
+    }
+
+    h1 {
+      margin-bottom: 14px;
+      @include font-style-heading($size: 32px, $color: $white);
+    }
+  
+    p {
+      margin-bottom: 0;
+      @include font-style-body($color: $white);
+    }
+  
+    .default-jumbotron {
+      background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/dsq-woodgrain_texture-DARK.svg?v=1616535182");
+      background-size: 200%;
+      background-repeat: repeat;
+      background-color: $dark-brown;
+      padding: 42px 0;
+      text-align: center;
+    }
   }
 }
 </style>
