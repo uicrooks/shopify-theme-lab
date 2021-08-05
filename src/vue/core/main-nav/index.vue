@@ -171,6 +171,7 @@
         </div>
         <div 
           class="menu-item"
+          :class="{active: productsSubMenuOpen}"
           @click="productsSubMenuOpen = !productsSubMenuOpen"
         >
           Products
@@ -294,7 +295,7 @@
           </div>
         </div>
       </div>
-      <h6 class="submenu-title">
+      <h6 class="submenu-title second">
         More Products
       </h6>
       <div class="more">
@@ -797,6 +798,7 @@ export default {
 
       .subscribe-button {
         width: 124px;
+        margin-right: 10px;
       }
     }
 
@@ -913,28 +915,32 @@ export default {
     z-index: 9;
 
     .submenu-title {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       padding-left: 15px;
       @include font-style-heading();
+
+      &.second {
+        margin-top: 15px;
+      }
     }
 
     .essentials {
       display: flex;
       flex-flow: row nowrap;
+      justify-content: space-around;
 
       .essential-item {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
         width: 138px;
-        padding: 0 20px;
         position: relative;
         margin-bottom: 15px;
         cursor: pointer;
 
         .badge {
           position: absolute;
-          top: -20px;
+          top: -18px;
           left: 39px;
           font-size: 10px;
           font-weight: 400;
@@ -949,9 +955,10 @@ export default {
           border-radius: 100%;
           width: 80px;
           text-align: center;
+          margin-bottom: 15px;
 
           &:hover {
-            background-color: $white-darken;
+            background-color: $off-white;
           }
 
           img {
@@ -977,9 +984,11 @@ export default {
         flex-flow: column wrap;
         align-content: flex-start;
         min-width: 320px;
+        max-width: 30%;
+        flex: 1;
 
         .more-item {
-          width: 160px;
+          min-width: 160px;
           margin: 0 0 14px 15px;
           @include font-style-body($weight: 600);
           cursor: pointer;

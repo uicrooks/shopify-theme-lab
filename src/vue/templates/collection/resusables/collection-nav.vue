@@ -41,7 +41,7 @@ document.onscroll = () => {
   } else {
     document.getElementById("collection-nav").style.display = "flex";
   }
-}
+};
 
 export default {
   name: "CollectionNav",
