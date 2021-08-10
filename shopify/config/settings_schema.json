@@ -19,5 +19,16 @@
         "content": "This file controls the organization and content of the Theme settings area of the theme editor. The settings in this file can be referenced by any other files in your theme. [Learn more](https://shopify.dev/docs/themes/settings)"
       }
     ]
+  },
+  {
+    "name": "Misc Settings",
+    "settings": [
+      {
+        "type": "text",
+        "id": "oos_sku_array",
+        "label": "SKU Array",
+        "info": "Add SKUs of out of stock to make them visible, but un-buyable"
+      }
+    ]
   }
 ]

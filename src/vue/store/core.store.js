@@ -1,5 +1,6 @@
 const state = () => ({
   loggedIn: false,
+  oosItems: [],
   defaultCurrencyOption: {},
   currencyOptions: [
     {
@@ -23,6 +24,9 @@ const getters = {
   loggedIn: (state) => {
     return state.loggedIn;
   },
+  oosItems: (state) => {
+    return state.oosItems;
+  },
   freeShippingMinimum: (state) => {
     return state.currentCurrency === "USD" ? 4000 : 5000;
   },
@@ -41,6 +45,9 @@ const actions = {
 const mutations = {
   setLoggedIn: (state, loggedIn) => {
     state.loggedIn = loggedIn;
+  },
+  setOosItems: (state, oosItems) => {
+    state.oosItems = oosItems;
   },
   setDefaultCurrencyOption: (state, option) => {
     state.defaultCurrencyOption = option;

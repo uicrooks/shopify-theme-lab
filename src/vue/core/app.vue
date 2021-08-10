@@ -89,7 +89,7 @@ export default {
     if (!storeMatch || !queryMatch) {
       this.shareCart();
       const redirect = `${this.generateMatchingStoreDomain(this.currencyOption)}${this.generateMatchingQuery(this.currencyOption)}`;
-      window.location.replace(redirect);
+      // window.location.replace(redirect);
     }
 
     function checkIfStoreMatchesCurrencyOption(currencyOptionHandle) {
@@ -102,9 +102,9 @@ export default {
     function checkIfQueryMatchesCurrencyOption(currencyOptionCurrency) {
       return window.location.search.includes(`currency=${currencyOptionCurrency}`);
     }
-
     console.log("oosItems", this.oosItems);
     this.$store.commit("core/setLoggedIn", this.loggedIn);
+    this.$store.commit("core/setOosItems", this.oosItems);
   }
 };
 </script>
