@@ -45,9 +45,10 @@
           <div class="button-container">
             <squatch-button
               class="big-cta-button"
-              text="Learn More"
               path="/pages/the-squatch-difference"
-            />
+            >
+              Learn More
+            </squatch-button>
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@
             {{ textHeading }}
           </div>
           <span class="text">
-            <slot/>
+            <slot />
           </span>
         </div>
 
@@ -46,11 +46,19 @@
           class="cta-wrapper"
         >
           <squatch-button
-            :text="ctaText ? ctaText : 'Learn more'"
-            path="/pages/about-us"
-          />
-        </div>
+            v-if="ctaText"
+            :path="ctaPath"
+          >
+            {{ ctaText }}
+          </squatch-button>
 
+          <squatch-button
+            v-else
+            path="/pages/about-us"
+          >
+            Learn more
+          </squatch-button>
+        </div>
       </div>
       <div :class="reversed ? 'image-tablet reversed' : 'image-tablet'">
         <img 
@@ -67,7 +75,7 @@
 </template>
 
 <script>
-import SquatchButton from "@/vue/ui-elements/squatch-button";
+import SquatchButton from "@/vue/reusables/squatch-button";
 
 export default {
   name: "HeroDisplay",

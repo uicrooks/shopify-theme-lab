@@ -19,17 +19,23 @@
         </p>
         <squatch-button
           class="big-cta-button btn"
-          text="Subscribe & Save 15%"
           path="/pages/subscription-flow"
-        />
+        >
+          Subscribe & Save 15%
+        </squatch-button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
+import SquatchButton from "@/vue/reusables/squatch-button";
+
 export default {
-  name: "IndexHero"
+  name: "IndexHero",
+  components: {
+    SquatchButton
+  }
 };
 </script>
 
@@ -37,12 +43,7 @@ export default {
 @import "@/styles/main.scss";
 
 .index-hero-component {
-<<<<<<< HEAD
   .branded-gradient-background {
-=======
-
-  .image-header-bg {
->>>>>>> 33a5493abc3a24dbfce937bc6d0513477996a21e
     position: relative;
     height: 100vw;
     min-height: 490px;
@@ -73,22 +74,10 @@ export default {
       bottom: 35px;
       width: 100%;
       color: white;
-<<<<<<< HEAD
       text-align: center;
 
       @media (min-width: 576px) {
         bottom: 6vw;
-=======
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center top 58%;
-      height: 600px;
-      justify-content: flex-start;
-
-      @include layout-md {
-        padding-left: 50px;
-        background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671");
->>>>>>> 33a5493abc3a24dbfce937bc6d0513477996a21e
       }
 
       @media (min-width: $md) {
@@ -165,6 +154,8 @@ export default {
       }
 
       .btn {
+        width: 256px;
+
         @media (min-width: $md) {
           padding: 12px 0 9px 0;
           white-space: nowrap;
