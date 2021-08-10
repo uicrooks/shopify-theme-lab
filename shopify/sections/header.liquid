@@ -1,7 +1,6 @@
-<main-nav
+<vue-app
   :logged-in="{% if customer %}true{% else %}false{% endif %}"
-  :currency="{
-    'isoCode': '{{ cart.currency.iso_code }}',
-    'symbol': '{{ cart.currency.symbol }}'
-  }"
-></main-nav> 
+  :currency="'{{ cart.currency.iso_code }}'"
+></vue-app>
+<main-nav></main-nav>
+
