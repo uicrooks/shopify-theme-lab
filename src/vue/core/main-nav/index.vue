@@ -10,7 +10,7 @@
         >
       </a>
       <div class="buttons">
-        <cart :currency-obj="currency" />
+        <cart />
         <i
           v-b-toggle.main-nav-sidebar
           class="icon-squatch icon-burger"
@@ -76,6 +76,7 @@
                   v-for="(currencyOption, index) of currencyMenu"
                   :key="`currecny-option-${index}`"
                   class="currency-option"
+                  @click="updateCurrencyOption(currencyOption)"
                 >
                   <img
                     :src="currencyOption.imageSrc"
@@ -249,6 +250,7 @@
               v-for="(currencyOption, index) of currencyMenu"
               :key="`currecny-option-${index}`"
               class="currency-option"
+              @click="updateCurrencyOption(currencyOption)"
             >
               <img
                 :src="currencyOption.imageSrc"
@@ -261,7 +263,7 @@
             </div>
           </b-collapse>
         </div>
-        <cart :currency-obj="currency" />
+        <cart />
       </div>
     </div>
     <b-collapse 
@@ -330,18 +332,11 @@
 </template>
 
 <script>
+import CookieService from "@/vue/services/cookie.service";
+import { mapGetters } from "vuex";
+
 export default {
   name: "MainNav",
-  props: {
-    currency: {
-      type: Object,
-      required: true,
-    },
-    loggedIn: {
-      type: Boolean,
-      required: true
-    }
-  },
   data() {
     return {
       soapMenu: {
@@ -537,30 +532,20 @@ export default {
       accountSubMenuOpen: false,
       currencySubMenuOpen: false,
       currencyMobileSubMenuOpen: false,
-      currencyOptions: [
-        { currency: "USD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_the_U.S..svg?v=1613061492" },
-        { currency: "CAD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_Canada.svg?v=1613061492" },
-      ],
     };
   },
   computed: {
+    ...mapGetters("core", ["loggedIn", "defaultCurrencyOption", "currencyOptions"]),
     currencySelected() {
-      const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
-      return this.currencyOptions.filter(option => {
-        return currency === option.currency;
-      })[0];
+      return this.defaultCurrencyOption.currency ? this.defaultCurrencyOption : this.currencyOptions[0];
     },
     currencyMenu() {
-      const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
       return this.currencyOptions.filter(option => {
-        return currency !== option.currency;
+        return this.currencySelected.country !== option.country;
       });
     }
   },
   watch: {
-    loggedIn(val) {
-      this.$store.commit("core/setLoggedIn", val);
-    },
     productsSubMenuOpen(val) {
       if (val) {
         this.accountSubMenuOpen = false;
@@ -586,11 +571,11 @@ export default {
     },
     navigateTo(path) {
       window.location = path;
+    },
+    updateCurrencyOption(option) {
+      CookieService.set("currency_option", option, { maxAge: 24 * 60 * 60, path: "/" });
+      location.reload();
     }
-  },
-  mounted() {
-    console.log(this.loggedIn);
-    this.$store.commit("core/setLoggedIn", this.loggedIn);
   }
 };
 </script>
