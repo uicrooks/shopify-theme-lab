@@ -12,7 +12,7 @@
   {%- if template.name == '<%= layoutEntry_name %>' -%}
   <script type="text/javascript" src="<%= layoutSrc %>"></script>
   {%- if template.suffix -%}
-  <% var specificComponentSrc = `{{ '${layoutEntry_name}' | append: template.suffix | append: '-main.js' | asset_url }}` %>
+  <% var specificComponentSrc = `{{ '${layoutEntry_name}-' | append: template.suffix | append: '.js' | asset_url }}` %>
   <script type="text/javascript" src="<%= specificComponentSrc %>"></script>
   {%- else -%}
   <script type="text/javascript" src="<%= mainComponentSrc %>"></script>

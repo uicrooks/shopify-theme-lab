@@ -1,6 +1,5 @@
-import {Vue, store} from '../main';
+import {Vue, store} from "../main";
 console.log("layout-index");
-console.log('asdfasdf')
 
 //import IndexTemplate from "../vue/templates/index/index.vue";
 const IndexTemplate = () => import(

@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .index-subscription-offer-component {
   width: 100%;
@@ -53,29 +53,29 @@ export default {
       .brand-content {
         padding: 0 15px;
         align-items: center;
-        color: $brown;
+        color: global.$brown;
         text-align: center;
         display: flex;
         flex-direction: column;
 
         .header {
-          font-family: $font-heading;
+          font-family: global.$font-heading;
           color: black;
         }
 
         .subheader {
           margin-bottom: 20px;
-          @include font-style-body-bold($size: 20px);
+          @include global.font-style-body-bold($size: 20px);
         }
 
         .copy {
           line-height: 1.3;
           margin-bottom: 30px;
-          @include font-style-body($size: 16px);
+          @include global.font-style-body($size: 16px);
         }
 
         .image-container {
-          color: $white;
+          color: global.$white;
         }
       }
     }

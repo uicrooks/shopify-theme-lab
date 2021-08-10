@@ -537,21 +537,25 @@ export default {
   components: {
     TextOnlyBanner,
   },
+  mounted() {
+    console.log("PRIVACY POLICY");
+    console.log(this)
+  }
 };
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .privacy-policy {
   .privacy-container {
     padding: 2.5rem 0;
 
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       padding: 5rem 0;
     }
 
-    @media (min-width: $xl) {
+    @media (min-width: global.$xl) {
       padding: 5rem 2rem;
     }
 
@@ -564,7 +568,7 @@ export default {
         text-align: center;
         margin-bottom: 28px;
 
-        @media (min-width: $md) {
+        @media (min-width: global.$md) {
           text-align: left;
         }
 
@@ -572,23 +576,23 @@ export default {
           font-weight: 400;
           font-size: calc(1.04375rem + 1.10833vw);
           margin-bottom: 30px;
-          font-family: $font-heading;
+          font-family: global.$font-heading;
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
           }
         }
         .privacy-description {
-          @include font-style-body($size: 14px, $color: $brown);
+          @include global.font-style-body($size: 14px, $color: global.$brown);
 
           .section-link {
-            color: $orange;
+            color: global.$orange;
             outline: none;
             text-decoration: none;
           }
 
           .bold-text {
-            font-family: $font-body-bold;
+            font-family: global.$font-body-bold;
           }
         }
       }

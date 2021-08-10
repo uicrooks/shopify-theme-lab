@@ -72,7 +72,7 @@
                 :src="item.image"
                 :alt="`${item.product_title} image`"
                 class="item-image"
-              ></b-img-lazy>
+              />
             </a>
             <div class="item-details">
               <a 

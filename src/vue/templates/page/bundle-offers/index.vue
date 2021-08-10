@@ -72,8 +72,14 @@
 </template>
 
 <script>
+import ProductGroupCard from "./product-group/index.vue";
+import CustomProductGroupCustomizationSidebar from "./custom-product-group/index";
 export default {
   name: "BundleOffers",
+  components: {
+    ProductGroupCard,
+    CustomProductGroupCustomizationSidebar
+  },
   props: {
     bundles: {
       type: Object,
@@ -162,7 +168,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .bundle-offers-component {
 
@@ -177,19 +183,19 @@ export default {
       background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/dsq-woodgrain_texture-DARK.svg?v=1616535182");
       background-size: 200%;
       background-repeat: repeat;
-      background-color: $dark-brown;
+      background-color: global.$dark-brown;
       text-align: center;
-      @include font-style-body($size: 20px, $weight: 600, $color: $white);
+      @include global.font-style-body($size: 20px, $weight: 600, $color: global.$white);
 
-      @include layout-md {
+      @include global.layout-md {
         padding: 45px;
       }
 
       h1 {
         margin-bottom: 13px;
-        @include font-style-heading($size: 46px, $color: $white);
+        @include global.font-style-heading($size: 46px, $color: global.$white);
 
-        @include layout-md {
+        @include global.layout-md {
           font-size: 28px;
           line-height: 28px;
         }
@@ -222,29 +228,29 @@ export default {
         padding: 6px;
         white-space: nowrap;
         cursor: pointer;
-        @include font-style-body($weight: 600);
+        @include global.font-style-body($weight: 600);
 
         &:hover {
-          border-bottom: 2px solid $orange;
+          border-bottom: 2px solid global.$orange;
         }
 
         &.active {
-          border-bottom: 2px solid $orange;
-          color: $orange;
+          border-bottom: 2px solid global.$orange;
+          color: global.$orange;
         }
       }
     }
   }
 
   .section-wrapper {
-    background-color: $white-off;
+    background-color: global.$white-off;
 
     &.hidden {
       display: none;
     }
 
     &.starter-bundles {
-      background-color: $white;
+      background-color: global.$white;
     }
 
     section {
@@ -252,20 +258,20 @@ export default {
       margin: auto;
       padding: 30px 15px;
 
-      @include layout-md {
+      @include global.layout-md {
         padding: 30px 40px;
       }
 
       h2 {
         margin: 15px 0;
-        @include font-style-heading($size: 30px);
+        @include global.font-style-heading($size: 30px);
       }
 
       p {
         margin-bottom: 20px;
-        @include font-style-body($size: 16px, $color: $brown);
+        @include global.font-style-body($size: 16px, $color: global.$brown);
 
-        @include layout-md {
+        @include global.layout-md {
           margin-bottom: 30px;
         }
       }
@@ -279,12 +285,12 @@ export default {
           width: 100%;
           margin-bottom: 10px;
 
-          @include layout-md {
+          @include global.layout-md {
             margin-bottom: 25px;
             max-width: 870px;
           }
 
-          @include layout-lg {
+          @include global.layout-lg {
             margin-bottom: 35px;
             max-width: 410px;
           }
@@ -293,12 +299,12 @@ export default {
         .product-group-card {
           margin-bottom: 15px;
           
-          @include layout-md {
+          @include global.layout-md {
             margin-bottom: 25px;
             max-width: 870px;
           }
 
-          @include layout-lg {
+          @include global.layout-lg {
             margin-bottom: 35px;
             max-width: 410px;
           }

@@ -1,15 +1,23 @@
-import Vue from "vue";
+import {Vue, store} from "../main";
 console.log("layout-page");
 
-const vueComponents = require.context("../vue/templates/page", true, /\.(vue|js)$/);
-vueComponents.keys().forEach(key => {
-  const component = vueComponents(key).default;
-  const name = component.name
-    ? component.name
-    : key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
-  Vue.component(name, component);
-});
+const BundleOffersTemplate = () => import(
+  /* webpackChunkName: "page-bundle-offers" */
+  /* webpackPreload: true */
+  "../vue/templates/page/bundle-offers/index.vue");
+const PrivacyPolicyTemplate = () => import(
+    /* webpackChunkName: "page-privacy-policy" */
+    /* webpackPreload: true */
+    "../vue/templates/page/privacy-policy.vue");
 
 new Vue({
-  el: "#layout-page",
+  el: "#app",
+  components: {
+    BundleOffersTemplate,
+    PrivacyPolicyTemplate
+  },
+  store,
+  mounted() {
+    window.app = this;
+  }
 });

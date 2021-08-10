@@ -22,7 +22,7 @@
                 data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_BarSoaps.jpg?v=1616455751"
                 alt="Bar Soap"
                 class="w-100 ls-is-cached lazyloaded"
-              ></b-img-lazy>
+              />
             </a>
             <div class="brand-content">
               <p class="preheader">
@@ -50,7 +50,7 @@
                 data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_HairCare.jpg?v=1616455752"
                 alt="Hair Care"
                 class="w-100 ls-is-cached lazyloaded"
-              ></b-img-lazy>
+              />
             </a>
             <div class="brand-content">
               <p class="preheader">
@@ -78,7 +78,7 @@
                 data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Deodorants.jpg?v=1616455751"
                 alt="Deodorant"
                 class="w-100 ls-is-cached lazyloaded"
-              ></b-img-lazy>
+              />
             </a>
             <div class="brand-content">
               <p class="preheader">
@@ -106,7 +106,7 @@
                 data-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Category_Toothpaste.jpg?v=1616455751"
                 alt="Toothpaste"
                 class="w-100 ls-is-cached lazyloaded"
-              ></b-img-lazy>
+              />
             </a>
             <div class="brand-content">
               <p class="preheader">
@@ -142,7 +142,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .index-featured-products-component {
   width: 100%;
@@ -160,12 +160,12 @@ export default {
       text-align: center;
 
       .header {
-        font-family: $font-heading;
+        font-family: global.$font-heading;
       }
 
       .subheader {
-        color: $brown;
-        font-family: $font-body-bold;
+        color: global.$brown;
+        font-family: global.$font-body-bold;
       }
     }
   }
@@ -181,7 +181,7 @@ export default {
       flex-flow: column wrap;
       padding: 30px 0 0 0;
 
-      @include layout-md {
+      @include global.layout-md {
         flex-flow: row wrap;
         padding-top: 0;
         margin: auto;
@@ -192,7 +192,7 @@ export default {
         padding: 0 15px;
         margin: 0 0 30px 0;
 
-        @include layout-md {
+        @include global.layout-md {
           flex: 0 0 50%;
           max-width: 50%;
         }
@@ -218,12 +218,12 @@ export default {
             text-align: center;
 
             .preheader {
-              font-family: $font-body, sans-serif;
+              font-family: global.$font-body, sans-serif;
             }
 
             .product-type {
               margin-bottom: 20px;
-              font-family: $font-heading;
+              font-family: global.$font-heading;
             }
 
             .cta-btns {
@@ -232,7 +232,7 @@ export default {
               .link {
                 color: #cc6328;
                 text-decoration: none;
-                font-family: $font-heading;
+                font-family: global.$font-heading;
               }
 
               a:hover {
@@ -248,9 +248,9 @@ export default {
     .woodgrain-bg {
       height: 100%;
       bottom: 0;
-      background-color: $tan;
+      background-color: global.$tan;
 
-      @include layout-md {
+      @include global.layout-md {
         height: 50%;
       }
     }

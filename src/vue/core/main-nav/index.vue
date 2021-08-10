@@ -29,7 +29,7 @@
               id="drsquatch-logo-mobile-sidebar"
               src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
               alt="Dr.Squatch logo"
-            ></b-img-lazy>
+            />
             <div 
               class="account-icon-box" 
               @click="logIn"
@@ -57,7 +57,7 @@
                       :src="currencySelected.imageSrc"
                       :alt="`${currencySelected.currency} image`"
                       class="currency-flag-image"
-                    ></b-img-lazy>
+                    />
                     <span class="currency">
                       {{ currencySelected.currency }}
                     </span>
@@ -81,7 +81,7 @@
                     :src="currencyOption.imageSrc"
                     :alt="`${currencyOption.currency} image`"
                     class="currency-flag-image"
-                  ></b-img-lazy>
+                  />
                   <span class="currency">
                     {{ currencyOption.currency }}
                   </span>
@@ -210,7 +210,7 @@
               :src="currencySelected.imageSrc"
               :alt="`${currencySelected.currency} image`"
               class="currency-flag-image"
-            ></b-img-lazy>
+            />
             <span class="currency">
               {{ currencySelected.currency }}
             </span>
@@ -226,7 +226,7 @@
                 :src="currencyOption.imageSrc"
                 :alt="`${currencyOption.currency} image`"
                 class="currency-flag-image"
-              ></b-img-lazy>
+              />
               <span class="currency">
                 {{ currencyOption.currency }}
               </span>
@@ -260,7 +260,7 @@
             <b-img-lazy
               :src="item.imageSrc" 
               :alt="`${item.name} image`" 
-            ></b-img-lazy>
+            />
           </div>
           <div class="item-name">
             {{ item.name }}
@@ -302,14 +302,8 @@
 </template>
 
 <script>
-import GroupedMenuItem from "./grouped-menu-item.vue";
-import SingleMenuItem from "./single-menu-item.vue";
 export default {
   name: "MainNav",
-  components: {
-    GroupedMenuItem,
-    SingleMenuItem,
-  },
   props: {
     currency: {
       type: Object,
