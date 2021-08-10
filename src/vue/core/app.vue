@@ -56,34 +56,51 @@ export default {
       })[0];
       return currencyOption ? currencyOption : null;
     },
-    redirectToMatchingStore(currencyOption) {
-      const query = Helpers.addQueryParam({ currency: currencyOption.currency }, window.location.search);
+    shareCart() {
+      const value = CookieService.get("cart");
+      CookieService.set("cart", value, {
+        path: "/",
+        domain: ".drsquatch.com"
+      });
+    },
+    generateMatchingStoreDomain(currencyOption) {
       const subdomain = currencyOption.handle ? `${currencyOption.handle}.` : "";
-      console.log("redirect to:", `http://${subdomain}${window.location.host}${window.location.pathname}${query}`);
-      // window.location.replace(`http://${subdomain}${window.location.host}${window.location.pathname}${query}`);
+      return `http://${subdomain}${window.location.host}${window.location.pathname}`;
+    },
+    generateMatchingQuery(currencyOption) {
+      return Helpers.addQueryParam({ currency: currencyOption.currency }, window.location.search);
     }
   },
   async created() {
     this.currencyOption = await this.getDefaultCurrencyOption();
-    console.log("currencyOption", this.currencyOption);
 
     if (this.currencyOption.currency) {
-      CookieService.set("currency_option", this.currencyOption, { maxAge: 24 * 60 * 60, path: "/" });
+      CookieService.set(
+        "currency_option",
+        this.currencyOption,
+        { maxAge: 24 * 60 * 60, path: "/" }
+      );
       this.$store.commit("core/setDefaultCurrencyOption", this.currencyOption);
     }
-    const match = checkIfStoreMatchesCurrencyOption(this.currencyOption.handle);
-    console.log(match);
-    if (!match) {
-      this.redirectToMatchingStore(this.currencyOption);
+
+    const storeMatch = checkIfStoreMatchesCurrencyOption(this.currencyOption.handle);
+    const queryMatch = checkIfQueryMatchesCurrencyOption(this.currencyOption.currency);
+    console.log("storeMatch", storeMatch, "queryMatch", queryMatch);
+    if (!storeMatch || !queryMatch) {
+      this.shareCart();
+      const redirect = `${this.generateMatchingStoreDomain(this.currencyOption)}${this.generateMatchingQuery(this.currencyOption)}`;
+      window.location.replace(redirect);
     }
 
     function checkIfStoreMatchesCurrencyOption(currencyOptionHandle) {
       const storeHandle = window.location.host.split(".")[0];
-      // const usStoreMatch = storeHandle === "drsquatch" && currencyOptionHandle === "";
-      const usStoreMatch = currencyOptionHandle === "";
+      const usStoreMatch = storeHandle === "drsquatch" && currencyOptionHandle === "";
       const intlStoreMatch = storeHandle === currencyOptionHandle;
-      console.log(usStoreMatch, intlStoreMatch);
       return usStoreMatch || intlStoreMatch;
+    }
+
+    function checkIfQueryMatchesCurrencyOption(currencyOptionCurrency) {
+      return window.location.search.includes(`currency=${currencyOptionCurrency}`);
     }
 
     console.log("oosItems", this.oosItems);

@@ -572,8 +572,12 @@ export default {
     navigateTo(path) {
       window.location = path;
     },
-    updateCurrencyOption(option) {
-      CookieService.set("currency_option", option, { maxAge: 24 * 60 * 60, path: "/" });
+    updateCurrencyOption(currencyOption) {
+      CookieService.set(
+        "currency_option",
+        currencyOption,
+        { maxAge: 24 * 60 * 60, path: "/" }
+      );
       location.reload();
     }
   }
