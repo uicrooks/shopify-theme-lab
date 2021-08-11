@@ -1,15 +1,27 @@
 <template>
   <div class="account-component">
+    <account-nav />
+    <!-- Overview -->
     <div 
-      v-if="view === 'overview'"
+      v-if="currentView === 'Overview'"
       class="view"
     >
       <h1>Overview</h1>
       <div class="liquid-snippet recent-orders">
         <slot name="recent-orders" />
       </div>
+      <div class="view-section">
+        <h4>Squatch Box</h4>
+        <account-subscriptions-view />
+      </div>
+      <div class="view-section">
+        <h4>Get More Squatch</h4>
+      </div>
     </div>
-    <div v-else-if="view === 'order-history'">
+    <!-- End of Overview -->
+
+    <!-- My Orders -->
+    <div v-else-if="currentView === 'My Orders'">
       <h1>My Orders</h1>
       <div class="liquid-snippet order-history">
         <slot name="order-history" />
@@ -32,15 +44,10 @@ export default {
       type: Object,
       required: true,
       default: () => {},
-    },
-  },
-  data() {
-    return {
-      view: "overview",
-    };
+    }
   },
   computed: {
-    ...mapGetters("account", ["userTags", "rechargeUser"]),
+    ...mapGetters("account", ["currentView", "userTags", "rechargeUser"]),
     isActiveSubscriber() {
       return this.userTags.includes("Active Subscriber");
       // return true;
@@ -62,6 +69,7 @@ export default {
 
     console.log(this.user);
     this.$store.commit("account/setUserTags", this.user.tagString.split("; "));
+    console.log(this.userTags);
 
     if (this.isActiveSubscriber) {
       // const email = this.user.email;
@@ -80,19 +88,38 @@ export default {
 
 .account-component {
   background-color: #f6f5f3;
-  padding: 20px 10px;
+  // padding: 20px 10px;
 
-  @include layout-sm {
-    padding: 20px;
-  }
+  // @include layout-sm {
+  //   padding: 20px;
+  // }
 
   h1 {
-    @include font-style-heading($size: 30px);
+    @include font-style-heading($size: 26px);
+  }
+
+  .view {
+    padding: 20px 10px;
+
+    @include layout-md {
+      padding: 20px;
+    }
+
+    h4 {
+      margin-bottom: 15px;
+      @include font-style-body($weight: 600, $size: 20px);
+    }
+
+    .view-section {
+      padding: 15px 0 30px 0;
+    }
+
   }
 
 
   /** Styling for integrated Liquid snippets in slots */
   .liquid-snippet {
+    padding: 15px 0 30px 0;
 
     h4 {
       @include font-style-body($weight: 600, $size: 20px);

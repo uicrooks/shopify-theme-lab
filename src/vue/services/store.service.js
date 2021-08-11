@@ -1,4 +1,4 @@
-import CookieService from "@/vue/services/cookie.service";
+// import CookieService from "@/vue/services/cookie.service";
 import axios from "axios";
 import Client from "shopify-buy";
 
@@ -13,7 +13,7 @@ const client = Client.buildClient({
 export default {
   async getCurrentGeolocation() {  
     try {
-      const res = await axios.get(`/browsing_context_suggestions.json?source=geolocation_recommendation&currency[enabled]=true&language[enabled]=true&language[exclude]=en&country[enabled]=true`);
+      const res = await axios.get("/browsing_context_suggestions.json?source=geolocation_recommendation&currency[enabled]=true&language[enabled]=true&language[exclude]=en&country[enabled]=true");
       console.log(res.data);
       return res.data.detected_values && res.data.detected_values.country_name;
     } catch (err) {

@@ -1,4 +1,5 @@
 <template>
+  <div />
 </template>
 
 <script>
@@ -20,7 +21,8 @@ export default {
     },
     oosItems: {
       type: Array,
-      required: false
+      required: false,
+      default: () => {}
     }
   },
   data() {

@@ -1,4 +1,5 @@
 const state = () => ({
+  currentView: "Overview",
   userTags: [],
   rechargeUser: {},
   subscriptions: [],
@@ -6,6 +7,9 @@ const state = () => ({
 });
 
 const getters = {
+  currentView: (state) => {
+    return state.currentView;
+  },
   userTags: (state) => {
     return state.userTags;
   },
@@ -25,6 +29,9 @@ const actions = {
 };
 
 const mutations = {
+  setCurrentView: (state, view) => {
+    state.currentView = view;
+  },
   setUserTags: (state, tags) => {
     state.userTags = tags;
   },

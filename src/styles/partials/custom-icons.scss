@@ -414,16 +414,13 @@
 .icon_sapling-status:before {
   content: "\e9a6";
 }
-.icon_nav_logout:before {
+.icon-exit:before {
   content: "\e9a7";
 }
 .icon_nav_help:before {
   content: "\e9a8";
 }
-.icon_nav_referral-light:before {
-  content: "\e9a9";
-}
-.icon_nav_billing:before {
+.icon-credit-card:before {
   content: "\e9aa";
 }
 .icon_nav_login:before {
@@ -438,7 +435,7 @@
 .icon-auto-renew:before {
   content: "\e9ae";
 }
-.icon_nav_orders:before {
+.icon-box:before {
   content: "\e9af";
 }
 .icon-soap-gripper:before {

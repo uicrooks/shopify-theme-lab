@@ -1,20 +1,36 @@
 <template>
   <div class="account-order-card-component">
     <div class="card-row">
-      <div class="row-label">Order Date</div>
-      <div class="row-val">{{ orderDate }}</div>
+      <div class="row-label">
+        Order Date
+      </div>
+      <div class="row-val">
+        {{ orderDate }}
+      </div>
     </div>
     <div class="card-row">
-      <div class="row-label">Order Number</div>
-      <div class="row-val">#{{ order.orderNumber}}</div>
+      <div class="row-label">
+        Order Number
+      </div>
+      <div class="row-val">
+        #{{ order.orderNumber }}
+      </div>
     </div>
     <div class="card-row">
-      <div class="row-label">Order Total</div>
-      <div class="row-val">{{ order.total | money("$", 2) }}</div>
+      <div class="row-label">
+        Order Total
+      </div>
+      <div class="row-val">
+        {{ order.total | money("$", 2) }}
+      </div>
     </div>
     <div class="card-row">
-      <div class="row-label">Order Status</div>
-      <div class="row-val">{{ orderStatus }}</div>
+      <div class="row-label">
+        Order Status
+      </div>
+      <div class="row-val">
+        {{ orderStatus }}
+      </div>
     </div>
   </div>
 </template>

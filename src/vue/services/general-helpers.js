@@ -6,7 +6,7 @@ export default {
     Object.keys(queryObj).forEach(key => {
       queryArr.push(`${key}=${queryObj[key]}`);
     });
-    return `?${queryArr.join("&")}`
+    return `?${queryArr.join("&")}`;
   },
   convertQueryStringToObject(str) {
     if (!str) return {};
