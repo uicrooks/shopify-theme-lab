@@ -10,7 +10,10 @@
       <div class="liquid-snippet recent-orders">
         <slot name="recent-orders" />
       </div>
-      <div class="view-section">
+      <div
+        v-if="rechargeUser.id"
+        class="view-section"
+      >
         <h4>Squatch Box</h4>
         <account-subscriptions-view />
       </div>
@@ -49,8 +52,8 @@ export default {
   computed: {
     ...mapGetters("account", ["currentView", "userTags", "rechargeUser"]),
     isActiveSubscriber() {
-      return this.userTags.includes("Active Subscriber");
-      // return true;
+      // return this.userTags.includes("Active Subscriber");
+      return true;
     },
   },
   methods: {
@@ -74,7 +77,6 @@ export default {
     if (this.isActiveSubscriber) {
       // const email = this.user.email;
       const email = "will@drsquatch.com";
-      console.log(email);
       const subscriber = await RechargeService.getUser(email);
       console.log(subscriber);
       this.$store.commit("account/setRechargeUser", subscriber);

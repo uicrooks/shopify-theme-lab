@@ -3,7 +3,10 @@ const state = () => ({
   userTags: [],
   rechargeUser: {},
   subscriptions: [],
-  onetimes: []
+  onetimes: [],
+  squatchBoxes: {},
+  currentBoxName: "", // address label: 4015 Marina St.
+  currentBox: {},
 });
 
 const getters = {
@@ -21,11 +24,29 @@ const getters = {
   },
   onetimes: (state) => {
     return state.onetimes;
-  }
+  },
+  squatchBoxes: (state) => {
+    return state.squatchBoxes;
+  },
+  currentBoxName: (state) => {
+    return state.currentBoxName;
+  },
+  currentBox: (state) => {
+    return state.currentBox;
+  },
+  currentBoxNextRefillDate: (state) => {
+    return state.currentBox && state.currentBox.upcomingRefillDates? state.currentBox.upcomingRefillDates[0] : null;
+  },
+  // currentBoxNextRefill: (state) => {
+  //   return state.currentBoxNextRefillDate ? state.currentBox[state.currentBoxNextRefillDate] : {};
+  // }
 };
 
 const actions = {
-
+  initializeCurrentBox: ({ commit, state }, boxName) => {
+    commit("setCurrentBoxName", boxName);
+    commit("setCurrentBox", state.squatchBoxes[boxName]);
+  }
 };
 
 const mutations = {
@@ -43,6 +64,15 @@ const mutations = {
   },
   setOnetimes: (state, onetimes) => {
     state.onetimes = onetimes;
+  },
+  setSquatchBoxes: (state, boxes) => {
+    state.squatchBoxes = boxes;
+  },
+  setCurrentBoxName: (state, boxName) => {
+    state.currentBoxName = boxName;
+  },
+  setCurrentBox: (state, box) => {
+    state.currentBox = box;
   }
 };
 

@@ -1,9 +1,9 @@
 <template>
   <div class="account-nav-component">
     <b-button
+      v-b-toggle.account-nav
       block
       squared
-      v-b-toggle.account-nav
       class="account-nav-button"
     >
       Navigate Account
@@ -12,10 +12,10 @@
         :class="[navOpen ? 'icon-chevron-up' : 'icon-chevron-down']"
       />
     </b-button>
-     <b-collapse
-        v-model="navOpen"
-        id="account-nav"
-      >
+    <b-collapse
+      id="account-nav"
+      v-model="navOpen"
+    >
       <div
         v-for="(item, index) of navMenuItems"
         :key="`account-nav-item-${index}`"
@@ -29,14 +29,15 @@
           :class="{
             'active': currentView === item.label 
           }"
-          @click="changeView(item.label)"
+          @click="selectView(item.label)"
         >
           <b-icon
             v-if="index === 0"
             icon="house-fill"
             class="overview-icon"
           />
-          <i v-else
+          <i 
+            v-else
             :class="item.icon"
           />
           {{ item.label }}
@@ -46,14 +47,14 @@
           class="sub-menu"
         >
           <div
-            v-for="(subItem, index) of item.subMenuItems"
-            :key="`account-nav-item-${index}`"
+            v-for="(subItem, subIndex) of item.subMenuItems"
+            :key="`account-nav-item-${subIndex}`"
             class="sub-nav-item"
             :class="{
               'last': index === item.subMenuItems.length - 1,
               'active': currentView === subItem.label   
             }"
-            @click="changeView(subItem.label)"
+            @click="selectView(subItem.label)"
           >
             {{ subItem.label }}
           </div>
@@ -116,7 +117,7 @@ export default {
     }
   },
   methods: {
-    changeView(viewName) {
+    selectView(viewName) {
       this.$store.commit("account/setCurrentView", viewName === "Squatch Box" ? "Edit Box" : viewName);
     }
   }
