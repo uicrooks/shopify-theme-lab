@@ -21,8 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/main.scss";
-@import "@/styles/partials/brand.scss";
+@use "@/styles/main" as global;
 
 .banner-container {
   display: flex;
@@ -31,7 +30,7 @@ export default {
   height: 250px;
   background-color: #1a110c !important;
 
-  @include layout-lg {
+  @include global.layout-lg {
     height: 440px;
   }
 
@@ -39,11 +38,11 @@ export default {
     padding: 0 15px;
     margin: auto;
 
-    @include layout-md {
+    @include global.layout-md {
       padding: 4.7rem 15px;
     }
     .banner-text {
-      font-family: $font-heading;
+      font-family: global.$font-heading;
       font-size: calc(1.12188rem + 3.0875vw);
       margin: 0 0 30px 0;
       text-align: center;

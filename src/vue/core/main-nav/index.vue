@@ -333,10 +333,20 @@
 
 <script>
 import CookieService from "@/vue/services/cookie.service";
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
+import Cart from "@/vue/core/cart/index.vue";
+import GroupedMenuItem from "./grouped-menu-item.vue";
+import SingleMenuItem from "./single-menu-item.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "MainNav",
+  components: {
+    Cart,
+    SquatchButton,
+    MainNavGroupedMenuItem: GroupedMenuItem,
+    MainNavSingleMenuItem: SingleMenuItem
+  },
   data() {
     return {
       soapMenu: {
@@ -815,11 +825,11 @@ export default {
       }
 
       &.active {
-        color: $orange;
+        color: global.$orange;
       }
 
       &.account {
-        color: $orange;
+        color: global.$orange;
 
         .icon-squatch {
           font-size: 1.3rem;
@@ -887,10 +897,10 @@ export default {
 
         .currency {
           margin-left: 3px;
-          @include font-style-body($size: 12px);
+          @include global.font-style-body($size: 12px);
 
           &:hover {
-            color: $orange;
+            color: global.$orange;
           }
         }
       }

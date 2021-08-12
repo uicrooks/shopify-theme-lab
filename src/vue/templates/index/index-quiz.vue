@@ -16,7 +16,13 @@
 </template>
 
 <script>
+import ImageSection from "@/vue/reusables/image-section.vue";
+import SudisfactionGuarantee from "@/vue/reusables/sudisfaction-guarantee.vue";
 export default {
-  name: "IndexQuiz"
+  name: "IndexQuiz",
+  components: {
+    ImageSection,
+    SudisfactionGuarantee
+  }
 };
 </script>

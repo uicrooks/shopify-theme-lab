@@ -28,8 +28,12 @@
 </template>
 
 <script>
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
 export default {
-  name: "IndexSubscriptionOffer"
+  name: "IndexSubscriptionOffer",
+  components: {
+    SquatchButton
+  }
 };
 </script>
 

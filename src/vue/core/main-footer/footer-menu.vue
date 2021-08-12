@@ -168,26 +168,27 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
+
 .footer-nav-component {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  background-color: $dark-brown;
+  background-color: global.$dark-brown;
   padding: 10px 20px 25px;
 
-  @include layout-md {
+  @include global.layout-md {
     justify-content: center;
   }
 
   .footer-nav-section {
     min-width: 140px;
 
-    @include layout-sm {
+    @include global.layout-sm {
       min-width: 170px;
     }
 
-    @include layout-md {
+    @include global.layout-md {
       min-width: 180px;
       max-width: 230px;
       flex: 1;
@@ -195,12 +196,12 @@ export default {
 
     .footer-nav-section-title {
       margin: 14px 0;
-      @include font-style-heading($size: 14px, $color: $sand);
+      @include global.font-style-heading($size: 14px, $color: global.$sand);
     }
 
     .menu-item {
       cursor: pointer;
-      @include font-style-body($color: $white, $lh: 17px);
+      @include global.font-style-body($color: global.$white, $lh: 17px);
 
       &.last {
         margin-bottom: 10px;
@@ -211,7 +212,7 @@ export default {
   .shop {
     order: 1;
 
-    @include layout-md {
+    @include global.layout-md {
       order: 2;
     }
   }
@@ -219,7 +220,7 @@ export default {
   .info {
     order: 2;
 
-    @include layout-md {
+    @include global.layout-md {
       order: 3;
     }
   }
@@ -227,7 +228,7 @@ export default {
   .help {
     order: 3;
 
-    @include layout-md {
+    @include global.layout-md {
       order: 4;
     }
   }
@@ -235,7 +236,7 @@ export default {
   .brand {
     order: 4;
 
-    @include layout-md {
+    @include global.layout-md {
       order: 1;
     }
 
@@ -249,7 +250,7 @@ export default {
       a:hover,
       a:visited {
         font-size: 22px;
-        color: $white;
+        color: global.$white;
         text-decoration: none;
         margin: 1px;
       }

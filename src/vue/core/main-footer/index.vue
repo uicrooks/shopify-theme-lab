@@ -37,21 +37,24 @@
 </template>
 
 <script>
+import MainFooterMenu from "./footer-menu.vue";
 export default {
   name: "MainFooter",
+  components: {
+    MainFooterMenu
+  }
 };
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
-@import "@/styles/partials/brand.scss";
+@use "@/styles/main" as global;
 
 .footer-component {
   width: 100%;
 
   .newsletter {
     width: 100%;
-    background-color: $tan;
+    background-color: global.$tan;
     padding: 30px 15px;
 
     .newsletter-content {
@@ -63,12 +66,12 @@ export default {
       margin: auto;
       flex-flow: column wrap;
 
-      @include layout-md {
+      @include global.layout-md {
         max-width: 500px;
       }
 
       .sub-msg {
-        @include font-style-body-bold;
+        @include global.font-style-body-bold;
         text-align: center;
       }
 
@@ -93,17 +96,17 @@ export default {
           width: 67%;
           outline: black;
 
-          @include layout-md {
+          @include global.layout-md {
             width: 80%;
           }
         }
         .sign-up {
           position: relative;
           padding: 11px 10px;
-          background: $orange;
+          background: global.$orange;
           border-radius: 0px;
           border-style: solid;
-          border-color: $orange;
+          border-color: global.$orange;
           border-width: 5px;
           color: white;
           font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -125,10 +128,10 @@ export default {
     display: flex;
     flex-flow: row wrap;
     padding: 15px;
-    color: $sand;
-    background-color: $black;
+    color: global.$sand;
+    background-color: global.$black;
 
-    @include layout-lg {
+    @include global.layout-lg {
       align-items: center;
       justify-content: center;
     }
@@ -136,9 +139,9 @@ export default {
     .copyright {
       width: 100%;
       text-align: center;
-      @include font-style-body($size: 11px, $color: $sand);
+      @include global.font-style-body($size: 11px, $color: global.$sand);
 
-      @include layout-lg {
+      @include global.layout-lg {
         width: unset;
         flex: 1;
         margin-right: 40px;
@@ -150,7 +153,7 @@ export default {
       width: 100%;
       margin-top: 4px;
 
-      @include layout-lg {
+      @include global.layout-lg {
         width: unset;
         margin-top: 0;
       }

@@ -86,7 +86,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-component {
   background-color: #f6f5f3;
@@ -97,19 +97,19 @@ export default {
   // }
 
   h1 {
-    @include font-style-heading($size: 26px);
+    @include global.font-style-heading($size: 26px);
   }
 
   .view {
     padding: 20px 10px;
 
-    @include layout-md {
+    @include global.layout-md {
       padding: 20px;
     }
 
     h4 {
       margin-bottom: 15px;
-      @include font-style-body($weight: 600, $size: 20px);
+      @include global.font-style-body($weight: 600, $size: 20px);
     }
 
     .view-section {
@@ -124,16 +124,16 @@ export default {
     padding: 15px 0 30px 0;
 
     h4 {
-      @include font-style-body($weight: 600, $size: 20px);
+      @include global.font-style-body($weight: 600, $size: 20px);
     }
 
     .no-orders-alert {
       text-align: center;
 
       .liquid-squatch-button {
-        background-color: $orange;
+        background-color: global.$orange;
         padding: 12px 25px 8px;
-        @include font-style-heading($color: $white, $size: 15px);
+        @include global.font-style-heading($color: global.$white, $size: 15px);
       }
     }
 
@@ -151,16 +151,16 @@ export default {
   
       .account-recent-orders-table-wrapper {
         padding: 20px 15px;
-        background-color: $white;
+        background-color: global.$white;
         border-radius: 5px;
         box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
-        @include font-style-body();
+        @include global.font-style-body();
   
         table {
           width: 100%;
   
           thead {
-            @include font-style-body($weight: 600);
+            @include global.font-style-body($weight: 600);
           }
   
           tbody {

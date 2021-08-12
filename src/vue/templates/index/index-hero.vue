@@ -25,8 +25,12 @@
 </template>
 
 <script>
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
 export default {
-  name: "IndexHero"
+  name: "IndexHero",
+  components: {
+    SquatchButton
+  }
 };
 </script>
 

@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .squatch-button-component {
   width: 100%;
@@ -44,16 +44,16 @@ export default {
   border-radius: 5px;
   border: none;
   text-align: center;
-  background-color: $orange;
-  @include font-style-heading($size: 14px, $color: $white);
+  background-color: global.$orange;
+  @include global.font-style-heading($size: 14px, $color: global.$white);
 
   &:hover {
-    background-color: $orange-lighten;
+    background-color: global.$orange-lighten;
   }
 
   &.disabled {
     cursor: not-allowed;
-    background-color: $orange-lighten;
+    background-color: global.$orange-lighten;
   }
 }
 </style>

@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .quantity-switch-component {
 
@@ -50,14 +50,14 @@ export default {
     text-align: center;
     // font-size: 24px;
     color: $white;
-    border: 2px solid $orange;
-    background-color: $orange;
+    border: 2px solid global.$orange;
+    background-color: global.$orange;
     cursor: pointer;
 
     &:hover {
-      color: $white-darken;
-      border: 2px solid $white;
-      background-color: $orange-darken;
+      color: global.$white-darken;
+      border: 2px solid global.$white;
+      background-color: global.$orange-darken;
     }
   }
 

@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .new-look-banner-component {
   background-color: #fbf6f0;
@@ -61,15 +61,15 @@ export default {
 
     h6 {
       margin: 0 0 0 14px;
-      @include font-style-heading($size: 14px);
+      @include global.font-style-heading($size: 14px);
     }
 
     p {
       display: none;
       margin: 0 0 0 7px;
-      @include font-style-body();
+      @include global.font-style-body();
 
-      @include layout-md {
+      @include global.layout-md {
         display: inline-block;
       }
     }
@@ -77,7 +77,7 @@ export default {
 
   .old-packaging {
 
-    @include layout-md {
+    @include global.layout-md {
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
@@ -87,15 +87,15 @@ export default {
     h6 {
       margin: 0;
       padding: 8px 0 4px 0;
-      @include font-style-heading($size: 14px);
+      @include global.font-style-heading($size: 14px);
     }
 
     p {
       margin: 0;
       min-width: 475px;
-      @include font-style-body();
+      @include global.font-style-body();
 
-      @include layout-md {
+      @include global.layout-md {
         margin: 4px 0 0 8px;
       }
     }

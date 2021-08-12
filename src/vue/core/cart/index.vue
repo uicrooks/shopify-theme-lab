@@ -184,12 +184,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .cart-component {
   margin-right: 25px;
 
-  @include layout-md {
+  @include global.layout-md {
     margin-right: 15px;
   }
 
@@ -200,7 +200,7 @@ export default {
       cursor: pointer;
   
       &:hover {
-        color: $orange;
+        color: global.$orange;
       }
     }
 
@@ -215,9 +215,9 @@ export default {
       width: 25px;
       height: 25px;
       border-radius: 50%;
-      background-color: $orange;
+      background-color: global.$orange;
       text-align: center;
-      @include font-style-body($color: $white);
+      @include global.font-style-body($color: global.$white);
     }
   }
 
@@ -227,8 +227,8 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: $black;
-    @include font-style-heading($size: 23px, $color: $white);
+    background-color: global.$black;
+    @include global.font-style-heading($size: 23px, $color: global.$white);
 
     .icon-cross {
 
@@ -239,13 +239,13 @@ export default {
   }
 
   .free-shipping-display {
-    background-color: $off-white;
+    background-color: global.$off-white;
     padding: 16px 7px 10px;
     text-align: center;
-    @include font-style-heading($size: 14px, $weight: 500);
+    @include global.font-style-heading($size: 14px, $weight: 500);
 
     .accent {
-      color: $orange;
+      color: global.$orange;
     }
 
     .progress-bar-wrapper {
@@ -255,7 +255,7 @@ export default {
 
   .cart-content {
     padding: 10px 0 0;
-    background-color: $white;
+    background-color: global.$white;
 
     &.empty {
       padding: 45px 0;
@@ -263,7 +263,7 @@ export default {
 
       h3 {
         margin-bottom: 15px;
-        @include font-style-heading($size: 16px);
+        @include global.font-style-heading($size: 16px);
       }
 
       .cta-button {
@@ -275,7 +275,7 @@ export default {
     .item {
       display: flex;
       flex-flow: row nowrap;
-      border-bottom: 1px solid $off-white;
+      border-bottom: 1px solid global.$off-white;
       padding: 14px 0;
       margin: 0 14px;
 
@@ -303,23 +303,23 @@ export default {
           text-decoration: none;
           cursor: pointer;
           padding-right: 15px;
-          @include font-style-heading($size: 14px);
+          @include global.font-style-heading($size: 14px);
 
           &:hover {
-            color: $orange;
+            color: global.$orange;
           }
         }
 
         .item-variant-title {
           margin: 7px 0;
-          @include font-style-body($color: $brown);
+          @include global.font-style-body($color: global.$brown);
         }
 
         .remove-icon {
           position: absolute;
           top: 6px;
           right: 0;
-          color: $maroon;
+          color: global.$maroon;
           cursor: pointer;
         }
       }
@@ -335,14 +335,14 @@ export default {
     .sub-total {
       position: relative;
       padding: 15px 14px 15px 30px;
-      border-top: 1px solid $off-white;
-      @include font-style-body();
+      border-top: 1px solid global.$off-white;
+      @include global.font-style-body();
 
       span {
         position: absolute;
         right: 15px;
         top: 15px;
-        @include font-style-body($size: 15px, $color: $green, $weight: 600);
+        @include global.font-style-body($size: 15px, $color: global.$green, $weight: 600);
       }
     }
   }
@@ -355,26 +355,26 @@ export default {
 </style>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .cart-drawer {
   width: 100%;
   min-width: 320px;
 
-  @include layout-md {
+  @include global.layout-md {
     width: 440px;
   }
 }
 
 .cart-body {
-  background-color: $off-white;
+  background-color: global.$off-white;
 }
 
 .progress-bar-wrapper {
   background-color: #fbf6f0;
 
   .progress-bar {
-    background-color: $orange;
+    background-color: global.$orange;
   }
 
   &.fulfilled {

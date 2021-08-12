@@ -71,7 +71,11 @@
 </template>
 
 <script>
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
 export default {
+  components: {
+    SquatchButton,
+  },
   props: {
     preheader: {
       type: String,
@@ -125,10 +129,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .image-mobile {
-  @include layout-md {
+  @include global.layout-md {
     display: none;
   }
 
@@ -143,17 +147,17 @@ export default {
 
 .preheader {
   margin: 0 0 15px 0;
-  @include font-style-body($size: 16px);
+  @include global.font-style-body($size: 16px);
 }
 
 .header {
-  @include font-style-heading($size: calc(1.12188rem + 3.0875vw));
+  @include global.font-style-heading($size: calc(1.12188rem + 3.0875vw));
 }
 
 .subheader {
   font-weight: 600;
   margin: 0 0 20px 0;
-  @include font-style-body-bold($size: 20px);
+  @include global.font-style-body-bold($size: 20px);
 }
 
 .banner-desktop {
@@ -187,7 +191,7 @@ export default {
     &.reversed {
       width: 100%;
     }
-    @include layout-md {
+    @include global.layout-md {
       padding: 0 15px;
     }
   }
@@ -195,7 +199,7 @@ export default {
     flex: 0 0 100%;
     max-width: 100%;
 
-    @include layout-md {
+    @include global.layout-md {
       flex: 0 0 50%;
       max-width: 50%;
     }
@@ -210,13 +214,13 @@ export default {
     padding: 0;
 
     &.reversed {
-      @include layout-md {
+      @include global.layout-md {
         padding: 0 0 0 15px !important;
         order: 2 !important;
       }
     }
 
-    @include layout-md {
+    @include global.layout-md {
       flex: 0 0 50%;
       max-width: 50%;
       padding-right: 15px;
@@ -231,7 +235,7 @@ export default {
       padding: 0;
       text-align: center;
 
-      @include layout-md {
+      @include global.layout-md {
         padding-right: 2.5rem;
         text-align: initial;
       }
@@ -240,13 +244,13 @@ export default {
         display: flex;
         justify-content: center;
 
-        @include layout-md {
+        @include global.layout-md {
           justify-content: initial;
         }
       }
 
       &.reversed {
-        @include layout-md {
+        @include global.layout-md {
           padding: 0 0 0 2.5rem;
         }
       }
