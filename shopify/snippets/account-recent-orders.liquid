@@ -1,0 +1,105 @@
+<div class="account-recent-orders-container">
+  <h4>Recent Orders</h4>
+  {% if customer.orders.size > 0 %}
+    <div class="view-all-wrapper">
+      <a href="#order-history">View Order History</a>
+    </div>
+  {% endif %}
+  {% paginate customer.orders by 3 %}
+    <div class="account-recent-orders-table-wrapper">
+      {% if customer.orders.size > 0 %}  
+        <table>
+          <thead class="account-table-head">
+            <tr class="account-table-row">
+              <td class="account-col-heading">
+                Order Number
+              </td>
+              <td class="account-col-heading">
+                Order Date
+              </td>
+              <td class="account-col-heading">
+                Total
+              </td>
+              <td class="account-col-heading">
+                Shipping Status
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+              {% for line in order.line_items %}
+                {% if line.fulfillment.tracking_number %}
+                  {% assign wismoHandle = 'drsquatch' }
+                  {% assign SKUs = "" %}
+                  {% for item in order.line_items %}
+                    {% if item.sku and item.sku != '' %}
+                      {% assign SKUs = SKUs | append: ',' | append: item.sku %}
+                    {% endif %}
+                  {% endfor %}
+                  {% assign SKUs = SKUs | remove_first: ',' %}
+                  {% assign cids = ' ' %}
+                {% endif %}
+                {% for col in line.product.collections %}
+                  {% assign search = ' ' | append: col.id | append: ' ' %}
+                  {% unless cids contains search %}
+                    {% assign cids = cids | append: col.id | append: ' ' %}
+                  {% endunless %}
+                {% endfor %}
+                {% assign cids = cids | strip | replace: ' ', ',' %}
+                
+                {% assign SKUs = '' %}
+                {% if line.sku and line.sku != '' %}
+                  {% assign SKUs = SKUs | append: ',' | append: line.sku %}
+                {% endif %}
+                {% assign SKUs = SKUs | remove_first: ',' %}
+
+                {% if order.tags.size > 0 %}
+                  {% assign tag = order.tags | join: '|' | remove:" " %}
+                {% endif %}
+
+                {% capture wismo_status_url %}https://{{ wismoHandle }}.wismolabs.com/{{ wismoHandle }}/shopify?TRK={{ line.fulfillment.tracking_number }}&CAR={{ line.fulfillment.tracking_company }}&SERV={{ order.shipping_methods[0].handle }}&ON={{ order.order_number }}&OD={{ order.created_at | date: "%Y-%m-%d"  }}&SD={{ line.fulfillment.created_at | date: "%Y-%m-%d" }}&name={{ order.customer.first_name | default: order.billing_address.first_name }}&oZIP={{ shop.address.zip }}&dZIP={{ order.shipping_address.zip }}&dCountry={{ order.shipping_address.country }}&PID={{ SKUs }}&CID={{ cids }}&TAG={{ tag }}{% endcapture %}
+
+              {% endfor %}
+              <tr class="account-table-row">
+                <td class="account-col">
+                  <a class="account-order-tracking-link" target="_blank" href="{{order.customer_url | replace: 'https://drsquatch.com/account/', 'https://drsquatch.com/27577843817/' }}">
+                    #{{ order.order_number}}
+                  </a>
+                </td>
+                <td class="account-col">
+                  {{ order.created_at | date: "%m/%d/%y" }}
+                </td>
+                <td class="account-col">
+                  {{ order.total_net_amount | money }}
+                </td>
+                <td class="account-col">
+                  {% if order.fulfillment_status == 'fulfilled' %}
+                    <a class="account-order-tracking-link-green" target="_blank" href="{{wismo_status_url}}">
+                      Shipped
+                    </a>
+                  {% else %}
+                    <span class="{% if order.cancelled %}text-secondary{% endif %}">
+                      {% if order.cancelled %}
+                        Cancelled
+                      {% elsif order.financial_status == 'refunded' %}
+                        Refunded
+                      {% elsif order.financial_status == 'partially_refunded' %}
+                        Partially Refunded
+                      {% else %}
+                        Processing
+                      {% endif %}
+                    </span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}  
+          </tbody>
+        </table>
+      {% else %}
+        <div class="no-orders-alert">
+          <p>No orders found</p>
+          <a class="btn liquid-squatch-button" href="/collections/best-sellers">Shop Now</a>
+        </div>
+      {% endif %}
+    </div>
+  {% endpaginate %}
