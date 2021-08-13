@@ -45,7 +45,6 @@ export default {
     .banner-background {
       display: flex;
       align-items: center;
-      background: global.$orange;
       padding-left: 15px;
       background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTarHero_mobile_upped2x.jpg?v=1618269613");
       color: white;

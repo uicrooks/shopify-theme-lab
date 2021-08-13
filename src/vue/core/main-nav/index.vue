@@ -1029,8 +1029,9 @@ export default {
 #shopify-section-header {
         position: sticky;
         top: -76px;
-        transition: top 0.3s linear;
+        transition: top 0.3s linear, box-shadow 0.2s linear;
         z-index: 99;
+        box-shadow: 0 0.5rem 1rem rgb(26 17 12 / 15%);
       }
       body.scroll-up #shopify-section-header {
         top: 0px;

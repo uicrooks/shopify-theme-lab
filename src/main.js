@@ -15,8 +15,10 @@ const MainNav = () => import(
   /* webpackChunkName: "core" */
   /* webpackPreload: true */
   "./vue/core/main-nav/index.vue");
-const MainFooter = () => import(/* webpackChunkName: "core" */"./vue/core/main-footer/index.vue");
-const CartDrawer = () => import(/* webpackChunkName: "core" */"./vue/core/cart/index.vue");
+const MainFooter = () => import(/* webpackChunkName: "core" */"@/vue/core/main-footer/index.vue");
+const CartDrawer = () => import(/* webpackChunkName: "core" */"@/vue/core/cart/index.vue");
+import VueApp from "@/vue/core/app.vue";
+Vue.component("VueApp", VueApp);
 Vue.component("MainNav", MainNav);
 Vue.component("MainFooter", MainFooter);
 Vue.component("CartDrawer", CartDrawer);

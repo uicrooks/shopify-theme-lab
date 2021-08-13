@@ -179,7 +179,7 @@ export default {
 .outer-row {
   display: flex;
   flex-wrap: wrap;
-  margin: 30px 0;
+  margin: 30px auto;
 
   @media (max-width: 767px) {
     flex-direction: column;

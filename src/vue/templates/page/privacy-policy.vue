@@ -539,7 +539,6 @@ export default {
   },
   mounted() {
     console.log("PRIVACY POLICY");
-    console.log(this)
   }
 };
 </script>
