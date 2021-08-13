@@ -66,9 +66,13 @@
 
 <script>
 import IncludedList from "@/configs/product-group-card-included-list";
+import {money} from "@/vue/filters/money";
 
 export default {
   name: "CustomProductGroupCard",
+  filters: {
+    money
+  },
   props: {
     product: {
       type: Object,

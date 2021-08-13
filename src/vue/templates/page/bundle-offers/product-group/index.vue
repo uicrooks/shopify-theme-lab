@@ -81,11 +81,18 @@
 </template>
 
 <script>
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
 import CartService from "@/vue/services/cart.service";
 import IncludedList from "@/configs/product-group-card-included-list";
-
+import {money} from "@/vue/filters/money";
 export default {
   name: "ProductGroupCard",
+  filters: {
+    money
+  },
+  components: {
+    SquatchButton
+  },
   props: {
     product: {
       type: Object,

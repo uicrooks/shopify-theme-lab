@@ -10,8 +10,12 @@
 </template>
 
 <script>
+import ProductCard from "../reusables/product-card.vue";
 export default {
   name: "CollectionDefaultContent",
+  components: {
+    ProductCard
+  },
   props: {
     products: {
       type: Array,

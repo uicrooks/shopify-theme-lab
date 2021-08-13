@@ -115,9 +115,13 @@
 <script>
 import CartService from "@/vue/services/cart.service";
 import IncludedList from "@/configs/product-group-card-included-list";
+import {money} from "@/vue/filters/money";
 
 export default {
   name: "CustomProductGroupCustomizationSidebar",
+  filters: {
+    money
+  },
   props: {
     isOpen: {
       type: Boolean,

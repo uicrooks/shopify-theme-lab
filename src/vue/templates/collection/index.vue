@@ -42,9 +42,18 @@
 
 <script>
 import JumbotronConfigs from "@/configs/collection-jumbotron";
+import CollectionNav from "./reusables/collection-nav.vue";
+import Jumbotron from "@/vue/reusables/jumbotron.vue";
+// Templates
+const CollectionDefaultContent = () => import("./contents/default.vue");
 
 export default {
   name: "Collection",
+  components: {
+    CollectionNav,
+    Jumbotron,
+    CollectionDefaultContent,
+  },
   props: {
     handle: {
       type: String,

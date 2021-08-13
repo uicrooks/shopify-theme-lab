@@ -72,8 +72,11 @@
 </template>
 
 <script>
+// Reusuables
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
 import ProductGroupCard from "./product-group/index.vue";
 import CustomProductGroupCustomizationSidebar from "./custom-product-group/index";
+
 export default {
   name: "BundleOffers",
   components: {

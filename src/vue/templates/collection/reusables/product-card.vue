@@ -2,10 +2,10 @@
   <div class="product-card-component">
     <div class="image-box">
       <a :href="productDetailPageLink">
-        <img
+        <b-img-lazy
           :src="product.featured_image"
           :alt="`${product.title} image`"
-        >
+        />
       </a>
     </div>
     <div class="details-box">
@@ -53,9 +53,16 @@
 <script>
 import CartService from "@/vue/services/cart.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
-
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
+import {money} from "@/vue/filters/money";
 export default {
   name: "ProductCard",
+  components: {
+    SquatchButton
+  },
+  filters: {
+    money
+  },
   props: {
     product: {
       type: Object,
