@@ -29,14 +29,14 @@
         v-if="refillBox"
         class="box-items-wrapper"
       >
-        <account-renderless-item
+        <account-renderless-order-item
           v-for="(item, itemIndex) of refillBox"
           :key="item.id"
           :item="item"
           class="box-item"
           :class="{'last': itemIndex === refillBox.length - 1}"
         >
-          <div slot-scope="{ item, displayTitle, imageSrc, subscriptionInterval, isOnetime, includedList }">
+          <div slot-scope="{ isOnetime, item, displayTitle, imageSrc, price, compareAtPrice, subscriptionInterval, includedList }">
             <div class="box-item-image">
               <img
                 :src="imageSrc"
@@ -44,6 +44,19 @@
               >
             </div>
             <div class="box-item-details">
+              <div class="pricing">
+                <span
+                  v-if="compareAtPrice"
+                  class="compare-at-price"
+                >
+                  {{ compareAtPrice | money("$", 0) }}
+                </span>
+                <span
+                  :class="{'accentized': compareAtPrice}"
+                >
+                  {{ price | money("$", 0) }}
+                </span>
+              </div>
               <h5>
                 {{ displayTitle }}
               </h5>
@@ -69,7 +82,7 @@
               </div>
             </div>
           </div>
-        </account-renderless-item>
+        </account-renderless-order-item>
       </div>
       <div class="invoice-wrapper">
 
@@ -213,6 +226,7 @@ export default {
       align-items: center;
       padding: 15px 0;
       border-bottom: 1px solid #dcdcdc;
+      @include font-style-body($size: 12px);
 
       &.last {
         border-bottom: none;
@@ -221,23 +235,41 @@ export default {
       .box-item-image {
         flex: 1;
         text-align: center;
+        min-width: 80px;
 
         @include layout-sm {
           padding: 3px 10px;
         }
 
         img {
-          width: 100%;
           min-width: 60px;
-          max-width: 80px;
+          max-height: 80px;
         }
       }
 
       .box-item-details {
         flex: 4;
+        padding-left: 15px;
+        position: relative;
 
         h5 {
           @include font-style-body($size: 14px, $weight: 600);
+        }
+
+        .pricing {
+          position: absolute;
+          top: 0;
+          right: 0;
+          @include font-style-body($color: $dark-brown);
+
+          .accentized {
+            @include font-style-body($color: $text-green, $weight: 600);
+          }
+
+          .compare-at-price {
+            text-decoration: line-through;
+            margin-right: 2px;
+          }
         }
 
         .sub-heading {

@@ -3,9 +3,10 @@ import RechargeService from "@/vue/services/recharge.service";
 import StoreService from "@/vue/services/store.service";
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
 import SkuToId from "@/configs/account-sku-to-id";
+import { mapGetters } from "vuex";
 
 export default {
-  name: "AccountRenderlessItem",
+  name: "AccountRenderlessOrderItem",
   props: {
     item: {
       type: Object,
@@ -17,14 +18,24 @@ export default {
     return {
       itemData: {},
       lineItems: [],
-    }
+    };
   },
   computed: {
+    ...mapGetters("products", ["subscriptionCollections"]),
     isOnetime() {
       return this.item.status === "ONETIME";
     },
     displayTitle() {
       return this.isOnetime ? this.itemData.productType : this.item.product_title.split(" - ")[0];
+    },
+    price() {
+      return this.item.price * this.item.quantity * 100;
+    },
+    compareAtPrice() {
+      // if (this.itemData.variants && this.itemData.variants[0].compareAtPrice) {
+      //   console.log("price2", parseInt(this.itemData.variants[0].compareAtPrice));
+      // }
+      return this.itemData.variants && this.itemData.variants[0].compareAtPrice ? parseInt(this.itemData.variants[0].compareAtPrice) * 100 * this.item.quantity : null;
     },
     imageSrc() {
       return this.generateImageSrc(this.itemData);
@@ -87,7 +98,6 @@ export default {
       this.itemData = this.item.data;
     }
 
-    if (this.isOnetime) return;
     if (!this.item.lineItems) {
       const lineItemIds = this.item.properties.filter(prop => prop.name.includes("fulfillment")).map(item => SkuToId[item.value.toLowerCase()]);
       this.lineItems = await this.fetchLineItems(lineItemIds);
@@ -100,12 +110,14 @@ export default {
   },
   render() {
     return this.$scopedSlots.default({
+      isOnetime: this.isOnetime,
       item: this.item,
       displayTitle: this.displayTitle,
       imageSrc: this.imageSrc,
+      price: this.price,
+      compareAtPrice: this.compareAtPrice,
       // itemProps: this.itemProps,
       subscriptionInterval: this.subscriptionInterval,
-      isOnetime: this.isOnetime,
       includedList: this.includedList,
     });
   }
