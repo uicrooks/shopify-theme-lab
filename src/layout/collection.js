@@ -9,7 +9,7 @@ const CollectionTemplate = () => import(
 new Vue({
   el: "#app",
   components: {
-    Collection: CollectionTemplate
+    Collection: CollectionTemplate,
   },
   store,
   mounted() {

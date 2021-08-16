@@ -295,7 +295,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .ingredient-glossary-component {
   .glossary-header {
@@ -306,7 +306,7 @@ export default {
       ),
       #2d2d2d;
     height: 367px;
-    color: $white;
+    color: global.$white;
     padding: 4rem 0;
     display: flex;
     justify-content: center;
@@ -319,7 +319,7 @@ export default {
       padding: 0 19px;
 
       .glossary-title {
-        font-family: $font-heading;
+        font-family: global.$font-heading;
       }
 
       .header-sub {
@@ -374,19 +374,19 @@ export default {
     padding: 0 15px;
     margin: 0 auto;
 
-    @include layout-sm {
+    @include global.layout-sm {
       max-width: 540px;
     }
 
-    @include layout-md {
+    @include global.layout-md {
       max-width: 720px;
     }
 
-    @include layout-lg {
+    @include global.layout-lg {
       max-width: 960px;
     }
 
-    @include layout-xl {
+    @include global.layout-xl {
       max-width: 1024px;
     }
 
@@ -425,7 +425,7 @@ export default {
       .arrow {
         opacity: 0.8;
         background: #3d332a;
-        color: $white;
+        color: global.$white;
         padding: 6px 6px 5px;
         line-height: 1;
         z-index: 9;
@@ -475,7 +475,7 @@ export default {
           display: inline-block;
           margin: 0 0 0.5rem 0;
 
-          @include layout-md {
+          @include global.layout-md {
             flex: 0 0 16.6666666667%;
             max-width: 16.6666666667%;
           }
@@ -487,7 +487,7 @@ export default {
               height: 51px;
               margin: auto;
 
-              @include layout-sm {
+              @include global.layout-sm {
                 height: 110px;
               }
             }
@@ -500,7 +500,7 @@ export default {
           p {
             font-size: 12px;
 
-            @include layout-sm {
+            @include global.layout-sm {
               font-size: 16px;
             }
           }
@@ -543,11 +543,11 @@ export default {
     justify-items: center;
     align-items: flex-start;
 
-    @include layout-md {
+    @include global.layout-md {
       grid-template-columns: 1fr 1fr;
     }
 
-    @include layout-xl {
+    @include global.layout-xl {
       grid-template-columns: 1fr 1fr 1fr;
     }
 
@@ -619,7 +619,7 @@ export default {
               }
 
               .read-more-link {
-                color: $orange;
+                color: global.$orange;
                 text-decoration: none;
                 font-size: 12px;
                 font-weight: 600;
@@ -635,7 +635,7 @@ export default {
             .ingredient-title {
               font-size: 18px;
 
-              @include layout-sm {
+              @include global.layout-sm {
                 font-size: 20px;
               }
             }
@@ -660,22 +660,22 @@ export default {
 
           .ingredient-function {
             margin: 0 0 10px 0;
-            @include font-style-body-bold($size: 14px);
+            @include global.font-style-body-bold($size: 14px);
           }
 
           .ingredient-benefits {
-            color: $brown;
+            color: global.$brown;
             margin: 0;
           }
         }
 
         .foundInTitle {
           margin: 0 0 10px 0;
-          @include font-style-body-bold($size: 14px, $color: $brown);
+          @include global.font-style-body-bold($size: 14px, $color: global.$brown);
         }
 
         .foundIn {
-          color: $orange;
+          color: global.$orange;
           font-size: 14px;
           margin: 0 0 7px 0;
         }
@@ -693,7 +693,7 @@ export default {
       padding: 0 19px;
       font-style: italic;
       white-space: pre-line;
-      @include font-style-body($size: 12px);
+      @include global.font-style-body($size: 12px);
 
       @media (min-width: 426px) {
         width: 80% !important;

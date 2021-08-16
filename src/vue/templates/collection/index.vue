@@ -44,15 +44,28 @@
 import JumbotronConfigs from "@/configs/collection-jumbotron";
 import CollectionNav from "./reusables/collection-nav.vue";
 import Jumbotron from "@/vue/reusables/jumbotron.vue";
+const DefaultCollection = () => import(
+    /* webpackChunkName: "collection-default" */
+    /* webpackPreload: true */
+    "./contents/default.vue");
+const BestSellersCollectionTemplate = () => import(
+    /* webpackChunkName: "collection-best-sellers" */
+    /* webpackPreload: true */
+    "./contents/best-sellers.vue");
+const HairCareCollectionTemplate = () => import(
+    /* webpackChunkName: "collection-hair-care" */
+    /* webpackPreload: true */
+    "./contents/haircare.vue");
 // Templates
-const CollectionDefaultContent = () => import("./contents/default.vue");
 
 export default {
   name: "Collection",
   components: {
     CollectionNav,
     Jumbotron,
-    CollectionDefaultContent,
+    CollectionDefaultContent: DefaultCollection,
+    CollectionBestSellersContent: BestSellersCollectionTemplate,
+    CollectionHaircareContent: HairCareCollectionTemplate
   },
   props: {
     handle: {
@@ -93,7 +106,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .collection-component {
 
@@ -109,27 +122,24 @@ export default {
   }
 
   .content-container {
-
-    @media (min-width: 1153px) {
-      display: flex;
-      flex-flow: row nowrap;
-    }
-
+    max-width: 1600px;
+    margin:auto;
+    display: flex;
     h1 {
       margin-bottom: 14px;
-      @include font-style-heading($size: 32px, $color: $white);
+      @include global.font-style-heading($size: 32px, $color: global.$white);
     }
   
     p {
       margin-bottom: 0;
-      @include font-style-body($color: $white);
+      @include global.font-style-body($color: global.$white);
     }
   
     .default-jumbotron {
       background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/dsq-woodgrain_texture-DARK.svg?v=1616535182");
       background-size: 200%;
       background-repeat: repeat;
-      background-color: $dark-brown;
+      background-color: global.$dark-brown;
       padding: 42px 0;
       text-align: center;
     }

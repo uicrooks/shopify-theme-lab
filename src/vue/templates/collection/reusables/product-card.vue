@@ -107,7 +107,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-card-component {
   border-radius: 5px;
@@ -128,7 +128,7 @@ export default {
     background-image: url(https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353);
     background-size: 200%;
     background-repeat: repeat;
-    background-color: $sand;
+    background-color: global.$sand;
     padding: 25px;
     text-align: center;
 
@@ -146,7 +146,7 @@ export default {
     .product-title {
       cursor: pointer;
       min-height: 42px;
-      @include font-style-heading($size: 20px);
+      @include global.font-style-heading($size: 20px);
 
       &:hover {
         text-decoration: underline;
@@ -156,16 +156,16 @@ export default {
     .product-description {
       margin-top: 14px;
       min-height: 50px;
-      @include font-style-body($size: 16px, $color: $brown);
+      @include global.font-style-body($size: 16px, $color: global.$brown);
     }
 
     .product-pricing {
       margin-bottom: 20px;
-      @include font-style-body($size: 16px, $color: $green, $weight: 700);
+      @include global.font-style-body($size: 16px, global.$color: global.$green, $weight: 700);
 
       .compare-at-pricing {
         text-decoration: line-through;
-        @include font-style-body($size: 14px, $color: $gray, $weight: 700);
+        @include global.font-style-body($size: 14px, $color: global.$gray, $weight: 700);
       }
     }
 
@@ -176,8 +176,8 @@ export default {
       .qty-selector {
         padding: 0 12px;
         margin-right: 15px;
-        color: $dark-brown;
-        border: 1px solid $brown;
+        color: global.$dark-brown;
+        border: 1px solid global.$brown;
         border-radius: 5px;
       }
     }

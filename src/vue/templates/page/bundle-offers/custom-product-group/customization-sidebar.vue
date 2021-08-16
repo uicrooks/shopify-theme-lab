@@ -199,7 +199,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .custom-product-group-customization-sidebar-component {
   
@@ -210,21 +210,21 @@ export default {
   .discount {
     margin-right: 7px;
     padding: 5px 10px;
-    background-color: $maroon;
-    @include font-style-body($size: 12px, $weight: 600, $color: $white);
+    background-color: global.$maroon;
+    @include global.font-style-body($size: 12px, $weight: 600, $color: $white);
   }
 
   .free-shipping {
     padding: 5px 10px;
-    background-color: $orange;
-    @include font-style-body($size: 12px, $weight: 600, $color: $white);
+    background-color: global.$orange;
+    @include global.font-style-body($size: 12px, $weight: 600, $color: global.$white);
   }
 
   .header-box {
     background-image: url(https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353);
     background-size: 200%;
     background-repeat: repeat;
-    background-color: $sand;
+    background-color: global.$sand;
     padding: 15px 20px;
     text-align: center;
 
@@ -235,27 +235,27 @@ export default {
 
     h2 {
       margin: 13px 0 17px;
-      @include font-style-heading($size: 25px);
+      @include global.font-style-heading($size: 25px);
 
-      @include layout-md {
+      @include global.layout-md {
         font-size: 30px;
       }
 
-      @include layout-lg {
+      @include global.layout-lg {
         font-size: 40px;
       }
     }
 
     p {
-      @include font-style-body($size: 20px, $color: $brown, $weight: 600);
+      @include global.font-style-body($size: 20px, $color: global.$brown, $weight: 600);
     }
 
     .product-pricing {
-      @include font-style-body($size: 20px, $weight: 600, $color: $green);
+      @include global.font-style-body($size: 20px, $weight: 600, $color: global.$green);
 
       .compare-at-pricing {
         text-decoration: line-through;
-        @include font-style-body($size: 20px, $color: #afafaf);
+        @include global.font-style-body($size: 20px, $color: #afafaf);
       }
     }
   }
@@ -265,11 +265,11 @@ export default {
     top: -5px;
     padding: 15px 20px;
     box-shadow: rgb(212 212 212) 0px 4px 8px -2px;
-    background-color: $white;
+    background-color: global.$white;
 
     h3 {
       margin-left: 9px;
-      @include font-style-body($size: 16px, $color: $brown);
+      @include global.font-style-body($size: 16px, $color: global.$brown);
     }
 
     .variants {
@@ -288,18 +288,18 @@ export default {
           width: 42px;
           height: 42px;
           border-radius: 50%;
-          background-color: $off-white;
+          background-color: global.$off-white;
           font-size: 20px;
           cursor: pointer;
 
           &.selected {
-            background-color: $orange;
+            background-color: global.$orange;
           }
         }
 
         span {
           margin-top: 6px;
-          @include font-style-body($color: $brown);
+          @include global.font-style-body($color: global.$brown);
         }
       }
     }
@@ -307,7 +307,7 @@ export default {
     h4 {
       margin: 0 0 0 6px;
       cursor: pointer;
-      @include font-style-body($size: 14px, $weight: 600, $color: $orange);
+      @include global.font-style-body($size: 14px, $weight: 600, $color: global.$orange);
     }
   }
 
@@ -316,7 +316,7 @@ export default {
 
     h3 {
       margin-bottom: 15px;
-      @include font-style-heading();
+      @include global.font-style-heading();
     }
 
     .included-category {
@@ -324,9 +324,9 @@ export default {
 
       h4 {
         padding-bottom: 9px;
-        border-bottom: 1px solid $off-white;
+        border-bottom: 1px solid global.$off-white;
         margin-bottom: 15px;
-        @include font-style-body($size: 16px, $color: $brown);
+        @include global.font-style-body($size: 16px, $color: global.$brown);
       }
     }
 
@@ -334,13 +334,13 @@ export default {
 
   .finish-button {
     text-transform: uppercase;
-    @include font-style-heading($size: 14px, $weight: 400, $color: $white);
+    @include global.font-style-heading($size: 14px, $weight: 400, $color: global.$white);
   }
 }
 </style>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .sidebar-drawer {
   width: 90%;
@@ -349,11 +349,11 @@ export default {
 }
 
 .sidebar-header, .sidebar-body {
-  background-color: $white;
+  background-color: global.$white;
 }
 
 .sidebar-footer {
-  background-color: $white;
+  background-color: global.$white;
   padding: 10px;
 }
 </style>

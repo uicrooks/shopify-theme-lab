@@ -65,11 +65,15 @@
 </template>
 
 <script>
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
 import IncludedList from "@/configs/product-group-card-included-list";
 import {money} from "@/vue/filters/money";
 
 export default {
   name: "CustomProductGroupCard",
+  components: {
+    SquatchButton
+  },
   filters: {
     money
   },

@@ -215,7 +215,7 @@ export default {
     background-color: #203620;
     text-align: center;
     opacity: 1;
-    transition: opacity 0.8s;
+    transition: opacity 0.2s;
 
     &.hidden {
       opacity: 0;

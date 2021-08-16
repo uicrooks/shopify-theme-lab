@@ -86,17 +86,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .shipping-container {
   .text-container {
     padding: 2.5rem 0;
 
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       padding: 5rem 0;
     }
 
-    @media (min-width: $xl) {
+    @media (min-width: global.$xl) {
       padding: 5rem 2rem;
     }
 
@@ -109,14 +109,14 @@ export default {
         text-align: center;
         margin-bottom: 28px;
 
-        @include layout-md {
+        @include global.layout-md {
           text-align: left;
         }
 
         .shipping-title {
           font-weight: 400;
           font-size: calc(1.04375rem + 1.10833vw);
-          font-family: $font-heading;
+          font-family: global.$font-heading;
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
@@ -124,11 +124,11 @@ export default {
         }
         .shipping-description {
           font-size: 14px;
-          color: $brown;
-          font-family: $font-body;
+          color: global.$brown;
+          font-family: global.$font-body;
 
           .bolded-text {
-            @include font-style-body-bold;
+            @include global.font-style-body-bold;
           }
         }
       }

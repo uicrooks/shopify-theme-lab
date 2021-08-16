@@ -35,13 +35,13 @@
 </template>
 
 <script>
-document.onscroll = () => {
+/*document.onscroll = () => {
   if (window.innerHeight + window.scrollY > document.body.clientHeight) {
     document.getElementById("collection-nav").style.display = "none";
   } else {
     document.getElementById("collection-nav").style.display = "flex";
   }
-};
+};*/
 
 export default {
   name: "CollectionNav",
@@ -123,7 +123,7 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .collection-nav-component {
   width: 100%;
@@ -138,25 +138,25 @@ export default {
     display: flex;
     flex-flow: row nowrap;
     box-shadow: 0 0.2rem 1rem rgb(26 17 12 / 45%);
-    background-color: $white;
+    background-color: global.$white;
     z-index: 9;
     padding: 0;
     overflow-y: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    @include font-style-body($size: 12px, $weight: 800);
+    @include global.font-style-body($size: 12px, $weight: 800);
   
     @media (min-width: 1153px) {
       flex-flow: column nowrap;
       box-shadow: unset;
       padding: 35px 15px 0 10px;
       margin-left: 10px;
-      @include font-style-body($size: 15px, $weight: 800);
+      @include global.font-style-body($size: 15px, $weight: 800);
     }
 
     .navbar-text {
       display: none;
-      @include font-style-heading($size: 22px);
+      @include global.font-style-heading($size: 22px);
 
       @media (min-width: 1153px) {
         display: block;
@@ -182,7 +182,7 @@ export default {
 
       .nav-link {
         padding: 12px 0;
-        color: $dark-brown;
+        color: global.$dark-brown;
         border-bottom: 3px solid transparent;
 
         @media (min-width: 1153px) {
@@ -195,12 +195,12 @@ export default {
         }
 
         &:hover {
-          color: $orange;
-          border-bottom: 3px solid $orange;
+          color: global.$orange;
+          border-bottom: 3px solid global.$orange;
 
           @media (min-width: 1153px) {
             border-bottom: none;
-            border-left: 3px solid $orange;
+            border-left: 3px solid global.$orange;
           }
         }
 

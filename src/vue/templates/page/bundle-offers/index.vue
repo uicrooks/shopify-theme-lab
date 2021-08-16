@@ -27,21 +27,22 @@
       class="section-wrapper"
       :class="{'hidden': index === 0, 'starter-bundles': index === 1}"
     >
-      <section
+      <b-container class="bv-example-row"
         v-if="showSection(index)"
       >
+      <b-row>
         <h2>
           {{ getSectionName(index) }}
         </h2>
         <p>
           {{ getSectionDescription(index) }}
         </p>
-        <div
+        <template
           v-if="index === 1"
           class="products"
         >
+        <b-col v-for="(product, productIndex) of getSectionProducts(index)">
           <custom-product-group-card
-            v-for="(product, productIndex) of getSectionProducts(index)"
             :key="`bundles-section-${index}-product-${productIndex}`"
             class="customizable-product-group-card"
             :product="product"
@@ -49,19 +50,22 @@
             @selectStarterBundle="selectStarterBundle"
             @openScentSelection="scentSelectionFlag = true"
           />
-        </div>
-        <div
+          </b-col>
+        </template>
+        <template
           v-else
           class="products"
         >
+        <b-col v-for="(product, productIndex) of getSectionProducts(index)">
           <product-group-card
-            v-for="(product, productIndex) of getSectionProducts(index)"
             :key="`bundles-section-${index}-product-${productIndex}`"
             class="product-group-card"
             :product="product"
           />
-        </div>
-      </section>
+          </b-col>
+          </template>
+        </b-row>
+      </b-container>
     </div>
     <custom-product-group-customization-sidebar
       :is-open="scentSelectionFlag"
@@ -75,11 +79,13 @@
 // Reusuables
 import SquatchButton from "@/vue/reusables/squatch-button.vue";
 import ProductGroupCard from "./product-group/index.vue";
+import CustomProductGroupCard from "./custom-product-group/index.vue";
 import CustomProductGroupCustomizationSidebar from "./custom-product-group/index";
 
 export default {
   name: "BundleOffers",
   components: {
+    CustomProductGroupCard,
     ProductGroupCard,
     CustomProductGroupCustomizationSidebar
   },
@@ -280,9 +286,6 @@ export default {
       }
 
       .products {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-around;
 
         .customizable-product-group-card {
           width: 100%;

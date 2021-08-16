@@ -1,12 +1,15 @@
 <template>
-  <div class="collection-default-content-component">
-    <product-card 
-      v-for="(product, index) of products"
-      :key="`collection-product-${index}`"
-      :product="product"
-      class="product-card"
-    />
-  </div>
+  <b-container class="collection-default-content-component">
+    <b-row>
+      <b-col md="3" v-for="(product, index) of products">
+        <product-card 
+          :key="`collection-product-${index}`"
+          :product="product"
+          class="product-card"
+        />
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script>
@@ -29,25 +32,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .collection-default-content-component {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
   padding: 35px 15px;
-
+  width: calc(100% - 200px);
   .product-card {
     width: 100%;
-
-    @include layout-md {
-      width: 45%;
-    }
-
-    @include layout-lg {
-      min-width: 300px;
-      max-width: 300px;
-    }
   }
 }
 </style>

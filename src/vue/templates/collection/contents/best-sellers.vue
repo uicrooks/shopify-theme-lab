@@ -65,8 +65,12 @@
 </template>
 
 <script>
+import ProductCard from "../reusables/product-card.vue";
 export default {
   name: "CollectionBestSellersContent",
+  components: {
+    ProductCard,
+  },
   props: {
     products: {
       type: Array,
@@ -77,7 +81,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .collection-best-sellers-content-component {
 
@@ -90,7 +94,7 @@ export default {
       padding: 40px 20px 0 20px;
       text-align: center;
 
-      @include layout-md {
+      @include global.layout-md {
         flex: 1;
         width: unset;
       }
@@ -114,7 +118,7 @@ export default {
         margin: 25px auto;
         padding-bottom: 20px;
         border-bottom: 2px solid rgba(53, 46, 46, .1);
-        @include font-style-body($weight: 500, $color: $orange);
+        @include global.font-style-body($weight: 500, $color: global.$orange);
       }
 
       .upsell-item-details {
@@ -126,7 +130,7 @@ export default {
         }
 
         p {
-          @include font-style-body($color: $brown, $lh: 16px);
+          @include global.font-style-body($color: global.$brown, $lh: 16px);
         }
       }
     }

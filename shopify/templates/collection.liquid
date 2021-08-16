@@ -1,10 +1,24 @@
+{% comment %}
+THIS IS TEMPORARY FOR MVP launch
+These Should be created as collection.[prefix].liquid templates
+But holding off for now due to routing rules
+{% endcomment %}
 <div id="layout-collection">
   {% if collection.handle == 'best-sellers' %} {% assign products =
   collections['collection-page-best-sellers'].products %} {% assign handle =
   'collection-page-best-sellers' %} {% else %} {% assign products =
   collection.products %} {% assign handle = collection.handle %} {% endif %}
+  {% if collection.handle == 'best-sellers' %}
+  {{ 'collection-best-sellers.js' | asset_url | script_tag }}
+  {{ 'collection-best-sellers.css' | asset_url | stylesheet_tag }}
+  {% elsif collection.handle == 'hair-care' %}
+  {{ 'collection-hair-care.js' | asset_url | script_tag }}
+  {{ 'collection-hair-care.css' | asset_url | stylesheet_tag }}
+  {% else %}
+  {{ 'collection-default.js' | asset_url | script_tag }}
+  {% endif %}
   <collection
-    handle="{{ handle }}"
-    :products-data="{{ products | json | json | escape }}"
-  ></collection>
+  handle="{{ handle }}"
+  :products-data="{{ products | json | json | escape }}"
+/>
 </div>

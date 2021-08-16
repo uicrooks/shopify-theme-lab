@@ -1,6 +1,7 @@
 <template>
   <div class="jumbotron-component">
-    <div class="left-col">
+    <div class="jumbotron-content">
+<div class="left-col">
       <div
         v-if="videoId"
         :class="`wistia_embed wistia_async_${videoId} seo=false videoFoam=true`"
@@ -38,6 +39,7 @@
       </squatch-button>
     </div>
   </div>
+    </div>
 </template>
 
 <script>
@@ -85,6 +87,11 @@ export default {
 
 <style scoped lang="scss">
 @use "@/styles/main" as global;
+.jumbotron-content {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 .jumbotron-component {
   display: flex;
