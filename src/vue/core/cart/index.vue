@@ -140,12 +140,6 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "Cart",
-  props: {
-    currencyObj: {
-      type: Object,
-      required: true,
-    },
-  },
   computed: {
     isOpen: {
       get() {
@@ -179,7 +173,6 @@ export default {
     },
   },
   async mounted() {
-    this.$store.commit("cart/setCurrency", this.currencyObj);
     const cart = await CartService.initCart();
     if (cart) {
       this.$store.commit("cart/setCart", cart);

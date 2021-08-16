@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="{{ settings.favicon_image | img_url: '32x32' }}" type="image/png">
 
     {% render "_head.seo" %}
+    {% render '_head.fonts' %}
     {% render "_head.content-styles" %}
 
     {{ content_for_header }}
@@ -42,7 +43,6 @@
     >
       {% section 'header' %}
       <main id="main" role="main">
-        {% comment %} Route Specific Content {% endcomment %}
         {{ content_for_layout }}
       </main>
       {% section 'footer' %}

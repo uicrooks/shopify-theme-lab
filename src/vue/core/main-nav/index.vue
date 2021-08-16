@@ -10,7 +10,7 @@
         >
       </a>
       <div class="buttons">
-        <cart :currency-obj="currency" />
+        <cart />
         <i
           v-b-toggle.main-nav-sidebar
           class="icon-squatch icon-burger"
@@ -34,7 +34,7 @@
               class="account-icon-box" 
               @click="logIn"
             >
-              <i class="icon-squatch icon-user m-auto" />
+              <i class="icon-squatch icon-user" />
               <span>{{ loggedIn ? 'Account' : 'Log In' }}</span>
             </div>
           </div>
@@ -45,10 +45,10 @@
             <div class="currency-display">
               <div
                 class="menu-item"
-                :class="isCurrencyMenuOpen ? null : 'collapsed'"
-                :aria-expanded="isCurrencyMenuOpen ? 'true' : 'false'"
+                :class="currencyMobileSubMenuOpen ? null : 'collapsed'"
+                :aria-expanded="currencyMobileSubMenuOpen ? 'true' : 'false'"
                 aria-controls="currency-menu-in-sidebar"
-                @click="isCurrencyMenuOpen = !isCurrencyMenuOpen"
+                @click="currencyMobileSubMenuOpen = !currencyMobileSubMenuOpen"
               >
                 <div class="currency-selected">
                   You're Shopping In
@@ -65,17 +65,18 @@
                 </div>
                 <b-icon
                   class="arrow-icon"
-                  :icon="isCurrencyMenuOpen ? 'chevron-up' : 'chevron-down'"
+                  :icon="currencyMobileSubMenuOpen ? 'chevron-up' : 'chevron-down'"
                 /> 
               </div>
               <b-collapse
                 id="currency-menu-in-sidebar"
-                v-model="isCurrencyMenuOpen"
+                v-model="currencyMobileSubMenuOpen"
               >
                 <div
                   v-for="(currencyOption, index) of currencyMenu"
                   :key="`currecny-option-${index}`"
                   class="currency-option"
+                  @click="updateCurrencyOption(currencyOption)"
                 >
                   <img
                     :src="currencyOption.imageSrc"
@@ -170,8 +171,9 @@
           Bundles
         </div>
         <div 
-          v-b-toggle.products-menu 
           class="menu-item"
+          :class="{active: productsSubMenuOpen}"
+          @click="productsSubMenuOpen = !productsSubMenuOpen"
         >
           Products
           <i 
@@ -194,16 +196,38 @@
         >
           Take Quiz
         </div>
+        <div
+          v-if="loggedIn"
+          v-b-toggle.account-menu
+          class="menu-item account"
+        >
+          <i class="icon-squatch icon-user" />
+          <b-icon icon="caret-down-fill" />
+          <b-collapse
+            id="account-menu"
+            v-model="accountSubMenuOpen"
+            class="sub-menu"
+          >
+            <div class="account-menu-option">
+              <a href="/account">Account</a>
+            </div>
+            <div class="account-menu-option">
+              <a href="/account/logout">Log Out</a>
+            </div>
+          </b-collapse>
+        </div>
         <div 
+          v-else
           class="menu-item" 
           @click="logIn"
         >
-          {{ loggedIn ? 'Account' : 'Log In' }}
+          Log In
         </div>
   
         <div 
           v-b-toggle.currency-menu
           class="menu-item"
+          :class="{'active': currencySubMenuOpen}"
         >
           <div class="currency-box">
             <img
@@ -216,11 +240,17 @@
             </span>
           </div>
           <b-icon icon="caret-down-fill" />
-          <b-collapse id="currency-menu"> 
+          <b-collapse
+            id="currency-menu"
+            v-model="currencySubMenuOpen"
+            class="sub-menu"
+            is-nav
+          >
             <div
               v-for="(currencyOption, index) of currencyMenu"
               :key="`currecny-option-${index}`"
               class="currency-option"
+              @click="updateCurrencyOption(currencyOption)"
             >
               <img
                 :src="currencyOption.imageSrc"
@@ -233,11 +263,11 @@
             </div>
           </b-collapse>
         </div>
-        <cart :currency-obj="currency" />
+        <cart />
       </div>
     </div>
     <b-collapse 
-      id="products-menu" 
+      id="products-menu"
       v-model="productsSubMenuOpen"
     >
       <h6 class="submenu-title">
@@ -267,7 +297,7 @@
           </div>
         </div>
       </div>
-      <h6 class="submenu-title">
+      <h6 class="submenu-title second">
         More Products
       </h6>
       <div class="more">
@@ -302,25 +332,13 @@
 </template>
 
 <script>
+import CookieService from "@/vue/services/cookie.service";
+import { mapGetters } from "vuex";
+
 export default {
   name: "MainNav",
-  props: {
-    currency: {
-      type: Object,
-      required: true,
-    },
-    loggedIn: {
-      type: Boolean,
-      required: true
-    }
-  },
   data() {
     return {
-      currencyOptions: [
-        { currency: "USD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_the_U.S..svg?v=1613061492" },
-        { currency: "CAD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_Canada.svg?v=1613061492" },
-      ],
-      isCurrencyMenuOpen: false,
       soapMenu: {
         name: "Bar Soaps",
         isOpen: false,
@@ -468,7 +486,7 @@ export default {
         essentials: [
           {
             name: "Shop Bundles",
-            path: "/test",
+            path: "/pages/bundle-offers",
             imageSrc:
               "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457",
           },
@@ -511,25 +529,40 @@ export default {
           },
         ],
       },
+      accountSubMenuOpen: false,
+      currencySubMenuOpen: false,
+      currencyMobileSubMenuOpen: false,
     };
   },
   computed: {
+    ...mapGetters("core", ["loggedIn", "defaultCurrencyOption", "currencyOptions"]),
     currencySelected() {
-      const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
-      return this.currencyOptions.filter(option => {
-        return currency === option.currency;
-      })[0];
+      return this.defaultCurrencyOption.currency ? this.defaultCurrencyOption : this.currencyOptions[0];
     },
     currencyMenu() {
-      const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
       return this.currencyOptions.filter(option => {
-        return currency !== option.currency;
+        return this.currencySelected.country !== option.country;
       });
     }
   },
   watch: {
-    loggedIn(val) {
-      this.$store.commit("core/setLoggedIn", val);
+    productsSubMenuOpen(val) {
+      if (val) {
+        this.accountSubMenuOpen = false;
+        this.currencySubMenuOpen = false;
+      }
+    },
+    accountSubMenuOpen(val) {
+      if (val) {
+        this.productsSubMenuOpen = false;
+        this.currencySubMenuOpen = false;
+      }
+    },
+    currencySubMenuOpen(val) {
+      if (val) {
+        this.productsSubMenuOpen = false;
+        this.accountSubMenuOpen = false;
+      }
     }
   },
   methods: {
@@ -537,13 +570,16 @@ export default {
       window.location = this.loggedIn ? "/account" : "/account/login";
     },
     navigateTo(path) {
-      if (path === "/test") return;
       window.location = path;
+    },
+    updateCurrencyOption(currencyOption) {
+      CookieService.set(
+        "currency_option",
+        currencyOption,
+        { maxAge: 24 * 60 * 60, path: "/" }
+      );
+      location.reload();
     }
-  },
-  mounted() {
-    console.log(this.loggedIn);
-    this.$store.commit("core/setLoggedIn", this.loggedIn);
   }
 };
 </script>
@@ -618,7 +654,6 @@ export default {
       }
     }
 
-
     .sidebar-main-header {
       background-color: $white;
       @include font-style-body();
@@ -663,7 +698,6 @@ export default {
 
         #currency-menu-in-sidebar {
   
-
           .currency-option {
             display: flex;
             flex-flow: row nowrap;
@@ -753,6 +787,7 @@ export default {
 
       .subscribe-button {
         width: 124px;
+        margin-right: 10px;
       }
     }
 
@@ -781,6 +816,18 @@ export default {
         color: $orange;
       }
 
+      &.active {
+        color: $orange;
+      }
+
+      &.account {
+        color: $orange;
+
+        .icon-squatch {
+          font-size: 1.3rem;
+        }
+      }
+
       .icon-squatch {
         margin-left: 7px;
       }
@@ -801,24 +848,18 @@ export default {
     }
   }
 
-  #currency-menu {
+  .sub-menu {
     position: absolute;
-    top: 28px;
-    padding: 14px;
+    right: 0;
     background-color: $off-white;
 
-    .currency-option {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
+    &#account-menu {
+      top: 30px;
+      padding: 7px 14px;
 
-      .currency-flag-image {
-        width: 32px;
-        height: auto;
-      }
-
-      .currency {
-        margin-left: 3px;
+      .account-menu-option {
+        padding: 7px 0;
+        white-space: nowrap;
         @include font-style-body($size: 12px);
 
         &:hover {
@@ -826,6 +867,32 @@ export default {
         }
       }
     }
+
+    &#currency-menu {
+      top: 28px;
+      padding: 14px;
+
+      .currency-option {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        .currency-flag-image {
+          width: 32px;
+          height: auto;
+        }
+
+        .currency {
+          margin-left: 3px;
+          @include font-style-body($size: 12px);
+
+          &:hover {
+            color: $orange;
+          }
+        }
+      }
+    }
+
   }
 
   #products-menu {
@@ -837,28 +904,32 @@ export default {
     z-index: 9;
 
     .submenu-title {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       padding-left: 15px;
       @include font-style-heading();
+
+      &.second {
+        margin-top: 15px;
+      }
     }
 
     .essentials {
       display: flex;
       flex-flow: row nowrap;
+      justify-content: space-around;
 
       .essential-item {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
         width: 138px;
-        padding: 0 20px;
         position: relative;
         margin-bottom: 15px;
         cursor: pointer;
 
         .badge {
           position: absolute;
-          top: -20px;
+          top: -18px;
           left: 39px;
           font-size: 10px;
           font-weight: 400;
@@ -873,9 +944,10 @@ export default {
           border-radius: 100%;
           width: 80px;
           text-align: center;
+          margin-bottom: 15px;
 
           &:hover {
-            background-color: $white-darken;
+            background-color: $off-white;
           }
 
           img {
@@ -901,9 +973,11 @@ export default {
         flex-flow: column wrap;
         align-content: flex-start;
         min-width: 320px;
+        max-width: 30%;
+        flex: 1;
 
         .more-item {
-          width: 160px;
+          min-width: 160px;
           margin: 0 0 14px 15px;
           @include font-style-body($weight: 600);
           cursor: pointer;

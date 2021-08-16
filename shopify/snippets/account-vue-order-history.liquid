@@ -1,0 +1,57 @@
+<div class="account-order-history-container">
+  {% if customer.orders.size > 0 %}
+    {% for order in customer.orders %}
+      {% for line in order.line_items %}
+        {% if line.fulfillment.tracking_number %}
+          {% assign wismoHandle = 'drsquatch' }
+          {% assign SKUs = "" %}
+          {% for item in order.line_items %}
+            {% if item.sku and item.sku != '' %}
+              {% assign SKUs = SKUs | append: ',' | append: item.sku %}
+            {% endif %}
+          {% endfor %}
+          {% assign SKUs = SKUs | remove_first: ',' %}
+          {% assign cids = ' ' %}
+
+          {% capture statusUrl %}https://{{ wismoHandle }}.wismolabs.com/{{ wismoHandle }}/shopify?TRK={{ line.fulfillment.tracking_number }}&CAR={{ line.fulfillment.tracking_company }}&SERV={{ order.shipping_methods[0].handle }}&ON={{ order.order_number }}&OD={{ order.created_at | date: "%Y-%m-%d"  }}&SD={{ line.fulfillment.created_at | date: "%Y-%m-%d" }}&name={{ order.customer.first_name | default: order.billing_address.first_name }}&oZIP={{ shop.address.zip }}&dZIP={{ order.shipping_address.zip }}&dCountry={{ order.shipping_address.country }}&PID={{ SKUs }}&CID={{ cids }}&TAG={{ tag }}{% endcapture %}
+
+        {% endif %}
+        {% for col in line.product.collections %}
+          {% assign search = ' ' | append: col.id | append: ' ' %}
+          {% unless cids contains search %}
+            {% assign cids = cids | append: col.id | append: ' ' %}
+          {% endunless %}
+        {% endfor %}
+        {% assign cids = cids | strip | replace: ' ', ',' %}
+        
+        {% assign SKUs = '' %}
+        {% if line.sku and line.sku != '' %}
+          {% assign SKUs = SKUs | append: ',' | append: line.sku %}
+        {% endif %}
+        {% assign SKUs = SKUs | remove_first: ',' %}
+
+        {% if order.tags.size > 0 %}
+          {% assign tag = order.tags | join: '|' | remove:" " %}
+        {% endif %}
+
+        {% capture lineItems %}{ title: '{{ line.product.title }}', image: '{{ line.image }}', quantity: '{{ line.quantity }}', properties: '{{ line.properties }}', variants: '{{ line.variants }}' }{% endcapture %}
+      {% endfor %}
+      <account-order-card
+        :order="{
+          createdAt: '{{ order.created_at }}',
+          orderNumber: '{{ order.order_number}}',
+          total: '{{ order.total_net_amount }}',
+          cancelled: '{{ order.cancelled | json }}',
+          financialStatus: '{{ order.financial_status }}',
+          fulfillmentStatus: '{{ order.fulfillment_status }}',
+          statusUrl: '{{ statusUrl }}',
+        }"
+      >
+      </account-order-card>
+    {% endfor %} 
+  {% else %}
+    <div class="no-orders-alert">
+      <p>No orders found</p>
+      <a class="btn liquid-squatch-button" href="/collections/best-sellers">Shop Now</a>
+    </div>
+  {% endif %}

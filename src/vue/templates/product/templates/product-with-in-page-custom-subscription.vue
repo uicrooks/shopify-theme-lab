@@ -201,6 +201,7 @@ export default {
       }
     },
     getSubscriptionProperties(selectedOptions) {
+      console.log(selectedOptions);
       let props = ProductDetails.subscriptionPropertiesByHandle[this.subscriptionProduct.handle];
       selectedOptions.forEach((option, index)=> {
         props[`_fulfillment_Scent${index + 1}`] = option.variants[0].sku;
