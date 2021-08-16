@@ -98,12 +98,10 @@
 
   .heading {
     width: 90%;
-    font-size: 25px;
     line-height: 100%;
     text-align: center;
-    font-family: $font-heading;
+    @include font-style-heading($size: 25px, $color: $darker-brown);
     margin: 20px 0 8px;
-    color: $darker-brown;
 
     @media (min-width: $md) {
       margin: 25px 0 12px;

@@ -97,14 +97,14 @@ export default {
 
       .brand-content {
         .squatch-difference-title {
-          font-family: $font-heading;
+          @include font-style-heading;
           margin: 0;
         }
 
         .squatch-difference-copy {
           text-align: left;
           margin: 5px 0 0 0;
-          color: $brown;
+          @include font-style-body($color: $brown, $size: 16px);
         }
       }
 

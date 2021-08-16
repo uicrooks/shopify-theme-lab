@@ -113,8 +113,7 @@ export default {
           .seen-brand-logo {
 
             .seen-icon {
-              max-height: 50px;
-              height: 100%;
+              max-height: 33px;
               width: 100%;
             }
           }
