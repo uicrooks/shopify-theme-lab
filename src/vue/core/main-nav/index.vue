@@ -10,7 +10,7 @@
         >
       </a>
       <div class="buttons">
-        <cart :currency-obj="currency" />
+        <cart />
         <i
           v-b-toggle.main-nav-sidebar
           class="icon-squatch icon-burger"
@@ -25,17 +25,17 @@
       >
         <template #header>
           <div class="sidebar-header">
-            <img
+            <b-img-lazy
               id="drsquatch-logo-mobile-sidebar"
               src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
               alt="Dr.Squatch logo"
-            >
+            />
             <div 
               class="account-icon-box" 
-              @click="navigateTo('/account/login')"
+              @click="logIn"
             >
-              <i class="icon-squatch icon-user m-auto" />
-              <span>Log In</span>
+              <i class="icon-squatch icon-user" />
+              <span>{{ loggedIn ? 'Account' : 'Log In' }}</span>
             </div>
           </div>
         </template>
@@ -45,19 +45,19 @@
             <div class="currency-display">
               <div
                 class="menu-item"
-                :class="isCurrencyMenuOpen ? null : 'collapsed'"
-                :aria-expanded="isCurrencyMenuOpen ? 'true' : 'false'"
+                :class="currencyMobileSubMenuOpen ? null : 'collapsed'"
+                :aria-expanded="currencyMobileSubMenuOpen ? 'true' : 'false'"
                 aria-controls="currency-menu-in-sidebar"
-                @click="isCurrencyMenuOpen = !isCurrencyMenuOpen"
+                @click="currencyMobileSubMenuOpen = !currencyMobileSubMenuOpen"
               >
                 <div class="currency-selected">
                   You're Shopping In
                   <div class="currency-box">
-                    <img
+                    <b-img-lazy
                       :src="currencySelected.imageSrc"
                       :alt="`${currencySelected.currency} image`"
                       class="currency-flag-image"
-                    >
+                    />
                     <span class="currency">
                       {{ currencySelected.currency }}
                     </span>
@@ -65,30 +65,31 @@
                 </div>
                 <b-icon
                   class="arrow-icon"
-                  :icon="isCurrencyMenuOpen ? 'chevron-up' : 'chevron-down'"
+                  :icon="currencyMobileSubMenuOpen ? 'chevron-up' : 'chevron-down'"
                 /> 
               </div>
               <b-collapse
                 id="currency-menu-in-sidebar"
-                v-model="isCurrencyMenuOpen"
+                v-model="currencyMobileSubMenuOpen"
               >
                 <div
                   v-for="(currencyOption, index) of currencyMenu"
                   :key="`currecny-option-${index}`"
                   class="currency-option"
+                  @click="updateCurrencyOption(currencyOption)"
                 >
-                  <img
+                  <b-img-lazy
                     :src="currencyOption.imageSrc"
                     :alt="`${currencyOption.currency} image`"
                     class="currency-flag-image"
-                  >
+                  />
                   <span class="currency">
                     {{ currencyOption.currency }}
                   </span>
                 </div>
               </b-collapse>
             </div>
-            <!-- <button
+            <button
               class="big-cta-link"
               @click="navigateTo('/pages/subscription-flow')"
             >
@@ -101,7 +102,7 @@
             >
               <span class="title"> Starter Bundles </span>
               Your choice of our curated best sellers
-            </button> -->
+            </button>
           </div>
 
           <div class="sidebar-main-content">
@@ -170,8 +171,9 @@
           Bundles
         </div>
         <div 
-          v-b-toggle.products-menu 
           class="menu-item"
+          :class="{active: productsSubMenuOpen}"
+          @click="productsSubMenuOpen = !productsSubMenuOpen"
         >
           Products
           <i 
@@ -194,57 +196,78 @@
         >
           Take Quiz
         </div>
-        <div 
-          v-if="loggedIn" 
-          class="menu-item" 
-          @click="navigateTo('/account')"
+        <div
+          v-if="loggedIn"
+          v-b-toggle.account-menu
+          class="menu-item account"
         >
-          Account
+          <i class="icon-squatch icon-user" />
+          <b-icon icon="caret-down-fill" />
+          <b-collapse
+            id="account-menu"
+            v-model="accountSubMenuOpen"
+            class="sub-menu"
+          >
+            <div class="account-menu-option">
+              <a href="/account">Account</a>
+            </div>
+            <div class="account-menu-option">
+              <a href="/account/logout">Log Out</a>
+            </div>
+          </b-collapse>
         </div>
         <div 
-          v-else 
+          v-else
           class="menu-item" 
-          @click="navigateTo('/account/login')"
+          @click="logIn"
         >
           Log In
         </div>
+  
         <div 
           v-b-toggle.currency-menu
           class="menu-item"
+          :class="{'active': currencySubMenuOpen}"
         >
           <div class="currency-box">
-            <img
+            <b-img-lazy
               :src="currencySelected.imageSrc"
               :alt="`${currencySelected.currency} image`"
               class="currency-flag-image"
-            >
+            />
             <span class="currency">
               {{ currencySelected.currency }}
             </span>
           </div>
           <b-icon icon="caret-down-fill" />
-          <b-collapse id="currency-menu"> 
+          <b-collapse
+            id="currency-menu"
+            v-model="currencySubMenuOpen"
+            class="sub-menu"
+            is-nav
+          >
             <div
               v-for="(currencyOption, index) of currencyMenu"
               :key="`currecny-option-${index}`"
               class="currency-option"
+              @click="updateCurrencyOption(currencyOption)"
             >
-              <img
+              <b-img-lazy
                 :src="currencyOption.imageSrc"
                 :alt="`${currencyOption.currency} image`"
                 class="currency-flag-image"
-              >
+              />
               <span class="currency">
                 {{ currencyOption.currency }}
               </span>
             </div>
           </b-collapse>
         </div>
-        <cart :currency-obj="currency" />
+        <cart />
       </div>
     </div>
     <b-collapse 
-      id="products-menu" 
+      id="products-menu"
       v-model="productsSubMenuOpen"
     >
       <h6 class="submenu-title">
@@ -264,17 +287,17 @@
             {{ item.badge }}
           </span>
           <div class="item-image-wrapper">
-            <img 
+            <b-img-lazy
               :src="item.imageSrc" 
               :alt="`${item.name} image`" 
-            >
+            />
           </div>
           <div class="item-name">
             {{ item.name }}
           </div>
         </div>
       </div>
-      <h6 class="submenu-title">
+      <h6 class="submenu-title second">
         More Products
       </h6>
       <div class="more">
@@ -309,21 +332,23 @@
 </template>
 
 <script>
+import CookieService from "@/vue/services/cookie.service";
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
+import Cart from "@/vue/core/cart/index.vue";
+import GroupedMenuItem from "./grouped-menu-item.vue";
+import SingleMenuItem from "./single-menu-item.vue";
+import { mapGetters } from "vuex";
+
 export default {
   name: "MainNav",
-  props: {
-    currency: {
-      type: Object,
-      required: true,
-    },
+  components: {
+    Cart,
+    SquatchButton,
+    MainNavGroupedMenuItem: GroupedMenuItem,
+    MainNavSingleMenuItem: SingleMenuItem
   },
   data() {
     return {
-      currencyOptions: [
-        { currency: "USD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_the_U.S..svg?v=1613061492" },
-        { currency: "CAD", imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Flag_of_Canada.svg?v=1613061492" },
-      ],
-      isCurrencyMenuOpen: false,
       soapMenu: {
         name: "Bar Soaps",
         isOpen: false,
@@ -471,7 +496,7 @@ export default {
         essentials: [
           {
             name: "Shop Bundles",
-            path: "/test",
+            path: "/pages/bundle-offers",
             imageSrc:
               "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457",
           },
@@ -514,46 +539,69 @@ export default {
           },
         ],
       },
+      accountSubMenuOpen: false,
+      currencySubMenuOpen: false,
+      currencyMobileSubMenuOpen: false,
     };
   },
   computed: {
-    loggedIn() {
-      return window.theme.customerLoggedIn;
-    },
+    ...mapGetters("core", ["loggedIn", "defaultCurrencyOption", "currencyOptions"]),
     currencySelected() {
-      const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
-      return this.currencyOptions.filter(option => {
-        return currency === option.currency;
-      })[0];
+      return this.defaultCurrencyOption.currency ? this.defaultCurrencyOption : this.currencyOptions[0];
     },
     currencyMenu() {
-      const currency = this.currency.isoCode ? this.currency.isoCode : "USD";
       return this.currencyOptions.filter(option => {
-        return currency !== option.currency;
+        return this.currencySelected.country !== option.country;
       });
     }
   },
+  watch: {
+    productsSubMenuOpen(val) {
+      if (val) {
+        this.accountSubMenuOpen = false;
+        this.currencySubMenuOpen = false;
+      }
+    },
+    accountSubMenuOpen(val) {
+      if (val) {
+        this.productsSubMenuOpen = false;
+        this.currencySubMenuOpen = false;
+      }
+    },
+    currencySubMenuOpen(val) {
+      if (val) {
+        this.productsSubMenuOpen = false;
+        this.accountSubMenuOpen = false;
+      }
+    }
+  },
   methods: {
+    logIn() {
+      window.location = this.loggedIn ? "/account" : "/account/login";
+    },
     navigateTo(path) {
-      console.log(path);
-      if (path === "/test") return;
       window.location = path;
     },
-    toggleCurrencyMenu() {
-
+    updateCurrencyOption(currencyOption) {
+      CookieService.set(
+        "currency_option",
+        currencyOption,
+        { maxAge: 24 * 60 * 60, path: "/" }
+      );
+      location.reload();
     }
   }
 };
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
-
+@use "@/styles/main" as global;
 .main-nav-component {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: $white;
+  background-color: global.$white;
+  z-index: 10;
   font-size: 16px;
 
   .mobile-nav {
@@ -563,7 +611,7 @@ export default {
     align-items: center;
     padding: 15px;
 
-    @include layout-lg {
+    @include global.layout-lg {
       display: none;
     }
 
@@ -599,12 +647,12 @@ export default {
         align-items: center;
         position: relative;
         width: 40px;
-        color: $orange;
+        color: global.$orange;
         font-size: 11px;
         cursor: pointer;
 
         .icon-user {
-          color: $orange;
+          color: global.$orange;
         }
 
         span {
@@ -614,20 +662,19 @@ export default {
       }
     }
 
-
     .sidebar-main-header {
-      background-color: $white;
-      @include font-style-body();
+      background-color: global.$white;
+      @include global.font-style-body();
 
       .currency-display {   
         position: relative;
-        background-color: $off-white;
+        background-color: global.$off-white;
         
         .menu-item {
           padding: 16px 16px 12px 16px;
           cursor: pointer;
           width: 100%;
-          border-bottom: 1px solid $dark-brown;
+          border-bottom: 1px solid global.$dark-brown;
           
           .currency-selected {
             display: flex;
@@ -635,7 +682,7 @@ export default {
             justify-content: space-between;
             align-items: center;
             padding-right: 30px;
-            font-family: "adrianna-bold";
+            @include global.font-style-body-bold();
 
             .currency-box {
               display: flex;
@@ -659,7 +706,6 @@ export default {
 
         #currency-menu-in-sidebar {
   
-
           .currency-option {
             display: flex;
             flex-flow: row nowrap;
@@ -668,7 +714,7 @@ export default {
             cursor: pointer;
 
             &:hover {
-              color: $orange;
+              color: global.$orange;
               background-color: rgba(204, 99, 40, .18039);
             }
 
@@ -679,7 +725,7 @@ export default {
 
             .currency {
               margin-left: 8px;
-              @include font-style-body($color: inherit);
+              @include global.font-style-body($color: inherit);
               
             }
           }
@@ -689,46 +735,46 @@ export default {
       .big-cta-link {
         padding: 20px 15px;
         margin: 10px 16px;
-        background-color: $orange;
+        background-color: global.$orange;
         border: none;
         border-radius: 5px;
         text-align: center;
-        @include font-style-body($size: 15px, $color: $white);
+        @include global.font-style-body($size: 15px, $color: global.$white);
   
         .title {
           display: block;
           margin-bottom: 4px;
           text-transform: uppercase;
-          @include font-style-heading($size: 16px, $color: $white);
+          @include global.font-style-heading($size: 16px, $color: global.$white);
         }
   
         &:hover {
-          background-color: $orange-darken;
-          color: $white-darken;
+          background-color: global.$orange-darken;
+          color: global.$white-darken;
         }
   
         &.maroon {
-          background-color: $maroon;
+          background-color: global.$maroon;
   
           &:hover {
-            background-color: $maroon-darken;
-            color: $white-darken;
+            background-color: global.$maroon-darken;
+            color: global.$white-darken;
           }
         }
       }
     }
 
     .sidebar-main-content {
-      background-color: $white;
+      background-color: global.$white;
 
       .soap-quiz-menu {
-        border-top: 1px solid $off-white;
+        border-top: 1px solid global.$off-white;
         font-weight: 400;
       }
     }
 
     .sidebar-footer {
-      background-color: $off-white;
+      background-color: global.$off-white;
     }
   }
 
@@ -737,7 +783,7 @@ export default {
     width: 100%;
     padding: 9px 30px;
 
-    @include layout-lg {
+    @include global.layout-lg {
       display: flex;
     }
 
@@ -749,6 +795,7 @@ export default {
 
       .subscribe-button {
         width: 124px;
+        margin-right: 10px;
       }
     }
 
@@ -771,10 +818,22 @@ export default {
       align-items: center;
       margin: 0 16px;
       cursor: pointer;
-      @include font-style-body($weight: 600);
+      @include global.font-style-body($weight: 600);
 
       &:hover {
-        color: $orange;
+        color: global.$orange;
+      }
+
+      &.active {
+        color: global.$orange;
+      }
+
+      &.account {
+        color: global.$orange;
+
+        .icon-squatch {
+          font-size: 1.3rem;
+        }
       }
 
       .icon-squatch {
@@ -791,22 +850,21 @@ export default {
 
         .currency {
           text-align: center;
-          @include font-style-body($size: 11px, $color: inherit);
+          @include global.font-style-body($size: 11px, $color: inherit);
         }
       }
     }
   }
 
-  #currency-menu {
+  .sub-menu {
     position: absolute;
     top: 28px;
     padding: 14px;
-    background-color: $off-white;
+    background-color: global.$off-white;
 
-    .currency-option {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
+    &#account-menu {
+      top: 30px;
+      padding: 7px 14px;
 
       .currency-flag-image {
         width: 32px;
@@ -815,50 +873,76 @@ export default {
 
       .currency {
         margin-left: 3px;
-        @include font-style-body($size: 12px);
+        @include global.font-style-body($size: 12px);
 
         &:hover {
-          color: $orange;
+          color: global.$orange;
         }
       }
     }
+
+    &#currency-menu {
+      top: 28px;
+      padding: 14px;
+
+      .currency-option {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+
+        .currency-flag-image {
+          width: 32px;
+          height: auto;
+        }
+
+        .currency {
+          margin-left: 3px;
+          @include global.font-style-body($size: 12px);
+
+          &:hover {
+            color: global.$orange;
+          }
+        }
+      }
+    }
+
   }
 
   #products-menu {
     width: 100%;
     padding: 20px 15px;
-    border-top: 2px solid $white-darken;
-    background-color: $white;
+    border-top: 2px solid global.$white-darken;
+    background-color: global.$white;
     position: absolute;
     z-index: 9;
 
     .submenu-title {
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       padding-left: 15px;
-      @include font-style-heading();
+      @include global.font-style-heading();
     }
 
     .essentials {
       display: flex;
       flex-flow: row nowrap;
+      justify-content: space-around;
 
       .essential-item {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
         width: 138px;
-        padding: 0 20px;
         position: relative;
         margin-bottom: 15px;
         cursor: pointer;
 
         .badge {
           position: absolute;
-          top: -20px;
+          top: -18px;
           left: 39px;
           font-size: 10px;
           font-weight: 400;
-          background-color: $orange;
+          background-color: global.$orange;
           border-radius: 11px;
           padding: 4px 7px;
           text-transform: uppercase;
@@ -869,9 +953,10 @@ export default {
           border-radius: 100%;
           width: 80px;
           text-align: center;
+          margin-bottom: 15px;
 
           &:hover {
-            background-color: $white-darken;
+            background-color: global.$white-darken;
           }
 
           img {
@@ -882,7 +967,7 @@ export default {
 
         .item-name {
           text-align: center;
-          @include font-style-heading($size: 14px);
+          @include global.font-style-heading($size: 14px);
         }
       }
     }
@@ -897,20 +982,22 @@ export default {
         flex-flow: column wrap;
         align-content: flex-start;
         min-width: 320px;
+        max-width: 30%;
+        flex: 1;
 
         .more-item {
-          width: 160px;
+          min-width: 160px;
           margin: 0 0 14px 15px;
-          @include font-style-body($weight: 600);
+          @include global.font-style-body($weight: 600);
           cursor: pointer;
 
           &:hover {
-            color: $orange;
+            color: global.$orange;
           }
         }
 
         .more-item-shop-all {
-          @include font-style-heading($size: 14px, $weight: 600);
+          @include global.font-style-heading($size: 14px, $weight: 600);
         }
       }
     }
@@ -919,13 +1006,13 @@ export default {
 </style>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .b-sidebar-header {
-  background-color: $white;
+  background-color: global.$white;
 }
 .b-sidebar-body {
-  background-color: $off-white;
+  background-color: global.$off-white;
 }
 
 .grouped-menu-item-component, .single-menu-item-component {
@@ -935,8 +1022,18 @@ export default {
 .squatch-button-component.big-cta-link {
   padding: 20px 15px;
   margin: 16px;
-  background-color: $orange;
+  background-color: global.$orange;
   text-align: center;
-  @include font-style-heading($size: 16px, $color: $white);
+  @include global.font-style-heading($size: 16px, $color: global.$white);
 }
+#shopify-section-header {
+        position: sticky;
+        top: -76px;
+        transition: top 0.3s linear, box-shadow 0.2s linear;
+        z-index: 99;
+        box-shadow: 0 0.5rem 1rem rgb(26 17 12 / 15%);
+      }
+      body.scroll-up #shopify-section-header {
+        top: 0px;
+      }
 </style>

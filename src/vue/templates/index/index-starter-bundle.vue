@@ -13,7 +13,11 @@
 </template>
 
 <script>
+import ImageSection from "@/vue/reusables/image-section.vue";
 export default {
-  name: "IndexStarterBundle"
+  name: "IndexStarterBundle",
+  components: {
+    ImageSection
+  }
 };
 </script>

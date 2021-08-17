@@ -7,7 +7,7 @@ collections['page-bundle-offers-soap-sets'].products %} {% assign deoSets =
 collections['page-bundle-offers-deo-sets'].products %} {% assign signatureScents
 = collections['page-bundle-offers-signature-scents'].products %}
 
-<bundle-offers
+<bundle-offers-template
   :bundles="{
     'Starter Bundles': {{ starterBundles | json | escape }},
     'Best Sellers': {{ bestSellers | json | escape }},
@@ -16,4 +16,4 @@ collections['page-bundle-offers-deo-sets'].products %} {% assign signatureScents
     'Deodorant Sets': {{ deoSets | json | escape }},
     'Signature Scents': {{ signatureScents | json | escape }}
   }"
-></bundle-offers>
+></bundle-offers-template>

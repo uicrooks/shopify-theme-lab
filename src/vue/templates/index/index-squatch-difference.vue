@@ -9,10 +9,10 @@
           <h3 class="squatch-difference-title">
             The
           </h3>
-          <img
+          <b-img-lazy
             src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_wordmark_black.svg?v=1615332033"
             class="squatch-difference-logo"
-          >
+          />
           <h3 class="squatch-difference-title">
             Difference
           </h3>
@@ -68,7 +68,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .index-squatch-difference-component {
   display: flex;
@@ -78,7 +78,7 @@ export default {
   padding: 60px 0;
   margin: auto;
 
-  @include layout-md {
+  @include global.layout-md {
     flex-flow: row nowrap !important;
   }
 
@@ -97,14 +97,14 @@ export default {
 
       .brand-content {
         .squatch-difference-title {
-          font-family: $font-heading;
+          font-family: global.$font-heading;
           margin: 0;
         }
 
         .squatch-difference-copy {
           text-align: left;
           margin: 5px 0 0 0;
-          color: $brown;
+          color: global.$brown;
         }
       }
 
@@ -125,7 +125,7 @@ export default {
           max-width: 33.3%;
 
           .subtext {
-            @include font-style-body-bold($color: $dark-brown);
+            @include global.font-style-body-bold($color: global.$dark-brown);
           }
         }
 

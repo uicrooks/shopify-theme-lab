@@ -1,7 +1,6 @@
 .icon-custom {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "icomoon" !important;
-  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -286,7 +285,7 @@
 .icon_bar-dp_scent:before {
   content: "\e902";
 }
-.icon_soap-gripper-hand:before {
+.icon-soap-gripper-hand:before {
   content: "\e903";
 }
 .icon_conditioner_scent:before {
@@ -415,16 +414,13 @@
 .icon_sapling-status:before {
   content: "\e9a6";
 }
-.icon_nav_logout:before {
+.icon-exit:before {
   content: "\e9a7";
 }
 .icon_nav_help:before {
   content: "\e9a8";
 }
-.icon_nav_referral-light:before {
-  content: "\e9a9";
-}
-.icon_nav_billing:before {
+.icon-credit-card:before {
   content: "\e9aa";
 }
 .icon_nav_login:before {
@@ -436,16 +432,16 @@
 .icon_nav_subscriptions:before {
   content: "\e9ad";
 }
-.icon_nav_auto-renew:before {
+.icon-auto-renew:before {
   content: "\e9ae";
 }
-.icon_nav_orders:before {
+.icon-box:before {
   content: "\e9af";
 }
-.icon_soap-gripper:before {
+.icon-soap-gripper:before {
   content: "\e9b0";
 }
-.icon_soap-gripper-saver:before {
+.icon-soap-gripper-saver:before {
   content: "\e9b1";
 }
 .icon_sav-1_bar-bubbles:before {
@@ -628,31 +624,31 @@
 .icon-uniE9DB:before {
   content: "\e9db";
 }
-.icon-BeardOil:before {
+.icon-beard-oil:before {
   content: "\e981";
 }
-.icon-BestSellers:before {
+.icon-best-sellers:before {
   content: "\e982";
 }
 .icon-Bundles:before {
   content: "\e983";
 }
-.icon-Candle:before {
+.icon-candle:before {
   content: "\e984";
 }
-.icon-Cologne:before {
+.icon-cologne:before {
   content: "\e985";
 }
-.icon-GiftCards:before {
+.icon-gift-card:before {
   content: "\e986";
 }
-.icon-HandSanitizer:before {
+.icon-hand-sanitizer:before {
   content: "\e987";
 }
-.icon-HandSoap:before {
+.icon-hand-soap:before {
   content: "\e988";
 }
-.icon-SquatchGear:before {
+.icon-squatch-gear:before {
   content: "\e989";
 }
 .icon-facebook2:before {

@@ -1,15 +1,18 @@
-import Vue from "vue";
+import {Vue, store} from "../main";
 console.log("layout-index");
 
-const vueComponents = require.context("../vue/templates/index", true, /\.(vue|js)$/);
-vueComponents.keys().forEach(key => {
-  const component = vueComponents(key).default;
-  const name = component.name ?
-    component.name :
-    key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
-  Vue.component(name, component);
-});
-
+//import IndexTemplate from "../vue/templates/index/index.vue";
+const IndexTemplate = () => import(
+  /* webpackChunkName: "index-main" */
+  /* webpackPreload: true */
+  "../vue/templates/index/index.vue");
 new Vue({
-  el: "#layout-index",
+  el: "#app",
+  components: {
+    IndexTemplate,
+  },
+  store,
+  mounted() {
+    window.app = this;
+  }
 });

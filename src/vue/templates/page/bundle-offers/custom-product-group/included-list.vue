@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .custom-product-group-included-list-component {
 
@@ -92,11 +92,11 @@ export default {
       padding-left: 20px;
 
       h3 {
-        @include font-style-heading($size: 14px);
+        @include global.font-style-heading($size: 14px);
       }
 
       p {
-        @include font-style-body($lh: 16px, $color: $brown);
+        @include global.font-style-body($lh: 16px, $color: global.$brown);
       }
     }
   }

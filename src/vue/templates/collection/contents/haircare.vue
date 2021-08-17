@@ -6,48 +6,61 @@
         Save when you bundle products together!
       </div>
     </div>
-    <div class="collection-section">
-      <product-card 
-        v-for="(product, index) of bundles"
-        :key="`haircare-bundle-${index}`"
-        :product="product"
-        class="product-card"
-      />
-    </div>
+    <b-container class="collection-section">
+      <b-row>
+        <b-col md="3" v-for="(product, index) of bundles">
+          <product-card
+            :key="`haircare-bundle-${index}`"
+            :product="product"
+            class="product-card"
+          />
+          </b-col>
+      </b-row>
+    </b-container>
     <div class="collection-section-header">
       Shampoo
       <div class="sub-header">
         Cleanse & strengthen your strands
       </div>
     </div>
-    <div class="collection-section">
+    <b-container class="collection-section">
+      <b-row>
+        <b-col md="3" v-for="(product, index) of shampoos">
       <product-card 
-        v-for="(product, index) of shampoos"
         :key="`haircare-shampoo-${index}`"
         :product="product"
         class="product-card"
       />
-    </div>
+      </b-col>
+      </b-row>
+    </b-container>
     <div class="collection-section-header">
       Conditioner
       <div class="sub-header">
         Maintain your mane with natural daily moisture
       </div>
     </div>
-    <div class="collection-section">
+    <b-container class="collection-section">
+      <b-row>
+        <b-col md="3" v-for="(product, index) of conditioners">
       <product-card 
-        v-for="(product, index) of conditioners"
         :key="`haircare-conditioner-${index}`"
         :product="product"
         class="product-card"
       />
-    </div>
+      </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
+import ProductCard from "../reusables/product-card.vue";
 export default {
   name: "CollectionHaircareContent",
+  components: {
+    ProductCard,
+  },
   props: {
     products: {
       type: Array,
@@ -83,38 +96,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .collection-haircare-content-component {
+  width: 100%;
   .collection-section-header {
     margin: 30px 0;
     padding: 0 15px;
     text-align: center;
-    @include font-style-heading($size: 23px);
+    @include global.font-style-heading($size: 23px);
 
-    @include layout-md {
+    @include global.layout-md {
       text-align: left;
     }
 }
 
   .sub-header {
     margin-top: 7px;
-    @include font-style-body($size: 16px, $color: $brown, $lh: 20px);
+    @include global.font-style-body($size: 16px, $color: global.$brown, $lh: 20px);
   }
 
   .collection-section {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
 
     .product-card {
       width: 100%;
-
-      @include layout-md {
-        flex: 1;
-        width: unset;
-        max-width: 300px;
-      }
     }
   }
 }

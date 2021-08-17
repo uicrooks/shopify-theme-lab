@@ -1,9 +1,12 @@
 const path = require('path')
+const glob = require('glob-all');
 const { merge } = require('webpack-merge')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin') // included in webpack 5, no need to add to package.json
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const common = require('./webpack.common.js')
+
 
 module.exports = merge(common, {
   mode: 'production',
@@ -58,8 +61,15 @@ module.exports = merge(common, {
      * docs: https://webpack.js.org/plugins/mini-css-extract-plugin
      */
     new MiniCssExtractPlugin({
-      filename: './layout-[name].css',
-      chunkFilename: '[id].css'
+      filename: './[name].css',
+      chunkFilename: '[name].css'
+    }),
+    new PurgeCSSPlugin({
+      //paths: glob.sync(path.resolve(__dirname,'../../src/assets/**/*.js'))
+      paths: glob.sync([
+        path.resolve(__dirname, '../../src/**/*.vue'),
+      ]),
+      safelist: { greedy: [ /data-v-.*/ ]	}
     })
   ],
   optimization: {

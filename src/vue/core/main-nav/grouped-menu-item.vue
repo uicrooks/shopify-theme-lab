@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .grouped-menu-item-component {
 
@@ -94,12 +94,12 @@ export default {
     padding: 16px;
     cursor: pointer;
     position: relative;
-    @include font-style-body($weight: 700, $color: inherit);
+    @include global.font-style-body($weight: 700, $color: inherit);
 
     .badge {
       font-size: 10px;
       font-weight: 400;
-      background-color: $orange;
+      background-color: global.$orange;
       border-radius: 11px;
       padding: 4px 7px; 
       text-transform: uppercase;
@@ -113,7 +113,7 @@ export default {
     }
 
     &:hover {
-      color: $orange;
+      color: global.$orange;
     }
 
     &.sub {
@@ -121,7 +121,7 @@ export default {
       background-color: #F2F2F2;
 
       &:hover {
-        color: $orange;
+        color: global.$orange;
         background-color: rgba(204, 99, 40, .1);
       }
     }

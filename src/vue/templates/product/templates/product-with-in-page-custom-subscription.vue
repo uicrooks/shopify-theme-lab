@@ -201,6 +201,7 @@ export default {
       }
     },
     getSubscriptionProperties(selectedOptions) {
+      console.log(selectedOptions);
       let props = ProductDetails.subscriptionPropertiesByHandle[this.subscriptionProduct.handle];
       selectedOptions.forEach((option, index)=> {
         props[`_fulfillment_Scent${index + 1}`] = option.variants[0].sku;
@@ -214,6 +215,7 @@ export default {
     if (this.productIdentityString === "deodorant") {
       this.quantity = 2;
     }
+    // eslint-disable-next-line no-unused-vars
     this.selectedCustomOptions = Array.from({ length: this.quantity }, i => this.product);
   }
 };

@@ -12,27 +12,10 @@
     <link rel="shortcut icon" href="{{ settings.favicon_image | img_url: '32x32' }}" type="image/png">
 
     {% render "_head.seo" %}
-    {% render "_head.content-styles" %}
 
     {{ content_for_header }}
 
-    <style>
-      #app {
-        min-width: 320px !important;
-      }
-      #shopify-section-header {
-        position: sticky;
-        top: -76px;
-        transition: top 0.3s linear;
-        z-index: 99;
-      }
-      body.scroll-up #shopify-section-header {
-        top: 0px;
-      }
-      #shopify-section-footer {
-        position: relative;
-      }
-    </style>
+    {% render 'style-tags' %}
   </head>
 
   <body
@@ -46,14 +29,13 @@
     >
       {% section 'header' %}
       <main id="main" role="main">
-        {% comment %} Route Specific Content {% endcomment %}
         {{ content_for_layout }}
       </main>
       {% section 'footer' %}
     </div>
     {{ '_config.static.js' | asset_url | script_tag }}
     <!-- webpack bundle -->
-    {% render '_body.content-scripts' %}
+    {% render 'script-tags' %}
     {% render '_body.crawler-schema' %}
     {% render '_body.live-chat' %}
   </body>

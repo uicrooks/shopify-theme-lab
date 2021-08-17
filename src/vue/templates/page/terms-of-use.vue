@@ -555,17 +555,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .terms-of-use {
   .terms-container {
     padding: 2.5rem 0;
 
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       padding: 5rem 0;
     }
 
-    @media (min-width: $xl) {
+    @media (min-width: global.$xl) {
       padding: 5rem 2rem;
     }
 
@@ -578,7 +578,7 @@ export default {
         text-align: center;
         margin-bottom: 28px;
 
-        @media (min-width: $md) {
+        @media (min-width: global.$md) {
           text-align: left;
         }
 
@@ -586,7 +586,7 @@ export default {
           font-weight: 400;
           font-size: calc(1.04375rem + 1.10833vw);
           margin: 0 0 30px 0;
-          font-family: $font-heading;
+          font-family: global.$font-heading;
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
@@ -594,17 +594,17 @@ export default {
         }
         .terms-description {
           font-size: 14px;
-          color: $brown;
-          font-family: $font-body;
+          color: global.$brown;
+          font-family: global.$font-body;
 
           .section-link {
-            color: $orange;
+            color: global.$orange;
             outline: none;
             text-decoration: none;
           }
 
           .bold-text {
-            font-family: $font-body-bold;
+            font-family: global.$font-body-bold;
           }
         }
       }

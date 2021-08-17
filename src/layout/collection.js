@@ -1,15 +1,18 @@
-import Vue from "vue";
+import {Vue, store} from "../main";
 console.log("layout-collection");
 
-const vueComponents = require.context("../vue/templates/collection", true, /\.(vue|js)$/);
-vueComponents.keys().forEach(key => {
-  const component = vueComponents(key).default;
-  const name = component.name ?
-    component.name :
-    key.replace(/\.(\/|vue|js)/g, "").replace(/(\/|-|_|\s)\w/g, (match) => match.slice(1).toUpperCase());
-  Vue.component(name, component);
-});
+const CollectionTemplate = () => import(
+  /* webpackChunkName: "collection-main" */
+  /* webpackPreload: true */
+  "../vue/templates/collection/index.vue");
 
 new Vue({
-  el: "#layout-collection",
+  el: "#app",
+  components: {
+    Collection: CollectionTemplate,
+  },
+  store,
+  mounted() {
+    window.app = this;
+  }
 });

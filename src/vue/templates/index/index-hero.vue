@@ -25,13 +25,17 @@
 </template>
 
 <script>
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
 export default {
-  name: "IndexHero"
+  name: "IndexHero",
+  components: {
+    SquatchButton
+  }
 };
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .index-hero-component {
 
@@ -48,9 +52,9 @@ export default {
       background-size: cover;
       background-position: center top 58%;
       height: 600px;
-      justify-content: start;
+      justify-content: flex-start;
 
-      @include layout-md {
+      @include global.layout-md {
         padding-left: 50px;
         background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671");
       }
@@ -63,9 +67,9 @@ export default {
         bottom: 50px;
         text-align: center;
         position: absolute;
-        font-family: $font-heading;
+        font-family: global.$font-heading;
 
-        @include layout-md {
+        @include global.layout-md {
           margin-left: 42%;
           align-items: flex-start;
           position: absolute;
@@ -83,9 +87,9 @@ export default {
 
         .subheader {
           display: none;
-          font-family: $font-body;
+          font-family: global.$font-body;
 
-          @include layout-md {
+          @include global.layout-md {
             display: block;
           }
         }

@@ -81,11 +81,18 @@
 </template>
 
 <script>
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
 import CartService from "@/vue/services/cart.service";
 import IncludedList from "@/configs/product-group-card-included-list";
-
+import {money} from "@/vue/filters/money";
 export default {
   name: "ProductGroupCard",
+  filters: {
+    money
+  },
+  components: {
+    SquatchButton
+  },
   props: {
     product: {
       type: Object,
@@ -134,7 +141,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-group-card-component {
   position: relative;
@@ -155,7 +162,7 @@ export default {
     background-image: url(https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353);
     background-size: 200%;
     background-repeat: repeat;
-    background-color: $sand;
+    background-color: global.$sand;
     padding: 25px;
     text-align: center;
     position: relative;
@@ -165,8 +172,8 @@ export default {
       top: 15px;
       left: 0;
       padding: 6px 13px;
-      background-color: $orange;
-      @include font-style-body($color: $white, $weight: 700);
+      background-color: global.$orange;
+      @include global.font-style-body($color: global.$white, $weight: 700);
     }
 
     img {
@@ -183,9 +190,9 @@ export default {
       height: 60px;
       padding: 12px 0;
       border-radius: 50%;
-      background-color: $maroon;
+      background-color: global.$maroon;
       text-align: center;
-      @include font-style-heading($size: 14px, $weight: 400, $color: $white);
+      @include global.font-style-heading($size: 14px, $weight: 400, $color: global.$white);
 
       .discount-bubble {
         position: absolute;
@@ -208,7 +215,7 @@ export default {
     background-color: #203620;
     text-align: center;
     opacity: 1;
-    transition: opacity 0.8s;
+    transition: opacity 0.2s;
 
     &.hidden {
       opacity: 0;
@@ -222,7 +229,7 @@ export default {
 
     h3 {
       margin: 8px 0 24px;
-      @include font-style-heading($size: 25px, $color: $white, $weight: 400);
+      @include global.font-style-heading($size: 25px, $color: global.$white, $weight: 400);
     }
 
     .included-list {
@@ -237,43 +244,43 @@ export default {
 
       .category-name {
         margin-bottom: 13px;
-        @include font-style-body($size: 18px, $color: $white, $weight: 700);
+        @include global.font-style-body($size: 18px, $color: global.$white, $weight: 700);
       }
 
       .category-values {
-        @include font-style-body($size: 14px, $color: #bc9887, $lh: 21px);
+        @include global.font-style-body($size: 14px, $color: #bc9887, $lh: 21px);
       }
     }
 }
 
   .details-box {
     padding: 16px 16px 25px 16px;
-    background-color: $white;
+    background-color: global.$white;
 
     .product-title {
       min-height: 42px;
-      @include font-style-heading($size: 20px);
+      @include global.font-style-heading($size: 20px);
     }
 
     .product-description {
       min-height: 32px;
-      @include font-style-heading($size: 16px, $color: $brown);
+      @include global.font-style-heading($size: 16px, $color: global.$brown);
     }
 
     .product-pricing {
       margin-bottom: 20px;
-      @include font-style-heading($size: 16px, $color: $green, $weight: 700);
+      @include global.font-style-heading($size: 16px, $color: global.$green, $weight: 700);
 
       .compare-at-pricing {
         text-decoration: line-through;
-        @include font-style-heading($size: 14px, $color: $gray, $weight: 700);
+        @include global.font-style-heading($size: 14px, $color: global.$gray, $weight: 700);
       }
     }
 
     .see-included-link {
       margin-bottom: 15px;
       cursor: pointer;
-      @include font-style-heading($size: 12px, $color: $brown);
+      @include global.font-style-heading($size: 12px, $color: global.$brown);
     }
   }
 }

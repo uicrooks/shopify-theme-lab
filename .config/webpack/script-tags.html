@@ -1,0 +1,21 @@
+<script type="text/javascript" src="{{ 'core.js' | asset_url }}"></script>
+<% for (var chunk in htmlWebpackPlugin.files.js) { %>
+  <% var layoutEntry = htmlWebpackPlugin.files.js[chunk] %>
+  <% var layoutEntry_name = layoutEntry.replace('../assets/', '').replace('.js', '').replace("layout-", '') %>
+  <% if (htmlWebpackPlugin.options.isDevServer === true) { %>
+    <% var layoutSrc = htmlWebpackPlugin.files.js[chunk] %>
+    <% var mainComponentSrc = htmlWebpackPlugin.files.js[chunk] %>
+  <% } else { %>
+    <% var layoutSrc = `{{ 'layout-${layoutEntry_name}.js' | asset_url }}` %>
+    <% var mainComponentSrc = `{{ '${layoutEntry_name}-main.js' | asset_url }}` %>
+  <% } %>
+  {%- if template.name == '<%= layoutEntry_name %>' -%}
+  <script type="text/javascript" src="<%= layoutSrc %>"></script>
+  {%- if template.suffix -%}
+  <% var specificComponentSrc = `{{ '${layoutEntry_name}-' | append: template.suffix | append: '.js' | asset_url }}` %>
+  <script type="text/javascript" src="<%= specificComponentSrc %>"></script>
+  {%- else -%}
+  <script type="text/javascript" src="<%= mainComponentSrc %>"></script>
+  {%- endif -%}
+  {%- endif -%}
+<% } %>

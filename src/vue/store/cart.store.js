@@ -1,8 +1,6 @@
 import CartService from "@/vue/services/cart.service";
 
 const state = () => ({
-  currencyCode: "USD",
-  currencySymbol: "$",
   cart: {},
   isOpen: false
 });
@@ -42,10 +40,6 @@ const actions = {
 };
 
 const mutations = {
-  setCurrency(state, currencyObj) {
-    state.currencyCode = currencyObj.isoCode;
-    state.currencySymbol = currencyObj.symbol;
-  },
   setCart(state, cartData) {
     state.cart = cartData;
   },

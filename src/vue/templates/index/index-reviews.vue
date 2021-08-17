@@ -18,11 +18,11 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img
+                <b-img-lazy
                   class="reviewer-image"
                   src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPReview_1.jpg?v=1616649308"
                   alt="first-review"
-                >
+                />
               </div>
               <div class="customer-review-title">
                 <strong class="review-title">
@@ -48,11 +48,11 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img
+                <b-img-lazy
                   class="reviewer-image"
                   src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPReview_2.jpg?v=1616649308"
                   alt="second-review"
-                >
+                />
               </div>
               <div class="customer-review-title">
                 <strong class="review-title">
@@ -78,11 +78,11 @@
           <div class="review-card">
             <div class="review-title">
               <div>
-                <img
+                <b-img-lazy
                   class="reviewer-image"
                   src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/HPreview_3.jpg?v=1616649308"
                   alt="third-review"
-                >
+                />
               </div>
               <div class="customer-review-title">
                 <strong class="review-title">
@@ -121,7 +121,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .index-reviews-component {
   padding: 30px 0;
@@ -130,15 +130,15 @@ export default {
     text-align: center;
 
     .preheader {
-      font-family: $font-body;
+      font-family: global.$font-body;
     }
 
     .review-copy {
-      font-family: $font-heading;
+      font-family: global.$font-heading;
     }
 
     .review-subheader {
-      font-family: $font-body;
+      font-family: global.$font-body;
       font-size: 14px;
     }
   }
@@ -149,7 +149,7 @@ export default {
     width: 100%;
     position: relative;
 
-    @include layout-md {
+    @include global.layout-md {
       padding-bottom: 20px;
     }
 
@@ -161,7 +161,7 @@ export default {
       display: flex;
       overflow: scroll;
 
-      @include layout-md {
+      @include global.layout-md {
         overflow: hidden;
       }
 
@@ -184,7 +184,7 @@ export default {
           box-shadow: 0 0.5rem 1rem rgba(26, 17, 12, 0.15);
           background-color: white;
 
-          @include layout-md {
+          @include global.layout-md {
             width: 100%;
           }
 
@@ -193,7 +193,7 @@ export default {
 
             .review-title {
               margin: 0 15px 0 0;
-              @include font-style-heading($size: 16px);
+              @include global.font-style-heading($size: 16px);
             }
 
             .reviewer-image {
@@ -207,19 +207,19 @@ export default {
             }
 
             .review-stars {
-              color: $orange !important;
+              color: global.$orange !important;
             }
           }
 
           .review-text-container {
-            @include font-style-body($size: 14px);
+            @include global.font-style-body($size: 14px);
 
             .review-text {
               line-height: 1;
-              font-family: $font-body;
+              font-family: global.$font-body;
             }
             .reviewer-name {
-              @include font-style-body-bold($color: $brown);
+              @include global.font-style-body-bold($color: global.$brown);
             }
           }
         }
@@ -228,9 +228,9 @@ export default {
     .woodgrain-bg {
       height: 100%;
       bottom: 0;
-      background-color: $tan;
+      background-color: global.$tan;
 
-      @include layout-md {
+      @include global.layout-md {
         height: 50%;
       }
     }
