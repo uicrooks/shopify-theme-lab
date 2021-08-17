@@ -54,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-breadcrumb-component {
   display: flex;
@@ -73,17 +73,17 @@ export default {
     }
 
     a:hover {
-      color: $orange;
+      color: global.$orange;
     }
 
     .link-label {
       padding-right: 9px;
       text-transform: capitalize;
       cursor: pointer;
-      @include font-style-body($size: 12px, $color: $brown);
+      @include global.font-style-body($size: 12px, $color: global.$brown);
 
       &.active, :hover {
-        color: $orange;
+        color: global.$orange;
       }
     }
 

@@ -45,14 +45,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-quantity-selector-component {
   margin: 15px 0;
   
   h6 {
     margin-bottom: 14px;
-    @include font-style-accent($size: 12px, $color: $brown);
+    @include global.font-style-accent($size: 12px, $color: global.$brown);
   }
 
   .quantity-selector {
@@ -65,7 +65,7 @@ export default {
     font-size: 16px;
     border: 2px solid #91a24f;
     border-radius: 50%;
-    background-color: $white;
+    background-color: global.$white;
     color: #91a24f;
     width: 32px;
     height: 32px;
@@ -75,7 +75,7 @@ export default {
     width: 32px;
     padding: 0 7px;
     text-align: center;
-    @include font-style-body();
+    @include global.font-style-body();
   }
 }
 </style>

@@ -600,7 +600,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: global.$white;
+  background: #fff;
   z-index: 10;
   font-size: 16px;
 

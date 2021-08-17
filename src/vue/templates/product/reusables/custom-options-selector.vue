@@ -97,14 +97,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-custom-options-selector-component {
   margin: 15px 0 25px 0;
 
   h6 {
     margin-bottom: 10px;
-    @include font-style-accent($size: 12px, $color: $brown);
+    @include global.font-style-accent($size: 12px, $color: global.$brown);
   }
 
   .custom-options-in-image {
@@ -126,7 +126,7 @@ export default {
       }
 
       .option-name {
-        @include font-style-body($size: 11px, $color: $brown, $weight: 600);
+        @include global.font-style-body($size: 11px, $color: global.$brown, $weight: 600);
       }
     }
   }
@@ -141,7 +141,7 @@ export default {
       margin-bottom: 6px;
 
       .option-name {
-        @include font-style-heading($size: 14px);
+        @include global.font-style-heading($size: 14px);
       }
 
       .counter {
@@ -162,7 +162,7 @@ export default {
         .count {
           min-width: 25px;
           text-align: center;
-          @include font-style-body($color: black);
+          @include global.font-style-body($color: black);
         }
       }
     }

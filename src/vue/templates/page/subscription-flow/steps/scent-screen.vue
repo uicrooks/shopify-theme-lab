@@ -102,7 +102,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 .fade-list-enter-active, .fade-list-leave-active {
   transition: opacity 0.1s;
 }
@@ -130,7 +130,7 @@ export default {
   background: #fff;
   border-radius: 6px;
   .scent__card-image {
-    background-color: $sand;
+    background-color: global.$sand;
     text-align: center;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
@@ -145,11 +145,11 @@ export default {
     display:flex;
     flex-direction: column;
     .scent__card-title {
-      font-family: $font-heading;
+      font-family: global.$font-heading;
       font-size: 16px;
       margin-bottom: 10px;
       padding-bottom: 6px;
-      border-bottom: 1px solid $brown;
+      border-bottom: 1px solid global.$brown;
     }
     .scent__card-description {
       p {
@@ -167,19 +167,19 @@ export default {
       text-align: center;
       margin-top: auto;
       .qtyscreen {
-        border-color: $orange;
+        border-color: global.$orange;
         background: transparent;
-        color: $orange;
+        color: global.$orange;
         opacity: 1;
         width: 50px;
       }
       .btn-increase {
-        background: $orange;
-        border-color: $orange;
+        background: global.$orange;
+        border-color: global.$orange;
       }
       .btn-decrease {
-        background: $orange;
-        border-color: $orange;
+        background: global.$orange;
+        border-color: global.$orange;
       }
     }
   }

@@ -68,15 +68,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-order-card-component {
   padding: 20px 15px;
-  background-color: $white;
+  background-color: global.$white;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
   margin-bottom: 30px;
-  @include font-style-body($color: $brown);
+  @include global.font-style-body($color: global.$brown);
 
   .card-row {
     display: flex;
@@ -84,7 +84,7 @@ export default {
     margin-bottom: 8px;
   
     .row-label {
-      @include font-style-body($weight: 600);
+      @include global.font-style-body($weight: 600);
     }
 
     .row-val {

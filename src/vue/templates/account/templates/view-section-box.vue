@@ -12,11 +12,11 @@ export default {
 
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .view-section-box-component {
   padding: 20px 15px;
-  background-color: $white;
+  background-color: global.$white;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
 }

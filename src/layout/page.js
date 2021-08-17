@@ -5,6 +5,10 @@ const BundleOffersTemplate = () => import(
   /* webpackChunkName: "page-bundle-offers" */
   /* webpackPreload: true */
   "../vue/templates/page/bundle-offers/index.vue");
+const SubscriptionFlowTemplate = () => import(
+    /* webpackChunkName: "page-subscription-flow" */
+    /* webpackPreload: true */
+    "../vue/templates/page/subscription-flow/index.vue");
 const PrivacyPolicyTemplate = () => import(
     /* webpackChunkName: "page-privacy-policy" */
     /* webpackPreload: true */
@@ -14,7 +18,8 @@ new Vue({
   el: "#app",
   components: {
     BundleOffersTemplate,
-    PrivacyPolicyTemplate
+    PrivacyPolicyTemplate,
+    SubscriptionFlowTemplate
   },
   store,
   mounted() {

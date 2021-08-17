@@ -12,15 +12,10 @@
     <link rel="shortcut icon" href="{{ settings.favicon_image | img_url: '32x32' }}" type="image/png">
 
     {% render "_head.seo" %}
-    <!-- {% render "_head.content-styles" %} -->
 
     {{ content_for_header }}
 
-    <style>
-      #app {
-        min-width: 320px !important;
-      }
-    </style>
+    {% render 'style-tags' %}
   </head>
 
   <body
@@ -33,13 +28,12 @@
       {% endunless %}
     >
       <main id="main" role="main">
-        {% comment %} Route Specific Content {% endcomment %}
         {{ content_for_layout }}
       </main>
     </div>
     {{ '_config.static.js' | asset_url | script_tag }}
     <!-- webpack bundle -->
-    {% render '_body.content-scripts' %}
+    {% render 'script-tags' %}
     {% render '_body.crawler-schema' %}
     {% render '_body.live-chat' %}
   </body>

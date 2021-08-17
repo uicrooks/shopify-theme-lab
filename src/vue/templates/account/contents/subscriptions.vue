@@ -81,13 +81,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-subscriptions-component {
 
   h4 {
     margin-bottom: 14px;
-    @include font-style-body($size: 20px, $weight: 600);
+    @include global.font-style-body($size: 20px, $weight: 600);
   }
 
   .subscription-placeholder {
@@ -95,7 +95,7 @@ export default {
     flex-flow: row wrap;
     align-items: center;
     justify-content: center;
-    background-color: $white;
+    background-color: global.$white;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
     padding: 20px;
     margin-bottom: 14px;

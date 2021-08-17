@@ -77,7 +77,9 @@ export default {
     DeodorantScreen,
     ToothpasteScreen,
     AddonsScreen,
-    IntroScreen
+    IntroScreen,
+    SubscriptionFlowHeader,
+    SubscriptionFlowFooter
   },
   data() {
     return {
@@ -146,6 +148,7 @@ export default {
     const that = this;
     ["BarSoap","HairCare","Deodorant","Toothpaste"].forEach(type => {
       // Parse Subscription Products To Variables
+      console.log(type);
       this[`subProducts_${type}`] = JSON.parse(this[`${type.toLowerCase()}subdetails`]);
       // set sku prices
       this[`subProducts_${type}`].forEach(prod => {
@@ -221,9 +224,9 @@ export default {
 }
 </script>
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 .new-sub-flow {
-  background: $black;
+  background: global.$black;
   min-height: 100vh;
 }
 .fade-enter-active, .fade-leave-active {
@@ -232,7 +235,4 @@ export default {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-</style>
-<style scoped lang="scss">
-
 </style>

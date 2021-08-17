@@ -53,7 +53,7 @@ export default {
 
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-purchase-type-selector-component {
   margin-top: 15px;
@@ -66,17 +66,17 @@ export default {
     flex-flow: row wrap;
     align-items: center;
     cursor: pointer;
-    @include font-style-body($weight: 500, $color: $brown);
+    @include global.font-style-body($weight: 500, $color: global.$brown);
 
     &:hover {
       background-color: #f4f2f0;
     }
 
     &.selected {
-      background-color: $off-white;
+      background-color: global.$off-white;
       
       .radio-button {
-        border: 6px solid $orange;
+        border: 6px solid global.$orange;
       }
 
       .pricing, .pricing-discount {
@@ -88,26 +88,26 @@ export default {
       height: 20px;
       width: 20px;
       border-radius: 50%;
-      border: 2px solid $orange;
+      border: 2px solid global.$orange;
       margin-right: 5px;
-      background-color: $white;
+      background-color: global.$white;
     }
 
     .pricing {
       visibility: hidden;
       margin-left: 14px;
-      @include font-style-body($color: $green);
+      @include global.font-style-body($color: global.$green);
     }
 
     .pricing-discount {
       visibility: hidden;
       margin-left: 8px;
-      @include font-style-body();
+      @include global.font-style-body();
 
       .original {
         text-decoration: line-through;
         margin-right: 3px;
-        @include font-style-body($color: grey);
+        @include global.font-style-body($color: grey);
       }
     }
 
@@ -115,7 +115,7 @@ export default {
 
       h6 {
         margin: 0;
-        @include font-style-body($weight: 800, $color: $brown);
+        @include global.font-style-body($weight: 800, $color: global.$brown);
       }
     }
   }

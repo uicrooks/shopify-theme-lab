@@ -42,13 +42,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-feature-descriptions-component {
-  border-top: 1px solid $tan;
-  border-bottom: 1px solid $tan;
+  border-top: 1px solid global.$tan;
+  border-bottom: 1px solid global.$tan;
 
-  @include layout-md {
+  @include global.layout-md {
     display: flex;
     flex-flow: row wrap;
   }
@@ -58,17 +58,17 @@ export default {
     flex-flow: row wrap;
     margin: 15px 0;
 
-    @include layout-md {
+    @include global.layout-md {
       flex: 1;
     }
 
     .description {
       padding-right: 15px;
-      @include font-style-body($color: inherit);
+      @include global.font-style-body($color: inherit);
 
       h6 {
         margin: 0;
-        @include font-style-heading($size: 14px);
+        @include global.font-style-heading($size: 14px);
       }
     }
   }

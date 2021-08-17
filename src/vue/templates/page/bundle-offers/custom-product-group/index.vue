@@ -116,7 +116,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .customizable-product-group-card-component {
   display: flex;
@@ -127,7 +127,7 @@ export default {
   cursor: pointer;
 
   &.selected {
-    border: 2px solid $orange;
+    border: 2px solid global.$orange;
   }
 
   .image-box {
@@ -141,10 +141,10 @@ export default {
     background-image: url(https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353);
     background-size: 200%;
     background-repeat: repeat;
-    background-color: $sand;
+    background-color: global.$sand;
     text-align: center;
 
-    @include layout-md {
+    @include global.layout-md {
       width: 100%;
     }
 
@@ -154,21 +154,21 @@ export default {
       left: 0;
       top: 15px;
 
-      @include layout-md {
+      @include global.layout-md {
         display: inline-block;
       }
 
       .discount {
         margin-right: 7px;
         padding: 5px 10px;
-        background-color: $maroon;
-        @include font-style-body($size: 12px, $weight: 600, $color: $white);
+        background-color: global.$maroon;
+        @include global.font-style-body($size: 12px, $weight: 600, $color: global.$white);
       }
 
       .free-shipping {
         padding: 5px 10px;
-        background-color: $orange;
-        @include font-style-body($size: 12px, $weight: 600, $color: $white);
+        background-color: global.$orange;
+        @include global.font-style-body($size: 12px, $weight: 600, $color: global.$white);
       }
     }
 
@@ -177,7 +177,7 @@ export default {
       width: 100%;
       height: auto;
 
-      @include layout-md {
+      @include global.layout-md {
         max-width: unset;
         height: 295px;
         object-fit: contain; 
@@ -189,7 +189,7 @@ export default {
     width: 60%;
     padding: 10px 12px 15px 12px;
 
-    @include layout-md {
+    @include global.layout-md {
       width: 100%;
       padding: 15px;
       text-align: center;
@@ -198,21 +198,21 @@ export default {
     .product-preheader {
       margin-bottom: 12px;
 
-      @include layout-md {
+      @include global.layout-md {
         display: none;
       }
 
       .discount {
         margin-right: 7px;
         padding: 5px 10px;
-        background-color: $maroon;
-        @include font-style-body($size: 12px, $weight: 600, $color: $white);
+        background-color: global.$maroon;
+        @include global.font-style-body($size: 12px, $weight: 600, $color: global.$white);
       }
 
       .free-shipping {
         padding: 5px 10px;
-        background-color: $orange;
-        @include font-style-body($size: 12px, $weight: 600, $color: $white);
+        background-color: global.$orange;
+        @include global.font-style-body($size: 12px, $weight: 600, $color: global.$white);
       }
     }
 
@@ -224,28 +224,28 @@ export default {
 
       h4 {
         margin: 0 5px 0 0;
-        @include font-style-heading($size: 21px);
+        @include global.font-style-heading($size: 21px);
 
-        @include layout-md {
+        @include global.layout-md {
           margin: 0 0 8px 0;
           width: 100%;
         }
       }
 
       .product-pricing {
-        @include font-style-body($weight: 800, $color: $green);
+        @include global.font-style-body($weight: 800, $color: global.$green);
 
-        @include layout-md {
+        @include global.layout-md {
           width: 100%;
-          @include font-style-body($size: 16px, $weight: 800, $color: $green);
+          @include global.font-style-body($size: 16px, $weight: 800, $color: global.$green);
         }
 
         .compare-at-pricing {
           text-decoration: line-through;
-          @include font-style-body($size: 12px, $color: #afafaf, $weight: 500);
+          @include global.font-style-body($size: 12px, $color: #afafaf, $weight: 500);
 
-          @include layout-md {
-            @include font-style-body($size: 16px, $color: #afafaf);
+          @include global.layout-md {
+            @include global.font-style-body($size: 16px, $color: #afafaf);
           }
         }
       }
@@ -253,9 +253,9 @@ export default {
 
     .product-description {
       margin-bottom: 10px;
-      @include font-style-body($lh: 17px, $color: $brown);
+      @include global.font-style-body($lh: 17px, $color: global.$brown);
 
-      @include layout-md {
+      @include global.layout-md {
         margin-bottom: 20px;
       }
     }

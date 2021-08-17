@@ -126,7 +126,7 @@ export default {
 
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 $account-brown: #473729;
 
 .account-nav-component {
@@ -138,7 +138,7 @@ $account-brown: #473729;
     text-align: left;
     border: none;
     background-color: $account-brown;
-    @include font-style-body($color: $white, $size: 16px);
+    @include global.font-style-body($color: global.$white, $size: 16px);
 
     .icon-squatch {
       position: absolute;
@@ -155,7 +155,7 @@ $account-brown: #473729;
     .nav-item-wrapper {
       padding: 12px 0;
       border-bottom: 1px solid hsla(0, 0%, 100%, .14118);
-      @include font-style-body($color: $white);
+      @include global.font-style-body($color: global.$white);
 
       &.last {
         border-bottom: none;
@@ -165,7 +165,7 @@ $account-brown: #473729;
         cursor: pointer;
 
         &.active {
-          @include font-style-body($color: $text-orange);
+          @include global.font-style-body($color: global.$text-orange);
         }
 
         .overview-icon, .icon-squatch, .icon-custom {
@@ -183,7 +183,7 @@ $account-brown: #473729;
           padding: 15px 0 0 0;
 
           &.active {
-            @include font-style-body($color: $text-orange);
+            @include global.font-style-body($color: global.$text-orange);
           }
         }
       }

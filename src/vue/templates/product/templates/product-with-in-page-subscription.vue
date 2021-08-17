@@ -157,19 +157,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-with-in-page-subscription-component {
 
   .discount {
     margin-left: 8px;
-    @include font-style-body($weight: 600, $color: $gray);
+    @include global.font-style-body($weight: 600, $color: global.$gray);
   }
 
   .original-pricing {
     margin-left: 8px;
     text-decoration: line-through;
-    @include font-style-body($weight: 600, $color: $gray);
+    @include global.font-style-body($weight: 600, $color: global.$gray);
   }
 }
 </style>

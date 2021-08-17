@@ -99,10 +99,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-subscription-component {
-  background-color: $white;
+  background-color: global.$white;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
   margin-bottom: 14px;
   padding: 0 10px;
@@ -117,7 +117,7 @@ export default {
       flex: 1;
       text-align: center;
 
-      @include layout-sm {
+      @include global.layout-sm {
         padding: 3px 10px;
       }
 
@@ -135,7 +135,7 @@ export default {
       padding-left: 10px;
 
       h5 {
-        @include font-style-body($size: 14px, $weight: 600);
+        @include global.font-style-body($size: 14px, $weight: 600);
       }
 
       .sub-heading {
@@ -143,10 +143,10 @@ export default {
         flex-flow: row wrap;
         align-items: center;
         margin-bottom: 3px;
-        @include font-style-body($color: #a5937f);
+        @include global.font-style-body($color: #a5937f);
         
         .icon {
-          color: $orange;
+          color: global.$orange;
           margin-right: 4px;
         }
       }
@@ -162,10 +162,10 @@ export default {
       display: flex;
       flex-flow: row wrap;
       margin-bottom: 5px;
-      @include font-style-body($size: 12px, $color: $brown);
+      @include global.font-style-body($size: 12px, $color: global.$brown);
 
       .header-cell {
-        @include font-style-body($size: 11px, $color: $dark-brown);
+        @include global.font-style-body($size: 11px, $color: global.$dark-brown);
       }
 
       .col-date {
@@ -174,12 +174,12 @@ export default {
         min-width: 60px;
         max-width: 80px;
 
-        @include layout-sm {
+        @include global.layout-sm {
           padding: 3px 10px;
         }
 
         &.date {
-          @include font-style-body($size: 13px, $color: $dark-brown);
+          @include global.font-style-body($size: 13px, $color: $dark-brown);
         }
       }
 

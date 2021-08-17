@@ -182,12 +182,12 @@
 ]
 {% endcapture %}
 
-<subscription-flow
+<subscription-flow-template
   :barSoapSubDetails="{{soapSubDetails | json | escape }}"
   :deodorantSubDetails="{{deodorantSubDetails | json | escape }}"
   :haircareSubDetails="{{haircareSubDetails | json | escape }}"
   :toothpasteSubDetails="{{toothpasteSubDetails | json | escape }}"
   :productDetails="{{productDetails | json | escape }}"
   :addons="{{addonDetails | json | escape }}"
-></subscription-flow>
+/>
 

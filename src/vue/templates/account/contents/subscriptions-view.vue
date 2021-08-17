@@ -151,7 +151,7 @@ export default {
 
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .subscriptions-view-component {
 
@@ -160,11 +160,11 @@ export default {
     flex-flow: row nowrap;
     justify-content: space-between;
     margin-bottom: 12px;
-    @include font-style-body();
+    @include global.font-style-body();
 
     .refill-date {
       span {
-        @include font-style-body($color: grey, $weight: 500);
+        @include globalfont-style-body($color: grey, $weight: 500);
       }
     }
 
@@ -172,7 +172,7 @@ export default {
       a {
         text-decoration: underline;
         cursor: pointer;
-        @include font-style-body($color: $text-orange);
+        @include global.font-style-body($color: global.$text-orange);
       }
     }
   }
@@ -190,11 +190,11 @@ export default {
       padding: 5px 5px 12px 5px;
       cursor: pointer;
       border-bottom: 2px solid transparent;
-      @include font-style-body($size: 12px, $color: grey);
+      @include global.font-style-body($size: 12px, $color: grey);
 
       &.active {
         border-bottom: 2px solid $text-orange;
-        @include font-style-body($size: 12px, $color: $text-orange);
+        @include global.font-style-body($size: 12px, $color: global.$text-orange);
       }
     }
   }
@@ -210,7 +210,7 @@ export default {
         flex: 1;
         text-align: center;
 
-        @include layout-sm {
+        @include global.layout-sm {
           padding: 3px 10px;
         }
 

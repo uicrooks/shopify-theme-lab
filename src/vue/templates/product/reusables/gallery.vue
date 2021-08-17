@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-gallery-component {
   display: flex;
@@ -105,11 +105,11 @@ export default {
   background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353");
   background-size: 200%;
   background-repeat: repeat;
-  background-color: $sand;
+  background-color: global.$sand;
   border-radius: 5px;
   overflow: hidden;
 
-  @include layout-md {
+  @include global.layout-md {
     padding: 20px 20px 20px 40px;
   }
 
@@ -126,11 +126,11 @@ export default {
     .direction-icon {
       position: absolute;
       top: 50%;
-      color: $white;
+      color: global.$white;
       opacity: 0.8;
       cursor: pointer;
 
-      @include layout-md {
+      @include global.layout-md {
         display: none;
       }
 
@@ -154,7 +154,7 @@ export default {
     justify-content: center;
     align-items: center;
 
-    @include layout-md {
+    @include global.layout-md {
       left: 0;
       bottom: unset;
       width: 70px;
@@ -165,20 +165,20 @@ export default {
     li {
       list-style: none;
       border-radius: 50%;
-      background-color: $white;
+      background-color: global.$white;
       width: 10px;
       height: 10px;
       margin: 6px;
 
       &.active {
-        background-color: $tan;
+        background-color: global.$tan;
 
-        @include layout-md {
-          background-color: $white;
+        @include global.layout-md {
+          background-color: global.$white;
         }
       }
 
-      @include layout-md {
+      @include global.layout-md {
         width: 50px;
         height: 50px;
         padding: 10px;
@@ -187,7 +187,7 @@ export default {
       img {
         display: none;
 
-        @include layout-md {
+        @include global.layout-md {
           display: inline-block;
           width: 100%;
           max-height: 100%;

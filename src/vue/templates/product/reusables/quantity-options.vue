@@ -44,14 +44,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-quantity-options-component {
   margin: 15px 0 25px 0;
 
   h6 {
     margin-bottom: 7px;
-    @include font-style-accent($size: 12px, $color: $brown);
+    @include global.font-style-accent($size: 12px, $color: global.$brown);
   }
 
   .quantity-options {
@@ -66,7 +66,7 @@ export default {
       border-radius: 5px;
       cursor: pointer;
       margin-right: 14px;
-      @include font-style-body($weight: 600, $color: $brown);
+      @include global.font-style-body($weight: 600, $color: global.$brown);
 
       &:hover {
         background-color: #cc63287a;

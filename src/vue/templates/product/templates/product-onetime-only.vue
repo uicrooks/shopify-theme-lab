@@ -112,14 +112,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .product-onetime-only-component {
 
   .original-pricing {
     margin-left: 8px;
     text-decoration: line-through;
-    @include font-style-body($weight: 600, $color: $gray);
+    @include global.font-style-body($weight: 600, $color: global.$gray);
   }
 }
 </style>
