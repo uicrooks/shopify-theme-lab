@@ -16,8 +16,7 @@ export default {
   },
   data() {
     return {
-      itemData: {},
-      lineItems: [],
+      lineItems: []
     };
   },
   computed: {
@@ -26,19 +25,16 @@ export default {
       return this.item.status === "ONETIME";
     },
     displayTitle() {
-      return this.isOnetime ? this.itemData.productType : this.item.product_title.split(" - ")[0];
+      return this.isOnetime ? this.item.data.productType : this.item.product_title.split(" - ")[0];
     },
     price() {
-      return this.item.price * this.item.quantity * 100;
+      return this.item.price * this.item.quantity;
     },
     compareAtPrice() {
-      // if (this.itemData.variants && this.itemData.variants[0].compareAtPrice) {
-      //   console.log("price2", parseInt(this.itemData.variants[0].compareAtPrice));
-      // }
-      return this.itemData.variants && this.itemData.variants[0].compareAtPrice ? parseInt(this.itemData.variants[0].compareAtPrice) * 100 * this.item.quantity : null;
+      return this.item.data.variants && this.item.data.variants[0].compareAtPrice ? parseInt(this.item.data.variants[0].compareAtPrice) * this.item.quantity : null;
     },
     imageSrc() {
-      return this.generateImageSrc(this.itemData);
+      return this.generateImageSrc(this.item.data);
     },
     subscriptionInterval() {
       if (this.item.status !== "ONETIME") {
@@ -91,22 +87,24 @@ export default {
     }
   },
   async mounted() {
-    if (!this.item.data) {
-      this.itemData = await StoreService.getProductById(this.item.shopify_product_id);
-      this.item.data = this.itemData;
-    } else {
-      this.itemData = this.item.data;
-    }
-
     if (!this.item.lineItems) {
       const lineItemIds = this.item.properties.filter(prop => prop.name.includes("fulfillment")).map(item => SkuToId[item.value.toLowerCase()]);
       this.lineItems = await this.fetchLineItems(lineItemIds);
-      this.item.lineItems = this.lineItems;
+      this.$emit("addToItem", "lineItems", this.lineItems, this.item);
     } else {
       this.lineItems = this.item.lineItems;
     }
-
-    console.log(this.item);
+    
+    if (!this.item.propertyObj) {
+      let obj = {};
+      this.item.properties.forEach(prop => {
+        obj[prop.name] = prop.value;
+      });
+      this.propertyObj = obj;
+      this.$emit("addToItem", "propertyObj", this.propertyObj, this.item);
+    } else {
+      this.propertyObj = this.item.propertyObj;
+    }
   },
   render() {
     return this.$scopedSlots.default({

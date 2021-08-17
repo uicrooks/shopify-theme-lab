@@ -2,12 +2,21 @@ export default {
   getType(product) {
     return product.type.toLowerCase();
   },
-  identify(product) {
-    if (!product.type) {
-      return null;
+  identify(product, isSubscriptionOrder = false) {
+    
+    let type;
+    let title;
+    if (isSubscriptionOrder) {
+      type = product.data && product.data.productType ? product.data.productType.toLowerCase() : (product.propertyObj && product.propertyObj.type ? product.propertyObj.type : "");
+      title = product.product_title;
+    } else {
+      type = product.type.toLowerCase();
     }
-    const type = product.type.toLowerCase();
-    const title = product.title.toLowerCase();
+
+    if (!type || !title) {
+      return [];
+    }
+
     let arr = [];
     if (type === "haircare") {
       arr.push("haircare");
@@ -22,14 +31,14 @@ export default {
       }
       return arr;
     }
-    if (type === "toothpaste" || product.tags.includes("toothpaste")) {
+    if (type === "toothpaste" || product.tags && product.tags.includes("toothpaste")) {
       arr.push("toothpaste");
       if (title.includes("kit")) {
         arr.push("kit");
       }
       return arr;
     }
-    if (type === "deodorant" || product.tags.includes("deodorant")) {
+    if (type === "deodorant" || product.tags && product.tags.includes("deodorant")) {
       arr.push("deodorant");
       if (type === "bundle") {
         arr.push("bundle");

@@ -23,8 +23,21 @@
     </div>
     <!-- End of Overview -->
 
+    <!-- Edit Box -->
+    <div
+      v-else-if="currentView === 'Edit Box'"
+      class="view"
+    >
+      <h1>Edit Box</h1>
+      <account-subscriptions-edit />
+    </div>
+    <!-- End of Edit Box -->
+
     <!-- My Orders -->
-    <div v-else-if="currentView === 'My Orders'">
+    <div
+      v-else-if="currentView === 'My Orders'"
+      class="view"
+    >
       <h1>My Orders</h1>
       <div class="liquid-snippet order-history">
         <slot name="order-history" />
@@ -47,7 +60,17 @@ export default {
       type: Object,
       required: true,
       default: () => {},
-    }
+    },
+    subscriptionCollections: {
+      type: Object,
+      required: true,
+      default: () => {}
+    },
+    subscriptionOptionsData: {
+      type: Object,
+      required: true,
+      default: () => {}
+    },
   },
   computed: {
     ...mapGetters("account", ["currentView", "userTags", "rechargeUser"]),
@@ -62,25 +85,33 @@ export default {
       this.view = hash === "" ? "overview" : hash.slice(1);
     }
   },
-  created() {
+  async created() {
     this.updateView();
+    
+    this.$store.commit("account/setUserTags", this.user.tagString.split("; "));
+    this.$store.commit("products/setSubscriptionCollections", this.subscriptionCollections);
+
+    let obj = {};
+    Object.keys(this.subscriptionOptionsData).forEach(key => {
+     obj[key] = JSON.parse(this.subscriptionOptionsData[key]);
+    });
+    this.$store.commit("products/setCollections", obj);
+
+    if (this.isActiveSubscriber) {
+      console.log("active subscriber");
+      // const email = this.user.email;
+      const email = "will@drsquatch.com";
+      const subscriber = await RechargeService.getUser(email);
+      this.$store.commit("account/setRechargeUser", subscriber);
+
+      const paymentSources = await RechargeService.getUserResource(subscriber.id, "payment_sources");
+      this.$store.commit("account/setRechargePaymentSource",paymentSources[0]); 
+    }
   },
   async mounted() {
     window.addEventListener("hashchange", () => {
       this.updateView();
-    });
-
-    console.log(this.user);
-    this.$store.commit("account/setUserTags", this.user.tagString.split("; "));
-    console.log(this.userTags);
-
-    if (this.isActiveSubscriber) {
-      // const email = this.user.email;
-      const email = "will@drsquatch.com";
-      const subscriber = await RechargeService.getUser(email);
-      console.log(subscriber);
-      this.$store.commit("account/setRechargeUser", subscriber);
-    }
+    });  
   }
 };
 </script>

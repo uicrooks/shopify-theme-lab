@@ -42,18 +42,20 @@ export default {
   width: 100%;
   padding: 17px 15px 13px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid $orange;
   text-align: center;
   background-color: $orange;
   @include font-style-heading($size: 14px, $color: $white);
 
   &:hover {
     background-color: $orange-lighten;
+    border: 1px solid $orange-lighten;
   }
 
   &.disabled {
     cursor: not-allowed;
     background-color: $orange-lighten;
+    border: 1px solid $orange-lighten;
   }
 }
 </style>
