@@ -1,5 +1,26 @@
+{% assign soapSubsCollection = collections['soap-subscriptions'] %}
+{% assign soapOptionsCollection = collections['bar-soaps'] %}
+{% assign hairCareSubsCollection = collections['hair-care-sub'] %}
+{% assign hairCareOptionsCollection = collections['hair-care'] %}
+{% assign toothpasteSubsCollection = collections['toothpaste-subscriptions'] %}
+{% assign toothpasteOptionsCollection = collections['toothpaste'] %}
+{% assign deodorantSubsCollection = collections['deodorant-subscriptions'] %}
+{% assign deodorantOptionsCollection = collections['deodorant'] %}
+
 <div class="account-page-container">
   <account
+    :subscription-collections="{
+      barsoap: {{ soapSubsCollection.products | json | replace: '"', "'" }},
+      haircare: {{ hairCareSubsCollection.products | json | replace: '"', "'" }},
+      toothpaste: {{ toothpasteSubsCollection.products | json | replace: '"', "'" }},
+      deodorant: {{ deodorantSubsCollection.products | json | replace: '"', "'" }},
+    }"
+    :subscription-options-data="{
+      barsoap: {{ soapOptionsCollection.products | json | json | escape }},
+      haircare: {{ hairCareOptionsCollection.products | json | json | escape }},
+      toothpaste: {{ toothpasteOptionsCollection.products | json | json | escape }},
+      deodorant: {{ deodorantOptionsCollection.products | json | json | escape }},
+    }"
     :user="{
       id: '{{ customer.id }}',
       tagString: '{{ customer.tags | join: "; " }}',

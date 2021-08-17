@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "AccountViewSectionBox"
+  name: "AccountSectionContainerBox"
 };
 </script>
 
