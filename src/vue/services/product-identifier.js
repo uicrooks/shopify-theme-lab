@@ -3,17 +3,18 @@ export default {
     return product.type.toLowerCase();
   },
   identify(product, isSubscriptionOrder = false) {
-    
     let type;
     let title;
     if (isSubscriptionOrder) {
-      type = product.data && product.data.productType ? product.data.productType.toLowerCase() : (product.propertyObj && product.propertyObj.type ? product.propertyObj.type : "");
-      title = product.product_title;
+      type = product.productData && product.productData.productType ? product.productData.productType.toLowerCase() : (product.propertyObj && product.propertyObj.type ? product.propertyObj.type : "");
+      title = product.product_title && product.product_title ? product.product_title : "";
     } else {
       type = product.type.toLowerCase();
+      title = product.title;
     }
 
-    if (!type || !title) {
+    type = type === "barsoap" ? "soap" : type;
+    if (!type) {
       return [];
     }
 

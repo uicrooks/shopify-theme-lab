@@ -46,12 +46,12 @@ export default {
   methods: {
     decrease() {
       if (!this.decreaseDisabled) {
-        this.$emit("decrease");
+        this.$emit("decrease", this.index);
       }
     },
     increase() {
       if (!this.increaseDisabled) {
-        this.$emit("increase");
+        this.$emit("increase", this.index);
       }
     }
   }

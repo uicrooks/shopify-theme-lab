@@ -3,95 +3,135 @@
     <b-modal
       v-model="showModalFlag"
       size="lg"
-      body-class="edit-form"
-      hide-header
-      hide-footer
+      body-class="edit-modal-content"
+      footer-class="edit-modal-footer"
       no-close-on-esc
       no-close-on-backdrop
+      scrollable
+      centered
+      hide-header
     >
-      <span
-        class="back-button"
-        @click="hideModal"
-      >
-        <i 
-          class="icon-squatch icon-size-xs icon-chevron-left"
-        />
-        Back
-      </span>
-      <div
-        v-if="productOptions.length > 0"
-        class="field-wrapper"
-      >
-        <label>Product</label>
-        <b-form-select
-          v-model="productSelected"
-         :options="productOptions"
-         class="select-input"
-        />
-      </div>
-      <div class="field-wrapper">
-        <label>Billed & Shipped</label>
-        <div
-          v-if="intervalOptions.length === 0"
-          class="text-display"
+      <div class="edit-modal-header">
+        <span
+          class="back-button"
+          @click="hideModal"
         >
-          {{ intervalSelectedTextDisplay }}
-        </div>
-        <div v-else>
+          <i 
+            class="icon-squatch icon-size-xs icon-chevron-left"
+          />
+          Back
+        </span>
+        <div
+          v-if="productOptions.length > 0"
+          class="field-wrapper"
+        >
+          <label>Product</label>
           <b-form-select
-            v-model="intervalSelected"
-            :options="intervalOptions"
-            class="select-input"
+            v-model="productSelected"
+          :options="productOptions"
+          class="select-input"
           />
         </div>
-      </div>
-      <div
-        v-if="quantityOptions.length > 0"
-        class="field-wrapper"
-      >
-        <label>
-          {{ quantityLabel }}
-        </label>
-        <b-form-select
-          v-model="quantitySelected"
-         :options="quantityOptions"
-         class="select-input"
-         />
-      </div>
-      <div
-        v-if="selection.length > 0"
-        class="field-wrapper"
-      >
-        <label>
-          Selection
-        </label>
-        <div>
+        <div class="field-wrapper">
+          <label>Billed & Shipped</label>
           <div
-            v-for="(option, index) of selection"
-            :key="option.id"
-            class="option"
+            v-if="intervalOptions.length === 0"
+            class="text-display"
           >
-            <div class="option-label">
-              <img
-                :src="option.imageSrc"
-                :alt="`${option.title} image`"
-              >
-              <div>
-                {{ option.title }}
-              </div>
-            </div>
-            <quantity-switch
-              :quantity="option.quantity"
-              :index="index"
-              :decrease-disabled="option.quantity === 0"
-              :increase-disabled="selectionComplete"
-              @decrease="decreaseQuantity"
-              @increase="increaseQuantity"
-              class="qty-switch"
+            {{ intervalSelectedTextDisplay }}
+          </div>
+          <div v-else>
+            <b-form-select
+              v-model="intervalSelected"
+              :options="intervalOptions"
+              class="select-input"
             />
           </div>
         </div>
+        <div
+          v-if="quantityOptions.length > 0"
+          class="field-wrapper"
+        >
+          <label>
+            {{ quantityLabel }}
+          </label>
+          <b-form-select
+            v-model="quantitySelected"
+          :options="quantityOptions"
+          class="select-input"
+          />
+        </div>
       </div>
+      <div class="edit-modal-body">
+        <div
+          v-if="selectionOptions.length > 0"
+          class="field-wrapper"
+        >
+          <label>
+            Selection
+          </label>
+          <div>
+            <div
+              v-for="(option, index) of selectionOptions"
+              :key="option.id"
+              class="option"
+            >
+              <div class="option-label">
+                <img
+                  :src="option.imageSrc"
+                  :alt="`${option.title} image`"
+                >
+                <div>
+                  {{ option.title }}
+                </div>
+              </div>
+              <quantity-switch
+                :quantity="option.quantity"
+                :index="index"
+                :decrease-disabled="option.quantity === 0"
+                :increase-disabled="selectionComplete"
+                @decrease="decreaseQuantity"
+                @increase="increaseQuantity"
+                class="qty-switch"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <template #modal-footer>
+        <div class="label">
+          Selected
+          <span>
+            ({{ selection.length }} of {{ quantitySelected }})
+          </span>
+        </div>
+        <div class="selections">
+          <div
+            v-for="(option, index) of selection"
+            :key="`selection-option-${index}`"
+            class="selection"
+          >
+            <i 
+              class="icon-squatch icon-cross"
+              @click="removeOption(option)"
+            />
+            <img
+              :src="option.imageSrc"
+              :alt="`Selected option image for ${option.title}`"
+            >
+            <div class="option-name">
+              {{ option.title }}
+            </div>
+          </div>
+        </div>
+        <squatch-button
+          :disabled="!selectionUpdated || !selectionComplete"
+          class="save-button"
+          @clicked="save"
+        >
+          Save
+        </squatch-button>
+      </template>
     </b-modal>
   </div>
 </template>
@@ -122,7 +162,8 @@ export default {
       productSelected: null,
       intervalSelected: null,
       quantitySelected: 1,
-      selection: [],
+      optionsSelected: [],
+      selectionOptions: [],
     };
   },
   computed: {
@@ -140,11 +181,11 @@ export default {
       return this.collections[this.productType] ? this.collections[this.productType] : [];
     },
     quantityLabel() {
-      if (this.productType === "barsoap") {
-        return "Num of Bars";
+      if (this.productType === "soap") {
+        return "Number of Bars";
       }
       if (this.productType === "deodorant") {
-        return "Num of Sticks";
+        return "Number of Sticks";
       }
       return "Quantity";
     },
@@ -155,7 +196,7 @@ export default {
       return [];
     },
     intervalOptions() {
-      if (this.productType === "barsoap") {
+      if (this.productType === "soap") {
         return [{ text: "Quarterly", value: 3 }, { text: "Monthly", value: 1 }];
       }
       if (this.productType === "toothpaste") {
@@ -169,7 +210,7 @@ export default {
       return `Every ${num === 1 ? unit : num + " " + unit}`;
     },
     quantityOptions() {
-      if (this.productType === "barsoap") {
+      if (this.productType === "soap") {
         return this.intervalSelected === 1 ? [2, 3] : [3, 6, 9];
       }
       if (this.productType === "haircare" || this.productType === "toothpaste") {
@@ -180,32 +221,68 @@ export default {
       }
       return [];
     },
+    selection() {
+      let arr = [];
+      this.selectionOptions.forEach((option, index) => {
+        option.selectionOptionIndex = index;
+        const optionArr = Array(option.quantity).fill(option);
+        arr.push(optionArr);
+      });
+      return arr.flat();
+    },
+    selectionUpdated() {
+      const current = this.selection.map(option => option.handle).sort();
+      const initial = this.item.lineItems.map(option => option.handle).sort();
+      for (let i = 0; i < initial.length; i++) {
+        if (initial[i] !== current[i]) {
+          return true;
+        }
+      }
+      return false;
+    },
     selectionComplete() {
-      const totalSelected = this.selection.reduce((total, option) => total += option.quantity, 0);
-      return totalSelected === this.quantitySelected;
+      return this.selection.length === this.quantitySelected;
     }
   },
   watch: {
     showModal(val) {
+      console.log("showModal?", val);
       this.showModalFlag = val;
     },
     item() {
-      console.log("watch item");
+      console.log("itemToEdit - type:", this.productType, this.productIdentityTags);
       console.log(this.item);
       console.log("subsCollections", this.subscriptionCollections);
       console.log("collections", this.collections);
-      console.log(this.productType, this.productIdentityTags);
 
       this.productSelected = this.getProductSelected();
       this.intervalSelected = this.getIntervalSelected();
       this.quantitySelected = this.getQuantitySelected();
-      this.selection = this.getSelectionWithOptionsSelected();
-      console.log("selection", this.selection);
+      this.selectionOptions = this.getSelectionOptions();
+
+      console.log("productSelected", this.productSelected);
+      console.log(this.productOptions);
+      console.log("intervalSelected", this.intervalSelected);
+      console.log(this.intervalOptions);
+      console.log("qtySelected", this.quantitySelected);
+      console.log(this.quantityOptions);
+      console.log("selectionOptions", this.selectionOptions);
     },
+    intervalSelected(val) {
+      if (this.productType === "soap") {
+        this.quantitySelected = 3;
+      }
+    },
+    quantitySelected(val) {
+      console.log("watching qatySelected", val, this.selection.length);
+      const optionsToRemove = val < this.selection.length ? this.selection.slice(val) : [];
+      optionsToRemove.forEach(option => this.removeOption(option));
+    }
   },
   methods: {
     hideModal() {
       this.$emit("hide");
+      // reset
     },
     getProductSelected() {
       if (this.productType === "haircare") {
@@ -217,13 +294,10 @@ export default {
       return "";
     },
     getIntervalSelected() {
-      if (["haircare", "deodorant"].includes(this.productType)) {
-        return 3;
-      }
       return Number(this.item.order_interval_frequency);
     },
     getQuantitySelected() {
-      if (["barsoap", "deodorant"].includes(this.productType)) {
+      if (["soap", "deodorant"].includes(this.productType)) {
         if (this.item.lineItems) {
           return this.item.lineItems.length;
         }
@@ -232,10 +306,10 @@ export default {
       }
       return this.item.quantity;
     },
-    getSelectionWithOptionsSelected() {
-      if (this.productType === "barsoap") {
+    getSelectionOptions() {
+      if (this.productType === "soap") {
         return this.collection.filter(product => {
-          return product.type.toLowerCase() === "barsoap";
+          return ProductIdentifier.identify(product)[0] === "soap"
         }).map(product => {
           const matches = this.item.lineItems.filter(item => {
             return item.handle === product.handle;
@@ -254,36 +328,37 @@ export default {
       }
       return this.collection;
     },
-    decreaseQauntity(index) {
+    decreaseQuantity(index) {
       console.log("Decrase", index);
+      let option = this.selectionOptions[index];
+      if (option.quantity >= 1) {
+        option.quantity--;
+      }
+      console.log(option);
     },
     increaseQuantity(index) {
       console.log("Increase", index);
+      let option = this.selectionOptions[index];
+      option.quantity++;
+      console.log(option);
+    },
+    removeOption(option) {
+      console.log("remove", option);
+      const index = option.selectionOptionIndex;
+      this.decreaseQuantity(index);
+    },
+    save() {
+      console.log("Save");
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import "@/styles/main.scss";
 
-.edit-form {
-  padding: 10px;
-
-  .back-button {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    cursor: pointer;
-    margin-bottom: 20px;
-    @include font-style-body();
-
-    .icon-squatch {
-      font-size: 13px !important;
-      margin-right: 3px;
-      margin-bottom: 1px;
-    }
-  }
+.edit-modal-content {
+  padding: 0; 
 
   .field-wrapper {
     @include font-style-body($color: $dark-brown);
@@ -323,23 +398,90 @@ export default {
       }
     }
   }
-}
-</style>
 
-<style lang="scss">
-@import "@/styles/main.scss";
+  .edit-modal-header {
+    position: sticky;
+    top: 0;
+    padding: 15px 15px 10px 15px;
+    background-color: $white;
 
-.qty-switch {
-  @include font-style-body();
-  @include layout-md {
-    width: 80px;
+    .back-button {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 15px;
+      @include font-style-body-bold();
+
+      .icon-squatch {
+        font-size: 13px !important;
+        margin-right: 3px;
+        margin-bottom: 1px;
+      }
+    }
   }
 
-  .decrease-button, .increase-button {
+  .edit-modal-body {
+    padding: 0 15px;
 
-    &.disabled {
-      color: #dcdcdc;
+    .qty-switch {
+      @include font-style-body();
+      @include layout-md {
+        width: 80px;
+      }
+
+      .decrease-button, .increase-button {
+
+        &.disabled {
+          color: #dcdcdc;
+        }
+      }
     }
   }
 }
+
+.edit-modal-footer {
+  display: block;
+  border-top: none;
+
+  .label {
+    display: block;
+    margin-bottom: 5px;
+    @include font-style-body-bold($color: $brown);
+
+    span {
+      @include font-style-body($color: grey);
+    }
+  }
+
+  .selections {
+    display: flex;
+    flex-flow: row wrap;
+  
+    .selection {
+      position: relative;
+      width: 75px;
+      text-align: center;
+      @include font-style-body($size: 12px);
+
+      .icon-squatch {
+        position: absolute;
+        right: 0;
+        top: 0;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      img {
+        width: 50px;
+        padding: 5px;
+      }
+    }
+  }
+
+  .save-button {
+    margin: 5px 0 0 0;
+  }
+}
+
 </style>
