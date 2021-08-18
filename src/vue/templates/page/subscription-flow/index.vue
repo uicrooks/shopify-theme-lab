@@ -54,10 +54,6 @@ import ProductIdentifier from "@/vue/services/product-identifier";
 // COMPONENTS
 import SubscriptionFlowHeader from "./components/subscription-flow-header.vue";
 import SubscriptionFlowFooter from "./components/subscription-flow-footer.vue";
-const BarSoapScreen = () => import("./steps/bar-soap-screen.vue");
-const HairCareScreen = () => import("./steps/hair-care-screen.vue");
-const DeodorantScreen = () => import("./steps/deodorant-screen.vue");
-const ToothpasteScreen = () => import("./steps/toothpaste-screen.vue");
 const AddonsScreen = () => import("./steps/addons-screen.vue");
 const IntroScreen = () => import("./steps/intro-screen.vue");
 
@@ -72,10 +68,6 @@ export default {
     addons: {required: true, type: String}
   },
   components: {
-    BarSoapScreen,
-    HairCareScreen,
-    DeodorantScreen,
-    ToothpasteScreen,
     AddonsScreen,
     IntroScreen,
     SubscriptionFlowHeader,

@@ -45,8 +45,18 @@
 </template>
 
 <script>
+import {singularize} from "@/vue/filters/money";
+import ProductBreadcrumb from "../reusables/breadcrumb.vue";
+import ProductGallery from "../reusables/gallery.vue";
 export default {
   name: "ProductBaseTemplate",
+  filters: {
+    singularize
+  },
+  components: {
+    ProductBreadcrumb,
+    ProductGallery,
+  },
   props: {
     product: {
       type: Object,

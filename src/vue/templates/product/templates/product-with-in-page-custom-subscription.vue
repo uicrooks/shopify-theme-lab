@@ -82,12 +82,33 @@
 </template>
 
 <script>
+import {money} from "@/vue/filters/money";
 import CartService from "@/vue/services/cart.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
 import ProductDetails from "@/configs/product-details";
+import NewLookBanner from "@/vue/reusables/new-look-banner.vue";
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
+//
+import ProductBaseTemplate from "./base-template.vue";
+import ProductFeatureDescriptions from "../reusables/feature-descriptions.vue";
+import ProductQuantityOptions from "../reusables/quantity-options.vue";
+import ProductQuantitySelector from "../reusables/quantity-selector.vue";
+import ProductPurchaseTypeSelector from "../reusables/purchase-type-selector.vue";
 
 export default {
   name: "ProductWithInPageCustomSubscription",
+  filters: {
+    money
+  },
+  components: {
+    ProductBaseTemplate,
+    ProductFeatureDescriptions,
+    ProductQuantityOptions,
+    ProductQuantitySelector,
+    ProductPurchaseTypeSelector,
+    NewLookBanner,
+    SquatchButton
+  },
   props: {
     product: {
       type: Object,

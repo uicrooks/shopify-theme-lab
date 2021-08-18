@@ -36,8 +36,12 @@
 </template>
 
 <script>
+import {singularize} from "@/vue/filters/money";
 export default {
   name: "ProductBreadcrumb",
+  filters: {
+    singularize
+  },
   props: {
     product: {
       type: Object,

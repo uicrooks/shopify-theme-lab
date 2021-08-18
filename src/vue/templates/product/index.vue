@@ -27,9 +27,36 @@
 
 <script>
 import ProductIdentifier from "@/vue/services/product-identifier";
+const ProductBaseTemplate = () => import(
+    /* webpackChunkName: "product-main" */
+    /* webpackPreload: true */
+    "./templates/base-template.vue");
+const ProductWithSubscriptionFlow= () => import(
+    /* webpackChunkName: "product-main" */
+    /* webpackPreload: true */
+    "./templates/product-with-subscription-flow.vue");
+const ProductWithInPageSubscription = () => import(
+    /* webpackChunkName: "product-main" */
+    /* webpackPreload: true */
+    "./templates/product-with-in-page-subscription.vue");
+const ProductWithInPageCustomSubscription = () => import(
+    /* webpackChunkName: "product-main" */
+    /* webpackPreload: true */
+    "./templates/product-with-in-page-custom-subscription.vue");
+const ProductOnetimeOnly = () => import(
+    /* webpackChunkName: "product-main" */
+    /* webpackPreload: true */
+    "./templates/product-onetime-only.vue");
 
 export default {
   name: "Product",
+  components: {
+    ProductBaseTemplate,
+    ProductWithSubscriptionFlow,
+    ProductWithInPageSubscription,
+    ProductWithInPageCustomSubscription,
+    ProductOnetimeOnly
+  },
   props: {
     productDataString: {
       type: String,

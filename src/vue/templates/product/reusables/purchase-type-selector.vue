@@ -29,8 +29,12 @@
 </template>
 
 <script>
+import {money} from "@/vue/filters/money";
 export default {
   name: "ProductPurchaseTypeSelector",
+  filters: {
+    money
+  },
   props: {
     isSubscription: {
       type: Boolean,
