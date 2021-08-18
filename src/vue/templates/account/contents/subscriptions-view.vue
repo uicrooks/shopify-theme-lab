@@ -175,7 +175,6 @@ export default {
       return DatetimeHelpers.format(this.refillBoxDate, format);
     },
     subTotal() {
-      console.log("loading?", this.loading, "getSubTotal");
       return this.loading ? "" : this.refillBoxSubTotal;
     },
     savingsTotal() {
