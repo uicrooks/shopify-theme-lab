@@ -7,6 +7,8 @@ const state = () => ({
   squatchBoxGroups: {},
   currentGroupName: "", // address label: 4015 Marina St.
   currentGroup: {},
+  // currentGroupNextRefillDate: "",
+  refillBox: []
 });
 
 const getters = {
@@ -38,14 +40,25 @@ const getters = {
     return state.currentGroup;
   },
   currentGroupNextRefillDate: (state) => {
-    return state.currentGroup && state.currentGroup.upcomingRefillDates? state.currentGroup.upcomingRefillDates[0] : null;
-  }
+    // return state.currentGroupNextRefillDate;
+    return state.currentGroup && state.currentGroup.upcomingRefillDates ? state.currentGroup.upcomingRefillDates[0] : null;
+  },
+  refillBox: (state) => {
+    return state.refillBox;
+  },
 };
 
 const actions = {
   initializeCurrentGroup: ({ commit, state }, groupName) => {
     commit("setCurrentGroupName", groupName);
     commit("setCurrentGroup", state.squatchBoxGroups[groupName]);
+    const refillDate = state.currentGroup && state.currentGroup.upcomingRefillDates ? state.currentGroup.upcomingRefillDates[0] : null;
+    if (refillDate) {
+      const refillBox = state.currentGroup.upcomingRefillsByDate[refillDate];
+      if (refillBox) {
+        commit("setRefillBox", refillBox);
+      }
+    }
   }
 };
 
@@ -93,6 +106,19 @@ const mutations = {
   },
   setCurrentGroup: (state, group) => {
     state.currentGroup = group;
+  },
+  setCurrentGroupNextRefillDate: (state, refillDate) => {
+    state.currentGroupNextRefillDate = refillDate;
+  },
+  setRefillBox: (state, refillBox) => {
+    state.refillBox = refillBox;
+  },
+  updateOrderItemInRefillBox: (state, payload) => {
+    const currentItem = state.refillBox[payload.index];
+    const updatedItem = { ...currentItem, ...payload.data };
+    let refillBoxCopy = state.refillBox.slice();
+    refillBoxCopy[payload.index] = updatedItem;
+    state.refillBox = refillBoxCopy;
   }
 };
 

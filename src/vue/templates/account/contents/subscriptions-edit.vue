@@ -152,7 +152,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargeUser", "rechargePaymentSource", "squatchBoxGroups", "currentGroupName", "currentGroup", "currentGroupNextRefillDate"]),
+    ...mapGetters("account", ["rechargeUser", "rechargePaymentSource", "squatchBoxGroups", "currentGroupName", "currentGroup", "currentGroupNextRefillDate", "refillBox"]),
     refillDate() {
       if (this.currentGroupNextRefillDate) {
         const format = !DatetimeHelpers.isSame(new Date(), this.currentGroupNextRefillDate, "year") ? "MMM Do, YYYY" : "MMM Do";
@@ -160,13 +160,10 @@ export default {
       }
       return null;
     },
-    refillBox() {
-      return this.currentGroup && this.currentGroupNextRefillDate ? this.currentGroup.upcomingRefillsByDate[this.currentGroupNextRefillDate] : [];
-    },
     subTotal() {
       if (!this.refillBox) return "";
       const subTotal = this.refillBox.reduce((total, item) => {
-        const compareAtPrice = item.data.variants && item.data.variants[0].compareAtPrice ? parseInt(item.data.variants[0].compareAtPrice) : item.price;
+        const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : item.price;
 
         return total += compareAtPrice * item.quantity;
       }, 0);
@@ -175,7 +172,7 @@ export default {
     savingsTotal() {
       if (!this.refillBox) return "";
       const subTotal = this.refillBox.reduce((total, item) => {
-        const compareAtPrice = item.data.variants && item.data.variants[0].compareAtPrice ? parseInt(item.data.variants[0].compareAtPrice) : 0;
+        const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : 0;
         let savings = compareAtPrice ? compareAtPrice - item.price : 0;
         return total += savings * item.quantity;
       }, 0);

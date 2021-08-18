@@ -4,6 +4,7 @@
       icon="dash-circle"
       font-scale="1.5"
       class="decrease-button"
+      :class="{disabled: decreaseDisabled}"
       @click="decrease"
     />
     <div class="quantity">
@@ -13,6 +14,7 @@
       icon="plus-circle"
       font-scale="1.5"
       class="increase-button"
+      :class="{disabled: increaseDisabled}"
       @click="increase"
     />
   </div>
@@ -24,14 +26,33 @@ export default {
     quantity: {
       type: Number,
       required: true
+    },
+    index: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    decreaseDisabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    increaseDisabled: {
+      type: Boolean,
+      required: false,
+      default: false,
     }
   },
   methods: {
     decrease() {
-      this.$emit("decrease");
+      if (!this.decreaseDisabled) {
+        this.$emit("decrease");
+      }
     },
     increase() {
-      this.$emit("increase");
+      if (!this.increaseDisabled) {
+        this.$emit("increase");
+      }
     }
   }
 };
@@ -48,6 +69,10 @@ export default {
   .decrease-button, .increase-button {
     flex: 1;
     cursor: pointer;
+
+    &.disabled {
+      cursor: default;
+    }
   }
 
   .quantity {
