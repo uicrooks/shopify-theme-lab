@@ -156,7 +156,6 @@
 </template>
 
 <script>
-import StoreService from "@/vue/services/store.service";
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
 import { mapGetters } from "vuex";
 
@@ -168,15 +167,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargeUser", "rechargePaymentSource", "squatchBoxGroups", "currentGroupName", "currentGroup", "refillBox"]),
+    ...mapGetters("account", ["rechargePaymentSource", "currentGroup", "refillBoxDate", "refillBox"]),
     refillDate() {
-      if (!this.currentGroupNextRefillDate) return null;
-      const format = !DatetimeHelpers.isSame(new Date(), this.currentGroupNextRefillDate, "year") ? "MMM Do, YYYY" : "MMM Do";
-      return DatetimeHelpers.format(this.currentGroupNextRefillDate, format);
+      if (!this.refillBoxDate) return "";
+      const format = !DatetimeHelpers.isSame(new Date(), this.refillBoxDate, "year") ? "MMM Do, YYYY" : "MMM Do";
+      return DatetimeHelpers.format(this.refillBoxDate, format);
     },
     subTotal() {
-      console.log("getSubTotal");
-      if (!this.refillBox) return "";
       const subTotal = this.refillBox.reduce((total, item) => {
         const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : item.price;
 
@@ -185,8 +182,6 @@ export default {
       return subTotal;
     },
     savingsTotal() {
-      console.log("getSavingsTotal");
-      if (!this.refillBox) return "";
       const subTotal = this.refillBox.reduce((total, item) => {
         const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : 0;
         let savings = compareAtPrice ? compareAtPrice - item.price : 0;
@@ -199,9 +194,6 @@ export default {
     }
   },
   watch: {
-    squatchBoxGroups(val) {
-      console.log("SquatchBoxGroups", val);
-    },
     refillBox(val) {
       console.log("refillBox", val);
     }
@@ -209,49 +201,7 @@ export default {
   methods: {
     selectView(viewName) {
       this.$store.commit("account/setCurrentView", viewName);
-    },
-    async processOrderData(items, addresses) {
-      let obj = {};
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const addressMatch = addresses.filter(address => address.id === item.address_id)[0];
-        if (!addressMatch) return;
-
-        const itemData = await StoreService.getProductById(item.shopify_product_id);
-        item.productData = itemData;
-
-        const addressLabel = addressMatch.address1.trim().toLowerCase();
-        const discountId = addressMatch.discount_id;
-        if (obj[addressLabel]) {
-          if (obj[addressLabel].discountIds && discountId) {
-            obj[addressLabel].discountIds.push(discountId);
-          }
-          if (obj[addressLabel].items) {
-            obj[addressLabel].items.push(item);
-          }
-        } else {
-          obj[addressLabel] = {
-            fullAddress: addressMatch,
-            items: [item],
-            discountCodes: [discountId],
-          };
-        }
-        
-        let upcomingRefillDates = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at).map(item => item.next_charge_scheduled_at);
-        upcomingRefillDates = upcomingRefillDates.filter((item, index) => upcomingRefillDates.indexOf(item) === index);
-
-        let refillsObj = {};
-        upcomingRefillDates.forEach(date => {
-          refillsObj[date] = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at === date);
-        });
-        obj[addressLabel].upcomingRefillDates = upcomingRefillDates;
-        obj[addressLabel].upcomingRefillsByDate = refillsObj;
-      }
-      return obj;
     }
-  },
-  mounted() {
-    console.log(this.squatchBoxGroups);
   }
 };
 </script>

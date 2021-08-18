@@ -138,10 +138,12 @@ export default {
       this.lineItems = this.item.lineItems;
     }
 
-    this.$store.commit("account/updateOrderItemInRefillBox", {
-      index: this.index,
-      data: updateObj
-    });
+    if (!this.item.productData || !this.item.propertyObj || !this.item.lineItems) {
+      this.$store.commit("account/updateOrderItemInRefillBox", {
+        index: this.index,
+        data: updateObj
+      });
+    }
     this.loading = false;
     this.$emit("loaded");
   },

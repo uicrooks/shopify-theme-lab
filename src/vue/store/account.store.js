@@ -7,8 +7,6 @@ const state = () => ({
   squatchBoxGroups: {},
   currentGroupName: "", // address label: 4015 Marina St.
   currentGroup: {},
-  // currentGroupNextRefillDate: "",
-  refillBox: []
 });
 
 const getters = {
@@ -24,9 +22,6 @@ const getters = {
   rechargePaymentSource: (state) => {
     return state.rechargePaymentSource;
   },
-  // subscriptions: (state) => {
-  //   return state.subscriptions;
-  // },
   rechargeOrders: (state) => {
     return state.rechargeOrders;
   },
@@ -39,12 +34,11 @@ const getters = {
   currentGroup: (state) => {
     return state.currentGroup;
   },
-  currentGroupNextRefillDate: (state) => {
-    // return state.currentGroupNextRefillDate;
+  refillBoxDate: (state) => {
     return state.currentGroup && state.currentGroup.upcomingRefillDates ? state.currentGroup.upcomingRefillDates[0] : null;
   },
-  refillBox: (state) => {
-    return state.refillBox;
+  refillBox: (state, getters) => {
+    return getters.refillBoxDate ? state.currentGroup.upcomingRefillsByDate[getters.refillBoxDate] : [];
   },
 };
 
@@ -52,13 +46,6 @@ const actions = {
   initializeCurrentGroup: ({ commit, state }, groupName) => {
     commit("setCurrentGroupName", groupName);
     commit("setCurrentGroup", state.squatchBoxGroups[groupName]);
-    const refillDate = state.currentGroup && state.currentGroup.upcomingRefillDates ? state.currentGroup.upcomingRefillDates[0] : null;
-    if (refillDate) {
-      const refillBox = state.currentGroup.upcomingRefillsByDate[refillDate];
-      if (refillBox) {
-        commit("setRefillBox", refillBox);
-      }
-    }
   }
 };
 
@@ -107,18 +94,9 @@ const mutations = {
   setCurrentGroup: (state, group) => {
     state.currentGroup = group;
   },
-  setCurrentGroupNextRefillDate: (state, refillDate) => {
-    state.currentGroupNextRefillDate = refillDate;
-  },
-  setRefillBox: (state, refillBox) => {
-    state.refillBox = refillBox;
-  },
   updateOrderItemInRefillBox: (state, payload) => {
-    const currentItem = state.refillBox[payload.index];
-    const updatedItem = { ...currentItem, ...payload.data };
-    let refillBoxCopy = state.refillBox.slice();
-    refillBoxCopy[payload.index] = updatedItem;
-    state.refillBox = refillBoxCopy;
+    let refillBox = state.currentGroup.upcomingRefillsByDate[state.currentGroup.upcomingRefillDates[0]];
+    refillBox[payload.index] = { ...refillBox[payload.index], ...payload.data };
   }
 };
 
