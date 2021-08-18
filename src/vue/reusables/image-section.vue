@@ -181,6 +181,10 @@ export default {
     flex-direction: column;
   }
 
+  @include layout-md { 
+    margin: auto;
+  }
+
   .brand-content {
     padding: 15px;
 

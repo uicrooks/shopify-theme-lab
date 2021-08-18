@@ -96,7 +96,7 @@ export default {
       color: $white;
 
       .wholesale-banner-title {
-        font-family: $font-heading;
+        @include font-style-heading;
       }
 
       .line-through {
@@ -106,7 +106,7 @@ export default {
       }
 
       .banner-subtext {
-        font-family: $font-body;
+        @include font-style-body;
       }
 
 
@@ -156,12 +156,11 @@ export default {
 
     .info-text {
       text-align: left;
-      font-family: $font-body;
+      @include font-style-body($color: $brown);
       display: flex;
       justify-content: center;
       align-items: flex-start;
       flex-flow: column nowrap;
-      color: $brown;
 
       .text {
         margin: 0 0 5px 0;

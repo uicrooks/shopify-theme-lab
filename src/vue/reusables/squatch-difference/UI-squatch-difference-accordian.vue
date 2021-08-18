@@ -68,7 +68,7 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
 
   .ui-squatch-difference-accordion-component {
     .accordion-ingredient {
-      font-family: $font-body;
+      @include font-style-body;
 
       &.active {
 

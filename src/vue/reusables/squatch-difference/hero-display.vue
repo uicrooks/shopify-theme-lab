@@ -191,8 +191,7 @@ export default {
     .header {
       margin: 12px 0 17px 0;
       padding: 0 0 0 18px;
-      font-family: $font-heading;
-      font-size: 30px;
+      @include font-style-heading($size: 30px);
       line-height: 100%;
 
       @media (min-width: $md) {
@@ -233,8 +232,7 @@ export default {
       }
 
       .text {
-        font-family: $font-body;
-        font-size: 14px;
+        @include font-style-body($size: 14px);
         line-height: 130%;
 
         @media (min-width: $xl) {
@@ -268,10 +266,8 @@ export default {
         border: none;
         padding: 15px 0 11px 0;
         text-transform: uppercase;
-        font-family: $font-heading;
-        font-size: 14px;
+        @include font-style-heading($size: 14px, $color: white);
         line-height: 17px;
-        color: #ffffff;
         text-align: center;
 
         @media (min-width: $md) {

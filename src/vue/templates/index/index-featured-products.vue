@@ -160,12 +160,11 @@ export default {
       text-align: center;
 
       .header {
-        font-family: $font-heading;
+        @include font-style-heading;
       }
 
       .subheader {
-        color: $brown;
-        font-family: $font-body-bold;
+        @include font-style-body-bold($color: $brown);
       }
     }
   }
@@ -218,21 +217,20 @@ export default {
             text-align: center;
 
             .preheader {
-              font-family: $font-body, sans-serif;
+              @include font-style-body;
             }
 
             .product-type {
               margin-bottom: 20px;
-              font-family: $font-heading;
+              @include font-style-heading;
             }
 
             .cta-btns {
               margin-bottom: 15px;
 
               .link {
-                color: #cc6328;
                 text-decoration: none;
-                font-family: $font-heading;
+                @include font-style-heading($color:#cc6328);
               }
 
               a:hover {

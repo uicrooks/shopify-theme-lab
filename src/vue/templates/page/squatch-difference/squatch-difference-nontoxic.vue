@@ -119,19 +119,14 @@ import UISquatchDifferenceAccordian from "@/vue/reusables/squatch-difference/UI-
     padding: 30px 18px;
     
     .sub-header {
-      font-family: $font-body;
-      font-weight: 700;
-      font-size: 14px;
+      @include font-style-body($weight: 700, $size: 14px, $color: $brown);
       line-height: 130%;
-      color: $brown;
       text-align: center;
     }
 
     .header {
-      font-family: $font-heading;
-      font-size: 30px;
+      @include font-style-heading($color: $dark-brown, $size: 30px);
       line-height: 100%;
-      color: $dark-brown;
       text-align: center;
       margin: 12px;
 
@@ -143,10 +138,8 @@ import UISquatchDifferenceAccordian from "@/vue/reusables/squatch-difference/UI-
     .text {
       max-width: 800px;
       margin: auto;
-      font-family: $font-body;
-      font-size: 14px;
+      @include font-style-body($size: 14px, $color: $brown);
       line-height: 130%;
-      color: $brown;
       text-align: center;
     }
 

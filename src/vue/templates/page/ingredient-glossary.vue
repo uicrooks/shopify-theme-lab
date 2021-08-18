@@ -318,7 +318,7 @@ export default {
       padding: 0 19px;
 
       .glossary-title {
-        font-family: $font-heading;
+        @include font-style-heading;
       }
 
       .header-sub {

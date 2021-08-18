@@ -569,10 +569,8 @@ export default {
         }
 
         .privacy-title {
-          font-weight: 400;
-          font-size: calc(1.04375rem + 1.10833vw);
           margin-bottom: 30px;
-          font-family: $font-heading;
+          @include font-style-heading($weight: 400, $size:  calc(1.04375rem + 1.10833vw));
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
@@ -588,7 +586,7 @@ export default {
           }
 
           .bold-text {
-            font-family: $font-body-bold;
+            @include font-style-body-bold;
           }
         }
       }

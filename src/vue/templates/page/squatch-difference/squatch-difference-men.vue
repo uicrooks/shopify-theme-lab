@@ -233,7 +233,7 @@ export default {
         margin-top:30px;
         .title {
           margin-bottom: 15px;
-          font-family: $font-heading;
+          @include font-style-heading;
 
           @media (min-width: $md) {
             font-size:35px;
@@ -241,23 +241,23 @@ export default {
         }
 
         .text{
-          font-family: $font-body;
+          @include font-style-body;
 
           @media (min-width: $md) {
-            font-size:16px;
+            font-size: 16px;
           }
         }
         
         @media (min-width: $md) {
           width: 80%;
-          max-width:780px;
+          max-width: 780px;
           padding: 0;
         }
 
       }
 
       .ingredient-content {
-        display:flex;
+        display: flex;
         flex-direction: column;
         margin-bottom: 30px;
 
@@ -304,15 +304,13 @@ export default {
         
 
         .ingredient-header {
-          font-family: $font-heading;
-          font-size: 16px;
+          @include font-style-heading($size: 16px, $color: $dark-brown);
           padding: 16px 0 5px 0;
-          color: $dark-brown;
 
           @media (min-width: $md) {
             font-size: 20px;
             padding: 25px 0 14px 0;
-            margin-top:20px;
+            margin-top: 20px;
             width: unset;
           }
         }
@@ -440,10 +438,8 @@ export default {
     
       .header {
         margin: 18px 30px 12px 30px;
-        font-size: 30px;
         line-height: 100%;
-        font-family: $font-heading;
-        color: $dark-brown;
+        @include font-style-heading($color: $dark-brown, $size: 30px);
 
         @media (min-width: $md) {
           margin: 10px 30px 12px 30px;
@@ -511,19 +507,14 @@ export default {
           }
 
           .scent-name {
-            font-size: 20px;
             line-height: 100%;
-            font-family: $font-heading;
-            color: $dark-brown;
+            @include font-style-heading($color: $dark-brown, $size: 20px);
           }
 
           .scent-function {
             margin: 7px 0 10px 0;
-            font-weight: 700;
-            font-size: 14px;
             line-height: 130%;
-            font-family: $font-body;
-            color: $dark-brown;
+            @include font-style-body($color: $dark-brown, $size: 14px, $weight: 700);
           }
 
           .scent-description {
@@ -548,10 +539,8 @@ export default {
           border: none;
           padding: 15px 0 11px 0;
           text-transform: uppercase;
-          font-family: $font-heading;
-          font-size: 14px;
+          @include font-style-heading($size: 14px, $color: white);
           line-height: 17px;
-          color: #ffffff;
           text-align: center;
 
           @media (min-width: $md) {

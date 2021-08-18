@@ -104,10 +104,7 @@
     }
 
     .header {
-      color: $dark-brown;
-      font-weight: 700;
-      font-family: $font-body;
-      font-size: 16px;
+      @include font-style-body($size: 16px, $weight: 700, $color: $dark-brown);
       line-height: 18px;
       text-align: center;
       margin: 10px 0 16px 0;
@@ -195,11 +192,8 @@
 
         .subnav-text {
           text-align: center;
-          font-family: $font-body;
-          font-weight: 600;
-          font-size: 12px;
+          @include font-style-body($weight: 600, $size: 12px, $color: $dark-brown);
           line-height: 110%;
-          color: $dark-brown;
 
           @media (min-width: $md) {
             font-size: 14px;

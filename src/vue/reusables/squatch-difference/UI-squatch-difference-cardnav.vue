@@ -110,13 +110,11 @@ export default {
   
     .title {
       width: 100%;
-      font-size: 25px;
       font-weight: 900;
-      font-family: $font-heading;
+      @include font-style-heading($size: 25px, $color: $dark-brown);
       line-height: 100%;
       margin: 25px 0;
       text-align: center;
-      color: $dark-brown;
   
       @media (min-width: $md) {
         font-size: 30px;

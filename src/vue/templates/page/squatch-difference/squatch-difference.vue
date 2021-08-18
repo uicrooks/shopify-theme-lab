@@ -123,11 +123,8 @@ export default {
     margin-top: 30px;
 
     .sub-header {
-      font-family: $font-body;
-      font-weight: 700;
-      font-size: 14px;
+      @include font-style-body($weight: 700, $size: 14px, $color: $dark-brown);
       line-height: 130%;
-      color: $dark-brown;
       text-align: center;
 
       @media (min-width: $md) {
@@ -137,10 +134,8 @@ export default {
 
     .header {
       width: 90%;
-      font-family: $font-heading;
-      font-size: 30px;
-      line-height: 100%;
-      color: $dark-brown;
+      @include font-style-heading($size: 30px, $color: $dark-brown);
+      line-height: 100%;;
       text-align: center;
       margin: 12px auto;
 
@@ -158,11 +153,9 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     line-height: 100%;
-    font-family: $font-heading;
-    font-size: 30px;
+    @include font-style-heading($size: 30px, $color: white);
     text-align: center;
     margin-bottom:20px;
-    color: white;
 
     @media (min-width: $md) {
       padding: 40px 10px 30px;
@@ -225,8 +218,7 @@ export default {
     color: #000;
 
     .quote-text {
-      font-family: $font-heading;
-      font-size: 20px;
+      @include font-style-heading($size: 20px);
       line-height: 100%;
       margin: 25px 0 16px;
 

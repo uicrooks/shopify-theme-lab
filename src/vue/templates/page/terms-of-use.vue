@@ -583,19 +583,15 @@ export default {
         }
 
         .terms-title {
-          font-weight: 400;
-          font-size: calc(1.04375rem + 1.10833vw);
           margin: 0 0 30px 0;
-          font-family: $font-heading;
+          @include font-style-heading($weight: 400, $size: calc(1.04375rem + 1.10833vw));
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
           }
         }
         .terms-description {
-          font-size: 14px;
-          color: $brown;
-          font-family: $font-body;
+          @include font-style-body($size: 14px, $color: $brown);
 
           .section-link {
             color: $orange;
@@ -604,7 +600,7 @@ export default {
           }
 
           .bold-text {
-            font-family: $font-body-bold;
+            @include font-style-body-bold;
           }
         }
       }

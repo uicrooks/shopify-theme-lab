@@ -115,11 +115,9 @@
   .text {
     min-height: 50px;
     width: 90%;
-    font-size: 14px;
     line-height: 130%;
-    font-family: $font-body;
+    @include font-style-body($color: $brown, $size: 14px);
     text-align: center;
-    color: $brown;
     margin-bottom: 16px;
 
     @media (min-width: $md) {
@@ -138,9 +136,7 @@
     padding: 18px 0 12px 0;
     text-decoration: none;
     text-align: center;
-    font-family: $font-heading;
-    font-size: 14px;
-    color: $orange;
+    @include font-style-heading($size: 14px, $color: $orange);
 
     .arrow-icon {
       width: 20px;

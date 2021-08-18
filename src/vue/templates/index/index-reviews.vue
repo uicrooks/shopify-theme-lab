@@ -130,16 +130,15 @@ export default {
     text-align: center;
 
     .preheader {
-      font-family: $font-body;
+      @include font-style-body;
     }
 
     .review-copy {
-      font-family: $font-heading;
+      @include font-style-heading;
     }
 
     .review-subheader {
-      font-family: $font-body;
-      font-size: 14px;
+      @include font-style-body($size: 14px);
     }
   }
 
@@ -184,6 +183,9 @@ export default {
           box-shadow: 0 0.5rem 1rem rgba(26, 17, 12, 0.15);
           background-color: white;
 
+          @media(min-width: 426px) and (max-width: 767px) {
+            width: 250px;
+          }
           @include layout-md {
             width: 100%;
           }
@@ -216,7 +218,7 @@ export default {
 
             .review-text {
               line-height: 1;
-              font-family: $font-body;
+              @include font-style-body;
             }
             .reviewer-name {
               @include font-style-body-bold($color: $brown);

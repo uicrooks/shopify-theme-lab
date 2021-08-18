@@ -114,18 +114,15 @@ export default {
         }
 
         .shipping-title {
-          font-weight: 400;
-          font-size: calc(1.04375rem + 1.10833vw);
-          font-family: $font-heading;
+          @include font-style-heading($size: calc(1.04375rem + 1.10833vw), $weight: 400);
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
           }
         }
         .shipping-description {
-          font-size: 14px;
           color: $brown;
-          font-family: $font-body;
+          @include font-style-body($color: $brown, $size: 14px);
 
           .bolded-text {
             @include font-style-body-bold;

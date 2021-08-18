@@ -64,8 +64,7 @@ export default {
         flex-direction: column;
 
         .header {
-          font-family: $font-heading;
-          color: black;
+          @include font-style-heading($color: black);
         }
 
         .subheader {
