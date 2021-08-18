@@ -1,7 +1,5 @@
 <script>
-import RechargeService from "@/vue/services/recharge.service";
 import StoreService from "@/vue/services/store.service";
-import DatetimeHelpers from "@/vue/services/datetime-helpers";
 import SkuToId from "@/configs/account-sku-to-id";
 import { mapGetters } from "vuex";
 
@@ -12,10 +10,18 @@ export default {
       type: Object,
       required: true,
       default: () => {}
+    },
+    index: {
+      type: Number,
+      required: true,
+      default: 0
     }
   },
   data() {
     return {
+      loading: true,
+      productData: {},
+      propertyObj: {},
       lineItems: []
     };
   },
@@ -25,16 +31,18 @@ export default {
       return this.item.status === "ONETIME";
     },
     displayTitle() {
-      return this.isOnetime ? this.item.data.productType : this.item.product_title.split(" - ")[0];
+      return this.isOnetime ? this.item.variant_title.split(" / ")[0] : this.item.product_title.split(" - ")[0];
     },
     price() {
       return this.item.price * this.item.quantity;
     },
     compareAtPrice() {
-      return this.item.data.variants && this.item.data.variants[0].compareAtPrice ? parseInt(this.item.data.variants[0].compareAtPrice) * this.item.quantity : null;
+      if (this.loading) return null;
+      return this.productData.variants && this.productData.variants[0].compareAtPrice ? parseInt(this.productData.variants[0].compareAtPrice) * this.item.quantity : null;
     },
     imageSrc() {
-      return this.generateImageSrc(this.item.data);
+      if (this.loading) return null;
+      return this.generateImageSrc(this.productData);
     },
     subscriptionInterval() {
       if (this.item.status !== "ONETIME") {
@@ -45,7 +53,10 @@ export default {
       return "";
     },
     includedList() {
-      return this.isOnetime ? { [this.item.product_title]: this.item.quantity } : this.generateIncludedList(this.lineItems);
+      if (this.isOnetime) {
+        return { [this.item.product_title]: this.item.quantity };
+      }
+      return this.loading ? {} : this.generateIncludedList(this.lineItems);
     }
     // itemProps() {
     //   let obj = {};
@@ -73,7 +84,7 @@ export default {
       return lineItems;
     },
     generateImageSrc(itemData) {
-      return itemData.images && itemData.images[0] ? itemData.images[0].src : "";
+      return itemData && itemData.images && itemData.images[0] ? itemData.images[0].src : "";
     },
     generateIncludedList(lineItems = null) {
       if (!lineItems) {
@@ -87,74 +98,67 @@ export default {
     }
   },
   async mounted() {
-    if (!this.item.lineItems) {
-      const lineItemIds = this.item.properties.filter(prop => prop.name.includes("fulfillment")).map(item => SkuToId[item.value.toLowerCase()]);
-      this.lineItems = await this.fetchLineItems(lineItemIds);
-      this.$emit("addToItem", "lineItems", this.lineItems, this.item);
+    console.log("init", this.item);
+    this.loading = true;
+    let updateObj = {
+      productData: {},
+      propertyObj: {},
+      lineItems: []
+    };
+
+    if (!this.item.productData) {
+      console.log("get product data for item", this.index);
+      const productData = await StoreService.getProductById(this.item.shopify_product_id);
+      updateObj.productData = productData;
+      this.productData = productData;
     } else {
-      this.lineItems = this.item.lineItems;
+      this.productData = this.item.productData;
     }
-    
+
     if (!this.item.propertyObj) {
+      console.log("get propertyObj for item", this.index);
       let obj = {};
       this.item.properties.forEach(prop => {
         obj[prop.name] = prop.value;
       });
+      updateObj.propertyObj = obj;
       this.propertyObj = obj;
-      this.$emit("addToItem", "propertyObj", this.propertyObj, this.item);
     } else {
       this.propertyObj = this.item.propertyObj;
     }
+
+    if (!this.item.lineItems) {
+      console.log("get lineItems for item", this.index);
+      const lineItemIds = this.item.properties.filter(prop => prop.name.includes("fulfillment")).map(item => SkuToId[item.value.toLowerCase()]);
+      console.log("lineItemIds", lineItemIds);
+      const lineItems = await this.fetchLineItems(lineItemIds);
+      updateObj.lineItems = lineItems;
+      this.lineItems = lineItems;
+    } else {
+      this.lineItems = this.item.lineItems;
+    }
+
+    if (!this.item.productData || !this.item.propertyObj || !this.item.lineItems) {
+      this.$store.commit("account/updateOrderItemInRefillBox", {
+        index: this.index,
+        data: updateObj
+      });
+    }
+    this.loading = false;
+    this.$emit("loaded");
   },
   render() {
     return this.$scopedSlots.default({
+      loading: this.loading,
       isOnetime: this.isOnetime,
       item: this.item,
       displayTitle: this.displayTitle,
       imageSrc: this.imageSrc,
       price: this.price,
       compareAtPrice: this.compareAtPrice,
-      // itemProps: this.itemProps,
       subscriptionInterval: this.subscriptionInterval,
       includedList: this.includedList,
     });
   }
-  // props: {
-  //   subscription: {
-  //     type: Object,
-  //     required: true,
-  //     default: () => {}
-  //   }
-  // },
-  // computed: {
-  //   subscriptionTitle() {
-  //     return this.item.product_title;
-  //   },
-  //   subscriptionInterval() {
-  //     const intervalFrequency = this.item.order_interval_frequency > 1 ? `${this.item.order_interval_frequency} ` : "";
-  //     const intervalUnit = this.item.order_interval_frequency > 1 ? `${this.item.order_interval_unit}s` : this.item.order_interval_unit;
-  //     return `Every ${intervalFrequency}${intervalUnit}`;
-  //   },
-  //   subscriptionAddress() {
-  //     return `${this.item.addressObj.address1}, ${this.item.addressObj.zip}`;
-  //   },
-  //   upcomingDate() {
-  //     const sameYear = DatetimeHelpers.isSame(new Date(), this.item.next_charge_scheduled_at, "year");
-  //     return DatetimeHelpers.format(this.item.next_charge_scheduled_at, sameYear ? "MMM D" : "MMM D YYYY");
-  //   },
-  //   includedList() {
-  //     let list = {};
-  //     this.item.lineItems.forEach(item => {
-  //       if (list[item.title]) {
-  //         list[item.title] += 1;
-  //       } else {
-  //         list[item.title] = 1;
-  //       }
-  //     });
-  //     return list;
-  //   }
-  // },
-  // methods: {
-  // },
 };
 </script>

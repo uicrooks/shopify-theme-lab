@@ -51,6 +51,7 @@
 
 <script>
 import RechargeService from "@/vue/services/recharge.service";
+import AccountHelpers from "@/vue/services/account-helpers";
 import { mapGetters } from "vuex";
 
 export default {
@@ -83,11 +84,26 @@ export default {
     updateView() {
       const hash = window.location.hash;
       this.view = hash === "" ? "overview" : hash.slice(1);
+    },
+    async initializeRechargeUserData(email) {
+      const subscriber = await RechargeService.getUser(email);
+      const paymentSources = await RechargeService.getUserResource(subscriber.id, "payment_sources");
+      this.$store.commit("account/setRechargeUser", subscriber);
+      this.$store.commit("account/setRechargePaymentSource",paymentSources[0]); 
+    },
+    async initializeOrderData() {
+      const orders = await RechargeService.getUserResource(this.rechargeUser.id, "subscriptions");
+      const subscriptions = orders.subscriptions.filter(subs => !subs.cancelled_at);
+      const addresses = await RechargeService.getUserResource(this.rechargeUser.id, "addresses");
+      const squatchBoxGroups = AccountHelpers.processOrderData([...subscriptions, ...orders.onetimes], addresses);
+      this.$store.commit("account/setRechargeOrders", orders);
+      this.$store.commit("account/setSquatchBoxGroups", squatchBoxGroups);
+      this.$store.dispatch("account/initializeCurrentGroup", Object.keys(squatchBoxGroups)[0]);
     }
   },
   async created() {
     this.updateView();
-    
+
     this.$store.commit("account/setUserTags", this.user.tagString.split("; "));
     this.$store.commit("products/setSubscriptionCollections", this.subscriptionCollections);
 
@@ -101,11 +117,8 @@ export default {
       console.log("active subscriber");
       // const email = this.user.email;
       const email = "will@drsquatch.com";
-      const subscriber = await RechargeService.getUser(email);
-      this.$store.commit("account/setRechargeUser", subscriber);
-
-      const paymentSources = await RechargeService.getUserResource(subscriber.id, "payment_sources");
-      this.$store.commit("account/setRechargePaymentSource",paymentSources[0]); 
+      await this.initializeRechargeUserData(email);
+      await this.initializeOrderData();
     }
   },
   async mounted() {

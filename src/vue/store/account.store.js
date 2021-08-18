@@ -22,9 +22,6 @@ const getters = {
   rechargePaymentSource: (state) => {
     return state.rechargePaymentSource;
   },
-  // subscriptions: (state) => {
-  //   return state.subscriptions;
-  // },
   rechargeOrders: (state) => {
     return state.rechargeOrders;
   },
@@ -37,9 +34,12 @@ const getters = {
   currentGroup: (state) => {
     return state.currentGroup;
   },
-  currentGroupNextRefillDate: (state) => {
-    return state.currentGroup && state.currentGroup.upcomingRefillDates? state.currentGroup.upcomingRefillDates[0] : null;
-  }
+  refillBoxDate: (state) => {
+    return state.currentGroup && state.currentGroup.upcomingRefillDates ? state.currentGroup.upcomingRefillDates[0] : null;
+  },
+  refillBox: (state, getters) => {
+    return getters.refillBoxDate ? state.currentGroup.upcomingRefillsByDate[getters.refillBoxDate] : [];
+  },
 };
 
 const actions = {
@@ -93,6 +93,10 @@ const mutations = {
   },
   setCurrentGroup: (state, group) => {
     state.currentGroup = group;
+  },
+  updateOrderItemInRefillBox: (state, payload) => {
+    let refillBox = state.currentGroup.upcomingRefillsByDate[state.currentGroup.upcomingRefillDates[0]];
+    refillBox[payload.index] = { ...refillBox[payload.index], ...payload.data };
   }
 };
 
