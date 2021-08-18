@@ -22,6 +22,7 @@
         :reversed="true"
         header='We Hold "Natural" To A Higher Standard'
         sub-header="We've Got Standards"
+        :text-black="true"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-natural-meaning.png?v=1618943851"
       >
         Sure, you hear the term “natural” a lot. But what does "natural" really mean? How do we measure it? Great questions, we’ve got you.
@@ -86,6 +87,7 @@
       <hero-display 
         :reversed="false"
         :sub-below="true"
+        :text-black="true"
         header="We’re serious about transparency"
         sub-header='Looking to learn more about all of our ingredients? <br><br><a href="/pages/glossary" style="color: #cc6328;">Check out our Ingredient Glossary.</a>'
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/were_serious_about_transparency.jpg?v=1621967909"
@@ -97,6 +99,7 @@
     <div class="hero-display-middle middle-bottom">
       <hero-display 
         :reversed="true"
+        :text-black="true"
         header="The Truth About Natural Products"
         sub-header="Walking The Walk"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Grapefruit-IPA-Select-4_2.jpg?v=1621965804"
@@ -248,17 +251,18 @@ export default {
         margin-bottom: 15px;
         @include font-style-heading;
 
-        @media (min-width: $md) {
+        @include layout-md {
           font-size: 35px;
+          line-height: 1;
         }
       }
       .text{
-        @media (min-width: $md) {
+        @include layout-md {
           font-size: 16px;
         }
       }
       
-      @media (min-width: $md) {
+      @include layout-md {
         width: 80%;
         max-width: 780px;
       }
@@ -269,7 +273,7 @@ export default {
       display: flex;
       flex-direction: column;
 
-      @media (min-width: $md) {
+      @include layout-md {
         flex-direction: row !important;
       }
     }
@@ -283,12 +287,12 @@ export default {
       min-height: 131px;
       padding: 16px;
 
-      @media (min-width: $md) {
+      @include layout-md {
         width: unset;
         flex: 1;
       }
 
-      @media (min-width: $xl) {
+      @include layout-xl {
         max-width: 350px;
       }
 
@@ -297,7 +301,7 @@ export default {
         height: 74px;
 
         img{
-          width:100%;
+          width: 100%;
         }
       }
 
@@ -305,7 +309,7 @@ export default {
         @include font-style-heading($size: 16px, $color: $dark-brown);
         padding: 16px 0 5px 0;
 
-        @media (min-width: $md) {
+        @include layout-md {
           font-size: 20px;
           padding: 25px 0 14px 0;
           width: unset;
@@ -319,7 +323,7 @@ export default {
         width: 90%;
         color: $brown;
 
-        @media (min-width: $md) {
+        @include layout-md {
           font-size: 16px;
         }
       }
@@ -340,7 +344,7 @@ export default {
       max-width: 500px;
       color: #ffffff;
 
-      @media (min-width: $md) {
+      @include layout-md {
         font-size: 50px !important;
       }
     }
@@ -360,7 +364,7 @@ export default {
       line-height: 16px;
       color: $dark-brown;
 
-      @media (min-width: $md) {
+      @include layout-md {
         font-size: 16px;
         line-height: 18px;
       }
@@ -371,7 +375,7 @@ export default {
       line-height: 100%;
       @include font-style-heading($color: $dark-brown, $size: 30px);
 
-      @media (min-width: $md) {
+      @include layout-md {
         margin: 10px 30px 12px 30px;
         font-size: 40px;
       }
@@ -388,13 +392,13 @@ export default {
 
     .scents {
 
-      @media (min-width: $md) {
+      @include layout-md {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
       }
 
-      @media (min-width: $xl) {
+      @include layout-xl {
         max-width: 1200px;
         margin: auto;
       }
@@ -411,17 +415,17 @@ export default {
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
         text-align: left;
 
-        @media (min-width: $md) {
+        @include layout-md {
           width: unset;
           flex: 1;
           margin: 5px 8px;
         }
 
-        @media (min-width: $lg) {
+        @include layout-lg {
           margin: 5px 12px;
         }
 
-        @media (min-width: $xl) {
+        @include layout-xl {
           max-width: 250px;
         }
 
@@ -475,7 +479,7 @@ export default {
         line-height: 17px;
         text-align: center;
 
-        @media (min-width: $md) {
+        @include layout-md {
           width: 70%;
           max-width: 300px;
         }

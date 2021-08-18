@@ -32,6 +32,7 @@
         :reversed="true"
         sub-header="The Problem"
         header="The Personal Care Industry Needs Cleaning"
+        :text-black="true"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/Bundles_home-2.jpg?v=1616626929"
       >
         For generations traditional mass-market brands have been stripping natural ingredients from personal care products to make production cheaper and faster. Men have been forced to settle for lackluster products that are packed with harsh ingredients, chemical irritants and unnatural smells. But one courageous Squatch hadn’t given up on natural products.
@@ -43,6 +44,7 @@
         :reversed="false"
         sub-header="Changing The Game"
         header="The Squatch Story"
+        :text-black="true"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-jack.png?v=1618880952"
       >
         Inspired by a love of natural products, our founder Jack began creating his own natural soap in his garage. He also knew there must be other guys out there who wanted better products with natural ingredients and manly scents. With that, Dr. Squatch was born! Millions of happy customers later, the Dr. Squatch mission remains the same - to raise the bar for natural products and change the way men approach their personal care.

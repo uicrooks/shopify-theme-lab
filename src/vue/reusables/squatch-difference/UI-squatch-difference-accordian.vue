@@ -1,20 +1,23 @@
 <template>
   <div class="ui-squatch-difference-accordion-component">
-    <button @click="greet">
-      Greet
-    </button>
     <div 
       v-for="(item, index) in toxic" 
       :key="index"
-      class="accordion-ingredient" 
-      @click="test" 
+      class="accordion-ingredient"
     >
-      <div class="ingredient-title">
+      <div 
+        class="ingredient-title"
+        @click="toggle(index)" 
+      >
         <span>
           {{ item.name }}
         </span>
       </div>
-      <div class="ingredient-details">
+      <div 
+        class="ingredient-details"
+        v-bind:class="{ active : `${actives[index]}` }"      
+      >
+      {{ actives[index] }}
         <div class="heading-section">
           <div class="detail-title">
             {{ item.name }}
@@ -48,18 +51,22 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
     data() {
       return {
         toxic: toxicIngredients,
+        actives: [true]
       };
     },
     methods: {
-      greet: function (event) {
-        // `this` inside methods points to the Vue instance
-        alert('Hello ' + this.name + '!');
-        // `event` is the native DOM event
-        if (event) {
-          alert(event.target.tagName);
-        }
+      toggle: function (index) {
+        this.actives[index] = !this.actives[index];
+        console.log(this.actives)
       }
-    }
+    },
+    mounted() {
+      console.log(this.toxic)
+      for(let x; x < this.toxic.length-1; x++) {
+        this.actives.push(false);
+      }
+      console.log(this.actives);
+    },
   };
 </script>
 
@@ -114,6 +121,10 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
         padding: 20px 10px;
         color: $brown;
         display: none;
+
+        & .active {
+          display: block;
+        }
 
         .heading-section {
 

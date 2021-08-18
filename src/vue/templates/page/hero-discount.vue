@@ -150,7 +150,7 @@ export default {
     background-repeat: no-repeat;
     max-width: 1440px;
     margin: auto;
-    @media(min-width: $md) {
+    @include layout-md {
       height: 450px;
       background-position: top 28% center;
     }
@@ -168,7 +168,7 @@ export default {
       text-align: center;
       height: 100%;
 
-      @media(min-width: $md) {
+      @include layout-md {
         width: 50%;
       }
 
@@ -189,15 +189,15 @@ export default {
       max-width: 540px;
     }
 
-    @media (min-width: $md) {
+    @include layout-md {
       max-width: 720px;
     }
       
-    @media (min-width: $lg) {
+    @include layout-lg {
       max-width: 960px;
     }
 
-    @media (min-width: $xl) {
+    @include layout-xl {
       max-width: 1024px;
     }
 
@@ -246,7 +246,7 @@ export default {
           height: 172px;
           border: transparent;
 
-          @media(min-width: $md) {
+          @include layout-md {
             width: 33%;
           }
 
@@ -273,7 +273,7 @@ export default {
         width: 100%;
         margin: 0 0 30px 0;
 
-        @media(min-width: $md) {
+        @include layout-md {
           flex-flow: row nowrap;
         }
         .bottom-card {
@@ -283,7 +283,7 @@ export default {
           height: 371px;
           border: transparent;
 
-          @media(min-width: $md) {
+          @include layout-md {
             width: 33%;
           }
 

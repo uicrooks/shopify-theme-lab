@@ -149,9 +149,9 @@ export default {
     }
 
     .copyright {
-      width: 100%;
       text-align: center;
       @include font-style-body($size: 11px, $color: $sand);
+
 
       @include layout-lg {
         width: unset;

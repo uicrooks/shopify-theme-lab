@@ -92,11 +92,11 @@ export default {
   .text-container {
     padding: 2.5rem 0;
 
-    @media (min-width: $md) {
+    @include layout-md {
       padding: 5rem 0;
     }
 
-    @media (min-width: $xl) {
+    @include layout-xl {
       padding: 5rem 2rem;
     }
 

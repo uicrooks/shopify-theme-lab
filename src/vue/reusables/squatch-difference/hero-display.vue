@@ -6,11 +6,13 @@
           v-if="!subBelow"
           class="sub-header"
           v-html="subHeader" 
+          :class="{ blackText : textBlack}"
         />
 
         <div 
           class="header"
           v-html="header"
+          :class="{ blackText : textBlack}"
         />
 
         <div class="image-mobile">
@@ -27,10 +29,16 @@
         <div 
           class="text-container"
         >
-          <div class="text-heading">
+          <div 
+            class="text-heading"
+            :class="{ blackText : textBlack}"
+          >
             {{ textHeading }}
           </div>
-          <span class="text">
+          <span 
+            class="text"
+            :class="{ blackText : textBlack}"
+          >
             <slot />
           </span>
         </div>
@@ -39,6 +47,7 @@
           v-if="subBelow"
           class="sub-header"
           v-html="subHeader"
+          :class="{ blackText : textBlack}"
         />
 
         <div 
@@ -131,6 +140,11 @@ export default {
       type: String,
       required: false,
       default: ""  
+    },
+    textBlack: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   }
 };
@@ -146,43 +160,46 @@ export default {
     padding: 30px 0;
     margin: auto;
   
-    @media (min-width: $md) {
+    @include layout-md {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    @media (min-width: $lg) {
+    @include layout-lg {
       max-width: 979px;
     }
 
-    @media (min-width: $xl) {
+    @include layout-xl {
       max-width: 1200px;
     }
+  }
+
+  .blackText {
+    color: black !important;
   }
 
   .content-box {
 
 
     &.reversed {
-      @media (min-width: $md) {
+      @include layout-md {
         order: 2;
         padding: 0 0 0 15px;
       }
     }
 
-    @media (min-width: $md) {
+    @include layout-md {
       width: 50%;
       margin: 0 10px;
     }
 
     .sub-header {
-      font-size: 14px;
       line-height: 130%;
-      font-weight: 700;
       padding: 0 18px;
+      @include font-style-body-bold($size: 14px, $weight: 700, $color: white);
 
-      @media (min-width: $md) {
+      @include layout-md {
         font-size: 16px;
         line-height: 110%;
       }
@@ -191,14 +208,14 @@ export default {
     .header {
       margin: 12px 0 17px 0;
       padding: 0 0 0 18px;
-      @include font-style-heading($size: 30px);
+      @include font-style-heading($size: 30px, $color: white);
       line-height: 100%;
 
-      @media (min-width: $md) {
+      @include layout-md {
         font-size: 40px !important;
       }
 
-      @media(min-width: $lg) {
+      @include layout-lg {
         font-size: 50px !important;
       }
     }
@@ -207,7 +224,7 @@ export default {
       padding: 0 20px;
       width: 100%;
 
-      @media (min-width: $md) {
+      @include layout-md {
         display: none;
       }
 
@@ -222,24 +239,24 @@ export default {
 
       
       .text-heading {
-        @include font-style-body-bold;
+        @include font-style-body-bold($color: white);
         margin-bottom: 10px;
 
-        @media (min-width: $xl) {
+        @include layout-xl {
           font-size: 18px;
           line-height: 100%;
         }
       }
 
       .text {
-        @include font-style-body($size: 14px);
+        @include font-style-body($size: 14px, $color: white);
         line-height: 130%;
 
-        @media (min-width: $xl) {
+        @include layout-xl {
           font-size: 15px;
         }
 
-        @media (min-width: $xl) {
+        @include layout-xl {
           font-size: 16px;
         }
       }
@@ -251,7 +268,7 @@ export default {
       display: flex;
       justify-content: center;
   
-      @media (min-width: $md) {
+      @include layout-md {
         text-align: left;
         padding: 0 18px;
         justify-content: flex-start;
@@ -270,7 +287,7 @@ export default {
         line-height: 17px;
         text-align: center;
 
-        @media (min-width: $md) {
+        @include layout-md {
           width: 70%;
         }
       }
@@ -282,7 +299,7 @@ export default {
     display: none;
 
     &.reversed {
-      @media (min-width: $md) {
+      @include layout-md {
         order: 1;
       }
     }
@@ -291,7 +308,7 @@ export default {
       width: 100%;
     }
 
-    @media (min-width: $md) {
+    @include layout-md {
       display: inline-block;
       width: 50%;
     }

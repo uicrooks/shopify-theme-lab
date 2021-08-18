@@ -21,6 +21,7 @@
         :reversed="true"
         header="Products Built For You"
         text-heading="We develop products specifically with men's needs in mind."
+        :text-black="true"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/mh-1_copy.gif?v=1624577360"
       >
         Let’s face it, men have different needs for their skin, pits and hair. Plus, they naturally deal with higher levels of sweat, dirt and stink on the regular. That’s why we’re dedicated to male-specific formulations that directly address the personal care demands of men everywhere.
@@ -77,6 +78,7 @@
       <hero-display 
         :reversed="false"
         header="Committed to Men's Health"
+        :text-black="true"
         text-heading="We take your manly well-being seriously."
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-natural-deo.png?v=1618944216"
       />
@@ -167,6 +169,7 @@
         :reversed="true"
         header="Smell Like A Man"
         text-heading="We source the best nature has to offer to help you smell damn good."
+        :text-black="true"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/smell-like-a-man.png?v=1621972315"
       >
         Too many personal care products for men smell like the chemicals they're made of and give us flashbacks to our middel school locker room. You're a man, it's time to smell like one!
@@ -235,7 +238,7 @@ export default {
           margin-bottom: 15px;
           @include font-style-heading;
 
-          @media (min-width: $md) {
+          @include layout-md {
             font-size:35px;
           }
         }
@@ -243,12 +246,12 @@ export default {
         .text{
           @include font-style-body;
 
-          @media (min-width: $md) {
+          @include layout-md {
             font-size: 16px;
           }
         }
         
-        @media (min-width: $md) {
+        @include layout-md {
           width: 80%;
           max-width: 780px;
           padding: 0;
@@ -261,7 +264,7 @@ export default {
         flex-direction: column;
         margin-bottom: 30px;
 
-        @media (min-width: $md) {
+        @include layout-md {
           flex-direction: row !important;
           width: 85%;
           justify-content: space-evenly;
@@ -279,12 +282,12 @@ export default {
         min-height: 131px;
         padding: 16px;
 
-        @media (min-width: $md) {
+        @include layout-md {
           width: unset;
           flex: 1;
         }
 
-        @media (min-width: $xl) {
+        @include layout-xl {
           max-width: 350px;
         }
 
@@ -307,7 +310,7 @@ export default {
           @include font-style-heading($size: 16px, $color: $dark-brown);
           padding: 16px 0 5px 0;
 
-          @media (min-width: $md) {
+          @include layout-md {
             font-size: 20px;
             padding: 25px 0 14px 0;
             margin-top: 20px;
@@ -322,7 +325,7 @@ export default {
           width: 90%;
           color: $brown;
 
-          @media (min-width: $md) {
+          @include layout-md {
             font-size: 16px;
           }
         }
@@ -337,7 +340,7 @@ export default {
       margin: auto;
       max-width: 1224px;
 
-      @media (min-width: $md) {
+      @include layout-md {
         flex-direction: row;
       }
       .men-ingredient-container {
@@ -351,7 +354,7 @@ export default {
         @include font-style-heading($size: 20px);
         margin-bottom: 15px;
 
-        @media (min-width: $md) {
+        @include layout-md {
           font-size: 30px;
         }
       }
@@ -359,7 +362,7 @@ export default {
       .men-ingredients-text {
         @include font-style-body;
         
-        @media (min-width: $md) {
+        @include layout-md {
           font-size: 16px;
         }
       }
@@ -400,7 +403,7 @@ export default {
         max-width: 500px;
         color: #ffffff;
 
-        @media (min-width: $md) {
+        @include layout-md {
           font-size: 50px !important;
         }
       }
@@ -408,11 +411,11 @@ export default {
 
     .hero-display-middle {
         .sub-header, .header {
-            color: $dark-brown;
+          color: $dark-brown;
         }
 
         .text {
-            color: $brown;
+          color: $brown;
         }
     }
 
@@ -430,7 +433,7 @@ export default {
         margin-bottom: 12px;
         color: $dark-brown;
 
-        @media (min-width: $md) {
+        @include layout-md {
           font-size: 16px;
           line-height: 18px;
         }
@@ -441,7 +444,7 @@ export default {
         line-height: 100%;
         @include font-style-heading($color: $dark-brown, $size: 30px);
 
-        @media (min-width: $md) {
+        @include layout-md {
           margin: 10px 30px 12px 30px;
           font-size: 40px;
         }
@@ -458,13 +461,13 @@ export default {
 
       .scents {
 
-        @media (min-width: $md) {
+        @include layout-md {
           display: flex;
           flex-flow: row nowrap;
           justify-content: space-between;
         }
 
-        @media (min-width: $xl) {
+        @include layout-xl {
           max-width: 1200px;
           margin: auto;
         }
@@ -481,17 +484,17 @@ export default {
           box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
           text-align: left;
 
-          @media (min-width: $md) {
+          @include layout-md {
             width: unset;
             flex: 1;
             margin: 5px 8px;
           }
 
-          @media (min-width: $lg) {
+          @include layout-lg {
             margin: 5px 12px;
           }
 
-          @media (min-width: $xl) {
+          @include layout-xl {
             max-width: 250px;
           }
 
@@ -543,7 +546,7 @@ export default {
           line-height: 17px;
           text-align: center;
 
-          @media (min-width: $md) {
+          @include layout-md {
             width: 70%;
             max-width: 300px;
           }

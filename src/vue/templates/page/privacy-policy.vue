@@ -547,11 +547,11 @@ export default {
   .privacy-container {
     padding: 2.5rem 0;
 
-    @media (min-width: $md) {
+    @include layout-md {
       padding: 5rem 0;
     }
 
-    @media (min-width: $xl) {
+    @include layout-xl {
       padding: 5rem 2rem;
     }
 
@@ -564,7 +564,7 @@ export default {
         text-align: center;
         margin-bottom: 28px;
 
-        @media (min-width: $md) {
+        @include layout-md {
           text-align: left;
         }
 

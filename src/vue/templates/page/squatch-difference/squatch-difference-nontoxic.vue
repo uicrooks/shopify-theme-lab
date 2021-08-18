@@ -21,6 +21,7 @@
         :reversed="true"
         header="The Sh*t List"
         sub-header="Ingredients We Never Use"
+        :text-black="true"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-men-everymorning.gif?v=1619543543"
       >
         Meet our Sh*t List, a roster of nasty, harmful ingredients that we vow to never use in any of our products. We refuse to cut corners and we avoid both common and lesser-known chemicals, synthetics and preservatives that can have a range of adverse effects on your skin and body.
@@ -36,6 +37,7 @@
         :reversed="false"
         header="Rigorous Testing and Quality Control"
         sub-header="Safety First"
+        :text-black="true"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-men-qc.svg?v=1619129137"
       >
         Not only do we give a damn about what we put in our products, but we’re committed to going the extra mile for safety. That’s why our products go through extensive testing and toxicology risk assessments, which is 'scientist' for “making sure they're safe for you.” We always want to make sure that both the individual ingredients and our final formulas are safe and effective.
