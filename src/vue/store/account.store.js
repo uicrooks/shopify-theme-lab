@@ -34,12 +34,34 @@ const getters = {
   currentGroup: (state) => {
     return state.currentGroup;
   },
+  currentGroupShippingAddress: (state) => {
+    return state.currentGroup && state.currentGroup.fullAddress ? [`${state.currentGroup.fullAddress.address1} ${state.currentGroup.fullAddress.address2}`, `${state.currentGroup.fullAddress.city}, ${state.currentGroup.fullAddress.province}`, state.currentGroup.fullAddress.zip] : [];
+  },
   refillBoxDate: (state) => {
     return state.currentGroup && state.currentGroup.upcomingRefillDates ? state.currentGroup.upcomingRefillDates[0] : null;
   },
   refillBox: (state, getters) => {
     return getters.refillBoxDate ? state.currentGroup.upcomingRefillsByDate[getters.refillBoxDate] : [];
   },
+  refillBoxSubTotal: (state, getters) => {
+    const total = getters.refillBox.reduce((total, item) => {
+      const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : item.price;
+
+      return total += compareAtPrice * item.quantity;
+    }, 0);
+    return total;
+  },
+  refillBoxSavingsTotal: (state, getters) => {
+    const total = getters.refillBox.reduce((total, item) => {
+      if (item.status === "ONETIME") {
+        return total;
+      }
+      const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : 0;
+      let savings = compareAtPrice ? compareAtPrice - item.price : 0;
+      return total += savings * item.quantity;
+    }, 0);
+    return total;
+  }
 };
 
 const actions = {

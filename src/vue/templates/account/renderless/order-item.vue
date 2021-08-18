@@ -58,13 +58,6 @@ export default {
       }
       return this.loading ? {} : this.generateIncludedList(this.lineItems);
     }
-    // itemProps() {
-    //   let obj = {};
-    //   this.item.properties.forEach(prop => {
-    //     obj[prop.name] = prop.value;
-    //   });
-    //   return obj;
-    // },
   },
   methods: {
     async fetchLineItems(lineItemIds) {
@@ -98,7 +91,6 @@ export default {
     }
   },
   async mounted() {
-    console.log("init", this.item);
     this.loading = true;
     let updateObj = {
       productData: {},
@@ -107,7 +99,6 @@ export default {
     };
 
     if (!this.item.productData) {
-      console.log("get product data for item", this.index);
       const productData = await StoreService.getProductById(this.item.shopify_product_id);
       updateObj.productData = productData;
       this.productData = productData;
@@ -116,7 +107,6 @@ export default {
     }
 
     if (!this.item.propertyObj) {
-      console.log("get propertyObj for item", this.index);
       let obj = {};
       this.item.properties.forEach(prop => {
         obj[prop.name] = prop.value;
@@ -128,9 +118,8 @@ export default {
     }
 
     if (!this.item.lineItems) {
-      console.log("get lineItems for item", this.index);
       const lineItemIds = this.item.properties.filter(prop => prop.name.includes("fulfillment")).map(item => SkuToId[item.value.toLowerCase()]);
-      console.log("lineItemIds", lineItemIds);
+      console.log("lineItemIds", this.item, lineItemIds);
       const lineItems = await this.fetchLineItems(lineItemIds);
       updateObj.lineItems = lineItems;
       this.lineItems = lineItems;

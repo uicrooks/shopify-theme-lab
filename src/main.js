@@ -94,6 +94,7 @@ if (window.location.pathname.includes("/account")) {
 }
 
 Vue.filter("money", (val, currency, toFixedVal = 2) => {
+  if (val === "") return "";
   if (!val) return "N/A";
   let money;
   if (val.toString().slice(-2) === "00") {

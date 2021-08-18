@@ -27,7 +27,7 @@
             :index="itemIndex"
             class="box-item"
             :class="{'last': itemIndex === refillBox.length - 1}"
-            @loaded="loading = false"
+            @loaded="onOrderItemLoaded"
           >
             <div slot-scope="{ loading, isOnetime, item, displayTitle, imageSrc, price, compareAtPrice, subscriptionInterval, includedList }">
               <div class="box-item-image">
@@ -124,7 +124,7 @@
           <h6>Ships To</h6>
           <p>
             <span
-              v-for="(line, lineIndex) of shippingAddressArray"
+              v-for="(line, lineIndex) of currentGroupShippingAddress"
               :key="`shipping-address-line-${lineIndex}`"
               class="address-line"
             >
@@ -163,44 +163,40 @@ export default {
   name: "AccountSubscriptionsView",
   data() {
     return {
-      loading: true
+      loading: true,
+      ordersLoadedCounter: 0
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargePaymentSource", "currentGroup", "refillBoxDate", "refillBox"]),
+    ...mapGetters("account", ["rechargePaymentSource",  "currentGroupShippingAddress", "refillBoxDate", "refillBox", "refillBoxSubTotal", "refillBoxSavingsTotal"]),
     refillDate() {
       if (!this.refillBoxDate) return "";
       const format = !DatetimeHelpers.isSame(new Date(), this.refillBoxDate, "year") ? "MMM Do, YYYY" : "MMM Do";
       return DatetimeHelpers.format(this.refillBoxDate, format);
     },
     subTotal() {
-      const subTotal = this.refillBox.reduce((total, item) => {
-        const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : item.price;
-
-        return total += compareAtPrice * item.quantity;
-      }, 0);
-      return subTotal;
+      console.log("loading?", this.loading, "getSubTotal");
+      return this.loading ? "" : this.refillBoxSubTotal;
     },
     savingsTotal() {
-      const subTotal = this.refillBox.reduce((total, item) => {
-        const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : 0;
-        let savings = compareAtPrice ? compareAtPrice - item.price : 0;
-        return total += savings * item.quantity;
-      }, 0);
-      return subTotal;
-    },
-    shippingAddressArray() {
-      return this.currentGroup && this.currentGroup.fullAddress ? [`${this.currentGroup.fullAddress.address1} ${this.currentGroup.fullAddress.address2}`, `${this.currentGroup.fullAddress.city}, ${this.currentGroup.fullAddress.province}`, this.currentGroup.fullAddress.zip] : [];
+      return this.loading ? "" : this.refillBoxSavingsTotal;
     }
   },
   watch: {
-    refillBox(val) {
-      console.log("refillBox", val);
+    refillBox() {
+      this.loading = true;
+      this.ordersLoadedCounter = 0;
     }
   },
   methods: {
     selectView(viewName) {
       this.$store.commit("account/setCurrentView", viewName);
+    },
+    onOrderItemLoaded() {
+      this.ordersLoadedCounter++;
+      if (this.ordersLoadedCounter == this.refillBox.length) {
+        this.loading = false;
+      }
     }
   }
 };
