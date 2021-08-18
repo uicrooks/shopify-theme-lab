@@ -5,7 +5,7 @@
       class="collection-nav"
     >
       <b-nav-text>
-        Essentials
+        Essentials hey there
       </b-nav-text>
       <b-nav-item
         v-for="item of menuItems.essentials"

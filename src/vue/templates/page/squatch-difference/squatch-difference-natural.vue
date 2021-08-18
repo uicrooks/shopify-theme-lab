@@ -369,7 +369,7 @@ export default {
     .header {
       margin: 18px 30px 12px 30px;
       line-height: 100%;
-      @include font-style-heading($color: $dark-brown, $sizeL 30px);
+      @include font-style-heading($color: $dark-brown, $size: 30px);
 
       @media (min-width: $md) {
         margin: 10px 30px 12px 30px;

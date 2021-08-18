@@ -64,18 +64,21 @@ export default {
         flex-direction: column;
 
         .header {
-          @include font-style-heading($color: black);
+          @include font-style-heading($color: black, $size: 24px);
+          @include layout-md{
+            font-size: 48px;
+          }
         }
 
         .subheader {
           margin-bottom: 20px;
-          @include font-style-body-bold($size: 20px);
+          @include font-style-body-bold($size: 20px, $color: $brown);
         }
 
         .copy {
           line-height: 1.3;
           margin-bottom: 30px;
-          @include font-style-body($size: 16px);
+          @include font-style-body($size: 16px, $color: $brown);
         }
 
         .image-container {

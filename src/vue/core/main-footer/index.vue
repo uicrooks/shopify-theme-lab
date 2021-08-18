@@ -4,7 +4,22 @@
     <div class="bottom-row">
       <div class="copyright">
         DR. SQUATCH is a registered trademark of Dr. Squatch, Inc. © 2021, Dr.
-        Squatch, Inc. All rights reserved.
+        Squatch, Inc. All rights reserved. |
+
+        <a 
+          class="copy-link"
+          href="/pages/terms-of-use"
+        >
+          Terms Of Use
+        </a>
+        |
+
+        <a 
+          class="copy-link"
+          href="/pages/privacy-policy"
+        >
+          Privacy Policy
+        </a>
       </div>
       <div class="payment-methods">
         <img
@@ -142,6 +157,10 @@ export default {
         width: unset;
         flex: 1;
         margin-right: 40px;
+      }
+
+      .copy-link {
+        @include font-style-body($size: 11px, $color: $sand);
       }
     }
 

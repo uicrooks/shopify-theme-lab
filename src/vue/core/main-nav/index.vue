@@ -130,6 +130,11 @@
               name="Take Soap Quiz"
               path="/quiz"
             />
+            <main-nav-single-menu-item
+              class="rewards-menu"
+              name="Rewards"
+              path="/loyalty-rewards"
+            />
           </div>
 
           <div class="sidebar-footer">
@@ -181,6 +186,13 @@
             :class="[productsSubMenuOpen ? 'icon-cross' : 'icon-chevron-down']"
           />
         </div>
+        <div 
+          class="menu-item" 
+          @click="navigateTo('/pages/loyalty-rewards')"
+        >
+          Rewards
+        </div>
+        
       </div>
       <a href="/">
         <img
@@ -309,9 +321,21 @@
             @click="navigateTo(item.path)"
           >
             {{ item.name }}
+
+            <div
+              v-if="item.orangeBadge"
+              class="link-badge-orange"
+            >
+              {{ item.orangeBadge }}
+            </div>
+            <div
+              v-if="item.redBadge"
+              class="link-badge-red"
+            >
+              {{ item.redBadge }}
+            </div>
           </div>
-        </div>
-        <div class="more-col">
+
           <div
             class="more-item more-item-shop-all"
             @click="navigateTo('/test')"
@@ -319,11 +343,19 @@
             Shop All
             <b-icon icon="arrow-right" />
           </div>
+        </div>
+        <div class="more-col">
           <div 
             class="more-item" 
-            @click="navigateTo('/test')"
+            @click="navigateTo('/pages/quiz-1')"
           >
             Take Soap Quiz
+          </div>
+          <div 
+            class="more-item" 
+            @click="navigateTo('/pages/loyalty-rewards')"
+          >
+            Rewards
           </div>
         </div>
       </div>
@@ -362,12 +394,12 @@ export default {
         isOpen: false,
         subMenuItems: [
           {
-            name: "Cologne",
-            path: "/collections/colognes",
-          },
-          {
             name: "Beard Oil",
             path: "/collections/beard",
+          },
+          {
+            name: "Cologne",
+            path: "/collections/colognes",
           },
           {
             name: "Hand Sanitizer",
@@ -379,16 +411,18 @@ export default {
           },
           {
             name: "Gift Cards",
-            badge: "New!",
+            orangeBadge: "New!",
             path: "/products/squatch-gift-card",
+          },
+          {
+            name: "Swag",
+            path: "/collections/swag",
+            orangeBadge: "New!"
           },
           {
             name: "Candles",
             path: "/products/bay-rum-candle",
-          },
-          {
-            name: "Gear",
-            path: "/collections/gear",
+            redBadge: "SALE!"
           },
         ],
       },
@@ -398,19 +432,19 @@ export default {
         subMenuItems: [
           {
             name: "Ingredients",
-            path: "/test",
+            path: "/pages/glossary",
           },
           {
             name: "Hero Discounts",
-            path: "/test",
+            path: "/pages/hero-discounts",
           },
           {
             name: "Wholesale",
-            path: "/test",
+            path: "/pages/wholesale",
           },
           {
             name: "Check Gift Card Balance",
-            path: "/test",
+            path: "/pages/check-gift-card-balance",
           },
         ],
       },
@@ -420,11 +454,11 @@ export default {
         subMenuItems: [
           {
             name: "About Us",
-            path: "/test",
+            path: "/pages/about-us",
           },
           {
             name: "Blog",
-            path: "/test",
+            path: "https://blog.drsquatch.com/",
           },
         ],
       },
@@ -434,27 +468,27 @@ export default {
         subMenuItems: [
           {
             name: "FAQs",
-            path: "/test",
+            path: "https://help.drsquatch.com/",
           },
           {
             name: "Shipping",
-            path: "/test",
+            path: "/pages/shipping",
           },
           {
             name: "Returns & Refunds",
-            path: "/test",
+            path: "/pages/returns",
           },
           {
             name: "Contact Us",
-            path: "/test",
+            path: "https://help.drsquatch.com/",
           },
           {
             name: "Terms of Use",
-            path: "/test",
+            path: "/pages/terms-of-use",
           },
           {
             name: "Privacy Policy",
-            path: "/test",
+            path: "/pages/privacy-policy",
           },
         ],
       },
@@ -473,8 +507,12 @@ export default {
           path: "/collections/toothpaste",
         },
         {
-          name: "Shower Boosters",
+          name: "Shower Boosters &#153",
           path: "/collections/shower-boosters",
+        },
+        {
+          name: "Shop Star Wars",
+          path: "/pages/star-wars",
         },
         {
           name: "Best Sellers",
@@ -500,32 +538,32 @@ export default {
             name: "Hair Care",
             path: "/collections/hair-care",
             imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Haricare.png?v=1616443457",
           },
           {
             name: "Deodorant",
             path: "/collections/deodorant",
             imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Deo.png?v=1616443457",
             badge: "New!",
           },
           {
             name: "Toothpaste",
             path: "/collections/toothpaste",
             imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_toothpaste.png?v=1616443457",
           },
           {
             name: "Shower Boosters",
             path: "/collections/shower-boosters",
             imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_ShowerBoosters.png?v=1616443457",
           },
           {
-            name: "Best Sellers",
-            path: "/collections/best-sellers",
+            name: "Limited Edition",
+            path: "/pages/star-wars",
             imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/SW_LOGO_blk_2_copy.png?v=1628708055",
           },
         ],
       },
@@ -763,6 +801,10 @@ export default {
         border-top: 1px solid $off-white;
         font-weight: 400;
       }
+
+      .rewards-menu {
+        color: #cc6328;
+      }
     }
 
     .sidebar-footer {
@@ -810,7 +852,7 @@ export default {
       align-items: center;
       margin: 0 16px;
       cursor: pointer;
-      @include font-style-body($weight: 600);
+      @include font-style-body($weight: 700);
 
       &:hover {
         color: $orange;
@@ -968,7 +1010,7 @@ export default {
       flex-flow: row nowrap;
 
       .more-col {
-        height: 120px;
+        height: 140px;
         display: flex;
         flex-flow: column wrap;
         align-content: flex-start;
@@ -981,9 +1023,31 @@ export default {
           margin: 0 0 14px 15px;
           @include font-style-body($weight: 600);
           cursor: pointer;
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
 
           &:hover {
             color: $orange;
+          }
+
+
+          .link-badge-orange{
+            margin: 0px 0px 0px 10px;
+            @include font-style-body($size: 10px, $color: white);
+            position: relative;
+            padding: 4px 8px;
+            border-radius: 50rem!important;
+            background-color: $orange;
+          }
+
+          .link-badge-red {
+            margin: 0px 0px 0px 10px;
+            @include font-style-body($size: 10px, $color: white);
+            position: relative;
+            padding: 4px 8px;
+            border-radius: 50rem!important;
+            background-color: #911a1d;
           }
         }
 

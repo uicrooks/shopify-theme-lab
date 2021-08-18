@@ -160,11 +160,15 @@ export default {
       text-align: center;
 
       .header {
-        @include font-style-heading;
+        @include font-style-heading($size: 27px);
+
+        @include layout-md{
+          font-size: 42px;
+        }
       }
 
       .subheader {
-        @include font-style-body-bold($color: $brown);
+        @include font-style-body-bold($color: $brown, $size: 20px);
       }
     }
   }
@@ -217,12 +221,12 @@ export default {
             text-align: center;
 
             .preheader {
-              @include font-style-body;
+              @include font-style-body($size: 16px);
             }
 
             .product-type {
               margin-bottom: 20px;
-              @include font-style-heading;
+              @include font-style-heading($size: 30px);
             }
 
             .cta-btns {
@@ -230,7 +234,7 @@ export default {
 
               .link {
                 text-decoration: none;
-                @include font-style-heading($color:#cc6328);
+                @include font-style-heading($color:#cc6328, $size: 14px);
               }
 
               a:hover {

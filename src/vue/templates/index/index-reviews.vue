@@ -130,15 +130,15 @@ export default {
     text-align: center;
 
     .preheader {
-      @include font-style-body;
+      @include font-style-body($size: 16px);
     }
 
     .review-copy {
-      @include font-style-heading;
+      @include font-style-heading($size: 30px);
     }
 
     .review-subheader {
-      @include font-style-body($size: 14px);
+      @include font-style-body($size: 14px, $color: $brown);
     }
   }
 

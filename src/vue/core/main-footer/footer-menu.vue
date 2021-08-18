@@ -106,7 +106,23 @@ export default {
       ],
       infoMenu: [
         {
-          name: "Ingredients",
+          name: "The Squatch Difference",
+          path: "/pages/the-squatch-difference",
+        },
+        {
+          name: "Why Natural Products",
+          path: "/pages/the-squatch-difference-natural-ingredients",
+        },
+        {
+          name: "No Harmful Ingredients",
+          path: "/pages/the-squatch-difference-no-toxic-ingredients",
+        },
+        {
+          name: "Formulated For Men",
+          path: "/pages/the-squatch-difference-for-men",
+        },
+        {
+          name: "Our Ingredients",
           path: "/pages/glossary",
         },
         {
@@ -114,20 +130,8 @@ export default {
           path: "/pages/hero-discounts",
         },
         {
-          name: "About Us",
-          path: "/test",
-        },
-        {
-          name: "Wholesale",
-          path: "/pages/wholesale",
-        },
-        {
           name: "Blog",
           path: "https://blog.drsquatch.com/",
-        },
-        {
-          name: "Gift Card Balance",
-          path: "/pages/check-gift-card-balance",
         },
       ],
       helpMenu: [
@@ -148,12 +152,16 @@ export default {
           path: "https://help.drsquatch.com/",
         },
         {
-          name: "Terms of Use",
-          path: "/pages/terms-of-use",
+          name: "Wholesale",
+          path: "/pages/wholesale",
         },
         {
-          name: "Privacy Policy",
-          path: "/pages/privacy-policy",
+          name: "Gift Card Balance",
+          path: "/pages/check-gift-card-balance",
+        },
+        {
+          name: "Careers",
+          path: "https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=a057621f-ae51-4a8d-940f-8f00ed64a510&ccId=19000101_000001&lang=en_US",
         },
       ],
     };
