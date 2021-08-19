@@ -67,6 +67,33 @@
           <span class="shadow arrow"> &#8592; </span>
         </div>
 
+        <!-- <b-carousel
+        id="carousel-1"
+        v-model="slide"
+        :interval="0"
+        :controls="true"
+        :no-wrap="true"
+      >
+          <b-carousel-slide 
+            v-for="(slide, index) in categories"
+            :key="index"
+            class="carousel-content"
+          >
+            <template #img>
+              <div class="image-container">
+                <img
+                  class="d-block"
+                  width="250"
+                  height="250"
+                  :src="slide.imageSrc"
+                  alt="image slot"
+                  style="margin: 20px;"
+                >
+              </div>
+            </template>
+          </b-carousel-slide>
+      </b-carousel> -->
+
         <div class="noscrollbar">
           <label
             v-for="(category, index) of categories"
@@ -288,7 +315,9 @@ export default {
     },
   },
   mounted() {
+    console.log(this.ingredients)
     this.selected = this.categories[0];
+    window.test = this;
   },
 };
 </script>
@@ -318,12 +347,20 @@ export default {
       padding: 0 19px;
 
       .glossary-title {
-        @include font-style-heading;
+        @include font-style-heading($size: calc(1.10625rem + 2.69167vw), $color: white);
+
+        @media(min-width: 1200px) {
+          font-size: 3.125rem;
+        }
       }
 
       .header-sub {
+        @include font-style-body-bold($size: 16px, $color: white, $lh: 1.2);
         margin: auto;
-        line-height: 1.2;
+
+        @media(min-width: 1200px) {
+          font-size: 18px;
+        }
       }
     }
 

@@ -1,44 +1,72 @@
 <template>
   <div class="ui-squatch-difference-accordion-component">
-    <div 
-      v-for="(item, index) in toxic" 
-      :key="index"
-      class="accordion-ingredient"
-    >
-      <div 
-        class="ingredient-title"
-        @click="toggle(index)" 
+    <div class="accordion" role="tablist">
+      <b-card 
+        no-body 
+        class="accordion-row"
+        v-for="(ingredient, index) in toxic"
+        :key="index"
       >
-        <span>
-          {{ item.name }}
-        </span>
-      </div>
-      <div 
-        class="ingredient-details"
-        v-bind:class="{ active : `${actives[index]}` }"      
-      >
-      {{ actives[index] }}
-        <div class="heading-section">
-          <div class="detail-title">
-            {{ item.name }}
-          </div>
-          <div class="detail-row">
-            <span class="key">
-              Function:
-            </span>
-            {{ item.function }}
-          </div>
-          <div class="detail-row">
-            <span class="key">
-              Relevant Product Types:
-            </span>
-            {{ item.productTypes }}
-          </div>
-          <div class="detail-multirow">
-            {{ item.description }}
-          </div>
-        </div>
-      </div>
+        <b-card-header 
+          header-tag="header" 
+          class="ingredient-name" 
+          role="tab"
+        >
+          <b-button 
+            block 
+            v-b-toggle="'accordion-' + index" 
+            variant="info"
+            class="accordion-ingredient-button"
+          >
+            {{ ingredient.name }}
+
+            <img
+              class="open-icon"
+              src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-icon-down-arrow.svg?v=1619047489"
+            >
+            <img 
+              class="close-icon"
+              src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-icon-up-arrow.svg?v=1619047489" 
+            >
+          </b-button>
+        </b-card-header>
+        <b-collapse 
+          :id="'accordion-' + index"
+          accordion="my-accordion" 
+          role="tabpanel"
+          class="my-accordion"
+        >
+          <b-card-body class="accordion-card">
+            <b-card-text class="accordion-content">
+              <div 
+                class="ingredient-details"     
+              >
+                <div class="heading-section">
+                  <div class="detail-title">
+                    {{ ingredient.name }}
+                  </div>
+                  <div class="detail-row">
+                    <span class="key">
+                      Function:
+                    </span>
+                    {{ ingredient.function }}
+                  </div>
+                  <div class="detail-row">
+                    <span class="key">
+                      Relevant Product Types:
+                    </span>
+                    {{ ingredient.productTypes }}
+                  </div>
+                </div>
+
+                <div class="detail-multirow">
+                  {{ ingredient.description }}
+                </div>
+              </div>
+            </b-card-text>
+          </b-card-body>
+        </b-collapse>
+      </b-card>
     </div>
   </div>
 </template>
@@ -51,21 +79,8 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
     data() {
       return {
         toxic: toxicIngredients,
-        actives: [true]
+        actives: []
       };
-    },
-    methods: {
-      toggle: function (index) {
-        this.actives[index] = !this.actives[index];
-        console.log(this.actives)
-      }
-    },
-    mounted() {
-      console.log(this.toxic)
-      for(let x; x < this.toxic.length-1; x++) {
-        this.actives.push(false);
-      }
-      console.log(this.actives);
     },
   };
 </script>
@@ -74,95 +89,126 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
 @import "@/styles/main.scss";
 
   .ui-squatch-difference-accordion-component {
-    .accordion-ingredient {
-      @include font-style-body;
 
-      &.active {
-
-        .ingredient-title {
-          color: $orange;
-
-          .open-icon {
-            display: none;
-          }
-
-          .close-icon {
-            display: inline-block;
-          }
-        }
-
-        .ingredient-details {
-          display: block;
-        }
-      }
-
-      .ingredient-title {
+    .accordion-row {
+      @include font-style-body($size: 14px, $color: $orange);
+      border: 0;
+      
+      .ingredient-name {
+        @include font-style-body($color: black);
+        background-color: white;
+        border-bottom: 1px solid #bca887;
+        padding: 12px 4px 10px;
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
-        padding: 12px 4px 10px;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 130%;
-        border-bottom: 1px solid #BCA887;
-        color: $dark-brown;
-        cursor: pointer;
+        width: 100%;
 
-        .close-icon {
-          display: none;
-        }
+        .accordion-ingredient-button {
+          @include font-style-body-bold($color: black, $size: 14px);
+          width: 100%;
+          text-align: left;
+          background-color: white;
+          border: 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .open-icon {
+            display: block;
+          }
+
+          .close-icon {
+            display: none;
+          }
+
+          &[aria-expanded="true"]{
+            color: $orange;
+
+            .open-icon {
+              display: none;
+            }
+
+            .close-icon {
+              display: block;
+            }
+          }
+
+          &:hover {
+            color: $orange;
+          }
+
+          &:focus {
+            box-shadow: none;
+            outline: none !important;
+          }
+
+          &.active {
+            box-shadow: none;
+            outline: none !important;
+          }
+        }  
       }
 
-      .ingredient-details {
-        position: relative;
-        background-color: #FAF6F1;
-        font-size: 14px;
-        line-height: 130%;
-        padding: 20px 10px;
-        color: $brown;
-        display: none;
+      .my-accordion {
+        @include font-style-body($color: black);
 
-        & .active {
-          display: block;
-        }
+        .accordion-card {
+          padding: 0;
 
-        .heading-section {
+          .accordion-content {
 
-          @media (min-width: $md) {
-            display: inline-block;
-            width: 40%;
-          }
+            .ingredient-details {
+              display: flex;
+              justify-content: center;
+              align-items: flex-start;
+              flex-flow: column nowrap;
+              position: relative;
+              background-color: #faf6f1;
+              padding: 20px 10px;
+              @include font-style-body($size: 14px, $lh: 130%, $color: #5a3714);
 
-          .detail-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: $dark-brown;
-            margin-bottom: 15px;
-          }
-    
-          .detail-row {
-            padding-bottom: 4px;
-    
-            .key {
-              font-weight: 600;
-              margin-right: 5px;
+              @include layout-md {
+                justify-content: unset;
+                flex-flow: row;
+              }
+
+              .heading-section {
+                .detail-title {
+                  @include font-style-body($size: 18px, $weight: 600, $color: #1a110c);
+                  margin-bottom: 15px;
+                }
+
+                .detail-row {
+                  padding: 0 0 4px 0;
+                  @include font-style-body($size: 14px, $color: $brown);
+
+                  .key {
+                    margin-right: 5px;
+                    @include font-style-body-bold($size: 14px, $weight: 600, $color: $brown);
+                  }
+                }
+
+                @include layout-md {
+                  width: 40%;
+                }
+              }
+
+              .detail-multirow {
+                padding-top: 10px;
+
+                @include layout-md {
+                  width: 50%;
+                  padding: 20px 0 0 0;
+                  margin:0 0 0 30px;
+                }
+              }
             }
           }
         }
-
-        .detail-multirow {
-          padding-top: 10px;
-
-          @media (min-width: $md) {
-            display: inline-block;
-            width: 50%;
-            padding-top: 20px;
-            margin-left: 30px;
-            position: absolute;
-            top: 14px;
-          }
-        }
       }
+
+
     }
   }
 </style>
