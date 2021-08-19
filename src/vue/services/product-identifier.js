@@ -1,22 +1,16 @@
 export default {
   getType(product) {
-    return product.type.toLowerCase();
+    return product.type && product.type.toLowerCase();
   },
-  identify(product, isSubscriptionOrder = false) {
-    let type;
-    let title;
-    if (isSubscriptionOrder) {
-      type = product.productData && product.productData.productType ? product.productData.productType.toLowerCase() : (product.propertyObj && product.propertyObj.type ? product.propertyObj.type : "");
-      title = product.product_title && product.product_title ? product.product_title : "";
-    } else {
-      type = product.type.toLowerCase();
-      title = product.title;
-    }
+  identify(product) {
+    if (!product.type) return [];
 
-    type = type === "soap" ? "barsoap" : type;
+    let type = product.productType && product.productType.toLowerCase();
     if (!type) {
-      return [];
+      type = product.type && product.type.toLowerCase();
     }
+    let title = product.title && product.title.toLowerCase();
+    type = type === "soap" ? "barsoap" : type;
 
     let arr = [];
     if (type === "haircare") {
@@ -58,11 +52,6 @@ export default {
     }
     return [type];
   },
-  // isGrouped(product) {
-  //   const type = product.type && product.type.toLowerCase();
-  //   const title = product.title && product.title.toLowerCase();
-  //   return type === "bundle" || title.includes("kit") || title.includes("pack")
-  // },
   checkIfGrouped(product) {
     const handle = product.handle.toLowerCase();
     const title = product.title.toLowerCase();

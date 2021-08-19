@@ -139,7 +139,7 @@
         </div>
       </div>
     </account-section-container-box>
-    <account-subscription-order-edit-modal
+    <account-subscription-edit-modal
       :showModal="showEdit"
       :item="itemToEdit"
       @hide="showEdit = false"

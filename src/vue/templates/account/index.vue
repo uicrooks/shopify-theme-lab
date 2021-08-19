@@ -104,7 +104,6 @@ export default {
   async created() {
     this.updateView();
 
-
     const subProducts = AccountHelpers.organizeProductsByType(this.subscriptionProducts);
     const subOptions = AccountHelpers.organizeProductsByType(this.subscriptionOptions);
     this.$store.commit("products/setSubscriptionCollections", subProducts);
