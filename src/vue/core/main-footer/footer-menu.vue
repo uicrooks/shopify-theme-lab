@@ -77,58 +77,62 @@ export default {
       shopMenu: [
         {
           name: "Bar Soaps",
-          path: "/test",
+          path: "/collections/bar-soap",
         },
         {
           name: "Deodorant",
-          path: "/test",
+          path: "/collections/deodorant",
         },
         {
           name: "Toothpaste",
-          path: "/test",
+          path: "/collection/toothpaste",
         },
         {
           name: "Hair Care",
-          path: "/test",
+          path: "/collection/hair-care",
         },
         {
           name: "Bundles",
-          path: "/test",
+          path: "/pages/bundle-offers",
         },
         {
           name: "Subscription",
-          path: "/test",
+          path: "/pages/subscription-flow",
         },
         {
           name: "Loyalty Rewards",
-          path: "/test",
+          path: "/pages/loyalty-rewards",
         },
       ],
       infoMenu: [
         {
-          name: "Ingredients",
-          path: "/pages/glossary",
+          name: "The Squatch Difference",
+          path: "/pages/the-squatch-difference",
+        },
+        {
+          name: "Why Natural Products",
+          path: "/pages/the-squatch-difference-natural-ingredients",
+        },
+        {
+          name: "No Harmful Ingredients",
+          path: "/pages/the-squatch-difference-natural-ingredients",
+        },
+        {
+          name: "Formulated For Men",
+          path: "/pages/the-squatch-difference-for-men",
+        },
+        {
+          name: "Our Ingredients",
+          path: "/pages/the-squatch-difference-for-men",
         },
         {
           name: "Hero Discounts",
-          path: "/test",
-        },
-        {
-          name: "About Us",
-          path: "/test",
-        },
-        {
-          name: "Wholesale",
-          path: "/test",
+          path: "/pages/hero-discounts",
         },
         {
           name: "Blog",
-          path: "/test",
-        },
-        {
-          name: "Gift Card Balance",
-          path: "/test",
-        },
+          path: "https://blog.drsquatch.com",
+        }
       ],
       helpMenu: [
         {
@@ -148,13 +152,17 @@ export default {
           path: "/test",
         },
         {
-          name: "Terms of Use",
-          path: "/pages/terms-of-use",
+          name: "Wholesale",
+          path: "/pages/wholesale",
         },
         {
-          name: "Privacy Policy",
-          path: "/pages/privacy-policy",
+          name: "Gift Card Balance",
+          path: "/pages/check-gift-card-balance",
         },
+        {
+          name: "Careers",
+          path: "https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=a057621f-ae51-4a8d-940f-8f00ed64a510&ccId=19000101_000001&lang=en_US",
+        }
       ],
     };
   },

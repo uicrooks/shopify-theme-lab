@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import {singularize} from "@/vue/filters/money";
+import {singularize} from "@/vue/filters/singularize";
 export default {
   name: "ProductBreadcrumb",
   filters: {

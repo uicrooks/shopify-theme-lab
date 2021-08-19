@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import {singularize} from "@/vue/filters/money";
+import {singularize} from "@/vue/filters/singularize";
 import ProductBreadcrumb from "../reusables/breadcrumb.vue";
 import ProductGallery from "../reusables/gallery.vue";
 export default {
