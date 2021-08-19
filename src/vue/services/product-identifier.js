@@ -3,7 +3,7 @@ export default {
     return product.type && product.type.toLowerCase();
   },
   identify(product) {
-    if (!product.type) return [];
+    if (!product || !product.type) return [];
 
     let type = product.productType && product.productType.toLowerCase();
     if (!type) {

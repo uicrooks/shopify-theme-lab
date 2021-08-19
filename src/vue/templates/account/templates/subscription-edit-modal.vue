@@ -3,15 +3,16 @@
     <account-renderless-subscription-edit
       :item="item"
       :subscription-products="subscriptionProducts"
-      :subscription-options="subscriptionOptions"
+      :subscription-option-source="subscriptionOptions"
     >
-      <div slot-scope="{ productOptions, productSelected, intervalOptions, intervalSelectedText, intervalAttr, intervalEvents, quantityOptions, quantityAttr, quantityEvents, selectionOptions, selection, selectionComplete, selectionUpdated, decreaseQuantity, increaseQuantity, removeOption }">
+      <div slot-scope="{ productOptions, productAttr, productEvents, intervalOptions, intervalSelectedText, intervalAttr, intervalEvents, quantityOptions, quantityAttr, quantityEvents, selectionOptions, selection, selectionComplete, selectionUpdated, decreaseQuantity, increaseQuantity, removeOption }">
         <b-modal
           v-model="showModalFlag"
           size="lg"
           body-class="edit-modal-content"
           footer-class="edit-modal-footer"
           hide-header
+          :hide-footer="productType !== 'barsoap'"
           scrollable
           centered
           no-close-on-esc
@@ -33,7 +34,8 @@
             >
               <label>Product</label>
               <b-form-select
-                :value="productSelected"
+                v-bind="productAttr"
+                v-on="productEvents"
                 :options="productOptions"
                 class="select-input"
               />
@@ -93,7 +95,13 @@
                       {{ option.title }}
                     </div>
                   </div>
+                  <div
+                    v-if="option.quantity === undefined"  
+                  >
+                    hehe
+                  </div>
                   <quantity-switch
+                    v-else
                     :quantity="option.quantity"
                     :index="index"
                     :decrease-disabled="option.quantity === 0"
@@ -107,30 +115,32 @@
             </div>
           </div>
           <template #modal-footer>
-            <div class="label">
-              Selected
-              <span
-                v-if="quantityAttr.value"
-              >
-                ({{ selection.length }} of {{ quantityAttr.value }})
-              </span>
-            </div>
-            <div class="selections">
-              <div
-                v-for="(option, index) of selection"
-                :key="`selection-option-${index}`"
-                class="selection"
-              >
-                <i 
-                  class="icon-squatch icon-cross"
-                  @click="removeOption(option)"
-                />
-                <img
-                  :src="option.imageSrc"
-                  :alt="`Selected option image for ${option.title}`"
+            <div v-if="productType === 'barsoap'">
+              <div class="label">
+                Selected
+                <span
+                  v-if="quantityAttr.value"
                 >
-                <div class="option-name">
-                  {{ option.title }}
+                  ({{ selection.length }} of {{ quantityAttr.value }})
+                </span>
+              </div>
+              <div class="selections">
+                <div
+                  v-for="(option, index) of selection"
+                  :key="`selection-option-${index}`"
+                  class="selection"
+                >
+                  <i 
+                    class="icon-squatch icon-cross"
+                    @click="removeOption(option)"
+                  />
+                  <img
+                    :src="option.imageSrc"
+                    :alt="`Selected option image for ${option.title}`"
+                  >
+                  <div class="option-name">
+                    {{ option.title }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -176,7 +186,6 @@ export default {
     productType() {
       if (!this.item.productData) return "";
       const productIdentityTags = ProductIdentifier.identify(this.item.productData);
-      console.log(productIdentityTags);
       return productIdentityTags[0] ? productIdentityTags[0] : "";
     },
     subscriptionProducts() {
@@ -202,8 +211,8 @@ export default {
     },
     item() {
       console.log("all subsProducs and subsOptions");
-      console.log(this.subscriptionProducts);
-      console.log(this.subscriptionOptions);
+      console.log(this.subscriptionCollections);
+      console.log(this.subscriptionOptionCollections);
       console.log("itemToEdit:", this.productType);
       console.log(this.item);
     },
