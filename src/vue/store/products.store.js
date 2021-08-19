@@ -1,7 +1,7 @@
 const state = () => ({
   products: {},
   subscriptionCollections: {},
-  collections: {}
+  subscriptionOptionCollections: {}
 });
 
 const getters = {
@@ -11,9 +11,9 @@ const getters = {
   subscriptionCollections: (state) => {
     return state.subscriptionCollections;
   },
-  collections: (state) => {
-    return state.collections;
-  }
+  subscriptionOptionCollections: (state) => {
+    return state.subscriptionOptionCollections;
+  },
 };
 
 const actions = {
@@ -26,8 +26,8 @@ const mutations = {
   setSubscriptionCollections: (state, data) => {
     state.subscriptionCollections = data;
   },
-  setCollections: (state, data) => {
-    state.collections = data;
+  setSubscriptionOptionCollections: (state, data) => {
+    state.subscriptionOptionCollections = data;
   }
 };
 

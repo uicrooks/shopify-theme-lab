@@ -139,10 +139,8 @@
 <script>
 import ProductIdentifier from "@/vue/services/product-identifier";
 import { mapGetters } from "vuex";
-import quantitySelector from '../../product/reusables/quantity-selector.vue';
 
 export default {
-  components: { quantitySelector },
   name: "AccountSubscriptionOrderEditModal",
   props: {
     showModal: {

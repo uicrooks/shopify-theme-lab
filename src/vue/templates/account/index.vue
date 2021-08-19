@@ -62,21 +62,21 @@ export default {
       required: true,
       default: () => {},
     },
-    subscriptionCollections: {
-      type: Object,
+    subscriptionProducts: {
+      type: Array,
       required: true,
-      default: () => {}
+      default: () => []
     },
-    subscriptionOptionsData: {
-      type: Object,
+    subscriptionOptions: {
+      type: Array,
       required: true,
-      default: () => {}
+      default: () => []
     },
   },
   computed: {
-    ...mapGetters("account", ["currentView", "userTags", "rechargeUser"]),
+    ...mapGetters("account", ["currentView", "rechargeUser"]),
     isActiveSubscriber() {
-      // return this.userTags.includes("Active Subscriber");
+      // return this.user.tags.includes("Active Subscriber");
       return true;
     },
   },
@@ -104,17 +104,17 @@ export default {
   async created() {
     this.updateView();
 
-    this.$store.commit("account/setUserTags", this.user.tagString.split("; "));
-    this.$store.commit("products/setSubscriptionCollections", this.subscriptionCollections);
 
-    let obj = {};
-    Object.keys(this.subscriptionOptionsData).forEach(key => {
-     obj[key] = JSON.parse(this.subscriptionOptionsData[key]);
-    });
-    this.$store.commit("products/setCollections", obj);
+    const subProducts = AccountHelpers.organizeProductsByType(this.subscriptionProducts);
+    const subOptions = AccountHelpers.organizeProductsByType(this.subscriptionOptions);
+    this.$store.commit("products/setSubscriptionCollections", subProducts);
+    this.$store.commit("products/setSubscriptionOptionCollections", subOptions);
+
+    console.log(this.user);
+    console.log(subProducts);
+    console.log(subOptions);
 
     if (this.isActiveSubscriber) {
-      console.log("active subscriber");
       // const email = this.user.email;
       const email = "will@drsquatch.com";
       await this.initializeRechargeUserData(email);

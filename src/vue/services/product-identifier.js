@@ -13,7 +13,7 @@ export default {
       title = product.title;
     }
 
-    type = type === "barsoap" ? "soap" : type;
+    type = type === "soap" ? "barsoap" : type;
     if (!type) {
       return [];
     }

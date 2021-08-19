@@ -1,3 +1,5 @@
+import ProductIdentifier from "@/vue/services/product-identifier";
+
 export default {
   processOrderData(items, addresses) {
     let obj = {};
@@ -34,5 +36,21 @@ export default {
       obj[addressLabel].upcomingRefillsByDate = refillsObj;
     }
     return obj;
+  },
+  organizeProductsByType(products) {
+    let organizedObj = {};
+    let types = ["barsoap", "haircare", "toothpaste", "deodorant"];
+    types.forEach(type => {
+      organizedObj[type] = products.filter(product => ProductIdentifier.getType(product) === type);
+    });
+    return organizedObj;
+  },
+  getSelectionOptionsForSubscriptionOrder(productType, source) {
+    if (productType === "soap") {
+      return source.filter(product => {
+        return ProductIdentifier.identify(product)[0] === "soap"
+      });
+    }
+    return source;
   }
 };

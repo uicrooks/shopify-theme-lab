@@ -1,6 +1,5 @@
 const state = () => ({
   currentView: "Overview",
-  userTags: [],
   rechargeUser: {},
   rechargePaymentSource: {},
   rechargeOrders: {},
@@ -12,9 +11,6 @@ const state = () => ({
 const getters = {
   currentView: (state) => {
     return state.currentView;
-  },
-  userTags: (state) => {
-    return state.userTags;
   },
   rechargeUser: (state) => {
     return state.rechargeUser;
@@ -74,9 +70,6 @@ const actions = {
 const mutations = {
   setCurrentView: (state, view) => {
     state.currentView = view;
-  },
-  setUserTags: (state, tags) => {
-    state.userTags = tags;
   },
   setRechargeUser: (state, user) => {
     state.rechargeUser = user;
