@@ -1,7 +1,7 @@
 <template>
   <div class="subscription-order-edit-modal-component">
     <account-renderless-subscription-edit
-      :item="item"
+      :item="itemWrapper"
       :subscription-products="subscriptionProducts"
       :subscription-option-source="subscriptionOptions"
     >
@@ -12,7 +12,6 @@
           body-class="edit-modal-content"
           footer-class="edit-modal-footer"
           hide-header
-          :hide-footer="productType !== 'barsoap'"
           scrollable
           centered
           no-close-on-esc
@@ -105,7 +104,7 @@
                     :quantity="option.quantity"
                     :index="index"
                     :decrease-disabled="option.quantity === 0"
-                    :increase-disabled="selectionComplete"
+                    :increase-disabled="option.isFull || selectionComplete"
                     @decrease="decreaseQuantity"
                     @increase="increaseQuantity"
                     class="qty-switch"
@@ -179,6 +178,7 @@ export default {
   data() {
     return {
       showModalFlag: false,
+      itemWrapper: {},
     };
   },
   computed: {
@@ -208,6 +208,7 @@ export default {
     showModal(val) {
       console.log("showModal?", val);
       this.showModalFlag = val;
+      this.itemWrapper = val ? this.item : {};
     },
     item() {
       console.log("all subsProducs and subsOptions");

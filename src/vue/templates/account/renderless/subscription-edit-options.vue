@@ -46,18 +46,30 @@ export default {
         return this.subscriptionOptionSource;
       }
       if (this.productType === "haircare") {
-        console.log("productSubType", this.productSubType);
-        const filtered = this.subscriptionOptionSource.filter(option => {
+        let shampoos = [];
+        let conditioners = [];
+        this.subscriptionOptionSource.forEach(option => {
           const optionIdentityTags = ProductIdentifier.identify(option);
-          console.log(optionIdentityTags);
           if (!optionIdentityTags[1]) return false;
-          if (this.productSubType === "kit") {
-            return optionIdentityTags[1] !== this.productSubType;
-          } else {
-            return optionIdentityTags[1] === this.productSubType;
+          if (optionIdentityTags[1] === "shampoo") {
+            shampoos.push(option);
+          }
+          if (optionIdentityTags[1] === "conditioner") {
+            conditioners.push(option);
           }
         });
-        return filtered;
+        return [...shampoos, ...conditioners];
+        // const filtered = this.subscriptionOptionSource.filter(option => {
+        //   const optionIdentityTags = ProductIdentifier.identify(option);
+        //   console.log(optionIdentityTags);
+        //   if (!optionIdentityTags[1]) return false;
+        //   if (this.productSubType === "kit") {
+        //     return optionIdentityTags[1] !== this.productSubType;
+        //   } else {
+        //     return optionIdentityTags[1] === this.productSubType;
+        //   }
+        // });
+        // return filtered;
       }
       return [];
     },
@@ -67,32 +79,62 @@ export default {
       return `Every ${num === 1 ? unit : num + " " + unit}`;
     },
     selection() {
-      let arr = [];
-      this.selectionOptions.forEach((option, index) => {
-        option.selectionOptionIndex = index;
-        for (let i = 0; i < option.quantity; i++) {
-          arr.push(option);
-        }
-      });
-      return arr;
+      if (this.productType === "barsoap") {
+        let arr = [];
+        this.selectionOptions.forEach((option, index) => {
+          option.selectionOptionIndex = index;
+          for (let i = 0; i < option.quantity; i++) {
+            arr.push(option);
+          }
+        });
+        return arr;
+      }
+      if (this.productType === "haircare") {
+        let arr = [];
+        this.selectionOptions.forEach((option, index) => {
+          option.selectionOptionIndex = index;
+          if (option.quantity && arr.indexOf(option.handle) < 0) {
+            arr.push(option);
+          }
+        });
+        return arr;
+      }
+      return [];
     },
     selectionUpdated() {
       if (!this.item.lineItems) return false;
-      const current = this.selection.map(option => option.handle).sort();
-      const initial = this.item.lineItems.map(option => option.handle).sort();
-      for (let i = 0; i < initial.length; i++) {
-        if (initial[i] !== current[i]) {
-          return true;
+      
+      const selectionOptionsUpdated = checkIfselectionOptionsUpated(this.selection.map(option => option.handle), this.item.lineItems.map(option => option.handle));
+      
+      const qtyUpdated = this.item.quantity !== this.quantitySelected;
+
+      return selectionOptionsUpdated || qtyUpdated;
+
+      function checkIfselectionOptionsUpated(arr1, arr2) {
+        arr1.sort();
+        arr2.sort();
+        for (let i = 0; i < arr1.length; i++) {
+          if (arr1[i] !== arr2[i]) {
+            return true;
+          }
         }
+        return false;
       }
-      return false;
     },
     selectionComplete() {
-      return this.selection.length === this.quantitySelected;
+      if (this.productType === "barsoap") {
+        return this.selection.length === this.quantitySelected;
+      }
+      if (this.productType === "haircare") {
+        const totalQty = this.selectionOptions.reduce((total, option) => total + option.quantity, 0);
+        return this.quantitySelected * this.item.lineItems.length === totalQty;
+      }
+      return true;
     },
   },
   watch: {
     item(val) {
+      console.log("subsEditOptions.vue", val);
       this.resetOptions();
       if (!val.productData) return;
 
@@ -130,21 +172,63 @@ export default {
       console.log(this.selection);
     },
     quantitySelected(val) {
-      // if qtySelected is smaller than current selection, trim the selection
-      const optionsToRemove = val < this.selection.length ? this.selection.slice(val) : [];
-      optionsToRemove.forEach(option => this.removeOption(option));
+      console.log("watching qtySelected", val);
+      if (this.productType === "barsoap") {
+        // if qtySelected is smaller than current selection, trim the selection
+        const optionsToRemove = val < this.selection.length ? this.selection.slice(val) : [];
+        optionsToRemove.forEach(option => this.removeOption(option));
+      }
+      if (this.productType === "haircare" && this.item.quantity !== val) {
+        console.log("hair type, qty updated");
+        this.selectionOptions.forEach(option => {
+          option.quantity = option.quantity ? val : 0
+        });
+      }
     },
+    selectionOptions() {
+      console.log("watching selectionOptions");
+      console.log(this.selectionOptions);
+
+      // Need to watch selectionOptions change to update option.isFull property for quantity switch disabling
+      if (this.productType === "haircare") {
+        let shampoos = [];
+        let conditioners = [];
+        this.selectionOptions.forEach(option => {
+          if (option.subType === "shampoo") {
+            shampoos.push(option);
+          }
+          if (option.subType === "conditioner") {
+            conditioners.push(option);
+          }
+        });
+        const shampooSelected = shampoos.findIndex(option => option.quantity) > -1;
+        const conditionerSelected = conditioners.findIndex(option => option.quantity) > - 1;
+        console.log("shampooSelected", shampooSelected);
+        console.log("condSelected", conditionerSelected);
+        this.selectionOptions.forEach(option => {
+          if (option.subType === "shampoo") {
+            option.isFull = shampooSelected;
+          }
+          if (option.subType === "conditioner") {
+            option.isFull = conditionerSelected;
+          }
+        });
+
+      }
+    }
   },
   methods: {
     resetOptions() {
       console.log("resetOptions");
       this.productOptions = [];
       this.productSelected = null;
+      this.indexForHaircareProductSelected = null;
       this.intervalOptions = [];
       this.intervalSelected = null;
       this.quantityOptions = [];
       this.quantitySelected = 1;
       this.selectionOptions = [];
+      
     },
     getQuantityOptionsForBarsoap() {
       return this.intervalSelected === 1 ? [2, 3] : [3, 6, 9];
@@ -188,39 +272,47 @@ export default {
       this.indexForHaircareProductSelected = this.subscriptionProducts.findIndex(product => product.handle === this.item.productData.handle);
 
       this.quantityOptions = [1, 2, 3, 4, 5];
+      this.quantitySelected = this.item.quantity;
 
       this.processSelectionOptionsForHaircare();
     },
     processSelectionOptionsForHaircare() {
       const processed = this.subscriptionOptions.map(option => {
         const inCurrentOrder = this.item.lineItems.filter(item => item.handle === option.handle);
+        const subType = ProductIdentifier.identify(option) && ProductIdentifier.identify(option)[1];
         return {
           handle: option.handle,
           sku: option.variants && option.variants[0] ? option.variants[0].sku : null,
           title: option.title,
           imageSrc: option.fatured_image || option.images[0],
-          selected: inCurrentOrder.length
+          quantity: inCurrentOrder.length ? this.item.quantity : 0,
+          subType: subType,
         };
       });
       console.log(processed);
       this.selectionOptions = processed;
     },
     decreaseQuantity(index) {
-      console.log("Decrase", index);
-      let option = this.selectionOptions[index];
-      if (option.quantity >= 1) {
+      let selectionOptionsCopy = this.selectionOptions.slice(0);
+      let option = selectionOptionsCopy[index];
+      if (this.productType === "haircare") {
+        option.quantity -= this.quantitySelected;
+      } else {
         option.quantity--;
       }
-      console.log(option);
+      this.selectionOptions = selectionOptionsCopy;
     },
     increaseQuantity(index) {
-      console.log("Increase", index);
-      let option = this.selectionOptions[index];
-      option.quantity++;
-      console.log(option);
+      let selectionOptionsCopy = this.selectionOptions.slice(0);
+      let option = selectionOptionsCopy[index];
+      if (this.productType === "haircare") {
+        option.quantity += this.quantitySelected;
+      } else {
+        option.quantity++;
+      }
+      this.selectionOptions = selectionOptionsCopy;
     },
     removeOption(option) {
-      console.log("remove", option);
       const index = option.selectionOptionIndex;
       this.decreaseQuantity(index);
     },
