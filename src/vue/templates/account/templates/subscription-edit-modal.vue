@@ -5,7 +5,7 @@
       :subscription-products="subscriptionProducts"
       :subscription-option-source="subscriptionOptions"
     >
-      <div slot-scope="{ productOptions, productAttr, productEvents, intervalOptions, intervalSelectedText, intervalAttr, intervalEvents, quantityOptions, quantityAttr, quantityEvents, selectionOptions, selection, selectionComplete, selectionUpdated, decreaseQuantity, increaseQuantity, removeOption }">
+      <div slot-scope="{ productOptions, productAttr, productEvents, intervalOptions, intervalText, intervalAttr, intervalEvents, quantityOptions, quantityAttr, quantityEvents, selectionOptions, selection, selectionComplete, selectionUpdated, decreaseQuantity, increaseQuantity, removeOption }">
         <b-modal
           v-model="showModalFlag"
           size="lg"
@@ -45,7 +45,7 @@
                 v-if="intervalOptions.length === 0"
                 class="text-display"
               >
-                {{ intervalSelectedText }}
+                {{ intervalText }}
               </div>
               <div v-else>
                 <b-form-select
@@ -79,37 +79,35 @@
               <label>
                 Selection
               </label>
-              <div>
-                <div
-                  v-for="(option, index) of selectionOptions"
-                  :key="option.id"
-                  class="option"
-                >
-                  <div class="option-label">
-                    <img
-                      :src="option.imageSrc"
-                      :alt="`${option.title} image`"
-                    >
-                    <div>
-                      {{ option.title }}
-                    </div>
-                  </div>
-                  <div
-                    v-if="option.quantity === undefined"  
+              <div
+                v-for="(option, index) of selectionOptions"
+                :key="option.id"
+                class="option"
+              >
+                <div class="option-label">
+                  <img
+                    :src="option.imageSrc"
+                    :alt="`${option.title} image`"
                   >
-                    hehe
+                  <div>
+                    {{ option.title }}
                   </div>
-                  <quantity-switch
-                    v-else
-                    :quantity="option.quantity"
-                    :index="index"
-                    :decrease-disabled="option.quantity === 0"
-                    :increase-disabled="option.isFull || selectionComplete"
-                    @decrease="decreaseQuantity"
-                    @increase="increaseQuantity"
-                    class="qty-switch"
-                  />
                 </div>
+                <div
+                  v-if="option.quantity === undefined"  
+                >
+                  hehe
+                </div>
+                <quantity-switch
+                  v-else
+                  :quantity="option.quantity"
+                  :index="index"
+                  :decrease-disabled="option.quantity === 0"
+                  :increase-disabled="option.isFull || selectionComplete"
+                  @decrease="decreaseQuantity"
+                  @increase="increaseQuantity"
+                  class="qty-switch"
+                />
               </div>
             </div>
           </div>
@@ -214,8 +212,6 @@ export default {
       console.log("all subsProducs and subsOptions");
       console.log(this.subscriptionCollections);
       console.log(this.subscriptionOptionCollections);
-      console.log("itemToEdit:", this.productType);
-      console.log(this.item);
     },
   },
   methods: {
