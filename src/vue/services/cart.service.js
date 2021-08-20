@@ -1,6 +1,7 @@
 import axios from "axios";
 // import TrackingService from "@/vue/services/tracking.service";
 import CookieService from "@/vue/services/cookie.service";
+import TrackingService from "@/vue/services/tracking.service";
 
 const axiosConfig = {
   headers: {
@@ -15,6 +16,8 @@ export default {
   async initCart() {
     try {
       const res = await axios.get("/cart.js", axiosConfig);
+      console.log("making init-cart call");
+      console.log(window.app)
       if (res.status === 200) {
         return res.data;
       }
@@ -59,21 +62,39 @@ export default {
       return false;
     }
   },
-  redirectToCheckout() {
+  async redirectToCheckout() {
     console.log(window.location);
+    const {isSubscriptionCart, cart} = await preCheckoutPromise();
     const cartCookieValue = CookieService.get("cart");
     console.log(cartCookieValue);
     const host = window.location.host;
     CookieService.set("cart", cartCookieValue, { domain: host });
     CookieService.set("cart", cartCookieValue, { domain: `.${host}` });
-    // if subscription item is included, go to recharge checkout
-    let url = "/checkout";
-    // check for discount code
-    let discountCode = "";
-    if (discountCode) {
-      url += `?discount=${discountCode}`;
+
+    var checkout_url;
+    if (isSubscriptionCart) {
+      try {
+        var ga_linker = ga.getAll()[0].get('linkerParam');
+      } catch (e) {
+        var ga_linker = '';
+      }        
+      let customer_param = '';
+      if (window.theme.customerEmail) { customer_param = `customer_id=${window.theme.customerId}&customer_email=${window.theme.customerEmail}`; }
+      checkout_url = `https://subscribe.drsquatch.com/r/checkout?myshopify_domain=${app.myshopify_domain}&cart_token=${getCartCookie}&${ga_linker}&${customer_param}`;
+      if (window.theme.currency !== "USD") {
+        // force to store/root currency
+        CookieService.set("rc_shim", "CAD", { domain: `.${host}` }); 
+        console.log('FORCING TO USD - START');
+        await axios.get(`/services/currency/update?currency=USD&return_to=/pages/blank`);
+      }
+    } else {
+      checkout_url = "/checkout"
     }
-    window.location.href = url;
+    const discountCode = sessionStorage.getItem("discount_code");
+    if (discountCode) {
+      checkout_url += `?discount=${discountCode}`;
+    }
+    window.location.href = checkout_url;
   },
   getProductSchema(product, variantId) {
     const variant = getMatchingVariantForProduct(product, variantId);
@@ -105,4 +126,20 @@ function getMatchingVariantForProduct(product, variantId) {
     })[0];
   }
   return matchingVariant;
+}
+
+function preCheckoutPromise() {
+  // handles async actions and returns checkout Destination
+  return new Promise(async resolve => {
+    const cart = await CartService.initCart();
+    var hit = false;
+    for (var i in cart.items) {
+      if (cart.items[i].title.indexOf("Subscription")>-1) {
+        hit=true;
+        break;
+      }
+    }
+    await TrackingService.INITIATE_CHECKOUT(cart);
+    resolve({isSubscriptionCart: hit, cart});
+  });
 }

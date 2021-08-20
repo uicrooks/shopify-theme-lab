@@ -3,8 +3,7 @@ import Vue from "vue";
 import store from "@/vue/store";
 import axios from "axios";
 import { BootstrapVue, BootstrapVueIcons } from "bootstrap-vue";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
+import "@/styles/bootstrap_variables.scss";
 
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
@@ -24,6 +23,7 @@ Vue.component("MainNav", MainNav);
 Vue.component("MainFooter", MainFooter);
 Vue.component("CartDrawer", CartDrawer);
 
+// Scroll Listener
 const body = document.body;
 const scrollUp = "scroll-up";
 const scrollDown = "scroll-down";
@@ -49,5 +49,6 @@ window.addEventListener("scroll", () => {
   }
   lastScroll = currentScroll;
 });
+// END Scroll Listener
 
 export { Vue, store };

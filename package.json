@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "bootstrap": "^5.0.0",
+    "bootstrap": "4.5.3",
     "bootstrap-vue": "^2.21.2",
     "lazysizes": "^5.3.2",
     "moment": "^2.29.1",

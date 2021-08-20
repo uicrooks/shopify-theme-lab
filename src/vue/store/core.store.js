@@ -2,9 +2,16 @@ const state = () => ({
   loggedIn: false,
   oosItems: [],
   defaultCurrencyOption: {},
+  session: {
+    country_code: "US",
+    email: window.theme.customerEmail,
+    template_name: window.theme.template_name,
+    template_suffix: window.theme.template_suffix,
+  },
   currencyOptions: [
     {
       country: "United States",
+      country_code: "US",
       handle: "",
       currency: "USD",
       symbol: "$",
@@ -12,6 +19,7 @@ const state = () => ({
     }, // first element must be USD
     {
       country: "Canada",
+      country_code: "CA",
       handle: "ca",
       currency: "CAD",
       symbol: "$",
@@ -35,6 +43,16 @@ const getters = {
   },
   currencyOptions: (state) => {
     return state.currencyOptions;
+  },
+  // IMMUTABLE
+  template_name: (state) => {
+    return state.template_name;
+  },
+  template_suffix: (state) => {
+    return state.template_suffix;
+  },
+  country_code: (state) => {
+    return state.country_code;
   }
 };
 

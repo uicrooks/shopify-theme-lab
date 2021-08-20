@@ -10,7 +10,7 @@ window.theme = {
     utilitiesAppEnabled: {{ settings.enable_utilities_app | json }},
     customerLoggedIn: {% if customer %} true{% else %} false{% endif %},
     isSubscriber: {% if customer.tags contains 'Active Subscriber' %} true{% else %} false{% endif %},
-    customersID: {% if customer %} {{ customer.id }} {% else %} null{% endif %},
+    customerId: {% if customer %} {{ customer.id }} {% else %} null{% endif %},
     customerEmail: {% if customer %} '{{ customer.email }}'{% else %} null{% endif %},
     template_name: "{{template.name}}",
     template_suffix: "{{template.suffix}}"

@@ -106,7 +106,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @use "@/styles/main" as global;
 
 .product-card-component {
@@ -174,11 +174,13 @@ export default {
       flex-flow: row nowrap;
 
       .qty-selector {
-        padding: 0 12px;
+        padding: 0 28px;
         margin-right: 15px;
         color: global.$dark-brown;
         border: 1px solid global.$brown;
         border-radius: 5px;
+        height: 50px;
+        width: 96px;
       }
     }
 

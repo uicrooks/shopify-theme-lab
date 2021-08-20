@@ -1,7 +1,7 @@
 <template>
   <b-container class="collection-default-content-component">
     <b-row>
-      <b-col md="3" v-for="(product, index) of products">
+      <b-col sm="6" lg="4" xl="3" v-for="(product, index) of products">
         <product-card 
           :key="`collection-product-${index}`"
           :product="product"
@@ -36,7 +36,10 @@ export default {
 
 .collection-default-content-component {
   padding: 35px 15px;
-  width: calc(100% - 200px);
+  max-width: 1440px;
+  @include global.layout-xl {
+    width: calc(100% - 200px);
+  }
   .product-card {
     width: 100%;
   }

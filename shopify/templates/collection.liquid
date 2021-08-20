@@ -16,6 +16,7 @@ But holding off for now due to routing rules
   {{ 'collection-hair-care.css' | asset_url | stylesheet_tag }}
   {% else %}
   {{ 'collection-default.js' | asset_url | script_tag }}
+  {{ 'collection-default.css' | asset_url | stylesheet_tag }}
   {% endif %}
   <collection
   handle="{{ handle }}"

@@ -1,10 +1,17 @@
 <template>
   <div class="footer-component">
+    <div class="newsletter">
+      Klaviyo email capture here
+    </div>
     <main-footer-menu />
     <div class="bottom-row">
       <div class="copyright">
         DR. SQUATCH is a registered trademark of Dr. Squatch, Inc. © 2021, Dr.
-        Squatch, Inc. All rights reserved.
+        Squatch, Inc. All rights reserved.&nbsp;
+        <div class="legal-links">
+          <a href="/pages/terms-of-use">Terms of Use</a>&nbsp;|&nbsp;
+          <a href="/pages/privacy-policy">Privacy Policy</a>
+        </div>
       </div>
       <div class="payment-methods">
         <b-img-lazy
@@ -42,7 +49,7 @@ export default {
   name: "MainFooter",
   components: {
     MainFooterMenu
-  }
+  },
 };
 </script>
 
@@ -139,12 +146,15 @@ export default {
     .copyright {
       width: 100%;
       text-align: center;
+      display: block;
       @include global.font-style-body($size: 11px, $color: global.$sand);
 
       @include global.layout-lg {
         width: unset;
         flex: 1;
         margin-right: 40px;
+        justify-content: center;
+        display: flex;
       }
     }
 
@@ -153,9 +163,11 @@ export default {
       width: 100%;
       margin-top: 4px;
 
-      @include global.layout-lg {
+      @include global.layout-xl {
         width: unset;
         margin-top: 0;
+        position: absolute;
+        right: 15px;
       }
 
       img {

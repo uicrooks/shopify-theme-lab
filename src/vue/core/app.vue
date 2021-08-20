@@ -6,6 +6,7 @@
 import StoreService from "@/vue/services/store.service";
 import CookieService from "@/vue/services/cookie.service";
 import Helpers from "@/vue/services/general-helpers";
+import TrackingService from "@/vue/services/tracking.service";
 import { mapGetters } from "vuex";
 
 export default {
@@ -107,6 +108,10 @@ export default {
     console.log("oosItems", this.oosItems);
     this.$store.commit("core/setLoggedIn", this.loggedIn);
     this.$store.commit("core/setOosItems", this.oosItems);
+    Helpers.vaultDiscountCode();
+    Helpers.scrollToLink();
+    TrackingService.linkEmailToKlaviyo();
+    TrackingService.PAGE_VIEW();
   }
 };
 </script>
