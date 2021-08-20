@@ -38,9 +38,9 @@ const Helpers = {
     }
     return [];
   },
-  generateSelectionOptions: (productType, item, subsOptions) => {
+  generateSelectionOptions: (productType, productSubType, item, qty, subsOptions) => {
+    console.log("Helpers.generateSelectionOptions---");
     if (!item || !item.lineItems) return [];
-
     if (productType === "barsoap") {
       return subsOptions.map(option => {
         const matchesInLineItems = item.lineItems.filter(item => {
@@ -55,23 +55,24 @@ const Helpers = {
         }
       });
     }
-
     if (productType === "haircare") {
       return subsOptions.map(option => {
         const optionInLineItems = item.lineItems.findIndex(item => {
           return item.handle == option.handle;
         }) >= 0;
-        const subType = ProductIdentifier.identify(option) && ProductIdentifier.identify(option)[1];
+        const optionSubType = ProductIdentifier.identify(option) && ProductIdentifier.identify(option)[1];
         return {
           handle: option.handle,
           sku: option.variants && option.variants[0] ? option.variants[0].sku : null,
-          title: option.title,
+          title: option.title.split(" - ")[0],
           imageSrc: option.fatured_image || option.images[0],
-          quantity: optionInLineItems ? item.quantity : 0,
-          subType: subType,
+          quantity: optionInLineItems ? qty : 0,
+          subType: optionSubType,
+          hidden: productSubType === "kit" ? false : (optionSubType !== productSubType)
         }
       });
     }
+    return [];
   },
   getSelectionFromSelectionOptions: (productType, selectionOptions) => {
     if (productType === "barsoap") {
@@ -87,18 +88,12 @@ const Helpers = {
       return arr;
     }
     if (productType === "haircare") {
-      let arr = [];
-      // Add to the array if the option's quantity is bigger than 0 and the option has previousnly not been added to the array
-      selectionOptions.forEach(option => {
-        if (option.quantity && arr.indexOf(option.handle) < 0) {
-          arr.push(option);
-        }
-      });
-      return arr;
+      return selectionOptions.filter(option => !option.hidden && option.quantity > 0);
     }
     return [];
   },
-  processHaircareSelectionOptionsOnUpdate: (selectionOptions) => {
+  processHaircareSelectionOptionsOnUpdate: (quantitySelected, selectionOptions) => {
+    console.log("Helpers.procesHaircareSelectionOptionsOnUpdate---");
     let shampoos = [];
     let conditioners = [];
     selectionOptions.forEach(option => {
@@ -109,8 +104,8 @@ const Helpers = {
         conditioners.push(option);
       }
     });
-    const shampooSelected = shampoos.findIndex(option => option.quantity) > -1;
-    const conditionerSelected = conditioners.findIndex(option => option.quantity) > -1;
+    const shampooSelected = shampoos.findIndex(option => option.quantity >= quantitySelected) > -1;
+    const conditionerSelected = conditioners.findIndex(option => option.quantity >= quantitySelected) > -1;
 
     selectionOptions.forEach(option => {
       if (option.subType === "shampoo") {
@@ -143,8 +138,8 @@ export default {
   },
   data() {
     return {
-      productOptions: [],
-      productSelected: null,
+      productOptionsWithIndexValue: [],
+      productSelectedIndex: null,
       intervalOptions: [],
       intervalSelected: null,
       quantityOptions: [],
@@ -153,12 +148,15 @@ export default {
     };
   },
   computed: {
+    productSelected() {
+      return this.productSelectedIndex === null ? this.item.productData : this.subscriptionProducts[this.productSelectedIndex];
+    },
     productType() {
-      const productIdentityTags = ProductIdentifier.identify(this.item.productData);
+      const productIdentityTags = ProductIdentifier.identify(this.productSelected);
       return productIdentityTags[0] || "";
     },
     productSubType() {
-      const productIdentityTags = ProductIdentifier.identify(this.item.productData);
+      const productIdentityTags = ProductIdentifier.identify(this.productSelected);
       return productIdentityTags[1] ? productIdentityTags[1] : "";
     },
     subscriptionOptions() {
@@ -171,17 +169,18 @@ export default {
       return `Every ${unitText}`;
     },
     selection() {
-      return Helpers.getSelectionFromSelectionOptions();
+      return Helpers.getSelectionFromSelectionOptions(this.productType, this.selectionOptions);
     },
     selectionUpdated() {
       if (!this.item.lineItems) return false;
+      const productUpdated = this.productSelected.handle !== this.item.productData.handle; 
       const selectionUpdated = checkIfDifferent(
         this.selection.map(option => option.handle),
         this.item.lineItems.map(option => option.handle)
       );
-      // Not applicalbe to barsoap
       const quantityUpdated = this.quantitySelected !== this.item.quantity;
-      return selectionUpdated || quantityUpdated;
+
+      return productUpdated || quantityUpdated || selectionUpdated;
 
       function checkIfDifferent(arr1, arr2) {
         arr1.sort();
@@ -193,16 +192,16 @@ export default {
         }
         return false;
       }
+
     },
     selectionComplete() {
       if (this.productType === "barsoap") {
         return this.selection.length === this.quantitySelected;
       }
       if (this.productType === "haircare") {
-        // Calculate the total interating selectionOptions array and add each item's quantity
-        const totalQty = this.selectionOptions.reduce((total, option) => total + option.quantity, 0);
-        // lineItems included unique SKUs only
-        return this.quantitySelected * this.item.lineItems.length === totalQty;
+        // Calculate the total interating selectionOptions array and add applicable (not hidden) item's quantity
+        const totalQty = this.selectionOptions.filter(option => !option.hidden).reduce((total, option) => total + option.quantity, 0);
+        return (this.productSubType === "kit" ? 2 : 1) * this.quantitySelected === totalQty;
       }
       return true;
     },
@@ -211,55 +210,54 @@ export default {
     item(val) {
       console.log("subs edit init!", val);
       this.resetOptions();
-
       if (!val.productData) return;
 
       this.intervalOptions = Helpers.generateIntervalOptions(this.productType);
+      this.intervalSelected = Number(this.item.order_interval_frequency);
       
-      this.selectionOptions = Helpers.generateSelectionOptions(this.productType, this.item, this.subscriptionOptions);
-
       if (this.productType === "barsoap") {
-        this.intervalSelected = Number(this.item.order_interval_frequency);
         this.quantityOptions = this.intervalSelected === 1 ? [2, 3] : [3, 6, 9];
         this.quantitySelected = this.item.lineItems.length;
       }
 
       if (this.productType === "haircare") {
-        this.productOptions = this.subscriptionProducts.map((product, index) => {
+        this.productOptionsWithIndexValue = this.subscriptionProducts.map((product, index) => {
           return {
             text: product.title,
             value: index
           };
         });
-      this.productSelected = this.subscriptionProducts.findIndex(product => product.handle === this.item.productData.handle);
+        this.productSelectedIndex = this.subscriptionProducts.findIndex(product => product.handle === this.item.productData.handle);
 
-      this.quantityOptions = [1, 2, 3, 4, 5];
-      this.quantitySelected = this.item.quantity;
+        this.quantityOptions = [1, 2, 3, 4, 5];
+        this.quantitySelected = this.item.quantity;
       }
 
       if (this.productType === "toothpaste") {
         this.quantityOptions = [1, 2, 3, 4, 5];
+        this.quantitySelected = this.item.quantity;
       }
 
       if (this.productType === "deodorant") {
         this.quantityOptions = [1, 2, 3];
-        // selectionOptions
+        this.quantitySelected = this.item.lineItems.length;
       }
 
-      console.log("---selectionOptions", this.selectionOptions);
+      this.selectionOptions = Helpers.generateSelectionOptions(this.productType, this.productSubType, this.item, this.quantitySelected, this.subscriptionOptions);
     },
     selectionOptions() {
-      console.log("selectionOptions on watch", this.selectionOptions);
+      console.log("Watch on selectionOptions...");
       // Need to watch selectionOptions change to update option.isFull property for quantity switch disabling
       if (this.productType === "haircare") {
-        Helpers.processHaircareSelectionOptionsOnUpdate(this.selectionOptions);
+        Helpers.processHaircareSelectionOptionsOnUpdate(this.quantitySelected, this.selectionOptions);
       }
-    }
+      console.log(this.selectionOptions);
+    },
   },
   methods: {
     resetOptions() {
-      this.productOptions = [];
-      this.productSelected = null;
+      this.productOptionsWithIndexValue = [];
+      this.productSelectedIndex = null;
       this.intervalOptions = [];
       this.intervalSelected = null;
       this.quantityOptions = [];
@@ -290,6 +288,15 @@ export default {
       const index = option.selectionOptionIndex;
       this.decreaseQuantity(index);
     },
+    onProductUpdated(val) {
+      this.productSelectedIndex = val;
+      if (this.productType === "haircare") {
+        // Iterate selectionOptions array and update each item's hidden prop
+        this.selectionOptions.forEach(option => {
+          option.hidden = this.productSubType === "kit" ? false : (option.subType !== this.productSubType);
+        });
+      }
+    },
     onIntervalUpdated(val) {
       this.intervalSelected = val;
       if (this.productType === "barsoap") {
@@ -299,28 +306,29 @@ export default {
       }
     },
     onQuantityUpdated(val) {
-      this.quantitySelected = val;
+      console.log("qtyUpdated to", val);
       if (this.productType === "barsoap") {
         // if qtySelected is smaller than current selection, trim the selection
         const optionsToRemove = val < this.selection.length ? this.selection.slice(val) : [];
         optionsToRemove.forEach(option => this.removeOption(option));
       }
-      if (this.productType === "haircare" && this.item.quantity !== val) {
+      if (this.productType === "haircare" && this.quantitySelected !== val) {
         // Iterate selectionOptions array and update each item's quantity
         this.selectionOptions.forEach(option => {
           option.quantity = option.quantity ? val : 0
         });
       }
+      this.quantitySelected = val;
     },
   },
   render() {
     return this.$scopedSlots.default({
-      productOptions: this.productOptions,
+      productOptionsWithIndexValue: this.productOptionsWithIndexValue,
       productAttr: {
-        value: this.productSelected,
+        value: this.productSelectedIndex,
       },
       productEvents: {
-        change: (val) => this.productSelected = val
+        change: (val) => this.onProductUpdated(val)
       },
       intervalOptions: this.intervalOptions,
       intervalText: this.intervalText,

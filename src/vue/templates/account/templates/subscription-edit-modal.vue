@@ -1,11 +1,11 @@
 <template>
   <div class="subscription-order-edit-modal-component">
     <account-renderless-subscription-edit
-      :item="itemWrapper"
+      :item="itemHolder"
       :subscription-products="subscriptionProducts"
       :subscription-option-source="subscriptionOptions"
     >
-      <div slot-scope="{ productOptions, productAttr, productEvents, intervalOptions, intervalText, intervalAttr, intervalEvents, quantityOptions, quantityAttr, quantityEvents, selectionOptions, selection, selectionComplete, selectionUpdated, decreaseQuantity, increaseQuantity, removeOption }">
+      <div slot-scope="{ productOptionsWithIndexValue, productAttr, productEvents, intervalOptions, intervalText, intervalAttr, intervalEvents, quantityOptions, quantityAttr, quantityEvents, selectionOptions, selection, selectionComplete, selectionUpdated, decreaseQuantity, increaseQuantity, removeOption }">
         <b-modal
           v-model="showModalFlag"
           size="lg"
@@ -28,14 +28,14 @@
               Back
             </span>
             <div
-              v-if="productOptions.length > 0"
+              v-if="productOptionsWithIndexValue.length > 0"
               class="field-wrapper"
             >
               <label>Product</label>
               <b-form-select
                 v-bind="productAttr"
                 v-on="productEvents"
-                :options="productOptions"
+                :options="productOptionsWithIndexValue"
                 class="select-input"
               />
             </div>
@@ -83,6 +83,7 @@
                 v-for="(option, index) of selectionOptions"
                 :key="option.id"
                 class="option"
+                :class="{hidden: option.hidden}"
               >
                 <div class="option-label">
                   <img
@@ -93,13 +94,7 @@
                     {{ option.title }}
                   </div>
                 </div>
-                <div
-                  v-if="option.quantity === undefined"  
-                >
-                  hehe
-                </div>
                 <quantity-switch
-                  v-else
                   :quantity="option.quantity"
                   :index="index"
                   :decrease-disabled="option.quantity === 0"
@@ -141,6 +136,8 @@
                 </div>
               </div>
             </div>
+            <h3>Selection updated: {{ selectionUpdated }}</h3>
+            <h3>Selection completed: {{ selectionComplete }}</h3>
             <squatch-button
               :disabled="!selectionUpdated || !selectionComplete"
               class="save-button"
@@ -176,7 +173,7 @@ export default {
   data() {
     return {
       showModalFlag: false,
-      itemWrapper: {},
+      itemHolder: {},
     };
   },
   computed: {
@@ -206,9 +203,9 @@ export default {
     showModal(val) {
       console.log("showModal?", val);
       this.showModalFlag = val;
-      this.itemWrapper = val ? this.item : {};
+      this.itemHolder = val ? this.item : {};
     },
-    item() {
+    itemHolder() {
       console.log("all subsProducs and subsOptions");
       console.log(this.subscriptionCollections);
       console.log(this.subscriptionOptionCollections);
@@ -256,6 +253,10 @@ export default {
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
+
+      &.hidden {
+        display: none;
+      }
       
       .option-label {
         display: flex;
@@ -265,6 +266,20 @@ export default {
         img {
           width: 40px;
           margin-right: 8px;
+        }
+      }
+
+      .qty-switch {
+        @include font-style-body();
+        @include layout-md {
+          width: 80px;
+        }
+
+        .decrease-button, .increase-button {
+
+          &.disabled {
+            color: #dcdcdc;
+          }
         }
       }
     }
@@ -294,20 +309,6 @@ export default {
 
   .edit-modal-body {
     padding: 0 15px;
-
-    .qty-switch {
-      @include font-style-body();
-      @include layout-md {
-        width: 80px;
-      }
-
-      .decrease-button, .increase-button {
-
-        &.disabled {
-          color: #dcdcdc;
-        }
-      }
-    }
   }
 }
 
