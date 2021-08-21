@@ -1,7 +1,4 @@
 export default {
-  getType(product) {
-    return product.type && product.type.toLowerCase();
-  },
   identify(product) {
     if (!product || !product.type) return [];
 
@@ -51,6 +48,30 @@ export default {
       return arr;
     }
     return [type];
+  },
+  getType(product) {
+    return product.type && product.type.toLowerCase();
+  },
+  getIdentityString(product) {
+    return this.identify(product).join("-");
+  },
+  getUnitNameByIdentityString(identityString) {
+    if (identityString === "barsoap") {
+      return "bar";
+    }
+    if (identityString === "haircare-kit") {
+      return "kit";
+    }
+    if (["haircare-shampoo", "haircare-conditioner"].includes(identityString)) {
+      return "bottle";
+    }
+    if (identityString === "toothpaste") {
+      return "kit"; // subs only
+    }
+    if (identityString === "deodorant") {
+      return "stick";
+    }
+    return "";
   },
   checkIfGrouped(product) {
     const handle = product.handle.toLowerCase();

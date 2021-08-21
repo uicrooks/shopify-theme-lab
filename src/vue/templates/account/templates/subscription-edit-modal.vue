@@ -107,7 +107,7 @@
             </div>
           </div>
           <template #modal-footer>
-            <div v-if="productType === 'barsoap'">
+            <div v-if="['barsoap', 'deodorant'].includes(productType)">
               <div class="label">
                 Selected
                 <span
@@ -136,8 +136,6 @@
                 </div>
               </div>
             </div>
-            <h3>Selection updated: {{ selectionUpdated }}</h3>
-            <h3>Selection completed: {{ selectionComplete }}</h3>
             <squatch-button
               :disabled="!selectionUpdated || !selectionComplete"
               class="save-button"
@@ -182,6 +180,11 @@ export default {
       if (!this.item.productData) return "";
       const productIdentityTags = ProductIdentifier.identify(this.item.productData);
       return productIdentityTags[0] ? productIdentityTags[0] : "";
+    },
+    productSubType() {
+      if (!this.item.productData) return "";
+      const productIdentityTags = ProductIdentifier.identify(this.item.productData);
+      return productIdentityTags[1] ? productIdentityTags[1] : "";
     },
     subscriptionProducts() {
       return this.subscriptionCollections[this.productType] ? this.subscriptionCollections[this.productType] : [];

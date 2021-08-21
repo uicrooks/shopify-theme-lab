@@ -3,7 +3,7 @@ import ProductIdentifier from "@/vue/services/product-identifier";
 
 const Helpers = {
   filterSubscriptionOptionSource: (productType, source) => {
-    if (productType === "barsoap") {
+    if (["barsoap", "deodorant"].includes(productType)) {
       return source;
     }
     if (productType === "haircare") {
@@ -39,9 +39,8 @@ const Helpers = {
     return [];
   },
   generateSelectionOptions: (productType, productSubType, item, qty, subsOptions) => {
-    console.log("Helpers.generateSelectionOptions---");
     if (!item || !item.lineItems) return [];
-    if (productType === "barsoap") {
+    if (["barsoap", "deodorant"].includes(productType)) {
       return subsOptions.map(option => {
         const matchesInLineItems = item.lineItems.filter(item => {
           return item.handle == option.handle;
@@ -75,7 +74,7 @@ const Helpers = {
     return [];
   },
   getSelectionFromSelectionOptions: (productType, selectionOptions) => {
-    if (productType === "barsoap") {
+    if (["barsoap", "deodorant"].includes(productType)) {
       let arr = [];
       // Keep index from selectionOptions array for selection removal later
       // Add n number of selection into the array; n being the quantity of the option
@@ -93,7 +92,6 @@ const Helpers = {
     return [];
   },
   processHaircareSelectionOptionsOnUpdate: (quantitySelected, selectionOptions) => {
-    console.log("Helpers.procesHaircareSelectionOptionsOnUpdate---");
     let shampoos = [];
     let conditioners = [];
     selectionOptions.forEach(option => {
@@ -195,7 +193,7 @@ export default {
 
     },
     selectionComplete() {
-      if (this.productType === "barsoap") {
+      if (["barsoap", "deodorant"].includes(this.productType)) {
         return this.selection.length === this.quantitySelected;
       }
       if (this.productType === "haircare") {
@@ -246,7 +244,6 @@ export default {
       this.selectionOptions = Helpers.generateSelectionOptions(this.productType, this.productSubType, this.item, this.quantitySelected, this.subscriptionOptions);
     },
     selectionOptions() {
-      console.log("Watch on selectionOptions...");
       // Need to watch selectionOptions change to update option.isFull property for quantity switch disabling
       if (this.productType === "haircare") {
         Helpers.processHaircareSelectionOptionsOnUpdate(this.quantitySelected, this.selectionOptions);
@@ -306,8 +303,7 @@ export default {
       }
     },
     onQuantityUpdated(val) {
-      console.log("qtyUpdated to", val);
-      if (this.productType === "barsoap") {
+      if (["barsoap", "deodorant"].includes(this.productType)) {
         // if qtySelected is smaller than current selection, trim the selection
         const optionsToRemove = val < this.selection.length ? this.selection.slice(val) : [];
         optionsToRemove.forEach(option => this.removeOption(option));

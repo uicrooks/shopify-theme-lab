@@ -1,5 +1,6 @@
 <script>
 import StoreService from "@/vue/services/store.service";
+import ProductIdentifier from "@/vue/services/product-identifier";
 import SkuToId from "@/configs/account-sku-to-id";
 import { mapGetters } from "vuex";
 
@@ -33,6 +34,18 @@ export default {
     displayTitle() {
       return this.isOnetime ? this.item.variant_title.split(" / ")[0] : this.item.product_title.split(" - ")[0];
     },
+    displayTitleWithQuantity() {
+      if (this.isOnetime) return this.displayTitle;
+      return `${this.displayTitle} - ${this.quantityWithUnit}`;
+    },
+    quantityWithUnit() {
+      if (this.isOnetime) return "";
+      const identityString = ProductIdentifier.getIdentityString(this.productData);
+      const unit = ProductIdentifier.getUnitNameByIdentityString(identityString);
+      const quantity = ["barsoap", "deodorant"].includes(identityString) ? this.lineItems.length : this.item.quantity;
+      const unitText = quantity > 1 ? `${unit}s` : unit;
+      return `${quantity} ${unitText}`
+    },
     price() {
       return this.item.price * this.item.quantity;
     },
@@ -45,7 +58,7 @@ export default {
       return this.generateImageSrc(this.productData);
     },
     subscriptionInterval() {
-      if (this.item.status !== "ONETIME") {
+      if (!this.isOnetime) {
         const intervalFrequency = this.item.order_interval_frequency > 1 ? `${this.item.order_interval_frequency} ` : "";
         const intervalUnit = this.item.order_interval_frequency > 1 ? `${this.item.order_interval_unit}s` : this.item.order_interval_unit;
         return `Every ${intervalFrequency}${intervalUnit}`;
@@ -142,10 +155,12 @@ export default {
       isOnetime: this.isOnetime,
       item: this.item,
       displayTitle: this.displayTitle,
-      imageSrc: this.imageSrc,
+      displayTitleWithQuantity: this.displayTitleWithQuantity,
+      quantityWithUnit: this.quantityWithUnit,
       price: this.price,
       compareAtPrice: this.compareAtPrice,
       subscriptionInterval: this.subscriptionInterval,
+      imageSrc: this.imageSrc,
       includedList: this.includedList,
     });
   }

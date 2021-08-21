@@ -76,7 +76,7 @@
             :class="{'last': itemIndex === refillBox.length - 1}"
             @loaded="onOrderItemLoaded"
           >
-            <div slot-scope="{ loading, isOnetime, item, displayTitle, imageSrc, subscriptionInterval }">
+            <div slot-scope="{ loading, isOnetime, item, displayTitle, displayTitleWithQuantity, imageSrc, subscriptionInterval }">
               <div class="box-item-image">
                 <b-spinner
                   v-if="loading"
@@ -92,7 +92,7 @@
               <div class="box-item-details">
                 <div class="heading">
                   <h5>
-                    {{ item.product_title }}
+                    {{ displayTitleWithQuantity }}
                   </h5>
                   <div
                     v-if="isOnetime"
