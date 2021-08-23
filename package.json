@@ -20,6 +20,7 @@
     "lint": "npm-run-all lint:*",
     "lint:js": "node_modules/.bin/eslint src/**/*.{js,vue} --config .config/.eslintrc.js",
     "lint:css": "node_modules/.bin/stylelint src/**/*.{vue,css,sass,scss} --config .config/.stylelintrc.js",
+    "lint-fix": "node_modules/.bin/eslint --fix src/**/*.{js,vue} --config .config/.eslintrc.js",
     "shopify:watch": "cross-env-shell shopify-themekit watch --env=dev --allow-live --config .config/shopify/shopify.dev.yml --notify=http://localhost:$npm_package_config_reloader_serverPort/reload",
     "shopify:init": "npx themelab shopify:init",
     "shopify:themes": "shopify-themekit get --list",

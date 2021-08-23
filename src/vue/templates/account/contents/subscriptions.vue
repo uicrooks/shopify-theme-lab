@@ -47,7 +47,7 @@ export default {
           imgSrc: product.images[0] && product.images[0].src,
           price: product.variants[0] && product.variants[0].price,
           compareAtPrice: product.variants[0] && product.variants[0].compare_at_price,
-        }
+        };
 
         const lineItemHandles = subscriptions[i].properties.filter(prop => prop.name.includes("fulfillment")).map(item => parseInt(SkuToId[item.value]));
         console.log("lineItemHandles", lineItemHandles);

@@ -1,47 +1,48 @@
 <template>
   <div class="new-sub-flow">
-      <section class="sub-flow-log"></section>
-      <SubscriptionFlowHeader
-        :screen="screen"
-        :steps="steps"
-        :subProductsBarsoap="subProducts_BarSoap"
-        :subProductsDeodorant="subProducts_Deodorant"
-        :subProductsHaircare="subProducts_HairCare"
-        :subProductsToothpaste="subProducts_Toothpaste"
+    <section class="sub-flow-log" />
+    <SubscriptionFlowHeader
+      :screen="screen"
+      :steps="steps"
+      :sub-products-barsoap="subProducts_BarSoap"
+      :sub-products-deodorant="subProducts_Deodorant"
+      :sub-products-haircare="subProducts_HairCare"
+      :sub-products-toothpaste="subProducts_Toothpaste"
+    />
+
+    <IntroScreen v-if="currentHandle == 'Intro'" />
+
+    <transition
+      name="fade"
+      mode="out-in"
+    >
+      <ScentScreen
+        v-if="currentHandle == 'BarSoap'"
+        :key="currentHandle+'_screen'"
+        :scents="scents['BarSoap']"
       />
-
-      <IntroScreen v-if="currentHandle == 'Intro'" />
-
-      <transition name="fade" mode="out-in">
-
-        <ScentScreen
-          :scents="scents['BarSoap']"
-          v-if="currentHandle == 'BarSoap'"
-          :key="currentHandle+'_screen'"
-        />
-        <ScentScreen
-          :scents="scents['Deodorant']"
-          v-if="currentHandle == 'Deodorant'"
-          :key="currentHandle+'_screen'"
-        />
-        <ScentScreen
-          :scents="scents['HairCare']"
-          v-if="currentHandle == 'HairCare'"
-          :key="currentHandle+'_screen'"
-        />
-        <ScentScreen
-          :scents="scents['Toothpaste']"
-          v-if="currentHandle == 'Toothpaste'"
-          :key="currentHandle+'_screen'"
-        />
-        <AddonsScreen v-if="currentHandle == 'Addons'" />
-
-      </transition>
-
-      <SubscriptionFlowFooter
-        :currentHandle="currentHandle"
-        :steps="[]"
+      <ScentScreen
+        v-if="currentHandle == 'Deodorant'"
+        :key="currentHandle+'_screen'"
+        :scents="scents['Deodorant']"
       />
+      <ScentScreen
+        v-if="currentHandle == 'HairCare'"
+        :key="currentHandle+'_screen'"
+        :scents="scents['HairCare']"
+      />
+      <ScentScreen
+        v-if="currentHandle == 'Toothpaste'"
+        :key="currentHandle+'_screen'"
+        :scents="scents['Toothpaste']"
+      />
+      <AddonsScreen v-if="currentHandle == 'Addons'" />
+    </transition>
+
+    <SubscriptionFlowFooter
+      :current-handle="currentHandle"
+      :steps="[]"
+    />
   </div>
 </template>
 

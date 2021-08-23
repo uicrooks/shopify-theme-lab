@@ -1,10 +1,19 @@
 <template>
-  <section class="screen" v-if="c_scents">
+  <section
+    v-if="c_scents"
+    class="screen"
+  >
     <b-container fluid>
-      <transition-group name="fade-list" mode="out-in" tag="div" class="row">
+      <transition-group
+        name="fade-list"
+        mode="out-in"
+        tag="div"
+        class="row"
+      >
         <b-col
-          v-for="(scent,i) in c_scents" :key="scent.sku"
+          v-for="(scent,i) in c_scents"
           v-if="filterOnTab(scent)"
+          :key="scent.sku"
           class="scent-col"
           cols="6"
           sm="6"
@@ -16,18 +25,46 @@
               <b-img-lazy :src="scent.images[0]" />
             </div>
             <div class="scent__card-body">
-              <h3 class="scent__card-title">{{scent.title}}</h3>
+              <h3 class="scent__card-title">
+                {{ scent.title }}
+              </h3>
               <div class="scent__card-description">
-                <p><strong>Smells Like: </strong>{{scent.pdp_metafields.smellsLike}}</p>
-                <p><strong>Exfoliation: </strong>{{scent.pdp_metafields.exfol_lvl}}</p>
+                <p><strong>Smells Like: </strong>{{ scent.pdp_metafields.smellsLike }}</p>
+                <p><strong>Exfoliation: </strong>{{ scent.pdp_metafields.exfol_lvl }}</p>
               </div>
               <div class="scent__card-btns mt-auto">
-                <b-button-group size="lg" v-if="scent.qty">
-                  <b-button class="btn-decrease" @click.prevent="decreaseScentQty(scent,i)" :disabled="scent.qty == 0">-</b-button>
-                  <b-button class="qtyscreen" disabled>{{scent.qty}}</b-button>
-                  <b-button class="btn-increase" @click.prevent="increaseScentQty(scent,i)" :disabled="numSelected == maxNumber">+</b-button>
+                <b-button-group
+                  v-if="scent.qty"
+                  size="lg"
+                >
+                  <b-button
+                    class="btn-decrease"
+                    :disabled="scent.qty == 0"
+                    @click.prevent="decreaseScentQty(scent,i)"
+                  >
+                    -
+                  </b-button>
+                  <b-button
+                    class="qtyscreen"
+                    disabled
+                  >
+                    {{ scent.qty }}
+                  </b-button>
+                  <b-button
+                    class="btn-increase"
+                    :disabled="numSelected == maxNumber"
+                    @click.prevent="increaseScentQty(scent,i)"
+                  >
+                    +
+                  </b-button>
                 </b-button-group>
-                <b-button size="lg" class="btn-increase" v-else @click.prevent="increaseScentQty(scent, i)" :disabled="numSelected == maxNumber">
+                <b-button
+                  v-else
+                  size="lg"
+                  class="btn-increase"
+                  :disabled="numSelected == maxNumber"
+                  @click.prevent="increaseScentQty(scent, i)"
+                >
                   Add
                 </b-button>
               </div>
@@ -48,12 +85,12 @@ export default {
   data() {
     return {
       c_scents: []
-    }
+    };
   },
   computed: {
     ...mapGetters("subFlow", ["screen", "skuLimits"]),
     currentHandle() {
-      return this.screen.handle
+      return this.screen.handle;
     },
     numSelected() {
       let count=0;
@@ -63,16 +100,12 @@ export default {
       return count;
     },
     maxNumber() {
-      return this.skuLimits[this.screen.selectedSku()]
+      return this.skuLimits[this.screen.selectedSku()];
     }
-  },
-  mounted() {
-    window.test_barsoap = this;
-    this.c_scents = this.scents;
   },
   methods: {
     filterOnTab(scent) {
-      if (this.currentHandle == 'HairCare') {
+      if (this.currentHandle == "HairCare") {
         return this.screen.selectedSku() == scent.filter_sku;
       } else {
         return true;
@@ -98,8 +131,12 @@ export default {
         this.$store.commit("subFlow/setScreenSubQuantity",qty);
       }
     }
+  },
+  mounted() {
+    window.test_barsoap = this;
+    this.c_scents = this.scents;
   }
-}
+};
 </script>
 <style scoped lang="scss">
 @use "@/styles/main" as global;

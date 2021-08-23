@@ -8,13 +8,16 @@
     </div>
     <b-container class="collection-section">
       <b-row>
-        <b-col md="3" v-for="(product, index) of bundles">
+        <b-col
+          v-for="(product, index) of bundles"
+          :key="`haircare-bundle-${index}`"
+          md="3"
+        >
           <product-card
-            :key="`haircare-bundle-${index}`"
             :product="product"
             class="product-card"
           />
-          </b-col>
+        </b-col>
       </b-row>
     </b-container>
     <div class="collection-section-header">
@@ -25,13 +28,16 @@
     </div>
     <b-container class="collection-section">
       <b-row>
-        <b-col md="3" v-for="(product, index) of shampoos">
-      <product-card 
-        :key="`haircare-shampoo-${index}`"
-        :product="product"
-        class="product-card"
-      />
-      </b-col>
+        <b-col
+          v-for="(product, index) of shampoos"
+          :key="`haircare-shampoo-${index}`"
+          md="3"
+        >
+          <product-card 
+            :product="product"
+            class="product-card"
+          />
+        </b-col>
       </b-row>
     </b-container>
     <div class="collection-section-header">
@@ -42,13 +48,16 @@
     </div>
     <b-container class="collection-section">
       <b-row>
-        <b-col md="3" v-for="(product, index) of conditioners">
-      <product-card 
-        :key="`haircare-conditioner-${index}`"
-        :product="product"
-        class="product-card"
-      />
-      </b-col>
+        <b-col
+          v-for="(product, index) of conditioners"
+          :key="`haircare-conditioner-${index}`"
+          md="3"
+        >
+          <product-card 
+            :product="product"
+            class="product-card"
+          />
+        </b-col>
       </b-row>
     </b-container>
   </div>

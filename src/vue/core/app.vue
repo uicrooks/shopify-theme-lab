@@ -1,6 +1,4 @@
-<template>
-  <div></div>
-</template>
+<template />
 
 <script>
 import StoreService from "@/vue/services/store.service";

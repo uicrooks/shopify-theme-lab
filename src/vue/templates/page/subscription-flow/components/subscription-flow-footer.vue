@@ -1,54 +1,90 @@
 <template>
   <!-- FOOTER -->
-    <section class="sub-flow-footer" v-if="currentHandle!='intro'">
-      <div class="flowSummary">
-        <!-- DESKTOP FLOW TOTAL -->
-          <div class="desktop-summary d-flex">
-            <div class="d-block" style="width: 231px;">
-              <p class="mb-1 dsktp-bk" style="font-family: worker-3d; font-size: 16px;">
-
-              </p>
-              <div class="price-row" v-if="flowSummary.total">
-                <p class="price_label mb-0 font-weight-bold">
-                  Total:
-                  <span>{{ flowSummary.total }}</span><span class="text-success"> ({{ flowSummary.compare_at_price - flowSummary.total }} saved!)</span>
-                </p>
+  <section
+    v-if="currentHandle!='intro'"
+    class="sub-flow-footer"
+  >
+    <div class="flowSummary">
+      <!-- DESKTOP FLOW TOTAL -->
+      <div class="desktop-summary d-flex">
+        <div
+          class="d-block"
+          style="width: 231px;"
+        >
+          <p
+            class="mb-1 dsktp-bk"
+            style="font-family: worker-3d; font-size: 16px;"
+          />
+          <div
+            v-if="flowSummary.total"
+            class="price-row"
+          >
+            <p class="price_label mb-0 font-weight-bold">
+              Total:
+              <span>{{ flowSummary.total }}</span><span class="text-success"> ({{ flowSummary.compare_at_price - flowSummary.total }} saved!)</span>
+            </p>
+          </div>
+        </div>
+        <div
+          class="containter-fluid scent-summary dsktp-bk"
+          style="padding-top: 15px; padding-bottom: 15px;"
+        >
+          <div
+            v-if="selectedScentsOnScreen"
+            class="row selected-scents-row"
+          >
+            <div
+              v-for="(scent,i) in selectedScentsOnScreen"
+              :key="scent.sku + i"
+              class="col text-center"
+            >
+              <div
+                class="selected-scent"
+                :class="'bg-'+scent.handle"
+                @click="decreaseScentQty(scent.sku)"
+              >
+                <i :class="'squatch-icon icon_'+scent.handle" />
+                <i class="icon-squatch icon-cross remove-scent-icon" />
               </div>
+              <p class="font-weight-bold mb-0 d-none">
+                {{ scent.title }}
+              </p>
             </div>
-            <div class="containter-fluid scent-summary dsktp-bk" style="padding-top: 15px; padding-bottom: 15px;">
-              <div class="row selected-scents-row" v-if="selectedScentsOnScreen">
-                <div class="col text-center" v-for="(scent,i) in selectedScentsOnScreen" :key="scent.sku + i">
-                  <div class="selected-scent" :class="'bg-'+scent.handle" @click="decreaseScentQty(scent.sku)">
-                    <i :class="'squatch-icon icon_'+scent.handle"></i>
-                    <i class="icon-squatch icon-cross remove-scent-icon"></i>
-                  </div>
-                  <p class="font-weight-bold mb-0 d-none">{{scent.title}}</p>
-                </div>
-                <div class="col text-center" v-for="(blank,i) in unselectedScentsOnScreen" :key="blank">
-                  <div class="selected-scent empty">
-                    <i :class="'text-brown squatch-icon icon-'+screen.handle"></i>
-                  </div>
-                </div>
+            <div
+              v-for="(blank,i) in unselectedScentsOnScreen"
+              :key="blank"
+              class="col text-center"
+            >
+              <div class="selected-scent empty">
+                <i :class="'text-brown squatch-icon icon-'+screen.handle" />
               </div>
             </div>
           </div>
-          <!-- / DESKTOP FLOW TOTAL -->
+        </div>
       </div>
-      <div class="flowControl">
-        <b-button
-          class="prevButton"
-          size="lg"
-          v-show="current_step_index>0"
-          :disabled="choicesRequired"
-          @click.prevent="flowPrevious()">Back</b-button> 
-        <b-button
-          size="lg"
-          class="nextButton"
-          :disabled="choicesRequired"
-          @click.prevent="flowNext()">{{currentHandle != 'Addons' ? 'Next' : 'Finish'}}</b-button> 
-      </div>
-    </section>
-    <!-- / FOOTER -->
+      <!-- / DESKTOP FLOW TOTAL -->
+    </div>
+    <div class="flowControl">
+      <b-button
+        v-show="current_step_index>0"
+        class="prevButton"
+        size="lg"
+        :disabled="choicesRequired"
+        @click.prevent="flowPrevious()"
+      >
+        Back
+      </b-button> 
+      <b-button
+        size="lg"
+        class="nextButton"
+        :disabled="choicesRequired"
+        @click.prevent="flowNext()"
+      >
+        {{ currentHandle != 'Addons' ? 'Next' : 'Finish' }}
+      </b-button> 
+    </div>
+  </section>
+  <!-- / FOOTER -->
 </template>
 
 <script>
@@ -62,11 +98,11 @@ export default {
   computed: {
     ...mapGetters("subFlow", ["screen","steps", "choicesRequired", "flowSummary", "skuLimits", "selectedScentsOnScreen","scents"]),
     currentHandle() {
-      return this.screen.handle
+      return this.screen.handle;
     },
     maxNumber() {
       if (this.screen && this.screen.selectedSku) {
-        return this.skuLimits[this.screen.selectedSku()]
+        return this.skuLimits[this.screen.selectedSku()];
       } else {
         return [];
       }
@@ -90,10 +126,6 @@ export default {
       return Number(index);
     }
   },
-  mounted() {
-    window.test_footer = this;
-    
-  },
   methods: {
     flowPrevious() {
       let softCommit_index = (this.current_step_index - 1);
@@ -107,7 +139,7 @@ export default {
       let softCommit_index = (this.current_step_index + 1);
       if (softCommit_index >= this.steps.length) {
         // Done!
-        console.log('asdfs')
+        console.log("asdfs");
         this.$store.dispatch("subFlow/finishSubFlow");
         return;
       }
@@ -130,8 +162,12 @@ export default {
         this.$store.commit("subFlow/changeScentQty",{qty: newQty, index: scentMatch_i});
       }
     }
+  },
+  mounted() {
+    window.test_footer = this;
+    
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .sub-flow-footer {

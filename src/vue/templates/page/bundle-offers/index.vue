@@ -27,42 +27,47 @@
       class="section-wrapper"
       :class="{'hidden': index === 0, 'starter-bundles': index === 1}"
     >
-      <b-container class="bv-example-row"
+      <b-container
         v-if="showSection(index)"
+        class="bv-example-row"
       >
-      <b-row>
-        <h2>
-          {{ getSectionName(index) }}
-        </h2>
-        <p>
-          {{ getSectionDescription(index) }}
-        </p>
-        <template
-          v-if="index === 1"
-          class="products"
-        >
-        <b-col v-for="(product, productIndex) of getSectionProducts(index)">
-          <custom-product-group-card
-            :key="`bundles-section-${index}-product-${productIndex}`"
-            class="customizable-product-group-card"
-            :product="product"
-            :selected="selectedStarterBundleIndex === productIndex"
-            @selectStarterBundle="selectStarterBundle"
-            @openScentSelection="scentSelectionFlag = true"
-          />
-          </b-col>
-        </template>
-        <template
-          v-else
-          class="products"
-        >
-        <b-col v-for="(product, productIndex) of getSectionProducts(index)">
-          <product-group-card
-            :key="`bundles-section-${index}-product-${productIndex}`"
-            class="product-group-card"
-            :product="product"
-          />
-          </b-col>
+        <b-row>
+          <h2>
+            {{ getSectionName(index) }}
+          </h2>
+          <p>
+            {{ getSectionDescription(index) }}
+          </p>
+          <template
+            v-if="index === 1"
+            class="products"
+          >
+            <b-col
+              v-for="(product, productIndex) of getSectionProducts(index)"
+              :key="`bundles-section-${index}-product-${productIndex}`"
+            >
+              <custom-product-group-card
+                class="customizable-product-group-card"
+                :product="product"
+                :selected="selectedStarterBundleIndex === productIndex"
+                @selectStarterBundle="selectStarterBundle"
+                @openScentSelection="scentSelectionFlag = true"
+              />
+            </b-col>
+          </template>
+          <template
+            v-else
+            class="products"
+          >
+            <b-col
+              v-for="(product, productIndex) of getSectionProducts(index)"
+              :key="`bundles-section-${index}-product-${productIndex}`"
+            >
+              <product-group-card
+                class="product-group-card"
+                :product="product"
+              />
+            </b-col>
           </template>
         </b-row>
       </b-container>

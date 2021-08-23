@@ -35,7 +35,7 @@
           :item="item"
           class="box-item"
         >
-          <div slot-scope="{ item, itemTitle,  itemImageSrc, subscriptionInterval, isOnetime, includedList, lineItems }">
+          <div slot-scope="{ item, itemTitle, itemImageSrc, subscriptionInterval, isOnetime, includedList, lineItems }">
             <div class="box-item-image">
               <img
                 :src="itemImageSrc"

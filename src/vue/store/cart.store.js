@@ -22,6 +22,7 @@ const getters = {
 
 const actions = {
   async initialize({ commit }) {
+    console.log('adsf')
     const cart = await CartService.initCart();
     commit("setCart", cart);
   },
@@ -30,12 +31,14 @@ const actions = {
     if (itemAdded) {
       dispatch("initialize");
     }
+    console.log('add item')
   },
   async updateQuantity({ dispatch }, item) {
     const quantityUpdated = await CartService.updateItemQuantity(item.line, item.quantity);
     if (quantityUpdated) {
       dispatch("initialize");
     }
+    console.log('update item')
   }
 };
 

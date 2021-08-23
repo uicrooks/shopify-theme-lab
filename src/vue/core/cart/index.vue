@@ -173,12 +173,14 @@ export default {
     },
   },
   async mounted() {
-    const cart = await CartService.initCart();
+    console.log("cart mounted");
+    await this.$store.dispatch("cart/initialize");
+    /*const cart = await CartService.initCart();
     if (cart) {
       this.$store.commit("cart/setCart", cart);
     } else {
       // error handling
-    }
+    }*/
   },
 };
 </script>

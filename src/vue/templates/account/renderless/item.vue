@@ -17,7 +17,7 @@ export default {
     return {
       itemData: {},
       lineItems: []
-    }
+    };
   },
   computed: {
     itemTitle() {
@@ -56,6 +56,19 @@ export default {
       return list;
     }
   },
+  render() {
+    return this.$scopedSlots.default({
+      item: this.item,
+      itemTitle: this.itemTitle,
+      itemImageSrc: this.itemImageSrc,
+      itemProps: this.itemProps,
+      subscriptionInterval: this.subscriptionInterval,
+      isOnetime: this.isOnetime,
+      includedList: this.includedList,
+      itemData: this.itemData,
+      lineItems: this.lineItems,
+    });
+  },
   async mounted() {
     this.itemData = await StoreService.getProductById(this.item.shopify_product_id);
     console.log(this.itemData);
@@ -72,19 +85,6 @@ export default {
       }
     }
     this.lineItems = lineItems;
-  },
-  render() {
-    return this.$scopedSlots.default({
-      item: this.item,
-      itemTitle: this.itemTitle,
-      itemImageSrc: this.itemImageSrc,
-      itemProps: this.itemProps,
-      subscriptionInterval: this.subscriptionInterval,
-      isOnetime: this.isOnetime,
-      includedList: this.includedList,
-      itemData: this.itemData,
-      lineItems: this.lineItems,
-    });
   }
   // props: {
   //   subscription: {

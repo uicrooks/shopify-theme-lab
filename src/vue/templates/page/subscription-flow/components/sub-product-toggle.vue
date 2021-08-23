@@ -3,12 +3,13 @@
     <template v-if="tabs.length">
       <b-button-toolbar aria-label="Choose your Subscription product">
         <b-button
+          v-for="(prod,i) in tabs"
+          :key="prod.sku"
           class="subProduct__tab"
           :class="{'active' : prod.sku == selectedSku }"
           @click="changeSelectedProduct(prod.sku)"
-          v-for="(prod,i) in tabs" :key="prod.sku"
         >
-          {{prod.short_title}}
+          {{ prod.short_title }}
         </b-button>
       </b-button-toolbar>
     </template>
@@ -30,7 +31,7 @@ export default {
   computed: {
     ...mapGetters("subFlow", ["screen","steps"]),
     currentHandle() {
-      return this.screen.handle
+      return this.screen.handle;
     },
     selectedSku() {
       return this.screen.selectedSku();
@@ -39,18 +40,18 @@ export default {
       let tabs = [];
       this.products.forEach((product) => {
         if (product.type == "BarSoap") {
-          product.short_title = product.title.split(' - ')[1];
+          product.short_title = product.title.split(" - ")[1];
         } else if (product.type == "Deodorant") {
           // Split on Kit, Shampoo, Conditioner
-          product.short_title = product.title.split(' - ')[1];
+          product.short_title = product.title.split(" - ")[1];
         } else if (product.type == "HairCare") {
           // Split on Kit, Shampoo, Conditioner
-          let short_title = product.title.split(' Subscription - ')[0]
-          product.short_title = short_title.indexOf('Hair')>-1 ? short_title+' Kit' : short_title;
+          let short_title = product.title.split(" Subscription - ")[0];
+          product.short_title = short_title.indexOf("Hair")>-1 ? short_title+" Kit" : short_title;
         } else if (product.type == "Toothpaste") {
-          product.short_title = "Toothpaste Kit"
+          product.short_title = "Toothpaste Kit";
         }
-        tabs.push(product)
+        tabs.push(product);
       });
       return tabs;
     }
@@ -61,7 +62,7 @@ export default {
       this.$store.commit("subFlow/clearScreenScents");
     }
   }
-}
+};
 </script>
 <style scoped lang="scss">
 .btn-toolbar {

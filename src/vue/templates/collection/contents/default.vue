@@ -1,9 +1,14 @@
 <template>
   <b-container class="collection-default-content-component">
     <b-row>
-      <b-col sm="6" lg="4" xl="3" v-for="(product, index) of products">
+      <b-col
+        v-for="(product, index) of products"
+        :key="`collection-product-${index}`"
+        sm="6"
+        lg="4"
+        xl="3"
+      >
         <product-card 
-          :key="`collection-product-${index}`"
           :product="product"
           class="product-card"
         />
