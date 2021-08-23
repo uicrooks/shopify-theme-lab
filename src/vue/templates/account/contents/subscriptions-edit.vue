@@ -5,24 +5,61 @@
       <div class="tab-contents">
         <div class="box-header">
           <div class="date-info">
-            <div class="date-row">
+            <div
+              v-if="newRefillDateSelected"
+              class="date-row"
+            >
+              <div class="label">
+                Will Now Refill
+              </div>
+              <div class="date">
+                {{ showRefillDate(newRefillDate) }}
+              </div>
+            </div>
+            <div
+              v-else
+              class="date-row"
+            >
               <div class="label">
                 Next Refill
               </div>
               <div class="date">
-                {{ refillDate }}
+                {{ showRefillDate(refillBoxDate) }}
               </div>
             </div>
-            <a>
-              <b-icon
-                icon="calendar3"
-              />
-              Adjust Date
-            </a>
+            <div class="date-row">
+              <date-picker
+                v-model="newRefillDate"
+                :min-date="new Date()"
+                :model-config="datepickerConfig"
+                color="orange"
+              >
+                <template v-slot="{ showPopover, hidePopover }">
+                  <a
+                    @mouseenter="showPopover"
+                    @mouseleave="hidePopover"
+                  >
+                    <b-icon
+                      icon="calendar3"
+                    />
+                    Adjust Date
+                  </a>
+                </template>
+              </date-picker>
+              <div
+                v-if="newRefillDateSelected"
+                class="cancel-button"
+                @click="cancelDateChange"
+              >
+                <i class="icon-squatch icon-cross" />
+                Cancel
+              </div>
+
+            </div>
             <squatch-button
               class="refill-button"
             >
-              Refill Tonight
+              {{ newRefillDateSelected ? "Update Date" : "Refill Tonight" }}
             </squatch-button>
           </div>
           <div class="meta-info">
@@ -150,32 +187,54 @@
 <script>
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
 import { mapGetters } from "vuex";
+import moment from "moment";
+import Calendar from "v-calendar/lib/components/calendar.umd";
+import DatePicker from "v-calendar/lib/components/date-picker.umd";
 
 export default {
   name: "AccountSubscriptionsEdit",
+  components: { 
+    Calendar,
+    DatePicker 
+  },
   data() {
     return {
       loading: true,
       ordersLoadedCounter: 0,
       showEdit: false,
-      itemToEdit: {}
+      itemToEdit: {},
+      openCalendar: false,
+      newRefillDate: null,
+      datepickerConfig: {
+        type: "string",
+        mask: "YYYY-MM-DD"
+      }
     };
   },
   computed: {
     ...mapGetters("account", ["rechargePaymentSource",  "currentGroupShippingAddress", "refillBoxDate", "refillBox"]),
-    refillDate() {
-      if (!this.refillBoxDate) return "";
-      const format = !DatetimeHelpers.isSame(new Date(), this.refillBoxDate, "year") ? "MMM Do, YYYY" : "MMM Do";
-      return DatetimeHelpers.format(this.refillBoxDate, format);
+    newRefillDateSelected() {
+      return this.refillBoxDate.split("T")[0] !== this.newRefillDate;
     },
   },
   watch: {
     refillBox() {
       this.loading = true;
       this.ordersLoadedCounter = 0;
+    },
+    newRefillDate(val) {
+      console.log("newRefillDate", val);
     }
   },
   methods: {
+    showRefillDate(date) {
+      if (!this.refillBoxDate) return "";
+      const format = !DatetimeHelpers.isSame(new Date(), date, "year") ? "MMM Do, YYYY" : "MMM Do";
+      return DatetimeHelpers.format(date, format);
+    },
+    cancelDateChange() {
+      this.newRefillDate = this.refillBoxDate.split("T")[0];
+    },
     selectView(viewName) {
       this.$store.commit("account/setCurrentView", viewName);
     },
@@ -190,6 +249,9 @@ export default {
       this.showEdit = true;
       this.itemToEdit = item;
     }
+  },
+  mounted() {
+    this.newRefillDate = this.refillBoxDate.split("T")[0];
   }
 };
 </script>
@@ -209,8 +271,18 @@ export default {
       width: 100%;
       @include font-style-body($color: $brown);
 
+      @include layout-md {
+        display: flex;
+        flex-flow: row wrap;
+      }
+
       .date-info {
         margin-bottom: 20px;
+
+        @include layout-md {
+          flex: 1;
+          margin-right: 20px;
+        }
 
         .date-row {
           display: flex;
@@ -232,16 +304,43 @@ export default {
           @include font-style-body($color: $text-orange);
         }
 
+        .cancel-button {
+          display: flex;
+          flex-flow: row nowrap;
+          align-items: center;
+          cursor: pointer;
+          color: $dark-brown;
+          margin-left: 18px;
+
+          .icon-squatch {
+            font-size: 12px;
+            margin-top: -2px;
+            margin-right: 3px;
+          }
+        }
+
         .refill-button {
           margin-top: 20px;
         }
       }
 
       .meta-info {
+        @include layout-sm {
+          display: flex;
+          flex-flow: row wrap;
+        }
+
+        @include layout-md {
+          flex: 2;
+        }
 
         .billing, .shipping {
           @include font-style-body($color: $brown);
           position: relative;
+
+          @include layout-sm {
+            flex: 1;
+          }
 
           h6 {
             margin-bottom: 8px;
@@ -259,6 +358,10 @@ export default {
             text-decoration: underline;
             cursor: pointer;
             @include font-style-body($color: $text-orange);
+
+            @include layout-sm {
+              right: 30px;
+            }
           }
 
           p {
