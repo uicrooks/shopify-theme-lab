@@ -1,6 +1,8 @@
 <template>
   <div class="account-component">
-    <account-nav />
+    <account-nav
+      class="account-nav"
+    />
     <!-- Overview -->
     <div 
       v-if="currentView === 'Overview'"
@@ -103,6 +105,7 @@ export default {
   },
   async created() {
     this.updateView();
+    this.$store.commit("account/setUser", this.user);
 
     const subProducts = AccountHelpers.organizeProductsByType(this.subscriptionProducts);
     const subOptions = AccountHelpers.organizeProductsByType(this.subscriptionOptions);
@@ -135,19 +138,35 @@ export default {
   background-color: #f6f5f3;
   // padding: 20px 10px;
 
+  @include layout-lg {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
   // @include layout-sm {
   //   padding: 20px;
   // }
 
-  h1 {
-    @include font-style-heading($size: 26px);
+  .account-nav {
+
+    @include layout-lg {
+      width: 230px;
+    }
   }
 
   .view {
     padding: 20px 10px;
 
-    @include layout-md {
+    @include layout-sm {
       padding: 20px;
+    }
+
+    @include layout-lg {
+      flex: 1;
+    }
+  
+    h1 {
+      @include font-style-heading($size: 26px);
     }
 
     h4 {

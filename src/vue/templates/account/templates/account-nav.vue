@@ -1,10 +1,14 @@
 <template>
   <div class="account-nav-component">
+    <!-- Mobile -->
     <b-button
-      v-b-toggle.account-nav
+      :aria-expanded="navOpen ? 'true' : 'false'"
+      aria-controls="account-nav"
       block
       squared
       class="account-nav-button"
+      :class="navOpen ? null : 'collapsed'"
+      @click="navOpen = !navOpen"
     >
       Navigate Account
       <i 
@@ -13,7 +17,7 @@
       />
     </b-button>
     <b-collapse
-      id="account-nav"
+      class="account-nav mobile"
       v-model="navOpen"
     >
       <div
@@ -61,6 +65,65 @@
         </div>
       </div>
     </b-collapse>
+
+    <!-- Desktop -->
+    <div class="account-nav desktop">
+      <div
+        v-if="user.firstName"
+        class="profile"
+      >
+        <img
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_MARK.svg?v=1615332033"
+          alt="Dr.Squatch logo"
+        >
+        <span>Welcome,</span>
+        <h4>{{ user.firstName }}</h4>
+      </div>
+      <div
+        v-for="(item, index) of navMenuItems"
+        :key="`account-nav-item-${index}`"
+        class="nav-item-wrapper"
+        :class="{
+          'last': index === navMenuItems.length - 1,
+        }"
+      >
+        <div
+          class="nav-item"
+          :class="{
+            'active': currentView === item.label 
+          }"
+          @click="selectView(item.label)"
+        >
+          <b-icon
+            v-if="index === 0"
+            icon="house-fill"
+            class="overview-icon"
+          />
+          <i 
+            v-else
+            :class="item.icon"
+          />
+          {{ item.label }}
+        </div>
+        <div
+          v-if="item.subMenuItems"
+          class="sub-menu"
+        >
+          <div
+            v-for="(subItem, subIndex) of item.subMenuItems"
+            :key="`account-nav-item-${subIndex}`"
+            class="sub-nav-item"
+            :class="{
+              'last': index === item.subMenuItems.length - 1,
+              'active': currentView === subItem.label   
+            }"
+            @click="selectView(subItem.label)"
+          >
+            {{ subItem.label }}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -109,7 +172,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["currentView"])
+    ...mapGetters("account", ["currentView", "user"]),
   },
   watch: {
     currentView(val) {
@@ -119,6 +182,7 @@ export default {
   methods: {
     selectView(viewName) {
       this.$store.commit("account/setCurrentView", viewName === "Squatch Box" ? "Edit Box" : viewName);
+      this.navOpen = false;
     }
   }
 };
@@ -140,6 +204,10 @@ $account-brown: #473729;
     background-color: $account-brown;
     @include font-style-body($color: $white, $size: 16px);
 
+    @include layout-lg {
+      display: none;
+    }
+
     .icon-squatch {
       position: absolute;
       top: 13px;
@@ -148,9 +216,44 @@ $account-brown: #473729;
     }
   }
 
-  #account-nav {
+  .account-nav {
     padding: 0 16px;
     background-color: $account-brown;
+    @include font-style-body($color: $white);
+
+    &.mobile {
+      @include layout-lg {
+        display: none;
+      }
+    }
+
+    &.desktop {
+      display: none;
+      width: 100%;
+      height: 100%;
+      
+
+      @include layout-lg {
+        display: inline-block;
+      }
+    }
+
+    .profile {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      padding: 30px;
+      text-align: center;
+
+      img {
+        width: 60px;
+        margin-bottom: 8px;
+      }
+
+      h4 {
+        @include font-style-body-bold($color: inherit, $size: 16px);
+      }
+    }
 
     .nav-item-wrapper {
       padding: 12px 0;
@@ -164,8 +267,9 @@ $account-brown: #473729;
       .nav-item {
         cursor: pointer;
 
-        &.active {
-          @include font-style-body($color: $text-orange);
+        &.active, :hover {
+          @include font-style-body($color: $text-orange)
+          ;
         }
 
         .overview-icon, .icon-squatch, .icon-custom {

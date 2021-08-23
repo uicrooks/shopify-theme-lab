@@ -274,6 +274,10 @@ export default {
         padding-left: 15px;
         position: relative;
 
+        @include layout-md {
+          flex: 3;
+        }
+
         h5 {
           @include font-style-body($size: 14px, $weight: 600);
         }
@@ -322,6 +326,10 @@ export default {
     @include font-style-body($color: $brown);
 
     @include layout-md {
+      padding: 20px;
+    }
+
+    @include layout-md {
       width: unset;
       flex: 1;
       padding: 20px 15px;
@@ -355,6 +363,10 @@ export default {
       @include layout-md {
         margin-bottom: 12px;
       }
+    }
+
+    p {
+      margin-bottom: 25px;
     }
 
     .address-line {
