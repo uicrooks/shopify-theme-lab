@@ -1,7 +1,1 @@
-{% assign oosItems = settings.oos_sku_array | downcase | split: ',' %}
-<vue-app
-  :logged-in="{% if customer %}true{% else %}false{% endif %}"
-  :currency="'{{ cart.currency.iso_code }}'"
-  :oos-items="{{ oosItems | json | escape }}"
-></vue-app>
 <main-nav></main-nav>

@@ -6,4 +6,4 @@ const money = (val, currency, toFixedVal = 2) => {
 
 export {
   money
-}
+};

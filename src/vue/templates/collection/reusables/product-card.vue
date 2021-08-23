@@ -17,10 +17,12 @@
       <div class="yotpo">
         <span>review stuff here</span>
       </div>
+      <!-- eslint-disable vue/no-v-html -->
       <p
         class="product-description"
         v-html="product.description"
       />
+      <!--eslint-enable-->
       <div class="product-pricing">
         {{ product.price | money("$") }}
         <span

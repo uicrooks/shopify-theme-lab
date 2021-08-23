@@ -17,7 +17,6 @@ export default {
     try {
       const res = await axios.get("/cart.js", axiosConfig);
       console.log("making init-cart call");
-      console.log(window.app)
       if (res.status === 200) {
         return res.data;
       }
@@ -71,24 +70,24 @@ export default {
     CookieService.set("cart", cartCookieValue, { domain: host });
     CookieService.set("cart", cartCookieValue, { domain: `.${host}` });
 
-    var checkout_url;
+    var checkout_url, ga_linker;
     if (isSubscriptionCart) {
       try {
-        var ga_linker = ga.getAll()[0].get('linkerParam');
+        ga_linker = window.ga.getAll()[0].get("linkerParam");
       } catch (e) {
-        var ga_linker = '';
+        ga_linker = "";
       }        
-      let customer_param = '';
+      let customer_param = "";
       if (window.theme.customerEmail) { customer_param = `customer_id=${window.theme.customerId}&customer_email=${window.theme.customerEmail}`; }
-      checkout_url = `https://subscribe.drsquatch.com/r/checkout?myshopify_domain=${app.myshopify_domain}&cart_token=${getCartCookie}&${ga_linker}&${customer_param}`;
+      checkout_url = `https://subscribe.drsquatch.com/r/checkout?myshopify_domain=${app.myshopify_domain}&cart_token=${cartCookieValue}&${ga_linker}&${customer_param}`;
       if (window.theme.currency !== "USD") {
         // force to store/root currency
         CookieService.set("rc_shim", "CAD", { domain: `.${host}` }); 
-        console.log('FORCING TO USD - START');
+        console.log("FORCING TO USD - START");
         await axios.get(`/services/currency/update?currency=USD&return_to=/pages/blank`);
       }
     } else {
-      checkout_url = "/checkout"
+      checkout_url = "/checkout";
     }
     const discountCode = sessionStorage.getItem("discount_code");
     if (discountCode) {
@@ -131,7 +130,7 @@ function getMatchingVariantForProduct(product, variantId) {
 function preCheckoutPromise() {
   // handles async actions and returns checkout Destination
   return new Promise(async resolve => {
-    const cart = await CartService.initCart();
+    const cart = await this.initCart();
     var hit = false;
     for (var i in cart.items) {
       if (cart.items[i].title.indexOf("Subscription")>-1) {

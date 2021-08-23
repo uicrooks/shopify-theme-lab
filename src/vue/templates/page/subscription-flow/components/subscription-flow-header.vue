@@ -75,10 +75,10 @@ import { mapGetters } from "vuex";
 export default {
   name: "SubscriptionFlowHeader",
   props: {
-    subProductsBarsoap: {required: true},
-    subProductsDeodorant: {required: true},
-    subProductsToothpaste: {required: true},
-    subProductsHaircare: {required: true},
+    subProductsBarsoap: {required: true, type: Array},
+    subProductsDeodorant: {required: true, type: Array},
+    subProductsToothpaste: {required: true, type: Array},
+    subProductsHaircare: {required: true, type: Array},
   },
   computed: {
     ...mapGetters("subFlow", ["screen","steps","choicesRequired"]),
@@ -111,7 +111,6 @@ export default {
 <style scoped lang="scss">
 .sub-flow-header {
   background: #fff;
-  padding: 0 15px;
   position: sticky;
   padding: 0 15px;
   top: -164px;

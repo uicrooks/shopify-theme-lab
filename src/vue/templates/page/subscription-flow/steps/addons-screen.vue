@@ -14,7 +14,7 @@
         class="row"
       >
         <b-col
-          v-for="(addon,i) in c_addons.Booster"
+          v-for="(addon) in c_addons.Booster"
           :key="addon.sku"
           class="scent-col"
           cols="6"
@@ -84,7 +84,7 @@
         class="row"
       >
         <b-col
-          v-for="(addon,i) in c_addons.Deodorant"
+          v-for="(addon) in c_addons.Deodorant"
           :key="addon.sku"
           class="scent-col"
           cols="6"
@@ -154,7 +154,7 @@
         class="row"
       >
         <b-col
-          v-for="(addon,i) in c_addons.HairCare"
+          v-for="(addon) in c_addons.HairCare"
           :key="addon.sku"
           class="scent-col"
           cols="6"
@@ -288,14 +288,14 @@
 import { mapGetters } from "vuex";
 export default {
   name: "AddonsScreen",
-  computed: {
-    ...mapGetters("subFlow", ["addons"]),
-  },
   data() {
     return {
       c_addons: [],
       extras: []
     };
+  },
+  computed: {
+    ...mapGetters("subFlow", ["addons"]),
   },
   methods: {
     increaseAddonQty(addon) {
@@ -380,9 +380,6 @@ export default {
         margin-bottom: 5px;
         &:last-of-type {
           margin-bottom: 15px;
-        }
-        strong {
-          
         }
       }
     }

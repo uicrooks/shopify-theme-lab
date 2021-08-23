@@ -27,11 +27,18 @@
         id="app"
       {% endunless %}
     >
+    {% assign oosItems = settings.oos_sku_array | downcase | split: ',' %}
+    <vue-app
+      :logged-in="{% if customer %}true{% else %}false{% endif %}"
+      :currency="'{{ cart.currency.iso_code }}'"
+      :oos-items="{{ oosItems | json | escape }}"
+    >
       {% section 'header' %}
       <main id="main" role="main">
         {{ content_for_layout }}
       </main>
       {% section 'footer' %}
+    </vue-app>
     </div>
     {{ '_config.static.js' | asset_url | script_tag }}
     <!-- webpack bundle -->

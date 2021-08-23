@@ -25,7 +25,7 @@ export default {
   vaultDiscountCode() {
     const params = this.convertQueryStringToObject(window.location.search);
     if (params.discount_code) {
-      window.sessionStorage.setItem('discount_code', params.discount_code);
+      window.sessionStorage.setItem("discount_code", params.discount_code);
     }
   },
   scrollToLink() {
@@ -36,7 +36,7 @@ export default {
         const y = elem.getBoundingClientRect().top + window.scrollY;
         window.scroll({
           top: y,
-          behavior: 'smooth'
+          behavior: "smooth"
         });
       }
     }

@@ -51,7 +51,7 @@
               </p>
             </div>
             <div
-              v-for="(blank,i) in unselectedScentsOnScreen"
+              v-for="(blank) in unselectedScentsOnScreen"
               :key="blank"
               class="col text-center"
             >
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import store from "../store.js";
+//import store from "../store.js";
 import { mapGetters } from "vuex";
 
 export default {

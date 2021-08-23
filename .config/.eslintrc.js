@@ -64,5 +64,14 @@ module.exports = {
         "LIFECYCLE_HOOKS",
       ]
     }]
-  }
+  },
+  overrides: [
+    {
+      files: ["src/*.js","src/*.vue"],
+      rules: {
+        "no-async-promise-executor": "off",
+        "no-useless-escape": "off"
+      }
+    }
+  ]
 }

@@ -3,7 +3,7 @@
     <template v-if="tabs.length">
       <b-button-toolbar aria-label="Choose your Subscription product">
         <b-button
-          v-for="(prod,i) in tabs"
+          v-for="(prod) in tabs"
           :key="prod.sku"
           class="subProduct__tab"
           :class="{'active' : prod.sku == selectedSku }"
@@ -26,7 +26,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "SubProductToggle",
   props: {
-    products: {required: true}
+    products: {required: true, type: Array}
   },
   computed: {
     ...mapGetters("subFlow", ["screen","steps"]),

@@ -31,7 +31,7 @@ const state = () => ({
     if (this.scents[this.screen.handle]) {
       let count = 0;
       this.scents[this.screen.handle].forEach(s=> {
-        if (s.qty) {count+=s.qty}
+        if (s.qty) {count+=s.qty;}
       });
       if (this.screen.required && ["HairCare", "Toothpaste"].indexOf(this.screen.handle)>-1 && count==0) {
         return true;
@@ -48,7 +48,7 @@ const state = () => ({
     this.steps.forEach(step => {
       if (step.required || (step.chosenSku && this.selectedScentsOnScreen().length)) {
         const selectedSku = step.selectedSku(),
-        match = this.skuPrices[selectedSku]
+        match = this.skuPrices[selectedSku];
         total+=(Number(match.price) * step.numSubs);
         compare_at_price+=Number(match.compare_at_price * step.numSubs);
       }
@@ -58,13 +58,13 @@ const state = () => ({
         let addonGroup = this.addons[i];
         addonGroup.forEach(addon => {
           if (addon.qty) {
-            total+=(Number(addon.price)*addon.qty)
-            compare_at_price+=(Number(addon.price)*addon.qty)
+            total+=(Number(addon.price)*addon.qty);
+            compare_at_price+=(Number(addon.price)*addon.qty);
           }
         });
       }
     }
-    return {total, compare_at_price}
+    return {total, compare_at_price};
   },
   selectedScentsOnScreen: function() {
     const match = this.scents[this.screen.handle];
@@ -123,14 +123,14 @@ const actions = {
       isRequired = step.isRequired,
       numSubs = step.numSubs;
 
-      var subProdMatch;
+      var subProdMatch, scent_arr;
       switch(step.handle) {
         case "BarSoap":
           if (selectedScents.length || step.required) {
             subProdMatch = skuPrices[selectedSku];
             if (subProdMatch) {
               subProdMatch = JSON.parse(JSON.stringify(subProdMatch));
-              var scent_arr = [];
+              scent_arr = [];
               selectedScents.forEach(scent => {
                 for (var i = 0; i < scent.qty; i++) {
                   scent_arr.push(scent.sku);
@@ -162,14 +162,14 @@ const actions = {
             subProdMatch = skuPrices[selectedSku];
             if (subProdMatch) {
               selectedScents.forEach(scent => {
-                var scent_arr = [];
+                scent_arr = [];
                 subProdMatch = JSON.parse(JSON.stringify(subProdMatch));
-                  if (scent.sku == 'hair-kit-1') {
+                  if (scent.sku == "hair-kit-1") {
                     scent_arr.push("smp-cyp-01");
-                    scent_arr.push("con-clc-01")
+                    scent_arr.push("con-clc-01");
                   } else if (scent.sku == "hair-kit-fresh") {
                     scent_arr.push("smp-ffl-01");
-                    scent_arr.push("con-ffl-01")
+                    scent_arr.push("con-ffl-01");
                   } else {
                     scent_arr.push(scent.sku);
                   }
@@ -194,7 +194,7 @@ const actions = {
             subProdMatch = skuPrices[selectedSku];
             if (subProdMatch) {
               subProdMatch = JSON.parse(JSON.stringify(subProdMatch));
-              var scent_arr = [];
+              scent_arr = [];
               selectedScents.forEach(scent => {
                 for (var i = 0; i < scent.qty; i++) {
                   scent_arr.push(scent.sku);
@@ -220,9 +220,9 @@ const actions = {
             subProdMatch = skuPrices[selectedSku];
             if (subProdMatch) {
               selectedScents.forEach(scent => {
-                var scent_arr = [];
+                scent_arr = [];
                 subProdMatch = JSON.parse(JSON.stringify(subProdMatch));
-                  if (scent.sku == 'tooth-bun') {
+                  if (scent.sku == "tooth-bun") {
                     scent_arr.push("tooth-cm-mng");
                     scent_arr.push("tooth-ss-nht")
                   } else {
@@ -262,7 +262,7 @@ const actions = {
           break;
       }
     });
-    console.log(finalAddToCart)
+    console.log(finalAddToCart);
     /*const quantityUpdated = await CartService.updateItemQuantity(item.line, item.quantity);
     if (quantityUpdated) {
       dispatch("initialize");
@@ -302,8 +302,8 @@ const mutations = {
         break;
       }
     }
-    if (!match_i) {return}
-    state.addons[type][match_i].qty = qty;;
+    if (!match_i) {return;}
+    state.addons[type][match_i].qty = qty;
   },
   setSteps(state, steps) {
     state.steps = steps;

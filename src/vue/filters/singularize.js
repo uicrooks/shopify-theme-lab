@@ -5,4 +5,4 @@ const singularize = (val) => {
 
 export {
   singularize
-}
+};

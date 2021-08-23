@@ -1,5 +1,3 @@
-<template />
-
 <script>
 import StoreService from "@/vue/services/store.service";
 import CookieService from "@/vue/services/cookie.service";
@@ -72,6 +70,9 @@ export default {
       return Helpers.addQueryParam({ currency: currencyOption.currency }, window.location.search);
     }
   },
+  render() {
+    return this.$scopedSlots.default({});
+  },
   async created() {
     this.currencyOption = await this.getDefaultCurrencyOption();
 
@@ -90,6 +91,7 @@ export default {
     if (!storeMatch || !queryMatch) {
       this.shareCart();
       const redirect = `${this.generateMatchingStoreDomain(this.currencyOption)}${this.generateMatchingQuery(this.currencyOption)}`;
+      console.log(redirect);
       // window.location.replace(redirect);
     }
 
