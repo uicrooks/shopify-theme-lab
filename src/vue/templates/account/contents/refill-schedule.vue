@@ -23,44 +23,48 @@
                   >
                 </div>
                 <div class="box-item-details">
-                  <div class="date">
-                    {{ showRefillDateDisplay(refillBoxDate) }}
-                  </div>
-                  <div class="pricing">
-                    <span
-                      v-if="compareAtPrice"
-                      class="compare-at-price"
+                  <div class="col-left">
+                    <h5>
+                      {{ displayTitle }}
+                    </h5>
+                    <div
+                      v-if="isOnetime"
+                      class="sub-heading"
                     >
-                      {{ compareAtPrice | money("$", 0) }}
-                    </span>
-                    <span
-                      :class="{'accentized': compareAtPrice}"
+                      Add-On
+                    </div>
+                    <div
+                      v-else
+                      class="sub-heading"
                     >
-                      {{ price | money("$", 0) }}
-                    </span>
+                      <i class="icon-custom icon-auto-renew icon" />
+                      {{ subscriptionInterval }}
+                    </div>
+                    <div
+                      v-for="(includedItem, index) of Object.keys(includedList)"
+                      :key="`item-${item.id}-included-list-${index}`"
+                      class="line-item"
+                    >
+                      {{ includedList[includedItem] }} x {{ includedItem }}
+                    </div>
                   </div>
-                  <h5>
-                    {{ displayTitle }}
-                  </h5>
-                  <div
-                    v-if="isOnetime"
-                    class="sub-heading"
-                  >
-                    Add-On
-                  </div>
-                  <div
-                    v-else
-                    class="sub-heading"
-                  >
-                    <i class="icon-custom icon-auto-renew icon" />
-                    {{ subscriptionInterval }}
-                  </div>
-                  <div
-                    v-for="(includedItem, index) of Object.keys(includedList)"
-                    :key="`item-${item.id}-included-list-${index}`"
-                    class="line-item"
-                  >
-                    {{ includedList[includedItem] }} x {{ includedItem }}
+                  <div class="col-right">
+                    <div class="date">
+                      {{ showRefillDateDisplay(refillBoxDate) }}
+                    </div>
+                    <div class="pricing">
+                      <span
+                        v-if="compareAtPrice"
+                        class="compare-at-price"
+                      >
+                        {{ compareAtPrice | money("$", 0) }}
+                      </span>
+                      <span
+                        :class="{'accentized': compareAtPrice}"
+                      >
+                        {{ price | money("$", 0) }}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -92,44 +96,48 @@
                   >
                 </div>
                 <div class="box-item-details">
-                  <div class="date">
-                    {{ showRefillDateDisplay(date) }}
-                  </div>
-                  <div class="pricing">
-                    <span
-                      v-if="compareAtPrice"
-                      class="compare-at-price"
+                  <div class="col-left">
+                    <h5>
+                      {{ displayTitle }}
+                    </h5>
+                    <div
+                      v-if="isOnetime"
+                      class="sub-heading"
                     >
-                      {{ compareAtPrice | money("$", 0) }}
-                    </span>
-                    <span
-                      :class="{'accentized': compareAtPrice}"
+                      Add-On
+                    </div>
+                    <div
+                      v-else
+                      class="sub-heading"
                     >
-                      {{ price | money("$", 0) }}
-                    </span>
+                      <i class="icon-custom icon-auto-renew icon" />
+                      {{ subscriptionInterval }}
+                    </div>
+                    <div
+                      v-for="(includedItem, includedItemIndex) of Object.keys(includedList)"
+                      :key="`refill-group-${itemIndex}-item-${item.id}-included-list-${includedItemIndex}`"
+                      class="line-item"
+                    >
+                      {{ includedList[includedItem] }} x {{ includedItem }}
+                    </div>
                   </div>
-                  <h5>
-                    {{ displayTitle }}
-                  </h5>
-                  <div
-                    v-if="isOnetime"
-                    class="sub-heading"
-                  >
-                    Add-On
-                  </div>
-                  <div
-                    v-else
-                    class="sub-heading"
-                  >
-                    <i class="icon-custom icon-auto-renew icon" />
-                    {{ subscriptionInterval }}
-                  </div>
-                  <div
-                    v-for="(includedItem, includedItemIndex) of Object.keys(includedList)"
-                    :key="`refill-group-${itemIndex}-item-${item.id}-included-list-${includedItemIndex}`"
-                    class="line-item"
-                  >
-                    {{ includedList[includedItem] }} x {{ includedItem }}
+                  <div class="col-right">
+                    <div class="date">
+                      {{ showRefillDateDisplay(date) }}
+                    </div>
+                    <div class="pricing">
+                      <span
+                        v-if="compareAtPrice"
+                        class="compare-at-price"
+                      >
+                        {{ compareAtPrice | money("$", 0) }}
+                      </span>
+                      <span
+                        :class="{'accentized': compareAtPrice}"
+                      >
+                        {{ price | money("$", 0) }}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -280,7 +288,7 @@ export default {
           .box-item-image {
             flex: 1;
             text-align: center;
-            min-width: 80px;
+            min-width: 60px;
 
             @include layout-sm {
               padding: 3px 10px;
@@ -295,56 +303,70 @@ export default {
 
           .box-item-details {
             flex: 4;
-            padding-left: 15px;
-            position: relative;
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            padding-left: 5px;
+
+            @include layout-sm {
+              padding-left: 15px;
+            }
 
             @include layout-md {
               flex: 3;
             }
 
-            h5 {
-              @include font-style-body($size: 14px, $weight: 600);
-            }
+            .col-left {
+              flex: 1;
 
-            .date {
-              position: absolute;
-              top: 0;
-              right: 0;
-              @include font-style-body-bold();
-            }
-
-            .pricing {
-              position: absolute;
-              top: 20px;
-              right: 0;
-              @include font-style-body($color: $dark-brown);
-
-              .accentized {
-                @include font-style-body($color: $text-green, $weight: 600);
+              h5 {
+                @include font-style-body($size: 14px, $weight: 600);
               }
-
-              .compare-at-price {
-                text-decoration: line-through;
-                margin-right: 2px;
+  
+              .sub-heading {
+                width: 100%;
+                display: flex;
+                flex-flow: row wrap;
+                align-items: center;
+                margin-bottom: 12px;
+                @include font-style-body($color: #a5937f);
+                
+                .icon-custom {
+                  color: $orange;
+                  margin-right: 4px;
+                }
               }
-            }
-
-            .sub-heading {
-              display: flex;
-              flex-flow: row wrap;
-              align-items: center;
-              margin-bottom: 12px;
-              @include font-style-body($color: #a5937f);
-              
-              .icon-custom {
-                color: $orange;
-                margin-right: 4px;
+  
+              .line-item {
+                width: 100%;
+                margin-bottom: 4px;
+                @include font-style-body($color: $brown, $size: 13px);
               }
             }
 
-            .line-item {
-              margin-bottom: 4px;
-              @include font-style-body($color: $brown, $size: 13px);
+            .col-right {
+              min-width: 60px;
+              margin-left: 5px;
+
+              .date {
+                text-align: right;
+                margin-bottom: 8px;
+                @include font-style-body-bold();
+              }
+  
+              .pricing {
+                margin-bottom: 8px;
+                @include font-style-body($color: $dark-brown);
+  
+                .accentized {
+                  @include font-style-body($color: $text-green, $weight: 600);
+                }
+  
+                .compare-at-price {
+                  text-decoration: line-through;
+                  margin-right: 2px;
+                }
+              }
             }
           }
         }

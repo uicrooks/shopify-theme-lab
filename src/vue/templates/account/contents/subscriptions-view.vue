@@ -46,6 +46,9 @@
                 >
               </div>
               <div class="box-item-details">
+                <h5>
+                  {{ displayTitle }}
+                </h5>
                 <div class="pricing">
                   <span
                     v-if="compareAtPrice"
@@ -59,9 +62,6 @@
                     {{ price | money("$", 0) }}
                   </span>
                 </div>
-                <h5>
-                  {{ displayTitle }}
-                </h5>
                 <div
                   v-if="isOnetime"
                   class="sub-heading"
@@ -262,22 +262,29 @@ export default {
       .box-item-image {
         flex: 1;
         text-align: center;
-        min-width: 80px;
+        min-width: 55px;
 
         @include layout-sm {
           padding: 3px 10px;
         }
 
         img {
-          min-width: 60px;
-          max-height: 80px;
+          min-width: 40px;
+          max-width: 80px;
+          max-height: 60px;
         }
       }
 
       .box-item-details {
         flex: 4;
-        padding-left: 15px;
-        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding-left: 5px;
+
+        @include layout-sm {
+          padding-left: 15px;
+        }
 
         @include layout-md {
           flex: 3;
@@ -288,9 +295,7 @@ export default {
         }
 
         .pricing {
-          position: absolute;
-          top: 0;
-          right: 0;
+          margin-bottom: 8px;
           @include font-style-body($color: $dark-brown);
 
           .accentized {
@@ -304,6 +309,7 @@ export default {
         }
 
         .sub-heading {
+          width: 100%;
           display: flex;
           flex-flow: row wrap;
           align-items: center;
@@ -317,6 +323,7 @@ export default {
         }
 
         .line-item {
+          width: 100%;
           margin-bottom: 4px;
           @include font-style-body($color: $brown, $size: 13px);
         }

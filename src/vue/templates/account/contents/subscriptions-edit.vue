@@ -3,106 +3,111 @@
     <account-section-container-box>
       <account-section-tabs />
       <div class="tab-contents">
-        <div class="box-header">
-          <div class="date-info">
-            <div
-              v-if="newRefillDateSelected"
-              class="date-row"
-            >
-              <div class="label">
-                Will Now Refill
-              </div>
-              <div class="date">
-                {{ showRefillDate(newRefillDate) }}
-              </div>
-            </div>
-            <div
-              v-else
-              class="date-row"
-            >
-              <div class="label">
-                Next Refill
-              </div>
-              <div class="date">
-                {{ showRefillDate(refillBoxDate) }}
-              </div>
-            </div>
-            <div class="date-row">
-              <date-picker
-                v-model="newRefillDate"
-                :min-date="new Date()"
-                :model-config="datepickerConfig"
-                color="orange"
-              >
-                <template v-slot="{ showPopover, hidePopover }">
-                  <a
-                    @mouseenter="showPopover"
-                    @mouseleave="hidePopover"
-                  >
-                    <b-icon
-                      icon="calendar3"
-                    />
-                    Adjust Date
-                  </a>
-                </template>
-              </date-picker>
+        <b-overlay
+          :show="loading" variant="transparent"
+          class="box-header-overlay"
+        >
+          <div class="box-header">
+            <div class="date-info">
               <div
                 v-if="newRefillDateSelected"
-                class="cancel-button"
-                @click="cancelDateChange"
+                class="date-row"
               >
-                <i class="icon-squatch icon-cross" />
-                Cancel
+                <div class="label">
+                  Will Now Refill
+                </div>
+                <div class="date">
+                  {{ showRefillDate(newRefillDate) }}
+                </div>
               </div>
-
-            </div>
-            <squatch-button
-              class="refill-button"
-            >
-              {{ newRefillDateSelected ? "Update Date" : "Refill Tonight" }}
-            </squatch-button>
-          </div>
-          <div class="meta-info">
-            <div class="shipping">
-              <h6>Ships To</h6>
-              <a @click="selectView('Edit Box')">
-                Edit
-              </a>
-              <p>
-                <span
-                  v-for="(line, lineIndex) of currentGroupShippingAddress"
-                  :key="`shipping-address-line-${lineIndex}`"
-                  class="address-line"
-                >
-                  {{ line }}
-                </span>
-              </p>
-            </div>
-            <div class="billing">
-              <h6>Bills To</h6>
-              <a @click="selectView('Edit Box')">
-                Edit
-              </a>
-              <p
-                v-if="rechargePaymentSource.cardImage"
-                class="billing-info"
+              <div
+                v-else
+                class="date-row"
               >
-                <img
-                  :src="rechargePaymentSource.cardImage"
-                  :alt="`${rechargePaymentSource.card_brand} logo`"
-                  class="card-logo"
+                <div class="label">
+                  Next Refill
+                </div>
+                <div class="date">
+                  {{ showRefillDate(refillBoxDate) }}
+                </div>
+              </div>
+              <div class="date-row">
+                <date-picker
+                  v-model="newRefillDate"
+                  :min-date="new Date()"
+                  :model-config="datepickerConfig"
+                  color="orange"
                 >
-                Ending in {{ rechargePaymentSource.card_last4 }}
-                <span
-                  v-if="rechargePaymentSource.status !== 'active'"
-                  class="status-alert"
+                  <template v-slot="{ showPopover, hidePopover }">
+                    <a
+                      @mouseenter="showPopover"
+                      @mouseleave="hidePopover"
+                    >
+                      <b-icon
+                        icon="calendar3"
+                      />
+                      Adjust Date
+                    </a>
+                  </template>
+                </date-picker>
+                <div
+                  v-if="newRefillDateSelected"
+                  class="cancel-button"
+                  @click="cancelDateChange"
                 >
-                  Expired
-                </span>
-              </p>
+                  <i class="icon-squatch icon-cross" />
+                  Cancel
+                </div>
+
+              </div>
+              <squatch-button
+                class="refill-button"
+              >
+                {{ newRefillDateSelected ? "Update Date" : "Refill Tonight" }}
+              </squatch-button>
+            </div>
+            <div class="meta-info">
+              <div class="shipping">
+                <h6>Ships To</h6>
+                <a @click="selectView('Edit Box')">
+                  Edit
+                </a>
+                <p>
+                  <span
+                    v-for="(line, lineIndex) of currentGroupShippingAddress"
+                    :key="`shipping-address-line-${lineIndex}`"
+                    class="address-line"
+                  >
+                    {{ line }}
+                  </span>
+                </p>
+              </div>
+              <div class="billing">
+                <h6>Bills To</h6>
+                <a @click="selectView('Edit Box')">
+                  Edit
+                </a>
+                <p
+                  v-if="rechargePaymentSource.cardImage"
+                  class="billing-info"
+                >
+                  <img
+                    :src="rechargePaymentSource.cardImage"
+                    :alt="`${rechargePaymentSource.card_brand} logo`"
+                    class="card-logo"
+                  >
+                  Ending in {{ rechargePaymentSource.card_last4 }}
+                  <span
+                    v-if="rechargePaymentSource.status !== 'active'"
+                    class="status-alert"
+                  >
+                    Expired
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </b-overlay>
         <div class="box-items-wrapper">
           <account-renderless-order-item
             v-for="(item, itemIndex) of refillBox"
@@ -158,17 +163,21 @@
                   v-else
                   class="actions"
                 >
-                  <squatch-button
-                    class="skip-button"
-                  >
-                    Skip
-                  </squatch-button>
-                  <squatch-button
-                    class="edit-button"
-                    @clicked="openEditModal(item)"
-                  >
-                    Edit
-                  </squatch-button>
+                  <div class="button-wrapper">
+                    <squatch-button
+                      class="skip-button"
+                    >
+                      Skip
+                    </squatch-button>
+                  </div>
+                  <div class="button-wrapper">
+                    <squatch-button
+                      class="edit-button"
+                      @clicked="openEditModal(item)"
+                    >
+                      Edit
+                    </squatch-button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -221,6 +230,7 @@ export default {
     refillBox() {
       this.loading = true;
       this.ordersLoadedCounter = 0;
+      this.newRefillDate = this.refillBoxDate.split("T")[0];
     },
     newRefillDate(val) {
       console.log("newRefillDate", val);
@@ -242,6 +252,7 @@ export default {
       this.ordersLoadedCounter++;
       if (this.ordersLoadedCounter == this.refillBox.length) {
         this.loading = false;
+        this.$emit("ready");
       }
     },
     openEditModal(item) {
@@ -256,7 +267,6 @@ export default {
 };
 </script>
 
-
 <style lang="scss">
 @import "@/styles/main.scss";
 
@@ -266,6 +276,10 @@ export default {
     display: flex;
     flex-flow: row wrap;
     padding-top: 15px;
+
+    .box-header-overlay {
+      width: 100%;
+    }
 
     .box-header {
       width: 100%;
@@ -418,32 +432,33 @@ export default {
         .box-item-image {
           flex: 1;
           text-align: center;
-          min-width: 80px;
 
           @include layout-sm {
             padding: 3px 10px;
           }
 
           img {
-            min-width: 60px;
-            max-height: 80px;
+            min-width: 40px;
+            max-width: 80px;
+            max-height: 60px;
           }
         }
 
         .box-item-details {
           flex: 3;
-          padding-left: 15px;
           position: relative;
+          padding-left: 5px;
 
-          @include layout-md {
+          @include layout-sm {
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
+            padding-left: 15px;
           }
 
           .heading {
 
-            @include layout-md {
+            @include layout-sm {
               flex: 2;
             }
   
@@ -469,16 +484,24 @@ export default {
             display: flex;
             flex-flow: row nowrap;
 
-            @include layout-md {
+            @include layout-sm {
               flex-flow: column nowrap;
               align-items: center;
               justify-content: center;
-              width: 160px;
-              margin-right: 20px;
+              min-width: 100px;
+              margin-left: 20px;
+            }
+
+            .button-wrapper {
+              flex: 1;
+
+              @include layout-sm {
+                width: 100%;
+              }
             }
 
             .skip-button {
-              width: 75px;
+              width: 100%;
               height: 34px;
               padding: 12px 10px 10px;
               color: $text-orange;
@@ -490,9 +513,8 @@ export default {
                 color: $orange;
               }
               
-              @include layout-md {
+              @include layout-sm {
                 height: unset;
-                width: 100%;
                 padding: 15px 15px 10px;
                 margin-right: 0;
                 margin-bottom: 10px;
@@ -501,26 +523,12 @@ export default {
             
             .edit-button {
               position: relative;
-              width: 100px;
               height: 34px;
               padding: 12px 10px 10px;
 
-              @include layout-md {
+              @include layout-sm {
                 height: unset;
-                width: 100%;
                 padding: 15px 15px 10px;
-              }
-
-              .icon-squatch {
-                position: absolute;
-                top: 11px;
-                right: 20px;
-                font-size: 13px !important;
-
-                @include layout-md {
-                  top: 14px;
-                  right: 50px;
-                }
               }
             }
 
