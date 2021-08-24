@@ -16,12 +16,12 @@ const PrivacyPolicyTemplate = () => import(
 
 new Vue({
   el: "#app",
-  mixins: [...mixins],
   components: {
     BundleOffersTemplate,
     PrivacyPolicyTemplate,
     SubscriptionFlowTemplate
   },
+  mixins: [...mixins],
   store,
   mounted() {
     window.app = this;

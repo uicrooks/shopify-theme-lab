@@ -3,9 +3,9 @@ console.log("layout-account");
 
 new Vue({
   el: "#app",
-  mixins: [...mixins],
   components: {
   },
+  mixins: [...mixins],
   store,
   mounted() {
     window.app = this;

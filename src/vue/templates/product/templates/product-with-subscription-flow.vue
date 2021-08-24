@@ -82,8 +82,7 @@ import ProductDetails from "@/configs/product-details";
 import NewLookBanner from "@/vue/reusables/new-look-banner.vue";
 import SquatchButton from "@/vue/reusables/squatch-button.vue";
 //
-const ProductBaseTemplate = () => import(/* webpackChunkName: "product-main" */
-  /* webpackPreload: true */"./base-template.vue")
+const ProductBaseTemplate = () => import(/* webpackChunkName: "product-with-sub-link" */"./base-template.vue");
 import ProductFeatureDescriptions from "../reusables/feature-descriptions.vue";
 import ProductQuantityOptions from "../reusables/quantity-options.vue";
 import ProductQuantitySelector from "../reusables/quantity-selector.vue";

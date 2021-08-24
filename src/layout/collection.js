@@ -8,10 +8,10 @@ const CollectionTemplate = () => import(
 
 new Vue({
   el: "#app",
-  mixins: [...mixins],
   components: {
     Collection: CollectionTemplate,
   },
+  mixins: [...mixins],
   store,
   mounted() {
     window.app = this;

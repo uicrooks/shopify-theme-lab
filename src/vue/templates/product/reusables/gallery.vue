@@ -1,12 +1,21 @@
 <template>
-    <div v-if="product.images" class="product-gallery-component">
-      <b-carousel class="product-gallery" indicators img-width="1024" img-height="480">
-        <b-carousel-slide
-          v-for="(image, index) of product.images"
-          :key="`product-image-${index}`"
-          :img-src="image"></b-carousel-slide>
-      </b-carousel>
-    </div>
+  <div
+    v-if="product.images"
+    class="product-gallery-component"
+  >
+    <b-carousel
+      class="product-gallery"
+      indicators
+      img-width="1024"
+      img-height="480"
+    >
+      <b-carousel-slide
+        v-for="(image, index) of product.images"
+        :key="`product-image-${index}`"
+        :img-src="image"
+      />
+    </b-carousel>
+  </div>
 </template>
 
 <script>
@@ -46,7 +55,7 @@ export default {
         }
     },
     mounted() {
-      console.log('ProductGaller',this);
+      console.log("ProductGaller",this);
     }
 };
 </script>

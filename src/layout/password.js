@@ -3,9 +3,9 @@ console.log("layout-password");
 
 new Vue({
   el: "#app",
-  mixins: [...mixins],
   components: {
   },
+  mixins: [...mixins],
   store,
   mounted() {
     window.app = this;

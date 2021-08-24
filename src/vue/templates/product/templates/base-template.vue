@@ -8,7 +8,10 @@
       :product="product"
     />
     <section class="product-header">
-
+      <product-gallery
+        :product="product"
+        class="product-header-col"
+      />
       <div class="product-header-col">
         <div class="info-box">
           <div class="info-row">

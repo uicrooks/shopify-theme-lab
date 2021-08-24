@@ -3,9 +3,9 @@ console.log("layout-404");
 
 new Vue({
   el: "#app",
-  mixins: [...mixins],
   components: {
   },
+  mixins: [...mixins],
   store,
   mounted() {
     window.app = this;

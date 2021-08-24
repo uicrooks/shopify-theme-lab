@@ -1,10 +1,17 @@
 <template>
-    <div class="cart-icon" @click="toggleCart">
-        <i aria-controls="cart" :aria-expanded="isOpen" class="icon-squatch icon-cart" />
-        <div class="item-total">
-            <span>{{ numberOfItems == null ? "" : numberOfItems }}</span>
-        </div>
+  <div
+    class="cart-icon"
+    @click="toggleCart"
+  >
+    <i
+      aria-controls="cart"
+      :aria-expanded="isOpen"
+      class="icon-squatch icon-cart"
+    />
+    <div class="item-total">
+      <span>{{ numberOfItems == null ? "" : numberOfItems }}</span>
     </div>
+  </div>
 </template>
 
 <script>
@@ -24,7 +31,7 @@ export default {
     },
     methods: {
         toggleCart() {
-            console.log("here")
+            console.log("here");
             this.$store.commit("cart/toggleIsOpen");
         },
     }

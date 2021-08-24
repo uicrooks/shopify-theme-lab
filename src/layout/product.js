@@ -24,7 +24,6 @@ const ProductOnetimeOnly = () => import(
 
 new Vue({
   el: "#app",
-  mixins: [...mixins],
   components: {
     ProductBaseTemplate,
     ProductWithSubscriptionFlow,
@@ -32,6 +31,7 @@ new Vue({
     ProductWithInPageCustomSubscription,
     ProductOnetimeOnly
   },
+  mixins: [...mixins],
   store,
   mounted() {
     window.app = this;

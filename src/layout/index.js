@@ -8,10 +8,10 @@ const IndexTemplate = () => import(
   "../vue/templates/index/index.vue");
 new Vue({
   el: "#app",
-  mixins: [...mixins],
   components: {
     IndexTemplate,
   },
+  mixins: [...mixins],
   store,
   mounted() {
     window.app = this;
