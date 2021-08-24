@@ -24,13 +24,12 @@ export default {
           discountCodes: [discountId],
         };
       }
-      
-      let upcomingRefillDates = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at).map(item => item.next_charge_scheduled_at);
-      upcomingRefillDates = upcomingRefillDates.filter((item, index) => upcomingRefillDates.indexOf(item) === index);
+      let upcomingRefillDates = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at).map(item => item.next_charge_scheduled_at.split("T")[0]);
+      upcomingRefillDates = upcomingRefillDates.filter((date, index) => upcomingRefillDates.indexOf(date) === index);
 
       let refillsObj = {};
       upcomingRefillDates.forEach(date => {
-        refillsObj[date] = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at === date);
+        refillsObj[date] = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at && item.next_charge_scheduled_at.split("T")[0] === date);
       });
       obj[addressLabel].upcomingRefillDates = upcomingRefillDates;
       obj[addressLabel].upcomingRefillsByDate = refillsObj;

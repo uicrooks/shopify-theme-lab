@@ -16,7 +16,12 @@ export default {
       type: Number,
       required: true,
       default: 0
-    }
+    },
+    fetchAndUpdate: {
+      type: Boolean,
+      required: false,
+      default: true,
+    },
   },
   data() {
     return {
@@ -98,7 +103,7 @@ export default {
       }
       let list = {};
       lineItems.forEach(item => {
-        list[item.title] ? list[item.title] += 1 : list[item.title] = 1;
+        list[item.title] ? list[item.title] += this.item.quantity : list[item.title] = this.item.quantity;
       });
       return list;
     }
@@ -140,14 +145,14 @@ export default {
       this.lineItems = this.item.lineItems;
     }
 
-    if (!this.item.productData || !this.item.propertyObj || !this.item.lineItems) {
+    if (this.fetchAndUpdate && !this.item.productData || !this.item.propertyObj || !this.item.lineItems) {
       this.$store.commit("account/updateOrderItemInRefillBox", {
         index: this.index,
         data: updateObj
       });
     }
-    this.loading = false;
     this.$emit("loaded");
+    this.loading = false;
   },
   render() {
     return this.$scopedSlots.default({

@@ -1,6 +1,7 @@
 <template>
   <div class="account-component">
     <account-nav
+      v-if="!loading"
       class="account-nav"
     />
     <!-- Overview -->
@@ -17,7 +18,9 @@
         class="view-section"
       >
         <h4>Squatch Box</h4>
-        <account-subscriptions-view />
+        <account-subscriptions-view
+          @ready="loading = false"
+        />
       </div>
       <div class="view-section">
         <h4>Get More Squatch</h4>
@@ -31,7 +34,19 @@
       class="view"
     >
       <h1>Edit Box</h1>
-      <account-subscriptions-edit />
+      <account-subscriptions-edit 
+        @ready="loading = false"
+      />
+    </div>
+    <!-- End of Edit Box -->
+
+    <!-- Refill Schedule -->
+    <div
+      v-else-if="currentView === 'Refill Schedule'"
+      class="view"
+    >
+      <h1>Refill Schedule</h1>
+      <account-refill-schedule />
     </div>
     <!-- End of Edit Box -->
 
@@ -75,12 +90,25 @@ export default {
       default: () => []
     },
   },
+  data() {
+    return {
+      loading: true
+    };
+  },
   computed: {
     ...mapGetters("account", ["currentView", "rechargeUser"]),
     isActiveSubscriber() {
       // return this.user.tags.includes("Active Subscriber");
       return true;
     },
+  },
+  watch: {
+    currentView(val) {
+      console.log("view", val);
+      if (["Overview", "Edit Box"].includes(val)) {
+        this.loading = true;
+      }
+    }
   },
   methods: {
     updateView() {

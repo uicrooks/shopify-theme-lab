@@ -7,7 +7,10 @@
           {{ refillDate }}
         </span>
       </div>
-      <div class="edit-link">
+      <div
+        v-if="!loading"
+        class="edit-link"
+      >
         <a @click="selectView('Edit Box')">
           Edit Box
         </a>
@@ -183,6 +186,7 @@ export default {
   },
   watch: {
     refillBox() {
+      console.log("refillBox", this.refillBox);
       this.loading = true;
       this.ordersLoadedCounter = 0;
     }
@@ -195,6 +199,7 @@ export default {
       this.ordersLoadedCounter++;
       if (this.ordersLoadedCounter == this.refillBox.length) {
         this.loading = false;
+        this.$emit("ready");
       }
     }
   }
