@@ -15,7 +15,13 @@ export default {
     try {
       const res = await axios.get("/browsing_context_suggestions.json?source=geolocation_recommendation&currency[enabled]=true&language[enabled]=true&language[exclude]=en&country[enabled]=true");
       console.log(res.data);
-      return res.data.detected_values && res.data.detected_values.country_name;
+      if (!res.data.detected_values || !res.data.detected_values.country_name) {
+        throw new Error("Err in response");
+      }
+      return {
+        country_name: res.data.detected_values.country_name,
+        country_code: res.data.detected_values.country.handle
+      };
     } catch (err) {
       console.log("failed to fetch geo suggestion");
       return null;

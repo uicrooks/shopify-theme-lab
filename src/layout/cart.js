@@ -1,8 +1,9 @@
-import {Vue, store} from "../main";
+import {Vue, store, mixins} from "../main";
 console.log("layout-cart");
 
 new Vue({
   el: "#app",
+  mixins: [...mixins],
   components: {
   },
   store,

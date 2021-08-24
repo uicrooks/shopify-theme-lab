@@ -1,30 +1,19 @@
-<script>
 import StoreService from "@/vue/services/store.service";
+import CartService from "@/vue/services/cart.service";
 import CookieService from "@/vue/services/cookie.service";
 import Helpers from "@/vue/services/general-helpers";
 import TrackingService from "@/vue/services/tracking.service";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "VueApp",
-  props: {
-    loggedIn: {
-      type: Boolean,
-      required: true
-    },
-    currency: {
-      type: String,
-      required: true,
-    },
-    oosItems: {
-      type: Array,
-      required: false,
-      default: () => {}
-    }
-  },
   data() {
     return {
-      currencyOption: null
+      currencyOption: null,
+      loggedIn: window.theme.loggedIn,
+      currency: window.theme.currencyCode,
+      oosItems: window.theme.oosItems,
+      CartService,
+      CookieService
     };
   },
   computed: {
@@ -49,9 +38,9 @@ export default {
       return stored ? stored : null;
     },
     async getCurrencyOptionFromGeoLocation() {
-      const country = await StoreService.getCurrentGeolocation();
+      const { country_code } = await StoreService.getCurrentGeolocation();
       const currencyOption = this.currencyOptions.filter(option => {
-        return country === option.country;
+        return country_code === option.country_code;
       })[0];
       return currencyOption ? currencyOption : null;
     },
@@ -68,10 +57,15 @@ export default {
     },
     generateMatchingQuery(currencyOption) {
       return Helpers.addQueryParam({ currency: currencyOption.currency }, window.location.search);
-    }
-  },
-  render() {
-    return this.$scopedSlots.default({});
+    },
+    initializeGlobalVariables() {
+      this.session = {
+        params: Helpers.convertQueryStringToObject(window.location.search),
+        email: window.theme.email,
+        template_name: window.theme.template_name,
+        template_suffix: window.theme.template_suffix,
+      }
+    },
   },
   async created() {
     this.currencyOption = await this.getDefaultCurrencyOption();
@@ -108,10 +102,13 @@ export default {
     console.log("oosItems", this.oosItems);
     this.$store.commit("core/setLoggedIn", this.loggedIn);
     this.$store.commit("core/setOosItems", this.oosItems);
+    this.$store.dispatch("cart/initialize");
+    this.initializeGlobalVariables();
+    Helpers.setScrollListener();
     Helpers.vaultDiscountCode();
     Helpers.scrollToLink();
+
     TrackingService.linkEmailToKlaviyo();
     TrackingService.PAGE_VIEW();
   }
 };
-</script>

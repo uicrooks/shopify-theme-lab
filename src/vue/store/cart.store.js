@@ -1,8 +1,10 @@
 import CartService from "@/vue/services/cart.service";
 
 const state = () => ({
-  cart: {},
-  isOpen: false
+  cart: {
+    item_count: null
+  },
+  isOpen: false,
 });
 
 const getters = {
@@ -16,7 +18,7 @@ const getters = {
     return state.cart.items;
   },
   numberOfItems: (state) => {
-    return state.cart.item_count ? state.cart.item_count : 0;
+    return state.cart.item_count;
   },
 };
 

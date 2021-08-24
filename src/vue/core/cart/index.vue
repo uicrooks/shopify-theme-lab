@@ -1,18 +1,5 @@
 <template>
   <div class="cart-component">
-    <div
-      class="cart-icon"
-      @click="toggleCart"
-    >
-      <i
-        aria-controls="cart"
-        :aria-expanded="isOpen"
-        class="icon-squatch icon-cart"
-      />
-      <div class="item-total">
-        <span>{{ numberOfItems }}</span>
-      </div>
-    </div>
     <b-sidebar
       id="cart"
       v-model="isOpen"
@@ -136,10 +123,20 @@
 
 <script>
 import CartService from "@/vue/services/cart.service";
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
+import QuantitySwitch from "@/vue/reusables/quantity-switch.vue";
+import {money} from "@/vue/filters/money";
 import { mapGetters } from "vuex";
 
 export default {
   name: "Cart",
+  components: {
+    SquatchButton,
+    QuantitySwitch
+  },
+  filters: {
+    money
+  },
   computed: {
     isOpen: {
       get() {
@@ -156,9 +153,6 @@ export default {
     }
   },
   methods: {
-    toggleCart() {
-      this.$store.commit("cart/toggleIsOpen");
-    },
     async updateQuantity(itemIndex, quantity) {
       const updated = await CartService.updateItemQuantity(
         itemIndex + 1,
@@ -174,7 +168,7 @@ export default {
   },
   async mounted() {
     console.log("cart mounted");
-    await this.$store.dispatch("cart/initialize");
+    //await this.$store.dispatch("cart/initialize");
     /*const cart = await CartService.initCart();
     if (cart) {
       this.$store.commit("cart/setCart", cart);

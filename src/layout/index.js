@@ -1,4 +1,4 @@
-import {Vue, store} from "../main";
+import {Vue, store, mixins} from "../main";
 console.log("layout-index");
 
 //import IndexTemplate from "../vue/templates/index/index.vue";
@@ -8,6 +8,7 @@ const IndexTemplate = () => import(
   "../vue/templates/index/index.vue");
 new Vue({
   el: "#app",
+  mixins: [...mixins],
   components: {
     IndexTemplate,
   },

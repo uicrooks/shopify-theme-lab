@@ -1,4 +1,4 @@
-import {Vue, store} from "../main";
+import {Vue, store, mixins} from "../main";
 console.log("layout-page");
 
 const BundleOffersTemplate = () => import(
@@ -16,6 +16,7 @@ const PrivacyPolicyTemplate = () => import(
 
 new Vue({
   el: "#app",
+  mixins: [...mixins],
   components: {
     BundleOffersTemplate,
     PrivacyPolicyTemplate,

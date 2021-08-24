@@ -43,13 +43,11 @@ export default {
 .quantity-switch-component {
 
   .decrease-button, .increase-button {
-    // position: absolute;
     display: inline-block;
     width: 20px;
     height: 27px;
     text-align: center;
-    // font-size: 24px;
-    color: $white;
+    color: global.$white;
     border: 2px solid global.$orange;
     background-color: global.$orange;
     cursor: pointer;
@@ -68,7 +66,7 @@ export default {
     padding: 3px 7px;
     border: 2px solid #999;
     text-align: center;
-    @include font-style-body($lh: 17px);
+    @include global.font-style-body($lh: 17px);
   }
 }
 </style>

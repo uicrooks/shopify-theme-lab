@@ -110,8 +110,8 @@ export default {
     SquatchButton
   },
   props: {
-    product: {
-      type: Object,
+    prod: {
+      type: String,
       required: true,
       default: () => {}
     },
@@ -229,6 +229,9 @@ export default {
       });
       return props;
     }
+  },
+  created() {
+    this.product = JSON.parse(this.prod);
   },
   mounted() {
     this.productIdentityTags = ProductIdentifier.identify(this.product);

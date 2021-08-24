@@ -26,6 +26,7 @@ export default {
     }
   },
   async addItem(product, qty = 1, variantId = "", payload = {}) {
+    // **** Let's Chat ****
     const variant = getMatchingVariantForProduct(product, variantId);
     if (!variant) {
       console.log("failed to add an item; item does not have matching variant");
@@ -39,6 +40,7 @@ export default {
         properties: props
       });
       if (res.status === 200) {
+        TrackingService.ADD_TO_CART(res.data);
         return true;
       }
     } catch (err) {

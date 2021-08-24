@@ -1,5 +1,6 @@
 <template>
   <div class="main-nav-component">
+    <cart />
     <!-- Mobile sidebar navigation -->
     <div class="mobile-nav">
       <a href="/">
@@ -10,7 +11,7 @@
         >
       </a>
       <div class="buttons">
-        <cart />
+        <cart-button />
         <i
           v-b-toggle.main-nav-sidebar
           class="icon-squatch icon-burger"
@@ -263,7 +264,7 @@
             </div>
           </b-collapse>
         </div>
-        <cart />
+        <cart-button />
       </div>
     </div>
     <b-collapse 
@@ -334,6 +335,7 @@
 <script>
 import CookieService from "@/vue/services/cookie.service";
 import SquatchButton from "@/vue/reusables/squatch-button.vue";
+import CartButton from "@/vue/reusables/cart-button.vue";
 import Cart from "@/vue/core/cart/index.vue";
 import GroupedMenuItem from "./grouped-menu-item.vue";
 import SingleMenuItem from "./single-menu-item.vue";
@@ -344,6 +346,7 @@ export default {
   components: {
     Cart,
     SquatchButton,
+    CartButton,
     MainNavGroupedMenuItem: GroupedMenuItem,
     MainNavSingleMenuItem: SingleMenuItem
   },

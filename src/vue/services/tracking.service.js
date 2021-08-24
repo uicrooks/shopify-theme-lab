@@ -25,6 +25,7 @@ export default {
   },
   ADD_TO_CART(item) {
     console.log("Tracking AddToCart");
+    console.log(item);
   },
   INITIATE_CHECKOUT(cart) {
     return new Promise(resolve => {

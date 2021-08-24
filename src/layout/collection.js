@@ -1,4 +1,4 @@
-import {Vue, store} from "../main";
+import {Vue, store, mixins} from "../main";
 console.log("layout-collection");
 
 const CollectionTemplate = () => import(
@@ -8,6 +8,7 @@ const CollectionTemplate = () => import(
 
 new Vue({
   el: "#app",
+  mixins: [...mixins],
   components: {
     Collection: CollectionTemplate,
   },
