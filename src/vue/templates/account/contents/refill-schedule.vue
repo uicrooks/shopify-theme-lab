@@ -8,9 +8,9 @@
           <h4>{{ showRefillMonthDisplay(refillBoxDate) }}</h4>
           <div class="refill-items-wrapper">
             <account-renderless-order-item
-              v-for="(item, itemIndex) of nextRefill"
-              :key="item.id"
-              :item="item"
+              v-for="(refillBoxItem, itemIndex) of nextRefill"
+              :key="refillBoxItem.id"
+              :item="refillBoxItem"
               :index="itemIndex"
               class="box-item"
               :class="{'last': itemIndex === refillBox.length - 1}"
@@ -71,7 +71,9 @@
             </account-renderless-order-item>
           </div>
         </div>
-        <h3 class="padded">Upcoming Refills</h3>
+        <h3 class="padded">
+          Upcoming Refills
+        </h3>
         <div
           v-for="(date, index) of Object.keys(upcomingRefills)"
           :key="`refill-group-${index}`"
@@ -80,11 +82,11 @@
           <h4>{{ showRefillMonthDisplay(date) }}</h4>
           <div class="refill-items-wrapper">
             <account-renderless-order-item
-              v-for="(item, itemIndex) of upcomingRefills[date]"
-              :key="item.id"
-              :item="item"
+              v-for="(upcomingRefillItem, itemIndex) of upcomingRefills[date]"
+              :key="upcomingRefillItem.id"
+              :item="upcomingRefillItem"
               :index="itemIndex"
-              :fetchAndUpdate="false"
+              :fetch-and-update="false"
               class="box-item"
               :class="{'last': itemIndex === upcomingRefills[date].length - 1}"
             >
@@ -166,35 +168,27 @@ export default {
       return this.refillSchedule[this.refillBoxDate];
     },
     upcomingRefills() {
-      const upcomingDates = Object.keys(this.refillSchedule).filter(date => {
-        return date !== this.refillBoxDate;
-      });
-      console.log("upcomingDates", upcomingDates);
       let obj = {};
-      upcomingDates.sort().forEach(date => {
+      Object.keys(this.refillSchedule).filter(date => {
+        return date !== this.refillBoxDate;
+      }).sort().forEach(date => {
         obj[date] = this.refillSchedule[date];
       });
       return obj;
     }
   },
   watch: {
-    currentGroup(val) {
-      console.log("currentGroup", val);
-      console.log("refillBox", this.refillBox);
+    currentGroup() {
       this.refillSchedule = {};
       this.generateRefillSchedule();
-      console.log("RefillBoxDate", this.refillBoxDate);
-      console.log("upcomiongRefills", this.upcomingRefills);
     }
   },
   methods: {
     generateRefillSchedule() {
       let obj = {};
       this.refillBox.forEach(item => {
-        console.log(item);
         const formattedDate = item.next_charge_scheduled_at && moment(item.next_charge_scheduled_at).format("YYYY-MM-DD");
-        console.log(formattedDate);
-        if (!obj.hasOwnProperty(formattedDate)) {
+        if (!obj[formattedDate]) {
           obj[formattedDate] = [item];
         } else {
           obj[formattedDate].push(item);
@@ -217,7 +211,6 @@ export default {
         }
       });
       Object.keys(this.currentGroup.upcomingRefillsByDate).forEach(date => {
-        console.log(date);
         if (date === this.refillBoxDate) return;
         if (!obj[date]) {
           obj[date] = this.currentGroup.upcomingRefillsByDate[date];
@@ -226,8 +219,6 @@ export default {
         }
       });
       this.refillSchedule = obj;
-      console.log("refillSchedule", obj);
-      console.log("RefillBox", this.refillBox);
     },
     showRefillMonthDisplay(date) {
       return moment(date).format("MMMM YYYY");
@@ -242,7 +233,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "@/styles/main.scss";
 
 .refill-schedule-component {

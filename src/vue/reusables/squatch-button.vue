@@ -29,7 +29,9 @@ export default {
         window.location = this.path;
         return;
       }
-      this.$emit("clicked");
+      if (!this.disabled) {
+        this.$emit("clicked");
+      }
     }
   }
 };

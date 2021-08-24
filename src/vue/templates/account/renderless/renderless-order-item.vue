@@ -49,7 +49,7 @@ export default {
       const unit = ProductIdentifier.getUnitNameByIdentityString(identityString);
       const quantity = ["barsoap", "deodorant"].includes(identityString) ? this.lineItems.length : this.item.quantity;
       const unitText = quantity > 1 ? `${unit}s` : unit;
-      return `${quantity} ${unitText}`
+      return `${quantity} ${unitText}`;
     },
     price() {
       return this.item.price * this.item.quantity;

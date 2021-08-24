@@ -4,7 +4,8 @@
       <account-section-tabs />
       <div class="tab-contents">
         <b-overlay
-          :show="loading" variant="transparent"
+          :show="isLoading"
+          variant="transparent"
           class="box-header-overlay"
         >
           <div class="box-header">
@@ -110,12 +111,12 @@
         </b-overlay>
         <div class="box-items-wrapper">
           <account-renderless-order-item
-            v-for="(item, itemIndex) of refillBox"
-            :key="item.id"
-            :item="item"
-            :index="itemIndex"
+            v-for="(refillBoxItem, refillBoxItemIndex) of refillBox"
+            :key="refillBoxItem.id"
+            :item="refillBoxItem"
+            :index="refillBoxItemIndex"
             class="box-item"
-            :class="{'last': itemIndex === refillBox.length - 1}"
+            :class="{'last': refillBoxItemIndex === refillBox.length - 1}"
             @loaded="onOrderItemLoaded"
           >
             <div slot-scope="{ loading, isOnetime, item, displayTitle, displayTitleWithQuantity, imageSrc, subscriptionInterval }">
@@ -157,6 +158,9 @@
                   <quantity-switch
                     class="qty-switch"
                     :quantity="item.quantity"
+                    :index="refillBoxItemIndex"
+                    @decrease="decreaseOnetimeQuantity"
+                    @increase="increaseOnetimeQuantity"
                   />
                 </div>
                 <div
@@ -186,17 +190,26 @@
       </div>
     </account-section-container-box>
     <account-subscription-edit-modal
-      :showModal="showEdit"
+      :show-modal="showEditModal"
       :item="itemToEdit"
-      @hide="showEdit = false"
+      @hide="showEditModal = false"
+    />
+    <account-confirmation-modal
+      :show-modal="showConfirmModal"
+      :item="itemToEdit"
+      :action-description="actionToConfirm"
+      :action-function="actionFunction"
+      :changes="changes"
+      @hide="closeConfirmModal"
     />
   </div>
 </template>
 
 <script>
+import RechargeService from "@/vue/services/recharge.service";
+import AccountHelpers from "@/vue/services/account-helpers";
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
 import { mapGetters } from "vuex";
-import moment from "moment";
 import Calendar from "v-calendar/lib/components/calendar.umd";
 import DatePicker from "v-calendar/lib/components/date-picker.umd";
 
@@ -208,9 +221,13 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      isLoading: true,
       ordersLoadedCounter: 0,
-      showEdit: false,
+      showEditModal: false,
+      showConfirmModal: false,
+      actionToConfirm: "",
+      actionFunction: () => {},
+      changes: {},
       itemToEdit: {},
       openCalendar: false,
       newRefillDate: null,
@@ -221,14 +238,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargePaymentSource",  "currentGroupShippingAddress", "refillBoxDate", "refillBox"]),
+    ...mapGetters("account", ["rechargeUser", "rechargePaymentSource", "currentGroupName", "currentGroupShippingAddress", "refillBoxDate", "refillBox"]),
     newRefillDateSelected() {
       return this.refillBoxDate.split("T")[0] !== this.newRefillDate;
     },
   },
   watch: {
     refillBox() {
-      this.loading = true;
+      console.log("refillBoxChanged", this.refillBox);
+      this.isLoading = true;
       this.ordersLoadedCounter = 0;
       this.newRefillDate = this.refillBoxDate.split("T")[0];
     },
@@ -237,6 +255,9 @@ export default {
     }
   },
   methods: {
+    selectView(viewName) {
+      this.$store.commit("account/setCurrentView", viewName);
+    },
     showRefillDate(date) {
       if (!this.refillBoxDate) return "";
       const format = !DatetimeHelpers.isSame(new Date(), date, "year") ? "MMM Do, YYYY" : "MMM Do";
@@ -245,20 +266,42 @@ export default {
     cancelDateChange() {
       this.newRefillDate = this.refillBoxDate.split("T")[0];
     },
-    selectView(viewName) {
-      this.$store.commit("account/setCurrentView", viewName);
+    async decreaseOnetimeQuantity(index) {
+      this.itemToEdit = this.refillBox[index];
+      this.actionToConfirm = "update the quantity for";
+      this.actionFunction = RechargeService.updateOnetime;
+      this.changes = {
+        quantity: this.itemToEdit.quantity - 1
+      };
+      this.showConfirmModal = true;
+    },
+    async increaseOnetimeQuantity(index) {
+      this.itemToEdit = this.refillBox[index];
+      this.actionToConfirm = "update the quantity for";
+      this.actionFunction = RechargeService.updateOnetime;
+      this.changes = {
+        quantity: this.itemToEdit.quantity + 1
+      };
+      this.showConfirmModal = true;
     },
     onOrderItemLoaded() {
       this.ordersLoadedCounter++;
       if (this.ordersLoadedCounter == this.refillBox.length) {
-        this.loading = false;
+        this.isLoading = false;
         this.$emit("ready");
       }
     },
     openEditModal(item) {
       console.log(item);
-      this.showEdit = true;
+      this.showEditModal = true;
       this.itemToEdit = item;
+    },
+    closeConfirmModal() {
+      this.itemToEdit = {};
+      this.actionToConfirm = "";
+      this.actionFunction = () => {};
+      this.changes = {};
+      this.showConfirmModal = false;
     }
   },
   mounted() {

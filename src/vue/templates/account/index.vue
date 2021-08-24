@@ -121,12 +121,9 @@ export default {
       this.$store.commit("account/setRechargeUser", subscriber);
       this.$store.commit("account/setRechargePaymentSource",paymentSources[0]); 
     },
-    async initializeOrderData() {
-      const orders = await RechargeService.getUserResource(this.rechargeUser.id, "subscriptions");
-      const subscriptions = orders.subscriptions.filter(subs => !subs.cancelled_at);
-      const addresses = await RechargeService.getUserResource(this.rechargeUser.id, "addresses");
-      const squatchBoxGroups = AccountHelpers.processOrderData([...subscriptions, ...orders.onetimes], addresses);
-      this.$store.commit("account/setRechargeOrders", orders);
+    async initializeOrderData(rechargeUserId) {
+      const squatchBoxGroups = await AccountHelpers.initializeOrderData(rechargeUserId);
+      // this.$store.commit("account/setRechargeOrders", orders);
       this.$store.commit("account/setSquatchBoxGroups", squatchBoxGroups);
       this.$store.dispatch("account/initializeCurrentGroup", Object.keys(squatchBoxGroups)[0]);
     }
@@ -148,7 +145,7 @@ export default {
       // const email = this.user.email;
       const email = "will@drsquatch.com";
       await this.initializeRechargeUserData(email);
-      await this.initializeOrderData();
+      await this.initializeOrderData(this.rechargeUser.id);
     }
   },
   async mounted() {
@@ -164,20 +161,16 @@ export default {
 
 .account-component {
   background-color: #f6f5f3;
-  // padding: 20px 10px;
 
   @include layout-lg {
     display: flex;
     flex-flow: row wrap;
   }
 
-  // @include layout-sm {
-  //   padding: 20px;
-  // }
-
   .account-nav {
     position: sticky;
     top: 75px;
+    z-index: 1;
 
     @include layout-lg {
       width: 230px;

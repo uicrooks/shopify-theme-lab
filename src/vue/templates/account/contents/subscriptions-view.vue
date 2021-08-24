@@ -8,7 +8,7 @@
         </span>
       </div>
       <div
-        v-if="!loading"
+        v-if="!isLoading"
         class="edit-link"
       >
         <a @click="selectView('Edit Box')">
@@ -24,9 +24,9 @@
           class="box-items-wrapper"
         >
           <account-renderless-order-item
-            v-for="(item, itemIndex) of refillBox"
-            :key="item.id"
-            :item="item"
+            v-for="(refillBoxItem, itemIndex) of refillBox"
+            :key="refillBoxItem.id"
+            :item="refillBoxItem"
             :index="itemIndex"
             class="box-item"
             :class="{'last': itemIndex === refillBox.length - 1}"
@@ -90,7 +90,7 @@
           <div class="line">
             <span>Subtotal</span>
             <b-spinner
-              v-if="loading"
+              v-if="isLoading"
               variant="secondary"
               type="grow"
               small
@@ -102,7 +102,7 @@
           <div class="line">
             <span>Savings</span>
             <b-spinner
-              v-if="loading"
+              v-if="isLoading"
               variant="secondary"
               type="grow"
               small
@@ -114,7 +114,7 @@
           <div class="line accentized">
             <span>Total</span>
             <b-spinner
-              v-if="loading"
+              v-if="isLoading"
               variant="secondary"
               type="grow"
               small
@@ -166,7 +166,7 @@ export default {
   name: "AccountSubscriptionsView",
   data() {
     return {
-      loading: true,
+      isLoading: true,
       ordersLoadedCounter: 0
     };
   },
@@ -178,16 +178,16 @@ export default {
       return DatetimeHelpers.format(this.refillBoxDate, format);
     },
     subTotal() {
-      return this.loading ? "" : this.refillBoxSubTotal;
+      return this.isLoading ? "" : this.refillBoxSubTotal;
     },
     savingsTotal() {
-      return this.loading ? "" : this.refillBoxSavingsTotal;
+      return this.isLoading ? "" : this.refillBoxSavingsTotal;
     }
   },
   watch: {
     refillBox() {
       console.log("refillBox", this.refillBox);
-      this.loading = true;
+      this.isLoading = true;
       this.ordersLoadedCounter = 0;
     }
   },
@@ -198,7 +198,7 @@ export default {
     onOrderItemLoaded() {
       this.ordersLoadedCounter++;
       if (this.ordersLoadedCounter == this.refillBox.length) {
-        this.loading = false;
+        this.isLoading = false;
         this.$emit("ready");
       }
     }

@@ -51,7 +51,7 @@ const Helpers = {
           title: option.title,
           imageSrc: option.fatured_image || option.images[0],
           quantity: matchesInLineItems.length,
-        }
+        };
       });
     }
     if (productType === "haircare") {
@@ -68,7 +68,7 @@ const Helpers = {
           quantity: optionInLineItems ? qty : 0,
           subType: optionSubType,
           hidden: productSubType === "kit" ? false : (optionSubType !== productSubType)
-        }
+        };
       });
     }
     return [];
@@ -311,7 +311,7 @@ export default {
       if (this.productType === "haircare" && this.quantitySelected !== val) {
         // Iterate selectionOptions array and update each item's quantity
         this.selectionOptions.forEach(option => {
-          option.quantity = option.quantity ? val : 0
+          option.quantity = option.quantity ? val : 0;
         });
       }
       this.quantitySelected = val;

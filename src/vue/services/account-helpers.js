@@ -1,6 +1,15 @@
+import RechargeService from "@/vue/services/recharge.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
 
 export default {
+  async initializeOrderData(rechargeUserId) {
+    const orders = await RechargeService.getUserResource(rechargeUserId, "subscriptions");
+    const subscriptions = orders.subscriptions.filter(subs => !subs.cancelled_at);
+    // cookie
+    const addresses = await RechargeService.getUserResource(rechargeUserId, "addresses");
+    const squatchBoxGroups = this.processOrderData([...subscriptions, ...orders.onetimes], addresses);
+    return squatchBoxGroups;
+  },
   processOrderData(items, addresses) {
     let obj = {};
     for (let i = 0; i < items.length; i++) {
@@ -47,7 +56,7 @@ export default {
   getSelectionOptionsForSubscriptionOrder(productType, source) {
     if (productType === "soap") {
       return source.filter(product => {
-        return ProductIdentifier.identify(product)[0] === "soap"
+        return ProductIdentifier.identify(product)[0] === "soap";
       });
     }
     return source;
