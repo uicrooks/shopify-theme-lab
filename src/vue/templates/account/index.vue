@@ -176,6 +176,8 @@ export default {
   // }
 
   .account-nav {
+    position: sticky;
+    top: 75px;
 
     @include layout-lg {
       width: 230px;
