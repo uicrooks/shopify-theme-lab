@@ -108,7 +108,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @use "@/styles/main" as global;
 
 .product-card-component {
@@ -118,6 +118,11 @@ export default {
 
   &:hover {
     box-shadow: 0 4px 15px 5px rgba(0, 0, 0, .1);
+    .image-box {
+      img {
+        transform: scale(1.06);
+      }
+    }
   }
 
   a, a:hover, a:active, a:visited {
@@ -131,19 +136,21 @@ export default {
     background-size: 200%;
     background-repeat: repeat;
     background-color: global.$sand;
-    padding: 25px;
+    padding: 20px;
+    transition: padding 0.3s linear;
     text-align: center;
 
     img {
       width: 100%;
-      height: 295px;
       object-fit: contain;
       cursor: pointer;
+      transition: all 1s ease;
     }
   }
 
   .details-box {
     padding: 16px 16px 25px 16px;
+    display: block;
 
     .product-title {
       cursor: pointer;

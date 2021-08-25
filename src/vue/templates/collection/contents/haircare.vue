@@ -51,7 +51,9 @@
         <b-col
           v-for="(product, index) of conditioners"
           :key="`haircare-conditioner-${index}`"
-          md="3"
+          sm="6"
+          lg="4"
+          xl="3"
         >
           <product-card 
             :product="product"
@@ -109,9 +111,9 @@ export default {
 
 .collection-haircare-content-component {
   width: 100%;
+  padding: 0 15px;
   .collection-section-header {
     margin: 30px 0;
-    padding: 0 15px;
     text-align: center;
     @include global.font-style-heading($size: 23px);
 

@@ -179,7 +179,6 @@ export default {
 
       @include global.layout-md {
         max-width: unset;
-        height: 295px;
         object-fit: contain; 
       }
     }

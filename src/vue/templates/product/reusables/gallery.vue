@@ -1,14 +1,36 @@
 <template>
-    <div v-if="product.images" class="product-gallery-component">
-        <div class="image-list">
-            <li v-for="(image, index) of product.images" :key="`product-image-${index}`" :class="{'active': currentImageIndex === index}">
-                <img :src="image" @click="selectImageIndex(index)">
-            </li>
-        </div>
-        <b-carousel class="product-gallery" indicators controls v-model="currentImageIndex">
-            <b-carousel-slide v-for="(image, index) of product.images" :key="`product-image-${index}`" img-height="400" img-width="400" :img-src="image" />
-        </b-carousel>
+  <div
+    v-if="product.images"
+    class="product-gallery-component"
+  >
+    <div class="image-list">
+      <li
+        v-for="(image, index) of product.images"
+        :key="`product-image-${index}`"
+        :class="{'active': currentImageIndex === index}"
+      >
+        <img
+          :src="image"
+          :class="{'active' : index == currentImageIndex}"
+          @click="selectImageIndex(index)"
+        >
+      </li>
     </div>
+    <b-carousel
+      v-model="currentImageIndex"
+      class="product-gallery"
+      indicators
+      controls
+    >
+      <b-carousel-slide
+        v-for="(image, index) of product.images"
+        :key="`product-image-${index}`"
+        img-height="400"
+        img-width="400"
+        :img-src="image"
+      />
+    </b-carousel>
+  </div>
 </template>
 
 <script>
@@ -130,6 +152,7 @@ export default {
                     max-height: 100%;
                     object-fit: contain;
                     opacity: .5;
+                    cursor: pointer;
                     &.active,
                     &:hover {
                         opacity: 1;

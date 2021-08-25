@@ -178,7 +178,6 @@ export default {
 
     img {
       width: 100%;
-      height: 295px;
       object-fit: contain;
     }
 
@@ -223,7 +222,6 @@ export default {
 
     img {
       width: 100%;
-      height: 295px;
       object-fit: contain;
     }
 

@@ -27,6 +27,9 @@ export default {
     const scrollUp = "scroll-up";
     const scrollDown = "scroll-down";
     let lastScroll = 0;
+    if (window.pageYOffset < 75) {
+      body.classList.add("scrolled-top");
+    } else { body.classList.remove("scrolled-top"); }
     function handleScroll() {
       const currentScroll = window.pageYOffset;
       if (currentScroll <= 0) {
@@ -47,6 +50,9 @@ export default {
         body.classList.add(scrollUp);
       }
       lastScroll = currentScroll;
+      if (currentScroll < 75) {
+        body.classList.add("scrolled-top");
+      } else { body.classList.remove("scrolled-top"); }
     }
     if (_remove) {
       window.removeEventListener("scroll", handleScroll);

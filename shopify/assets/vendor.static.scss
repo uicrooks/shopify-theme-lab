@@ -36,3 +36,13 @@
 .swell-tab {
   display: none !important;
 }
+
+#Launcher {
+  transition: all 0.3s linear;
+  }
+body.scrolled-top {
+  #Launcher {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

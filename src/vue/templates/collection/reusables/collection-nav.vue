@@ -12,6 +12,7 @@
         :key="`collection-nav-item-${item.name}`"
         :href="item.path"
         class="collection-nav-item"
+        :class="{'active' : _isActiveLink(item.path) }"
       >
         <i :class="`icon-custom icon-${item.iconName}`" />
         {{ item.name }}
@@ -26,6 +27,7 @@
         :key="`collection-nav-item-${item.name}`"
         :href="item.path"
         class="collection-nav-item"
+        :class="{'active' : _isActiveLink(item.path) }"
       >
         <i :class="`icon-custom icon-${item.iconName}`" />
         {{ item.name }}
@@ -35,14 +37,6 @@
 </template>
 
 <script>
-/*document.onscroll = () => {
-  if (window.innerHeight + window.scrollY > document.body.clientHeight) {
-    document.getElementById("collection-nav").style.display = "none";
-  } else {
-    document.getElementById("collection-nav").style.display = "flex";
-  }
-};*/
-
 export default {
   name: "CollectionNav",
   data() {
@@ -119,14 +113,50 @@ export default {
         ],
       },
     };
+  },
+  methods: {
+    _isActiveLink(path) {
+      let location = window.location.href;
+      return location.indexOf(path) > -1;
+    }
   }
 };
 </script>
+<style lang="scss">
+body:not(.scroll-down) {
+  @media (max-width: 1153px) {
+    #Launcher {
+    bottom: 52px !important;
+    }
+  }
+}
+</style>
 <style scoped lang="scss">
 @use "@/styles/main" as global;
-
+body.scrolled-top {
+  @media (max-width: 1153px) {
+    .collection-nav-component {
+  bottom: -60px;
+    }
+  }
+}
+body.scroll-down {
+        @media (max-width: 1153px) {
+        .collection-nav-component {
+          bottom: -60px;
+        }
+      }
+}
 .collection-nav-component {
-  width: 100%;
+    position: fixed;
+    transition: bottom 0.3s linear;
+    bottom: 0;
+    z-index:4;
+      @media (min-width: 1153px) {
+        position: relative;
+        width: 200px;
+        margin-right: 15px;
+      }
 
   /* Hide scrollbar for Chrome, Safari and Opera */
   .collection-nav::-webkit-scrollbar {
@@ -173,6 +203,17 @@ export default {
       min-width: 90px;
       max-width: 150px;
       padding: 5px 10px;
+      &:hover, &.active {
+        .nav-link {
+          color: global.$orange;
+          border-bottom: 3px solid global.$orange;
+
+          @media (min-width: 1153px) {
+            border-bottom: none;
+            border-left: 3px solid global.$orange;
+          }
+        }
+      }
 
       @media (min-width: 1153px) {
         text-align: left;
@@ -192,16 +233,6 @@ export default {
           display: flex;
           flex-flow: row nowrap;
           align-items: center;
-        }
-
-        &:hover {
-          color: global.$orange;
-          border-bottom: 3px solid global.$orange;
-
-          @media (min-width: 1153px) {
-            border-bottom: none;
-            border-left: 3px solid global.$orange;
-          }
         }
 
         .icon-custom {

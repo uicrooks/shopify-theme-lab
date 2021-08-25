@@ -110,17 +110,6 @@ export default {
 
 .collection-component {
 
-  .collection-nav-component {
-    position: fixed;
-    bottom: 0;
-
-      @media (min-width: 1153px) {
-        position: relative;
-        width: 200px;
-        margin-right: 15px;
-      }
-  }
-
   .content-container {
     max-width: 1600px;
     margin:auto;

@@ -16,8 +16,9 @@
       <template #default="{ hide }">
         <div class="cart-title">
           Your Cart
-          <i
-            class="icon-squatch icon-cross icon-size-xs"
+          <b-icon
+            icon="x"
+            style="font-size:36px;"
             @click="hide"
           />
         </div>

@@ -7,7 +7,7 @@
         href="/"
         class="link-label"
       >
-        Home111
+        Home
       </a>
       <b-icon
         class="chevron-icon"

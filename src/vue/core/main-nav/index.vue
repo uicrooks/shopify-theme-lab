@@ -12,12 +12,18 @@
       </a>
       <div class="buttons">
         <cart-button />
-        <i
+        <b-icon
           v-b-toggle.main-nav-sidebar
-          class="icon-squatch icon-burger"
+          icon="list"
+          v-show="!isOpen"
+        />
+        <b-icon
+          v-b-toggle.main-nav-sidebar
+          icon="x"
+          v-show="isOpen"
         />
       </div>
-
+    
       <b-sidebar
         id="main-nav-sidebar"
         aria-labelledby="main-nav-sidebar"
@@ -35,7 +41,7 @@
               class="account-icon-box" 
               @click="logIn"
             >
-              <i class="icon-squatch icon-user" />
+              <b-icon icon="person" />
               <span>{{ loggedIn ? 'Account' : 'Log In' }}</span>
             </div>
           </div>
@@ -52,7 +58,7 @@
                 @click="currencyMobileSubMenuOpen = !currencyMobileSubMenuOpen"
               >
                 <div class="currency-selected">
-                  You're Shopping In
+                  You're Shopping In:
                   <div class="currency-box">
                     <b-img-lazy
                       :src="currencySelected.imageSrc"
@@ -64,29 +70,32 @@
                     </span>
                   </div>
                 </div>
-                <b-icon
-                  class="arrow-icon"
-                  :icon="currencyMobileSubMenuOpen ? 'chevron-up' : 'chevron-down'"
-                /> 
+                <b-icon 
+                  icon="chevron-down"
+                  :flip-v="currencyMobileSubMenuOpen"
+                  style="margin-left:4px;"
+                />
               </div>
               <b-collapse
                 id="currency-menu-in-sidebar"
                 v-model="currencyMobileSubMenuOpen"
               >
-                <div
-                  v-for="(currencyOption, index) of currencyMenu"
-                  :key="`currecny-option-${index}`"
-                  class="currency-option"
-                  @click="updateCurrencyOption(currencyOption)"
-                >
-                  <b-img-lazy
-                    :src="currencyOption.imageSrc"
-                    :alt="`${currencyOption.currency} image`"
-                    class="currency-flag-image"
-                  />
-                  <span class="currency">
-                    {{ currencyOption.currency }}
-                  </span>
+                <div class="megamenu-padding">
+                  <div
+                    v-for="(currencyOption, index) of currencyMenu"
+                    :key="`currecny-option-${index}`"
+                    class="currency-option"
+                    @click="updateCurrencyOption(currencyOption)"
+                  >
+                    <b-img-lazy
+                      :src="currencyOption.imageSrc"
+                      :alt="`${currencyOption.currency} image`"
+                      class="currency-flag-image"
+                    />
+                    <span class="currency">
+                      {{ currencyOption.currency }}
+                    </span>
+                  </div>
                 </div>
               </b-collapse>
             </div>
@@ -105,7 +114,7 @@
               Your choice of our curated best sellers
             </button>
           </div>
-
+    
           <div class="sidebar-main-content">
             <main-nav-grouped-menu-item
               :name="soapMenu.name"
@@ -132,7 +141,7 @@
               path="/quiz"
             />
           </div>
-
+    
           <div class="sidebar-footer">
             <main-nav-grouped-menu-item
               :name="infoMenu.name"
@@ -177,9 +186,10 @@
           @click="productsSubMenuOpen = !productsSubMenuOpen"
         >
           Products
-          <i 
-            class="icon-squatch icon-size-xs"
-            :class="[productsSubMenuOpen ? 'icon-cross' : 'icon-chevron-down']"
+          <b-icon 
+            icon="chevron-down"
+            :flip-v="productsSubMenuOpen"
+            style="margin-left:4px;"
           />
         </div>
       </div>
@@ -202,18 +212,24 @@
           v-b-toggle.account-menu
           class="menu-item account"
         >
-          <i class="icon-squatch icon-user" />
-          <b-icon icon="caret-down-fill" />
+          <b-icon icon="person" />
+          <b-icon 
+            icon="chevron-down"
+            :flip-v="accountSubMenuOpen"
+            style="margin-left:4px;"
+          />
           <b-collapse
             id="account-menu"
             v-model="accountSubMenuOpen"
             class="sub-menu"
           >
-            <div class="account-menu-option">
-              <a href="/account">Account</a>
-            </div>
-            <div class="account-menu-option">
-              <a href="/account/logout">Log Out</a>
+            <div class="megamenu-padding">
+              <div class="account-menu-option">
+                <a href="/account">Account</a>
+              </div>
+              <div class="account-menu-option">
+                <a href="/account/logout">Log Out</a>
+              </div>
             </div>
           </b-collapse>
         </div>
@@ -240,27 +256,33 @@
               {{ currencySelected.currency }}
             </span>
           </div>
-          <b-icon icon="caret-down-fill" />
+          <b-icon 
+            icon="chevron-down"
+            :flip-v="currencySubMenuOpen"
+            style="margin-left:4px;"
+          />
           <b-collapse
             id="currency-menu"
             v-model="currencySubMenuOpen"
             class="sub-menu"
             is-nav
           >
-            <div
-              v-for="(currencyOption, index) of currencyMenu"
-              :key="`currecny-option-${index}`"
-              class="currency-option"
-              @click="updateCurrencyOption(currencyOption)"
-            >
-              <b-img-lazy
-                :src="currencyOption.imageSrc"
-                :alt="`${currencyOption.currency} image`"
-                class="currency-flag-image"
-              />
-              <span class="currency">
-                {{ currencyOption.currency }}
-              </span>
+            <div class="megamenu-padding">
+              <div
+                v-for="(currencyOption, index) of currencyMenu"
+                :key="`currecny-option-${index}`"
+                class="currency-option"
+                @click="updateCurrencyOption(currencyOption)"
+              >
+                <b-img-lazy
+                  :src="currencyOption.imageSrc"
+                  :alt="`${currencyOption.currency} image`"
+                  class="currency-flag-image"
+                />
+                <span class="currency">
+                  {{ currencyOption.currency }}
+                </span>
+              </div>
             </div>
           </b-collapse>
         </div>
@@ -271,64 +293,67 @@
       id="products-menu"
       v-model="productsSubMenuOpen"
     >
-      <h6 class="submenu-title">
-        Essentials
-      </h6>
-      <div class="essentials">
-        <div
-          v-for="(item, index) of productsSubMenuItems.essentials"
-          :key="`products-essential-item-${index}`"
-          class="essential-item"
-          @click="navigateTo(item.path)"
-        >
-          <span 
-            v-if="item.badge"
-            class="badge"
-          >
-            {{ item.badge }}
-          </span>
-          <div class="item-image-wrapper">
-            <b-img-lazy
-              :src="item.imageSrc" 
-              :alt="`${item.name} image`" 
-            />
-          </div>
-          <div class="item-name">
-            {{ item.name }}
-          </div>
-        </div>
-      </div>
-      <h6 class="submenu-title second">
-        More Products
-      </h6>
-      <div class="more">
-        <div class="more-col">
+      <div class="megamenu-padding">
+        <h6 class="submenu-title">
+          Essentials
+        </h6>
+        <div class="essentials">
           <div
-            v-for="(item, index) of moreMenu.subMenuItems"
-            :key="`more-item-${index}`"
-            class="more-item"
+            v-for="(item, index) of productsSubMenuItems.essentials"
+            :key="`products-essential-item-${index}`"
+            class="essential-item"
             @click="navigateTo(item.path)"
           >
-            {{ item.name }}
+            <span 
+              v-if="item.badge"
+              class="badge"
+            >
+              {{ item.badge }}
+            </span>
+            <div class="item-image-wrapper">
+              <b-img-lazy
+                :src="item.imageSrc" 
+                :alt="`${item.name} image`" 
+              />
+            </div>
+            <div class="item-name">
+              {{ item.name }}
+            </div>
           </div>
         </div>
-        <div class="more-col">
-          <div
-            class="more-item more-item-shop-all"
-            @click="navigateTo('/test')"
-          >
-            Shop All
-            <b-icon icon="arrow-right" />
+        <h6 class="submenu-title second">
+          More Products
+        </h6>
+        <div class="more">
+          <div class="more-col">
+            <div
+              v-for="(item, index) of moreMenu.subMenuItems"
+              :key="`more-item-${index}`"
+              class="more-item"
+              @click="navigateTo(item.path)"
+            >
+              {{ item.name }}
+            </div>
           </div>
-          <div 
-            class="more-item" 
-            @click="navigateTo('/test')"
-          >
-            Take Soap Quiz
+          <div class="more-col">
+            <div
+              class="more-item more-item-shop-all"
+              @click="navigateTo('/test')"
+            >
+              Shop All
+              <b-icon icon="arrow-right" />
+            </div>
+            <div 
+              class="more-item" 
+              @click="navigateTo('/test')"
+            >
+              Take Soap Quiz
+            </div>
           </div>
         </div>
       </div>
     </b-collapse>
+    <div class="navmenu-backdrop" v-if="subMenuBackdropOpen" @click="productsSubMenuOpen = false"></div>
   </div>
 </template>
 
@@ -342,701 +367,648 @@ import SingleMenuItem from "./single-menu-item.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  name: "MainNav",
-  components: {
-    Cart,
-    SquatchButton,
-    CartButton,
-    MainNavGroupedMenuItem: GroupedMenuItem,
-    MainNavSingleMenuItem: SingleMenuItem
-  },
-  data() {
-    return {
-      soapMenu: {
-        name: "Bar Soaps",
-        isOpen: false,
-        subMenuItems: [
-          {
-            name: "Subscribe & Save",
-            path: "/pages/subscription-flow",
-          },
-          {
-            name: "Starter Bundles",
-            path: "/pages/bundle-offers",
-          },
-          {
-            name: "Shop Bar Soaps",
-            path: "/collections/bar-soaps",
-          },
-        ],
-      },
-      moreMenu: {
-        name: "Shop More Products",
-        isOpen: false,
-        subMenuItems: [
-          {
-            name: "Cologne",
-            path: "/collections/colognes",
-          },
-          {
-            name: "Beard Oil",
-            path: "/collections/beard",
-          },
-          {
-            name: "Hand Sanitizer",
-            path: "/collections/hand-sanitizer",
-          },
-          {
-            name: "Hand Soap",
-            path: "/collections/hand-soap",
-          },
-          {
-            name: "Gift Cards",
-            badge: "New!",
-            path: "/products/squatch-gift-card",
-          },
-          {
-            name: "Candles",
-            path: "/products/bay-rum-candle",
-          },
-          {
-            name: "Gear",
-            path: "/collections/gear",
-          },
-        ],
-      },
-      infoMenu: {
-        name: "Info",
-        isOpen: false,
-        subMenuItems: [
-          {
-            name: "Ingredients",
-            path: "/test",
-          },
-          {
-            name: "Hero Discounts",
-            path: "/test",
-          },
-          {
-            name: "Wholesale",
-            path: "/test",
-          },
-          {
-            name: "Check Gift Card Balance",
-            path: "/test",
-          },
-        ],
-      },
-      aboutMenu: {
-        name: "About Us",
-        isOpen: false,
-        subMenuItems: [
-          {
-            name: "About Us",
-            path: "/test",
-          },
-          {
-            name: "Blog",
-            path: "/test",
-          },
-        ],
-      },
-      helpMenu: {
-        name: "Help & Support",
-        isOpen: false,
-        subMenuItems: [
-          {
-            name: "FAQs",
-            path: "/test",
-          },
-          {
-            name: "Shipping",
-            path: "/test",
-          },
-          {
-            name: "Returns & Refunds",
-            path: "/test",
-          },
-          {
-            name: "Contact Us",
-            path: "/test",
-          },
-          {
-            name: "Terms of Use",
-            path: "/test",
-          },
-          {
-            name: "Privacy Policy",
-            path: "/test",
-          },
-        ],
-      },
-      singleMenuItems: [
-        {
-          name: "Hair Care",
-          path: "/collections/hair-care",
-        },
-        {
-          name: "Deodorant",
-          path: "/collections/deodorant",
-          badge: "New!",
-        },
-        {
-          name: "Toothpaste",
-          path: "/collections/toothpaste",
-        },
-        {
-          name: "Shower Boosters",
-          path: "/collections/shower-boosters",
-        },
-        {
-          name: "Best Sellers",
-          path: "/collections/best-sellers",
-        },
-      ],
-      productsSubMenuOpen: false,
-      productsSubMenuItems: {
-        essentials: [
-          {
-            name: "Shop Bundles",
-            path: "/pages/bundle-offers",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457",
-          },
-          {
-            name: "Bar Soaps",
-            path: "/collections/bar-soaps",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
-          },
-          {
-            name: "Hair Care",
-            path: "/collections/hair-care",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
-          },
-          {
-            name: "Deodorant",
-            path: "/collections/deodorant",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
-            badge: "New!",
-          },
-          {
-            name: "Toothpaste",
-            path: "/collections/toothpaste",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
-          },
-          {
-            name: "Shower Boosters",
-            path: "/collections/shower-boosters",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
-          },
-          {
-            name: "Best Sellers",
-            path: "/collections/best-sellers",
-            imageSrc:
-              "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
-          },
-        ],
-      },
-      accountSubMenuOpen: false,
-      currencySubMenuOpen: false,
-      currencyMobileSubMenuOpen: false,
-    };
-  },
-  computed: {
-    ...mapGetters("core", ["loggedIn", "defaultCurrencyOption", "currencyOptions"]),
-    currencySelected() {
-      return this.defaultCurrencyOption.currency ? this.defaultCurrencyOption : this.currencyOptions[0];
+    name: "MainNav",
+    components: {
+        Cart,
+        SquatchButton,
+        CartButton,
+        MainNavGroupedMenuItem: GroupedMenuItem,
+        MainNavSingleMenuItem: SingleMenuItem
     },
-    currencyMenu() {
-      return this.currencyOptions.filter(option => {
-        return this.currencySelected.country !== option.country;
-      });
+    data() {
+        return {
+            soapMenu: {
+                name: "Bar Soaps",
+                isOpen: false,
+                subMenuItems: [{
+                        name: "Subscribe & Save",
+                        path: "/pages/subscription-flow",
+                    },
+                    {
+                        name: "Starter Bundles",
+                        path: "/pages/bundle-offers",
+                    },
+                    {
+                        name: "Shop Bar Soaps",
+                        path: "/collections/bar-soaps",
+                    },
+                ],
+            },
+            moreMenu: {
+                name: "Shop More Products",
+                isOpen: false,
+                subMenuItems: [{
+                        name: "Cologne",
+                        path: "/collections/colognes",
+                    },
+                    {
+                        name: "Beard Oil",
+                        path: "/collections/beard",
+                    },
+                    {
+                        name: "Hand Sanitizer",
+                        path: "/collections/hand-sanitizer",
+                    },
+                    {
+                        name: "Hand Soap",
+                        path: "/collections/hand-soap",
+                    },
+                    {
+                        name: "Gift Cards",
+                        badge: "New!",
+                        path: "/products/squatch-gift-card",
+                    },
+                    {
+                        name: "Candles",
+                        path: "/products/bay-rum-candle",
+                    },
+                    {
+                        name: "Gear",
+                        path: "/collections/gear",
+                    },
+                ],
+            },
+            infoMenu: {
+                name: "Info",
+                isOpen: false,
+                subMenuItems: [{
+                        name: "Ingredients",
+                        path: "/test",
+                    },
+                    {
+                        name: "Hero Discounts",
+                        path: "/test",
+                    },
+                    {
+                        name: "Wholesale",
+                        path: "/test",
+                    },
+                    {
+                        name: "Check Gift Card Balance",
+                        path: "/test",
+                    },
+                ],
+            },
+            aboutMenu: {
+                name: "About Us",
+                isOpen: false,
+                subMenuItems: [{
+                        name: "About Us",
+                        path: "/test",
+                    },
+                    {
+                        name: "Blog",
+                        path: "/test",
+                    },
+                ],
+            },
+            helpMenu: {
+                name: "Help & Support",
+                isOpen: false,
+                subMenuItems: [{
+                        name: "FAQs",
+                        path: "/test",
+                    },
+                    {
+                        name: "Shipping",
+                        path: "/test",
+                    },
+                    {
+                        name: "Returns & Refunds",
+                        path: "/test",
+                    },
+                    {
+                        name: "Contact Us",
+                        path: "/test",
+                    },
+                    {
+                        name: "Terms of Use",
+                        path: "/test",
+                    },
+                    {
+                        name: "Privacy Policy",
+                        path: "/test",
+                    },
+                ],
+            },
+            singleMenuItems: [{
+                    name: "Hair Care",
+                    path: "/collections/hair-care",
+                },
+                {
+                    name: "Deodorant",
+                    path: "/collections/deodorant",
+                    badge: "New!",
+                },
+                {
+                    name: "Toothpaste",
+                    path: "/collections/toothpaste",
+                },
+                {
+                    name: "Shower Boosters",
+                    path: "/collections/shower-boosters",
+                },
+                {
+                    name: "Best Sellers",
+                    path: "/collections/best-sellers",
+                },
+            ],
+            productsSubMenuOpen: false,
+            productsSubMenuItems: {
+                essentials: [{
+                        name: "Shop Bundles",
+                        path: "/pages/bundle-offers",
+                        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_Bundles.png?v=1616443457",
+                    },
+                    {
+                        name: "Bar Soaps",
+                        path: "/collections/bar-soaps",
+                        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+                    },
+                    {
+                        name: "Hair Care",
+                        path: "/collections/hair-care",
+                        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+                    },
+                    {
+                        name: "Deodorant",
+                        path: "/collections/deodorant",
+                        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+                        badge: "New!",
+                    },
+                    {
+                        name: "Toothpaste",
+                        path: "/collections/toothpaste",
+                        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+                    },
+                    {
+                        name: "Shower Boosters",
+                        path: "/collections/shower-boosters",
+                        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+                    },
+                    {
+                        name: "Best Sellers",
+                        path: "/collections/best-sellers",
+                        imageSrc: "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/NAV_soap.png?v=1616443457",
+                    },
+                ],
+            },
+            accountSubMenuOpen: false,
+            currencySubMenuOpen: false,
+            currencyMobileSubMenuOpen: false,
+            subMenuBackdropOpen: false,
+        };
+    },
+    computed: {
+        ...mapGetters("core", ["loggedIn", "defaultCurrencyOption", "currencyOptions"]),
+        ...mapGetters("cart", ["isOpen"]),
+        currencySelected() {
+            return this.defaultCurrencyOption.currency ? this.defaultCurrencyOption : this.currencyOptions[0];
+        },
+        currencyMenu() {
+            return this.currencyOptions.filter(option => {
+                return this.currencySelected.country !== option.country;
+            });
+        }
+    },
+    watch: {
+        productsSubMenuOpen(val) {
+            this.subMenuBackdropOpen = val;
+            if (val) {
+                this.accountSubMenuOpen = false;
+                this.currencySubMenuOpen = false;
+            }
+        },
+        accountSubMenuOpen(val) {
+            if (val) {
+                this.productsSubMenuOpen = false;
+                this.currencySubMenuOpen = false;
+            }
+        },
+        currencySubMenuOpen(val) {
+            if (val) {
+                this.productsSubMenuOpen = false;
+                this.accountSubMenuOpen = false;
+            }
+        }
+    },
+    methods: {
+        logIn() {
+            window.location = this.loggedIn ? "/account" : "/account/login";
+        },
+        navigateTo(path) {
+            window.location = path;
+        },
+        updateCurrencyOption(currencyOption) {
+            CookieService.set(
+                "currency_option",
+                currencyOption, { maxAge: 24 * 60 * 60, path: "/" }
+            );
+            location.reload();
+        }
     }
-  },
-  watch: {
-    productsSubMenuOpen(val) {
-      if (val) {
-        this.accountSubMenuOpen = false;
-        this.currencySubMenuOpen = false;
-      }
-    },
-    accountSubMenuOpen(val) {
-      if (val) {
-        this.productsSubMenuOpen = false;
-        this.currencySubMenuOpen = false;
-      }
-    },
-    currencySubMenuOpen(val) {
-      if (val) {
-        this.productsSubMenuOpen = false;
-        this.accountSubMenuOpen = false;
-      }
-    }
-  },
-  methods: {
-    logIn() {
-      window.location = this.loggedIn ? "/account" : "/account/login";
-    },
-    navigateTo(path) {
-      window.location = path;
-    },
-    updateCurrencyOption(currencyOption) {
-      CookieService.set(
-        "currency_option",
-        currencyOption,
-        { maxAge: 24 * 60 * 60, path: "/" }
-      );
-      location.reload();
-    }
-  }
 };
 </script>
 
 <style scoped lang="scss">
 @use "@/styles/main" as global;
 .main-nav-component {
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #fff;
-  z-index: 10;
-  font-size: 16px;
-
-  .mobile-nav {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-
-    @include global.layout-lg {
-      display: none;
-    }
-
-    #drsquatch-logo-mobile {
-      height: 45px;
-    }
-
-    .buttons {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: flex-end;
-
-      .icon-burger {
-        margin-left: 8px;
-      }
-    }
-
-    .sidebar-header {
-      width: 100%;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      padding: 8px 0;
-
-      #drsquatch-logo-mobile-sidebar {
-        width: 120px;
-      }
-
-      .account-icon-box {
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    z-index: 10;
+    font-size: 16px;
+    .mobile-nav {
         display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
+        flex-flow: row nowrap;
+        justify-content: space-between;
         align-items: center;
-        position: relative;
-        width: 40px;
-        color: global.$orange;
-        font-size: 11px;
-        cursor: pointer;
-
-        .icon-user {
-          color: global.$orange;
+        padding: 15px;
+        @include global.layout-lg {
+            display: none;
         }
-
-        span {
-          position: absolute;
-          bottom: -5px;
+        #drsquatch-logo-mobile {
+            height: 45px;
         }
-      }
-    }
-
-    .sidebar-main-header {
-      background-color: global.$white;
-      @include global.font-style-body();
-
-      .currency-display {   
-        position: relative;
-        background-color: global.$off-white;
-        
-        .menu-item {
-          padding: 16px 16px 12px 16px;
-          cursor: pointer;
-          width: 100%;
-          border-bottom: 1px solid global.$dark-brown;
-          
-          .currency-selected {
+        .buttons {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-end;
+            align-items: center;
+            .b-icon.bi {
+              font-size: 36px;
+              margin-left: 26px;
+            }
+        }
+        .sidebar-header {
+            width: 100%;
             display: flex;
             flex-flow: row nowrap;
             justify-content: space-between;
-            align-items: center;
-            padding-right: 30px;
-            @include global.font-style-body-bold();
-
-            .currency-box {
-              display: flex;
-              flex-flow: row nowrap;
-              align-items: center;
-
-              .currency-flag-image {
-                width: 32px;
-                height: auto;
-                margin-right: 4px;
-              }
+            padding: 8px 0;
+            #drsquatch-logo-mobile-sidebar {
+                width: 120px;
             }
-          }
-
-          .arrow-icon {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-          }
+            .account-icon-box {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                width: 40px;
+                color: global.$orange;
+                font-size: 11px;
+                cursor: pointer;
+                .icon-user {
+                    color: global.$orange;
+                }
+                span {
+                    position: absolute;
+                    bottom: -8px;
+                }
+            }
         }
-
-        #currency-menu-in-sidebar {
-  
-          .currency-option {
+        .sidebar-main-header {
+            background-color: global.$white;
+            @include global.font-style-body();
+            .currency-display {
+                position: relative;
+                background-color: global.$off-white;
+                .menu-item {
+                    padding: 16px 16px 12px 16px;
+                    cursor: pointer;
+                    width: 100%;
+                    border-bottom: 1px solid global.$dark-brown;
+                    display: flex;
+                    justify-content: space-between;
+                    .currency-selected {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        justify-content: space-between;
+                        align-items: center;
+                        @include global.font-style-body-bold();
+                        .currency-box {
+                            display: flex;
+                            flex-flow: row nowrap;
+                            align-items: center;
+                            margin-left: 12px;
+                            .currency-flag-image {
+                                width: 32px;
+                                height: auto;
+                                margin-right: 4px;
+                            }
+                        }
+                    }
+                    .arrow-icon {
+                        position: absolute;
+                        top: 16px;
+                        right: 16px;
+                    }
+                }
+                #currency-menu-in-sidebar {
+                    .currency-option {
+                        display: flex;
+                        flex-flow: row nowrap;
+                        align-items: center;
+                        padding: 10px 20px;
+                        cursor: pointer;
+                        &:hover {
+                            color: global.$orange;
+                            background-color: rgba(204, 99, 40, .18039);
+                        }
+                        .currency-flag-image {
+                            width: 32px;
+                            height: auto;
+                        }
+                        .currency {
+                            margin-left: 8px;
+                            @include global.font-style-body($color: inherit);
+                        }
+                    }
+                }
+            }
+            .big-cta-link {
+                padding: 20px 15px;
+                margin: 10px 16px;
+                background-color: global.$orange;
+                border: none;
+                border-radius: 5px;
+                text-align: center;
+                @include global.font-style-body($size: 15px, $color: global.$white);
+                .title {
+                    display: block;
+                    margin-bottom: 4px;
+                    text-transform: uppercase;
+                    @include global.font-style-heading($size: 16px, $color: global.$white);
+                }
+                &:hover {
+                    background-color: global.$orange-darken;
+                    color: global.$white-darken;
+                }
+                &.maroon {
+                    background-color: global.$maroon;
+                    &:hover {
+                        background-color: global.$maroon-darken;
+                        color: global.$white-darken;
+                    }
+                }
+            }
+        }
+        .sidebar-main-content {
+            background-color: global.$white;
+            .soap-quiz-menu {
+                border-top: 1px solid global.$off-white;
+                font-weight: 400;
+            }
+        }
+        .sidebar-footer {
+            background-color: global.$off-white;
+        }
+    }
+    .desktop-nav {
+        display: none;
+        width: 100%;
+        padding: 9px 30px;
+        @include global.layout-lg {
+            display: flex;
+        }
+        .left-section {
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
-            padding: 10px 20px;
+            flex: 1;
+            .subscribe-button {
+                width: 124px;
+                margin-right: 10px;
+            }
+        }
+        #drsquatch-logo-desktop {
+            width: 165px;
+        }
+        .right-section {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1;
+        }
+        .menu-item {
+            position: relative;
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            margin: 0 16px;
             cursor: pointer;
-
+            @include global.font-style-body($weight: 600);
             &:hover {
-              color: global.$orange;
-              background-color: rgba(204, 99, 40, .18039);
+                color: global.$orange;
             }
-
+            &.active {
+                color: global.$orange;
+            }
+            &.account {
+                color: global.$orange;
+                .icon-squatch {
+                    font-size: 1.3rem;
+                }
+            }
+            .icon-squatch {
+                margin-left: 7px;
+            }
+            .currency-box {
+                margin-right: 2px;
+                .currency-flag-image {
+                    width: 32px;
+                    height: auto;
+                }
+                .currency {
+                    text-align: center;
+                    @include global.font-style-body($size: 11px, $color: inherit);
+                }
+            }
+        }
+    }
+    .sub-menu {
+        position: absolute;
+        top: 28px;
+        background-color: global.$off-white;
+        &#account-menu {
+            top: 30px;
+            .megamenu-padding {
+              padding: 7px 14px;
+            }
             .currency-flag-image {
-              width: 32px;
-              height: auto;
+                width: 32px;
+                height: auto;
             }
-
             .currency {
-              margin-left: 8px;
-              @include global.font-style-body($color: inherit);
-              
+                margin-left: 3px;
+                @include global.font-style-body($size: 12px);
+                &:hover {
+                    color: global.$orange;
+                }
             }
-          }
         }
-      }
-
-      .big-cta-link {
-        padding: 20px 15px;
-        margin: 10px 16px;
-        background-color: global.$orange;
-        border: none;
-        border-radius: 5px;
-        text-align: center;
-        @include global.font-style-body($size: 15px, $color: global.$white);
-  
-        .title {
-          display: block;
-          margin-bottom: 4px;
-          text-transform: uppercase;
-          @include global.font-style-heading($size: 16px, $color: global.$white);
+        &#currency-menu {
+            top: 28px;
+            .megamenu-padding {
+              padding: 14px;
+            }
+            .currency-option {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                .currency-flag-image {
+                    width: 32px;
+                    height: auto;
+                }
+                .currency {
+                    margin-left: 3px;
+                    @include global.font-style-body($size: 12px);
+                    &:hover {
+                        color: global.$orange;
+                    }
+                }
+            }
         }
-  
-        &:hover {
-          background-color: global.$orange-darken;
-          color: global.$white-darken;
-        }
-  
-        &.maroon {
-          background-color: global.$maroon;
-  
-          &:hover {
-            background-color: global.$maroon-darken;
-            color: global.$white-darken;
-          }
-        }
-      }
     }
-
-    .sidebar-main-content {
-      background-color: global.$white;
-
-      .soap-quiz-menu {
-        border-top: 1px solid global.$off-white;
-        font-weight: 400;
-      }
-    }
-
-    .sidebar-footer {
-      background-color: global.$off-white;
-    }
-  }
-
-  .desktop-nav {
-    display: none;
-    width: 100%;
-    padding: 9px 30px;
-
-    @include global.layout-lg {
-      display: flex;
-    }
-
-    .left-section {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      flex: 1;
-
-      .subscribe-button {
-        width: 124px;
-        margin-right: 10px;
-      }
-    }
-
-    #drsquatch-logo-desktop {
-      width: 165px;
-    }
-
-    .right-section {
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      justify-content: flex-end;
-      flex: 1;
-    }
-
-    .menu-item {
-      position: relative;
-      display: flex;
-      flex-flow: row nowrap;
-      align-items: center;
-      margin: 0 16px;
-      cursor: pointer;
-      @include global.font-style-body($weight: 600);
-
-      &:hover {
-        color: global.$orange;
-      }
-
-      &.active {
-        color: global.$orange;
-      }
-
-      &.account {
-        color: global.$orange;
-
-        .icon-squatch {
-          font-size: 1.3rem;
+    #products-menu {
+        width: 100%;
+        border-top: 2px solid global.$white-darken;
+        background-color: global.$white;
+        position: absolute;
+        z-index: 9;
+        .megamenu-padding {
+          padding: 20px 15px;
         }
-      }
-
-      .icon-squatch {
-        margin-left: 7px;
-      }
-
-      .currency-box {
-        margin-right: 2px;
-
-        .currency-flag-image {
-          width: 32px;
-          height: auto;
+        .submenu-title {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            @include global.font-style-heading();
         }
-
-        .currency {
-          text-align: center;
-          @include global.font-style-body($size: 11px, $color: inherit);
+        .essentials {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            .essential-item {
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: center;
+                width: 138px;
+                position: relative;
+                margin-bottom: 15px;
+                cursor: pointer;
+                .badge {
+                    position: absolute;
+                    top: -18px;
+                    left: 39px;
+                    font-size: 10px;
+                    font-weight: 400;
+                    background-color: global.$orange;
+                    border-radius: 11px;
+                    padding: 4px 7px;
+                    text-transform: uppercase;
+                    margin-left: 8px;
+                }
+                .item-image-wrapper {
+                    border-radius: 100%;
+                    width: 80px;
+                    text-align: center;
+                    margin-bottom: 15px;
+                    &:hover {
+                        background-color: global.$white-darken;
+                    }
+                    img {
+                        width: 80px;
+                        height: auto;
+                    }
+                }
+                .item-name {
+                    text-align: center;
+                    @include global.font-style-heading($size: 14px);
+                }
+            }
         }
-      }
+        .more {
+            display: flex;
+            flex-flow: row nowrap;
+            .more-col {
+                height: 120px;
+                display: flex;
+                flex-flow: column wrap;
+                align-content: flex-start;
+                min-width: 320px;
+                max-width: 30%;
+                flex: 1;
+                .more-item {
+                    min-width: 160px;
+                    margin: 0 0 14px 15px;
+                    @include global.font-style-body($weight: 600);
+                    cursor: pointer;
+                    &:hover {
+                        color: global.$orange;
+                    }
+                }
+                .more-item-shop-all {
+                    @include global.font-style-heading($size: 14px, $weight: 600);
+                }
+            }
+        }
     }
-  }
-
-  .sub-menu {
-    position: absolute;
-    top: 28px;
-    padding: 14px;
-    background-color: global.$off-white;
-
-    &#account-menu {
-      top: 30px;
-      padding: 7px 14px;
-
-      .currency-flag-image {
-        width: 32px;
-        height: auto;
-      }
-
-      .currency {
-        margin-left: 3px;
-        @include global.font-style-body($size: 12px);
-
-        &:hover {
-          color: global.$orange;
-        }
-      }
-    }
-
-    &#currency-menu {
-      top: 28px;
-      padding: 14px;
-
-      .currency-option {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-
-        .currency-flag-image {
-          width: 32px;
-          height: auto;
-        }
-
-        .currency {
-          margin-left: 3px;
-          @include global.font-style-body($size: 12px);
-
-          &:hover {
-            color: global.$orange;
-          }
-        }
-      }
-    }
-
-  }
-
-  #products-menu {
-    width: 100%;
-    padding: 20px 15px;
-    border-top: 2px solid global.$white-darken;
-    background-color: global.$white;
-    position: absolute;
-    z-index: 9;
-
-    .submenu-title {
-      margin-bottom: 20px;
-      padding-left: 15px;
-      @include global.font-style-heading();
-    }
-
-    .essentials {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-around;
-
-      .essential-item {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        width: 138px;
-        position: relative;
-        margin-bottom: 15px;
-        cursor: pointer;
-
-        .badge {
-          position: absolute;
-          top: -18px;
-          left: 39px;
-          font-size: 10px;
-          font-weight: 400;
-          background-color: global.$orange;
-          border-radius: 11px;
-          padding: 4px 7px;
-          text-transform: uppercase;
-          margin-left: 8px;
-        }
-
-        .item-image-wrapper {
-          border-radius: 100%;
-          width: 80px;
-          text-align: center;
-          margin-bottom: 15px;
-
-          &:hover {
-            background-color: global.$white-darken;
-          }
-
-          img {
-            width: 80px;
-            height: auto;
-          }
-        }
-
-        .item-name {
-          text-align: center;
-          @include global.font-style-heading($size: 14px);
-        }
-      }
-    }
-
-    .more {
-      display: flex;
-      flex-flow: row nowrap;
-
-      .more-col {
-        height: 120px;
-        display: flex;
-        flex-flow: column wrap;
-        align-content: flex-start;
-        min-width: 320px;
-        max-width: 30%;
-        flex: 1;
-
-        .more-item {
-          min-width: 160px;
-          margin: 0 0 14px 15px;
-          @include global.font-style-body($weight: 600);
-          cursor: pointer;
-
-          &:hover {
-            color: global.$orange;
-          }
-        }
-
-        .more-item-shop-all {
-          @include global.font-style-heading($size: 14px, $weight: 600);
-        }
-      }
-    }
-  }
 }
 </style>
 
 <style lang="scss">
 @use "@/styles/main" as global;
-
+.navmenu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    opacity: 0.6;
+}
+#main-nav-sidebar {
+  max-width: calc(100vw - 60px);
+  .account-icon-box {
+    .b-icon.bi {
+      font-size: 36px;
+    }
+  }
+}
 .b-sidebar-header {
-  background-color: global.$white;
-}
-.b-sidebar-body {
-  background-color: global.$off-white;
+    background-color: global.$white;
 }
 
-.grouped-menu-item-component, .single-menu-item-component {
-  background-color: inherit;
+.b-sidebar-body {
+    background-color: global.$off-white;
+}
+
+.grouped-menu-item-component,
+.single-menu-item-component {
+    background-color: inherit;
 }
 
 .squatch-button-component.big-cta-link {
-  padding: 20px 15px;
-  margin: 16px;
-  background-color: global.$orange;
-  text-align: center;
-  @include global.font-style-heading($size: 16px, $color: global.$white);
+    padding: 20px 15px;
+    margin: 16px;
+    background-color: global.$orange;
+    text-align: center;
+    @include global.font-style-heading($size: 16px, $color: global.$white);
 }
+
 #shopify-section-header {
-        position: sticky;
-        top: -76px;
-        transition: top 0.3s linear, box-shadow 0.2s linear;
-        z-index: 99;
-        box-shadow: 0 0.5rem 1rem rgb(26 17 12 / 15%);
-      }
-      body.scroll-up #shopify-section-header {
-        top: 0px;
-      }
+    position: sticky;
+    top: -76px;
+    transition: top 0.3s linear, box-shadow 0.2s linear;
+    z-index: 99;
+    box-shadow: 0 0.5rem 1rem rgb(26 17 12 / 15%);
+}
+
+body.scroll-up #shopify-section-header {
+    top: 0px;
+}
 </style>

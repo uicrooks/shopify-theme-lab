@@ -3,10 +3,10 @@
     class="cart-icon"
     @click="toggleCart"
   >
-    <i
+    <b-icon
       aria-controls="cart"
       :aria-expanded="isOpen"
-      class="icon-squatch icon-cart"
+      icon="cart2"
     />
     <div class="item-total">
       <span>{{ numberOfItems == null ? "" : numberOfItems }}</span>
@@ -40,51 +40,33 @@ export default {
 
 <style lang="scss" scoped>
 @use "@/styles/main" as global;
-.new-look-banner-component {
-    background-color: #fbf6f0;
-    padding: 8px 0;
-    text-align: center;
-    .new-packaging {
-        display: flex;
-        flex-flow: row wrap;
-        align-items: center;
-        justify-content: center;
-        img {
-            height: 34px;
-        }
-        h6 {
-            margin: 0 0 0 14px;
-            @include global.font-style-heading($size: 14px);
-        }
-        p {
-            display: none;
-            margin: 0 0 0 7px;
-            @include global.font-style-body();
-            @include global.layout-md {
-                display: inline-block;
-            }
+.cart-icon {
+    position:relative;
+    cursor: pointer;
+    .b-icon.bi {
+        font-size: 30px;
+        cursor: pointer;
+        @include global.layout-md {
+            font-size: 21px;
         }
     }
-    .old-packaging {
-        @include global.layout-md {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: center;
-            align-items: center;
-        }
-        h6 {
-            margin: 0;
-            padding: 8px 0 4px 0;
-            @include global.font-style-heading($size: 14px);
-        }
-        p {
-            margin: 0;
-            min-width: 475px;
-            @include global.font-style-body();
-            @include global.layout-md {
-                margin: 4px 0 0 8px;
-            }
-        }
+    .item-total {
+        background: global.$orange;
+            width: 22px;
+    height: 22px;
+    display: flex;
+    position: absolute;
+    right: -15px;
+    top: -8px;
+    color: #fff;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 2px;
+    @include global.layout-md {
+        font-size: 14px;
+    }
     }
 }
 </style>
