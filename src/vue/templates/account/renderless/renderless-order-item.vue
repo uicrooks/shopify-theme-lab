@@ -145,7 +145,7 @@ export default {
       this.lineItems = this.item.lineItems;
     }
 
-    if (this.fetchAndUpdate && !this.item.productData || !this.item.propertyObj || !this.item.lineItems) {
+    if (this.fetchAndUpdate && (!this.item.productData || !this.item.propertyObj || !this.item.lineItems)) {
       this.$store.commit("account/updateOrderItemInRefillBox", {
         index: this.index,
         data: updateObj

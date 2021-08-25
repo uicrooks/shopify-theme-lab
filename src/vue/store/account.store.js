@@ -35,7 +35,7 @@ const getters = {
     return state.currentGroup;
   },
   currentGroupShippingAddress: (state) => {
-    return state.currentGroup && state.currentGroup.fullAddress ? [`${state.currentGroup.fullAddress.address1} ${state.currentGroup.fullAddress.address2}`, `${state.currentGroup.fullAddress.city}, ${state.currentGroup.fullAddress.province}`, state.currentGroup.fullAddress.zip] : [];
+    return state.currentGroup && state.currentGroup.fullAddress ? [`${state.currentGroup.fullAddress.address1}${state.currentGroup.fullAddress.address2 ? " " + state.currentGroup.fullAddress.address2 : ""}`, `${state.currentGroup.fullAddress.city}, ${state.currentGroup.fullAddress.province}`, state.currentGroup.fullAddress.zip] : [];
   },
   refillBoxDate: (state) => {
     return state.currentGroup && state.currentGroup.upcomingRefillDates ? state.currentGroup.upcomingRefillDates[0] : null;

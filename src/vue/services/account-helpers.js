@@ -34,7 +34,7 @@ export default {
         };
       }
       let upcomingRefillDates = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at).map(item => item.next_charge_scheduled_at.split("T")[0]);
-      upcomingRefillDates = upcomingRefillDates.filter((date, index) => upcomingRefillDates.indexOf(date) === index);
+      upcomingRefillDates = upcomingRefillDates.filter((date, index) => upcomingRefillDates.indexOf(date) === index).sort();
 
       let refillsObj = {};
       upcomingRefillDates.forEach(date => {

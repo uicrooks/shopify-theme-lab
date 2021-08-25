@@ -14,4 +14,5 @@ export default {
   "tooth-ss-nht": 4710296060009,
 
   "deo-pnt-01": 6553386516585,
+  "deo-alp-01": 4818061328489,
 };
