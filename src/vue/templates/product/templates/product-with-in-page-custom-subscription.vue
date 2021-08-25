@@ -89,6 +89,7 @@ import ProductDetails from "@/configs/product-details";
 import NewLookBanner from "@/vue/reusables/new-look-banner.vue";
 import SquatchButton from "@/vue/reusables/squatch-button.vue";
 //
+import ProductCustomOptionsSelector from "../reusables/custom-options-selector.vue";
 import ProductBaseTemplate from "./base-template.vue";
 import ProductFeatureDescriptions from "../reusables/feature-descriptions.vue";
 import ProductQuantityOptions from "../reusables/quantity-options.vue";
@@ -102,6 +103,7 @@ export default {
   },
   components: {
     ProductBaseTemplate,
+    ProductCustomOptionsSelector,
     ProductFeatureDescriptions,
     ProductQuantityOptions,
     ProductQuantitySelector,
@@ -110,8 +112,8 @@ export default {
     SquatchButton
   },
   props: {
-    prod: {
-      type: String,
+    product: {
+      type: Object,
       required: true,
       default: () => {}
     },
@@ -230,9 +232,6 @@ export default {
       return props;
     }
   },
-  created() {
-    this.product = JSON.parse(this.prod);
-  },
   mounted() {
     this.productIdentityTags = ProductIdentifier.identify(this.product);
     this.productIdentityString = this.productIdentityTags.join("-");
@@ -245,7 +244,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "@/styles/main" as global;
 
 .product-with-in-page-custom-subscription-component {

@@ -1,21 +1,14 @@
 <template>
-  <div
-    v-if="product.images"
-    class="product-gallery-component"
-  >
-    <b-carousel
-      class="product-gallery"
-      indicators
-      img-width="1024"
-      img-height="480"
-    >
-      <b-carousel-slide
-        v-for="(image, index) of product.images"
-        :key="`product-image-${index}`"
-        :img-src="image"
-      />
-    </b-carousel>
-  </div>
+    <div v-if="product.images" class="product-gallery-component">
+        <div class="image-list">
+            <li v-for="(image, index) of product.images" :key="`product-image-${index}`" :class="{'active': currentImageIndex === index}">
+                <img :src="image" @click="selectImageIndex(index)">
+            </li>
+        </div>
+        <b-carousel class="product-gallery" indicators controls v-model="currentImageIndex">
+            <b-carousel-slide v-for="(image, index) of product.images" :key="`product-image-${index}`" img-height="400" img-width="400" :img-src="image" />
+        </b-carousel>
+    </div>
 </template>
 
 <script>
@@ -29,7 +22,6 @@ export default {
     },
     data() {
         return {
-            back: false,
             currentImageIndex: 0
         };
     },
@@ -55,12 +47,12 @@ export default {
         }
     },
     mounted() {
-      console.log("ProductGaller",this);
+        console.log("ProductGaller", this);
     }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "@/styles/main" as global;
 .product-gallery-component {
     display: flex;
@@ -77,28 +69,20 @@ export default {
     @include global.layout-md {
         padding: 20px 20px 20px 40px;
     }
-    .image {
-        width: 100%;
-        padding: 40px;
-        max-width: 600px;
-        max-height: 600px;
-        margin: auto;
+    @include global.layout-md {
+        .carousel-control-next,
+        .carousel-control-prev {
+            display: none
+        }
     }
-    .direction-wrapper {
-        .direction-icon {
-            position: absolute;
-            top: 50%;
-            color: global.$white;
-            opacity: 0.8;
-            cursor: pointer;
+    .product-carousel {
+        max-width: 400px;
+    }
+    .carousel-item {
+        img {
+            padding: 40px;
             @include global.layout-md {
-                display: none;
-            }
-            &.prev {
-                left: 8px;
-            }
-            &.next {
-                right: 8px;
+                padding: 80px;
             }
         }
     }
@@ -106,14 +90,16 @@ export default {
         position: absolute;
         bottom: 0;
         width: 100%;
+        z-index: 4;
         height: 35px;
-        display: flex;
+        display: none;
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
         @include global.layout-md {
             left: 0;
             bottom: unset;
+            display: flex;
             width: 70px;
             height: 100%;
             flex-flow: column nowrap;
@@ -152,33 +138,5 @@ export default {
             }
         }
     }
-}
-</style>
-
-<style lang="scss">
-.slide-leave-active,
-.slideback-leave-active {
-    transition: 0;
-}
-
-.slide-enter-active,
-.slideback-enter-active {
-    transition: .5s;
-}
-
-.slide-enter {
-    transform: translate(100%, 0);
-}
-
-.slide-leave-to {
-    transform: translate(-100%, 0);
-}
-
-.slideback-enter {
-    transform: translate(-100%, 0);
-}
-
-.slideback-leave-to {
-    transform: translate(100%, 0);
 }
 </style>

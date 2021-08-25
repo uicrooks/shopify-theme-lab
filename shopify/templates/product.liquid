@@ -31,60 +31,17 @@ But holding off for now due to routing rules
 {% if subFlowLink contains product.type %}
 {{ 'product-with-sub-link.js' | asset_url | script_tag }}
 {{ 'product-with-sub-link.css' | asset_url | stylesheet_tag }}
-<product-with-subscription-flow 
-  :prod="{{ product | json | json | escape }}"
-  :collection="{
-        title: '{{ collectionMatch.title }}',
-        handle: '{{ collectionMatch.handle }}',
-        path: '{{ collectionMatch.url }}',
-        products: {{ collectionMatch.products | json | escape }}
-      }"
-/>
 {% elsif subFlowInPage contains product.type %}
 {{ 'product-with-sub-flow.js' | asset_url | script_tag }}
 {{ 'product-with-sub-flow.css' | asset_url | stylesheet_tag }}
-<product-with-in-page-subscription 
-  :prod="{{ product | json | json | escape }}" :collection="{
-    title: '{{ collectionMatch.title }}',
-    handle: '{{ collectionMatch.handle }}',
-    path: '{{ collectionMatch.url }}',
-    products: {{ collectionMatch.products | json | escape }}
-  }"
-  :subscription-collection="{
-    handle: '{{ subsCollection.handle }}',
-    products: {{ subsCollection.products | json | escape }}
-  }"
-/>
 {% elsif subFlowInPageCustom contains product.type %}
 {{ 'product-with-cust-sub-flow.js' | asset_url | script_tag }}
 {{ 'product-with-cust-sub-flow.css' | asset_url | stylesheet_tag }}
-<product-with-in-page-custom-subscription
-  :prod="{{ product | json | json | escape }}"
-  :collection="{
-    title: '{{ collectionMatch.title }}',
-    handle: '{{ collectionMatch.handle }}',
-    path: '{{ collectionMatch.url }}',
-    products: {{ collectionMatch.products | json | escape }}
-  }"
-  :subscription-collection="{
-    handle: '{{ subsCollection.handle }}',
-    products: {{ subsCollection.products | json | escape }}
-  }"
-/>
 {% else %}
 {{ 'product-onetime-only.js' | asset_url | script_tag }}
 {{ 'product-onetime-only.css' | asset_url | stylesheet_tag }}
-<product-onetime-only
-  :prod="{{ product | json | json | escape }}"
-  :collection="{
-    title: '{{ collectionMatch.title }}',
-    handle: '{{ collectionMatch.handle }}',
-    path: '{{ collectionMatch.url }}',
-    products: {{ collectionMatch.products | json | escape }}
-  }"
-/>
 {% endif %}
-{% comment %}
+
 <div id="layout-product">
   <product :product-data-string="{{ product | json | json | escape }}"
     :collections-data="{{ collections | json | json | escape }}" :collection="{
@@ -97,4 +54,3 @@ But holding off for now due to routing rules
       products: {{ subsCollection.products | json | escape }}
     }"></product>
 </div>
-{% endcomment %}

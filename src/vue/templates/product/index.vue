@@ -107,13 +107,6 @@ export default {
     // onetimeOnlyProduct() {
     //   return ["toothpaste", "deodorant-bundle", "deodorant-pack", "booster", "cologne", "beard", "sanitizer-pack", "sanitizer", "liquidsoap-pack", "liquidsoap", "candle", "gear"].includes(this.productIdentityString);
     // }
-  },
-  mounted() {
-    console.log(this.product);
-    console.log(this.productIdentityTags);
-    console.log(this.collection);
-    console.log(JSON.parse(this.collectionsData));
-    console.log(this.subscriptionCollection);
   }
 };
 </script>

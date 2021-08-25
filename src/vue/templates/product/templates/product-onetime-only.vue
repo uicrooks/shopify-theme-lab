@@ -74,8 +74,8 @@ export default {
     SquatchButton
   },
   props: {
-    prod: {
-      type: String,
+    product: {
+      type: Object,
       required: true,
       default: () => {}
     },
@@ -125,9 +125,6 @@ export default {
       }
     }
   },
-  created() {
-    this.product = JSON.parse(this.prod);
-  },
   mounted() {
     this.productIdentityTags = ProductIdentifier.identify(this.product);
     this.productIdentityString = this.productIdentityTags.join("-");
@@ -135,7 +132,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @use "@/styles/main" as global;
 
 .product-onetime-only-component {
