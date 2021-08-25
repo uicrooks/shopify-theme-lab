@@ -1,7 +1,9 @@
 <template>
   <div class="subscriptions-edit-component">
     <account-section-container-box>
-      <account-section-tabs />
+      <account-section-tabs
+        class="section-tabs"
+      />
       <div class="tab-contents">
         <b-overlay
           :show="isLoading"
@@ -187,6 +189,72 @@
             </div>
           </account-renderless-order-item>
         </div>
+        <div
+          v-for="date of Object.keys(upcomingRefillBoxesByDate)"
+          :key="`upcoming-refill-${date}`"
+          class="box-items-wrapper upcoming"
+        >
+          <div class="refill-date">
+            Upcoming Refill
+            <span>
+              {{ formatRefillDate(date) }}
+            </span>
+          </div>
+          <account-renderless-order-item
+            v-for="(upcomingBoxItem, upcomingBoxItemIndex) of upcomingRefillBoxesByDate[date]"
+            :key="`${upcomingBoxItemIndex}-${upcomingBoxItem}`"
+            :item="upcomingBoxItem"
+            :index="upcomingBoxItemIndex"
+            :fetch-and-update="false"
+            class="box-item"
+            :class="{'last': upcomingBoxItemIndex === upcomingRefillBoxesByDate[date].length - 1}"
+          >
+            <div slot-scope="{ loading, isOnetime, displayTitle, displayTitleWithQuantity, imageSrc, subscriptionInterval }">
+              <div class="box-item-image">
+                <b-spinner
+                  v-if="loading"
+                  variant="secondary"
+                  type="grow"
+                />
+                <img
+                  v-else
+                  :src="imageSrc"
+                  :alt="`${displayTitle} image`"
+                >
+              </div>
+              <div class="box-item-details">
+                <div class="heading">
+                  <h5>
+                    {{ displayTitleWithQuantity }}
+                  </h5>
+                  <div
+                    v-if="isOnetime"
+                    class="sub-heading"
+                  >
+                    Add-On
+                  </div>
+                  <div
+                    v-else
+                    class="sub-heading"
+                  >
+                    <i class="icon-custom icon-auto-renew icon" />
+                    {{ subscriptionInterval }}
+                  </div>
+                </div>
+                <div class="actions">
+                  <div class="button-wrapper">
+                    <squatch-button
+                      class="edit-button"
+                      @clicked="moveToNextRefill(upcomingBoxItem)"
+                    >
+                      Move to Next Refill
+                    </squatch-button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </account-renderless-order-item>
+        </div>
       </div>
     </account-section-container-box>
     <account-subscription-edit-modal
@@ -250,6 +318,15 @@ export default {
     isRefillDateUpdated() {
       return this.refillBoxDate !== this.updatedRefillDate;
     },
+    upcomingRefillBoxesByDate() {
+      let obj = {};
+      Object.keys(this.currentGroup.upcomingRefillsByDate).forEach(date => {
+        if (date !== this.refillBoxDate) {
+          obj[date] = this.currentGroup.upcomingRefillsByDate[date];
+        }
+      });
+      return obj;
+    }
   },
   watch: {
     refillBox() {
@@ -284,6 +361,16 @@ export default {
         quantity: updateDirection === "decrease" ? this.itemToEdit.quantity - 1 : this.itemToEdit.quantity + 1
       };
       this.confirmModalText = `Do you confirm to update the quantity for ${this.itemToEdit.product_title}?`;
+      this.showConfirmModal = true;
+    },
+    moveToNextRefill(item) {
+      console.log(item);
+      this.itemToEdit = item;
+      this.actionFunction = item.status === "ONETIME" ? RechargeService.updateOnetime : RechargeService.updateSubscription;
+      this.changes = {
+        next_charge_scheduled_at: this.refillBoxDate
+      };
+      this.confirmModalText = `Do you confirm to move ${this.itemToEdit.product_title} to next refill of ${moment(this.refillBoxDate).format("dddd, MMM Do, YYYY")}?`;
       this.showConfirmModal = true;
     },
     onOrderItemLoaded() {
@@ -323,136 +410,148 @@ export default {
 
 .subscriptions-edit-component {
 
-  .tab-contents {
-    display: flex;
-    flex-flow: row wrap;
-    padding-top: 15px;
+  .section-tabs {
+    padding: 20px 15px;
 
+    @include layout-sm {
+      padding: 20px;
+    }
+  }
+
+  .tab-contents {
+    
     .box-header-overlay {
       width: 100%;
-    }
+      padding: 15px 15px 0 15px;
+      display: flex;
+      flex-flow: row wrap;
 
-    .box-header {
-      width: 100%;
-      @include font-style-body($color: $brown);
-
-      @include layout-md {
-        display: flex;
-        flex-flow: row wrap;
+      @include layout-sm {
+        padding: 15px 20px 15px 20px;
       }
 
-      .date-info {
-        margin-bottom: 20px;
+      .box-header {
+        width: 100%;
+        @include font-style-body($color: $brown);
 
         @include layout-md {
-          flex: 1;
-          margin-right: 20px;
-        }
-
-        .date-row {
-          display: flex;
-          flex-flow: row nowrap;
-          margin-bottom: 3px;
-
-          .label {
-            margin-right: 10px;
-            @include font-style-body($size: 16px, $weight: 600, $lh: 22px);
-          }
-
-          .date {
-            @include font-style-body($size: 16px, $lh: 22px, $color: $brown);
-          }
-        }
-      
-        a {
-          cursor: pointer;
-          @include font-style-body($color: $text-orange);
-        }
-
-        .cancel-button {
-          display: flex;
-          flex-flow: row nowrap;
-          align-items: center;
-          cursor: pointer;
-          color: $dark-brown;
-          margin-left: 18px;
-
-          .icon-squatch {
-            font-size: 12px;
-            margin-top: -2px;
-            margin-right: 3px;
-          }
-        }
-
-        .refill-button {
-          margin-top: 20px;
-        }
-      }
-
-      .meta-info {
-        @include layout-sm {
           display: flex;
           flex-flow: row wrap;
         }
 
-        @include layout-md {
-          flex: 2;
-        }
+        .date-info {
+          margin-bottom: 20px;
 
-        .billing, .shipping {
-          @include font-style-body($color: $brown);
-          position: relative;
-
-          @include layout-sm {
+          @include layout-md {
             flex: 1;
+            margin-right: 20px;
           }
 
-          h6 {
-            margin-bottom: 8px;
-            @include font-style-body($size: 14px, $weight: 600);
+          .date-row {
+            display: flex;
+            flex-flow: row nowrap;
+            margin-bottom: 3px;
 
-            @include layout-md {
-              margin-bottom: 12px;
+            .label {
+              margin-right: 10px;
+              @include font-style-body($size: 16px, $weight: 600, $lh: 22px);
+            }
+
+            .date {
+              @include font-style-body($size: 16px, $lh: 22px, $color: $brown);
             }
           }
-
+        
           a {
-            position: absolute;
-            right: 0;
-            top: 0;
-            text-decoration: underline;
             cursor: pointer;
             @include font-style-body($color: $text-orange);
+          }
 
-            @include layout-sm {
-              right: 30px;
+          .cancel-button {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            cursor: pointer;
+            color: $dark-brown;
+            margin-left: 18px;
+
+            .icon-squatch {
+              font-size: 12px;
+              margin-top: -2px;
+              margin-right: 3px;
             }
           }
 
-          p {
-            @include font-style-body($color: $brown);
+          .refill-button {
+            margin-top: 20px;
+          }
+        }
 
-            &.billing-info {
-              margin-bottom: 0;
+        .meta-info {
+          @include layout-sm {
+            display: flex;
+            flex-flow: row wrap;
+          }
+
+          @include layout-md {
+            flex: 2;
+          }
+
+          .billing, .shipping {
+            @include font-style-body($color: $brown);
+            position: relative;
+
+            @include layout-sm {
+              flex: 1;
             }
-          
-            .address-line {
-              display: block;
-              margin-bottom: 4px;
+
+            h6 {
+              margin-bottom: 8px;
+              @include font-style-body($size: 14px, $weight: 600);
 
               @include layout-md {
-                margin-bottom: 7px;
+                margin-bottom: 12px;
               }
             }
-            
-            .card-logo {
-              width: 30px;
-              margin-right: 3px;
+
+            a {
+              position: absolute;
+              right: 0;
+              top: 0;
+              text-decoration: underline;
+              cursor: pointer;
+              @include font-style-body($color: $text-orange);
+
+              @include layout-sm {
+                right: 30px;
+              }
             }
 
-            .status-alert {
-              color: $red;
-              font-size: 12px;
+            p {
+              @include font-style-body($color: $brown);
+
+              &.billing-info {
+                margin-bottom: 0;
+              }
+            
+              .address-line {
+                display: block;
+                margin-bottom: 4px;
+
+                @include layout-md {
+                  margin-bottom: 7px;
+                }
+              }
+              
+              .card-logo {
+                width: 30px;
+                margin-right: 3px;
+              }
+
+              .status-alert {
+                color: $red;
+                font-size: 12px;
+              }
             }
           }
         }
@@ -461,11 +560,38 @@ export default {
 
     .box-items-wrapper {
       width: 100%;
-      margin-top: 25px;
+      padding: 0 15px;
+      @include font-style-body();
+
+      @include layout-sm {
+        padding: 0 20px;
+      }
 
       @include layout-md {
         width: unset;
         flex: 3;
+      }
+
+      &.upcoming {
+        background-color: #f6f5f3;
+        padding: 15px;
+        border-bottom: 2px solid $white;
+
+        &.last {
+          border-bottom: none;
+        }
+
+        @include layout-sm {
+          padding: 15px 20px;
+        }
+      }
+      
+      .refill-date {
+        @include font-style-body();
+
+        span {
+          @include font-style-body($color: grey, $weight: 500);
+        }
       }
 
       .box-item {
@@ -496,7 +622,7 @@ export default {
         }
 
         .box-item-details {
-          flex: 3;
+          flex: 4;
           position: relative;
           padding-left: 5px;
 
@@ -539,8 +665,12 @@ export default {
               flex-flow: column nowrap;
               align-items: center;
               justify-content: center;
-              min-width: 100px;
+              width: 150px;
               margin-left: 20px;
+            }
+
+            @include layout-md {
+              width: 180px;
             }
 
             .button-wrapper {
