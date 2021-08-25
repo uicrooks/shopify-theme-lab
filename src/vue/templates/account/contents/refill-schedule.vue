@@ -127,7 +127,7 @@
                   </div>
                   <div class="col-right">
                     <div class="date">
-                      {{ formatRefillDateDisplay(date) }}
+                      {{ formatRefillDateDisplay(date, item.next_charge_scheduled_at) }}
                     </div>
                     <div class="pricing">
                       <span
@@ -167,12 +167,12 @@ export default {
   computed: {
     ...mapGetters("account", ["currentGroup", "refillBoxDate", "refillBox"]),
     nextRefill() {
-      return this.refillSchedule[this.refillBoxDate];
+      return this.refillSchedule[this.formatToMonthOnly(this.refillBoxDate)];
     },
     upcomingRefills() {
       let obj = {};
       Object.keys(this.refillSchedule).filter(date => {
-        return date !== this.refillBoxDate;
+        return date !== this.formatToMonthOnly(this.refillBoxDate);
       }).sort().forEach(date => {
         obj[date] = this.refillSchedule[date];
       });
@@ -186,10 +186,13 @@ export default {
     }
   },
   methods: {
+    formatToMonthOnly(date) {
+      return moment(date).format("YYYY-MM");
+    },
     generateRefillSchedule() {
       let obj = {};
       this.refillBox.forEach(item => {
-        const formattedDate = item.next_charge_scheduled_at && moment(item.next_charge_scheduled_at).format("YYYY-MM-DD");
+        const formattedDate =  item.next_charge_scheduled_at && this.formatToMonthOnly(item.next_charge_scheduled_at);
         if (!obj[formattedDate]) {
           obj[formattedDate] = [item];
         } else {
@@ -201,7 +204,7 @@ export default {
           let counter = 1;
           let upcomingDate = moment(item.next_charge_scheduled_at).add(Number(item.order_interval_frequency) * counter, "months");
           while (upcomingDate.isSameOrBefore(endingDate)) {
-            const formattedDate = upcomingDate.format("YYYY-MM-DD");
+            const formattedDate = this.formatToMonthOnly(upcomingDate);
             if (!obj[formattedDate]) {
               obj[formattedDate] = [item];
             } else {
@@ -214,18 +217,31 @@ export default {
       });
       Object.keys(this.currentGroup.upcomingRefillsByDate).forEach(date => {
         if (date === this.refillBoxDate) return;
-        if (!obj[date]) {
-          obj[date] = this.currentGroup.upcomingRefillsByDate[date];
+        const formattedDate = this.formatToMonthOnly(date);
+        if (!obj[formattedDate]) {
+          obj[formattedDate] = this.currentGroup.upcomingRefillsByDate[date];
         } else {
-          obj[date] = [...obj[date], ...this.currentGroup.upcomingRefillsByDate[date]]; 
+          obj[formattedDate] = [...obj[formattedDate], ...this.currentGroup.upcomingRefillsByDate[date]]; 
         }
+        sortByDateWithoutMonth(obj[formattedDate]);
       });
       this.refillSchedule = obj;
+
+      function sortByDateWithoutMonth(itemsArr) {
+        itemsArr.sort((a, b) => {
+          const aDate = a.next_charge_scheduled_at ? moment(a.next_charge_scheduled_at).date() : -1;
+          const bDate = b.next_charge_scheduled_at ? moment(b.next_charge_scheduled_at).date() : - 2;
+          return aDate - bDate;
+        })
+      }
     },
     formatRefillMonthDisplay(date) {
       return moment(date).format("MMMM YYYY");
     },
-    formatRefillDateDisplay(date) {
+    formatRefillDateDisplay(date, dateFromItem = null) {
+      if (dateFromItem) {
+        return `${moment(date).format("MMM")} ${moment(dateFromItem).format("Do")}`;
+      }
       return moment(date).format("MMM Do");
     },
   },
