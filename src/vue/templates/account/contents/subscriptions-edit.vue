@@ -59,7 +59,6 @@
                   <i class="icon-squatch icon-cross" />
                   Cancel
                 </div>
-
               </div>
               <squatch-button
                 class="refill-button"
@@ -238,7 +237,7 @@ export default {
       itemToEdit: {},
       showRefillDateUpdateModal: false,
       updatedRefillDateForModal: null,
-      itemsForRefillDateUpdate: {},
+      itemsForRefillDateUpdate: [],
       openCalendar: false,
       datepickerConfig: {
         type: "string",
@@ -256,6 +255,7 @@ export default {
     refillBox() {
       this.ordersLoadedCounter = 0;
       this.updatedRefillDate = this.refillBoxDate;
+      this.closeModal();
     },
   },
   methods: {
@@ -271,10 +271,10 @@ export default {
       this.updatedRefillDate = this.refillBoxDate;
     },
     updateRefillDate() {
-      console.log(this.currentGroup);
-      this.itemsForRefillDateUpdate = this.currentGroup.upcomingRefillsByDate;
+      this.itemsForRefillDateUpdate = this.refillBox;
       // If updatedRefillDate is not updated (same as refillBoxDate), update to today's date
       this.updatedRefillDateForModal = this.updatedRefillDate === this.refillBoxDate ? moment().format("YYYY-MM-DD") : this.updatedRefillDate;
+      console.log("updatedRefillDateForModal", this.updatedRefillDateForModal);
       this.showRefillDateUpdateModal = true;
     },
     updateOnetimeQuantity(index, updateDirection) {
@@ -304,12 +304,17 @@ export default {
       this.actionFunction = () => {};
       this.itemToEdit = {};
       this.updatedRefillDateForModal = null;
-      this.itemsForRefillDateUpdate = {};
+      this.itemsForRefillDateUpdate = [];
       this.showEditModal = false;
       this.showConfirmModal = false;
       this.showRefillDateUpdateModal = false;
     }
   },
+  mounted() {
+    this.ordersLoadedCounter = 0;
+    this.updatedRefillDate = this.refillBoxDate;
+    this.closeModal();
+  }
 };
 </script>
 
