@@ -121,11 +121,13 @@ export default {
       this.$store.commit("account/setRechargeUser", subscriber);
       this.$store.commit("account/setRechargePaymentSource",paymentSources[0]); 
     },
-    async initializeOrderData(rechargeUserId) {
-      const squatchBoxGroups = await AccountHelpers.initializeOrderData(rechargeUserId);
+    async initializeSubscriptionData(rechargeUserId) {
+      const squatchBoxGroups = await AccountHelpers.initializeSquatchBoxGroups(rechargeUserId);
       // this.$store.commit("account/setRechargeOrders", orders);
-      this.$store.commit("account/setSquatchBoxGroups", squatchBoxGroups);
-      this.$store.dispatch("account/initializeCurrentGroup", Object.keys(squatchBoxGroups)[0]);
+      this.$store.dispatch(
+        "account/initializeSquatchBoxGroups",
+        { squatchBoxGroups: squatchBoxGroups, groupName: Object.keys(squatchBoxGroups)[0] }
+      );
     }
   },
   async created() {
@@ -137,15 +139,13 @@ export default {
     this.$store.commit("products/setSubscriptionCollections", subProducts);
     this.$store.commit("products/setSubscriptionOptionCollections", subOptions);
 
-    console.log(this.user);
-    console.log(subProducts);
-    console.log(subOptions);
+    console.log("user", this.user);
 
     if (this.isActiveSubscriber) {
       // const email = this.user.email;
       const email = "will@drsquatch.com";
       await this.initializeRechargeUserData(email);
-      await this.initializeOrderData(this.rechargeUser.id);
+      await this.initializeSubscriptionData(this.rechargeUser.id);
     }
   },
   async mounted() {

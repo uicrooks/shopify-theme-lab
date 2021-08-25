@@ -2,7 +2,7 @@ import RechargeService from "@/vue/services/recharge.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
 
 export default {
-  async initializeOrderData(rechargeUserId) {
+  async initializeSquatchBoxGroups(rechargeUserId) {
     const orders = await RechargeService.getUserResource(rechargeUserId, "subscriptions");
     const subscriptions = orders.subscriptions.filter(subs => !subs.cancelled_at);
     // cookie

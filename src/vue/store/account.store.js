@@ -65,6 +65,11 @@ const getters = {
 };
 
 const actions = {
+  initializeSquatchBoxGroups: ({ commit }, data) => {
+    commit("setSquatchBoxGroups", data.squatchBoxGroups);
+    commit("setCurrentGroupName", data.groupName);
+    commit("setCurrentGroup", data.squatchBoxGroups[data.groupName]);
+  },
   initializeCurrentGroup: ({ commit, state }, groupName) => {
     commit("setCurrentGroupName", groupName);
     commit("setCurrentGroup", state.squatchBoxGroups[groupName]);
