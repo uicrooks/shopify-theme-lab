@@ -33,10 +33,10 @@
             >
               <label>Product</label>
               <b-form-select
-                v-bind="productAttr"
-                v-on="productEvents"
                 :options="productOptionsWithIndexValue"
                 class="select-input"
+                v-bind="productAttr"
+                v-on="productEvents"
               />
             </div>
             <div class="field-wrapper">
@@ -49,10 +49,10 @@
               </div>
               <div v-else>
                 <b-form-select
-                  v-bind="intervalAttr"
-                  v-on="intervalEvents"
                   :options="intervalOptions"
                   class="select-input"
+                  v-bind="intervalAttr"
+                  v-on="intervalEvents"
                 />
               </div>
             </div>
@@ -64,10 +64,10 @@
                 {{ quantityLabel }}
               </label>
               <b-form-select
-                v-bind="quantityAttr"
-                v-on="quantityEvents"
                 :options="quantityOptions"
                 class="select-input"
+                v-bind="quantityAttr"
+                v-on="quantityEvents"
               />
             </div>
           </div>
@@ -95,13 +95,13 @@
                   </div>
                 </div>
                 <quantity-switch
+                  class="qty-switch"
                   :quantity="option.quantity"
                   :index="index"
                   :decrease-disabled="option.quantity === 0"
                   :increase-disabled="option.isFull || selectionComplete"
                   @decrease="decreaseQuantity"
                   @increase="increaseQuantity"
-                  class="qty-switch"
                 />
               </div>
             </div>
@@ -204,7 +204,6 @@ export default {
   },
   watch: {
     showModal(val) {
-      console.log("showModal?", val);
       this.showModalFlag = val;
       this.itemHolder = val ? this.item : {};
     },

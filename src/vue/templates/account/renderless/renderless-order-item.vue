@@ -37,7 +37,7 @@ export default {
       return this.item.status === "ONETIME";
     },
     displayTitle() {
-      return this.isOnetime ? this.item.variant_title.split(" / ")[0] : this.item.product_title.split(" - ")[0];
+      return this.isOnetime ? (this.item.variant_title ? this.item.variant_title.split(" / ")[0] : "") : (this.item.product_title ? this.item.product_title.split(" - ")[0] : "");
     },
     displayTitleWithQuantity() {
       if (this.isOnetime) return this.displayTitle;

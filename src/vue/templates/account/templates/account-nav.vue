@@ -17,8 +17,8 @@
       />
     </b-button>
     <b-collapse
-      class="account-nav mobile"
       v-model="navOpen"
+      class="account-nav mobile"
     >
       <div
         v-for="(item, index) of navMenuItems"
@@ -173,11 +173,6 @@ export default {
   },
   computed: {
     ...mapGetters("account", ["currentView", "user"]),
-  },
-  watch: {
-    currentView(val) {
-      console.log("view", val);
-    }
   },
   methods: {
     selectView(viewName) {

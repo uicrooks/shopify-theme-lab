@@ -104,7 +104,7 @@ export default {
   },
   watch: {
     currentView(val) {
-      console.log("view", val);
+      console.log("view updated to:", val);
       if (["Overview", "Edit Box"].includes(val)) {
         this.loading = true;
       }

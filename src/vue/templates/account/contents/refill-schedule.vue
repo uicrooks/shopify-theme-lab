@@ -5,7 +5,7 @@
       <div class="tab-contents">
         <h3>Next Refill</h3>
         <div class="refill-group">
-          <h4>{{ showRefillMonthDisplay(refillBoxDate) }}</h4>
+          <h4>{{ formatRefillMonthDisplay(refillBoxDate) }}</h4>
           <div class="refill-items-wrapper">
             <account-renderless-order-item
               v-for="(refillBoxItem, itemIndex) of nextRefill"
@@ -50,7 +50,7 @@
                   </div>
                   <div class="col-right">
                     <div class="date">
-                      {{ showRefillDateDisplay(refillBoxDate) }}
+                      {{ formatRefillDateDisplay(refillBoxDate) }}
                     </div>
                     <div class="pricing">
                       <span
@@ -79,7 +79,7 @@
           :key="`refill-group-${index}`"
           class="refill-group"
         >
-          <h4>{{ showRefillMonthDisplay(date) }}</h4>
+          <h4>{{ formatRefillMonthDisplay(date) }}</h4>
           <div class="refill-items-wrapper">
             <account-renderless-order-item
               v-for="(upcomingRefillItem, itemIndex) of upcomingRefills[date]"
@@ -125,7 +125,7 @@
                   </div>
                   <div class="col-right">
                     <div class="date">
-                      {{ showRefillDateDisplay(date) }}
+                      {{ formatRefillDateDisplay(date) }}
                     </div>
                     <div class="pricing">
                       <span
@@ -220,10 +220,10 @@ export default {
       });
       this.refillSchedule = obj;
     },
-    showRefillMonthDisplay(date) {
+    formatRefillMonthDisplay(date) {
       return moment(date).format("MMMM YYYY");
     },
-    showRefillDateDisplay(date) {
+    formatRefillDateDisplay(date) {
       return moment(date).format("MMM Do");
     },
   },
@@ -338,9 +338,9 @@ export default {
             .col-right {
               min-width: 60px;
               margin-left: 5px;
+              text-align: right;
 
               .date {
-                text-align: right;
                 margin-bottom: 8px;
                 @include font-style-body-bold();
               }

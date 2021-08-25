@@ -11,14 +11,14 @@
           <div class="box-header">
             <div class="date-info">
               <div
-                v-if="newRefillDateSelected"
+                v-if="isRefillDateUpdated"
                 class="date-row"
               >
                 <div class="label">
                   Will Now Refill
                 </div>
                 <div class="date">
-                  {{ showRefillDate(newRefillDate) }}
+                  {{ formatRefillDate(updatedRefillDate) }}
                 </div>
               </div>
               <div
@@ -29,12 +29,12 @@
                   Next Refill
                 </div>
                 <div class="date">
-                  {{ showRefillDate(refillBoxDate) }}
+                  {{ formatRefillDate(refillBoxDate) }}
                 </div>
               </div>
               <div class="date-row">
                 <date-picker
-                  v-model="newRefillDate"
+                  v-model="updatedRefillDate"
                   :min-date="new Date()"
                   :model-config="datepickerConfig"
                   color="orange"
@@ -52,9 +52,9 @@
                   </template>
                 </date-picker>
                 <div
-                  v-if="newRefillDateSelected"
+                  v-if="isRefillDateUpdated"
                   class="cancel-button"
-                  @click="cancelDateChange"
+                  @click="resetUpdatedRefillDate"
                 >
                   <i class="icon-squatch icon-cross" />
                   Cancel
@@ -63,8 +63,9 @@
               </div>
               <squatch-button
                 class="refill-button"
+                @clicked="updateRefillDate"
               >
-                {{ newRefillDateSelected ? "Update Date" : "Refill Tonight" }}
+                {{ isRefillDateUpdated ? "Update Date" : "Refill Tonight" }}
               </squatch-button>
             </div>
             <div class="meta-info">
@@ -159,8 +160,8 @@
                     class="qty-switch"
                     :quantity="item.quantity"
                     :index="refillBoxItemIndex"
-                    @decrease="decreaseOnetimeQuantity"
-                    @increase="increaseOnetimeQuantity"
+                    @decrease="updateOnetimeQuantity($event, 'decrease')"
+                    @increase="updateOnetimeQuantity($event, 'increase')"
                   />
                 </div>
                 <div
@@ -192,45 +193,53 @@
     <account-subscription-edit-modal
       :show-modal="showEditModal"
       :item="itemToEdit"
-      @hide="showEditModal = false"
+      @hide="closeModal"
     />
     <account-confirmation-modal
       :show-modal="showConfirmModal"
       :item="itemToEdit"
-      :action-description="actionToConfirm"
       :action-function="actionFunction"
       :changes="changes"
-      @hide="closeConfirmModal"
+      @hide="closeModal"
+    >
+      {{ confirmModalText }}
+    </account-confirmation-modal>
+    <account-refill-date-update-modal
+      :show-modal="showRefillDateUpdateModal"
+      :items="itemsForRefillDateUpdate"
+      :new-refill-date="updatedRefillDateForModal"
+      @hide="closeModal"
     />
   </div>
 </template>
 
 <script>
 import RechargeService from "@/vue/services/recharge.service";
-import AccountHelpers from "@/vue/services/account-helpers";
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
 import { mapGetters } from "vuex";
-import Calendar from "v-calendar/lib/components/calendar.umd";
 import DatePicker from "v-calendar/lib/components/date-picker.umd";
+import moment from "moment";
 
 export default {
   name: "AccountSubscriptionsEdit",
   components: { 
-    Calendar,
     DatePicker 
   },
   data() {
     return {
       isLoading: true,
       ordersLoadedCounter: 0,
-      showEditModal: false,
+      updatedRefillDate: null,
       showConfirmModal: false,
-      actionToConfirm: "",
-      actionFunction: () => {},
+      confirmModalText: "",
       changes: {},
+      actionFunction: () => {},
+      showEditModal: false,
       itemToEdit: {},
+      showRefillDateUpdateModal: false,
+      updatedRefillDateForModal: null,
+      itemsForRefillDateUpdate: {},
       openCalendar: false,
-      newRefillDate: null,
       datepickerConfig: {
         type: "string",
         mask: "YYYY-MM-DD"
@@ -238,50 +247,43 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargeUser", "rechargePaymentSource", "currentGroupName", "currentGroupShippingAddress", "refillBoxDate", "refillBox"]),
-    newRefillDateSelected() {
-      return this.refillBoxDate.split("T")[0] !== this.newRefillDate;
+    ...mapGetters("account", ["rechargePaymentSource", "currentGroup", "currentGroupShippingAddress", "refillBoxDate", "refillBox"]),
+    isRefillDateUpdated() {
+      return this.refillBoxDate !== this.updatedRefillDate;
     },
   },
   watch: {
     refillBox() {
-      console.log("refillBoxChanged", this.refillBox);
-      this.isLoading = true;
       this.ordersLoadedCounter = 0;
-      this.newRefillDate = this.refillBoxDate.split("T")[0];
+      this.updatedRefillDate = this.refillBoxDate;
     },
-    newRefillDate(val) {
-      console.log("newRefillDate", val);
-    }
   },
   methods: {
     selectView(viewName) {
       this.$store.commit("account/setCurrentView", viewName);
     },
-    showRefillDate(date) {
+    formatRefillDate(date) {
       if (!this.refillBoxDate) return "";
       const format = !DatetimeHelpers.isSame(new Date(), date, "year") ? "MMM Do, YYYY" : "MMM Do";
       return DatetimeHelpers.format(date, format);
     },
-    cancelDateChange() {
-      this.newRefillDate = this.refillBoxDate.split("T")[0];
+    resetUpdatedRefillDate() {
+      this.updatedRefillDate = this.refillBoxDate;
     },
-    async decreaseOnetimeQuantity(index) {
+    updateRefillDate() {
+      console.log(this.currentGroup);
+      this.itemsForRefillDateUpdate = this.currentGroup.upcomingRefillsByDate;
+      // If updatedRefillDate is not updated (same as refillBoxDate), update to today's date
+      this.updatedRefillDateForModal = this.updatedRefillDate === this.refillBoxDate ? moment().format("YYYY-MM-DD") : this.updatedRefillDate;
+      this.showRefillDateUpdateModal = true;
+    },
+    updateOnetimeQuantity(index, updateDirection) {
       this.itemToEdit = this.refillBox[index];
-      this.actionToConfirm = "update the quantity for";
       this.actionFunction = RechargeService.updateOnetime;
       this.changes = {
-        quantity: this.itemToEdit.quantity - 1
+        quantity: updateDirection === "decrease" ? this.itemToEdit.quantity - 1 : this.itemToEdit.quantity + 1
       };
-      this.showConfirmModal = true;
-    },
-    async increaseOnetimeQuantity(index) {
-      this.itemToEdit = this.refillBox[index];
-      this.actionToConfirm = "update the quantity for";
-      this.actionFunction = RechargeService.updateOnetime;
-      this.changes = {
-        quantity: this.itemToEdit.quantity + 1
-      };
+      this.confirmModalText = `Do you confirm to update the quantity for ${this.itemToEdit.product_title}?`;
       this.showConfirmModal = true;
     },
     onOrderItemLoaded() {
@@ -293,20 +295,21 @@ export default {
     },
     openEditModal(item) {
       console.log(item);
-      this.showEditModal = true;
       this.itemToEdit = item;
+      this.showEditModal = true;
     },
-    closeConfirmModal() {
-      this.itemToEdit = {};
-      this.actionToConfirm = "";
-      this.actionFunction = () => {};
+    closeModal() {
+      this.confirmModalText = "";
       this.changes = {};
+      this.actionFunction = () => {};
+      this.itemToEdit = {};
+      this.updatedRefillDateForModal = null;
+      this.itemsForRefillDateUpdate = {};
+      this.showEditModal = false;
       this.showConfirmModal = false;
+      this.showRefillDateUpdateModal = false;
     }
   },
-  mounted() {
-    this.newRefillDate = this.refillBoxDate.split("T")[0];
-  }
 };
 </script>
 
