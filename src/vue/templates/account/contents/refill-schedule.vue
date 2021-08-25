@@ -1,6 +1,8 @@
 <template>
   <div class="refill-schedule-component">
-    <account-section-container-box>
+    <account-section-container-box
+      class="section-container-box"
+    >
       <account-section-tabs />
       <div class="tab-contents">
         <h3>Next Refill</h3>
@@ -237,6 +239,14 @@ export default {
 @import "@/styles/main.scss";
 
 .refill-schedule-component {
+
+  .section-container-box {
+    padding: 20px 15px;
+  
+    @include layout-sm {
+      padding: 20px;
+    }
+  }
 
   .tab-contents {
     padding-top: 15px;

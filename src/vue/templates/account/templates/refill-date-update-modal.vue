@@ -195,7 +195,7 @@ export default {
   @include font-style-body($size: 15px, $lh: 22px);
 
   .body {
-    padding: 15px;
+    padding: 15px 20px;
 
     .icon-wrapper {
       padding: 15px;
@@ -205,8 +205,6 @@ export default {
     }
 
     p {
-      width: 90%;
-      margin: auto;
 
       &.errored {
         color: $red;

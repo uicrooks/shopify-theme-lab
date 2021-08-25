@@ -16,7 +16,9 @@
         </a>
       </div>
     </div>
-    <account-section-container-box>
+    <account-section-container-box
+      class="section-container-box"
+    >
       <account-section-tabs />
       <div class="tab-contents">
         <div
@@ -231,6 +233,14 @@ export default {
         cursor: pointer;
         @include font-style-body($color: $text-orange);
       }
+    }
+  }
+
+  .section-container-box {
+    padding: 20px 15px;
+
+    @include layout-sm {
+      padding: 20px;
     }
   }
 
