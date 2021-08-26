@@ -4,8 +4,9 @@
       :item="itemHolder"
       :subscription-products="subscriptionProducts"
       :subscription-option-source="subscriptionOptions"
+      @save="save"
     >
-      <div slot-scope="{ productOptionsWithIndexValue, productAttr, productEvents, intervalOptions, intervalText, intervalAttr, intervalEvents, quantityOptions, quantityAttr, quantityEvents, selectionOptions, selection, selectionComplete, selectionUpdated, decreaseQuantity, increaseQuantity, removeOption }">
+      <div slot-scope="{ productOptionsWithIndexValue, productAttr, productEvents, intervalOptions, intervalText, intervalAttr, intervalEvents, quantityOptions, quantityAttr, quantityEvents, selectionOptions, selection, editComplete, editMade, decreaseQuantity, increaseQuantity, removeOption, saveChanges }">
         <b-modal
           v-model="showModalFlag"
           size="lg"
@@ -20,7 +21,7 @@
           <div class="edit-modal-header">
             <span
               class="back-button"
-              @click="hideModal"
+              @click="$emit('hide')"
             >
               <i 
                 class="icon-squatch icon-size-xs icon-chevron-left"
@@ -137,9 +138,9 @@
               </div>
             </div>
             <squatch-button
-              :disabled="!selectionUpdated || !selectionComplete"
+              :disabled="!editMade || !editComplete"
               class="save-button"
-              @clicked="save"
+              @clicked="saveChanges"
             >
               Save
             </squatch-button>
@@ -147,10 +148,20 @@
         </b-modal>
       </div>
     </account-renderless-subscription-edit>
+    <account-confirmation-modal
+      :show-modal="showConfirmModal"
+      :item="itemHolder"
+      :action-function="actionFunction"
+      :changes="changes"
+      @hide="closeConfirmModal"
+    >
+      {{ confirmModalText }}
+    </account-confirmation-modal>
   </div>
 </template>
 
 <script>
+import RechargeService from "@/vue/services/recharge.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
 import { mapGetters } from "vuex";
 
@@ -172,6 +183,10 @@ export default {
     return {
       showModalFlag: false,
       itemHolder: {},
+      showConfirmModal: false,
+      confirmModalText: "",
+      actionFunction: () => {},
+      changes: {},
     };
   },
   computed: {
@@ -214,11 +229,63 @@ export default {
     },
   },
   methods: {
-    hideModal() {
-      this.$emit("hide");
-    },
-    save() {
+    // next_charge_scheduled_at: "2021-08-25"
+    // charge_interval_frequency: 3
+    // order_interval_frequency: 3
+    // order_interval_unit: "month"
+    // properties: [{name: "shipping_interval_frequency", value: 3},…]
+    // quantity: 2
+    // ????? ------
+    // shopify_variant_id: 32637027188841
+    // sku_override: false
+    // use_shopify_variant_defaults: "true"
+    save(product, interval, quantity, selection) {
+      this.confirmModalText = "Test ahahaha";
+      this.actionFunction = RechargeService.updateSubscription;
+      this.changes = {
+        next_charge_scheduled_at: this.itemHolder.next_charge_scheduled_at,
+        order_interval_unit: this.itemHolder.order_interval_unit,
+      };
       console.log("Save");
+      console.log(product, interval, quantity, selection);
+      if (product !== null) {
+        // 
+      }
+      if (interval !== null) {
+        const newProperties = updatePropertiesWithNewInterval(this.itemHolder.properties, interval);
+        this.changes.order_interval_frequency = interval;
+        this.changes.charge_interval_frequency = interval;
+        this.changes.properties = newProperties;
+      }
+      if (quantity !== null) {
+        this.changes.quantity = quantity;
+      }
+      if (selection !== null) {
+        //
+      }
+      console.log(this.changes);
+      this.showConfirmModal = true;
+      
+      function updatePropertiesWithNewInterval(props, interval) {
+        return props.slice().map(prop => {
+          if ([
+            "shipping_interval_frequency", "charge_interval_frequency", "_recurring_shipping_interval_frequency", "_recurring_charge_interval_frequency"
+          ].includes(prop.name)) {
+            return {
+              name: prop.name,
+              value: interval
+            };
+          }
+          return prop;
+        });
+      }
+    },
+    closeConfirmModal() {
+      console.log("CloseConfirmMOdal");
+      this.confirmModalText = "";
+      this.changes = {};
+      this.actionFunction = () => {};
+      this.$emit("hide");
     }
   }
 };

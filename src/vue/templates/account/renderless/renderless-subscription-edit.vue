@@ -169,17 +169,20 @@ export default {
     selection() {
       return Helpers.getSelectionFromSelectionOptions(this.productType, this.selectionOptions);
     },
+    productUpdated() {
+      return this.productSelected.handle !== this.item.productData.handle;
+    },
+    intervalUpdated() {
+      return this.intervalSelected !== Number(this.item.order_interval_frequency);
+    },
+    quantityUpdated() {
+      return this.quantitySelected !== this.item.quantity;
+    },
     selectionUpdated() {
-      if (!this.item.lineItems) return false;
-      const productUpdated = this.productSelected.handle !== this.item.productData.handle; 
-      const selectionUpdated = checkIfDifferent(
+      return checkIfDifferent(
         this.selection.map(option => option.handle),
         this.item.lineItems.map(option => option.handle)
       );
-      const quantityUpdated = this.quantitySelected !== this.item.quantity;
-
-      return productUpdated || quantityUpdated || selectionUpdated;
-
       function checkIfDifferent(arr1, arr2) {
         arr1.sort();
         arr2.sort();
@@ -190,9 +193,12 @@ export default {
         }
         return false;
       }
-
     },
-    selectionComplete() {
+    editMade() {
+      if (!this.item.lineItems) return false;
+      return this.productUpdated || this.intervalUpdated ||  this.quantityUpdated || this.selectionUpdated;
+    },
+    editComplete() {
       if (["barsoap", "deodorant"].includes(this.productType)) {
         return this.selection.length === this.quantitySelected;
       }
@@ -285,6 +291,13 @@ export default {
       const index = option.selectionOptionIndex;
       this.decreaseQuantity(index);
     },
+    saveChanges() {
+      const product = this.productUpdated ? this.productSelected : null;
+      const interval = this.intervalUpdated ? this.intervalSelected : null;
+      const quantity = this.quantityUpdated ? this.quantitySelected : null;
+      const selection = this.selectionUpdated ? this.selection : null;
+      this.$emit("save", product, interval, quantity, selection);
+    },
     onProductUpdated(val) {
       this.productSelectedIndex = val;
       if (this.productType === "haircare") {
@@ -343,11 +356,12 @@ export default {
       },
       selectionOptions: this.selectionOptions,
       selection: this.selection,
-      selectionComplete: this.selectionComplete,
-      selectionUpdated: this.selectionUpdated,
+      editComplete: this.editComplete,
+      editMade: this.editMade,
       decreaseQuantity: this.decreaseQuantity,
       increaseQuantity: this.increaseQuantity,
       removeOption: this.removeOption,
+      saveChanges: this.saveChanges,
     });
   }
 };
