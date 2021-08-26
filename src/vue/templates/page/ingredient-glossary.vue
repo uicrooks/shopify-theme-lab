@@ -28,6 +28,37 @@
       >
     </div>
 
+
+    <div class="vue-carousel">
+      <carousel :per-page="5" :mouse-drag="true">
+        <slide
+          class="vue-carousel-slide"
+          v-for="(category, index) of categories"
+          :key="`category-${index}`"
+        >
+          <label
+            class="item-label"
+          >
+            <input
+              v-model="selected"
+              type="radio"
+              name="category"
+              :value="category"
+            >
+            <div class="product-category-card">
+              <img 
+                class="carousel-img" 
+                :src="category.imageSrc" 
+              >
+              <p class="carousel-item-name">
+                {{ category.label }}
+              </p>
+            </div>
+          </label>
+        </slide>
+    </carousel>
+    </div>
+
     <!-- INPUT FIELD -->
     <div class="carousel-container">
       <div class="carousel-container-content">
@@ -220,9 +251,14 @@
 
 <script>
 import IngredientsList from "@/configs/page-ingredients";
+import { Carousel, Slide } from 'vue-carousel';
 
 export default {
   name: "IngredientGlossary",
+  components: {
+    Carousel,
+    Slide
+  },
   data() {
     return {
       ingredients: IngredientsList,
@@ -404,6 +440,52 @@ export default {
       }
     }
   }
+
+  .vue-carousel {
+    width: 100%;
+    margin: 0 auto;
+
+    @include layout-sm {
+      max-width: 540px;
+    }
+
+    @include layout-md {
+      max-width: 720px;
+    }
+
+    @include layout-lg {
+      max-width: 960px;
+    }
+
+    @include layout-xl {
+      max-width: 1024px;
+    }
+
+    .VueCarousel-slide {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .item-label {
+      height: 90px;
+      position: relative;
+
+      input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+      }
+
+      .product-category-card {
+        height: 100%;
+
+        .carousel-img {
+          height: 100%;
+        }
+      }
+    }
+  }
+
 
   .carousel-container {
     width: 100%;
