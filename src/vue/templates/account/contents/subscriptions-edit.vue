@@ -172,6 +172,7 @@
                   <div class="button-wrapper">
                     <squatch-button
                       class="skip-button"
+                      @clicked="skipSubscriptionItemInNextRefill(item)"
                     >
                       Skip
                     </squatch-button>
@@ -369,6 +370,16 @@ export default {
         quantity: updateDirection === "decrease" ? this.itemToEdit.quantity - 1 : this.itemToEdit.quantity + 1
       };
       this.confirmModalText = `Do you confirm to update the quantity for ${this.itemToEdit.product_title}?`;
+      this.showConfirmModal = true;
+    },
+    skipSubscriptionItemInNextRefill(item) {
+      this.itemToEdit = item;
+      this.actionFunction = RechargeService.updateSubscription;
+      const delayedRefillDate = moment(item.next_charge_scheduled_at).add(Number(item.order_interval_frequency), "months").format("YYYY-MM-DD");
+      this.changes = {
+        next_charge_scheduled_at: delayedRefillDate
+      };
+      this.confirmModalText = `Do you confirm to skip ${this.itemToEdit.product_title} in your next refill? It will now ship on ${moment(delayedRefillDate).format("dddd, MMM Do, YYYY")}`;
       this.showConfirmModal = true;
     },
     moveToNextRefill(item) {

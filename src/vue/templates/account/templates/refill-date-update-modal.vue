@@ -116,17 +116,19 @@ export default {
           }
         };
       });
-      let upcomingRefillWithPayload = this.items.upcomingRefill.filter(item => item.order_interval_frequency).map(item => {
-        const delayedRefillDate = moment(this.newRefillDate).add(Number(item.order_interval_frequency), "months").format("YYYY-MM-DD");
-        return {
-          isOnetime: false,
-          id: item.id,
-          payload: {
-            next_charge_scheduled_at: delayedRefillDate,
-            commit_update: false
-          }
-        };
-      });
+      let upcomingRefillWithPayload = this.items.upcomingRefill
+        .filter(item => item.order_interval_frequency)
+        .map(item => {
+          const delayedRefillDate = moment(this.newRefillDate).add(Number(item.order_interval_frequency), "months").format("YYYY-MM-DD");
+          return {
+            isOnetime: false,
+            id: item.id,
+            payload: {
+              next_charge_scheduled_at: delayedRefillDate,
+              commit_update: false
+            }
+          };
+        });
       return [...nextRefillWithPayload, ...upcomingRefillWithPayload];
     },
   },
