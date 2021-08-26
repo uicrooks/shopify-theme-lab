@@ -15,7 +15,11 @@
           class="icon-wrapper"
           :class="{errored: errored}"
         >
+          <b-spinner
+            v-if="inProgress"
+          />
           <b-icon
+            v-else
             icon="question-circle"
             class="alert-icon"
           />
@@ -27,7 +31,7 @@
           We are updating the refill schedule for all of your items. Thank you for your patience.
           <b-progress
             :value="numOfItemsUpdated"
-            :max="items.length"
+            :max="processedItemsWithPayload.length"
           />
         </p>
         <p v-else>
@@ -44,9 +48,11 @@
             {{ errored ? 'OK' : 'Cancel' }}
           </squatch-button>
         </div>
-        <div class="button-wrapper">
+        <div
+          v-if="!errored"
+          class="button-wrapper"
+        >
           <squatch-button
-            v-if="!errored"
             class="confirm-button"
             :disabled="inProgress || errored"
             @clicked="confirm"
@@ -74,9 +80,9 @@ export default {
       default: false
     },
     items: {
-      type: Array,
+      type: Object,
       required: true,
-      default: () => []
+      default: () => { return { nextRefill: [], upcomingRefill: [] } }
     },
     newRefillDate: {
       type: String,
@@ -97,12 +103,31 @@ export default {
     refillDateDisplay() {
       return moment(this.newRefillDate).format("dddd, MMM Do, YYYY");
     },
-    numOfItemsToUpdate() {
-      let total = 0;
-      Object.keys(this.itemsByDate).forEach(date => {
-        total += this.itemsByDate[date].length;
+    processedItemsWithPayload() {
+      let nextRefillWithPayload = this.items.nextRefill.map(item => {
+        return {
+          isOnetime: item.status === "ONETIME",
+          id: item.id,
+          payload: item.status === "ONETIME" ? {
+            next_charge_scheduled_at: this.newRefillDate
+          } : {
+            next_charge_scheduled_at: this.newRefillDate,
+            commit_update: false
+          }
+        };
       });
-      return total;
+      let upcomingRefillWithPayload = this.items.upcomingRefill.filter(item => item.order_interval_frequency).map(item => {
+        const delayedRefillDate = moment(this.newRefillDate).add(Number(item.order_interval_frequency), "months").format("YYYY-MM-DD");
+        return {
+          isOnetime: false,
+          id: item.id,
+          payload: {
+            next_charge_scheduled_at: delayedRefillDate,
+            commit_update: false
+          }
+        };
+      });
+      return [...nextRefillWithPayload, ...upcomingRefillWithPayload];
     },
   },
   watch: {
@@ -125,10 +150,9 @@ export default {
       this.inProgress = true;
       this.numOfItemsUpdated = 0;
 
-      let failedRequests = await this.runUpdateAndReturnFailedRequests(this.items, this.newRefillDate);
-
+      let failedRequests = await this.runUpdateAndReturnFailedRequests(this.processedItemsWithPayload);
       if (!failedRequests.length) {
-        return await this.onUpdateSuccessful();
+        return await this.onUpdateComplete();
       }
 
       let attemptsMade = 0;
@@ -137,58 +161,51 @@ export default {
         attemptsMade++;
         if (!failedRequests.length) {
           clearInterval(retryInterval);
-          return await this.onUpdateSuccessful();
+          return await this.onUpdateComplete();
         }
         if (attemptsMade === 4) {
           clearInterval(retryInterval);
           this.inProgress = false;
           this.errored = true;
+          return await this.onUpdateComplete();
         }
-      }, 1500);
+      }, 2000);
     },
-    async runUpdateAndReturnFailedRequests(items, newRefillDate) {
+    async runUpdateAndReturnFailedRequests(items) {
       let failed = [];
       for (let i = 0; i < items.length; i++) {
         let result;
-        if (items[i].status === "ONETIME") {
+        if (items[i].isOnetime) {
           result = await RechargeService.updateOnetime(
             items[i].id,
-            { next_charge_scheduled_at: newRefillDate }
+            items[i].payload,
           );
         } else {
           result = await RechargeService.updateSubscription(
             items[i].id,
-            { next_charge_scheduled_at: newRefillDate, commit_update: false }
+            items[i].payload,
           );
         }
         result.success ? this.numOfItemsUpdated++ : failed.push(items[i]);
       }
       return failed;
     },
-    async onUpdateSuccessful() {
+    async onUpdateComplete() {
       const squatchBoxGroups = await AccountHelpers.initializeSquatchBoxGroups(this.rechargeUser.id);
       this.$store.dispatch(
         "account/initializeSquatchBoxGroups",
         { squatchBoxGroups: squatchBoxGroups, groupName: this.currentGroupName }
       );
-
-      this.errored = false;
-      this.$emit("hide");
-    }
+      if (!this.errored) {
+        this.$emit("hide");
+      }
+    },
   },
 };
 </script>
 
 <style lang="scss">
 @import "@/styles/main.scss";
-
-    // flex-direction: column;
-    // justify-content: center;
-    // color: #fff;
-    // text-align: center;
-    // white-space: nowrap;
-    // background-color: #cc6328;
-    // transition: width .6s ease;
 
 .account-refill-date-update-modal {
   padding: 0;

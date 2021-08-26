@@ -305,7 +305,7 @@ export default {
       itemToEdit: {},
       showRefillDateUpdateModal: false,
       updatedRefillDateForModal: null,
-      itemsForRefillDateUpdate: [],
+      itemsForRefillDateUpdate: {},
       openCalendar: false,
       datepickerConfig: {
         type: "string",
@@ -348,10 +348,18 @@ export default {
       this.updatedRefillDate = this.refillBoxDate;
     },
     updateRefillDate() {
-      this.itemsForRefillDateUpdate = this.refillBox;
+      let upcomingRefills = [];
+      Object.keys(this.currentGroup.upcomingRefillsByDate).forEach(date => {
+        if (date !== this.refillBoxDate) {
+          upcomingRefills = [...upcomingRefills, ...this.currentGroup.upcomingRefillsByDate[date]];
+        }
+      });
+      this.itemsForRefillDateUpdate = {
+        nextRefill: this.refillBox,
+        upcomingRefill: upcomingRefills
+      };
       // If updatedRefillDate is not updated (same as refillBoxDate), update to today's date
       this.updatedRefillDateForModal = this.updatedRefillDate === this.refillBoxDate ? moment().format("YYYY-MM-DD") : this.updatedRefillDate;
-      console.log("updatedRefillDateForModal", this.updatedRefillDateForModal);
       this.showRefillDateUpdateModal = true;
     },
     updateOnetimeQuantity(index, updateDirection) {
@@ -364,7 +372,6 @@ export default {
       this.showConfirmModal = true;
     },
     moveToNextRefill(item) {
-      console.log(item);
       this.itemToEdit = item;
       this.actionFunction = item.status === "ONETIME" ? RechargeService.updateOnetime : RechargeService.updateSubscription;
       this.changes = {
@@ -391,7 +398,7 @@ export default {
       this.actionFunction = () => {};
       this.itemToEdit = {};
       this.updatedRefillDateForModal = null;
-      this.itemsForRefillDateUpdate = [];
+      this.itemsForRefillDateUpdate = {};
       this.showEditModal = false;
       this.showConfirmModal = false;
       this.showRefillDateUpdateModal = false;
