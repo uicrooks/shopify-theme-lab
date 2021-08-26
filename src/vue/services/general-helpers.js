@@ -17,6 +17,9 @@ export default {
       obj[keyValueArr[0]] = keyValueArr[1];
     });
     return obj;
+  },
+  convertPriceToWholeNumber(price) {
+    return price.toString().slice(-2) === "00" ? price / 100 : price;
   }
 };
 

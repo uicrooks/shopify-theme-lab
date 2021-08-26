@@ -269,6 +269,7 @@
       :action-function="actionFunction"
       :changes="changes"
       @hide="closeModal"
+      @cancel="closeModal"
     >
       {{ confirmModalText }}
     </account-confirmation-modal>
@@ -331,7 +332,6 @@ export default {
   },
   watch: {
     refillBox() {
-      this.isLoading = true;
       this.ordersLoadedCounter = 0;
       this.updatedRefillDate = this.refillBoxDate;
       this.closeModal();
@@ -400,11 +400,11 @@ export default {
       }
     },
     openEditModal(item) {
-      console.log(item);
       this.itemToEdit = item;
       this.showEditModal = true;
     },
     closeModal() {
+      console.log("csloeModal from subsEdit");
       this.confirmModalText = "";
       this.changes = {};
       this.actionFunction = () => {};

@@ -8,7 +8,6 @@
       no-close-on-esc
       no-close-on-backdrop
       body-class="account-edit-confirm-modal"
-      @cancel="$emit('hide')"
     >
       <div class="body">
         <p
@@ -36,7 +35,7 @@
           <squatch-button
             class="cancel-button"
             :disabled="inProgress"
-            @clicked="$emit('hide')"
+            @clicked="$emit('cancel')"
           >
             {{ errored ? 'OK' : 'Cancel' }}
           </squatch-button>
@@ -84,7 +83,7 @@ export default {
       type: Object,
       required: false,
       default: () => {}
-    }
+    },
   },
   data() {
     return {
@@ -109,6 +108,15 @@ export default {
     },
   },
   methods: {
+    // next_charge_scheduled_at: "2021-08-25"
+    // charge_interval_frequency: 3
+    // order_interval_frequency: 3
+    // order_interval_unit: "month"
+    // properties: [{name: "shipping_interval_frequency", value: 3},…]
+    // quantity: 2
+    // shopify_variant_id: 32637027188841
+    // sku_override: false
+    // use_shopify_variant_defaults: "true"
     async runActionFunction() {
       this.inProgress = true;
       const result = await this.actionFunction(this.item.id, this.changes);

@@ -18,16 +18,27 @@
           no-close-on-esc
           no-close-on-backdrop
         >
-          <div class="edit-modal-header">
-            <span
-              class="back-button"
-              @click="$emit('hide')"
-            >
-              <i 
-                class="icon-squatch icon-size-xs icon-chevron-left"
-              />
-              Back
-            </span>
+          <div class="edit-modal-content-top">
+            <div class="nav-row">
+              <span
+                class="back-button"
+                @click="$emit('hide')"
+              >
+                <i 
+                  class="icon-squatch icon-chevron-left"
+                />
+                Back
+              </span>
+              <span
+                class="close-button"
+                @click="$emit('hide')"
+              >
+                <i
+                  class="icon-squatch icon-cross"
+                  @click="$emit('hide')"
+                />
+              </span>
+            </div>
             <div
               v-if="productOptionsWithIndexValue.length > 0"
               class="field-wrapper"
@@ -72,7 +83,7 @@
               />
             </div>
           </div>
-          <div class="edit-modal-body">
+          <div class="edit-modal-content-bottom">
             <div
               v-if="selectionOptions.length > 0"
               class="field-wrapper"
@@ -100,7 +111,7 @@
                   :quantity="option.quantity"
                   :index="index"
                   :decrease-disabled="option.quantity === 0"
-                  :increase-disabled="option.isFull || selectionComplete"
+                  :increase-disabled="option.isFull || editComplete"
                   @decrease="decreaseQuantity"
                   @increase="increaseQuantity"
                 />
@@ -153,7 +164,8 @@
       :item="itemHolder"
       :action-function="actionFunction"
       :changes="changes"
-      @hide="closeConfirmModal"
+      @hide="hideConfirmModal"
+      @cancel="cancelConfirmModal"
     >
       {{ confirmModalText }}
     </account-confirmation-modal>
@@ -162,6 +174,7 @@
 
 <script>
 import RechargeService from "@/vue/services/recharge.service";
+import Helpers from "@/vue/services/general-helpers";
 import ProductIdentifier from "@/vue/services/product-identifier";
 import { mapGetters } from "vuex";
 
@@ -218,14 +231,14 @@ export default {
     },
   },
   watch: {
-    showModal(val) {
-      this.showModalFlag = val;
-      this.itemHolder = val ? this.item : {};
-    },
     itemHolder() {
       console.log("all subsProducs and subsOptions");
       console.log(this.subscriptionCollections);
       console.log(this.subscriptionOptionCollections);
+    },
+    showModal(val) {
+      this.showModalFlag = val;
+      this.itemHolder = val ? this.item : {};
     },
   },
   methods: {
@@ -240,36 +253,63 @@ export default {
     // sku_override: false
     // use_shopify_variant_defaults: "true"
     save(product, interval, quantity, selection) {
-      this.confirmModalText = "Test ahahaha";
+      console.log(product, interval, quantity, selection);
+      
       this.actionFunction = RechargeService.updateSubscription;
       this.changes = {
         next_charge_scheduled_at: this.itemHolder.next_charge_scheduled_at,
-        order_interval_unit: this.itemHolder.order_interval_unit,
       };
-      console.log("Save");
-      console.log(product, interval, quantity, selection);
+      this.confirmModalText = `Do you confirm to save the changes made to your ${this.itemHolder.product_title}? `;
+      
       if (product !== null) {
-        // 
+        const variantId = product.variants && product.variants[0] && product.variants[0].id;
+        this.changes.shopify_variant_id = 31305050259561;
+
+        const additionalModalText = getConfirmModalTextWithIncreasedPrice(this.itemHolder, product, quantity);
+        this.confirmModalText += additionalModalText ? additionalModalText : "";
       }
       if (interval !== null) {
-        const newProperties = updatePropertiesWithNewInterval(this.itemHolder.properties, interval);
+        const newProperties = getUpdatedPropertiesWithNewInterval(this.itemHolder.properties, interval);
+        this.changes.order_interval_unit = this.itemHolder.order_interval_unit;
         this.changes.order_interval_frequency = interval;
         this.changes.charge_interval_frequency = interval;
         this.changes.properties = newProperties;
       }
       if (quantity !== null) {
         this.changes.quantity = quantity;
+
+        const additionalModalText = getConfirmModalTextWithIncreasedPrice(this.itemHolder, product, quantity);
+        this.confirmModalText += additionalModalText ? additionalModalText : "";
       }
       if (selection !== null) {
-        //
+        const newProperties = getUpdatedPropertiesWithNewSelection(this.itemHolder.properties, selection);
+        this.changes.properties = newProperties;
       }
       console.log(this.changes);
       this.showConfirmModal = true;
-      
-      function updatePropertiesWithNewInterval(props, interval) {
-        return props.slice().map(prop => {
+
+      function getConfirmModalTextWithIncreasedPrice(currentItem, newProduct, newQty) {
+        const currentPrice = getCurrentPrice(currentItem);
+        const newPrice = getNewPrice(currentItem, newProduct, newQty);
+        return newPrice > currentPrice ? `You will be billed $${newPrice} when this item renews.` : "";
+
+        function getCurrentPrice(item) {
+          return item.quantity * Helpers.convertPriceToWholeNumber(item.price);
+        }
+
+        function getNewPrice(currentItem, newProduct, newQty) {
+          const price = newProduct !== null ?  Helpers.convertPriceToWholeNumber(newProduct.price) : Helpers.convertPriceToWholeNumber(currentItem.price);
+          return newQty !== null ? price * newQty : price * currentItem.quantity;
+        }
+      } 
+
+      function getUpdatedPropertiesWithNewInterval(props, interval) {
+        return props.map(prop => {
           if ([
-            "shipping_interval_frequency", "charge_interval_frequency", "_recurring_shipping_interval_frequency", "_recurring_charge_interval_frequency"
+            "shipping_interval_frequency", 
+            "charge_interval_frequency",
+            "recurring_shipping_interval_frequency", "recurring_charge_interval_frequency",
+            "_recurring_shipping_interval_frequency", "_recurring_charge_interval_frequency"
           ].includes(prop.name)) {
             return {
               name: prop.name,
@@ -279,13 +319,31 @@ export default {
           return prop;
         });
       }
+
+      function getUpdatedPropertiesWithNewSelection(props, selection) {
+        let newProps = [];
+        props.forEach(prop => {
+          if (!prop.name.includes("_fulfillment_Scent")) {
+            newProps.push(prop);
+          }
+        });
+        const selectionProps = selection.map((option, index) => {
+          return { name: `_fulfillment_Scent${index + 1}`, value: option.sku };
+        });
+        return [...newProps, ...selectionProps];
+      }
     },
-    closeConfirmModal() {
-      console.log("CloseConfirmMOdal");
+    hideConfirmModal() {
+      console.log("subsEditModal - hideConfirmModal");
       this.confirmModalText = "";
       this.changes = {};
       this.actionFunction = () => {};
+      this.showConfirmModal = false;
       this.$emit("hide");
+    },
+    cancelConfirmModal() {
+      console.log("subsEditModal - cancelConfirmModal");
+      this.showConfirmModal = false;
     }
   }
 };
@@ -354,29 +412,44 @@ export default {
     }
   }
 
-  .edit-modal-header {
+  .edit-modal-content-top {
     position: sticky;
     top: 0;
     padding: 15px 15px 10px 15px;
     background-color: $white;
 
-    .back-button {
+    .nav-row {
       display: flex;
       flex-flow: row nowrap;
-      align-items: center;
-      cursor: pointer;
-      margin-bottom: 15px;
+      justify-content: space-between;
+      margin-bottom: 20px;
       @include font-style-body-bold();
 
-      .icon-squatch {
-        font-size: 13px !important;
-        margin-right: 3px;
-        margin-bottom: 1px;
+      .back-button {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        cursor: pointer;
+        margin-bottom: 15px;
+
+        .icon-squatch {
+          font-size: 13px;
+          margin-right: 3px;
+          margin-bottom: 1px;
+        }
+      }
+
+      .close-button {
+
+        .icon-squatch {
+          font-size: 14px;
+        }
       }
     }
+
   }
 
-  .edit-modal-body {
+  .edit-modal-content-bottom {
     padding: 0 15px;
   }
 }
