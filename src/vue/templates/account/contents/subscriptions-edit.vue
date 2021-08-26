@@ -154,7 +154,7 @@
                   </div>
                 </div>
                 <div
-                  v-if="isOnetime"
+                  v-if="isOnetime && !loading"
                   class="actions"
                 >
                   <quantity-switch
@@ -166,7 +166,7 @@
                   />
                 </div>
                 <div
-                  v-else
+                  v-if="!isOnetime && !loading"
                   class="actions"
                 >
                   <div class="button-wrapper">
@@ -331,6 +331,7 @@ export default {
   },
   watch: {
     refillBox() {
+      this.isLoading = true;
       this.ordersLoadedCounter = 0;
       this.updatedRefillDate = this.refillBoxDate;
       this.closeModal();
