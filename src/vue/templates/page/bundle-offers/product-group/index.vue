@@ -1,59 +1,87 @@
 <template>
-    <div class="product-group-card-component">
-        <div class="image-box" :class="{ 'show-backface' : showIncludedBox }">
-          <div class="front-face" v-show="!showIncludedBox">
-            <!-- Front Face -->
-            <div v-if="isFreeShipping" class="free-shipping">
-                Free Shipping!
+  <div class="product-group-card-component">
+    <div
+      class="image-box"
+      :class="{ 'show-backface' : showIncludedBox }"
+    >
+      <div
+        v-show="!showIncludedBox"
+        class="front-face"
+      >
+        <!-- Front Face -->
+        <div
+          v-if="isFreeShipping"
+          class="free-shipping"
+        >
+          Free Shipping!
+        </div>
+        <img
+          :src="product.featured_image"
+          :alt="`${product.title} image`"
+        >
+        <div
+          v-if="discountAmount"
+          class="discount"
+        >
+          <span class="discount-amount">
+            {{ discountAmount | money("$", 0) }}
+            <br>
+            Off!
+          </span>
+          <div class="discount-bubble" />
+        </div>
+      </div>
+      <div
+        v-show="showIncludedBox"
+        class="backface"
+      >
+        <!-- Back Face -->
+        <h3>What's Inside</h3>
+        <div class="included-list">
+          <div
+            v-for="(category, index) of Object.keys(includedList)"
+            :key="`included-list-category-${index}`"
+            class="category"
+          >
+            <div class="category-name">
+              {{ category }}
             </div>
-            <img :src="product.featured_image" :alt="`${product.title} image`">
-            <div v-if="discountAmount" class="discount">
-                <span class="discount-amount">
-              {{ discountAmount | money("$", 0) }}
-              <br>
-              Off!
-            </span>
-                <div class="discount-bubble" />
+            <div class="category-values">
+              {{ includedList[category].join(", ") }}
             </div>
           </div>
-          <div class="backface" v-show="showIncludedBox">
-            <!-- Back Face -->
-            <h3>What's Inside</h3>
-                <div class="included-list">
-                    <div v-for="(category, index) of Object.keys(includedList)" :key="`included-list-category-${index}`" class="category">
-                        <div class="category-name">
-                            {{ category }}
-                        </div>
-                        <div class="category-values">
-                            {{ includedList[category].join(", ") }}
-                        </div>
-                    </div>
-                </div>
-          </div>
         </div>
-        <div class="details-box">
-            <div class="product-title">
-                {{ product.title }}
-            </div>
-            <div class="product-pricing">
-                {{ product.price | money("$", 0) }}
-                <span v-if="product.compare_at_price" class="compare-at-pricing">
-              {{ product.compare_at_price | money("$", 0) }}
-            </span>
-            </div>
-            <p class="product-description">
-                {{ product.description }}
-            </p>
-            <div class="see-included-link" @click="toggleIncludedBox">
-                <b-icon icon="search" /> See what's included
-            </div>
-            <div class="add-button">
-                <squatch-button @clicked="addToCart">
-                    {{ added ? 'Add More' : '+ Add To Cart' }}
-                </squatch-button>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="details-box">
+      <div class="product-title">
+        {{ product.title }}
+      </div>
+      <div class="product-pricing">
+        {{ product.price | money("$", 0) }}
+        <span
+          v-if="product.compare_at_price"
+          class="compare-at-pricing"
+        >
+          {{ product.compare_at_price | money("$", 0) }}
+        </span>
+      </div>
+      <p class="product-description">
+        {{ product.description }}
+      </p>
+      <div
+        class="see-included-link"
+        @click="toggleIncludedBox"
+      >
+        <b-icon icon="search" /> See what's included
+      </div>
+      <div class="add-button">
+        <squatch-button @clicked="addToCart">
+          {{ added ? 'Add More' : '+ Add To Cart' }}
+        </squatch-button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>

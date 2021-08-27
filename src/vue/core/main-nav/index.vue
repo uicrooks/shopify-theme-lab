@@ -13,14 +13,14 @@
       <div class="buttons">
         <cart-button />
         <b-icon
+          v-show="!isOpen"
           v-b-toggle.main-nav-sidebar
           icon="list"
-          v-show="!isOpen"
         />
         <b-icon
+          v-show="isOpen"
           v-b-toggle.main-nav-sidebar
           icon="x"
-          v-show="isOpen"
         />
       </div>
     
@@ -192,6 +192,12 @@
             style="margin-left:4px;"
           />
         </div>
+        <div 
+          class="menu-item" 
+          @click="navigateTo('/pages/referral-rewards')"
+        >
+          Rewards
+        </div>
       </div>
       <a href="/">
         <img
@@ -353,7 +359,11 @@
         </div>
       </div>
     </b-collapse>
-    <div class="navmenu-backdrop" v-if="subMenuBackdropOpen" @click="productsSubMenuOpen = false"></div>
+    <div
+      v-if="subMenuBackdropOpen"
+      class="navmenu-backdrop"
+      @click="productsSubMenuOpen = false"
+    />
   </div>
 </template>
 

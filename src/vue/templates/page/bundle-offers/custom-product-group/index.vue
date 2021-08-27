@@ -143,7 +143,6 @@ export default {
     background-repeat: repeat;
     background-color: global.$sand;
     text-align: center;
-
     @include global.layout-md {
       width: 100%;
     }

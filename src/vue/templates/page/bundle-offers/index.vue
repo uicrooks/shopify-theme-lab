@@ -33,12 +33,12 @@
       >
         <b-row>
           <b-col cols="12">
-          <h2>
-            {{ getSectionName(index) }}
-          </h2>
-          <p>
-            {{ getSectionDescription(index) }}
-          </p>
+            <h2>
+              {{ getSectionName(index) }}
+            </h2>
+            <p>
+              {{ getSectionDescription(index) }}
+            </p>
           </b-col>
           <template
             v-if="index === 1"
@@ -47,9 +47,9 @@
             <b-col
               v-for="(product, productIndex) of getSectionProducts(index)"
               :key="`bundles-section-${index}-product-${productIndex}`"
-              cols="12"
               md="4"
               xl="3"
+              cols="12"
             >
               <custom-product-group-card
                 class="customizable-product-group-card"
@@ -80,11 +80,24 @@
         </b-row>
       </b-container>
     </div>
-    <custom-product-group-customization-sidebar
+    <b-sidebar
+      id="customization-sidebar"
+      v-model="starterBundleDrawerOpened"
+      header-class="sidebar-header"
+      body-class="sidebar-body"
+      footer-class="sidebar-footer"
+      sidebar-class="sidebar-drawer"
+      :lazy="true"
+      right
+      shadow
+      backdrop
+    >
+      <custom-product-group-customization-sidebar
       :is-open="scentSelectionFlag"
       :product="selectedStarterBundle"
       @close="scentSelectionFlag = false"
-    />
+      />
+    </b-sidebar>
   </div>
 </template>
 
@@ -140,7 +153,8 @@ export default {
       ],
       currentTabIndex: 0,
       selectedStarterBundleIndex: 1,
-      scentSelectionFlag: false
+      scentSelectionFlag: false,
+      starterBundleDrawerOpened: true,
     };
   },
   computed: {
@@ -189,7 +203,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @use "@/styles/main" as global;
 
 .bundle-offers-component {
@@ -305,5 +319,17 @@ export default {
       }
     }
   }
+  #customization-sidebar {
+     header {
+        position: absolute;
+        width: 100%;
+        background: transparent;
+        .close {
+          margin-left: auto;
+          margin-right: 0;
+          z-index: 4;
+        }
+      }
+    }
 }
 </style>
