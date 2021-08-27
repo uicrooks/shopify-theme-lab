@@ -77,7 +77,62 @@ export default {
       return this.loading ? {} : this.generateIncludedList(this.lineItems);
     }
   },
+  watch: {
+    item() {
+      console.log("(renderless OrderItem) item watched");
+      this.initialize("item watched");
+    }
+  },
   methods: {
+    async initialize() {
+      console.log("(renderless OrderItem) initialize()");
+      this.loading = true;
+      let updateObj = {
+        productData: {},
+        propertyObj: {},
+        lineItems: []
+      };
+
+      if (!this.item.productData) {
+        const productData = await StoreService.getProductById(this.item.shopify_product_id);
+        updateObj.productData = productData;
+        this.productData = productData;
+      } else {
+        this.productData = this.item.productData;
+      }
+
+      if (!this.item.propertyObj) {
+        let obj = {};
+        this.item.properties.forEach(prop => {
+          obj[prop.name] = prop.value;
+        });
+        updateObj.propertyObj = obj;
+        this.propertyObj = obj;
+      } else {
+        this.propertyObj = this.item.propertyObj;
+      }
+
+      if (!this.item.lineItems) {
+        const lineItemIds = this.item.properties.filter(prop => prop.name.includes("fulfillment")).map(item => SkuToId[item.value.toLowerCase()]);
+        // console.log("lineItemIds", lineItemIds);
+        const lineItems = await this.fetchLineItems(lineItemIds);
+        updateObj.lineItems = lineItems;
+        this.lineItems = lineItems;
+      } else {
+        this.lineItems = this.item.lineItems;
+      }
+
+      if (this.fetchAndUpdate && (!this.item.productData || !this.item.propertyObj || !this.item.lineItems)) {
+        console.log("~~~ initialize(), update item to store");
+        this.$store.commit("account/updateOrderItemInRefillBox", {
+          index: this.index,
+          data: updateObj
+        });
+      }
+      this.loading = false;
+      console.log("~~~ initialize(), loading done");
+      this.$emit("loaded");
+    },
     async fetchLineItems(lineItemIds) {
       let lineItems = [];
       for (let i = 0; i < lineItemIds.length; i++) {
@@ -109,50 +164,7 @@ export default {
     }
   },
   async mounted() {
-    this.loading = true;
-    let updateObj = {
-      productData: {},
-      propertyObj: {},
-      lineItems: []
-    };
-
-    if (!this.item.productData) {
-      const productData = await StoreService.getProductById(this.item.shopify_product_id);
-      updateObj.productData = productData;
-      this.productData = productData;
-    } else {
-      this.productData = this.item.productData;
-    }
-
-    if (!this.item.propertyObj) {
-      let obj = {};
-      this.item.properties.forEach(prop => {
-        obj[prop.name] = prop.value;
-      });
-      updateObj.propertyObj = obj;
-      this.propertyObj = obj;
-    } else {
-      this.propertyObj = this.item.propertyObj;
-    }
-
-    if (!this.item.lineItems) {
-      const lineItemIds = this.item.properties.filter(prop => prop.name.includes("fulfillment")).map(item => SkuToId[item.value.toLowerCase()]);
-      console.log("lineItemIds", this.item, lineItemIds);
-      const lineItems = await this.fetchLineItems(lineItemIds);
-      updateObj.lineItems = lineItems;
-      this.lineItems = lineItems;
-    } else {
-      this.lineItems = this.item.lineItems;
-    }
-
-    if (this.fetchAndUpdate && (!this.item.productData || !this.item.propertyObj || !this.item.lineItems)) {
-      this.$store.commit("account/updateOrderItemInRefillBox", {
-        index: this.index,
-        data: updateObj
-      });
-    }
-    this.$emit("loaded");
-    this.loading = false;
+    this.initialize();
   },
   render() {
     return this.$scopedSlots.default({

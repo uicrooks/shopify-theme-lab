@@ -139,6 +139,9 @@
                   <h5>
                     {{ displayTitleWithQuantity }}
                   </h5>
+                  <h5 v-if="item.productData">
+                    productData - {{ item.productData.title }}
+                  </h5>
                   <div
                     v-if="isOnetime"
                     class="sub-heading"
@@ -332,8 +335,10 @@ export default {
   },
   watch: {
     refillBox() {
-      this.ordersLoadedCounter = 0;
+      console.log("[SubsEdit] refillBox watched");
       this.updatedRefillDate = this.refillBoxDate;
+      this.isLoading = true;
+      this.ordersLoadedCounter = 0;
       this.closeModal();
     },
   },
@@ -396,6 +401,7 @@ export default {
       this.ordersLoadedCounter++;
       if (this.ordersLoadedCounter == this.refillBox.length) {
         this.isLoading = false;
+        console.log("[SubsEdit] onOrderItemLoaded(), isLoading = false");
         this.$emit("ready");
       }
     },
@@ -404,7 +410,7 @@ export default {
       this.showEditModal = true;
     },
     closeModal() {
-      console.log("csloeModal from subsEdit");
+      console.log("[SubsEdit] closeModal()");
       this.confirmModalText = "";
       this.changes = {};
       this.actionFunction = () => {};
@@ -417,7 +423,6 @@ export default {
     }
   },
   mounted() {
-    this.ordersLoadedCounter = 0;
     this.updatedRefillDate = this.refillBoxDate;
     this.closeModal();
   }

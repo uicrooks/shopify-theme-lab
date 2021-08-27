@@ -188,7 +188,6 @@ export default {
   },
   watch: {
     refillBox() {
-      console.log("refillBox", this.refillBox);
       this.isLoading = true;
       this.ordersLoadedCounter = 0;
     }

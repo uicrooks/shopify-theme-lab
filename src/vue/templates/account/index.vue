@@ -1,7 +1,7 @@
 <template>
   <div class="account-component">
     <account-nav
-      v-if="!loading"
+      v-if="!isLoading"
       class="account-nav"
     />
     <!-- Overview -->
@@ -19,7 +19,7 @@
       >
         <h4>Squatch Box</h4>
         <account-subscriptions-view
-          @ready="loading = false"
+          @ready="isLoading = false"
         />
       </div>
       <div class="view-section">
@@ -35,7 +35,7 @@
     >
       <h1>Edit Box</h1>
       <account-subscriptions-edit 
-        @ready="loading = false"
+        @ready="isLoading = false"
       />
     </div>
     <!-- End of Edit Box -->
@@ -92,11 +92,11 @@ export default {
   },
   data() {
     return {
-      loading: true
+      isLoading: true
     };
   },
   computed: {
-    ...mapGetters("account", ["currentView", "rechargeUser"]),
+    ...mapGetters("account", ["currentView", "rechargeUser", "refillBox", "currentGroup", "squatchBoxGroups"]),
     isActiveSubscriber() {
       // return this.user.tags.includes("Active Subscriber");
       return true;
@@ -104,10 +104,16 @@ export default {
   },
   watch: {
     currentView(val) {
-      console.log("view updated to:", val);
+      console.log("--- view watched:", val);
       if (["Overview", "Edit Box"].includes(val)) {
-        this.loading = true;
+        this.isLoading = true;
       }
+    },
+    refillBox(val) {
+      this.isLoading = true;
+      console.log("---- refillBox watched:", val);
+      console.log("---- squatchBoxGroups watched", this.squatchBoxGroups);
+      console.log("---- currentGroup watched:", this.currentGroup);
     }
   },
   methods: {

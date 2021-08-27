@@ -1,6 +1,6 @@
 <template>
   <div class="subscription-order-edit-modal-component">
-    <account-renderless-subscription-edit
+    <account-renderless-subscription-edit-options
       :item="itemHolder"
       :subscription-products="subscriptionProducts"
       :subscription-option-source="subscriptionOptions"
@@ -158,7 +158,7 @@
           </template>
         </b-modal>
       </div>
-    </account-renderless-subscription-edit>
+    </account-renderless-subscription-edit-options>
     <account-confirmation-modal
       :show-modal="showConfirmModal"
       :item="itemHolder"
@@ -231,12 +231,8 @@ export default {
     },
   },
   watch: {
-    itemHolder() {
-      console.log("all subsProducs and subsOptions");
-      console.log(this.subscriptionCollections);
-      console.log(this.subscriptionOptionCollections);
-    },
     showModal(val) {
+      console.log("[EditModal] showModal watched");
       this.showModalFlag = val;
       this.itemHolder = val ? this.item : {};
     },
@@ -263,7 +259,7 @@ export default {
       
       if (product !== null) {
         const variantId = product.variants && product.variants[0] && product.variants[0].id;
-        this.changes.shopify_variant_id = 31305050259561;
+        this.changes.shopify_variant_id = variantId;
 
         const additionalModalText = getConfirmModalTextWithIncreasedPrice(this.itemHolder, product, quantity);
         this.confirmModalText += additionalModalText ? additionalModalText : "";
@@ -334,7 +330,7 @@ export default {
       }
     },
     hideConfirmModal() {
-      console.log("subsEditModal - hideConfirmModal");
+      console.log("[EditModal] hideConfirmModal()");
       this.confirmModalText = "";
       this.changes = {};
       this.actionFunction = () => {};
@@ -342,7 +338,7 @@ export default {
       this.$emit("hide");
     },
     cancelConfirmModal() {
-      console.log("subsEditModal - cancelConfirmModal");
+      console.log("[EditModal] cancelConfirmModal()");
       this.showConfirmModal = false;
     }
   }
@@ -440,6 +436,7 @@ export default {
       }
 
       .close-button {
+        cursor: pointer;
 
         .icon-squatch {
           font-size: 14px;
