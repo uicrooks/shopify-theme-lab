@@ -29,36 +29,6 @@
     </div>
 
 
-    <div class="vue-carousel">
-      <carousel :per-page="5" :mouse-drag="true">
-        <slide
-          class="vue-carousel-slide"
-          v-for="(category, index) of categories"
-          :key="`category-${index}`"
-        >
-          <label
-            class="item-label"
-          >
-            <input
-              v-model="selected"
-              type="radio"
-              name="category"
-              :value="category"
-            >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img" 
-                :src="category.imageSrc" 
-              >
-              <p class="carousel-item-name">
-                {{ category.label }}
-              </p>
-            </div>
-          </label>
-        </slide>
-    </carousel>
-    </div>
-
     <!-- INPUT FIELD -->
     <div class="carousel-container">
       <div class="carousel-container-content">
@@ -84,70 +54,35 @@
           />
         </svg>
       </div>
-      <div class="carousel-content">
-        <div 
-          id="scroll-indicator-right" 
-          @click="scrollSlider('right')"
-        >
-          <span class="shadow arrow"> → </span>
-        </div>
-        <div 
-          id="scroll-indicator-left" 
-          @click="scrollSlider('left')"
-        >
-          <span class="shadow arrow"> &#8592; </span>
-        </div>
 
-        <!-- <b-carousel
-        id="carousel-1"
-        v-model="slide"
-        :interval="0"
-        :controls="true"
-        :no-wrap="true"
-      >
-          <b-carousel-slide 
-            v-for="(slide, index) in categories"
-            :key="index"
-            class="carousel-content"
-          >
-            <template #img>
-              <div class="image-container">
-                <img
-                  class="d-block"
-                  width="250"
-                  height="250"
-                  :src="slide.imageSrc"
-                  alt="image slot"
-                  style="margin: 20px;"
-                >
-              </div>
-            </template>
-          </b-carousel-slide>
-      </b-carousel> -->
-
-        <div class="noscrollbar">
-          <label
+      <div class="vue-carousel">
+        <carousel :per-page="2" :mouse-drag="true" :navigationEnabled="true" :perPageCustom="[[500,3],[768, 5]]" :paginationEnabled="false">
+          <slide
+            class="vue-carousel-slide"
             v-for="(category, index) of categories"
             :key="`category-${index}`"
-            class="item-label"
           >
-            <input
-              v-model="selected"
-              type="radio"
-              name="category"
-              :value="category"
+            <label
+              class="item-label"
             >
-            <div class="product-category-card">
-              <img 
-                class="carousel-img" 
-                :src="category.imageSrc" 
+              <input
+                v-model="selected"
+                type="radio"
+                name="category"
+                :value="category"
               >
-              <p class="carousel-item-name">
-                {{ category.title }}
-              </p>
-            </div>
-          </label>
-        </div>
+              <div class="product-category-card">
+                <img 
+                  class="carousel-img" 
+                  :src="category.imageSrc" 
+                >
+                <p class="carousel-item-name">
+                  {{ category.label }}
+                </p>
+              </div>
+            </label>
+          </slide>
+        </carousel>
       </div>
     </div>
 
@@ -337,18 +272,6 @@ export default {
     },
   },
   methods: {
-    scrollSlider(direction) {
-      console.log(direction);
-      // if (direction == "left") {
-      //         $(".prod_scroller").animate({
-      //         scrollLeft: "-=150px",
-      //         });
-      // } else if (direction == "right") {
-      //         $(".prod_scroller").animate({
-      //         scrollLeft: "+=150px",
-      //     });
-      // }
-    },
   },
   mounted() {
     console.log(this.ingredients)
@@ -442,7 +365,7 @@ export default {
   }
 
   .vue-carousel {
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
 
     @include layout-sm {

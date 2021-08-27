@@ -588,6 +588,10 @@ export default {
           .bold-text {
             @include font-style-body-bold;
           }
+
+          a {
+            color: $orange;
+          }
         }
       }
     }

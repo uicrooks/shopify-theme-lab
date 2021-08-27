@@ -191,7 +191,7 @@
             3. Shipping and Returns
           </h3>
           <p class="terms-description">
-            You also acknowledge, agree and consent to the terms of our <a href="/pages/shipping-policy">Shipping Policy </a> and <a href="/pages/return-policy">Return Policy </a> which is incorporated herein by reference and can be accessed and reviewed through the provided links.
+            You also acknowledge, agree and consent to the terms of our <a href="/pages/shipping">Shipping Policy </a> and <a href="/pages/returns">Return Policy </a> which is incorporated herein by reference and can be accessed and reviewed through the provided links.
           </p>
         </div>
         <div 
@@ -479,7 +479,7 @@
             14. Refer-A-Friend Program
           </h3>
           <p class="terms-description">
-            The Dr. Squatch Refer-A-Friend Program is offered by Dr. Squatch to reward you for referring our products to your family, friends, and colleagues. As a Refer-a-Friend member (“Referrer”), you are subject to <a href="/pages/term-of-use"> Dr. Squatch’s Terms of Use and Privacy Policy </a>, as well as the following additional terms and conditions for Dr. Squatch’s Refer-a-Friend Program:
+            The Dr. Squatch Refer-A-Friend Program is offered by Dr. Squatch to reward you for referring our products to your family, friends, and colleagues. As a Refer-a-Friend member (“Referrer”), you are subject to <a href="/pages/terms-of-use"> Dr. Squatch’s Terms of Use and Privacy Policy </a>, as well as the following additional terms and conditions for Dr. Squatch’s Refer-a-Friend Program:
             <br>
             <ul>
               <li> 
@@ -601,6 +601,10 @@ export default {
 
           .bold-text {
             @include font-style-body-bold;
+          }
+
+          a {
+            color: $orange;
           }
         }
       }
