@@ -7,163 +7,203 @@
           {{ refillDate }}
         </span>
       </div>
-      <div class="edit-link">
+      <div
+        v-if="!isLoading"
+        class="edit-link"
+      >
         <a @click="selectView('Edit Box')">
           Edit Box
         </a>
       </div>
     </div>
-    <account-view-section-box>
-      <div class="tabs-wrapper">
+    <account-section-container-box
+      class="section-container-box"
+    >
+      <account-section-tabs />
+      <div class="tab-contents">
         <div
-          v-for="addressLabel of Object.keys(squatchBoxes)"
-          :key="addressLabel"
-          class="tab"
-          :class="{'active': addressLabel === currentBoxName}"
-          @click="selectBox(addressLabel)"
+          v-if="refillBox"
+          class="box-items-wrapper"
         >
-          {{ getTabLabel(squatchBoxes[addressLabel]) }}
+          <account-renderless-order-item
+            v-for="(refillBoxItem, itemIndex) of refillBox"
+            :key="refillBoxItem.id"
+            :item="refillBoxItem"
+            :index="itemIndex"
+            class="box-item"
+            :class="{'last': itemIndex === refillBox.length - 1}"
+            @loaded="onOrderItemLoaded"
+          >
+            <div slot-scope="{ loading, isOnetime, item, displayTitle, imageSrc, price, compareAtPrice, subscriptionInterval, includedList }">
+              <div class="box-item-image">
+                <b-spinner
+                  v-if="loading"
+                  variant="secondary"
+                  type="grow"
+                />
+                <img
+                  v-else
+                  :src="imageSrc"
+                  :alt="`${displayTitle} image`"
+                >
+              </div>
+              <div class="box-item-details">
+                <h5>
+                  {{ displayTitle }}
+                </h5>
+                <div class="pricing">
+                  <span
+                    v-if="compareAtPrice"
+                    class="compare-at-price"
+                  >
+                    {{ compareAtPrice | money("$", 0) }}
+                  </span>
+                  <span
+                    :class="{'accentized': compareAtPrice}"
+                  >
+                    {{ price | money("$", 0) }}
+                  </span>
+                </div>
+                <div
+                  v-if="isOnetime"
+                  class="sub-heading"
+                >
+                  Add-On
+                </div>
+                <div
+                  v-else
+                  class="sub-heading"
+                >
+                  <i class="icon-custom icon-auto-renew icon" />
+                  {{ subscriptionInterval }}
+                </div>
+                <div
+                  v-for="(includedItem, index) of Object.keys(includedList)"
+                  :key="`item-${item.id}-included-list-${index}`"
+                  class="line-item"
+                >
+                  {{ includedList[includedItem] }} x {{ includedItem }}
+                </div>
+              </div>
+            </div>
+          </account-renderless-order-item>
+        </div>
+        <div class="invoice-wrapper">
+          <div class="line">
+            <span>Subtotal</span>
+            <b-spinner
+              v-if="isLoading"
+              variant="secondary"
+              type="grow"
+              small
+            />
+            <span v-else>
+              {{ subTotal | money("$", 0) }}
+            </span>
+          </div>
+          <div class="line">
+            <span>Savings</span>
+            <b-spinner
+              v-if="isLoading"
+              variant="secondary"
+              type="grow"
+              small
+            />
+            <span v-else>
+              - {{ savingsTotal | money("$", 0) }}
+            </span>
+          </div>
+          <div class="line accentized">
+            <span>Total</span>
+            <b-spinner
+              v-if="isLoading"
+              variant="secondary"
+              type="grow"
+              small
+            />
+            <span v-else>
+              {{ subTotal - savingsTotal | money("$", 0) }}
+            </span>
+          </div>
+          <div class="separator" />
+          <h6>Ships To</h6>
+          <p>
+            <span
+              v-for="(line, lineIndex) of currentGroupShippingAddress"
+              :key="`shipping-address-line-${lineIndex}`"
+              class="address-line"
+            >
+              {{ line }}
+            </span>
+          </p>
+          <h6>Bills To</h6>
+          <p
+            v-if="rechargePaymentSource.cardImage"
+            class="billing-info"
+          >
+            <img
+              :src="rechargePaymentSource.cardImage"
+              :alt="`${rechargePaymentSource.card_brand} logo`"
+              class="card-logo"
+            >
+            Ending in {{ rechargePaymentSource.card_last4 }}
+            <span
+              v-if="rechargePaymentSource.status !== 'active'"
+              class="status-alert"
+            >
+              Expired
+            </span>
+          </p>
         </div>
       </div>
-      <div
-        v-if="refillBox"
-        class="box-items-wrapper"
-      >
-        <account-renderless-order-item
-          v-for="(item, itemIndex) of refillBox"
-          :key="item.id"
-          :item="item"
-          class="box-item"
-          :class="{'last': itemIndex === refillBox.length - 1}"
-        >
-          <div slot-scope="{ isOnetime, item, displayTitle, imageSrc, price, compareAtPrice, subscriptionInterval, includedList }">
-            <div class="box-item-image">
-              <img
-                :src="imageSrc"
-                :alt="`${displayTitle} image`"
-              >
-            </div>
-            <div class="box-item-details">
-              <div class="pricing">
-                <span
-                  v-if="compareAtPrice"
-                  class="compare-at-price"
-                >
-                  {{ compareAtPrice | money("$", 0) }}
-                </span>
-                <span
-                  :class="{'accentized': compareAtPrice}"
-                >
-                  {{ price | money("$", 0) }}
-                </span>
-              </div>
-              <h5>
-                {{ displayTitle }}
-              </h5>
-              <div
-                v-if="isOnetime"
-                class="sub-heading"
-              >
-                Add-On
-              </div>
-              <div
-                v-else
-                class="sub-heading"
-              >
-                <i class="icon-custom icon-auto-renew icon" />
-                {{ subscriptionInterval }}
-              </div>
-              <div
-                v-for="(includedItem, index) of Object.keys(includedList)"
-                :key="`item-${item.id}-included-list-${index}`"
-                class="line-item"
-              >
-                {{ includedList[includedItem] }} x {{ includedItem }}
-              </div>
-            </div>
-          </div>
-        </account-renderless-order-item>
-      </div>
-      <div class="invoice-wrapper">
-
-      </div>
-    </account-view-section-box>
+    </account-section-container-box>
   </div>
 </template>
 
 <script>
-import RechargeService from "@/vue/services/recharge.service";
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
-import SkuToId from "@/configs/account-sku-to-id";
 import { mapGetters } from "vuex";
 
 export default {
   name: "AccountSubscriptionsView",
+  data() {
+    return {
+      isLoading: true,
+      ordersLoadedCounter: 0
+    };
+  },
   computed: {
-    ...mapGetters("account", ["rechargeUser", "squatchBoxes", "currentBoxName", "currentBox", "currentBoxNextRefillDate"]),
+    ...mapGetters("account", ["rechargePaymentSource",  "currentGroupShippingAddress", "refillBoxDate", "refillBox", "refillBoxSubTotal", "refillBoxSavingsTotal"]),
     refillDate() {
-      if (this.currentBoxNextRefillDate) {
-        const format = !DatetimeHelpers.isSame(new Date(), this.currentBoxNextRefillDate, "year") ? "MMM Do, YYYY" : "MMM Do";
-        return DatetimeHelpers.format(this.currentBoxNextRefillDate, format);
-      }
-      return null;
+      if (!this.refillBoxDate) return "";
+      const format = !DatetimeHelpers.isSame(new Date(), this.refillBoxDate, "year") ? "MMM Do, YYYY" : "MMM Do";
+      return DatetimeHelpers.format(this.refillBoxDate, format);
     },
+    subTotal() {
+      return this.isLoading ? "" : this.refillBoxSubTotal;
+    },
+    savingsTotal() {
+      return this.isLoading ? "" : this.refillBoxSavingsTotal;
+    }
+  },
+  watch: {
     refillBox() {
-      return this.currentBox && this.currentBoxNextRefillDate ? this.currentBox.upcomingRefillsByDate[this.currentBoxNextRefillDate] : [];
+      console.log("refillBox", this.refillBox);
+      this.isLoading = true;
+      this.ordersLoadedCounter = 0;
     }
   },
   methods: {
     selectView(viewName) {
       this.$store.commit("account/setCurrentView", viewName);
     },
-    selectBox(boxName) {
-      if (boxName !== this.currentBoxName) {
-        this.$store.dispatch("account/initializeCurrentBox", boxName);
+    onOrderItemLoaded() {
+      this.ordersLoadedCounter++;
+      if (this.ordersLoadedCounter == this.refillBox.length) {
+        this.isLoading = false;
+        this.$emit("ready");
       }
-    },
-    getTabLabel(box) {
-      return box.fullAddress && box.fullAddress.address1 ? `${box.fullAddress.address1}${box.fullAddress.zip ? ", " + box.fullAddress.zip : ""}` : "";
-    },
-    processOrderData(items, addresses) {
-      let obj = {};
-      items.forEach(item => {
-        const addressMatch = addresses.filter(address => address.id === item.address_id)[0];
-        if (!addressMatch) return;
-        
-        const addressLabel = addressMatch.address1.trim().toLowerCase();
-        if (obj[addressLabel] && obj[addressLabel].items) {
-          obj[addressLabel].items.push(item);
-        } else {
-          obj[addressLabel] = {
-            fullAddress: addressMatch,
-            items: [item]
-          };
-        }
-        
-        let upcomingRefillDates = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at).map(item => item.next_charge_scheduled_at);
-        upcomingRefillDates = upcomingRefillDates.filter((item, index) => upcomingRefillDates.indexOf(item) === index);
-
-        let refillsObj = {};
-        upcomingRefillDates.forEach(date => {
-          refillsObj[date] = obj[addressLabel].items.filter(item => item.next_charge_scheduled_at === date);
-        });
-        obj[addressLabel].upcomingRefillDates = upcomingRefillDates;
-        obj[addressLabel].upcomingRefillsByDate = refillsObj;
-      });
-      return obj;
     }
-  },
-  async mounted() {
-    const orders = await RechargeService.getUserResource(this.rechargeUser.id, "subscriptions");
-    const subscriptions = orders.subscriptions.filter(subs => !subs.cancelled_at);
-    const addresses = await RechargeService.getUserResource(this.rechargeUser.id, "addresses");
-    const squatchBoxes = this.processOrderData([...subscriptions, ...orders.onetimes], addresses);
-
-    this.$store.commit("account/setSquatchBoxes", squatchBoxes);
-    this.$store.dispatch("account/initializeCurrentBox", Object.keys(squatchBoxes)[0]);
-
-    console.log(orders);
-    console.log(squatchBoxes);
   }
 };
 </script>
@@ -196,30 +236,27 @@ export default {
     }
   }
 
-  .tabs-wrapper {
-    display: flex;
-    flex-flow: row nowrap;
-    padding-bottom: 10px;
+  .section-container-box {
+    padding: 20px 15px;
 
-    .tab {
-      flex: 1;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: 5px 5px 12px 5px;
-      cursor: pointer;
-      border-bottom: 2px solid transparent;
-      @include font-style-body($size: 12px, $color: grey);
-
-      &.active {
-        border-bottom: 2px solid $text-orange;
-        @include font-style-body($size: 12px, $color: $text-orange);
-      }
+    @include layout-sm {
+      padding: 20px;
     }
   }
 
+  .tab-contents {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
   .box-items-wrapper {
+    width: 100%;
+
+    @include layout-md {
+      width: unset;
+      flex: 3;
+    }
+
     .box-item {
       display: flex;
       flex-flow: row nowrap;
@@ -235,31 +272,40 @@ export default {
       .box-item-image {
         flex: 1;
         text-align: center;
-        min-width: 80px;
+        min-width: 55px;
 
         @include layout-sm {
           padding: 3px 10px;
         }
 
         img {
-          min-width: 60px;
-          max-height: 80px;
+          min-width: 40px;
+          max-width: 80px;
+          max-height: 60px;
         }
       }
 
       .box-item-details {
         flex: 4;
-        padding-left: 15px;
-        position: relative;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        padding-left: 5px;
+
+        @include layout-sm {
+          padding-left: 15px;
+        }
+
+        @include layout-md {
+          flex: 3;
+        }
 
         h5 {
           @include font-style-body($size: 14px, $weight: 600);
         }
 
         .pricing {
-          position: absolute;
-          top: 0;
-          right: 0;
+          margin-bottom: 8px;
           @include font-style-body($color: $dark-brown);
 
           .accentized {
@@ -273,6 +319,7 @@ export default {
         }
 
         .sub-heading {
+          width: 100%;
           display: flex;
           flex-flow: row wrap;
           align-items: center;
@@ -286,11 +333,87 @@ export default {
         }
 
         .line-item {
+          width: 100%;
           margin-bottom: 4px;
           @include font-style-body($color: $brown, $size: 13px);
         }
       }
     }
+  }
+
+  .invoice-wrapper {
+    width: 100%;
+    padding: 15px;
+    background-color: #f6f5f3;
+    @include font-style-body($color: $brown);
+
+    @include layout-md {
+      padding: 20px;
+    }
+
+    @include layout-md {
+      width: unset;
+      flex: 1;
+      padding: 20px 15px;
+      margin-left: 15px;
+    }
+
+    .line {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      margin-bottom: 7px;
+
+      &.accentized {
+        @include font-style-body($color: $text-green, $weight: 600);
+      }
+
+      @include layout-md {
+        margin-bottom: 10px;
+      }
+    }
+
+    .separator {
+      width: 95%;
+      margin: 20px auto 20px auto;
+      border-bottom: 1px solid #dcdcdc;
+    }
+
+    h6 {
+      @include font-style-body($size: 14px, $weight: 600);
+
+      @include layout-md {
+        margin-bottom: 12px;
+      }
+    }
+
+    p {
+      margin-bottom: 25px;
+    }
+
+    .address-line {
+      display: block;
+      margin-bottom: 4px;
+
+      @include layout-md {
+        margin-bottom: 7px;
+      }
+    }
+
+    .billing-info {
+      margin-bottom: 0;
+
+      .card-logo {
+        width: 30px;
+        margin-right: 3px;
+      }
+
+      .status-alert {
+        color: $red;
+        font-size: 12px;
+      }
+    }
+
   }
 }
 </style>

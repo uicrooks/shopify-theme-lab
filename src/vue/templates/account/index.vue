@@ -1,6 +1,9 @@
 <template>
   <div class="account-component">
-    <account-nav />
+    <account-nav
+      v-if="!loading"
+      class="account-nav"
+    />
     <!-- Overview -->
     <div 
       v-if="currentView === 'Overview'"
@@ -15,7 +18,9 @@
         class="view-section"
       >
         <h4>Squatch Box</h4>
-        <account-subscriptions-view />
+        <account-subscriptions-view
+          @ready="loading = false"
+        />
       </div>
       <div class="view-section">
         <h4>Get More Squatch</h4>
@@ -23,8 +28,33 @@
     </div>
     <!-- End of Overview -->
 
+    <!-- Edit Box -->
+    <div
+      v-else-if="currentView === 'Edit Box'"
+      class="view"
+    >
+      <h1>Edit Box</h1>
+      <account-subscriptions-edit 
+        @ready="loading = false"
+      />
+    </div>
+    <!-- End of Edit Box -->
+
+    <!-- Refill Schedule -->
+    <div
+      v-else-if="currentView === 'Refill Schedule'"
+      class="view"
+    >
+      <h1>Refill Schedule</h1>
+      <account-refill-schedule />
+    </div>
+    <!-- End of Edit Box -->
+
     <!-- My Orders -->
-    <div v-else-if="currentView === 'My Orders'">
+    <div
+      v-else-if="currentView === 'My Orders'"
+      class="view"
+    >
       <h1>My Orders</h1>
       <div class="liquid-snippet order-history">
         <slot name="order-history" />
@@ -38,6 +68,7 @@
 
 <script>
 import RechargeService from "@/vue/services/recharge.service";
+import AccountHelpers from "@/vue/services/account-helpers";
 import { mapGetters } from "vuex";
 
 export default {
@@ -47,40 +78,80 @@ export default {
       type: Object,
       required: true,
       default: () => {},
-    }
+    },
+    subscriptionProducts: {
+      type: Array,
+      required: true,
+      default: () => []
+    },
+    subscriptionOptions: {
+      type: Array,
+      required: true,
+      default: () => []
+    },
+  },
+  data() {
+    return {
+      loading: true
+    };
   },
   computed: {
-    ...mapGetters("account", ["currentView", "userTags", "rechargeUser"]),
+    ...mapGetters("account", ["currentView", "rechargeUser"]),
     isActiveSubscriber() {
-      // return this.userTags.includes("Active Subscriber");
+      // return this.user.tags.includes("Active Subscriber");
       return true;
     },
+  },
+  watch: {
+    currentView(val) {
+      console.log("view updated to:", val);
+      if (["Overview", "Edit Box"].includes(val)) {
+        this.loading = true;
+      }
+    }
   },
   methods: {
     updateView() {
       const hash = window.location.hash;
       this.view = hash === "" ? "overview" : hash.slice(1);
+    },
+    async initializeRechargeUserData(email) {
+      const subscriber = await RechargeService.getUser(email);
+      const paymentSources = await RechargeService.getUserResource(subscriber.id, "payment_sources");
+      this.$store.commit("account/setRechargeUser", subscriber);
+      this.$store.commit("account/setRechargePaymentSource",paymentSources[0]); 
+    },
+    async initializeSubscriptionData(rechargeUserId) {
+      const squatchBoxGroups = await AccountHelpers.initializeSquatchBoxGroups(rechargeUserId);
+      // this.$store.commit("account/setRechargeOrders", orders);
+      this.$store.dispatch(
+        "account/initializeSquatchBoxGroups",
+        { squatchBoxGroups: squatchBoxGroups, groupName: Object.keys(squatchBoxGroups)[0] }
+      );
     }
   },
-  created() {
+  async created() {
     this.updateView();
-  },
-  async mounted() {
-    window.addEventListener("hashchange", () => {
-      this.updateView();
-    });
+    this.$store.commit("account/setUser", this.user);
 
-    console.log(this.user);
-    this.$store.commit("account/setUserTags", this.user.tagString.split("; "));
-    console.log(this.userTags);
+    const subProducts = AccountHelpers.organizeProductsByType(this.subscriptionProducts);
+    const subOptions = AccountHelpers.organizeProductsByType(this.subscriptionOptions);
+    this.$store.commit("products/setSubscriptionCollections", subProducts);
+    this.$store.commit("products/setSubscriptionOptionCollections", subOptions);
+
+    console.log("user", this.user);
 
     if (this.isActiveSubscriber) {
       // const email = this.user.email;
       const email = "will@drsquatch.com";
-      const subscriber = await RechargeService.getUser(email);
-      console.log(subscriber);
-      this.$store.commit("account/setRechargeUser", subscriber);
+      await this.initializeRechargeUserData(email);
+      await this.initializeSubscriptionData(this.rechargeUser.id);
     }
+  },
+  async mounted() {
+    window.addEventListener("hashchange", () => {
+      this.updateView();
+    });  
   }
 };
 </script>
@@ -90,21 +161,35 @@ export default {
 
 .account-component {
   background-color: #f6f5f3;
-  // padding: 20px 10px;
 
-  // @include layout-sm {
-  //   padding: 20px;
-  // }
+  @include layout-lg {
+    display: flex;
+    flex-flow: row wrap;
+  }
 
-  h1 {
-    @include font-style-heading($size: 26px);
+  .account-nav {
+    position: sticky;
+    top: 75px;
+    z-index: 1;
+
+    @include layout-lg {
+      width: 230px;
+    }
   }
 
   .view {
     padding: 20px 10px;
 
-    @include layout-md {
+    @include layout-sm {
       padding: 20px;
+    }
+
+    @include layout-lg {
+      flex: 1;
+    }
+  
+    h1 {
+      @include font-style-heading($size: 26px);
     }
 
     h4 {

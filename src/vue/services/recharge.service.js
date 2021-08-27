@@ -44,6 +44,51 @@ export default {
       return err.response.data.message || `status ${err.response.status}`;
     }
   },
+  async updateSubscription(subId, subData) {
+    try {
+      const response = await rechargeProxyAPI.put(
+        `/subscription/${subId}`,
+        subData
+      );
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (err) {
+      return {
+        success: false,
+        error: err.response.data.message || `status ${err.response.status}`
+      };
+    }
+  },
+  async updateOnetime(onetimeId, onetimeData) {
+    try {
+      const response = await rechargeProxyAPI.put(
+        `/onetime/${onetimeId}`,
+        onetimeData
+      );
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (err) {
+      return {
+        success: false,
+        error: err.response.data.message || `status ${err.response.status}`
+      };
+    }
+  },
+  async removeOnetime(onetimeId) {
+    try {
+      const response = await rechargeProxyAPI.delete(
+        `/onetime/${onetimeId}`
+      );
+      console.log(response);
+      return response.data;
+    } catch (err) {
+      return err.response.data.message || `status ${err.response.status}`;
+    }
+  },
 };
    
 function convertQueryObjToString(queryObj) {

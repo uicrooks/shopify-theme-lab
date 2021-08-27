@@ -29,7 +29,9 @@ export default {
         window.location = this.path;
         return;
       }
-      this.$emit("clicked");
+      if (!this.disabled) {
+        this.$emit("clicked");
+      }
     }
   }
 };
@@ -42,18 +44,20 @@ export default {
   width: 256px;
   padding: 17px 8px 13px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid $orange;
   text-align: center;
   background-color: $orange;
   @include font-style-heading($size: 14px, $color: $white);
 
   &:hover {
     background-color: $orange-lighten;
+    border: 1px solid $orange-lighten;
   }
 
   &.disabled {
     cursor: not-allowed;
     background-color: $orange-lighten;
+    border: 1px solid $orange-lighten;
   }
 }
 </style>
