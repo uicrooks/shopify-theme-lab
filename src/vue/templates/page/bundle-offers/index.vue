@@ -29,15 +29,17 @@
     >
       <b-container
         v-if="showSection(index)"
-        class="bv-example-row"
+        class="bundles-section"
       >
         <b-row>
+          <b-col cols="12">
           <h2>
             {{ getSectionName(index) }}
           </h2>
           <p>
             {{ getSectionDescription(index) }}
           </p>
+          </b-col>
           <template
             v-if="index === 1"
             class="products"
@@ -45,6 +47,9 @@
             <b-col
               v-for="(product, productIndex) of getSectionProducts(index)"
               :key="`bundles-section-${index}-product-${productIndex}`"
+              cols="12"
+              md="4"
+              xl="3"
             >
               <custom-product-group-card
                 class="customizable-product-group-card"
@@ -62,6 +67,9 @@
             <b-col
               v-for="(product, productIndex) of getSectionProducts(index)"
               :key="`bundles-section-${index}-product-${productIndex}`"
+              cols="12"
+              md="4"
+              xl="3"
             >
               <product-group-card
                 class="product-group-card"
@@ -185,11 +193,6 @@ export default {
 @use "@/styles/main" as global;
 
 .bundle-offers-component {
-
-  .test {
-    height: 300px;
-  }
-
   .header-tabs {
 
     .header {
@@ -266,9 +269,8 @@ export default {
     &.starter-bundles {
       background-color: global.$white;
     }
-
-    section {
-      max-width: 1000px;
+  .bundles-section {
+      max-width: 1440px;
       margin: auto;
       padding: 30px 15px;
 
@@ -295,30 +297,10 @@ export default {
         .customizable-product-group-card {
           width: 100%;
           margin-bottom: 10px;
-
-          @include global.layout-md {
-            margin-bottom: 25px;
-            max-width: 870px;
-          }
-
-          @include global.layout-lg {
-            margin-bottom: 35px;
-            max-width: 410px;
-          }
         }
         
         .product-group-card {
           margin-bottom: 15px;
-          
-          @include global.layout-md {
-            margin-bottom: 25px;
-            max-width: 870px;
-          }
-
-          @include global.layout-lg {
-            margin-bottom: 35px;
-            max-width: 410px;
-          }
         }
       }
     }
