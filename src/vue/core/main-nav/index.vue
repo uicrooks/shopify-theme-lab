@@ -278,97 +278,128 @@
         <cart />
       </div>
     </div>
-    <b-collapse 
-      id="products-menu"
-      v-model="productsSubMenuOpen"
+
+    <div 
+      class="menu-container"
+      :class="{active: productsSubMenuOpen}"
     >
-      <h6 class="submenu-title">
-        Essentials
-      </h6>
-      <div class="essentials">
-        <div
-          v-for="(item, index) of productsSubMenuItems.essentials"
-          :key="`products-essential-item-${index}`"
-          class="essential-item"
-          @click="navigateTo(item.path)"
-        >
-          <span 
-            v-if="item.badge"
-            class="badge"
-          >
-            {{ item.badge }}
-          </span>
-          <div class="item-image-wrapper">
-            <img 
-              :src="item.imageSrc" 
-              :alt="`${item.name} image`" 
-            >
-          </div>
-          <div class="item-name">
-            {{ item.name }}
-          </div>
-        </div>
-      </div>
-      <h6 class="submenu-title second">
-        More Products
-      </h6>
-      <div class="more">
-        <div class="more-col">
+      <b-collapse 
+        id="products-menu"
+        v-model="productsSubMenuOpen"
+      >
+        <h6 class="submenu-title">
+          Essentials
+        </h6>
+        <div class="essentials">
           <div
-            v-for="(item, index) of moreMenu.subMenuItems"
-            :key="`more-item-${index}`"
-            class="more-item"
+            v-for="(item, index) of productsSubMenuItems.essentials"
+            :key="`products-essential-item-${index}`"
+            class="essential-item"
             @click="navigateTo(item.path)"
           >
-            {{ item.name }}
-
-            <div
-              v-if="item.orangeBadge"
-              class="link-badge-orange"
+            <span 
+              v-if="item.badge"
+              class="badge"
             >
-              {{ item.orangeBadge }}
+              {{ item.badge }}
+            </span>
+            <div class="item-image-wrapper">
+              <img 
+                :src="item.imageSrc" 
+                :alt="`${item.name} image`" 
+              >
             </div>
-            <div
-              v-if="item.redBadge"
-              class="link-badge-red"
-            >
-              {{ item.redBadge }}
+            <div class="item-name">
+              {{ item.name }}
             </div>
-          </div>
-
-          <div
-            class="more-item more-item-shop-all"
-            @click="navigateTo('/test')"
-          >
-            Shop All
-            <b-icon icon="arrow-right" />
           </div>
         </div>
-        <div class="more-col">
-          <div 
-            class="more-item" 
-            @click="navigateTo('/pages/quiz-1')"
-          >
-            Take Soap Quiz
+        <h6 class="submenu-title second">
+          More Products
+        </h6>
+        <div class="more">
+          <div class="more-col">
+            <div
+              v-for="(item, index) of moreMenu.subMenuItems"
+              :key="`more-item-${index}`"
+              class="more-item"
+              @click="navigateTo(item.path)"
+            >
+              {{ item.name }}
+
+              <div
+                v-if="item.orangeBadge"
+                class="link-badge-orange"
+              >
+                {{ item.orangeBadge }}
+              </div>
+              <div
+                v-if="item.redBadge"
+                class="link-badge-red"
+              >
+                {{ item.redBadge }}
+              </div>
+            </div>
+
+            <div
+              class="more-item more-item-shop-all"
+              @click="navigateTo('/test')"
+            >
+              Shop All
+              <b-icon icon="arrow-right" />
+            </div>
           </div>
-          <div 
-            class="more-item" 
-            @click="navigateTo('/pages/loyalty-rewards')"
-          >
-            Rewards
+          <div class="more-col">
+            <div 
+              class="more-item" 
+              @click="navigateTo('/pages/quiz-1')"
+            >
+              Take Soap Quiz
+            </div>
+            <div 
+              class="more-item" 
+              @click="navigateTo('/pages/loyalty-rewards')"
+            >
+              Rewards
+            </div>
           </div>
+        </div>
+      </b-collapse>
+
+      <div class="promo-container">
+        <div class="nav-promo-image-container">
+        </div>
+
+        <div class="nav-promo-copy-container">
+          <h1 class="nav-promo-copy-header">
+            Bring Balance Yo Your Shower Destiny
+          </h1>
+
+          <p class="nav-promo-copy-subheader">
+            Legendary characters, 4 all-new scents, galactic freshness.
+          </p>
+
+          <squatch-button
+            path="/pages/subscription-flow"
+          >
+            Subscribe & Save
+          </squatch-button>
         </div>
       </div>
-    </b-collapse>
+    </div>
   </div>
 </template>
 
 <script>
 import CookieService from "@/vue/services/cookie.service";
 import { mapGetters } from "vuex";
+import SquatchButton from "@/vue/reusables/squatch-button"
 
 export default {
   name: "MainNav",
+  components: {
+    SquatchButton
+  },
   data() {
     return {
       soapMenu: {
@@ -937,123 +968,181 @@ export default {
 
   }
 
-  #products-menu {
+  .menu-container {
     width: 100%;
-    padding: 20px 15px;
-    border-top: 2px solid $white-darken;
-    background-color: $white;
-    position: absolute;
-    z-index: 9;
+    display: none;
+    flex-flow: row nowrap;
 
-    .submenu-title {
-      margin-bottom: 20px;
-      padding-left: 15px;
-      @include font-style-heading();
-
-      &.second {
-        margin-top: 15px;
-      }
+    &.active {
+      display: flex;
     }
 
-    .essentials {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-around;
+    #products-menu {
+      width: 100%;
+      padding: 20px 15px;
+      border-top: 2px solid $white-darken;
+      background-color: $white;
+      position: absolute;
+      z-index: 9;
 
-      .essential-item {
-        display: flex;
-        flex-flow: column nowrap;
-        align-items: center;
-        width: 138px;
+      @media(min-width: 1300px) {
+        flex: 0 0 75%;
+        max-width: 75%;
         position: relative;
-        margin-bottom: 15px;
-        cursor: pointer;
-
-        .badge {
-          position: absolute;
-          top: -18px;
-          left: 39px;
-          font-size: 10px;
-          font-weight: 400;
-          background-color: $orange;
-          border-radius: 11px;
-          padding: 4px 7px;
-          text-transform: uppercase;
-          margin-left: 8px;
+      }
+  
+      .submenu-title {
+        margin-bottom: 20px;
+        padding-left: 15px;
+        @include font-style-heading();
+  
+        &.second {
+          margin-top: 15px;
         }
-
-        .item-image-wrapper {
-          border-radius: 100%;
-          width: 80px;
-          text-align: center;
+      }
+  
+      .essentials {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+  
+        .essential-item {
+          display: flex;
+          flex-flow: column nowrap;
+          align-items: center;
+          width: 138px;
+          position: relative;
           margin-bottom: 15px;
-
-          &:hover {
-            background-color: $off-white;
+          cursor: pointer;
+  
+          .badge {
+            position: absolute;
+            top: -18px;
+            left: 39px;
+            font-size: 10px;
+            font-weight: 400;
+            background-color: $orange;
+            border-radius: 11px;
+            padding: 4px 7px;
+            text-transform: uppercase;
+            margin-left: 8px;
           }
-
-          img {
+  
+          .item-image-wrapper {
+            border-radius: 100%;
             width: 80px;
-            height: auto;
+            text-align: center;
+            margin-bottom: 15px;
+  
+            &:hover {
+              background-color: $off-white;
+            }
+  
+            img {
+              width: 80px;
+              height: auto;
+            }
+          }
+  
+          .item-name {
+            text-align: center;
+            @include font-style-heading($size: 14px);
           }
         }
-
-        .item-name {
-          text-align: center;
-          @include font-style-heading($size: 14px);
+      }
+  
+      .more {
+        display: flex;
+        flex-flow: row nowrap;
+  
+        .more-col {
+          height: 140px;
+          display: flex;
+          flex-flow: column wrap;
+          align-content: flex-start;
+          min-width: 320px;
+          max-width: 30%;
+          flex: 1;
+  
+          .more-item {
+            min-width: 160px;
+            margin: 0 0 14px 15px;
+            @include font-style-body($weight: 600);
+            cursor: pointer;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+  
+            &:hover {
+              color: $orange;
+            }
+  
+  
+            .link-badge-orange{
+              margin: 0px 0px 0px 10px;
+              @include font-style-body($size: 10px, $color: white);
+              position: relative;
+              padding: 4px 8px;
+              border-radius: 50rem!important;
+              background-color: $orange;
+            }
+  
+            .link-badge-red {
+              margin: 0px 0px 0px 10px;
+              @include font-style-body($size: 10px, $color: white);
+              position: relative;
+              padding: 4px 8px;
+              border-radius: 50rem!important;
+              background-color: #911a1d;
+            }
+          }
+  
+          .more-item-shop-all {
+            @include font-style-heading($size: 14px, $weight: 600);
+          }
         }
       }
     }
 
-    .more {
-      display: flex;
-      flex-flow: row nowrap;
+    .promo-container {
+      display: none; 
+      justify-content: center;
+      align-items: center;
+      background-color: #2d2d2d;
 
-      .more-col {
-        height: 140px;
+      @media(min-width: 1300px) {
+        flex: 0 0 25%;
+        max-width: 25%;
         display: flex;
         flex-flow: column wrap;
-        align-content: flex-start;
-        min-width: 320px;
-        max-width: 30%;
-        flex: 1;
+        position: relative;
+        z-index: 9;
+      }
 
-        .more-item {
-          min-width: 160px;
-          margin: 0 0 14px 15px;
-          @include font-style-body($weight: 600);
-          cursor: pointer;
-          display: flex;
-          justify-content: flex-start;
-          align-items: center;
+      .nav-promo-image-container {
+        height: 50%;
+        width: 100%;
+        background-image: url('https://cdn.shopify.com/s/files/1/0275/7784/3817/files/nav_bar_image.png?v=1625003291');
+        background-position: center;
+        background-size: cover;
+      }
 
-          &:hover {
-            color: $orange;
-          }
+      .nav-promo-copy-container {
+        height: 50%;
+        text-align: center;
+        padding: 0 15px;
 
-
-          .link-badge-orange{
-            margin: 0px 0px 0px 10px;
-            @include font-style-body($size: 10px, $color: white);
-            position: relative;
-            padding: 4px 8px;
-            border-radius: 50rem!important;
-            background-color: $orange;
-          }
-
-          .link-badge-red {
-            margin: 0px 0px 0px 10px;
-            @include font-style-body($size: 10px, $color: white);
-            position: relative;
-            padding: 4px 8px;
-            border-radius: 50rem!important;
-            background-color: #911a1d;
-          }
+        .nav-promo-copy-header {
+          @include font-style-heading($color: white, $size: 20px);
+          margin: 2vw 0 .5rem 0;
         }
 
-        .more-item-shop-all {
-          @include font-style-heading($size: 14px, $weight: 600);
+        .nav-promo-copy-subheader {
+          @include font-style-body($color: white, $size: 16px);
+          margin: 15px 0;
         }
+
+
       }
     }
   }
