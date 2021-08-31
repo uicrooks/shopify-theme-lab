@@ -47,7 +47,7 @@
               {{ category }}
             </div>
             <div class="category-values">
-              {{ includedList[category].join(", ") }}
+              {{ includedList[category] ? includedList[category].join(", ") : "" }}
             </div>
           </div>
         </div>
@@ -178,20 +178,23 @@ export default {
             @include global.font-style-body($color: global.$white, $weight: 700);
         }
         img {
-            width: calc(100% - 40px);
+            width: calc(100% - 60px);
             object-fit: contain;
         }
         .discount {
             position: absolute;
+            display: flex;
             top: 10px;
             right: 30px;
             width: 60px;
             height: 60px;
-            padding: 12px 0;
             border-radius: 50%;
             background-color: global.$maroon;
             text-align: center;
             @include global.font-style-heading($size: 14px, $weight: 400, $color: global.$white);
+            .discount-amount {
+              margin: auto;
+            }
             .discount-bubble {
                 position: absolute;
                 top: 0;
@@ -222,7 +225,7 @@ export default {
         }
         .category {
           .category-name {
-            @include global.font-style-body($size: 16px, $weight: 600, $color: global.$white);
+            @include global.font-style-heading($size: 16px, $weight: 400, $color: global.$white);
             margin-bottom: 16px;
           }
           .category-values {

@@ -2,7 +2,7 @@ import {Vue, store, mixins} from "../main";
 console.log("layout-page");
 
 const BundleOffersTemplate = () => import(
-  /* webpackChunkName: "page-bundle-offers" */
+  /* webpackChunkName: "page-bundles-page" */
   /* webpackPreload: true */
   "../vue/templates/page/bundle-offers/index.vue");
 const SubscriptionFlowTemplate = () => import(

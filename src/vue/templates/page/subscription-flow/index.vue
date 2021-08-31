@@ -55,8 +55,9 @@ import ProductIdentifier from "@/vue/services/product-identifier";
 // COMPONENTS
 import SubscriptionFlowHeader from "./components/subscription-flow-header.vue";
 import SubscriptionFlowFooter from "./components/subscription-flow-footer.vue";
-const AddonsScreen = () => import("./steps/addons-screen.vue");
-const IntroScreen = () => import("./steps/intro-screen.vue");
+import AddonsScreen from "./steps/addons-screen.vue";
+import IntroScreen from "./steps/intro-screen.vue";
+import ScentScreen from "./steps/scent-screen.vue";
 
 export default {
   name: "SubscriptionFlow",
@@ -71,6 +72,7 @@ export default {
   components: {
     AddonsScreen,
     IntroScreen,
+    ScentScreen,
     SubscriptionFlowHeader,
     SubscriptionFlowFooter
   },
@@ -132,9 +134,72 @@ export default {
   created() {
     this.$store.registerModule("subFlow", store);
   },
+  methods: {
+    deeplinking() {
+      let params = this.$root.session.params || {};
+      var req_prods = params.req_prods || "",
+        hide_prods = params.hide_prods || "",
+        showInfo = params.showInfo || "false",
+        hideSummary = params.hideSummary || "false",
+        screenOrder = params.screenOrder || "",
+        preselectedAddons = params.addonSkus || "";
+
+      if (req_prods) {
+        console.log(req_prods);
+        this.steps[0].required=false;
+        var initProds = req_prods.split(',');
+        initProds.forEach((handle) => {
+          for (var i in this.steps) {
+            if (this.steps[i].handle == handle) {
+              this.steps[i].required = true;
+              console.log('match')
+              console.log(this.steps[i])
+              break;
+            }
+          }
+        });
+      }
+
+      if (hide_prods) {
+        var stepsToExclude = hide_prods.split(','),
+          allowed_handles = ['BarSoap', 'Deodorant', 'HairCare', 'Toothapste', 'Addons'];
+        var steps = this.steps.filter(step => {
+          if (stepsToExclude.indexOf(step.handle) == -1) {
+            return step;
+          }
+        });
+        this.steps = steps;
+      }
+
+      if (screenOrder) {
+        var order = screenOrder.split(','),
+          newOrder = [];
+        order.forEach(prodType => {
+          var match = this.steps.filter(s => {
+            if (s.handle == prodType) {
+              return s
+            }
+          })[0];
+          if (match) {
+            newOrder.push(match);
+          }
+        });
+        this.steps.forEach(step => {
+          if (order.indexOf(step.handle) == -1) {
+            newOrder.push(step)
+          }
+        });
+        console.log(newOrder)
+        this.steps = newOrder;
+      }
+      //
+      //this.preselectedAddonSkus = preselectedAddons ? preselectedAddons.toLowerCase().split(',') : [];
+    }
+  },
   mounted() {
     window.test=this;
     window.tStore=store;
+    this.deeplinking();
     let scents = {};
     let skuPrices = {};
     let addons = {};
@@ -212,12 +277,13 @@ export default {
     this.$store.commit("subFlow/setScents", scents);
     this.$store.commit("subFlow/setAddons", addons);
     this.$store.commit("subFlow/setSkuPrices", skuPrices);
-    this.$store.commit('subFlow/setCurrentScreen', 'BarSoap');
+    this.$store.commit('subFlow/setCurrentScreen', this.steps[0].handle);
   }
 }
 </script>
 <style lang="scss">
 @use "@/styles/main" as global;
+@import "@/styles/partials/brand";
 .new-sub-flow {
   background: global.$black;
   min-height: 100vh;

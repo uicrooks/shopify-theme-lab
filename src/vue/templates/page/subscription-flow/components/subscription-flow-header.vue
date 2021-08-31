@@ -7,7 +7,7 @@
     <div class="align-items-center d-flex shadow sub-flow-nav">
       <a
         href="/"
-        class="navbar-brand py-lg-3 position-xl-absolute"
+        class="navbar-brand"
         name="Dr. Squatch | Home"
         title="Dr. Squatch | Home"
         aria-label="Dr. Squatch | Home"
@@ -72,8 +72,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import SubProductToggle from "./sub-product-toggle.vue";
 export default {
   name: "SubscriptionFlowHeader",
+  components: {
+    SubProductToggle
+  },
   props: {
     subProductsBarsoap: {required: true, type: Array},
     subProductsDeodorant: {required: true, type: Array},
@@ -112,9 +116,14 @@ export default {
 .sub-flow-header {
   background: #fff;
   position: sticky;
-  padding: 0 15px;
+  padding: 0;
   top: -164px;
   transition: top 0.3s linear;
+  overflow:hidden;
+  z-index: 44;
+  .sub-flow-nav {
+    padding: 0 15px;
+  }
 }
 body.scroll-up .sub-flow-header {
     top: 0px;
@@ -128,6 +137,7 @@ body.scroll-up .sub-flow-header {
     align-items: center;
     justify-content: center;
     margin-right: 5px;
+    z-index:0;
     cursor:pointer;
     &.last {
       margin-right: 0;
@@ -138,6 +148,9 @@ body.scroll-up .sub-flow-header {
       font-size: 12px;
     }
 }
+.navbar-brand {
+  z-index:1;
+}
 .flow-logo {
   width: 170px;
 }
@@ -145,5 +158,11 @@ body.scroll-up .sub-flow-header {
   justify-content: center;
   left: 0px;
   position: absolute;
+  z-index: 0;
 }
+</style>
+<style lang="scss">
+  #main {
+    overflow-x: unset;
+  }
 </style>

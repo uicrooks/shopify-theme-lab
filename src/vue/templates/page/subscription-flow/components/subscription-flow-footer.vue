@@ -72,7 +72,9 @@
         :disabled="choicesRequired"
         @click.prevent="flowPrevious()"
       >
-        Back
+        <b-icon 
+            icon="arrow-left"
+          />
       </b-button> 
       <b-button
         size="lg"
@@ -170,6 +172,7 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+@use "@/styles/main" as global;
 .sub-flow-footer {
     position: fixed;
     bottom: 0;
@@ -192,10 +195,19 @@ export default {
   float: right;
   height: 50px;
     .prevButton {
-      height: 100%;
+      height: 80%;
+      background: transparent;
+      color: global.$brown;
+      margin-right: 10px;
+      padding: 5px 10px 2px;
     }
     .nextButton {
       height: 100%;
+      background: global.$orange;
+      border-color: global.$orange;
+      @include global.font-style-heading($color: global.$white);
+      width: 200px;
+      padding: 15px 0 10px;
     }
 }
 .selected-scent {

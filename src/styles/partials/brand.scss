@@ -26,6 +26,15 @@ $scent-colors: (
   "toothpaste": #5a3714,
   "citrus-mint-toothpaste": #5a3714,
   "soothing-spearmint-toothpaste": #5a3714,
+  "ruthless-rinse": #FF0303,
+  "dark-side-scrub": #FF0303,
+  "wisdom-wash": #02FF46,
+  "only-hope-soap": #00E9FF,
+  "freedom-fresh": #0062d0,
+  "area-51-bricc": #f300eb,
+  "stone-ipa": #18d173,
+  "mars-bar": #f46200,
+  "moon-rock": #00c0e3
 );
 
 @each $color in $scent-colors {

@@ -82,7 +82,7 @@ export default {
       text-align: center;
 
       img {
-        width: 100%;
+        width: calc(100% - 60px);
         object-fit: contain;
       }
     }

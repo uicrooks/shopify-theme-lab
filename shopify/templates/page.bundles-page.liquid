@@ -1,0 +1,20 @@
+{% assign oosItems = settings.oos_sku_array | downcase | split: ',' %} {% assign
+  starterBundles = collections['bundle-offers-starter-bundles'].products %}
+  {% assign bestSellers = collections['bundle-offers-best-sellers'].products
+  %} {% assign fullRoutine =
+  collections['bundle-offers-full-routine'].products %} {% assign soapSets =
+  collections['bundle-offers-soap-sets'].products %} {% assign deoSets =
+  collections['bundle-offers-deodorant-sets'].products %} {% assign signatureScents
+  = collections['bundle-offers-signature-scents'].products %}
+  
+  <bundle-offers-template
+    :bundles="{
+      'Starter Bundles': {{ starterBundles | json | escape }},
+      'Best Sellers': {{ bestSellers | json | escape }},
+      'Full Routine': {{ fullRoutine | json | escape }},
+      'Soap Sets': {{ soapSets | json | escape }},
+      'Deodorant Sets': {{ deoSets | json | escape }},
+      'Signature Scents': {{ signatureScents | json | escape }}
+    }"
+  ></bundle-offers-template>
+  

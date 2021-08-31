@@ -1,9 +1,11 @@
+import cartService from "../../../services/cart.service";
+
 const state = () => ({
   screen: {},
   steps: [],
   scents: {},
   addons: {},
-  viewedAddons: false,
+  removedPreselected: false,
   defaultSubSkus: {
     BarSoap: "sq8300569",
     HairCare: "sq5357184",
@@ -36,7 +38,7 @@ const state = () => ({
       if (this.screen.required && ["HairCare", "Toothpaste"].indexOf(this.screen.handle)>-1 && count==0) {
         return true;
       }
-      if (this.screen.required || (this.screen.choicesRequired && count > 0 && count < this.skuLimits[this.screen.selectedSku()])) {
+      if (this.screen.required && (this.screen.choicesRequired && count < this.skuLimits[this.screen.selectedSku()])) {
         return true;
       }
     }
@@ -97,6 +99,9 @@ const getters = {
   },
   addons: (state) => {
     return state.addons;
+  },
+  removedPreselected: (state) => {
+    return state.removedPreselected;
   },
   skuLimits: (state) => {
     return state.skuLimits;
@@ -263,10 +268,14 @@ const actions = {
       }
     });
     console.log(finalAddToCart);
-    /*const quantityUpdated = await CartService.updateItemQuantity(item.line, item.quantity);
-    if (quantityUpdated) {
-      dispatch("initialize");
-    }*/
+    try {
+      var results = await cartService.addToCartBatch(finalAddToCart);
+      // Redirect to Checkout
+      console.log(results);
+      cartService.redirectToCheckout();
+    } catch (err) {
+      console.error(err);
+    }
   },
 };
 
@@ -284,8 +293,8 @@ const mutations = {
   setAddons(state, addons) {
     state.addons = addons;
   },
-  setViewedAddons(state, status) {
-    state.viewedAddons = status;
+  setRemovedPreselected(state, status) {
+    state.removedPreselected = status;
   },
   changeScentQty(state,obj) {
     const {qty, index} = obj;

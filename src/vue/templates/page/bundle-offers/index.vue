@@ -197,8 +197,9 @@ export default {
       }
     }
   },
-  async mounted() {
+  mounted() {
     console.log(this.bundles);
+    console.log("HERE");
   }
 };
 </script>

@@ -52,7 +52,7 @@
         </div>
       </div>
       <p class="product-description">
-        {{ includedList.join(", ") }}
+        {{ "" }}
       </p>
       <squatch-button
         v-if="selected"
@@ -91,7 +91,7 @@ export default {
   },
   data() {
     return {
-      includedList: IncludedList[this.product.handle]
+      includedList: IncludedList[this.product.handle] || [],
     };
   },
   computed: {
@@ -173,12 +173,13 @@ export default {
 
     img {
       max-width: 120px;
-      width: 100%;
+      width: calc(100% - 60px);
       height: auto;
 
       @include global.layout-md {
         max-width: unset;
         object-fit: contain; 
+        margin-top: 36px;
       }
     }
   }

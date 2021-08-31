@@ -47,7 +47,28 @@ export default {
       console.log("Failed to add an item", err);
       return false;
     }
-    // add tracking data
+  },
+  addItem2(variantId, qty = 1, properties) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let props = properties || {};
+        console.log(variantId)
+        const res = await axios.post("/cart/add.js", {
+          quantity: qty,
+          id: variantId,
+          properties: props
+        });
+        if (res.status === 200) {
+          TrackingService.ADD_TO_CART(res.data);
+          resolve(res.data);
+        } else {
+          throw new Error("Error response from Shopify")
+        }
+      } catch (err) {
+        console.log("Failed to add an item", err);
+        reject({variant_id: variantId, error: err.message});
+      }
+    });
   },
   async updateItemQuantity(itemIndex, updatedQuantity) {
     try {
@@ -62,6 +83,23 @@ export default {
       console.log("Failed to update an item quantity", err);
       return false;
     }
+  },
+  addToCartBatch(item_array) {
+    return new Promise(async (resolve,reject) => {
+      var adds = [];
+      // note: promise.all didn't work
+      for (var i in item_array) {
+        try {
+          const {variant_id, quantity, properties} = item_array[i];
+          let res = await this.addItem2(variant_id,quantity,properties);
+          adds.push(res);
+        } catch(err) {
+          console.error(err.message);
+          continue;
+        }
+      }
+      resolve(adds);
+    });
   },
   async redirectToCheckout() {
     console.log(window.location);

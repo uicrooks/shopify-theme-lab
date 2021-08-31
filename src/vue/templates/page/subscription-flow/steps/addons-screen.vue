@@ -1,11 +1,11 @@
 <template>
   <section
     v-if="c_addons"
-    class="screen"
+    class="screen addon-screen"
   >
     <b-container fluid>
       <b-col cols="12">
-        <h2>Shower Boosters</h2>
+        <h2 class="section-heading">Shower Boosters</h2>
       </b-col>
       <transition-group
         name="fade-list"
@@ -23,7 +23,8 @@
           lg="3"
         >
           <div class="scent__card">
-            <div class="scent__card-image woodgrain-bg ">
+            <div class="scent__card-image woodgrain-bg">
+              <div class="preselected-tag" v-if="preselectedSkus.indexOf(addon.sku)>-1 && addon.qty>0 && !removedPreselected">Pre-selected!</div>
               <b-img-lazy :src="addon.images[0]" />
             </div>
             <div class="scent__card-body">
@@ -75,7 +76,7 @@
 
     <b-container fluid>
       <b-col cols="12">
-        <h2>Deodorant</h2>
+        <h2 class="section-heading">Deodorant</h2>
       </b-col>
       <transition-group
         name="fade-list"
@@ -145,7 +146,7 @@
 
     <b-container fluid>
       <b-col cols="12">
-        <h2>Hair Care</h2>
+        <h2 class="section-heading">Hair Care</h2>
       </b-col>
       <transition-group
         name="fade-list"
@@ -215,7 +216,7 @@
 
     <b-container fluid>
       <b-col cols="12">
-        <h2>More</h2>
+        <h2 class="section-heading">More</h2>
       </b-col>
       <transition-group
         name="fade-list"
@@ -291,11 +292,12 @@ export default {
   data() {
     return {
       c_addons: [],
-      extras: []
+      extras: [],
+      preselectedSkus:["sav-1"],
     };
   },
   computed: {
-    ...mapGetters("subFlow", ["addons"]),
+    ...mapGetters("subFlow", ["addons","removedPreselected"]),
   },
   methods: {
     increaseAddonQty(addon) {
@@ -306,13 +308,36 @@ export default {
     decreaseAddonQty(addon) {
       let qty = addon.qty-1,
       type = addon.type;
+      if (this.preselectedSkus.indexOf(addon.sku)>-1) {
+        this.$store.commit("subFlow/setRemovedPreselected", true);
+      }
       if (qty>=0) {
         this.$store.commit("subFlow/changeAddonQty",{ qty, type, variant_id: addon.variant_id });
       }
     },
+    preselectAddons() {
+      this.preselectedSkus.forEach((sku) => {
+        for (var group in this.c_addons) {
+          var match = false;
+          if (match) { break; }
+          let productGroup = this.c_addons[group];
+          for (var i in productGroup) {
+            let skuLower = productGroup[i].sku.toLowerCase();
+            if (skuLower == sku) {
+              if (!productGroup[i].qty) {
+                this.increaseAddonQty(productGroup[i]);
+              }
+              match = true;
+              break;
+            }
+          }
+        }
+      });
+    }
   },
   mounted() {
     this.c_addons = this.addons;
+    window.test_addons = this.addons;
     console.log(this);
     for (var i in this.addons) {
       var type = i;
@@ -320,7 +345,7 @@ export default {
         this.extras = this.extras.concat(this.addons[i]);
       }
     }
-    this.$store.commit("subFlow/setViewedAddons", true);
+    this.preselectAddons();
   }
 };
 </script>
@@ -342,6 +367,21 @@ export default {
   margin-right: auto;
   margin-bottom: 50px;
 }
+.addon-screen {
+  .section-heading {
+    @include global.font-style-heading($size: 34px, $color: global.$white);
+  }
+  .scent__card {
+    .preselected-tag {
+      position: absolute;
+      left: 0;
+      top: 12px;
+      color: #fff;
+      background: global.$orange;
+      padding: 2px 12px;
+    }
+  }
+}
 .scent-col {
   margin-bottom: 25px;
 }
@@ -357,6 +397,7 @@ export default {
     text-align: center;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+    position: relative;
     img {
       width: calc(100% - 30px);
       padding: 15px;

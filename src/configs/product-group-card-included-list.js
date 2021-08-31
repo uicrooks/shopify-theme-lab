@@ -76,5 +76,35 @@ export default {
   "pine-tar-bundle": {
     "3 Bar Soaps": ["Pine Tar"],
     "Deodorant": ["Pine Tar"]
-  }
+  },
+  "superior-scents": {
+    "2 Bar Soaps": ["Pine Tar", "Cedar Citrus"],
+    "Deodorant": ["Pine Tar"],
+    "Hair Care Kit": ["Shampoo & Conditioner"],
+    "Candle": ["Bay Rum"]
+  },
+  "fresh-falls-bundle": {
+    "Bar Soap": ["Fresh Falls"],
+    "Deodorant": ["Fresh Falls"],
+    "Hair Care Kit": ["Shampoo & Conditioner"]
+  },
+  "shower-essentials-bundle": {
+    "6 Bar Soaps": ["Bay Rum", "Alpine Sage", "Gold Moss", "Cedar Citrus", "Deep Sea Goat's Milk", "Pine Tar"],
+    "Hair Care Kit": ["Shampoo & Conditioner"]
+  },
+  "shower-essentials-bundle": {
+    "6 Bar Soaps": ["Bay Rum", "Alpine Sage", "Gold Moss", "Cedar Citrus", "Deep Sea Goat's Milk", "Pine Tar"],
+    "Hair Care Kit": ["Shampoo & Conditioner"]
+  },
+  "stone-ipa-bundle": {
+    "3 Bar Soaps": ["Stone IPA"],
+    "Gear": ["Squatch x Stone Sticker (FREE!)"]
+  },
+  "the-star-wars-collection": {
+    "4 Bar Soaps": ["Dark Side Scrub", "Ruthless Rinse", "Only Hope Soap", "Wisdom Wash"],
+  },
+  "wood-barrel-bourbon-bundle": {
+    "3 Bar Soaps": ["Wood Barrel Bourbon"],
+    "Deodorant": ["Wood Barrel Bourbon"]
+  },
 };
