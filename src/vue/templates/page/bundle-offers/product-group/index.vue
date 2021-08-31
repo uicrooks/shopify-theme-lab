@@ -1,12 +1,12 @@
 <template>
-  <div class="product-group-card-component">
+  <div class="product-group-card-component card">
     <div
       class="image-box"
       :class="{ 'show-backface' : showIncludedBox }"
     >
       <div
-        v-show="!showIncludedBox"
-        class="front-face"
+        class="frontface"
+        :class="{'showing-back' : showIncludedBox }"
       >
         <!-- Front Face -->
         <div
@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="details-box">
-      <div class="product-title">
+<div class="product-title">
         {{ product.title }}
       </div>
       <div class="product-pricing">
@@ -69,16 +69,18 @@
       <p class="product-description">
         {{ product.description }}
       </p>
-      <div
-        class="see-included-link"
-        @click="toggleIncludedBox"
-      >
-        <b-icon icon="search" /> See what's included
-      </div>
-      <div class="add-button">
-        <squatch-button @clicked="addToCart">
-          {{ added ? 'Add More' : '+ Add To Cart' }}
-        </squatch-button>
+      <div class="bundle-card-footer">
+        <div
+          class="see-included-link"
+          @click="toggleIncludedBox"
+        >
+          <b-icon icon="search" /> See what's included
+        </div>
+        <div class="add-button">
+          <squatch-button @clicked="addToCart">
+            {{ added ? 'Add More' : '+ Add To Cart' }}
+          </squatch-button>
+        </div>
       </div>
     </div>
   </div>
@@ -150,10 +152,11 @@ export default {
     position: relative;
     border-radius: 5px;
     overflow: hidden;
-    height: 100%; // margin-bottom: 25px;
-    // @include layout-lg {
-    //   margin-bottom: 35px;
-    // }
+    border: none;
+    @include global.layout-md {
+      height: 100%;
+      max-height: calc(100vh - 150px);
+    }
     &:hover {
         box-shadow: 0 4px 15px 5px rgba(0, 0, 0, .1);
     }
@@ -163,9 +166,9 @@ export default {
         background-size: 200%;
         background-repeat: repeat;
         background-color: global.$sand;
-        padding: 25px;
+        padding: 0;
         text-align: center;
-        height: 50%;
+        height: 100%;
         position: relative;
         overflow-x: hidden;
         overflow-y: hidden;
@@ -178,8 +181,10 @@ export default {
             @include global.font-style-body($color: global.$white, $weight: 700);
         }
         img {
-            width: calc(100% - 60px);
-            object-fit: contain;
+          width: calc(100% - 30px);
+          padding: 15px 0px 15px;
+          height: 100%;
+          object-fit: contain;
         }
         .discount {
             position: absolute;
@@ -214,22 +219,29 @@ export default {
           display: none;
         }
       }
-      .backface {
+      .frontface {
         height: 100%;
+        &.showing-back {
+          visibility: hidden;
+        }
+      }
+      .backface {
+        height: calc(100% + 60px);
         position: absolute;
         left: 20px;
         right: 20px;
+        top: 50px;
         h3 {
           @include global.font-style-heading($size: 20px, $weight: 400, $color: global.$white);
           margin-bottom: 12.5%;
         }
         .category {
           .category-name {
-            @include global.font-style-heading($size: 16px, $weight: 400, $color: global.$white);
+            @include global.font-style-body($size: 16px, $weight: 800, $color: global.$white);
             margin-bottom: 16px;
           }
           .category-values {
-            @include global.font-style-body($size: 14px, $weight: 400, $color: global.$white);
+            @include global.font-style-body($size: 14px, $weight: 400, $color: #bc9887, $lh: 1.4);
             margin-bottom: 16px;
           }
         }
@@ -238,23 +250,23 @@ export default {
     .details-box {
         padding: 16px 16px 25px 16px;
         background-color: global.$white;
-        height: 50%;
         display: flex;
         flex-direction: column;
+        height: 100%;
         .product-title {
-            min-height: 42px;
+          margin-bottom: 10px;
             @include global.font-style-heading($size: 20px);
         }
         .product-description {
-            min-height: 32px;
-            @include global.font-style-heading($size: 16px, $color: global.$brown);
+            @include global.font-style-body($size: 16px, $color: global.$brown);
+            margin-bottom: 15px;
         }
         .product-pricing {
             margin-bottom: 20px;
-            @include global.font-style-heading($size: 16px, $color: global.$green, $weight: 700);
+            @include global.font-style-body($size: 16px, $color: global.$green, $weight: 700);
             .compare-at-pricing {
                 text-decoration: line-through;
-                @include global.font-style-heading($size: 14px, $color: global.$gray, $weight: 700);
+                @include global.font-style-body($size: 14px, $color: global.$gray, $weight: 700);
             }
         }
         .see-included-link {
@@ -262,7 +274,7 @@ export default {
             cursor: pointer;
             @include global.font-style-heading($size: 12px, $color: global.$brown);
         }
-        .add-button {
+        .bundle-card-footer {
             margin-top: auto;
         }
     }

@@ -47,7 +47,7 @@ export default {
           })
         });
       }
-      Helpers.addScriptToBody("img","//i.geistm.com/x/DrS-Initiatecheckout");
+      Helpers.addElementToBody("img","//i.geistm.com/x/DrS-Initiatecheckout");
       const checkout_payload = {
         cart_token: CookieService.get("cart"),
         customer: window.theme.customerEmail ? {email: window.theme.customerEmail} : null,

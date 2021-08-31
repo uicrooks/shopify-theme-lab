@@ -1,29 +1,29 @@
 export default {
   // Starter Bundles Section
-  "clean-bundle": ["3 Bar Soaps & Saver"],
-  "suave-bundle": ["3 Bar Soaps & Saver", "Deodorant", "Hair Care Kit"],
-  "groomed-bundle": ["3 Bar Soaps & Saver", "Hair Care Kit"],
-  "smooth-bundle": ["3 Bar Soaps & Saver", "Deodorant", "Hair Care Kit", "Toothpaste Kit"],
+  "Clean": ["3 Bar Soaps & Saver"],
+  "Suave": ["3 Bar Soaps & Saver", "Deodorant", "Hair Care Kit"],
+  "Groomed": ["3 Bar Soaps & Saver", "Hair Care Kit"],
+  "Smooth": ["3 Bar Soaps & Saver", "Deodorant", "Hair Care Kit", "Toothpaste Kit"],
   "starter-bundles-variants": {
-    "squatch": {
+    "squatch-bundle": {
       "3 Bar Soaps & Saver": ["pine-tar", "deep-sea-goats-milk", "grapefruit-ipa", "soap-saver"],
       "Deodorant": ["alpine-sage-deodorant"],
       "Hair Care Kit": ["shampoo-1", "conditioner"],
       "Toothpaste Kit": ["toothpaste"]
     },
-    "fresh": {
+    "fresh-bundle": {
       "3 Bar Soaps & Saver": ["cool-fresh-aloe", "eucalyptus-yogurt", "spearmint-basil", "soap-saver"],
       "Deodorant": ["fresh-falls-deodorant"],
       "Hair Care Kit": ["shampoo-1", "conditioner"],
       "Toothpaste Kit": ["toothpaste"]
     },
-    "beach": {
+    "beach-bundle": {
       "3 Bar Soaps & Saver": ["bay-rum", "alpine-sage", "grapefruit-ipa", "soap-saver"],
       "Deodorant": ["bay-rum-deodorant"],
       "Hair Care Kit": ["shampoo-1", "conditioner"],
       "Toothpaste Kit": ["toothpaste"]
     },
-    "forest": {
+    "forest-bundle": {
       "3 Bar Soaps & Saver": ["pine-tar", "cedar-citrus", "gold-moss", "soap-saver"],
       "Deodorant": ["birchwood-breeze-deodorant"],
       "Hair Care Kit": ["shampoo-1", "conditioner"],

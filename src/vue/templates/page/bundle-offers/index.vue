@@ -27,6 +27,7 @@
       class="section-wrapper"
       :class="{'hidden': index === 0, 'starter-bundles': index === 1}"
     >
+
       <b-container
         v-if="showSection(index)"
         class="bundles-section"
@@ -44,21 +45,7 @@
             v-if="index === 1"
             class="products"
           >
-            <b-col
-              v-for="(product, productIndex) of getSectionProducts(index)"
-              :key="`bundles-section-${index}-product-${productIndex}`"
-              md="4"
-              xl="3"
-              cols="12"
-            >
-              <custom-product-group-card
-                class="customizable-product-group-card"
-                :product="product"
-                :selected="selectedStarterBundleIndex === productIndex"
-                @selectStarterBundle="selectStarterBundle"
-                @openScentSelection="scentSelectionFlag = true"
-              />
-            </b-col>
+            <starter-bundles-section :products="getSectionProducts(index)" />
           </template>
           <template
             v-else
@@ -70,6 +57,7 @@
               cols="12"
               md="4"
               xl="3"
+              class="bundle-offers-col"
             >
               <product-group-card
                 class="product-group-card"
@@ -80,24 +68,6 @@
         </b-row>
       </b-container>
     </div>
-    <b-sidebar
-      id="customization-sidebar"
-      v-model="starterBundleDrawerOpened"
-      header-class="sidebar-header"
-      body-class="sidebar-body"
-      footer-class="sidebar-footer"
-      sidebar-class="sidebar-drawer"
-      :lazy="true"
-      right
-      shadow
-      backdrop
-    >
-      <custom-product-group-customization-sidebar
-      :is-open="scentSelectionFlag"
-      :product="selectedStarterBundle"
-      @close="scentSelectionFlag = false"
-      />
-    </b-sidebar>
   </div>
 </template>
 
@@ -105,15 +75,13 @@
 // Reusuables
 import SquatchButton from "@/vue/reusables/squatch-button.vue";
 import ProductGroupCard from "./product-group/index.vue";
-import CustomProductGroupCard from "./custom-product-group/index.vue";
-import CustomProductGroupCustomizationSidebar from "./custom-product-group/index";
+import StarterBundlesSection from "./starter-bundles/index.vue";
 
 export default {
   name: "BundleOffers",
   components: {
-    CustomProductGroupCard,
     ProductGroupCard,
-    CustomProductGroupCustomizationSidebar
+    StarterBundlesSection
   },
   props: {
     bundles: {
@@ -154,7 +122,7 @@ export default {
       currentTabIndex: 0,
       selectedStarterBundleIndex: 1,
       scentSelectionFlag: false,
-      starterBundleDrawerOpened: true,
+      starterBundleDrawerOpened: false,
     };
   },
   computed: {
@@ -197,10 +165,6 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log(this.bundles);
-    console.log("HERE");
-  }
 };
 </script>
 
@@ -307,30 +271,10 @@ export default {
         }
       }
 
-      .products {
-
-        .customizable-product-group-card {
-          width: 100%;
-          margin-bottom: 10px;
-        }
-        
-        .product-group-card {
-          margin-bottom: 15px;
-        }
+      .bundle-offers-col {
+        margin-bottom: 25px;
       }
     }
   }
-  #customization-sidebar {
-     header {
-        position: absolute;
-        width: 100%;
-        background: transparent;
-        .close {
-          margin-left: auto;
-          margin-right: 0;
-          z-index: 4;
-        }
-      }
-    }
 }
 </style>

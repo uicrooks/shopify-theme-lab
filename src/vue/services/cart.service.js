@@ -12,7 +12,7 @@ const axiosConfig = {
   },
 };
 
-export default {
+const CartService = {
   async initCart() {
     try {
       const res = await axios.get("/cart.js", axiosConfig);
@@ -169,8 +169,10 @@ function getMatchingVariantForProduct(product, variantId) {
 
 function preCheckoutPromise() {
   // handles async actions and returns checkout Destination
+  console.log(this)
   return new Promise(async resolve => {
-    const cart = await this.initCart();
+    console.log(this)
+    const cart = await CartService.initCart();
     var hit = false;
     for (var i in cart.items) {
       if (cart.items[i].title.indexOf("Subscription")>-1) {
@@ -182,3 +184,5 @@ function preCheckoutPromise() {
     resolve({isSubscriptionCart: hit, cart});
   });
 }
+
+export default CartService;
