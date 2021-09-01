@@ -92,24 +92,24 @@
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .ui-squatch-difference-subnav-component {
   .ui-squatch-difference-subnav {
     padding: 12px 0 20px 0;
-    background-color: $off-white;
+    background-color: global.$off-white;
 
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       padding: 10px 0 14px 0;
     }
 
     .header {
-      @include font-style-body($size: 16px, $weight: 700, $color: $dark-brown);
+      @include global.font-style-body($size: 16px, $weight: 700, $color: global.$dark-brown);
       line-height: 18px;
       text-align: center;
       margin: 10px 0 16px 0;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         font-size: 18px;
       }    
     }
@@ -119,7 +119,7 @@
       flex-flow: row nowrap;
       justify-content: space-around;
       
-      @media (min-width: $lg) {
+      @media (min-width: global.$lg) {
         max-width: 900px;
         margin: auto;
       }
@@ -130,7 +130,7 @@
         flex-flow: column nowrap;
         align-items: center;
         
-        @media (min-width: $lg) {
+        @media (min-width: global.$lg) {
           width: 82px;
           max-width: 240px;
         }
@@ -138,22 +138,22 @@
         &.active {
 
           .icon {
-            background-color: $orange;
+            background-color: global.$orange;
           }
 
           .subnav-text {
-            color: $orange;
+            color: global.$orange;
           }
         }
 
         &:hover {
 
           .icon {
-            background-color: $orange;
+            background-color: global.$orange;
           }
 
           .subnav-text {
-            color: $orange;
+            color: global.$orange;
           }
         }
 
@@ -163,7 +163,7 @@
           height: 36px;
           border-radius: 50%;
           margin-bottom: 8px;
-          background-color: $dark-brown;
+          background-color: global.$dark-brown;
 
           img {
             position: absolute;
@@ -192,10 +192,10 @@
 
         .subnav-text {
           text-align: center;
-          @include font-style-body($weight: 600, $size: 12px, $color: $dark-brown);
+          @include global.font-style-body($weight: 600, $size: 12px, $color: global.$dark-brown);
           line-height: 110%;
 
-          @media (min-width: $md) {
+          @media (min-width: global.$md) {
             font-size: 14px;
           }
 

@@ -252,14 +252,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .refill-schedule-component {
 
   .section-container-box {
     padding: 20px 15px;
   
-    @include layout-sm {
+    @include global.layout-sm {
       padding: 20px;
     }
   }
@@ -270,7 +270,7 @@ export default {
     h3 {
       margin-bottom: 15px;
       text-align: center;
-      @include font-style-heading($size: 20px);
+      @include global.font-style-heading($size: 20px);
 
       &.padded {
         margin-top: 30px;
@@ -280,7 +280,7 @@ export default {
     h4 {
       border-bottom: 1px solid grey;
       padding: 0 0 5px 5px;
-      @include font-style-body-bold($size: 20px);
+      @include global.font-style-body-bold($size: 20px);
     }
 
 
@@ -296,7 +296,7 @@ export default {
           align-items: center;
           padding: 15px 0;
           border-bottom: 1px solid #dcdcdc;
-          @include font-style-body($size: 12px);
+          @include global.font-style-body($size: 12px);
 
           &.last {
             border-bottom: none;
@@ -307,7 +307,7 @@ export default {
             text-align: center;
             min-width: 60px;
 
-            @include layout-sm {
+            @include global.layout-sm {
               padding: 3px 10px;
             }
 
@@ -325,11 +325,11 @@ export default {
             justify-content: space-between;
             padding-left: 5px;
 
-            @include layout-sm {
+            @include global.layout-sm {
               padding-left: 15px;
             }
 
-            @include layout-md {
+            @include global.layout-md {
               flex: 3;
             }
 
@@ -337,7 +337,7 @@ export default {
               flex: 1;
 
               h5 {
-                @include font-style-body($size: 14px, $weight: 600);
+                @include global.font-style-body($size: 14px, $weight: 600);
               }
   
               .sub-heading {
@@ -346,10 +346,10 @@ export default {
                 flex-flow: row wrap;
                 align-items: center;
                 margin-bottom: 12px;
-                @include font-style-body($color: #a5937f);
+                @include global.font-style-body($color: #a5937f);
                 
                 .icon-custom {
-                  color: $orange;
+                  color: global.$orange;
                   margin-right: 4px;
                 }
               }
@@ -357,7 +357,7 @@ export default {
               .line-item {
                 width: 100%;
                 margin-bottom: 4px;
-                @include font-style-body($color: $brown, $size: 13px);
+                @include global.font-style-body($color: global.$brown, $size: 13px);
               }
             }
 
@@ -368,15 +368,15 @@ export default {
 
               .date {
                 margin-bottom: 8px;
-                @include font-style-body-bold();
+                @include global.font-style-body-bold();
               }
   
               .pricing {
                 margin-bottom: 8px;
-                @include font-style-body($color: $dark-brown);
+                @include global.font-style-body($color: global.$dark-brown);
   
                 .accentized {
-                  @include font-style-body($color: $text-green, $weight: 600);
+                  @include global.font-style-body($color: global.$text-green, $weight: 600);
                 }
   
                 .compare-at-price {

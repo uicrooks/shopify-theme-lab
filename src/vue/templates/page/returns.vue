@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .returns-component {
   .container {
@@ -59,11 +59,11 @@ export default {
       text-align: center;
 
       .text {
-        @include font-style-body($color: $brown);
+        @include global.font-style-body($color: global.$brown);
 
         .link {
           text-decoration: none;
-          color: $orange;
+          color: global.$orange;
         }
       }
     }

@@ -96,14 +96,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .squatch-difference-component {
   margin: 75px 0 0 0;
 
   .hero-display-banner {
     background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/dsq-woodgrain_texture-DARK.svg?v=1616535182");
-    background-color: $dark-brown;
+    background-color: global.$dark-brown;
     background-position: center;
     color: #ffffff;
 
@@ -115,7 +115,7 @@ export default {
       max-width: 500px;
       color: #ffffff;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         font-size: 50px !important;
       }
     }
@@ -125,23 +125,23 @@ export default {
     margin-top: 30px;
 
     .sub-header {
-      @include font-style-body($weight: 700, $size: 14px, $color: $dark-brown);
+      @include global.font-style-body($weight: 700, $size: 14px, $color: global.$dark-brown);
       line-height: 130%;
       text-align: center;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         font-size: 16px;
       }
     }
 
     .header {
       width: 90%;
-      @include font-style-heading($size: 30px, $color: $dark-brown);
+      @include global.font-style-heading($size: 30px, $color: global.$dark-brown);
       line-height: 100%;;
       text-align: center;
       margin: 12px auto;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         font-size: 35px;
         margin: 12px auto 2px;
       }
@@ -155,11 +155,11 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     line-height: 100%;
-    @include font-style-heading($size: 30px, $color: white);
+    @include global.font-style-heading($size: 30px, $color: white);
     text-align: center;
     margin-bottom:20px;
 
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       padding: 40px 10px 30px;
       font-size: 35px;
       margin-top: 25px;
@@ -170,11 +170,11 @@ export default {
       width: 85%;
       max-width: 820px;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         width: 75%;
       }
 
-      @media (min-width: $lg) {
+      @media (min-width: global.$lg) {
         width: 65%;
       }
     }
@@ -194,14 +194,14 @@ export default {
     }
 
     .sub-header {
-      color: $dark-brown;
+      color: global.$dark-brown;
     }
 
     .header {
-      color: $dark-brown;
+      color: global.$dark-brown;
       font-size: 25px !important;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         font-size: 30px !important;
       }
     }
@@ -214,17 +214,17 @@ export default {
   .quote-display {
     padding: 25px 10px 45px;
     background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353");
-    background-color: $sand;
+    background-color: global.$sand;
     background-size: 200%;
     text-align: center;
     color: #000;
 
     .quote-text {
-      @include font-style-heading($size: 20px);
+      @include global.font-style-heading($size: 20px);
       line-height: 100%;
       margin: 25px 0 16px;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         font-size: 30px;
         width: 60%;
         margin: 25px auto 16px;
@@ -237,7 +237,7 @@ export default {
       line-height: 100%;
       font-style: italic;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         font-size: 18px;
       }
 

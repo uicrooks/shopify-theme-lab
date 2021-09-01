@@ -86,16 +86,16 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
   .ui-squatch-difference-accordion-component {
 
     .accordion-row {
-      @include font-style-body($size: 14px, $color: $orange);
+      @include font-style-body($size: 14px, $color: global.$orange);
       border: 0;
       
       .ingredient-name {
-        @include font-style-body($color: black);
+        @include global.font-style-body($color: black);
         background-color: white;
         border-bottom: 1px solid #bca887;
         padding: 12px 4px 10px;
@@ -105,7 +105,7 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
         width: 100%;
 
         .accordion-ingredient-button {
-          @include font-style-body-bold($color: black, $size: 14px);
+          @include global.font-style-body-bold($color: black, $size: 14px);
           width: 100%;
           text-align: left;
           background-color: white;
@@ -123,7 +123,7 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
           }
 
           &[aria-expanded="true"]{
-            color: $orange;
+            color: global.$orange;
 
             .open-icon {
               display: none;
@@ -135,7 +135,7 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
           }
 
           &:hover {
-            color: $orange;
+            color: global.$orange;
           }
 
           &:focus {
@@ -151,7 +151,7 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
       }
 
       .my-accordion {
-        @include font-style-body($color: black);
+        @include global.font-style-body($color: black);
 
         .accordion-card {
           padding: 0;
@@ -166,30 +166,30 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
               position: relative;
               background-color: #faf6f1;
               padding: 20px 10px;
-              @include font-style-body($size: 14px, $lh: 130%, $color: #5a3714);
+              @include global.font-style-body($size: 14px, $lh: 130%, $color: #5a3714);
 
-              @include layout-md {
+              @include global.layout-md {
                 justify-content: unset;
                 flex-flow: row;
               }
 
               .heading-section {
                 .detail-title {
-                  @include font-style-body($size: 18px, $weight: 600, $color: #1a110c);
+                  @include global.font-style-body($size: 18px, $weight: 600, $color: #1a110c);
                   margin-bottom: 15px;
                 }
 
                 .detail-row {
                   padding: 0 0 4px 0;
-                  @include font-style-body($size: 14px, $color: $brown);
+                  @include global.font-style-body($size: 14px, $color: global.$brown);
 
                   .key {
                     margin-right: 5px;
-                    @include font-style-body-bold($size: 14px, $weight: 600, $color: $brown);
+                    @include global.font-style-body-bold($size: 14px, $weight: 600, $color: global.$brown);
                   }
                 }
 
-                @include layout-md {
+                @include global.layout-md {
                   width: 40%;
                 }
               }
@@ -197,7 +197,7 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
               .detail-multirow {
                 padding-top: 10px;
 
-                @include layout-md {
+                @include global.layout-md {
                   width: 50%;
                   padding: 20px 0 0 0;
                   margin:0 0 0 30px;

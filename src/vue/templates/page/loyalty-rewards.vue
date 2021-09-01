@@ -27,8 +27,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
-
+@use "@/styles/main" as global;
 
 #loyalty-rewards .inner-container {
     overflow-x: hidden;
@@ -58,7 +57,7 @@ export default {
     padding: 12px 30px 8px !important;
     
     span {
-      @include font-style-heading;
+      @include global.font-style-heading();
     }
   }
 

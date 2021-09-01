@@ -22,7 +22,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
 .gift-card-balance-component {
   .card-balance-container {
     padding: 4rem 0 0 0;

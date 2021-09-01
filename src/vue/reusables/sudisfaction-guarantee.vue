@@ -22,7 +22,7 @@ export default {};
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .sudisfaction-guarantee:after {
   content: "";
@@ -55,7 +55,7 @@ export default {};
     text-align: center;
 
     .title {
-      @include font-style-heading($size: 16px);
+      @include global.font-style-heading($size: 16px);
       font-size: 1rem;
       margin-bottom: 8px;
       margin-top: 12px;
@@ -63,9 +63,9 @@ export default {};
     }
 
     .text {
-      @include font-style-body($size: 16px);
+      @include global.font-style-body($size: 16px);
       font-size: 1rem;
-      color: $brown;
+      color: global.$brown;
     }
 
     .foot-icon {

@@ -53,16 +53,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "@/styles/main.scss";
-
-  $orange: #CC6328;
-  $darker-brown: #1A110C;
-  $dark-brown: #473729;
-  $brown: #5A3714;
-  $sand: #E5D0BB;
-  $off-white: #F0EEEB;
-
-
+  @use "@/styles/main" as global;
   .link-box {
     text-decoration: none;
   }
@@ -78,7 +69,7 @@
   border-radius: 5px;
   cursor: pointer;
 
-  @media(min-width: $md) {
+  @media(min-width: global.$md) {
     min-height: 430px;
   }
 
@@ -86,7 +77,7 @@
     width: 102px;
     height: 102px;
 
-    @media (min-width: $lg) {
+    @media (min-width: global.$lg) {
       width: 106px;
       height: 106px;
     }
@@ -100,14 +91,14 @@
     width: 90%;
     line-height: 100%;
     text-align: center;
-    @include font-style-heading($size: 25px, $color: $darker-brown);
+    @include global.font-style-heading($size: 25px, $color: global.$darker-brown);
     margin: 20px 0 8px;
 
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       margin: 25px 0 12px;
     }
 
-    @media (min-width: $lg) {
+    @media (min-width: global.$lg) {
       font-size: 30px;
     }
   }
@@ -116,16 +107,16 @@
     min-height: 50px;
     width: 90%;
     line-height: 130%;
-    @include font-style-body($color: $brown, $size: 14px);
+    @include global.font-style-body($color: global.$brown, $size: 14px);
     text-align: center;
     margin-bottom: 16px;
 
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       min-height: 120px;
       width: 96%;
     }
 
-    @media (min-width: $lg) {
+    @media (min-width: global.$lg) {
       font-size: 16px;
     }
   }
@@ -136,7 +127,7 @@
     padding: 18px 0 12px 0;
     text-decoration: none;
     text-align: center;
-    @include font-style-heading($size: 14px, $color: $orange);
+    @include global.font-style-heading($size: 14px, $color: global.$orange);
 
     .arrow-icon {
       width: 20px;

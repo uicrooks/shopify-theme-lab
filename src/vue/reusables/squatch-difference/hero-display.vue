@@ -151,7 +151,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .hero-display-component {
   width: 100%;
@@ -160,17 +160,17 @@ export default {
     padding: 30px 0;
     margin: auto;
   
-    @include layout-md {
+    @include global.layout-md {
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    @include layout-lg {
+    @include global.layout-lg {
       max-width: 979px;
     }
 
-    @include layout-xl {
+    @include global.layout-xl {
       max-width: 1200px;
     }
   }
@@ -183,13 +183,13 @@ export default {
 
 
     &.reversed {
-      @include layout-md {
+      @include global.layout-md {
         order: 2;
         padding: 0 0 0 15px;
       }
     }
 
-    @include layout-md {
+    @include global.layout-md {
       width: 50%;
       margin: 0 10px;
     }
@@ -197,9 +197,9 @@ export default {
     .sub-header {
       line-height: 130%;
       padding: 0 18px;
-      @include font-style-body-bold($size: 14px, $weight: 700, $color: white);
+      @include global.font-style-body-bold($size: 14px, $weight: 700, $color: white);
 
-      @include layout-md {
+      @include global.layout-md {
         font-size: 16px;
         line-height: 110%;
       }
@@ -208,14 +208,14 @@ export default {
     .header {
       margin: 12px 0 17px 0;
       padding: 0 0 0 18px;
-      @include font-style-heading($size: 30px, $color: white);
+      @include global.font-style-heading($size: 30px, $color: white);
       line-height: 100%;
 
-      @include layout-md {
+      @include global.layout-md {
         font-size: 40px !important;
       }
 
-      @include layout-lg {
+      @include global.layout-lg {
         font-size: 50px !important;
       }
     }
@@ -224,7 +224,7 @@ export default {
       padding: 0 20px;
       width: 100%;
 
-      @include layout-md {
+      @include global.layout-md {
         display: none;
       }
 
@@ -239,24 +239,24 @@ export default {
 
       
       .text-heading {
-        @include font-style-body-bold($color: white);
+        @include global.font-style-body-bold($color: white);
         margin-bottom: 10px;
 
-        @include layout-xl {
+        @include global.layout-xl {
           font-size: 18px;
           line-height: 100%;
         }
       }
 
       .text {
-        @include font-style-body($size: 14px, $color: white);
+        @include global.font-style-body($size: 14px, $color: white);
         line-height: 130%;
 
-        @include layout-xl {
+        @include global.layout-xl {
           font-size: 15px;
         }
 
-        @include layout-xl {
+        @include global.layout-xl {
           font-size: 16px;
         }
       }
@@ -268,7 +268,7 @@ export default {
       display: flex;
       justify-content: center;
   
-      @include layout-md {
+      @include global.layout-md {
         text-align: left;
         padding: 0 18px;
         justify-content: flex-start;
@@ -279,15 +279,15 @@ export default {
         width: 80%;
         margin: auto;
         border-radius: 5px;
-        background-color: $orange;
+        background-color: global.$orange;
         border: none;
         padding: 15px 0 11px 0;
         text-transform: uppercase;
-        @include font-style-heading($size: 14px, $color: white);
+        @include global.font-style-heading($size: 14px, $color: white);
         line-height: 17px;
         text-align: center;
 
-        @include layout-md {
+        @include global.layout-md {
           width: 70%;
         }
       }
@@ -299,7 +299,7 @@ export default {
     display: none;
 
     &.reversed {
-      @include layout-md {
+      @include global.layout-md {
         order: 1;
       }
     }
@@ -308,7 +308,7 @@ export default {
       width: 100%;
     }
 
-    @include layout-md {
+    @include global.layout-md {
       display: inline-block;
       width: 50%;
     }

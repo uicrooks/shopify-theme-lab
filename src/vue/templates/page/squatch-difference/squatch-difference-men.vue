@@ -216,7 +216,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
   .squatch-difference-men-component {
     margin: 75px 0 0 0;
@@ -236,22 +236,22 @@ export default {
         margin-top:30px;
         .title {
           margin-bottom: 15px;
-          @include font-style-heading;
+          @include global.font-style-heading;
 
-          @include layout-md {
+          @include global.layout-md {
             font-size:35px;
           }
         }
 
         .text{
-          @include font-style-body;
+          @include global.font-style-body();
 
-          @include layout-md {
+          @include global.layout-md {
             font-size: 16px;
           }
         }
         
-        @include layout-md {
+        @include global.layout-md {
           width: 80%;
           max-width: 780px;
           padding: 0;
@@ -264,7 +264,7 @@ export default {
         flex-direction: column;
         margin-bottom: 30px;
 
-        @include layout-md {
+        @include global.layout-md {
           flex-direction: row !important;
           width: 85%;
           justify-content: space-evenly;
@@ -282,19 +282,19 @@ export default {
         min-height: 131px;
         padding: 16px;
 
-        @include layout-md {
+        @include global.layout-md {
           width: unset;
           flex: 1;
         }
 
-        @include layout-xl {
+        @include global.layout-xl {
           max-width: 350px;
         }
 
         .icon {
           width: 100%;
 
-          @media(min-width:$md) {
+          @media(min-width:global.$md) {
             max-width: 336px;
             max-height: 274px;
           }
@@ -307,10 +307,10 @@ export default {
         
 
         .ingredient-header {
-          @include font-style-heading($size: 16px, $color: $dark-brown);
+          @include global.font-style-heading($size: 16px, $color: global.$dark-brown);
           padding: 16px 0 5px 0;
 
-          @include layout-md {
+          @include global.layout-md {
             font-size: 20px;
             padding: 25px 0 14px 0;
             margin-top: 20px;
@@ -325,7 +325,7 @@ export default {
           width: 90%;
           color: $brown;
 
-          @include layout-md {
+          @include global.layout-md {
             font-size: 16px;
           }
         }
@@ -340,7 +340,7 @@ export default {
       margin: auto;
       max-width: 1224px;
 
-      @include layout-md {
+      @include global.layout-md {
         flex-direction: row;
       }
       .men-ingredient-container {
@@ -351,18 +351,18 @@ export default {
       }
 
       .men-ingredients-title {
-        @include font-style-heading($size: 20px);
+        @include global.font-style-heading($size: 20px);
         margin-bottom: 15px;
 
-        @include layout-md {
+        @include global.layout-md {
           font-size: 30px;
         }
       }
 
       .men-ingredients-text {
-        @include font-style-body;
+        @include global.font-style-body();
         
-        @include layout-md {
+        @include global.layout-md {
           font-size: 16px;
         }
       }
@@ -376,7 +376,7 @@ export default {
           padding-bottom: 15px;
 
           .ingredient-title {
-            @include font-style-body-bold;
+            @include global.font-style-body-bold();
             margin: 0;
             padding-left: 10px;
           }
@@ -391,7 +391,7 @@ export default {
 
     .hero-display-banner {
       background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/dsq-woodgrain_texture-DARK.svg?v=1616535182");
-      background-color: $dark-brown;
+      background-color: global.$dark-brown;
       background-position: center;
       color: #ffffff;
 
@@ -403,7 +403,7 @@ export default {
         max-width: 500px;
         color: #ffffff;
 
-        @include layout-md {
+        @include global.layout-md {
           font-size: 50px !important;
         }
       }
@@ -411,18 +411,18 @@ export default {
 
     .hero-display-middle {
         .sub-header, .header {
-          color: $dark-brown;
+          color: global.$dark-brown;
         }
 
         .text {
-          color: $brown;
+          color: global.$brown;
         }
     }
 
     .scents-display {
       text-align: center;
       background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353");
-      background-color: $sand;
+      background-color: global.$sand;
       background-size: 200%;
       padding: 30px 18px;
     
@@ -431,9 +431,9 @@ export default {
         font-size: 14px;
         line-height: 16px;
         margin-bottom: 12px;
-        color: $dark-brown;
+        color: global.$dark-brown;
 
-        @include layout-md {
+        @include global.layout-md {
           font-size: 16px;
           line-height: 18px;
         }
@@ -442,7 +442,7 @@ export default {
       .header {
         margin: 18px 30px 12px 30px;
         line-height: 100%;
-        @include font-style-heading($color: $dark-brown, $size: 30px);
+        @include global.font-style-heading($color: global.$dark-brown, $size: 30px);
 
         @include layout-md {
           margin: 10px 30px 12px 30px;
@@ -456,18 +456,18 @@ export default {
         text-align: left;
         margin: 0 auto 30px auto;
         max-width: 725px;
-        color: $dark-brown;
+        color: global.$dark-brown;
       }
 
       .scents {
 
-        @include layout-md {
+        @include global.layout-md {
           display: flex;
           flex-flow: row nowrap;
           justify-content: space-between;
         }
 
-        @include layout-xl {
+        @include global.layout-xl {
           max-width: 1200px;
           margin: auto;
         }
@@ -484,17 +484,17 @@ export default {
           box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
           text-align: left;
 
-          @include layout-md {
+          @include global.layout-md {
             width: unset;
             flex: 1;
             margin: 5px 8px;
           }
 
-          @include layout-lg {
+          @include global.layout-lg {
             margin: 5px 12px;
           }
 
-          @include layout-xl {
+          @include global.layout-xl {
             max-width: 250px;
           }
 
@@ -511,19 +511,19 @@ export default {
 
           .scent-name {
             line-height: 100%;
-            @include font-style-heading($color: $dark-brown, $size: 20px);
+            @include global.font-style-heading($color: global.$dark-brown, $size: 20px);
           }
 
           .scent-function {
             margin: 7px 0 10px 0;
             line-height: 130%;
-            @include font-style-body($color: $dark-brown, $size: 14px, $weight: 700);
+            @include global.font-style-body($color: global.$dark-brown, $size: 14px, $weight: 700);
           }
 
           .scent-description {
             font-size: 12px;
             line-height: 130%;
-            color: $brown;
+            color: global.$brown;
             margin: 0;
           }
         }
@@ -538,15 +538,15 @@ export default {
           width: 86%;
           margin: auto;
           border-radius: 5px;
-          background-color: $orange;
+          background-color: global.$orange;
           border: none;
           padding: 15px 0 11px 0;
           text-transform: uppercase;
-          @include font-style-heading($size: 14px, $color: white);
+          @include global.font-style-heading($size: 14px, $color: white);
           line-height: 17px;
           text-align: center;
 
-          @include layout-md {
+          @include global.layout-md {
             width: 70%;
             max-width: 300px;
           }

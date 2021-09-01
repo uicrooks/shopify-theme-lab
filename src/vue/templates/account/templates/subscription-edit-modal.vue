@@ -349,19 +349,19 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .edit-modal-content {
   padding: 0; 
 
   .field-wrapper {
-    @include font-style-body($color: $dark-brown);
+    @include global.font-style-body($color: global.$dark-brown);
     margin-bottom: 14px;
 
     label {
       display: block;
       margin-bottom: 5px;
-      @include font-style-body-bold($color: $brown);
+      @include global.font-style-body-bold($color: global.$brown);
     }
 
     .text-display {
@@ -396,8 +396,8 @@ export default {
       }
 
       .qty-switch {
-        @include font-style-body();
-        @include layout-md {
+        @include global.font-style-body();
+        @include global.layout-md {
           width: 80px;
         }
 
@@ -415,14 +415,14 @@ export default {
     position: sticky;
     top: 0;
     padding: 15px 15px 10px 15px;
-    background-color: $white;
+    background-color: global.$white;
 
     .nav-row {
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
       margin-bottom: 20px;
-      @include font-style-body-bold();
+      @include global.font-style-body-bold();
 
       .back-button {
         display: flex;
@@ -460,10 +460,10 @@ export default {
   .label {
     display: block;
     margin-bottom: 5px;
-    @include font-style-body-bold($color: $brown);
+    @include global.font-style-body-bold($color: global.$brown);
 
     span {
-      @include font-style-body($color: grey);
+      @include global.font-style-body($color: grey);
     }
   }
 
@@ -475,7 +475,7 @@ export default {
       position: relative;
       width: 75px;
       text-align: center;
-      @include font-style-body($size: 12px);
+      @include global.font-style-body($size: 12px);
 
       .icon-squatch {
         position: absolute;

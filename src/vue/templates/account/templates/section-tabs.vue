@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .section-tabs-component {
   display: flex;
@@ -50,11 +50,11 @@ export default {
     padding: 5px 5px 12px 5px;
     cursor: pointer;
     border-bottom: 2px solid transparent;
-    @include font-style-body($size: 12px, $color: grey);
+    @include global.font-style-body($size: 12px, $color: grey);
 
     &.active {
-      border-bottom: 2px solid $text-orange;
-      @include font-style-body($size: 12px, $color: $text-orange);
+      border-bottom: 2px solid global.$text-orange;
+      @include global.font-style-body($size: 12px, $color: global.$text-orange);
     }
   }
 }

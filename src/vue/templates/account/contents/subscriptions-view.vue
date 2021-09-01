@@ -222,7 +222,7 @@ export default {
 
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .subscriptions-view-component {
 
@@ -235,7 +235,7 @@ export default {
 
     .refill-date {
       span {
-        @include globalfont-style-body($color: grey, $weight: 500);
+        @include global.font-style-body($color: grey, $weight: 500);
       }
     }
 
@@ -264,7 +264,7 @@ export default {
       @include global.font-style-body($size: 12px, $color: grey);
 
       &.active {
-        border-bottom: 2px solid $text-orange;
+        border-bottom: 2px solid global.$text-orange;
         @include global.font-style-body($size: 12px, $color: global.$text-orange);
       }
     }
@@ -296,7 +296,7 @@ export default {
         flex: 4;
 
         h5 {
-          @include font-style-body($size: 14px, $weight: 600);
+          @include global.font-style-body($size: 14px, $weight: 600);
         }
 
         .sub-heading {
@@ -304,7 +304,7 @@ export default {
           flex-flow: row wrap;
           align-items: center;
           margin-bottom: 12px;
-          @include font-style-body($color: #a5937f);
+          @include global.font-style-body($color: #a5937f);
           
           .icon-custom {
             color: $orange;
@@ -314,7 +314,7 @@ export default {
 
         .line-item {
           margin-bottom: 4px;
-          @include font-style-body($color: $brown, $size: 13px);
+          @include global.font-style-body($color: $brown, $size: 13px);
         }
       }
     }
@@ -323,7 +323,7 @@ export default {
   .section-container-box {
     padding: 20px 15px;
 
-    @include layout-sm {
+    @include global.layout-sm {
       padding: 20px;
     }
   }
@@ -336,7 +336,7 @@ export default {
   .box-items-wrapper {
     width: 100%;
 
-    @include layout-md {
+    @include global.layout-md {
       width: unset;
       flex: 3;
     }
@@ -347,7 +347,7 @@ export default {
       align-items: center;
       padding: 15px 0;
       border-bottom: 1px solid #dcdcdc;
-      @include font-style-body($size: 12px);
+      @include global.font-style-body($size: 12px);
 
       &.last {
         border-bottom: none;
@@ -358,7 +358,7 @@ export default {
         text-align: center;
         min-width: 55px;
 
-        @include layout-sm {
+        @include global.layout-sm {
           padding: 3px 10px;
         }
 
@@ -376,24 +376,24 @@ export default {
         justify-content: space-between;
         padding-left: 5px;
 
-        @include layout-sm {
+        @include global.layout-sm {
           padding-left: 15px;
         }
 
-        @include layout-md {
+        @include global.layout-md {
           flex: 3;
         }
 
         h5 {
-          @include font-style-body($size: 14px, $weight: 600);
+          @include global.font-style-body($size: 14px, $weight: 600);
         }
 
         .pricing {
           margin-bottom: 8px;
-          @include font-style-body($color: $dark-brown);
+          @include global.font-style-body($color: global.$dark-brown);
 
           .accentized {
-            @include font-style-body($color: $text-green, $weight: 600);
+            @include global.font-style-body($color: global.$text-green, $weight: 600);
           }
 
           .compare-at-price {
@@ -408,10 +408,10 @@ export default {
           flex-flow: row wrap;
           align-items: center;
           margin-bottom: 12px;
-          @include font-style-body($color: #a5937f);
+          @include global.font-style-body($color: #a5937f);
           
           .icon-custom {
-            color: $orange;
+            color: global.$orange;
             margin-right: 4px;
           }
         }
@@ -419,7 +419,7 @@ export default {
         .line-item {
           width: 100%;
           margin-bottom: 4px;
-          @include font-style-body($color: $brown, $size: 13px);
+          @include global.font-style-body($color: global.$brown, $size: 13px);
         }
       }
     }
@@ -429,13 +429,13 @@ export default {
     width: 100%;
     padding: 15px;
     background-color: #f6f5f3;
-    @include font-style-body($color: $brown);
+    @include global.font-style-body($color: global.$brown);
 
-    @include layout-md {
+    @include global.layout-md {
       padding: 20px;
     }
 
-    @include layout-md {
+    @include global.layout-md {
       width: unset;
       flex: 1;
       padding: 20px 15px;
@@ -449,10 +449,10 @@ export default {
       margin-bottom: 7px;
 
       &.accentized {
-        @include font-style-body($color: $text-green, $weight: 600);
+        @include global.font-style-body($color: global.$text-green, $weight: 600);
       }
 
-      @include layout-md {
+      @include global.layout-md {
         margin-bottom: 10px;
       }
     }
@@ -464,9 +464,9 @@ export default {
     }
 
     h6 {
-      @include font-style-body($size: 14px, $weight: 600);
+      @include global.font-style-body($size: 14px, $weight: 600);
 
-      @include layout-md {
+      @include global.layout-md {
         margin-bottom: 12px;
       }
     }
@@ -479,7 +479,7 @@ export default {
       display: block;
       margin-bottom: 4px;
 
-      @include layout-md {
+      @include global.layout-md {
         margin-bottom: 7px;
       }
     }
@@ -493,7 +493,7 @@ export default {
       }
 
       .status-alert {
-        color: $red;
+        color: global.$red;
         font-size: 12px;
       }
     }

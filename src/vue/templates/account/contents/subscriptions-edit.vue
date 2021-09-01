@@ -426,14 +426,14 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .subscriptions-edit-component {
 
   .section-tabs {
     padding: 20px 15px;
 
-    @include layout-sm {
+    @include global.layout-sm {
       padding: 20px;
     }
   }
@@ -452,9 +452,9 @@ export default {
 
       .box-header {
         width: 100%;
-        @include font-style-body($color: $brown);
+        @include font-style-body($color: global.$brown);
 
-        @include layout-md {
+        @include global.layout-md {
           display: flex;
           flex-flow: row wrap;
         }
@@ -462,7 +462,7 @@ export default {
         .date-info {
           margin-bottom: 20px;
 
-          @include layout-md {
+          @include global.layout-md {
             flex: 1;
             margin-right: 20px;
           }
@@ -474,17 +474,17 @@ export default {
 
             .label {
               margin-right: 10px;
-              @include font-style-body($size: 16px, $weight: 600, $lh: 22px);
+              @include global.font-style-body($size: 16px, $weight: 600, $lh: 22px);
             }
 
             .date {
-              @include font-style-body($size: 16px, $lh: 22px, $color: $brown);
+              @include global.font-style-body($size: 16px, $lh: 22px, $color: global.$brown);
             }
           }
         
           a {
             cursor: pointer;
-            @include font-style-body($color: $text-orange);
+            @include global.font-style-body($color: global.$text-orange);
           }
 
           .cancel-button {
@@ -492,7 +492,7 @@ export default {
             flex-flow: row nowrap;
             align-items: center;
             cursor: pointer;
-            color: $dark-brown;
+            color: global.$dark-brown;
             margin-left: 18px;
 
             .icon-squatch {
@@ -508,28 +508,28 @@ export default {
         }
 
         .meta-info {
-          @include layout-sm {
+          @include global.layout-sm {
             display: flex;
             flex-flow: row wrap;
           }
 
-          @include layout-md {
+          @include global.layout-md {
             flex: 2;
           }
 
           .billing, .shipping {
-            @include font-style-body($color: $brown);
+            @include global.font-style-body($color: global.$brown);
             position: relative;
 
-            @include layout-sm {
+            @include global.layout-sm {
               flex: 1;
             }
 
             h6 {
               margin-bottom: 8px;
-              @include font-style-body($size: 14px, $weight: 600);
+              @include global.font-style-body($size: 14px, $weight: 600);
 
-              @include layout-md {
+              @include global.layout-md {
                 margin-bottom: 12px;
               }
             }
@@ -540,15 +540,15 @@ export default {
               top: 0;
               text-decoration: underline;
               cursor: pointer;
-              @include font-style-body($color: $text-orange);
+              @include global.font-style-body($color: global.$text-orange);
 
-              @include layout-sm {
+              @include global.layout-sm {
                 right: 30px;
               }
             }
 
             p {
-              @include font-style-body($color: $brown);
+              @include global.font-style-body($color: global.$brown);
 
               &.billing-info {
                 margin-bottom: 0;
@@ -558,7 +558,7 @@ export default {
                 display: block;
                 margin-bottom: 4px;
 
-                @include layout-md {
+                @include global.layout-md {
                   margin-bottom: 7px;
                 }
               }
@@ -569,7 +569,7 @@ export default {
               }
 
               .status-alert {
-                color: $red;
+                color: global.$red;
                 font-size: 12px;
               }
             }
@@ -581,13 +581,13 @@ export default {
     .box-items-wrapper {
       width: 100%;
       padding: 0 15px;
-      @include font-style-body();
+      @include global.font-style-body();
 
-      @include layout-sm {
+      @include global.layout-sm {
         padding: 0 20px;
       }
 
-      @include layout-md {
+      @include global.layout-md {
         width: unset;
         flex: 3;
       }
@@ -595,22 +595,22 @@ export default {
       &.upcoming {
         background-color: #f6f5f3;
         padding: 15px;
-        border-bottom: 2px solid $white;
+        border-bottom: 2px solid global.$white;
 
         &.last {
           border-bottom: none;
         }
 
-        @include layout-sm {
+        @include global.layout-sm {
           padding: 15px 20px;
         }
       }
       
       .refill-date {
-        @include font-style-body();
+        @include global.font-style-body();
 
         span {
-          @include font-style-body($color: grey, $weight: 500);
+          @include global.font-style-body($color: grey, $weight: 500);
         }
       }
 
@@ -620,7 +620,7 @@ export default {
         align-items: center;
         padding: 20px 0;
         border-bottom: 1px solid #dcdcdc;
-        @include font-style-body($size: 12px);
+        @include global.font-style-body($size: 12px);
 
         &.last {
           border-bottom: none;
@@ -630,7 +630,7 @@ export default {
           flex: 1;
           text-align: center;
 
-          @include layout-sm {
+          @include global.layout-sm {
             padding: 3px 10px;
           }
 
@@ -646,7 +646,7 @@ export default {
           position: relative;
           padding-left: 5px;
 
-          @include layout-sm {
+          @include global.layout-sm {
             display: flex;
             flex-flow: row nowrap;
             align-items: center;
@@ -655,12 +655,12 @@ export default {
 
           .heading {
 
-            @include layout-sm {
+            @include global.layout-sm {
               flex: 2;
             }
   
             h5 {
-              @include font-style-body($size: 14px, $weight: 600);
+              @include global.font-style-body($size: 14px, $weight: 600);
             }
   
             .sub-heading {
@@ -668,10 +668,10 @@ export default {
               flex-flow: row wrap;
               align-items: center;
               margin-bottom: 12px;
-              @include font-style-body($color: #a5937f);
+              @include global.font-style-body($color: #a5937f);
               
               .icon-custom {
-                color: $orange;
+                color: global.$orange;
                 margin-right: 4px;
               }
             }
@@ -681,7 +681,7 @@ export default {
             display: flex;
             flex-flow: row nowrap;
 
-            @include layout-sm {
+            @include global.layout-sm {
               flex-flow: column nowrap;
               align-items: center;
               justify-content: center;
@@ -689,14 +689,14 @@ export default {
               margin-left: 20px;
             }
 
-            @include layout-md {
+            @include global.layout-md {
               width: 180px;
             }
 
             .button-wrapper {
               flex: 1;
 
-              @include layout-sm {
+              @include global.layout-sm {
                 width: 100%;
               }
             }
@@ -705,16 +705,16 @@ export default {
               width: 100%;
               height: 34px;
               padding: 12px 10px 10px;
-              color: $text-orange;
+              color: global.$text-orange;
               background-color: transparent;
               border: 1px solid transparent;
               margin-right: 10px;
 
               &.hover {
-                color: $orange;
+                color: global.$orange;
               }
               
-              @include layout-sm {
+              @include global.layout-sm {
                 height: unset;
                 padding: 15px 15px 10px;
                 margin-right: 0;
@@ -727,16 +727,16 @@ export default {
               height: 34px;
               padding: 12px 10px 10px;
 
-              @include layout-sm {
+              @include global.layout-sm {
                 height: unset;
                 padding: 15px 15px 10px;
               }
             }
 
             .qty-switch {
-              @include font-style-body();
+              @include global.font-style-body();
 
-              @include layout-md {
+              @include global.layout-md {
                 width: 80px;
               }
 

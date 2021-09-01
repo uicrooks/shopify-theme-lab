@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .wholesale-component {
   margin: 75px 0 0 0;
@@ -93,10 +93,10 @@ export default {
       justify-content: center;
       align-items: center;
       text-align: center;
-      color: $white;
+      color: global.$white;
 
       .wholesale-banner-title {
-        @include font-style-heading;
+        @include global.font-style-heading();
       }
 
       .line-through {
@@ -106,7 +106,7 @@ export default {
       }
 
       .banner-subtext {
-        @include font-style-body;
+        @include global.font-style-body();
       }
 
 
@@ -127,7 +127,7 @@ export default {
         border-radius: 5px;
         text-align: center;
         cursor: pointer;
-        @include font-style-heading($size: 1rem, $color: $white);
+        @include global.font-style-heading($size: 1rem, $color: global.$white);
         border: 2px solid transparent;
 
         @media(min-width: 426px) {
@@ -145,7 +145,7 @@ export default {
       }
 
       .login-button {
-        background-color: $orange;
+        background-color: global.$orange;
       }
     }
 
@@ -156,7 +156,7 @@ export default {
 
     .info-text {
       text-align: left;
-      @include font-style-body($color: $brown);
+      @include global.font-style-body($color: global.$brown);
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -170,7 +170,7 @@ export default {
         margin: 20px 0 0 0;
 
         .link {
-          color: $orange;
+          color: global.$orange;
         }
       }
     }

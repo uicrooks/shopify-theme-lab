@@ -59,10 +59,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .index-social-proof-component {
-  background-color: $tan;
+  background-color: global.$tan;
   padding: 1rem 0 .5rem 0;
 
 
@@ -80,7 +80,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        @include font-style-body;
+        @include global.font-style-body();
       }
 
       .icon-container {
@@ -91,7 +91,7 @@ export default {
         flex-flow: row wrap;
 
 
-        @media(min-width: $md) {
+        @media(min-width: global.$md) {
           margin: 0;
           flex-flow: row nowrap;
         }
@@ -106,7 +106,7 @@ export default {
           flex: 0 0 33%;
           max-width: 33%;
 
-          @media(min-width: $md) {
+          @media(min-width: global.$md) {
             flex: 33%;
           }
 

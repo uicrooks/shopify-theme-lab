@@ -136,8 +136,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
-
+@use "@/styles/main" as global;
 
 .hero-discount-component {
 
@@ -150,7 +149,7 @@ export default {
     background-repeat: no-repeat;
     max-width: 1440px;
     margin: auto;
-    @include layout-md {
+    @include global.layout-md {
       height: 450px;
       background-position: top 28% center;
     }
@@ -173,10 +172,10 @@ export default {
       }
 
       .banner-header {
-        @include font-style-heading($color: $white);
+        @include global.font-style-heading($color: global.$white);
       }
       .banner-subtext {
-        @include font-style-heading($color: $white);
+        @include global.font-style-heading($color: global.$white);
       }
     }
   }
@@ -189,15 +188,15 @@ export default {
       max-width: 540px;
     }
 
-    @include layout-md {
+    @include global.layout-md {
       max-width: 720px;
     }
       
-    @include layout-lg {
+    @include global.layout-lg {
       max-width: 960px;
     }
 
-    @include layout-xl {
+    @include global.layout-xl {
       max-width: 1024px;
     }
 
@@ -208,14 +207,14 @@ export default {
 
 
       .header {
-        @include font-style-heading;
+        @include global.font-style-heading();
       }
       
       .text {
-        @include font-style-body($color: $brown);
+        @include global.font-style-body($color: global.$brown);
 
         .bold-text {
-          @include font-style-body-bold($color: $brown);
+          @include global.font-style-body-bold($color: global.$brown);
         }
       }
     }
@@ -229,7 +228,7 @@ export default {
 
       .header-container {
         .icon-text {
-          @include font-style-heading;
+          @include global.font-style-heading();
         }
       }
 
@@ -246,7 +245,7 @@ export default {
           height: 172px;
           border: transparent;
 
-          @include layout-md {
+          @include global.layout-md {
             width: 33%;
           }
 
@@ -261,7 +260,7 @@ export default {
               max-width: 200px;
               margin: auto;
               height: 43px;
-              @include font-style-body;
+              @include global.font-style-body();
             }
           }
         }
@@ -273,7 +272,7 @@ export default {
         width: 100%;
         margin: 0 0 30px 0;
 
-        @include layout-md {
+        @include global.layout-md {
           flex-flow: row nowrap;
         }
         .bottom-card {
@@ -283,7 +282,7 @@ export default {
           height: 371px;
           border: transparent;
 
-          @include layout-md {
+          @include global.layout-md {
             width: 33%;
           }
 
@@ -303,14 +302,14 @@ export default {
             .card-title {
               max-width: 200px;
               margin: 18px auto 10px;
-              @include font-style-heading($size: 16px);
+              @include global.font-style-heading($size: 16px);
             }
 
             .card-description {
               max-width: 200px;
               margin: auto;
               height: 43px;
-              @include font-style-body($size: 15px, $color: $brown);
+              @include global.font-style-body($size: 15px, $color: global.$brown);
             }
 
             .code-btn {
@@ -319,10 +318,10 @@ export default {
               height: 54px;
               width: 121px;
               cursor: pointer;
-              background-color: $orange;
+              background-color: global.$orange;
               border: 2px solid transparent;
               border-radius: 5px;
-              @include font-style-heading($size: 1rem, $color: $white);
+              @include global.font-style-heading($size: 1rem, $color: global.$white);
             }
           }
         }

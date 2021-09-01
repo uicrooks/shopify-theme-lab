@@ -245,7 +245,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .quiz-component {
   width: 100%;
@@ -265,11 +265,11 @@ export default {
       flex-flow: column nowrap;
 
       .preheader {
-        @include font-style-body;
+        @include global.font-style-body();
       }
 
       .header {
-        @include font-style-heading;
+        @include global.font-style-heading();
       }
     }
 
@@ -315,13 +315,13 @@ export default {
 
 
         .firstSlideHeader {
-          @include font-style-heading($color: #392b13, $size: 24px);
+          @include global.font-style-heading($color: #392b13, $size: 24px);
           margin: 20px 0 20px 0;
           text-align: center;
         }
 
         .firstSlideSubheader {
-          @include font-style-body($size: 18px, $color: #5a3714);
+          @include global.font-style-body($size: 18px, $color: #5a3714);
           text-align: center;
 
           @media(min-width: 497px) {
@@ -330,7 +330,7 @@ export default {
         }
 
         .startButton {
-          @include font-style-heading($color: white, $size: 1rem);
+          @include global.font-style-heading($color: white, $size: 1rem);
           border-radius: 5px;
           border: 2px solid transparent;
           padding: 16px 66px;
@@ -374,14 +374,14 @@ export default {
             text-decoration: none;
             background: rgba(0, 0, 0, 0.42);
             padding: 4px;
-            @include font-style-body-bold;
+            @include global.font-style-body-bold();
           }
         }
 
       }
 
       .quiz-question {
-        @include font-style-heading;
+        @include global.font-style-heading();
         text-align: center;
       }
 
@@ -403,7 +403,7 @@ export default {
             text-decoration: none;
             background: rgba(0, 0, 0, 0.42);
             padding: 4px;
-            @include font-style-body-bold;
+            @include global.font-style-body-bold();
           }
         }
       

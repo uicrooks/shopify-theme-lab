@@ -207,11 +207,11 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-refill-date-update-modal {
   padding: 0;
-  @include font-style-body($size: 15px, $lh: 22px);
+  @include global.font-style-body($size: 15px, $lh: 22px);
 
   .body {
     padding: 15px 20px;
@@ -219,21 +219,21 @@ export default {
     .icon-wrapper {
       padding: 15px;
       font-size: 66px;
-      color: $text-orange;
+      color: global.$text-orange;
       text-align: center;
     }
 
     p {
 
       &.errored {
-        color: $red;
+        color: global.$red;
       }
 
       .progress {
         margin-top: 15px;
 
         .progress-bar {
-          background-color: $orange;
+          background-color: global.$orange;
         }
       }
     }
@@ -248,12 +248,12 @@ export default {
       padding: 14px;
 
       .cancel-button {
-        color: $text-orange;
+        color: global.$text-orange;
         background-color: transparent;
         border: 1px solid transparent;
         
         &.disabled {
-          color: $orange-lighten;
+          color: global.$orange-lighten;
         }
       }
     }

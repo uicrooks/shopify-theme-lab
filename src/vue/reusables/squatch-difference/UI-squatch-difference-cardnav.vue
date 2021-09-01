@@ -86,7 +86,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .ui-squatch-difference-cardnav-component {
   .UI-squatch-difference-cardnav{
@@ -96,7 +96,7 @@ export default {
       border-top: 2px solid #F0EEEB;
     }
   
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       padding: 20px 20px 0;
       display: flex;
       flex-flow: row wrap;
@@ -104,19 +104,19 @@ export default {
       margin: auto;
     }
   
-    @media (min-width: $lg) {
+    @media (min-width: global.$lg) {
       justify-content: center;
     }
   
     .title {
       width: 100%;
       font-weight: 900;
-      @include font-style-heading($size: 25px, $color: $dark-brown);
+      @include global.font-style-heading($size: 25px, $color: global.$dark-brown);
       line-height: 100%;
       margin: 25px 0;
       text-align: center;
   
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         font-size: 30px;
       }
     }
@@ -131,16 +131,16 @@ export default {
         }
       }
   
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         margin-bottom: 15px;
       }
   
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         max-width: 370px;
         flex: 1;
       }
   
-      @media (min-width: $lg) {
+      @media (min-width: global.$lg) {
         padding: 0 20px;
         max-width: 360px;
       }

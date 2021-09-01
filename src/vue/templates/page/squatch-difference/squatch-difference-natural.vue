@@ -229,7 +229,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .squatch-difference-natural-component {
   @include font-style-body;
@@ -249,20 +249,20 @@ export default {
       margin-top: 30px;
       .title{
         margin-bottom: 15px;
-        @include font-style-heading;
+        @include global.font-style-heading;
 
-        @include layout-md {
+        @include global.layout-md {
           font-size: 35px;
           line-height: 1;
         }
       }
       .text{
-        @include layout-md {
+        @include global.layout-md {
           font-size: 16px;
         }
       }
       
-      @include layout-md {
+      @include global.layout-md {
         width: 80%;
         max-width: 780px;
       }
@@ -273,7 +273,7 @@ export default {
       display: flex;
       flex-direction: column;
 
-      @include layout-md {
+      @include global.layout-md {
         flex-direction: row !important;
       }
     }
@@ -287,12 +287,12 @@ export default {
       min-height: 131px;
       padding: 16px;
 
-      @include layout-md {
+      @include global.layout-md {
         width: unset;
         flex: 1;
       }
 
-      @include layout-xl {
+      @include global.layout-xl {
         max-width: 350px;
       }
 
@@ -306,10 +306,10 @@ export default {
       }
 
       .ingredient-header {
-        @include font-style-heading($size: 16px, $color: $dark-brown);
+        @include global.font-style-heading($size: 16px, $color: global.$dark-brown);
         padding: 16px 0 5px 0;
 
-        @include layout-md {
+        @include global.layout-md {
           font-size: 20px;
           padding: 25px 0 14px 0;
           width: unset;
@@ -321,9 +321,9 @@ export default {
         font-size: 14px;
         line-height: 130%;
         width: 90%;
-        color: $brown;
+        color: global.$brown;
 
-        @include layout-md {
+        @include global.layout-md {
           font-size: 16px;
         }
       }
@@ -332,7 +332,7 @@ export default {
 
   .hero-display-banner {
     background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/dsq-woodgrain_texture-DARK.svg?v=1616535182");
-    background-color: $dark-brown;
+    background-color: global.$dark-brown;
     background-position: center;
     color: #ffffff;
 
@@ -344,7 +344,7 @@ export default {
       max-width: 500px;
       color: #ffffff;
 
-      @include layout-md {
+      @include global.layout-md {
         font-size: 50px !important;
       }
     }
@@ -352,9 +352,9 @@ export default {
 
   .scents-display {
     text-align: center;
-    color: $dark-brown;
+    color: global.$dark-brown;
     background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/woodgrain-default.svg?v=1615322353");
-    background-color: $sand;
+    background-color: global.$sand;
     background-size: 200%;
     padding: 30px 18px;
 
@@ -362,9 +362,9 @@ export default {
       font-weight: 700;
       font-size: 14px;
       line-height: 16px;
-      color: $dark-brown;
+      color: global.$dark-brown;
 
-      @include layout-md {
+      @include global.layout-md {
         font-size: 16px;
         line-height: 18px;
       }
@@ -373,9 +373,9 @@ export default {
     .header {
       margin: 18px 30px 12px 30px;
       line-height: 100%;
-      @include font-style-heading($color: $dark-brown, $size: 30px);
+      @include global.font-style-heading($color: global.$dark-brown, $size: 30px);
 
-      @include layout-md {
+      @include global.layout-md {
         margin: 10px 30px 12px 30px;
         font-size: 40px;
       }
@@ -384,7 +384,7 @@ export default {
     .text {
       font-size: 14px;
       line-height: 130%;
-      color: $brown;
+      color: global.$brown;
       text-align: left;
       margin: 0 auto 30px auto;
       max-width: 725px;
@@ -392,13 +392,13 @@ export default {
 
     .scents {
 
-      @include layout-md {
+      @include global.layout-md {
         display: flex;
         flex-flow: row nowrap;
         justify-content: space-between;
       }
 
-      @include layout-xl {
+      @include global.layout-xl {
         max-width: 1200px;
         margin: auto;
       }
@@ -415,17 +415,17 @@ export default {
         box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
         text-align: left;
 
-        @include layout-md {
+        @include global.layout-md {
           width: unset;
           flex: 1;
           margin: 5px 8px;
         }
 
-        @include layout-lg {
+        @include global.layout-lg {
           margin: 5px 12px;
         }
 
-        @include layout-xl {
+        @include global.layout-xl {
           max-width: 250px;
         }
 
@@ -442,7 +442,7 @@ export default {
 
         .scent-name {
           line-height: 100%;
-          @include font-style-heading($size: 20px, $color: $dark-brown);
+          @include global.font-style-heading($size: 20px, $color: global.$dark-brown);
           margin: 0 0 10px 0;
         }
 
@@ -450,13 +450,13 @@ export default {
           margin: 7px 0 10px 0;
           font-weight: 700;
           line-height: 130%;
-          @include font-style-body($size: 14px, $weight: 700, $color: $dark-brown);
+          @include global.font-style-body($size: 14px, $weight: 700, $color: global.$dark-brown);
         }
 
         .scent-description {
           font-size: 12px;
           line-height: 130%;
-          color: $brown;
+          color: global.$brown;
           margin: 0;
         }
       }
@@ -475,11 +475,11 @@ export default {
         border: none;
         padding: 15px 0 11px 0;
         text-transform: uppercase;
-        @include font-style-heading($size: 14px, $color: white);
+        @include global.font-style-heading($size: 14px, $color: white);
         line-height: 17px;
         text-align: center;
 
-        @include layout-md {
+        @include global.layout-md {
           width: 70%;
           max-width: 300px;
         }
@@ -494,11 +494,11 @@ export default {
     }
 
     .sub-header, .header {
-      color: $dark-brown;
+      color: global.$dark-brown;
     }
 
     .text {
-      color: $brown;
+      color: global.$brown;
     }
   }
 
