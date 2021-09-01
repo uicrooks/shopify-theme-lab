@@ -78,6 +78,23 @@ export default {
       };
     }
   },
+  async updateAddress(addressId, addressData) {
+    try {
+      const response = await rechargeProxyAPI.put(
+        `/address/${addressId}`,
+        addressData
+      );
+      return {
+        success: true,
+        data: response.data
+      };
+    } catch (err) {
+      return {
+        success: false,
+        error: err.response.data.message || `status ${err.response.status}`
+      };
+    }
+  },
   async removeOnetime(onetimeId) {
     try {
       const response = await rechargeProxyAPI.delete(

@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import RechargeService from "@/vue/services/recharge.service";
 import AccountHelpers from "@/vue/services/account-helpers";
 import { mapGetters } from "vuex";
 
@@ -93,7 +94,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargeUser", "currentGroupName"]),
+    ...mapGetters("account", ["rechargeUser", "rechargeAddresses", "currentGroupName", "currentGroup"]),
   },
   watch: {
     item() {
@@ -128,7 +129,10 @@ export default {
       await this.onUpdateSuccessful();
     },
     async onUpdateSuccessful() {
-      const squatchBoxGroups = await AccountHelpers.initializeSquatchBoxGroups(this.rechargeUser.id);
+      const orders = await RechargeService.getUserResource(this.rechargeUser.id, "subscriptions");
+      this.$store.commit("account/setRechargeOrders", orders);
+      
+      const squatchBoxGroups = await AccountHelpers.generateSquatchBoxGroups(orders, this.rechargeAddresses); 
       this.$store.dispatch(
         "account/initializeSquatchBoxGroups",
         { squatchBoxGroups: squatchBoxGroups, groupName: this.currentGroupName }

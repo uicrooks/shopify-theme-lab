@@ -1,7 +1,7 @@
 <template>
   <div class="refill-schedule-component">
-    <account-section-container-box
-      class="section-container-box"
+    <account-section-container
+      class="section-container"
     >
       <account-section-tabs />
       <div class="tab-contents">
@@ -149,7 +149,7 @@
           </div>
         </div>
       </div>
-    </account-section-container-box>
+    </account-section-container>
   </div>
 </template>
 
@@ -232,7 +232,7 @@ export default {
           const aDate = a.next_charge_scheduled_at ? moment(a.next_charge_scheduled_at).date() : -1;
           const bDate = b.next_charge_scheduled_at ? moment(b.next_charge_scheduled_at).date() : - 2;
           return aDate - bDate;
-        })
+        });
       }
     },
     formatRefillMonthDisplay(date) {
@@ -256,7 +256,7 @@ export default {
 
 .refill-schedule-component {
 
-  .section-container-box {
+  .section-container {
     padding: 20px 15px;
   
     @include layout-sm {

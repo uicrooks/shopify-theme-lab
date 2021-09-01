@@ -60,6 +60,15 @@
         <slot name="order-history" />
       </div>
     </div>
+    <div
+      v-else-if="currentView === 'Billing & Shipping'"
+      class="view"
+    >
+      <h1>Billing & Shipping</h1>
+      <account-billing-and-shipping
+        @ready="isLoading = false"
+      />
+    </div>
     <!-- <account-subscriptions
       v-if="rechargeUser.id"
     /> -->
@@ -96,7 +105,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["currentView", "rechargeUser", "refillBox", "currentGroup", "squatchBoxGroups"]),
+    ...mapGetters("account", ["currentView", "rechargeUser", "rechargeAddresses", "refillBox", "currentGroup", "squatchBoxGroups"]),
     isActiveSubscriber() {
       // return this.user.tags.includes("Active Subscriber");
       return true;
@@ -110,7 +119,9 @@ export default {
       }
     },
     refillBox(val) {
-      this.isLoading = true;
+      if (["Overview", "Edit Box"].includes(this.currentView)) {
+        this.isLoading = true;
+      }
       console.log("---- refillBox watched:", val);
       console.log("---- squatchBoxGroups watched", this.squatchBoxGroups);
       console.log("---- currentGroup watched:", this.currentGroup);
@@ -124,12 +135,16 @@ export default {
     async initializeRechargeUserData(email) {
       const subscriber = await RechargeService.getUser(email);
       const paymentSources = await RechargeService.getUserResource(subscriber.id, "payment_sources");
+      const addresses = await RechargeService.getUserResource(subscriber.id, "addresses");
       this.$store.commit("account/setRechargeUser", subscriber);
       this.$store.commit("account/setRechargePaymentSource",paymentSources[0]); 
+      this.$store.commit("account/setRechargeAddresses", addresses);
     },
     async initializeSubscriptionData(rechargeUserId) {
-      const squatchBoxGroups = await AccountHelpers.initializeSquatchBoxGroups(rechargeUserId);
-      // this.$store.commit("account/setRechargeOrders", orders);
+      const orders = await RechargeService.getUserResource(rechargeUserId, "subscriptions");
+      this.$store.commit("account/setRechargeOrders", orders);
+      
+      const squatchBoxGroups = await AccountHelpers.generateSquatchBoxGroups(orders, this.rechargeAddresses); 
       this.$store.dispatch(
         "account/initializeSquatchBoxGroups",
         { squatchBoxGroups: squatchBoxGroups, groupName: Object.keys(squatchBoxGroups)[0] }

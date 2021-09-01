@@ -1,6 +1,6 @@
 <template>
   <div class="subscriptions-edit-component">
-    <account-section-container-box>
+    <account-section-container>
       <account-section-tabs
         class="section-tabs"
       />
@@ -90,23 +90,7 @@
                 <a @click="selectView('Edit Box')">
                   Edit
                 </a>
-                <p
-                  v-if="rechargePaymentSource.cardImage"
-                  class="billing-info"
-                >
-                  <img
-                    :src="rechargePaymentSource.cardImage"
-                    :alt="`${rechargePaymentSource.card_brand} logo`"
-                    class="card-logo"
-                  >
-                  Ending in {{ rechargePaymentSource.card_last4 }}
-                  <span
-                    v-if="rechargePaymentSource.status !== 'active'"
-                    class="status-alert"
-                  >
-                    Expired
-                  </span>
-                </p>
+                <account-billing-info />
               </div>
             </div>
           </div>
@@ -138,9 +122,6 @@
                 <div class="heading">
                   <h5>
                     {{ displayTitleWithQuantity }}
-                  </h5>
-                  <h5 v-if="item.productData">
-                    productData - {{ item.productData.title }}
                   </h5>
                   <div
                     v-if="isOnetime"
@@ -260,7 +241,7 @@
           </account-renderless-order-item>
         </div>
       </div>
-    </account-section-container-box>
+    </account-section-container>
     <account-subscription-edit-modal
       :show-modal="showEditModal"
       :item="itemToEdit"
@@ -554,10 +535,6 @@ export default {
             p {
               @include font-style-body($color: $brown);
 
-              &.billing-info {
-                margin-bottom: 0;
-              }
-            
               .address-line {
                 display: block;
                 margin-bottom: 4px;
@@ -709,13 +686,14 @@ export default {
               width: 100%;
               height: 34px;
               padding: 12px 10px 10px;
-              color: $text-orange;
+              color: $orange;
               background-color: transparent;
-              border: 1px solid transparent;
+              border: 1px solid $orange;
               margin-right: 10px;
 
-              &.hover {
-                color: $orange;
+              &:hover {
+                color: $orange-lighten;
+                border: 1px solid $orange-lighten;
               }
               
               @include layout-sm {
