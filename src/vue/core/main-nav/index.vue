@@ -140,6 +140,11 @@
               name="Take Soap Quiz"
               path="/quiz"
             />
+            <main-nav-single-menu-item
+              class="rewards-menu"
+              name="Rewards"
+              path="/loyalty-rewards"
+            />
           </div>
     
           <div class="sidebar-footer">
@@ -209,7 +214,7 @@
       <div class="right-section">
         <div 
           class="menu-item" 
-          @click="navigateTo('/test')"
+          @click="navigateTo('/pages/quiz-1')"
         >
           Take Quiz
         </div>
@@ -295,9 +300,10 @@
         <cart-button />
       </div>
     </div>
-    <b-collapse 
-      id="products-menu"
-      v-model="productsSubMenuOpen"
+
+    <div 
+      class="menu-container"
+      :class="{active: productsSubMenuOpen}"
     >
       <div class="megamenu-padding">
         <h6 class="submenu-title">
@@ -339,9 +345,21 @@
               @click="navigateTo(item.path)"
             >
               {{ item.name }}
+
+              <div
+                v-if="item.orangeBadge"
+                class="link-badge-orange"
+              >
+                {{ item.orangeBadge }}
+              </div>
+              <div
+                v-if="item.redBadge"
+                class="link-badge-red"
+              >
+                {{ item.redBadge }}
+              </div>
             </div>
-          </div>
-          <div class="more-col">
+
             <div
               class="more-item more-item-shop-all"
               @click="navigateTo('/test')"
@@ -349,13 +367,42 @@
               Shop All
               <b-icon icon="arrow-right" />
             </div>
+          </div>
+          <div class="more-col">
             <div 
               class="more-item" 
-              @click="navigateTo('/test')"
+              @click="navigateTo('/pages/quiz-1')"
             >
               Take Soap Quiz
             </div>
+            <div 
+              class="more-item" 
+              @click="navigateTo('/pages/loyalty-rewards')"
+            >
+              Rewards
+            </div>
           </div>
+        </div>
+      </b-collapse>
+
+      <div class="promo-container">
+        <div class="nav-promo-image-container">
+        </div>
+
+        <div class="nav-promo-copy-container">
+          <h1 class="nav-promo-copy-header">
+            Bring Balance Yo Your Shower Destiny
+          </h1>
+
+          <p class="nav-promo-copy-subheader">
+            Legendary characters, 4 all-new scents, galactic freshness.
+          </p>
+
+          <squatch-button
+            path="/pages/subscription-flow"
+          >
+            Subscribe & Save
+          </squatch-button>
         </div>
       </div>
     </b-collapse>
@@ -375,6 +422,7 @@ import Cart from "@/vue/core/cart/index.vue";
 import GroupedMenuItem from "./grouped-menu-item.vue";
 import SingleMenuItem from "./single-menu-item.vue";
 import { mapGetters } from "vuex";
+import SquatchButton from "@/vue/reusables/squatch-button"
 
 export default {
     name: "MainNav",

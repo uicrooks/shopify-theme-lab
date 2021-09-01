@@ -39,7 +39,9 @@
     "moment": "^2.29.1",
     "shopify-buy": "^2.11.0",
     "universal-cookie": "^4.0.4",
+    "v-calendar": "^2.3.2",
     "vue": "^2.6.12",
+    "vue-carousel": "^0.18.0",
     "vuex": "^3.6.2"
   },
   "devDependencies": {

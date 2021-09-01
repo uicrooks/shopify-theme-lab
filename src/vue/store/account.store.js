@@ -1,51 +1,78 @@
 const state = () => ({
   currentView: "Overview",
-  userTags: [],
+  user: {},
   rechargeUser: {},
-  subscriptions: [],
-  onetimes: [],
-  squatchBoxes: {},
-  currentBoxName: "", // address label: 4015 Marina St.
-  currentBox: {},
+  rechargePaymentSource: {},
+  rechargeOrders: {},
+  squatchBoxGroups: {},
+  currentGroupName: "", // address label: 4015 Marina St.
+  currentGroup: {},
 });
 
 const getters = {
   currentView: (state) => {
     return state.currentView;
   },
-  userTags: (state) => {
-    return state.userTags;
+  user: (state) => {
+    return state.user;
   },
   rechargeUser: (state) => {
     return state.rechargeUser;
   },
-  subscriptions: (state) => {
-    return state.subscriptions;
+  rechargePaymentSource: (state) => {
+    return state.rechargePaymentSource;
   },
-  onetimes: (state) => {
-    return state.onetimes;
+  rechargeOrders: (state) => {
+    return state.rechargeOrders;
   },
-  squatchBoxes: (state) => {
-    return state.squatchBoxes;
+  squatchBoxGroups: (state) => {
+    return state.squatchBoxGroups;
   },
-  currentBoxName: (state) => {
-    return state.currentBoxName;
+  currentGroupName: (state) => {
+    return state.currentGroupName;
   },
-  currentBox: (state) => {
-    return state.currentBox;
+  currentGroup: (state) => {
+    return state.currentGroup;
   },
-  currentBoxNextRefillDate: (state) => {
-    return state.currentBox && state.currentBox.upcomingRefillDates? state.currentBox.upcomingRefillDates[0] : null;
+  currentGroupShippingAddress: (state) => {
+    return state.currentGroup && state.currentGroup.fullAddress ? [`${state.currentGroup.fullAddress.address1}${state.currentGroup.fullAddress.address2 ? " " + state.currentGroup.fullAddress.address2 : ""}`, `${state.currentGroup.fullAddress.city}, ${state.currentGroup.fullAddress.province}`, state.currentGroup.fullAddress.zip] : [];
   },
-  // currentBoxNextRefill: (state) => {
-  //   return state.currentBoxNextRefillDate ? state.currentBox[state.currentBoxNextRefillDate] : {};
-  // }
+  refillBoxDate: (state) => {
+    return state.currentGroup && state.currentGroup.upcomingRefillDates ? state.currentGroup.upcomingRefillDates[0] : null;
+  },
+  refillBox: (state, getters) => {
+    return getters.refillBoxDate ? state.currentGroup.upcomingRefillsByDate[getters.refillBoxDate] : [];
+  },
+  refillBoxSubTotal: (state, getters) => {
+    const total = getters.refillBox.reduce((total, item) => {
+      const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : item.price;
+
+      return total += compareAtPrice * item.quantity;
+    }, 0);
+    return total;
+  },
+  refillBoxSavingsTotal: (state, getters) => {
+    const total = getters.refillBox.reduce((total, item) => {
+      if (item.status === "ONETIME") {
+        return total;
+      }
+      const compareAtPrice = item.productData && item.productData.variants && item.productData.variants[0].compareAtPrice ? parseInt(item.productData.variants[0].compareAtPrice) : 0;
+      let savings = compareAtPrice ? compareAtPrice - item.price : 0;
+      return total += savings * item.quantity;
+    }, 0);
+    return total;
+  }
 };
 
 const actions = {
-  initializeCurrentBox: ({ commit, state }, boxName) => {
-    commit("setCurrentBoxName", boxName);
-    commit("setCurrentBox", state.squatchBoxes[boxName]);
+  initializeSquatchBoxGroups: ({ commit }, data) => {
+    commit("setSquatchBoxGroups", data.squatchBoxGroups);
+    commit("setCurrentGroupName", data.groupName);
+    commit("setCurrentGroup", data.squatchBoxGroups[data.groupName]);
+  },
+  initializeCurrentGroup: ({ commit, state }, groupName) => {
+    commit("setCurrentGroupName", groupName);
+    commit("setCurrentGroup", state.squatchBoxGroups[groupName]);
   }
 };
 
@@ -53,26 +80,50 @@ const mutations = {
   setCurrentView: (state, view) => {
     state.currentView = view;
   },
-  setUserTags: (state, tags) => {
-    state.userTags = tags;
+  setUser: (state, user) => {
+    state.user = user;
   },
   setRechargeUser: (state, user) => {
     state.rechargeUser = user;
   },
-  setSubscriptions: (state, subscriptions) => {
-    state.subscriptions = subscriptions;
+  setRechargePaymentSource: (state, source) => {
+    let cardImg;
+    switch (source.card_brand) {
+      case "mastercard":
+        cardImg = "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/mastercard.svg?v=1602692830";
+        break;
+      case "visa":
+        cardImg = "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/visa_29a6cf71-fd8f-42e7-ac9d-c8d3e51f88fb.svg?v=1602692830";
+        break;
+      case "amex":
+        cardImg = "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/amex.svg?v=1602692830";
+        break;
+      case "paypal":
+        cardImg = "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/paypal.svg?v=1602692830";
+        break;
+      case "discover":
+        cardImg = "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/discover.svg?v=1602692830";
+        break;
+      default:
+        cardImg = "https://cdn.shopify.com/s/files/1/0275/7784/3817/files/generic.svg?v=1602692830";
+    }
+    state.rechargePaymentSource = { ...source, cardImage: cardImg };
   },
-  setOnetimes: (state, onetimes) => {
-    state.onetimes = onetimes;
+  setRechargeOrders: (state, orders) => {
+    state.rechargeOrders = orders;
   },
-  setSquatchBoxes: (state, boxes) => {
-    state.squatchBoxes = boxes;
+  setSquatchBoxGroups: (state, boxes) => {
+    state.squatchBoxGroups = boxes;
   },
-  setCurrentBoxName: (state, boxName) => {
-    state.currentBoxName = boxName;
+  setCurrentGroupName: (state, groupName) => {
+    state.currentGroupName = groupName;
   },
-  setCurrentBox: (state, box) => {
-    state.currentBox = box;
+  setCurrentGroup: (state, group) => {
+    state.currentGroup = group;
+  },
+  updateOrderItemInRefillBox: (state, payload) => {
+    let refillBox = state.currentGroup.upcomingRefillsByDate[state.currentGroup.upcomingRefillDates[0]];
+    refillBox[payload.index] = { ...refillBox[payload.index], ...payload.data };
   }
 };
 

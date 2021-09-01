@@ -1,13 +1,14 @@
 export default {
-  getType(product) {
-    return product.type.toLowerCase();
-  },
   identify(product) {
-    if (!product.type) {
-      return null;
+    if (!product || !product.type) return [];
+
+    let type = product.productType && product.productType.toLowerCase();
+    if (!type) {
+      type = product.type && product.type.toLowerCase();
     }
-    const type = product.type.toLowerCase();
-    const title = product.title.toLowerCase();
+    let title = product.title && product.title.toLowerCase();
+    type = type === "soap" ? "barsoap" : type;
+
     let arr = [];
     if (type === "haircare") {
       arr.push("haircare");
@@ -48,11 +49,30 @@ export default {
     }
     return [type];
   },
-  // isGrouped(product) {
-  //   const type = product.type && product.type.toLowerCase();
-  //   const title = product.title && product.title.toLowerCase();
-  //   return type === "bundle" || title.includes("kit") || title.includes("pack")
-  // },
+  getType(product) {
+    return product.type && product.type.toLowerCase();
+  },
+  getIdentityString(product) {
+    return this.identify(product).join("-");
+  },
+  getUnitNameByIdentityString(identityString) {
+    if (identityString === "barsoap") {
+      return "bar";
+    }
+    if (identityString === "haircare-kit") {
+      return "kit";
+    }
+    if (["haircare-shampoo", "haircare-conditioner"].includes(identityString)) {
+      return "bottle";
+    }
+    if (identityString === "toothpaste") {
+      return "kit"; // subs only
+    }
+    if (identityString === "deodorant") {
+      return "stick";
+    }
+    return "";
+  },
   checkIfGrouped(product) {
     const handle = product.handle.toLowerCase();
     const title = product.title.toLowerCase();

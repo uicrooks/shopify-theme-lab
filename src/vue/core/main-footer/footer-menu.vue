@@ -77,7 +77,7 @@ export default {
       shopMenu: [
         {
           name: "Bar Soaps",
-          path: "/collections/bar-soap",
+          path: "/collections/bar-soaps",
         },
         {
           name: "Deodorant",
@@ -123,7 +123,7 @@ export default {
         },
         {
           name: "Our Ingredients",
-          path: "/pages/the-squatch-difference-for-men",
+          path: "/pages/glossary",
         },
         {
           name: "Hero Discounts",
@@ -137,7 +137,7 @@ export default {
       helpMenu: [
         {
           name: "FAQ",
-          path: "/test",
+          path: "https://help.drsquatch.com/",
         },
         {
           name: "Shipping",
@@ -145,11 +145,11 @@ export default {
         },
         {
           name: "Returns & Refunds",
-          path: "/test",
+          path: "/pages/returns",
         },
         {
           name: "Contact Us",
-          path: "/test",
+          path: "https://help.drsquatch.com/",
         },
         {
           name: "Wholesale",
@@ -158,6 +158,10 @@ export default {
         {
           name: "Gift Card Balance",
           path: "/pages/check-gift-card-balance",
+        },
+        {
+          name: "Careers",
+          path: "https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=a057621f-ae51-4a8d-940f-8f00ed64a510&ccId=19000101_000001&lang=en_US",
         },
         {
           name: "Careers",

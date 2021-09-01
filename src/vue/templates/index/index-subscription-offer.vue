@@ -69,13 +69,13 @@ export default {
 
         .subheader {
           margin-bottom: 20px;
-          @include global.font-style-body-bold($size: 20px);
+          @include font-style-body-bold($size: 20px, $color: $brown);
         }
 
         .copy {
           line-height: 1.3;
           margin-bottom: 30px;
-          @include global.font-style-body($size: 16px);
+          @include font-style-body($size: 16px, $color: $brown);
         }
 
         .image-container {

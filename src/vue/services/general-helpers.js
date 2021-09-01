@@ -93,6 +93,9 @@ export default {
         break;
     }
     document.body.appendChild(s);
+  },
+  convertPriceToWholeNumber(price) {
+    return price.toString().slice(-2) === "00" ? price / 100 : price;
   }
 };
 

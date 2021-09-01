@@ -6,8 +6,10 @@
         src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/SquatchFoot.svg?v=1615322349"
         alt="squatch-foot"
       >
-      <h6>Sudisfaction Guaranteed</h6>
-      <p>
+      <h6 class="title">
+        Sudisfaction Guaranteed
+      </h6>
+      <p class="text">
         Rest easy. If this isn't the best natural product you've ever used, it's
         on us.
       </p>
@@ -20,6 +22,8 @@ export default {};
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/main.scss";
+
 .sudisfaction-guarantee:after {
   content: "";
   width: 100%;
@@ -50,10 +54,18 @@ export default {};
     z-index: 4;
     text-align: center;
 
-    h6 {
+    .title {
+      @include font-style-heading($size: 16px);
+      font-size: 1rem;
       margin-bottom: 8px;
       margin-top: 12px;
       line-height: 1;
+    }
+
+    .text {
+      @include font-style-body($size: 16px);
+      font-size: 1rem;
+      color: $brown;
     }
 
     .foot-icon {

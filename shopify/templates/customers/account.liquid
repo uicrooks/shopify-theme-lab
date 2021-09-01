@@ -1,8 +1,13 @@
+{% assign subsCollection = collections['refactor-all-subscriptions'] %}
+{% assign subOptionsCollection = collections['subscription-flow-scents'] %}
+
 <div class="account-page-container">
   <account
+    :subscription-products="{{ subsCollection.products | json | replace: '"', "'" }}"
+    :subscription-options="{{ subOptionsCollection.products | json | replace: '"', "'" }}"
     :user="{
       id: '{{ customer.id }}',
-      tagString: '{{ customer.tags | join: "; " }}',
+      tags: {{ customer.tags | json | replace: '"', "'" }},
       firstName: '{{ customer.first_name }}',
       lastName: '{{ customer.last_name }}',
       email: '{{ customer.email }}'

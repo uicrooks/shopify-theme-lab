@@ -45,7 +45,7 @@
           <div class="button-container">
             <squatch-button
               class="big-cta-button"
-              path="/pages/about-us"
+              path="/pages/the-squatch-difference"
             >
               Learn More
             </squatch-button>

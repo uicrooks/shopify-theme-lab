@@ -29,7 +29,9 @@ export default {
         window.location = this.path;
         return;
       }
-      this.$emit("clicked");
+      if (!this.disabled) {
+        this.$emit("clicked");
+      }
     }
   }
 };
@@ -39,21 +41,23 @@ export default {
 @use "@/styles/main" as global;
 
 .squatch-button-component {
-  width: 100%;
-  padding: 17px 15px 13px;
+  width: 256px;
+  padding: 17px 8px 13px;
   border-radius: 5px;
-  border: none;
+  border: 1px solid $orange;
   text-align: center;
   background-color: global.$orange;
   @include global.font-style-heading($size: 14px, $color: global.$white);
 
   &:hover {
-    background-color: global.$orange-lighten;
+    background-color: gloabl.$orange-lighten;
+    border: 1px solid global.$orange-lighten;
   }
 
   &.disabled {
     cursor: not-allowed;
     background-color: global.$orange-lighten;
+    border: 1px solid global.$orange-lighten;
   }
 }
 </style>

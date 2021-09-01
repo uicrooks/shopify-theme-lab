@@ -230,7 +230,6 @@ export default {
               margin-bottom: 15px;
 
               .link {
-                color: #cc6328;
                 text-decoration: none;
                 font-family: global.$font-heading;
               }

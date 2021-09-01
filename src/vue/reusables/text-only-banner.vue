@@ -42,11 +42,9 @@ export default {
       padding: 4.7rem 15px;
     }
     .banner-text {
-      font-family: global.$font-heading;
-      font-size: calc(1.12188rem + 3.0875vw);
+      @include font-style-heading($size: calc(1.12188rem + 3.0875vw), $color: white);
       margin: 0 0 30px 0;
       text-align: center;
-      color: white;
 
       @media (min-width: 1200px) {
         font-size: 3.4375rem;

@@ -191,7 +191,7 @@
             3. Shipping and Returns
           </h3>
           <p class="terms-description">
-            You also acknowledge, agree and consent to the terms of our <a href="/pages/shipping-policy">Shipping Policy </a> and <a href="/pages/return-policy">Return Policy </a> which is incorporated herein by reference and can be accessed and reviewed through the provided links.
+            You also acknowledge, agree and consent to the terms of our <a href="/pages/shipping">Shipping Policy </a> and <a href="/pages/returns">Return Policy </a> which is incorporated herein by reference and can be accessed and reviewed through the provided links.
           </p>
         </div>
         <div 
@@ -479,7 +479,7 @@
             14. Refer-A-Friend Program
           </h3>
           <p class="terms-description">
-            The Dr. Squatch Refer-A-Friend Program is offered by Dr. Squatch to reward you for referring our products to your family, friends, and colleagues. As a Refer-a-Friend member (“Referrer”), you are subject to <a href="/pages/term-of-use"> Dr. Squatch’s Terms of Use and Privacy Policy </a>, as well as the following additional terms and conditions for Dr. Squatch’s Refer-a-Friend Program:
+            The Dr. Squatch Refer-A-Friend Program is offered by Dr. Squatch to reward you for referring our products to your family, friends, and colleagues. As a Refer-a-Friend member (“Referrer”), you are subject to <a href="/pages/terms-of-use"> Dr. Squatch’s Terms of Use and Privacy Policy </a>, as well as the following additional terms and conditions for Dr. Squatch’s Refer-a-Friend Program:
             <br>
             <ul>
               <li> 
@@ -561,11 +561,11 @@ export default {
   .terms-container {
     padding: 2.5rem 0;
 
-    @media (min-width: global.$md) {
+    @include layout-md {
       padding: 5rem 0;
     }
 
-    @media (min-width: global.$xl) {
+    @include layout-xl {
       padding: 5rem 2rem;
     }
 
@@ -578,24 +578,20 @@ export default {
         text-align: center;
         margin-bottom: 28px;
 
-        @media (min-width: global.$md) {
+        @include layout-md {
           text-align: left;
         }
 
         .terms-title {
-          font-weight: 400;
-          font-size: calc(1.04375rem + 1.10833vw);
           margin: 0 0 30px 0;
-          font-family: global.$font-heading;
+          @include font-style-heading($weight: 400, $size: calc(1.04375rem + 1.10833vw));
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
           }
         }
         .terms-description {
-          font-size: 14px;
-          color: global.$brown;
-          font-family: global.$font-body;
+          @include font-style-body($size: 14px, $color: $brown);
 
           .section-link {
             color: global.$orange;
@@ -604,7 +600,11 @@ export default {
           }
 
           .bold-text {
-            font-family: global.$font-body-bold;
+            @include font-style-body-bold;
+          }
+
+          a {
+            color: $orange;
           }
         }
       }

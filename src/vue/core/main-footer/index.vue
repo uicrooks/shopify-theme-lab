@@ -144,7 +144,6 @@ export default {
     }
 
     .copyright {
-      width: 100%;
       text-align: center;
       display: block;
       @include global.font-style-body($size: 11px, $color: global.$sand);
@@ -155,6 +154,10 @@ export default {
         margin-right: 40px;
         justify-content: center;
         display: flex;
+      }
+
+      .copy-link {
+        @include font-style-body($size: 11px, $color: $sand);
       }
     }
 

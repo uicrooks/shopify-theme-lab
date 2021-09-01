@@ -50,11 +50,7 @@
             Germany, Australia, New Zealand, Hong Kong, Japan, and Korea.
             <br>
             <br>
-            For orders shipping to Canada, Dr. Squatch handles duties & taxes
-            for the customer. Your shipping costs will include an international
-            processing fee that is included in the shipping line-item on your
-            receipt. If your order is held at customs and you are required to
-            pay for duties and taxes, please contact us.
+            For orders shipping to Canada, Dr. Squatch offers free shipping above $50, and covers duties & taxes for the customer. Your shipping costs will include an international processing fee that is included in the shipping line-item on your receipt. If your order is held at customs and you are required to pay for duties and taxes, please contact us
             <br>
             <br>
             For other international orders, please note we are not responsible
@@ -92,11 +88,11 @@ export default {
   .text-container {
     padding: 2.5rem 0;
 
-    @media (min-width: global.$md) {
+    @include layout-md {
       padding: 5rem 0;
     }
 
-    @media (min-width: global.$xl) {
+    @include layout-xl {
       padding: 5rem 2rem;
     }
 
@@ -114,21 +110,17 @@ export default {
         }
 
         .shipping-title {
-          font-weight: 400;
-          font-size: calc(1.04375rem + 1.10833vw);
-          font-family: global.$font-heading;
+          @include font-style-heading($size: calc(1.04375rem + 1.10833vw), $weight: 400);
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
           }
         }
         .shipping-description {
-          font-size: 14px;
-          color: global.$brown;
-          font-family: global.$font-body;
+          @include font-style-body($color: $brown, $size: 14px);
 
           .bolded-text {
-            @include global.font-style-body-bold;
+            @include font-style-body-bold($color: $brown);
           }
         }
       }
