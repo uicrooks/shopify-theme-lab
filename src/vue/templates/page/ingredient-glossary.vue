@@ -56,11 +56,17 @@
       </div>
 
       <div class="vue-carousel">
-        <carousel :per-page="2" :mouse-drag="true" :navigationEnabled="true" :perPageCustom="[[500,3],[768, 5]]" :paginationEnabled="false">
+        <carousel
+          :per-page="2"
+          :mouse-drag="true"
+          :navigation-enabled="true"
+          :per-page-custom="[[500,3],[768, 5]]"
+          :pagination-enabled="false"
+        >
           <slide
-            class="vue-carousel-slide"
             v-for="(category, index) of categories"
             :key="`category-${index}`"
+            class="vue-carousel-slide"
           >
             <label
               class="item-label"
@@ -186,7 +192,7 @@
 
 <script>
 import IngredientsList from "@/configs/page-ingredients";
-import { Carousel, Slide } from 'vue-carousel';
+import { Carousel, Slide } from "vue-carousel";
 
 export default {
   name: "IngredientGlossary",
@@ -274,7 +280,7 @@ export default {
   methods: {
   },
   mounted() {
-    console.log(this.ingredients)
+    console.log(this.ingredients);
     this.selected = this.categories[0];
     window.test = this;
   },

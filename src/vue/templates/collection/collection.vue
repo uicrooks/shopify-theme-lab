@@ -46,7 +46,7 @@ export default {
     return {
       collection: {},
       products: []
-    }
+    };
   },
   computed: {
     jumbotronConfig() {
@@ -58,7 +58,7 @@ export default {
           header: match.header,
           bodyText: match.bodyText,
           ctaButton: match.ctaButton
-        }
+        };
       }
       return {
         videoId: "",
@@ -69,7 +69,7 @@ export default {
           text: "",
           path: ""
         }
-      }
+      };
     }
   },
   async mounted() {

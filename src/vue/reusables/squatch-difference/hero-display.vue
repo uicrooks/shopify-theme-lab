@@ -5,14 +5,14 @@
         <div 
           v-if="!subBelow"
           class="sub-header"
-          v-html="subHeader" 
-          :class="{ blackText : textBlack}"
+          :class="{ blackText : textBlack}" 
+          v-html="subHeader"
         />
 
         <div 
           class="header"
-          v-html="header"
           :class="{ blackText : textBlack}"
+          v-html="header"
         />
 
         <div class="image-mobile">
@@ -46,8 +46,8 @@
         <div 
           v-if="subBelow"
           class="sub-header"
-          v-html="subHeader"
           :class="{ blackText : textBlack}"
+          v-html="subHeader"
         />
 
         <div 
@@ -74,7 +74,7 @@
           v-if="imageSrc"
           :src="imageSrc"
         >
-          <!-- <div 
+        <!-- <div 
             v-else-if="videoId"
             class="wistia_embed wistia_async_{{ videoId }} seo=false videoFoam=true" allowtransparency="true" style="height:100%;width:100%">
           </div> -->

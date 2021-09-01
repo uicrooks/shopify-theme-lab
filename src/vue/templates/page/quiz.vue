@@ -24,7 +24,6 @@
       </div>
 
       <div class="carousel-container">
-
         <div
           v-if="!startedQuiz"
           class="firstSlide"
@@ -130,7 +129,7 @@
                     placeholder="Type your email here..."
                   >
                   <button class="finishQuizButton">
-                      {{currentSlideContent.button}}
+                    {{ currentSlideContent.button }}
                   </button>
                 </div>
               </div>

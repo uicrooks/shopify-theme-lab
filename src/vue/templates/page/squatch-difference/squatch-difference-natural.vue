@@ -20,7 +20,7 @@
     <div class="hero-display-middle">
       <hero-display 
         :reversed="true"
-        header='We Hold "Natural" To A Higher Standard'
+        header="We Hold &quot;Natural&quot; To A Higher Standard"
         sub-header="We've Got Standards"
         :text-black="true"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/assets-squatch-difference-natural-meaning.png?v=1618943851"
@@ -89,7 +89,7 @@
         :sub-below="true"
         :text-black="true"
         header="We’re serious about transparency"
-        sub-header='Looking to learn more about all of our ingredients? <br><br><a href="/pages/glossary" style="color: #cc6328;">Check out our Ingredient Glossary.</a>'
+        sub-header="Looking to learn more about all of our ingredients? <br><br><a href=&quot;/pages/glossary&quot; style=&quot;color: #cc6328;&quot;>Check out our Ingredient Glossary.</a>"
         image-src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/were_serious_about_transparency.jpg?v=1621967909"
       >
         At Dr. Squatch we’re not hiding behind false promises and we strive to be as transparent as possible with all of our products and ingredients. <br>That’s why every single ingredient that goes into each product is listed on its product page.

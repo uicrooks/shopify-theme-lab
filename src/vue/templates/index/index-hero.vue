@@ -52,7 +52,7 @@ export default {
     background-size: cover;
     background-color: #1d1d1e;
 
-    @media (min-width: $md) {
+    @media (min-width: global.$md) {
       background-image: none;
       height: unset;
       min-height: unset;
@@ -62,7 +62,7 @@ export default {
     .background-image {
       display: none;
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         display: block;
         width: 100%;
       }
@@ -84,7 +84,7 @@ export default {
         background-image: url("https://cdn.shopify.com/s/files/1/0275/7784/3817/files/PineTar_Hero.jpg?v=1616440671");
       }
 
-      @media (min-width: $md) {
+      @media (min-width: global.$md) {
         right: 0;
         top: 12px;
         bottom: 0;
@@ -105,14 +105,14 @@ export default {
           bottom: unset;
         }
 
-        @media (min-width: $md) {
+        @media (min-width: global.$md) {
           width: 83%;
           font-size: calc(1.12188rem + 1.5vw);
           text-align: left;
           margin: 0 auto calc(1rem + 1vw) 0;
         }
 
-        @media (min-width: $lg) {
+        @media (min-width: global.$lg) {
           width: 95%;
         }
       }
@@ -123,7 +123,7 @@ export default {
         font-weight: 400;
         line-height: 120%;
         margin-bottom: 1.3rem;
-        @include font-style-body($color: $white, $lh: 1);
+        @include global.font-style-body($color: global.$white, $lh: 1);
 
         &.extended {
           display: none;
@@ -139,7 +139,7 @@ export default {
           margin-bottom: 2.3vh;
         }
 
-        @media (min-width: $md) {
+        @media (min-width: global.$md) {
           display: inline-block;
           font-size: calc(0.7rem + 0.7vw);
           text-align: left;
@@ -149,7 +149,7 @@ export default {
           margin-bottom: 3.5vh;
         }
 
-        @media (min-width: $lg) {
+        @media (min-width: global.$lg) {
           display: none;
         }
       }
@@ -157,7 +157,7 @@ export default {
       .btn {
         width: 256px;
 
-        @media (min-width: $md) {
+        @media (min-width: global.$md) {
           padding: 12px 0 9px 0;
           white-space: nowrap;
         }

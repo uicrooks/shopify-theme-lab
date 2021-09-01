@@ -41,7 +41,7 @@
                   :model-config="datepickerConfig"
                   color="orange"
                 >
-                  <template v-slot="{ showPopover, hidePopover }">
+                  <template #default="{ showPopover, hidePopover }">
                     <a
                       @mouseenter="showPopover"
                       @mouseleave="hidePopover"

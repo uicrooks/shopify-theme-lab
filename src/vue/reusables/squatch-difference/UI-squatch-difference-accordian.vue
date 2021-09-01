@@ -1,11 +1,14 @@
 <template>
   <div class="ui-squatch-difference-accordion-component">
-    <div class="accordion" role="tablist">
+    <div
+      class="accordion"
+      role="tablist"
+    >
       <b-card 
-        no-body 
-        class="accordion-row"
-        v-for="(ingredient, index) in toxic"
+        v-for="(ingredient, index) in toxic" 
         :key="index"
+        no-body
+        class="accordion-row"
       >
         <b-card-header 
           header-tag="header" 
@@ -13,8 +16,8 @@
           role="tab"
         >
           <b-button 
-            block 
             v-b-toggle="'accordion-' + index" 
+            block 
             variant="info"
             class="accordion-ingredient-button"
           >

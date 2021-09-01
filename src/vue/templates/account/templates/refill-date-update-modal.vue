@@ -82,7 +82,7 @@ export default {
     items: {
       type: Object,
       required: true,
-      default: () => { return { nextRefill: [], upcomingRefill: [] } }
+      default: () => { return { nextRefill: [], upcomingRefill: [] }; }
     },
     newRefillDate: {
       type: String,

@@ -108,6 +108,21 @@ export default {
       return list;
     }
   },
+  render() {
+    return this.$scopedSlots.default({
+      loading: this.loading,
+      isOnetime: this.isOnetime,
+      item: this.item,
+      displayTitle: this.displayTitle,
+      displayTitleWithQuantity: this.displayTitleWithQuantity,
+      quantityWithUnit: this.quantityWithUnit,
+      price: this.price,
+      compareAtPrice: this.compareAtPrice,
+      subscriptionInterval: this.subscriptionInterval,
+      imageSrc: this.imageSrc,
+      includedList: this.includedList,
+    });
+  },
   async mounted() {
     this.loading = true;
     let updateObj = {
@@ -153,21 +168,6 @@ export default {
     }
     this.$emit("loaded");
     this.loading = false;
-  },
-  render() {
-    return this.$scopedSlots.default({
-      loading: this.loading,
-      isOnetime: this.isOnetime,
-      item: this.item,
-      displayTitle: this.displayTitle,
-      displayTitleWithQuantity: this.displayTitleWithQuantity,
-      quantityWithUnit: this.quantityWithUnit,
-      price: this.price,
-      compareAtPrice: this.compareAtPrice,
-      subscriptionInterval: this.subscriptionInterval,
-      imageSrc: this.imageSrc,
-      includedList: this.includedList,
-    });
   }
 };
 </script>

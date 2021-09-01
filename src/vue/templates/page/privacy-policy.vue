@@ -550,11 +550,11 @@ export default {
   .privacy-container {
     padding: 2.5rem 0;
 
-    @include layout-md {
+    @include global.layout-md {
       padding: 5rem 0;
     }
 
-    @include layout-xl {
+    @include global.layout-xl {
       padding: 5rem 2rem;
     }
 
@@ -567,13 +567,13 @@ export default {
         text-align: center;
         margin-bottom: 28px;
 
-        @include layout-md {
+        @include global.layout-md {
           text-align: left;
         }
 
         .privacy-title {
           margin-bottom: 30px;
-          @include font-style-heading($weight: 400, $size:  calc(1.04375rem + 1.10833vw));
+          @include global.font-style-heading($weight: 400, $size:  calc(1.04375rem + 1.10833vw));
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
@@ -589,11 +589,11 @@ export default {
           }
 
           .bold-text {
-            @include font-style-body-bold;
+            @include global.font-style-body-bold();
           }
 
           a {
-            color: $orange;
+            color: global.$orange;
           }
         }
       }

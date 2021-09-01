@@ -185,7 +185,7 @@ export default {
     flex-direction: column;
   }
 
-  @include layout-md { 
+  @include global.layout-md { 
     margin: auto;
   }
 

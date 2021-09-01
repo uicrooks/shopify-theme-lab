@@ -157,7 +157,7 @@ export default {
       }
 
       .copy-link {
-        @include font-style-body($size: 11px, $color: $sand);
+        @include global.font-style-body($size: 11px, $color: global.$sand);
       }
     }
 

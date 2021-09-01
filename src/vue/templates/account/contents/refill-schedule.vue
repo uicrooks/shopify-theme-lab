@@ -232,7 +232,7 @@ export default {
           const aDate = a.next_charge_scheduled_at ? moment(a.next_charge_scheduled_at).date() : -1;
           const bDate = b.next_charge_scheduled_at ? moment(b.next_charge_scheduled_at).date() : - 2;
           return aDate - bDate;
-        })
+        });
       }
     },
     formatRefillMonthDisplay(date) {

@@ -44,13 +44,13 @@ export default {
   width: 256px;
   padding: 17px 8px 13px;
   border-radius: 5px;
-  border: 1px solid $orange;
+  border: 1px solid global.$orange;
   text-align: center;
   background-color: global.$orange;
   @include global.font-style-heading($size: 14px, $color: global.$white);
 
   &:hover {
-    background-color: gloabl.$orange-lighten;
+    background-color: global.$orange-lighten;
     border: 1px solid global.$orange-lighten;
   }
 
