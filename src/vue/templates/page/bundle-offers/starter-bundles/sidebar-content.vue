@@ -111,7 +111,7 @@ export default {
       IncludedItem
     },
     computed: {
-      ...mapGetters("starterBundles",["selectedVariant","selectedScent","selectedCard","starterBundleDrawerOpened","fetchedProducts"]),
+      ...mapGetters("starterBundles",["selectedVariant","selectedScent","selectedCard","starterBundleDrawerOpened","fetchedProducts","subscriptionProducts"]),
       includedObject() {
         return IncludedList["starter-bundles-variants"][this.selectedScent] || {};
       },
@@ -180,112 +180,43 @@ export default {
             }
           });
         });
+        // SOAP SAVER
             outputArray.push({
               variant_id: 31305057960041,
               quantity: 1,
               properties: {}
             });
+
+        const generateSubscriptionLineItem = (prod_type, scents) => {
+          var fulfillmentScents = {},
+          scents = outputProducts[prod_type];
+          scents.forEach((sku,i) => {
+            fulfillmentScents[`_fulfillment_Scent${i+1}`] = sku;
+          });
+          return {
+            variant_id: this.subscriptionProducts[prod_type].variant_id,
+            quantity: 1,
+            properties: Object.assign(this.subscriptionProducts[prod_type].properties, fulfillmentScents)
+          };
+        };
         switch (this.selectedCard.title) {
           case "Clean":
-            var soapScents = {};
-            outputProducts["BarSoap"].forEach((sku,i) => {
-                soapScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputArray.push({
-              variant_id: 31305037709417,
-              quantity: 1,
-              properties: Object.assign({}, soapScents)
-            });
+            outputArray.push(generateSubscriptionLineItem("BarSoap"));
             break;
           case "Groomed":
-            var soapScents = {},
-            hairScents = {};
-            outputProducts["BarSoap"].forEach((sku,i) => {
-                soapScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputProducts["HairCare"].forEach((sku,i) => {
-                hairScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputArray.push({
-              variant_id: 31305037709417,
-              quantity: 1,
-              properties: Object.assign({}, soapScents)
-            });
-            outputArray.push({
-              variant_id: 31305050259561,
-              quantity: 1,
-              properties: Object.assign({}, hairScents)
-            });
+            outputArray.push(generateSubscriptionLineItem("BarSoap"));
+            outputArray.push(generateSubscriptionLineItem("HairCare"));
             break;
           case "Suave":
-            var soapScents = {},
-            hairScents = {},
-            deoScents = {};
-            outputProducts["BarSoap"].forEach((sku,i) => {
-                soapScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputProducts["HairCare"].forEach((sku,i) => {
-                hairScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputProducts["Deodorant"].forEach((sku,i) => {
-                deoScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputArray.push({
-              variant_id: 31305037709417,
-              quantity: 1,
-              properties: Object.assign({}, soapScents)
-            });
-            outputArray.push({
-              variant_id: 31305050259561,
-              quantity: 1,
-              properties: Object.assign({}, hairScents)
-            });
-            outputArray.push({
-              variant_id: 32890545340521,
-              quantity: 1,
-              properties: Object.assign({}, deoScents)
-            });
+            outputArray.push(generateSubscriptionLineItem("BarSoap"));
+            outputArray.push(generateSubscriptionLineItem("HairCare"));
+            outputArray.push(generateSubscriptionLineItem("Deodorant"));
             break;
           case "Smooth":
-            var soapScents = {},
-            hairScents = {},
-            deoScents = {},
-            toothpasteScents = {};
-            outputProducts["BarSoap"].forEach((sku,i) => {
-                soapScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputProducts["HairCare"].forEach((sku,i) => {
-                hairScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputProducts["Deodorant"].forEach((sku,i) => {
-                hairScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputProducts["Deodorant"].forEach((sku,i) => {
-                deoScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            ["TOOTH-CM-MNG","TOOTH-SS-NHT"].forEach((sku,i) => {
-                toothpasteScents[`_fulfillment_Scent${i+1}`] = sku;
-            });
-            outputArray.push({
-              variant_id: 31305037709417,
-              quantity: 1,
-              properties: Object.assign({}, soapScents)
-            });
-            outputArray.push({
-              variant_id: 31305050259561,
-              quantity: 1,
-              properties: Object.assign({}, hairScents)
-            });
-            outputArray.push({
-              variant_id: 32890545340521,
-              quantity: 1,
-              properties: Object.assign({}, deoScents)
-            });
-            outputArray.push({
-              variant_id: 32637027188841,
-              quantity: 1,
-              properties: Object.assign({}, toothpasteScents)
-            });
+            outputArray.push(generateSubscriptionLineItem("BarSoap"));
+            outputArray.push(generateSubscriptionLineItem("HairCare"));
+            outputArray.push(generateSubscriptionLineItem("Deodorant"));
+            outputArray.push(generateSubscriptionLineItem("Toothpaste"));
             break;
         }
         console.log(outputArray);

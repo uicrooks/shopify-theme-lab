@@ -44,7 +44,10 @@
             v-if="index === 1"
             class="products"
           >
-            <starter-bundles-section :products="getSectionProducts(index)" />
+            <starter-bundles-section
+              :products="getSectionProducts(index)"
+              :subdetails="subdetails"
+            />
           </template>
           <template
             v-else
@@ -87,6 +90,10 @@ export default {
       type: Object,
       required: false,
       default: () => {}
+    },
+    subdetails: {
+      type: Object,
+      required: true
     },
     oosData: {
       type: Object,
@@ -163,6 +170,9 @@ export default {
         return null;
       }
     }
+  },
+  mounted() {
+    window.bundles = this;
   },
 };
 </script>

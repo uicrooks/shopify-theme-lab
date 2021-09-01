@@ -59,9 +59,20 @@
               <p class="product-description">
                 {{ product.description }}
               </p>
-              <label class="sq-checkbox" @click.prevent="setPurchaseType(!isSubToBundle)">
-                <input id="checkbox_smooth" type="checkbox" name="radios" :checked="isSubToBundle">
-                <span class="outer"><span class="inner" :class="{ 'squatch-icon icon_checkmark' : isSubToBundle}"></span></span>
+              <label
+                class="sq-checkbox"
+                @click.prevent="setPurchaseType(!isSubToBundle)"
+              >
+                <input
+                  id="checkbox_smooth"
+                  type="checkbox"
+                  name="radios"
+                  :checked="isSubToBundle"
+                >
+                <span class="outer"><span
+                  class="inner"
+                  :class="{ 'squatch-icon icon_checkmark' : isSubToBundle}"
+                /></span>
                 <div class="sq-checkbox__content">
                   <h6>Subscribe &amp; Save 15</h6>
                   <p>Shipped every 3 months</p>
@@ -99,7 +110,8 @@ export default {
         SidebarContent
     },
     props: {
-        products: { required: true, type: Array }
+        products: { required: true, type: Array },
+        subdetails: {required: true, type: Object }
     },
     created() {
       this.$store.registerModule("starterBundles", store);
@@ -110,6 +122,12 @@ export default {
         "fresh-bundle": this["fresh-bundle"],
       });
       this.$store.commit("starterBundles/setCards",this.cards);
+      this.$store.commit("starterBundles/setSubscriptionProducts",{
+        BarSoap: JSON.parse(this.subdetails.BarSoap),
+        HairCare: JSON.parse(this.subdetails.HairCare),
+        Deodorant: JSON.parse(this.subdetails.Deodorant),
+        Toothpaste: JSON.parse(this.subdetails.Toothpaste),
+      });
     },
     computed: {
         "beach-bundle" () {
@@ -162,7 +180,7 @@ export default {
         levelsReference() {
             return this.products[0].variants;
         },
-        ...mapGetters("starterBundles",["selectedLevel","selectedScent","starterBundleDrawerOpened", "isSubToBundle"])
+        ...mapGetters("starterBundles",["selectedLevel","selectedScent","starterBundleDrawerOpened", "isSubToBundle","subscriptionProducts"])
     },
     methods: {
       ...mapMutations("starterBundles", ["setSelectedLevel", "setDrawerOpened", "setPurchaseType"])

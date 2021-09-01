@@ -5,6 +5,7 @@ import cartService from "../../../../services/cart.service";
 const state = () => ({
   fetchedProducts: {},
   starterBundles: {},
+  subscriptionProducts: {},
   cards: [],
   selectedVariant: function() {
     return this.starterBundles[this.selectedScent].variants.filter((variant) => {
@@ -43,6 +44,9 @@ const getters = {
   },
   starterBundleDrawerOpened: (state) => {
     return state.starterBundleDrawerOpened;
+  },
+  subscriptionProducts: (state) => {
+    return state.subscriptionProducts;
   }
 };
 
@@ -85,6 +89,9 @@ const mutations = {
   },
   setPurchaseType: (state, val) => {
     state.isSubToBundle = val;
+  },
+  setSubscriptionProducts: (state, obj) => {
+    state.subscriptionProducts = obj;
   }
 };
 
