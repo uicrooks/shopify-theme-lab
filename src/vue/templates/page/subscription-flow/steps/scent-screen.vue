@@ -29,11 +29,21 @@
                 {{ scent.title }}
               </h3>
               <div class="scent__card-description">
-                <p v-if="scent.type != 'Toothpaste'"><strong>Smells Like: </strong>{{ scent.pdp_metafields.scent }}</p>
-                <p v-else><strong>Tastes Like: </strong>Orange (morning), Mint (night)</p>
-                <p v-if="scent.type == 'BarSoap'"><strong>Exfoliation: </strong>{{ scent.pdp_metafields.exfol_lvl }}</p>
-                <p v-if="scent.type == 'Deodorant'"><strong>Featuring: </strong>Charcoal, Arrowroot, Probiotics</p>
-                <p v-if="scent.type == 'Toothpaste'"><strong>Featuring: </strong>Hydroxyapatite for enamel protection</p>
+                <p v-if="scent.type != 'Toothpaste'">
+                  <strong>Smells Like: </strong>{{ scent.pdp_metafields.scent }}
+                </p>
+                <p v-else>
+                  <strong>Tastes Like: </strong>Orange (morning), Mint (night)
+                </p>
+                <p v-if="scent.type == 'BarSoap'">
+                  <strong>Exfoliation: </strong>{{ scent.pdp_metafields.exfol_lvl }}
+                </p>
+                <p v-if="scent.type == 'Deodorant'">
+                  <strong>Featuring: </strong>Charcoal, Arrowroot, Probiotics
+                </p>
+                <p v-if="scent.type == 'Toothpaste'">
+                  <strong>Featuring: </strong>Hydroxyapatite for enamel protection
+                </p>
               </div>
               <div class="scent__card-btns mt-auto">
                 <b-button-group

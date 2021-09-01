@@ -73,8 +73,8 @@
         @click.prevent="flowPrevious()"
       >
         <b-icon 
-            icon="arrow-left"
-          />
+          icon="arrow-left"
+        />
       </b-button> 
       <b-button
         size="lg"

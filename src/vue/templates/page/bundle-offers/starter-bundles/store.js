@@ -18,7 +18,7 @@ const state = () => ({
   },
   selectedScent: "forest-bundle",
   selectedLevel: "Clean",
-  isSubToBundle: false,
+  isSubToBundle: true,
   starterBundleDrawerOpened: false,
 });
 
@@ -37,6 +37,9 @@ const getters = {
   },
   selectedLevel: (state) => {
     return state.selectedLevel;
+  },
+  isSubToBundle: (state) => {
+    return state.isSubToBundle;
   },
   starterBundleDrawerOpened: (state) => {
     return state.starterBundleDrawerOpened;
@@ -58,7 +61,7 @@ const actions = {
     const variant = state.selectedVariant();
     await cartService.addItem2(variant.id);
     return cartService.redirectToCheckout();
-  }
+  },
 };
 
 const mutations = {
@@ -80,6 +83,9 @@ const mutations = {
   setDrawerOpened: (state, val) => {
     state.starterBundleDrawerOpened = val;
   },
+  setPurchaseType: (state, val) => {
+    state.isSubToBundle = val;
+  }
 };
 
 export default {

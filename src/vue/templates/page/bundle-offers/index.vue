@@ -27,7 +27,6 @@
       class="section-wrapper"
       :class="{'hidden': index === 0, 'starter-bundles': index === 1}"
     >
-
       <b-container
         v-if="showSection(index)"
         class="bundles-section"

@@ -1,62 +1,98 @@
 <template>
-   <b-sidebar id="customization-sidebar" v-model="drawerOpened" header-class="sidebar-header" body-class="sidebar-body" footer-class="sidebar-footer" sidebar-class="sidebar-drawer" :lazy="true" right shadow backdrop>
-      <template #default>
-            <div class="dialog-header">
-         <span
-            v-if="selectedCard.savings"
-            class="discount"
-            >
-         {{ selectedCard.savings | money("$", 0) }} Off!
-         </span>
-         <span
-            v-if="selectedCard.price>4000"
-            class="free-shipping"
-            >
-         Free Shipping!
-         </span>
-         <b-icon
-            icon="x"
-            font-scale="1.5"
-            @click="$emit('close')"
-            />
+  <b-sidebar
+    id="customization-sidebar"
+    v-model="drawerOpened"
+    header-class="sidebar-header"
+    body-class="sidebar-body"
+    footer-class="sidebar-footer"
+    sidebar-class="sidebar-drawer"
+    :lazy="true"
+    right
+    shadow
+    backdrop
+  >
+    <template #default>
+      <div class="dialog-header">
+        <span
+          v-if="selectedCard.savings"
+          class="discount"
+        >
+          {{ selectedCard.savings | money("$", 0) }} Off!
+        </span>
+        <span
+          v-if="selectedCard.price>4000"
+          class="free-shipping"
+        >
+          Free Shipping!
+        </span>
+        <b-icon
+          icon="x"
+          font-scale="1.5"
+          @click="$emit('close')"
+        />
       </div>
-         <div class="header-box">
-            <img :src="selectedVariant.featured_image.src" :alt="`${selectedVariant.title} image`">
-            <h2>{{ selectedCard.title.split(" ")[0] }}</h2>
-            <p>{{selectedVariant.title.split(" Bundle")[0]}}</p>
-            <div class="product-pricing">
-               {{ selectedCard.price | money("$", 0) }}
-               <span v-if="selectedCard.compare_at_price" class="compare-at-pricing">
-               {{ selectedCard.compare_at_price | money("$", 0) }}
-               </span>
+      <div class="header-box">
+        <img
+          :src="selectedVariant.featured_image.src"
+          :alt="`${selectedVariant.title} image`"
+        >
+        <h2>{{ selectedCard.title.split(" ")[0] }}</h2>
+        <p>{{ selectedVariant.title.split(" Bundle")[0] }}</p>
+        <div class="product-pricing">
+          {{ selectedCard.price | money("$", 0) }}
+          <span
+            v-if="selectedCard.compare_at_price"
+            class="compare-at-pricing"
+          >
+            {{ selectedCard.compare_at_price | money("$", 0) }}
+          </span>
+        </div>
+      </div>
+      <div class="variants-box">
+        <h3>Choose Your Scent Profile:</h3>
+        <div class="variants">
+          <div
+            v-for="(scent) in scents"
+            class="variant"
+          >
+            <div
+              class="variant-icon"
+              :class="{ 'selected' : selectedScent == scent.handle }"
+              @click="changeScent(scent.handle)"
+            >
+              Icon
             </div>
-         </div>
-         <div class="variants-box">
-            <h3>Choose Your Scent Profile:</h3>
-            <div class="variants">
-               <div v-for="(scent) in scents" class="variant">
-                  <div class="variant-icon" :class="{ 'selected' : selectedScent == scent.handle }" @click="changeScent(scent.handle)">
-                     Icon
-                  </div>
-                  <span>{{ scent.title }}</span>
-               </div>
-            </div>
-            <h4>See what's included!</h4>
-         </div>
-         <div class="included-box">
-            <h3>What's Inside</h3>
-            <div v-for="(category, categoryIndex) of includedListCategories" :key="`category-${categoryIndex}`" class="included-category">
-               <h4>{{ category }}</h4>
-               <included-item v-for="(handle) in includedObject[category]" :handle="handle" :key="handle" />
-            </div>
-         </div>
-      </template>
-      <template #footer>
-         <squatch-button class="finish-button" @clicked="finishFlow()" :disabled="btnsDisabled">
-            Finish
-         </squatch-button>
-      </template>
-   </b-sidebar>
+            <span>{{ scent.title }}</span>
+          </div>
+        </div>
+        <h4>See what's included!</h4>
+      </div>
+      <div class="included-box">
+        <h3>What's Inside</h3>
+        <div
+          v-for="(category, categoryIndex) of includedListCategories"
+          :key="`category-${categoryIndex}`"
+          class="included-category"
+        >
+          <h4>{{ category }}</h4>
+          <included-item
+            v-for="(handle) in includedObject[category]"
+            :key="handle"
+            :handle="handle"
+          />
+        </div>
+      </div>
+    </template>
+    <template #footer>
+      <squatch-button
+        class="finish-button"
+        :disabled="btnsDisabled"
+        @clicked="finishFlow()"
+      >
+        Finish
+      </squatch-button>
+    </template>
+  </b-sidebar>
 </template>
 
 <script>
@@ -75,7 +111,7 @@ export default {
       IncludedItem
     },
     computed: {
-      ...mapGetters("starterBundles",["selectedVariant","selectedScent","selectedCard","starterBundleDrawerOpened"]),
+      ...mapGetters("starterBundles",["selectedVariant","selectedScent","selectedCard","starterBundleDrawerOpened","fetchedProducts"]),
       includedObject() {
         return IncludedList["starter-bundles-variants"][this.selectedScent] || {};
       },
@@ -96,7 +132,6 @@ export default {
     },
     data() {
       return {
-        sidebarOpened: null,
         btnsDisabled: false,
         scents: [
           {
@@ -120,10 +155,7 @@ export default {
             icon: ""
           },
         ]
-      }
-    },
-    mounted() {
-      window.sbDrawer_test = this;
+      };
     },
     methods: {
       changeScent(handle) {
@@ -132,11 +164,139 @@ export default {
       },
       async finishFlow() {
         this.btnsDisabled = true;
-        await this.$store.dispatch("starterBundles/finish");
+        var outputArray = [],
+        outputProducts = {};
+        this.includedListCategories.forEach(category => {
+          let handles = this.includedObject[category];
+          handles.forEach(prod_handle => {
+            if (prod_handle) {
+              const match = this.fetchedProducts[prod_handle];
+              let sku_lower = match.variants[0].sku.toLowerCase();
+              if (outputProducts[match.productType]) {
+                outputProducts[match.productType].push(sku_lower);
+              } else {
+                outputProducts[match.productType] = [sku_lower];
+              }
+            }
+          });
+        });
+            outputArray.push({
+              variant_id: 31305057960041,
+              quantity: 1,
+              properties: {}
+            });
+        switch (this.selectedCard.title) {
+          case "Clean":
+            var soapScents = {};
+            outputProducts["BarSoap"].forEach((sku,i) => {
+                soapScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputArray.push({
+              variant_id: 31305037709417,
+              quantity: 1,
+              properties: Object.assign({}, soapScents)
+            });
+            break;
+          case "Groomed":
+            var soapScents = {},
+            hairScents = {};
+            outputProducts["BarSoap"].forEach((sku,i) => {
+                soapScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputProducts["HairCare"].forEach((sku,i) => {
+                hairScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputArray.push({
+              variant_id: 31305037709417,
+              quantity: 1,
+              properties: Object.assign({}, soapScents)
+            });
+            outputArray.push({
+              variant_id: 31305050259561,
+              quantity: 1,
+              properties: Object.assign({}, hairScents)
+            });
+            break;
+          case "Suave":
+            var soapScents = {},
+            hairScents = {},
+            deoScents = {};
+            outputProducts["BarSoap"].forEach((sku,i) => {
+                soapScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputProducts["HairCare"].forEach((sku,i) => {
+                hairScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputProducts["Deodorant"].forEach((sku,i) => {
+                deoScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputArray.push({
+              variant_id: 31305037709417,
+              quantity: 1,
+              properties: Object.assign({}, soapScents)
+            });
+            outputArray.push({
+              variant_id: 31305050259561,
+              quantity: 1,
+              properties: Object.assign({}, hairScents)
+            });
+            outputArray.push({
+              variant_id: 32890545340521,
+              quantity: 1,
+              properties: Object.assign({}, deoScents)
+            });
+            break;
+          case "Smooth":
+            var soapScents = {},
+            hairScents = {},
+            deoScents = {},
+            toothpasteScents = {};
+            outputProducts["BarSoap"].forEach((sku,i) => {
+                soapScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputProducts["HairCare"].forEach((sku,i) => {
+                hairScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputProducts["Deodorant"].forEach((sku,i) => {
+                hairScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputProducts["Deodorant"].forEach((sku,i) => {
+                deoScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            ["TOOTH-CM-MNG","TOOTH-SS-NHT"].forEach((sku,i) => {
+                toothpasteScents[`_fulfillment_Scent${i+1}`] = sku;
+            });
+            outputArray.push({
+              variant_id: 31305037709417,
+              quantity: 1,
+              properties: Object.assign({}, soapScents)
+            });
+            outputArray.push({
+              variant_id: 31305050259561,
+              quantity: 1,
+              properties: Object.assign({}, hairScents)
+            });
+            outputArray.push({
+              variant_id: 32890545340521,
+              quantity: 1,
+              properties: Object.assign({}, deoScents)
+            });
+            outputArray.push({
+              variant_id: 32637027188841,
+              quantity: 1,
+              properties: Object.assign({}, toothpasteScents)
+            });
+            break;
+        }
+        console.log(outputArray);
+        //await this.$store.dispatch("starterBundles/finish");
         this.btnsDisabled = false;
       }
+    },
+    mounted() {
+      window.sbDrawer_test = this;
     }
-}
+};
 </script>
 
 <style lang="scss">

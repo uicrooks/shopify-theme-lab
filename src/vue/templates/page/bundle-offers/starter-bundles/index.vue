@@ -1,53 +1,85 @@
 <template>
-    <section class="starter-bundles-component">
-        <b-container class="starter-bundles-section">
-            <b-row>
-                <b-col lg="3" md="6" cols="12" v-for="(product) in cards">
-                    <div class="customizable-product-group-card-component" :class="{'selected' : selectedLevel == product.title }" @click="setSelectedLevel(product.title)">
-                        <div class="image-box">
-                            <div class="banners">
-                                <span class="discount">
-                        {{ product.savings | money("$", 0) }} Off!
-                      </span>
-                                <span v-if="product.price>4000" class="free-shipping">
-                        Free Shipping!
-                      </span>
-                            </div>
-                            <img :src="product.image" :alt="`${product.title} image`">
-                        </div>
-                        <div class="details-box">
-                            <div class="product-preheader">
-                                <span class="discount">
-                        {{ product.savings | money("$", 0) }} Off!
-                      </span>
-                                <span v-if="product.price>4000" class="free-shipping">
-                        Free Shipping!
-                      </span>
-                            </div>
-                            <div class="product-header">
-                                <div class="card-title-group">
-                                  <h4>{{ product.title.split(" ")[0] }}</h4>
-                                    <div class="product-pricing">
-                                    {{ product.price | money("$", 0) }}
-                                    <span v-if="product.compare_at_price" class="compare-at-pricing">
-                                    {{ product.compare_at_price | money("$", 0) }}
-                                  </span>
-                                </div>
-                                </div>
-                            </div>
-                            <p class="product-description">
-                                {{ product.description }}
-                            </p>
-                            <squatch-button v-show="selectedLevel == product.title" @clicked="setDrawerOpened(true)">
-                                Select Scents
-                            </squatch-button>
-                        </div>
-                    </div>
-                </b-col>
-            </b-row>
-        </b-container>
-            <sidebar-content />
-    </section>
+  <section class="starter-bundles-component">
+    <b-container class="starter-bundles-section">
+      <b-row>
+        <b-col
+          v-for="(product) in cards"
+          lg="3"
+          md="6"
+          cols="12"
+        >
+          <div
+            class="customizable-product-group-card-component"
+            :class="{'selected' : selectedLevel == product.title }"
+            @click="setSelectedLevel(product.title)"
+          >
+            <div class="image-box">
+              <div class="banners">
+                <span class="discount">
+                  {{ product.savings | money("$", 0) }} Off!
+                </span>
+                <span
+                  v-if="product.price>4000"
+                  class="free-shipping"
+                >
+                  Free Shipping!
+                </span>
+              </div>
+              <img
+                :src="product.image"
+                :alt="`${product.title} image`"
+              >
+            </div>
+            <div class="details-box">
+              <div class="product-preheader">
+                <span class="discount">
+                  {{ product.savings | money("$", 0) }} Off!
+                </span>
+                <span
+                  v-if="product.price>4000"
+                  class="free-shipping"
+                >
+                  Free Shipping!
+                </span>
+              </div>
+              <div class="product-header">
+                <div class="card-title-group">
+                  <h4>{{ product.title.split(" ")[0] }}</h4>
+                  <div class="product-pricing">
+                    {{ product.price | money("$", 0) }}
+                    <span
+                      v-if="product.compare_at_price"
+                      class="compare-at-pricing"
+                    >
+                      {{ product.compare_at_price | money("$", 0) }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="product-description">
+                {{ product.description }}
+              </p>
+              <label class="sq-checkbox" @click.prevent="setPurchaseType(!isSubToBundle)">
+                <input id="checkbox_smooth" type="checkbox" name="radios" :checked="isSubToBundle">
+                <span class="outer"><span class="inner" :class="{ 'squatch-icon icon_checkmark' : isSubToBundle}"></span></span>
+                <div class="sq-checkbox__content">
+                  <h6>Subscribe &amp; Save 15</h6>
+                  <p>Shipped every 3 months</p>
+                </div>
+              </label>
+              <squatch-button
+                v-show="selectedLevel == product.title"
+                @clicked="setDrawerOpened(true)"
+              >
+                Select Scents
+              </squatch-button>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+    </b-container>
+    <sidebar-content />
+  </section>
 </template>
 
 <script>
@@ -81,16 +113,16 @@ export default {
     },
     computed: {
         "beach-bundle" () {
-            return this.products.filter((bundle) => { return bundle.handle == "beach-bundle" })[0] || {};
+            return this.products.filter((bundle) => { return bundle.handle == "beach-bundle"; })[0] || {};
         },
         "squatch-bundle" () {
-            return this.products.filter((bundle) => { return bundle.handle == "squatch-bundle" })[0] || {};
+            return this.products.filter((bundle) => { return bundle.handle == "squatch-bundle"; })[0] || {};
         },
         "forest-bundle" () {
-            return this.products.filter((bundle) => { return bundle.handle == "forest-bundle" })[0] || {};
+            return this.products.filter((bundle) => { return bundle.handle == "forest-bundle"; })[0] || {};
         },
         "fresh-bundle" () {
-            return this.products.filter((bundle) => { return bundle.handle == "fresh-bundle" })[0] || {};
+            return this.products.filter((bundle) => { return bundle.handle == "fresh-bundle"; })[0] || {};
         },
         cards() {
             return [{
@@ -125,20 +157,20 @@ export default {
                     savings: (this.levelsReference[5].compare_at_price - this.levelsReference[5].price),
                     image: this["beach-bundle"].variants[5].featured_image.src
                 },
-            ]
+            ];
         },
         levelsReference() {
             return this.products[0].variants;
         },
-        ...mapGetters("starterBundles",["selectedLevel","selectedScent","starterBundleDrawerOpened"])
+        ...mapGetters("starterBundles",["selectedLevel","selectedScent","starterBundleDrawerOpened", "isSubToBundle"])
     },
     methods: {
-      ...mapMutations("starterBundles", ["setSelectedLevel", "setDrawerOpened"])
+      ...mapMutations("starterBundles", ["setSelectedLevel", "setDrawerOpened", "setPurchaseType"])
     },
     mounted() {
         window.sb_test = this;
     }
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -271,4 +303,113 @@ export default {
         }
     }
 }
+.sq-checkbox {
+	display: flex;
+	width: 100%;
+	font-size: 18px;
+	margin-bottom: 15px;
+	cursor: pointer;
+	position: relative;
+	background: #fbf6f0;
+	padding: 8px 5px;
+	border-radius: 6px;
+	&:hover {
+		.inner {
+			transform: scale(0.5);
+			opacity: 0.5;
+		}
+	}
+	input {
+		height: 1px;
+		width: 1px;
+		opacity: 0;
+		&:checked {
+			+ {
+				.outer {
+					.inner {
+						transform: scale(1);
+						opacity: 1;
+					}
+					border: 3px solid #cc6328;
+				}
+			}
+		}
+	}
+	.outer {
+		height: 24px;
+		width: 24px;
+		display: block;
+		float: left;
+		margin: 0 0px 0 0;
+		border: 3px solid #e5d0bb;
+		border-radius: 50%;
+		background-color: #fff;
+		position: relative;
+	}
+	.inner {
+		transform: scale(0);
+		display: block;
+		margin: auto;
+		border-radius: 50%;
+		opacity: 0;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		color: #40a040;
+		bottom: 0;
+		font-size: 22px;
+		margin: auto;
+		padding-bottom: 2px;
+		text-align: center;
+		align-items: center;
+		color: #40a040;
+		background: #fff;
+		display: flex;
+	}
+}
+.sq-checkbox__content {
+	display: block;
+	width: calc(100% - 40px);
+	margin-left: auto;
+  text-align:left;
+	h6 {
+		margin-bottom: 2px;
+		font-family: "adrianna";
+		font-size: 15px;
+		line-height: 1;
+		font-weight: 800;
+		color: #cc6328;
+	}
+	p {
+		margin-bottom: 0;
+		font-size: 12px;
+		line-height: 1.2;
+	}
+}
+@media (max-width: 767px) {
+	.sq-checkbox {
+		align-items: center;
+		.outer {
+			height: 20px;
+			width: 20px;
+		}
+		.inner {
+			height: 10px;
+			width: 10px;
+		}
+	}
+	.sq-checkbox__content {
+		h6 {
+			font-size: 12px;
+		}
+		p {
+			font-size: 10px;
+		}
+		display: block;
+		width: calc(100% - 30px);
+		margin-left: auto;
+	}
+}
+
 </style>

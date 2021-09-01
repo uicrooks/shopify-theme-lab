@@ -5,7 +5,9 @@
   >
     <b-container fluid>
       <b-col cols="12">
-        <h2 class="section-heading">Shower Boosters</h2>
+        <h2 class="section-heading">
+          Shower Boosters
+        </h2>
       </b-col>
       <transition-group
         name="fade-list"
@@ -24,7 +26,12 @@
         >
           <div class="scent__card">
             <div class="scent__card-image woodgrain-bg">
-              <div class="preselected-tag" v-if="preselectedSkus.indexOf(addon.sku)>-1 && addon.qty>0 && !removedPreselected">Pre-selected!</div>
+              <div
+                v-if="preselectedSkus.indexOf(addon.sku)>-1 && addon.qty>0 && !removedPreselected"
+                class="preselected-tag"
+              >
+                Pre-selected!
+              </div>
               <b-img-lazy :src="addon.images[0]" />
             </div>
             <div class="scent__card-body">
@@ -76,7 +83,9 @@
 
     <b-container fluid>
       <b-col cols="12">
-        <h2 class="section-heading">Deodorant</h2>
+        <h2 class="section-heading">
+          Deodorant
+        </h2>
       </b-col>
       <transition-group
         name="fade-list"
@@ -146,7 +155,9 @@
 
     <b-container fluid>
       <b-col cols="12">
-        <h2 class="section-heading">Hair Care</h2>
+        <h2 class="section-heading">
+          Hair Care
+        </h2>
       </b-col>
       <transition-group
         name="fade-list"
@@ -216,7 +227,9 @@
 
     <b-container fluid>
       <b-col cols="12">
-        <h2 class="section-heading">More</h2>
+        <h2 class="section-heading">
+          More
+        </h2>
       </b-col>
       <transition-group
         name="fade-list"

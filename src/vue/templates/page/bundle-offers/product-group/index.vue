@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="details-box">
-<div class="product-title">
+      <div class="product-title">
         {{ product.title }}
       </div>
       <div class="product-pricing">

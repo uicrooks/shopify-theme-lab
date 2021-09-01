@@ -1,28 +1,27 @@
 <template>
-    <div
-      class="included-product"
-    >
-      <template v-if="!product.title">
-        <div class="image-box">
-        </div>
-        <div class="details-box">
-          <h3>Loading</h3>
-          <p>Loading</p>
-        </div>
-      </template>
-      <template v-else>
-        <div class="image-box">
-          <img
-            :src="getProductImage(product)"
-            :alt="`${product.title} image`"
-          >
-        </div>
-        <div class="details-box">
-          <h3>{{ product.title }}</h3>
-          <p>{{ product.description }}</p>
-        </div>
-      </template>
-    </div>
+  <div
+    class="included-product"
+  >
+    <template v-if="!product.title">
+      <div class="image-box" />
+      <div class="details-box">
+        <h3>Loading</h3>
+        <p>Loading</p>
+      </div>
+    </template>
+    <template v-else>
+      <div class="image-box">
+        <img
+          :src="getProductImage(product)"
+          :alt="`${product.title} image`"
+        >
+      </div>
+      <div class="details-box">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.description }}</p>
+      </div>
+    </template>
+  </div>
 </template>
 <script>
 export default {
@@ -33,17 +32,17 @@ export default {
   data() {
     return {
       product: {}
-    }
-  },
-  async created() {
-    this.product = await this.$store.dispatch("starterBundles/fetchProduct", this.handle);
+    };
   },
   methods: {
     getProductImage(product) {
       return product.images[0].src;
     }
+  },
+  async created() {
+    this.product = await this.$store.dispatch("starterBundles/fetchProduct", this.handle);
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 @use "@/styles/main" as global;
