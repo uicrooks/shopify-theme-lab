@@ -1,6 +1,6 @@
 <template>
   <div class="subscriptions-edit-component">
-    <account-section-container-box>
+    <account-section-container>
       <account-section-tabs
         class="section-tabs"
       />
@@ -90,23 +90,7 @@
                 <a @click="selectView('Edit Box')">
                   Edit
                 </a>
-                <p
-                  v-if="rechargePaymentSource.cardImage"
-                  class="billing-info"
-                >
-                  <img
-                    :src="rechargePaymentSource.cardImage"
-                    :alt="`${rechargePaymentSource.card_brand} logo`"
-                    class="card-logo"
-                  >
-                  Ending in {{ rechargePaymentSource.card_last4 }}
-                  <span
-                    v-if="rechargePaymentSource.status !== 'active'"
-                    class="status-alert"
-                  >
-                    Expired
-                  </span>
-                </p>
+                <account-billing-info />
               </div>
             </div>
           </div>
@@ -257,7 +241,7 @@
           </account-renderless-order-item>
         </div>
       </div>
-    </account-section-container-box>
+    </account-section-container>
     <account-subscription-edit-modal
       :show-modal="showEditModal"
       :item="itemToEdit"
@@ -332,8 +316,10 @@ export default {
   },
   watch: {
     refillBox() {
-      this.ordersLoadedCounter = 0;
+      console.log("[SubsEdit] refillBox watched");
       this.updatedRefillDate = this.refillBoxDate;
+      this.isLoading = true;
+      this.ordersLoadedCounter = 0;
       this.closeModal();
     },
   },
@@ -396,16 +382,16 @@ export default {
       this.ordersLoadedCounter++;
       if (this.ordersLoadedCounter == this.refillBox.length) {
         this.isLoading = false;
+        console.log("[SubsEdit] onOrderItemLoaded(), isLoading = false");
         this.$emit("ready");
       }
     },
     openEditModal(item) {
-      console.log(item);
       this.itemToEdit = item;
       this.showEditModal = true;
     },
     closeModal() {
-      console.log("csloeModal from subsEdit");
+      console.log("[SubsEdit] closeModal()");
       this.confirmModalText = "";
       this.changes = {};
       this.actionFunction = () => {};
@@ -418,7 +404,6 @@ export default {
     }
   },
   mounted() {
-    this.ordersLoadedCounter = 0;
     this.updatedRefillDate = this.refillBoxDate;
     this.closeModal();
   }
@@ -550,10 +535,6 @@ export default {
             p {
               @include global.font-style-body($color: global.$brown);
 
-              &.billing-info {
-                margin-bottom: 0;
-              }
-            
               .address-line {
                 display: block;
                 margin-bottom: 4px;
@@ -705,13 +686,14 @@ export default {
               width: 100%;
               height: 34px;
               padding: 12px 10px 10px;
-              color: global.$text-orange;
+              color: $orange;
               background-color: transparent;
-              border: 1px solid transparent;
+              border: 1px solid $orange;
               margin-right: 10px;
 
-              &.hover {
-                color: global.$orange;
+              &:hover {
+                color: $orange-lighten;
+                border: 1px solid $orange-lighten;
               }
               
               @include global.layout-sm {

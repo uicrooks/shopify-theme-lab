@@ -23,6 +23,14 @@ const Helpers = {
     }
     return [];
   },
+  generateProductOptions: (productType, subsProducts) => {
+    return subsProducts.map((product, index) => {
+      return {
+        text: product.title,
+        value: index
+      };
+    });
+  },
   generateIntervalOptions: (productType) => {
     if (productType === "barsoap") {
       return [
@@ -114,9 +122,33 @@ const Helpers = {
       }
     });
   },
+  getProductSelectedIndexOnIntervalAndQuantityUpdate: (productType, interval, qty, subsProducts) => {
+    let matchingProductIndex = - 1;
+    if (productType === "barsoap") {
+      const handleKeywordForInterval = interval === 1 ? "month" : "quarter";
+      const handleKeywordForQuantity = `${qty}-bar`;
+      matchingProductIndex = subsProducts.findIndex(option => {
+        return option.handle.includes(handleKeywordForInterval) && option.handle.includes(handleKeywordForQuantity);
+      });
+    }
+    if (productType === "deodorant") {
+      const handleKeywordForQuantity = `${qty}-stick`;
+      matchingProductIndex = subsProducts.findIndex(option => {
+        return option.handle.includes(handleKeywordForQuantity);
+      });
+    }
+    if (productType === "toothpaste") {
+      const handle = interval === 3 ? "toothpaste-bundle-subscription-1-kit" : "toothpaste-bundle-subscription-1-kit-1";
+      matchingProductIndex = this.subscriptionProducts.findIndex(option => {
+        return option.handle === handle;
+      });
+    }
+    return matchingProductIndex > -1 ? matchingProductIndex : null;
+  }
 };
+
 export default {
-  name: "AccountRenderlessSubscriptionEdit",
+  name: "AccountRenderlessSubscriptionEditOptions",
   props: {
     item: {
       type: Object,
@@ -176,6 +208,9 @@ export default {
       return this.intervalSelected !== Number(this.item.order_interval_frequency);
     },
     quantityUpdated() {
+      if (["barsoap", "deodorant"].includes(this.productType)) {
+        return this.quantitySelected !== this.selection.length;
+      }
       return this.quantitySelected !== this.item.quantity;
     },
     selectionUpdated() {
@@ -183,7 +218,11 @@ export default {
         this.selection.map(option => option.handle),
         this.item.lineItems.map(option => option.handle)
       );
+
       function checkIfDifferent(arr1, arr2) {
+        if (arr1.length !== arr2.length) {
+          return true;
+        }
         arr1.sort();
         arr2.sort();
         for (let i = 0; i < arr1.length; i++) {
@@ -212,12 +251,17 @@ export default {
   },
   watch: {
     item(val) {
-      console.log("subs edit init!", val);
+      console.log("(renderless EditOptions) item watched - productType?", val, this.productType);
+      console.log(this.subscriptionProducts);
+  
       this.resetOptions();
       if (!val.productData) return;
 
       this.intervalOptions = Helpers.generateIntervalOptions(this.productType);
       this.intervalSelected = Number(this.item.order_interval_frequency);
+
+      this.productOptionsWithIndexValue = Helpers.generateProductOptions(this.productType, this.subscriptionProducts);
+      this.productSelectedIndex = getProductSelectedIndex(this.item, this.subscriptionProducts);
       
       if (this.productType === "barsoap") {
         this.quantityOptions = this.intervalSelected === 1 ? [2, 3] : [3, 6, 9];
@@ -225,14 +269,6 @@ export default {
       }
 
       if (this.productType === "haircare") {
-        this.productOptionsWithIndexValue = this.subscriptionProducts.map((product, index) => {
-          return {
-            text: product.title,
-            value: index
-          };
-        });
-        this.productSelectedIndex = this.subscriptionProducts.findIndex(product => product.handle === this.item.productData.handle);
-
         this.quantityOptions = [1, 2, 3, 4, 5];
         this.quantitySelected = this.item.quantity;
       }
@@ -248,13 +284,17 @@ export default {
       }
 
       this.selectionOptions = Helpers.generateSelectionOptions(this.productType, this.productSubType, this.item, this.quantitySelected, this.subscriptionOptions);
+
+
+      function getProductSelectedIndex(item, subsProducts) {
+        return subsProducts.findIndex(product => product.handle === item.productData.handle);
+      }
     },
     selectionOptions() {
       // Need to watch selectionOptions change to update option.isFull property for quantity switch disabling
       if (this.productType === "haircare") {
         Helpers.processHaircareSelectionOptionsOnUpdate(this.quantitySelected, this.selectionOptions);
       }
-      console.log(this.selectionOptions);
     },
   },
   methods: {
@@ -313,6 +353,11 @@ export default {
         // If switching between monthly and quarterly barsoap subscription, set the default quantity to 3
         this.quantitySelected = 3;
         this.quantityOptions = this.intervalSelected === 1 ? [2, 3] : [3, 6, 9];
+
+        this.productSelectedIndex = Helpers.getProductSelectedIndexOnIntervalAndQuantityUpdate(this.productType, val, this.quantitySelected, this.subscriptionProducts);
+      }
+      if (this.productType === "toothpaste") {
+        this.productSelectedIndex = Helpers.getProductSelectedIndexOnIntervalAndQuantityUpdate(this.productType, val, this.quantitySelected, this.subscriptionProducts);
       }
     },
     onQuantityUpdated(val) {
@@ -320,6 +365,9 @@ export default {
         // if qtySelected is smaller than current selection, trim the selection
         const optionsToRemove = val < this.selection.length ? this.selection.slice(val) : [];
         optionsToRemove.forEach(option => this.removeOption(option));
+        
+        // Find the matching product when qty changes
+        this.productSelectedIndex = Helpers.getProductSelectedIndexOnIntervalAndQuantityUpdate(this.productType, this.intervalSelected, val, this.subscriptionProducts);
       }
       if (this.productType === "haircare" && this.quantitySelected !== val) {
         // Iterate selectionOptions array and update each item's quantity
@@ -332,7 +380,7 @@ export default {
   },
   render() {
     return this.$scopedSlots.default({
-      productOptionsWithIndexValue: this.productOptionsWithIndexValue,
+      productOptionsWithIndexValue: this.productType === "haircare" ? this.productOptionsWithIndexValue : [],
       productAttr: {
         value: this.productSelectedIndex,
       },

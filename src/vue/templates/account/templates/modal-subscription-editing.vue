@@ -1,6 +1,6 @@
 <template>
   <div class="subscription-order-edit-modal-component">
-    <account-renderless-subscription-edit
+    <account-renderless-subscription-edit-options
       :item="itemHolder"
       :subscription-products="subscriptionProducts"
       :subscription-option-source="subscriptionOptions"
@@ -158,13 +158,13 @@
           </template>
         </b-modal>
       </div>
-    </account-renderless-subscription-edit>
+    </account-renderless-subscription-edit-options>
     <account-confirmation-modal
       :show-modal="showConfirmModal"
       :item="itemHolder"
       :action-function="actionFunction"
       :changes="changes"
-      @hide="closeConfirmModal"
+      @hide="hideConfirmModal"
       @cancel="cancelConfirmModal"
     >
       {{ confirmModalText }}
@@ -232,13 +232,9 @@ export default {
   },
   watch: {
     showModal(val) {
+      console.log("[EditModal] showModal watched");
       this.showModalFlag = val;
       this.itemHolder = val ? this.item : {};
-    },
-    itemHolder() {
-      console.log("all subsProducs and subsOptions");
-      console.log(this.subscriptionCollections);
-      console.log(this.subscriptionOptionCollections);
     },
   },
   methods: {
@@ -263,7 +259,7 @@ export default {
       
       if (product !== null) {
         const variantId = product.variants && product.variants[0] && product.variants[0].id;
-        this.changes.shopify_variant_id = 31305050259561;
+        this.changes.shopify_variant_id = variantId;
 
         const additionalModalText = getConfirmModalTextWithIncreasedPrice(this.itemHolder, product, quantity);
         this.confirmModalText += additionalModalText ? additionalModalText : "";
@@ -333,8 +329,8 @@ export default {
         return [...newProps, ...selectionProps];
       }
     },
-    closeConfirmModal() {
-      console.log("CloseConfirmMOdal");
+    hideConfirmModal() {
+      console.log("[EditModal] hideConfirmModal()");
       this.confirmModalText = "";
       this.changes = {};
       this.actionFunction = () => {};
@@ -342,6 +338,7 @@ export default {
       this.$emit("hide");
     },
     cancelConfirmModal() {
+      console.log("[EditModal] cancelConfirmModal()");
       this.showConfirmModal = false;
     }
   }
@@ -422,7 +419,7 @@ export default {
       flex-flow: row nowrap;
       justify-content: space-between;
       margin-bottom: 20px;
-      @include global.font-style-body-bold();
+      @include font-style-body-bold();
 
       .back-button {
         display: flex;
@@ -439,6 +436,7 @@ export default {
       }
 
       .close-button {
+        cursor: pointer;
 
         .icon-squatch {
           font-size: 14px;

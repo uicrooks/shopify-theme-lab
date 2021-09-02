@@ -1,7 +1,7 @@
 <template>
   <div class="refill-schedule-component">
-    <account-section-container-box
-      class="section-container-box"
+    <account-section-container
+      class="section-container"
     >
       <account-section-tabs />
       <div class="tab-contents">
@@ -149,7 +149,7 @@
           </div>
         </div>
       </div>
-    </account-section-container-box>
+    </account-section-container>
   </div>
 </template>
 
@@ -256,7 +256,7 @@ export default {
 
 .refill-schedule-component {
 
-  .section-container-box {
+  .section-container {
     padding: 20px 15px;
   
     @include global.layout-sm {

@@ -4,6 +4,7 @@ const state = () => ({
   rechargeUser: {},
   rechargePaymentSource: {},
   rechargeOrders: {},
+  rechargeAddresses: [],
   squatchBoxGroups: {},
   currentGroupName: "", // address label: 4015 Marina St.
   currentGroup: {},
@@ -24,6 +25,9 @@ const getters = {
   },
   rechargeOrders: (state) => {
     return state.rechargeOrders;
+  },
+  rechargeAddresses: (state) => {
+    return state.rechargeAddresses;
   },
   squatchBoxGroups: (state) => {
     return state.squatchBoxGroups;
@@ -111,6 +115,9 @@ const mutations = {
   },
   setRechargeOrders: (state, orders) => {
     state.rechargeOrders = orders;
+  },
+  setRechargeAddresses: (state, addresses) => {
+    state.rechargeAddresses = addresses;
   },
   setSquatchBoxGroups: (state, boxes) => {
     state.squatchBoxGroups = boxes;

@@ -99,7 +99,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargeUser", "currentGroupName"]),
+    ...mapGetters("account", ["rechargeUser", "rechargeAddresses",  "currentGroupName", "currentGroup"]),
     refillDateDisplay() {
       return moment(this.newRefillDate).format("dddd, MMM Do, YYYY");
     },
@@ -193,11 +193,15 @@ export default {
       return failed;
     },
     async onUpdateComplete() {
-      const squatchBoxGroups = await AccountHelpers.initializeSquatchBoxGroups(this.rechargeUser.id);
+      const orders = await RechargeService.getUserResource(this.rechargeUser.id, "subscriptions");
+      this.$store.commit("account/setRechargeOrders", orders);
+      
+      const squatchBoxGroups = await AccountHelpers.generateSquatchBoxGroups(orders, this.rechargeAddresses); 
       this.$store.dispatch(
         "account/initializeSquatchBoxGroups",
         { squatchBoxGroups: squatchBoxGroups, groupName: this.currentGroupName }
       );
+
       if (!this.errored) {
         this.$emit("hide");
       }

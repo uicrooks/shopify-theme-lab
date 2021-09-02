@@ -1,15 +1,14 @@
-import RechargeService from "@/vue/services/recharge.service";
 import ProductIdentifier from "@/vue/services/product-identifier";
 
 export default {
-  async initializeSquatchBoxGroups(rechargeUserId) {
-    const orders = await RechargeService.getUserResource(rechargeUserId, "subscriptions");
+  async generateSquatchBoxGroups(orders, addresses) {
+    if (!orders.subscriptions || !orders.onetimes) return {};
     const subscriptions = orders.subscriptions.filter(subs => !subs.cancelled_at);
     // cookie
-    const addresses = await RechargeService.getUserResource(rechargeUserId, "addresses");
     const squatchBoxGroups = this.processOrderData([...subscriptions, ...orders.onetimes], addresses);
     return squatchBoxGroups;
   },
+
   processOrderData(items, addresses) {
     let obj = {};
     for (let i = 0; i < items.length; i++) {
@@ -26,9 +25,15 @@ export default {
         if (obj[addressLabel].items) {
           obj[addressLabel].items.push(item);
         }
+        if (obj[addressLabel].addresses) {
+          if (obj[addressLabel].addresses.findIndex(address => address.id === addressMatch.id) < 0) {
+            obj[addressLabel].addresses.push(addressMatch);
+          }
+        }
       } else {
         obj[addressLabel] = {
           fullAddress: addressMatch,
+          addresses: [addressMatch],
           items: [item],
           discountCodes: [discountId],
         };

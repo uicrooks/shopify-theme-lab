@@ -1,7 +1,7 @@
 <template>
   <div class="account-component">
     <account-nav
-      v-if="!loading"
+      v-if="!isLoading"
       class="account-nav"
     />
     <!-- Overview -->
@@ -19,7 +19,7 @@
       >
         <h4>Squatch Box</h4>
         <account-subscriptions-view
-          @ready="loading = false"
+          @ready="isLoading = false"
         />
       </div>
       <div class="view-section">
@@ -35,7 +35,7 @@
     >
       <h1>Edit Box</h1>
       <account-subscriptions-edit 
-        @ready="loading = false"
+        @ready="isLoading = false"
       />
     </div>
     <!-- End of Edit Box -->
@@ -60,9 +60,19 @@
         <slot name="order-history" />
       </div>
     </div>
-    <!-- <account-subscriptions
-      v-if="rechargeUser.id"
-    /> -->
+    <div
+      v-else-if="currentView === 'Billing & Shipping'"
+      class="view"
+    >
+      <h1>Billing & Shipping</h1>
+      <account-billing-and-shipping />
+    </div>
+    <div
+      v-else-if="currentView === 'Account Settings'"
+      class="view"
+    >
+      <h1>Account Settings</h1>
+    </div>
   </div>
 </template>
 
@@ -92,11 +102,11 @@ export default {
   },
   data() {
     return {
-      loading: true
+      isLoading: true
     };
   },
   computed: {
-    ...mapGetters("account", ["currentView", "rechargeUser"]),
+    ...mapGetters("account", ["currentView", "rechargeUser", "rechargeAddresses", "refillBox", "currentGroup", "squatchBoxGroups"]),
     isActiveSubscriber() {
       // return this.user.tags.includes("Active Subscriber");
       return true;
@@ -104,10 +114,18 @@ export default {
   },
   watch: {
     currentView(val) {
-      console.log("view updated to:", val);
+      console.log("--- view watched:", val);
       if (["Overview", "Edit Box"].includes(val)) {
-        this.loading = true;
+        this.isLoading = true;
       }
+    },
+    refillBox(val) {
+      if (["Overview", "Edit Box"].includes(this.currentView)) {
+        this.isLoading = true;
+      }
+      console.log("---- refillBox watched:", val);
+      console.log("---- squatchBoxGroups watched", this.squatchBoxGroups);
+      console.log("---- currentGroup watched:", this.currentGroup);
     }
   },
   methods: {
@@ -118,12 +136,16 @@ export default {
     async initializeRechargeUserData(email) {
       const subscriber = await RechargeService.getUser(email);
       const paymentSources = await RechargeService.getUserResource(subscriber.id, "payment_sources");
+      const addresses = await RechargeService.getUserResource(subscriber.id, "addresses");
       this.$store.commit("account/setRechargeUser", subscriber);
       this.$store.commit("account/setRechargePaymentSource",paymentSources[0]); 
+      this.$store.commit("account/setRechargeAddresses", addresses);
     },
     async initializeSubscriptionData(rechargeUserId) {
-      const squatchBoxGroups = await AccountHelpers.initializeSquatchBoxGroups(rechargeUserId);
-      // this.$store.commit("account/setRechargeOrders", orders);
+      const orders = await RechargeService.getUserResource(rechargeUserId, "subscriptions");
+      this.$store.commit("account/setRechargeOrders", orders);
+      
+      const squatchBoxGroups = await AccountHelpers.generateSquatchBoxGroups(orders, this.rechargeAddresses); 
       this.$store.dispatch(
         "account/initializeSquatchBoxGroups",
         { squatchBoxGroups: squatchBoxGroups, groupName: Object.keys(squatchBoxGroups)[0] }

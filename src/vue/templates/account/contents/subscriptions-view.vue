@@ -16,8 +16,8 @@
         </a>
       </div>
     </div>
-    <account-section-container-box
-      class="section-container-box"
+    <account-section-container
+      class="section-container"
     >
       <account-section-tabs />
       <div class="tab-contents">
@@ -137,26 +137,10 @@
             </span>
           </p>
           <h6>Bills To</h6>
-          <p
-            v-if="rechargePaymentSource.cardImage"
-            class="billing-info"
-          >
-            <img
-              :src="rechargePaymentSource.cardImage"
-              :alt="`${rechargePaymentSource.card_brand} logo`"
-              class="card-logo"
-            >
-            Ending in {{ rechargePaymentSource.card_last4 }}
-            <span
-              v-if="rechargePaymentSource.status !== 'active'"
-              class="status-alert"
-            >
-              Expired
-            </span>
-          </p>
+          <account-billing-info />
         </div>
       </div>
-    </account-section-container-box>
+    </account-section-container>
   </div>
 </template>
 
@@ -188,7 +172,6 @@ export default {
   },
   watch: {
     refillBox() {
-      console.log("refillBox", this.refillBox);
       this.isLoading = true;
       this.ordersLoadedCounter = 0;
     }
@@ -320,7 +303,7 @@ export default {
     }
   }
 
-  .section-container-box {
+  .section-container {
     padding: 20px 15px;
 
     @include global.layout-sm {
@@ -483,21 +466,6 @@ export default {
         margin-bottom: 7px;
       }
     }
-
-    .billing-info {
-      margin-bottom: 0;
-
-      .card-logo {
-        width: 30px;
-        margin-right: 3px;
-      }
-
-      .status-alert {
-        color: global.$red;
-        font-size: 12px;
-      }
-    }
-
   }
 }
 </style>
