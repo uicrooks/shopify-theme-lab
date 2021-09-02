@@ -88,11 +88,11 @@ export default {
   .text-container {
     padding: 2.5rem 0;
 
-    @include layout-md {
+    @include global.layout-md {
       padding: 5rem 0;
     }
 
-    @include layout-xl {
+    @include global.layout-xl {
       padding: 5rem 2rem;
     }
 
@@ -110,17 +110,17 @@ export default {
         }
 
         .shipping-title {
-          @include font-style-heading($size: calc(1.04375rem + 1.10833vw), $weight: 400);
+          @include global.font-style-heading($size: calc(1.04375rem + 1.10833vw), $weight: 400);
 
           @media (min-width: 1200px) {
             font-size: 1.875rem;
           }
         }
         .shipping-description {
-          @include font-style-body($color: $brown, $size: 14px);
+          @include global.font-style-body($color: global.$brown, $size: 14px);
 
           .bolded-text {
-            @include font-style-body-bold($color: $brown);
+            @include global.font-style-body-bold($color: global.$brown);
           }
         }
       }

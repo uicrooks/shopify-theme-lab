@@ -91,7 +91,7 @@
     width: 90%;
     line-height: 100%;
     text-align: center;
-    @include global.font-style-heading($size: 25px, $color: global.$darker-brown);
+    @include global.font-style-heading($size: 25px, $color: global.$black);
     margin: 20px 0 8px;
 
     @media (min-width: global.$md) {

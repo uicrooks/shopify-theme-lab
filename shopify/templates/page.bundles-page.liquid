@@ -102,7 +102,7 @@
   }
 {% endcapture %}
   
-  <bundle-offers-template
+  <bundle-offers-page
     :bundles="{
       'Starter Bundles': {{ starterBundles | json | escape }},
       'Best Sellers': {{ bestSellers | json | escape }},
@@ -117,5 +117,5 @@
       'Deodorant': {{deodorantSubDetails | json | escape }},
       'HairCare': {{haircareSubDetails | json | escape }},
     }"
-  ></bundle-offers-template>
+  ></bundle-offers-page>
   

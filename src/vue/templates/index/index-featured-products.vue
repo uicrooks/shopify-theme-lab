@@ -232,6 +232,7 @@ export default {
               .link {
                 text-decoration: none;
                 font-family: global.$font-heading;
+                color: global.$orange;
               }
 
               a:hover {

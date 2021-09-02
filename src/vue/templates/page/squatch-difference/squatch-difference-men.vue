@@ -323,7 +323,7 @@ export default {
           font-size: 14px;
           line-height: 130%;
           width: 90%;
-          color: $brown;
+          color: global.$brown;
 
           @include global.layout-md {
             font-size: 16px;
@@ -444,7 +444,7 @@ export default {
         line-height: 100%;
         @include global.font-style-heading($color: global.$dark-brown, $size: 30px);
 
-        @include layout-md {
+        @include global.layout-md {
           margin: 10px 30px 12px 30px;
           font-size: 40px;
         }

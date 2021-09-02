@@ -94,7 +94,7 @@ import toxicIngredients from "@/configs/JS-squatch-difference-toxic-ingredients"
   .ui-squatch-difference-accordion-component {
 
     .accordion-row {
-      @include font-style-body($size: 14px, $color: global.$orange);
+      @include global.font-style-body($size: 14px, $color: global.$orange);
       border: 0;
       
       .ingredient-name {

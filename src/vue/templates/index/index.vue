@@ -1,6 +1,7 @@
 <template>
   <div id="layout-index">
     <index-hero />
+    <index-social-proof />
     <index-starter-bundle />
     <index-featured-products />
     <index-subscription-offer />
@@ -12,6 +13,7 @@
 
 <script>
 import IndexHero from "./index-hero.vue";
+import IndexSocialProof from "./index-social-proof.vue";
 import IndexStarterBundle from "./index-starter-bundle.vue";
 import IndexFeaturedProducts from "./index-featured-products.vue";
 import IndexSubscriptionOffer from "./index-subscription-offer.vue";
@@ -22,6 +24,7 @@ export default {
   name: "IndexTemplate",
   components: {
     IndexHero,
+    IndexSocialProof,
     IndexStarterBundle,
     IndexFeaturedProducts,
     IndexSubscriptionOffer,

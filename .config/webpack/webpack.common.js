@@ -7,11 +7,11 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const entries = glob.sync(path.resolve(__dirname,'../../src/layout/*')).reduce((entries, entry) => {
   console.log(entry);
-  console.log("Making something great :)")
   const entryName = path.parse(entry).name
   entries[`layout-${entryName}`] = path.resolve(__dirname, entry);
   return entries
 }, {});
+console.log("Making something great :)");
 
 module.exports = {
   stats: 'minimal',

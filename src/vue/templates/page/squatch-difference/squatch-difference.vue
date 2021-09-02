@@ -207,7 +207,7 @@ export default {
     }
 
     .text {
-      color: $brown;
+      color: global.$brown;
     }
   }
 

@@ -1,89 +1,168 @@
 <template>
-    <div class="main-nav-component">
-        <cart />
-        <!-- Mobile sidebar navigation -->
-        <div class="mobile-nav">
-            <a href="/">
-            <img
-              id="drsquatch-logo-mobile"
+  <div class="main-nav-component">
+    <cart />
+    <!-- Mobile sidebar navigation -->
+    <div class="mobile-nav">
+      <a href="/">
+        <img
+          id="drsquatch-logo-mobile"
+          src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
+          alt="Dr.Squatch logo"
+        >
+      </a>
+      <div class="buttons">
+        <cart-button />
+        <b-icon
+          v-show="!isOpen"
+          v-b-toggle.main-nav-sidebar
+          icon="list"
+        />
+        <b-icon
+          v-show="isOpen"
+          v-b-toggle.main-nav-sidebar
+          icon="x"
+        />
+      </div>
+    
+      <b-sidebar
+        id="main-nav-sidebar"
+        aria-labelledby="main-nav-sidebar"
+        shadow
+        backdrop
+      >
+        <template #header>
+          <div class="sidebar-header">
+            <b-img-lazy
+              id="drsquatch-logo-mobile-sidebar"
               src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
               alt="Dr.Squatch logo"
+            />
+            <div 
+              class="account-icon-box" 
+              @click="logIn"
             >
-          </a>
-            <div class="buttons">
-                <cart-button />
-                <b-icon v-show="!isOpen" v-b-toggle.main-nav-sidebar icon="list" />
-                <b-icon v-show="isOpen" v-b-toggle.main-nav-sidebar icon="x" />
+              <b-icon icon="person" />
+              <span>{{ loggedIn ? 'Account' : 'Log In' }}</span>
             </div>
-    
-            <b-sidebar id="main-nav-sidebar" aria-labelledby="main-nav-sidebar" shadow backdrop>
-                <template #header>
-              <div class="sidebar-header">
-                <b-img-lazy
-                  id="drsquatch-logo-mobile-sidebar"
-                  src="https://cdn.shopify.com/s/files/1/0275/7784/3817/files/DRS_horizontal_fullcolor.svg?v=1615332033"
-                  alt="Dr.Squatch logo"
-                />
-                <div 
-                  class="account-icon-box" 
-                  @click="logIn"
-                >
-                  <b-icon icon="person" />
-                  <span>{{ loggedIn ? 'Account' : 'Log In' }}</span>
-                </div>
-              </div>
-</template>
+          </div>
+        </template>
 
-<template #default>
-    <div class="sidebar-main-header">
-        <div class="currency-display">
-            <div class="menu-item" :class="currencyMobileSubMenuOpen ? null : 'collapsed'" :aria-expanded="currencyMobileSubMenuOpen ? 'true' : 'false'" aria-controls="currency-menu-in-sidebar" @click="currencyMobileSubMenuOpen = !currencyMobileSubMenuOpen">
+        <template #default>
+          <div class="sidebar-main-header">
+            <div class="currency-display">
+              <div
+                class="menu-item"
+                :class="currencyMobileSubMenuOpen ? null : 'collapsed'"
+                :aria-expanded="currencyMobileSubMenuOpen ? 'true' : 'false'"
+                aria-controls="currency-menu-in-sidebar"
+                @click="currencyMobileSubMenuOpen = !currencyMobileSubMenuOpen"
+              >
                 <div class="currency-selected">
-                    You're Shopping In:
-                    <div class="currency-box">
-                        <b-img-lazy :src="currencySelected.imageSrc" :alt="`${currencySelected.currency} image`" class="currency-flag-image" />
-                        <span class="currency">
-                          {{ currencySelected.currency }}
-                        </span>
-                    </div>
+                  You're Shopping In:
+                  <div class="currency-box">
+                    <b-img-lazy
+                      :src="currencySelected.imageSrc"
+                      :alt="`${currencySelected.currency} image`"
+                      class="currency-flag-image"
+                    />
+                    <span class="currency">
+                      {{ currencySelected.currency }}
+                    </span>
+                  </div>
                 </div>
-                <b-icon icon="chevron-down" :flip-v="currencyMobileSubMenuOpen" style="margin-left:4px;" />
-            </div>
-            <b-collapse id="currency-menu-in-sidebar" v-model="currencyMobileSubMenuOpen">
+                <b-icon 
+                  icon="chevron-down"
+                  :flip-v="currencyMobileSubMenuOpen"
+                  style="margin-left:4px;"
+                />
+              </div>
+              <b-collapse
+                id="currency-menu-in-sidebar"
+                v-model="currencyMobileSubMenuOpen"
+              >
                 <div class="megamenu-padding">
-                    <div v-for="(currencyOption, index) of currencyMenu" :key="`currecny-option-${index}`" class="currency-option" @click="updateCurrencyOption(currencyOption)">
-                        <b-img-lazy :src="currencyOption.imageSrc" :alt="`${currencyOption.currency} image`" class="currency-flag-image" />
-                        <span class="currency">
-                          {{ currencyOption.currency }}
-                        </span>
-                    </div>
+                  <div
+                    v-for="(currencyOption, index) of currencyMenu"
+                    :key="`currecny-option-${index}`"
+                    class="currency-option"
+                    @click="updateCurrencyOption(currencyOption)"
+                  >
+                    <b-img-lazy
+                      :src="currencyOption.imageSrc"
+                      :alt="`${currencyOption.currency} image`"
+                      class="currency-flag-image"
+                    />
+                    <span class="currency">
+                      {{ currencyOption.currency }}
+                    </span>
+                  </div>
                 </div>
-            </b-collapse>
-        </div>
-        <button class="big-cta-link" @click="navigateTo('/pages/subscription-flow')">
-                  <span class="title"> The Subscription </span>
-                  Save 15% on your favorite soap and get free shipping for life!
-                </button>
-        <button class="big-cta-link maroon" @click="navigateTo('/pages/bundle-offers')">
-                  <span class="title"> Starter Bundles </span>
-                  Your choice of our curated best sellers
-                </button>
-    </div>
+              </b-collapse>
+            </div>
+            <button
+              class="big-cta-link"
+              @click="navigateTo('/pages/subscription-flow')"
+            >
+              <span class="title"> The Subscription </span>
+              Save 15% on your favorite soap and get free shipping for life!
+            </button>
+            <button
+              class="big-cta-link maroon"
+              @click="navigateTo('/pages/bundle-offers')"
+            >
+              <span class="title"> Starter Bundles </span>
+              Your choice of our curated best sellers
+            </button>
+          </div>
     
-    <div class="sidebar-main-content">
-        <main-nav-grouped-menu-item :name="soapMenu.name" :is-open="soapMenu.isOpen" :sub-menu-items="soapMenu.subMenuItems" @toggle="soapMenu.isOpen = !soapMenu.isOpen" />
-        <main-nav-single-menu-item v-for="(item, index) of singleMenuItems" :key="`single-menu-item-${index}`" :name="item.name" :badge="item.badge" :path="item.path" />
-        <main-nav-grouped-menu-item :name="moreMenu.name" :is-open="moreMenu.isOpen" :sub-menu-items="moreMenu.subMenuItems" @toggle="moreMenu.isOpen = !moreMenu.isOpen" />
-        <main-nav-single-menu-item class="soap-quiz-menu" name="Take Soap Quiz" path="/quiz" />
-        <main-nav-single-menu-item class="rewards-menu" name="Rewards" path="/loyalty-rewards" />
-    </div>
+          <div class="sidebar-main-content">
+            <main-nav-grouped-menu-item
+              :name="soapMenu.name"
+              :is-open="soapMenu.isOpen"
+              :sub-menu-items="soapMenu.subMenuItems"
+              @toggle="soapMenu.isOpen = !soapMenu.isOpen"
+            />
+            <main-nav-single-menu-item
+              v-for="(item, index) of singleMenuItems"
+              :key="`single-menu-item-${index}`"
+              :name="item.name"
+              :badge="item.badge"
+              :path="item.path"
+            />
+            <main-nav-grouped-menu-item
+              :name="moreMenu.name"
+              :is-open="moreMenu.isOpen"
+              :sub-menu-items="moreMenu.subMenuItems"
+              @toggle="moreMenu.isOpen = !moreMenu.isOpen"
+            />
+            <main-nav-single-menu-item
+              class="soap-quiz-menu"
+              name="Take Soap Quiz"
+              path="/quiz"
+            />
+          </div>
     
-    <div class="sidebar-footer">
-        <main-nav-grouped-menu-item :name="infoMenu.name" :is-open="infoMenu.isOpen" :sub-menu-items="infoMenu.subMenuItems" @toggle="infoMenu.isOpen = !infoMenu.isOpen" />
-        <main-nav-grouped-menu-item :name="aboutMenu.name" :is-open="aboutMenu.isOpen" :sub-menu-items="aboutMenu.subMenuItems" @toggle="aboutMenu.isOpen = !aboutMenu.isOpen" />
-        <main-nav-grouped-menu-item :name="helpMenu.name" :is-open="helpMenu.isOpen" :sub-menu-items="helpMenu.subMenuItems" @toggle="helpMenu.isOpen = !helpMenu.isOpen" />
-    </div>
-</template>
+          <div class="sidebar-footer">
+            <main-nav-grouped-menu-item
+              :name="infoMenu.name"
+              :is-open="infoMenu.isOpen"
+              :sub-menu-items="infoMenu.subMenuItems"
+              @toggle="infoMenu.isOpen = !infoMenu.isOpen"
+            />
+            <main-nav-grouped-menu-item
+              :name="aboutMenu.name"
+              :is-open="aboutMenu.isOpen"
+              :sub-menu-items="aboutMenu.subMenuItems"
+              @toggle="aboutMenu.isOpen = !aboutMenu.isOpen"
+            />
+            <main-nav-grouped-menu-item
+              :name="helpMenu.name"
+              :is-open="helpMenu.isOpen"
+              :sub-menu-items="helpMenu.subMenuItems"
+              @toggle="helpMenu.isOpen = !helpMenu.isOpen"
+            />
+          </div>
+        </template>
       </b-sidebar>
     </div>
     <!-- Desktop Navigation -->
@@ -130,7 +209,7 @@
       <div class="right-section">
         <div 
           class="menu-item" 
-          @click="navigateTo('/pages/quiz-1')"
+          @click="navigateTo('/test')"
         >
           Take Quiz
         </div>
@@ -216,10 +295,9 @@
         <cart-button />
       </div>
     </div>
-
-    <div 
-      class="menu-container"
-      :class="{active: productsSubMenuOpen}"
+    <b-collapse 
+      id="products-menu"
+      v-model="productsSubMenuOpen"
     >
       <div class="megamenu-padding">
         <h6 class="submenu-title">
@@ -261,21 +339,9 @@
               @click="navigateTo(item.path)"
             >
               {{ item.name }}
-
-              <div
-                v-if="item.orangeBadge"
-                class="link-badge-orange"
-              >
-                {{ item.orangeBadge }}
-              </div>
-              <div
-                v-if="item.redBadge"
-                class="link-badge-red"
-              >
-                {{ item.redBadge }}
-              </div>
             </div>
-
+          </div>
+          <div class="more-col">
             <div
               class="more-item more-item-shop-all"
               @click="navigateTo('/test')"
@@ -283,44 +349,16 @@
               Shop All
               <b-icon icon="arrow-right" />
             </div>
-          </div>
-          <div class="more-col">
             <div 
               class="more-item" 
-              @click="navigateTo('/pages/quiz-1')"
+              @click="navigateTo('/test')"
             >
               Take Soap Quiz
             </div>
-            <div 
-              class="more-item" 
-              @click="navigateTo('/pages/loyalty-rewards')"
-            >
-              Rewards
-            </div>
           </div>
         </div>
       </div>
-      <div class="promo-container">
-        <div class="nav-promo-image-container">
-        </div>
-
-        <div class="nav-promo-copy-container">
-          <h1 class="nav-promo-copy-header">
-            Bring Balance Yo Your Shower Destiny
-          </h1>
-
-          <p class="nav-promo-copy-subheader">
-            Legendary characters, 4 all-new scents, galactic freshness.
-          </p>
-
-          <squatch-button
-            path="/pages/subscription-flow"
-          >
-            Subscribe & Save
-          </squatch-button>
-        </div>
-      </div>
-    </div>
+    </b-collapse>
     <div
       v-if="subMenuBackdropOpen"
       class="navmenu-backdrop"
@@ -337,7 +375,6 @@ import Cart from "@/vue/core/cart/index.vue";
 import GroupedMenuItem from "./grouped-menu-item.vue";
 import SingleMenuItem from "./single-menu-item.vue";
 import { mapGetters } from "vuex";
-
 export default {
     name: "MainNav",
     components: {
@@ -609,8 +646,8 @@ export default {
             justify-content: flex-end;
             align-items: center;
             .b-icon.bi {
-                font-size: 36px;
-                margin-left: 26px;
+              font-size: 36px;
+              margin-left: 26px;
             }
         }
         .sidebar-header {
@@ -808,7 +845,7 @@ export default {
         &#account-menu {
             top: 30px;
             .megamenu-padding {
-                padding: 7px 14px;
+              padding: 7px 14px;
             }
             .currency-flag-image {
                 width: 32px;
@@ -825,7 +862,7 @@ export default {
         &#currency-menu {
             top: 28px;
             .megamenu-padding {
-                padding: 14px;
+              padding: 14px;
             }
             .currency-option {
                 display: flex;
@@ -852,7 +889,7 @@ export default {
         position: absolute;
         z-index: 9;
         .megamenu-padding {
-            padding: 20px 15px;
+          padding: 20px 15px;
         }
         .submenu-title {
             margin-bottom: 20px;
@@ -943,29 +980,24 @@ export default {
     background: #000;
     opacity: 0.6;
 }
-
 #main-nav-sidebar {
-    max-width: calc(100vw - 60px);
-    .account-icon-box {
-        .b-icon.bi {
-            font-size: 36px;
-        }
+  max-width: calc(100vw - 60px);
+  .account-icon-box {
+    .b-icon.bi {
+      font-size: 36px;
     }
+  }
 }
-
 .b-sidebar-header {
     background-color: global.$white;
 }
-
 .b-sidebar-body {
     background-color: global.$off-white;
 }
-
 .grouped-menu-item-component,
 .single-menu-item-component {
     background-color: inherit;
 }
-
 .squatch-button-component.big-cta-link {
     padding: 20px 15px;
     margin: 16px;
@@ -973,7 +1005,6 @@ export default {
     text-align: center;
     @include global.font-style-heading($size: 16px, $color: global.$white);
 }
-
 #shopify-section-header {
     position: sticky;
     top: -76px;
@@ -981,7 +1012,6 @@ export default {
     z-index: 99;
     box-shadow: 0 0.5rem 1rem rgb(26 17 12 / 15%);
 }
-
 body.scroll-up #shopify-section-header {
     top: 0px;
 }

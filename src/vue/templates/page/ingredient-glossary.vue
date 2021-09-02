@@ -192,14 +192,9 @@
 
 <script>
 import IngredientsList from "@/configs/page-ingredients";
-import { Carousel, Slide } from "vue-carousel";
 
 export default {
   name: "IngredientGlossary",
-  components: {
-    Carousel,
-    Slide
-  },
   data() {
     return {
       ingredients: IngredientsList,
@@ -316,7 +311,7 @@ export default {
       }
 
       .header-sub {
-        @include font-style-body-bold($size: 16px, $color: white, $lh: 1.2);
+        @include global.font-style-body-bold($size: 16px, $color: white, $lh: 1.2);
         margin: auto;
 
         @media(min-width: 1200px) {
@@ -370,19 +365,19 @@ export default {
     width: 80%;
     margin: 0 auto;
 
-    @include layout-sm {
+    @include global.layout-sm {
       max-width: 540px;
     }
 
-    @include layout-md {
+    @include global.layout-md {
       max-width: 720px;
     }
 
-    @include layout-lg {
+    @include global.layout-lg {
       max-width: 960px;
     }
 
-    @include layout-xl {
+    @include global.layout-xl {
       max-width: 1024px;
     }
 

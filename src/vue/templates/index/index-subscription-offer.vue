@@ -75,7 +75,7 @@ export default {
         .copy {
           line-height: 1.3;
           margin-bottom: 30px;
-          @include font-style-body($size: 16px, $color: global.$brown);
+          @include global.font-style-body($size: 16px, $color: global.$brown);
         }
 
         .image-container {

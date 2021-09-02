@@ -131,7 +131,7 @@
 <script>
 
 export default {
-  name: "HeroDiscount"
+  name: "HeroDiscounts"
 };
 </script>
 
@@ -163,11 +163,11 @@ export default {
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
-      color: $white;
+      color: global.$white;
       text-align: center;
       height: 100%;
 
-      @include layout-md {
+      @include global.layout-md {
         width: 50%;
       }
 

@@ -232,7 +232,7 @@ export default {
 @use "@/styles/main" as global;
 
 .squatch-difference-natural-component {
-  @include font-style-body;
+  @include global.font-style-body();
   margin: 75px 0 0 0;
 
   .toxic-ingredients-display {
@@ -471,7 +471,7 @@ export default {
         width: 86%;
         margin: auto;
         border-radius: 5px;
-        background-color: $orange;
+        background-color: global.$orange;
         border: none;
         padding: 15px 0 11px 0;
         text-transform: uppercase;
