@@ -25,7 +25,7 @@
         <span 
           v-if="hasActivePaymentMethod"
         >
-          Expiring {{ rechargePaymentSource.card_exp_month}}/{{ rechargePaymentSource.card_exp_year }}
+          Expiring {{ rechargePaymentSource.card_exp_month }}/{{ rechargePaymentSource.card_exp_year }}
         </span>
         <span 
           v-else
@@ -76,12 +76,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-billing-info-component {
 
   .info {
-    @include font-style-body($color: $brown);
+    @include global.font-style-body($color: global.$brown);
 
     img {
       width: 30px;
@@ -95,7 +95,7 @@ export default {
       }
 
       &.attention {
-        color: $red;
+        color: global.$red;
       }
     }
 

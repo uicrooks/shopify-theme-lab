@@ -1,9 +1,13 @@
+const webpack = require('webpack');
 const path = require('path');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressPlugin = require('progress-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const dotenv = require('dotenv').config( {
+  path: path.join(__dirname, '../.env')
+} );
 
 const entries = glob.sync(path.resolve(__dirname,'../../src/layout/*')).reduce((entries, entry) => {
   console.log(entry);
@@ -95,6 +99,10 @@ module.exports = {
         removeAttributeQuotes: false,
         //collapseWhitespace: true,
       },
+    }),
+    new webpack.DefinePlugin({
+      "process.env": dotenv.parsed,
+      "env.credentials": JSON.stringify(dotenv.parsed),
     }),
     new VueLoaderPlugin()
   ]

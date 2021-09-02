@@ -36,10 +36,13 @@
 </template>
 
 <script>
+import { money } from "@/vue/filters/money";
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
-
 export default {
   name: "AccountOrderCard",
+  filters: {
+    money
+  },
   props: {
     order: {
       type: Object,

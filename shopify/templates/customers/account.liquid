@@ -3,11 +3,11 @@
 
 <div class="account-page-container">
   <account
-    :subscription-products="{{ subsCollection.products | json | replace: '"', "'" }}"
-    :subscription-options="{{ subOptionsCollection.products | json | replace: '"', "'" }}"
+    :subscription-products="{{ subsCollection.products | json | escape }}"
+    :subscription-options="{{ subOptionsCollection.products | json | escape }}"
     :user="{
       id: '{{ customer.id }}',
-      tags: {{ customer.tags | json | replace: '"', "'" }},
+      tags: {{ customer.tags | json | escape}},
       firstName: '{{ customer.first_name }}',
       lastName: '{{ customer.last_name }}',
       email: '{{ customer.email }}'

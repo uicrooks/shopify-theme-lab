@@ -154,11 +154,21 @@
 </template>
 
 <script>
-import moment from "moment";
 import { mapGetters } from "vuex";
-
+import AccountSectionContainer from "../templates/section-container.vue";
+import AccountSectionTabs from "../templates/section-tabs.vue";
+import AccountRenderlessOrderItem from "../renderless/renderless-order-item.vue";
+import { money } from "@/vue/filters/money";
 export default {
   name: "AccountRefillSchedule",
+  components: {
+    AccountSectionContainer,
+    AccountRenderlessOrderItem,
+    AccountSectionTabs,
+  },
+  filters: {
+    money
+  },
   data() {
     return {
       refillSchedule: {},
@@ -187,7 +197,7 @@ export default {
   },
   methods: {
     formatToMonthOnly(date) {
-      return moment(date).format("YYYY-MM");
+      return this.$root.$moment(date).format("YYYY-MM");
     },
     generateRefillSchedule() {
       let obj = {};
@@ -200,9 +210,9 @@ export default {
         }
         
         if (item.order_interval_unit === "month") {
-          const endingDate = moment(item.next_charge_scheduled_at).add(6, "months").endOf("month");
+          const endingDate = this.$moment(item.next_charge_scheduled_at).add(6, "months").endOf("month");
           let counter = 1;
-          let upcomingDate = moment(item.next_charge_scheduled_at).add(Number(item.order_interval_frequency) * counter, "months");
+          let upcomingDate = this.$moment(item.next_charge_scheduled_at).add(Number(item.order_interval_frequency) * counter, "months");
           while (upcomingDate.isSameOrBefore(endingDate)) {
             const formattedDate = this.formatToMonthOnly(upcomingDate);
             if (!obj[formattedDate]) {
@@ -211,10 +221,17 @@ export default {
               obj[formattedDate].push(item);
             }
             counter++;
-            upcomingDate = moment(item.next_charge_scheduled_at).add(Number(item.order_interval_frequency) * counter, "months");
+            upcomingDate = this.$moment(item.next_charge_scheduled_at).add(Number(item.order_interval_frequency) * counter, "months");
           }
         }
       });
+      const sortByDateWithoutMonth = (itemsArr) => {
+        itemsArr.sort((a, b) => {
+          const aDate = a.next_charge_scheduled_at ? this.$moment(a.next_charge_scheduled_at).date() : -1;
+          const bDate = b.next_charge_scheduled_at ? this.$moment(b.next_charge_scheduled_at).date() : - 2;
+          return aDate - bDate;
+        });
+      };
       Object.keys(this.currentGroup.upcomingRefillsByDate).forEach(date => {
         if (date === this.refillBoxDate) return;
         const formattedDate = this.formatToMonthOnly(date);
@@ -226,24 +243,18 @@ export default {
         sortByDateWithoutMonth(obj[formattedDate]);
       });
       this.refillSchedule = obj;
-
-      function sortByDateWithoutMonth(itemsArr) {
-        itemsArr.sort((a, b) => {
-          const aDate = a.next_charge_scheduled_at ? moment(a.next_charge_scheduled_at).date() : -1;
-          const bDate = b.next_charge_scheduled_at ? moment(b.next_charge_scheduled_at).date() : - 2;
-          return aDate - bDate;
-        });
-      }
     },
     formatRefillMonthDisplay(date) {
-      return moment(date).format("MMMM YYYY");
+      return this.$moment(date).format("MMMM YYYY");
     },
     formatRefillDateDisplay(date, dateFromItem = null) {
       if (dateFromItem) {
-        return `${moment(date).format("MMM")} ${moment(dateFromItem).format("Do")}`;
+        return `${this.$moment(date).format("MMM")} ${this.$moment(dateFromItem).format("Do")}`;
       }
-      return moment(date).format("MMM Do");
+      return this.$moment(date).format("MMM Do");
     },
+  },
+  mounted() {
   },
   mounted() {
     this.generateRefillSchedule();

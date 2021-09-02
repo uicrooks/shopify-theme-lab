@@ -176,10 +176,20 @@
 import RechargeService from "@/vue/services/recharge.service";
 import Helpers from "@/vue/services/general-helpers";
 import ProductIdentifier from "@/vue/services/product-identifier";
+import AccountRenderlessSubscriptionEditOptions from "../renderless/renderless-subscription-edit-options.vue";
+import AccountConfirmationModal from "../templates/modal-confirmation.vue";
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
+import QuantitySwitch from "@/vue/reusables/quantity-switch.vue";
 import { mapGetters } from "vuex";
 
 export default {
   name: "AccountSubscriptionEditModal",
+  components: {
+    AccountRenderlessSubscriptionEditOptions,
+    AccountConfirmationModal,
+    SquatchButton,
+    QuantitySwitch
+  },
   props: {
     showModal: {
       type: Boolean,
@@ -419,7 +429,7 @@ export default {
       flex-flow: row nowrap;
       justify-content: space-between;
       margin-bottom: 20px;
-      @include font-style-body-bold();
+      @include global.font-style-body-bold();
 
       .back-button {
         display: flex;

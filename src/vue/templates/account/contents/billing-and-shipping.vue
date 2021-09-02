@@ -21,8 +21,8 @@
         <div class="section-title">
           <span>Billing Address</span>
           <span
-            @click="openAddressChangeModal()"
             class="edit-link"
+            @click="openAddressChangeModal()"
           >
             Edit
           </span>
@@ -50,8 +50,7 @@
         <span class="col-address">
           Address
         </span>
-        <span class="edit-link-placeholder">
-        </span>
+        <span class="edit-link-placeholder" />
       </div>
       <div
         v-for="(groupName, groupIndex) of Object.keys(squatchBoxGroups)"
@@ -72,8 +71,8 @@
           </div>
         </span>
         <span
-          @click="openAddressChangeModal(squatchBoxGroups[groupName])"
           class="edit-link"
+          @click="openAddressChangeModal(squatchBoxGroups[groupName])"
         >
           Edit
         </span>
@@ -92,9 +91,17 @@
 <script>
 import FormOptions from "@/configs/form-options";
 import { mapGetters } from "vuex";
+import AccountSectionContainer from "../templates/section-container.vue";
+import AccountAddressChangeModal from "../templates/modal-address-change.vue";
+import AccountBillingInfo from "./billing-info.vue";
 
 export default {
   name: "AccountBillingAndShipping",
+  components: {
+    AccountSectionContainer,
+    AccountAddressChangeModal,
+    AccountBillingInfo
+  },
   data() {
     return {
       showAddressChangeModal: false,
@@ -116,7 +123,7 @@ export default {
         province: stateAbbrs[this.rechargeUser.billing_province],
         country: this.rechargeUser.billing_country,
         zip: this.rechargeUser.billing_zip,
-      };ß
+      };ß;
     }
   },
   methods: {
@@ -153,12 +160,12 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-billing-shipping-component {
   
   h4 {
-    @include font-style-body-bold($size: 20px, $lh: 25px);
+    @include global.font-style-body-bold($size: 20px, $lh: 25px);
   }
 
   .section-container {
@@ -173,13 +180,13 @@ export default {
     .edit-link {
       text-decoration: underline;
       cursor: pointer;
-      @include font-style-body($color: $text-orange);
+      @include global.font-style-body($color: global.$text-orange);
     }
 
     .section {
       width: 100%;
 
-      @include layout-sm {
+      @include global.layout-sm {
         width: unset;
         flex: 1;
       }
@@ -188,22 +195,22 @@ export default {
       &.first {
         margin-bottom: 20px;
 
-        @include layout-sm {
+        @include global.layout-sm {
           padding-right: 15px;
         }
 
-        @include layout-md {
+        @include global.layout-md {
           padding-right: 0;
         }
       }
 
       &.last {
 
-        @include layout-sm {
+        @include global.layout-sm {
           padding-left: 15px;
         }
 
-        @include layout-md {
+        @include global.layout-md {
           padding-left: 0;
         }
       }
@@ -214,9 +221,9 @@ export default {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 15px;
-        @include font-style-body-bold($size: 14px, $lh: 18px);
+        @include global.font-style-body-bold($size: 14px, $lh: 18px);
 
-        @include layout-md {
+        @include global.layout-md {
           display: block;
           position: relative;
           text-align: center;
@@ -224,7 +231,7 @@ export default {
 
         .edit-link {
 
-          @include layout-md {
+          @include global.layout-md {
             position: absolute;
             right: 0;
           }
@@ -232,9 +239,9 @@ export default {
       }
   
       .section-body {
-        @include font-style-body($color: $brown);
+        @include global.font-style-body($color: global.$brown);
 
-        @include layout-md {
+        @include global.layout-md {
           text-align: center;
         }
 
@@ -248,7 +255,7 @@ export default {
         }
   
         .status-alert {
-          color: $red;
+          color: global.$red;
           font-size: 12px;
         }
       }
@@ -258,9 +265,9 @@ export default {
       width: 100%;
       display: flex;
       flex-flow: row nowrap;
-      @include font-style-body-bold();
+      @include global.font-style-body-bold();
 
-      @include layout-md {
+      @include global.layout-md {
         text-align: center;
       }
 
@@ -278,7 +285,7 @@ export default {
         padding-right: 20px;
         flex: 2;
 
-        @include layout-md {
+        @include global.layout-md {
           flex: 3;
         }
 
@@ -290,13 +297,13 @@ export default {
       .edit-link-placeholder {
         width: 25px;
 
-        @include layout-md {
+        @include global.layout-md {
           width: 125px;
         }
       }
 
       .edit-link {
-        @include layout-md {
+        @include global.layout-md {
           padding: 0 50px;
         }
       }
@@ -304,8 +311,8 @@ export default {
 
     .address-row {
       padding: 15px 0;
-      border-bottom: 1px solid $off-white;
-      @include font-style-body($color: $brown);
+      border-bottom: 1px solid global.$off-white;
+      @include global.font-style-body($color: global.$brown);
 
       &.last {
         padding: 15px 0 0 0;

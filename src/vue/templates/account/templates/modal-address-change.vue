@@ -39,8 +39,8 @@
           >
             <b-form-input
               id="input-first-name"
-              type="text"
               v-model="formData.first_name"
+              type="text"
               :state="checkIfValid('first_name')"
               required
             />
@@ -57,8 +57,8 @@
           >
             <b-form-input
               id="input-last-name"
-              type="text"
               v-model="formData.last_name"
+              type="text"
               :state="checkIfValid('last_name')"
               required
             />
@@ -74,8 +74,8 @@
           >
             <b-form-input
               id="input-address-1"
-              type="text"
               v-model="formData.address1"
+              type="text"
               :state="checkIfValid('address1')"
               required
             />
@@ -91,8 +91,8 @@
           >
             <b-form-input
               id="input-address-2"
-              type="text"
               v-model="formData.address2"
+              type="text"
               :state="checkIfValid('address2')"
             />
           </b-form-group>
@@ -102,8 +102,8 @@
           >
             <b-form-input
               id="input-city"
-              type="text"
               v-model="formData.city"
+              type="text"
               :state="checkIfValid('city')"
               required
             />
@@ -138,8 +138,8 @@
           >
             <b-form-input
               id="input-province"
-              type="text"
               v-model="formData.province"
+              type="text"
               :state="checkIfValid('province')"
               required
             />
@@ -172,8 +172,8 @@
           >
             <b-form-input
               id="input-zip"
-              type="text"
               v-model="formData.zip"
+              type="text"
               :state="checkIfValid('zip')"
               required
             />
@@ -218,7 +218,6 @@
       :generic-error="true"
       @hide="errored = false; inProgress = false"
     />
-
   </div>
 </template>
 
@@ -227,9 +226,13 @@ import RechargeService from "@/vue/services/recharge.service";
 import AccountHelpers from "@/vue/services/account-helpers";
 import FormOptions from "@/configs/form-options";
 import { mapGetters } from "vuex";
+import AccountAlertModal from "./modal-alert.vue";
 
 export default {
   name: "AccountAddressChangeModal",
+  components: {
+    AccountAlertModal
+  },
   props: {
     showModal: {
       type: Boolean,
@@ -457,7 +460,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-address-change-modal-header {
 
@@ -469,7 +472,7 @@ export default {
 
     h2 {
       margin-bottom: 0;
-      @include font-style-body-bold($size: 20px);
+      @include global.font-style-body-bold($size: 20px);
     }
 
     .close-button {
@@ -489,7 +492,7 @@ export default {
   padding: 20px 20px 10px 20px;
 
   .errored {
-    @include font-style-body($color: $red);
+    @include global.font-style-body($color: global.$red);
   }
 
   .form-group {
@@ -498,7 +501,7 @@ export default {
 
   label {
     margin-bottom: 5px;
-    @include font-style-body-bold();
+    @include global.font-style-body-bold();
   }
 }
 
@@ -511,13 +514,13 @@ export default {
     padding: 0 10px;
 
     .reset-button {
-      border: 1px solid $orange;
+      border: 1px solid global.$orange;
       background-color: transparent;
-      color: $orange;
+      color: global.$orange;
 
       &.disabled, :hover {
-        border: 1px solid $orange-lighten;
-        color: $orange-lighten;
+        border: 1px solid global.$orange-lighten;
+        color: global.$orange-lighten;
       }
     }
   }

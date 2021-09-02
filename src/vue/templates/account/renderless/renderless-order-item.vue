@@ -178,9 +178,6 @@ export default {
       includedList: this.includedList,
     });
   },
-  async mounted() {
-    this.initialize();
-  },
   render() {
     return this.$scopedSlots.default({
       loading: this.loading,
@@ -195,6 +192,9 @@ export default {
       imageSrc: this.imageSrc,
       includedList: this.includedList,
     });
+  },
+  async mounted() {
+    this.initialize();
   }
 };
 </script>

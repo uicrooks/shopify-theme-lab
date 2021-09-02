@@ -271,12 +271,29 @@ import RechargeService from "@/vue/services/recharge.service";
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
 import { mapGetters } from "vuex";
 import DatePicker from "v-calendar/lib/components/date-picker.umd";
-import moment from "moment";
+import SquatchButton from "@/vue/reusables/squatch-button.vue";
+import QuantitySwitch from "@/vue/reusables/quantity-switch.vue";
+import AccountBillingInfo from "./billing-info.vue";
+import AccountSectionContainer from "../templates/section-container.vue";
+import AccountSectionTabs from "../templates/section-tabs.vue";
+import AccountRefillDateUpdateModal from "../templates/modal-refill-date-change.vue";
+import AccountConfirmationModal from "../templates/modal-confirmation.vue";
+import AccountSubscriptionEditModal from "../templates/modal-subscription-editing.vue";
+import AccountRenderlessOrderItem from "../renderless/renderless-order-item.vue";
 
 export default {
   name: "AccountSubscriptionsEdit",
   components: { 
-    DatePicker 
+    DatePicker,
+    SquatchButton,
+    QuantitySwitch,
+    AccountBillingInfo,
+    AccountSectionContainer,
+    AccountSectionTabs,
+    AccountRenderlessOrderItem,
+    AccountRefillDateUpdateModal,
+    AccountConfirmationModal,
+    AccountSubscriptionEditModal
   },
   data() {
     return {
@@ -347,7 +364,7 @@ export default {
         upcomingRefill: upcomingRefills
       };
       // If updatedRefillDate is not updated (same as refillBoxDate), update to today's date
-      this.updatedRefillDateForModal = this.updatedRefillDate === this.refillBoxDate ? moment().format("YYYY-MM-DD") : this.updatedRefillDate;
+      this.updatedRefillDateForModal = this.updatedRefillDate === this.refillBoxDate ? this.$moment().format("YYYY-MM-DD") : this.updatedRefillDate;
       this.showRefillDateUpdateModal = true;
     },
     updateOnetimeQuantity(index, updateDirection) {
@@ -362,11 +379,11 @@ export default {
     skipSubscriptionItemInNextRefill(item) {
       this.itemToEdit = item;
       this.actionFunction = RechargeService.updateSubscription;
-      const delayedRefillDate = moment(item.next_charge_scheduled_at).add(Number(item.order_interval_frequency), "months").format("YYYY-MM-DD");
+      const delayedRefillDate = this.$moment(item.next_charge_scheduled_at).add(Number(item.order_interval_frequency), "months").format("YYYY-MM-DD");
       this.changes = {
         next_charge_scheduled_at: delayedRefillDate
       };
-      this.confirmModalText = `Do you confirm to skip ${this.itemToEdit.product_title} in your next refill? It will now ship on ${moment(delayedRefillDate).format("dddd, MMM Do, YYYY")}`;
+      this.confirmModalText = `Do you confirm to skip ${this.itemToEdit.product_title} in your next refill? It will now ship on ${this.$moment(delayedRefillDate).format("dddd, MMM Do, YYYY")}`;
       this.showConfirmModal = true;
     },
     moveToNextRefill(item) {
@@ -375,7 +392,7 @@ export default {
       this.changes = {
         next_charge_scheduled_at: this.refillBoxDate
       };
-      this.confirmModalText = `Do you confirm to move ${this.itemToEdit.product_title} to next refill of ${moment(this.refillBoxDate).format("dddd, MMM Do, YYYY")}?`;
+      this.confirmModalText = `Do you confirm to move ${this.itemToEdit.product_title} to next refill of ${this.$moment(this.refillBoxDate).format("dddd, MMM Do, YYYY")}?`;
       this.showConfirmModal = true;
     },
     onOrderItemLoaded() {
@@ -431,13 +448,13 @@ export default {
       display: flex;
       flex-flow: row wrap;
 
-      @include layout-sm {
+      @include global.layout-sm {
         padding: 15px 20px 15px 20px;
       }
 
       .box-header {
         width: 100%;
-        @include font-style-body($color: global.$brown);
+        @include global.font-style-body($color: global.$brown);
 
         @include global.layout-md {
           display: flex;
@@ -686,14 +703,14 @@ export default {
               width: 100%;
               height: 34px;
               padding: 12px 10px 10px;
-              color: $orange;
+              color: global.$orange;
               background-color: transparent;
-              border: 1px solid $orange;
+              border: 1px solid global.$orange;
               margin-right: 10px;
 
               &:hover {
-                color: $orange-lighten;
-                border: 1px solid $orange-lighten;
+                color: global.$orange-lighten;
+                border: 1px solid global.$orange-lighten;
               }
               
               @include global.layout-sm {

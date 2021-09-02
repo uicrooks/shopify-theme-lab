@@ -146,10 +146,26 @@
 
 <script>
 import DatetimeHelpers from "@/vue/services/datetime-helpers";
+import AccountHelpers from "@/vue/services/account-helpers";
+import RechargeService from "@/vue/services/recharge.service";
+import AccountSectionTabs from "../templates/section-tabs.vue";
+import AccountSectionContainer from "../templates/section-container.vue";
+import AccountBillingInfo from "./billing-info.vue";
+import AccountRenderlessOrderItem from "../renderless/renderless-order-item.vue";
 import { mapGetters } from "vuex";
+import { money } from "@/vue/filters/money";
 
 export default {
   name: "AccountSubscriptionsView",
+  components: {
+    AccountSectionContainer,
+    AccountSectionTabs,
+    AccountBillingInfo,
+    AccountRenderlessOrderItem
+  },
+  filters: {
+    money
+  },
   data() {
     return {
       isLoading: true,
@@ -157,7 +173,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargePaymentSource",  "currentGroupShippingAddress", "refillBoxDate", "refillBox", "refillBoxSubTotal", "refillBoxSavingsTotal"]),
+    ...mapGetters("account", ["rechargePaymentSource",  "rechargeUser", "currentGroupShippingAddress", "refillBoxDate", "refillBox", "refillBoxSubTotal", "refillBoxSavingsTotal"]),
     refillDate() {
       if (!this.refillBoxDate) return "";
       const format = !DatetimeHelpers.isSame(new Date(), this.refillBoxDate, "year") ? "MMM Do, YYYY" : "MMM Do";
@@ -192,7 +208,7 @@ export default {
     const orders = await RechargeService.getUserResource(this.rechargeUser.id, "subscriptions");
     const subscriptions = orders.subscriptions.filter(subs => !subs.cancelled_at);
     const addresses = await RechargeService.getUserResource(this.rechargeUser.id, "addresses");
-    const squatchBoxes = this.processOrderData([...subscriptions, ...orders.onetimes], addresses);
+    const squatchBoxes = AccountHelpers.processOrderData([...subscriptions, ...orders.onetimes], addresses);
 
     this.$store.commit("account/setSquatchBoxes", squatchBoxes);
     this.$store.dispatch("account/initializeCurrentBox", Object.keys(squatchBoxes)[0]);
@@ -290,14 +306,14 @@ export default {
           @include global.font-style-body($color: #a5937f);
           
           .icon-custom {
-            color: $orange;
+            color: global.$orange;
             margin-right: 4px;
           }
         }
 
         .line-item {
           margin-bottom: 4px;
-          @include global.font-style-body($color: $brown, $size: 13px);
+          @include global.font-style-body($color: global.$brown, $size: 13px);
         }
       }
     }

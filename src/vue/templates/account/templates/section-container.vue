@@ -15,7 +15,7 @@ export default {
 @use "@/styles/main" as global;
 
 .section-container-component {
-  background-color: $white;
+  background-color: global.$white;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%);
 }

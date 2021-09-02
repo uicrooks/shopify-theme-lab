@@ -63,21 +63,21 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/styles/main.scss";
+@use "@/styles/main" as global;
 
 .account-alert-modal-body {
   padding: 20px;
   text-align: center;
 
   .alert-icon {
-    color: $red;
+    color: global.$red;
     margin-top: 20px;
     margin-bottom: 25px;
   }
 
   p {
     text-align: left;
-    @include font-style-body();
+    @include global.font-style-body();
   }
 
   .buttons {

@@ -80,9 +80,22 @@
 import RechargeService from "@/vue/services/recharge.service";
 import AccountHelpers from "@/vue/services/account-helpers";
 import { mapGetters } from "vuex";
+// Components
+import AccountNav from "./templates/nav.vue";
+import AccountSubscriptionsView from "./contents/subscriptions-view.vue";
+import AccountSubscriptionsEdit from "./contents/subscriptions-edit.vue";
+import AccountRefillSchedule from "./contents/refill-schedule.vue";
+import AccountBillingAndShipping from "./contents/billing-and-shipping.vue";
 
 export default {
   name: "Account",
+  components: {
+    AccountNav,
+    AccountSubscriptionsView,
+    AccountSubscriptionsEdit,
+    AccountRefillSchedule,
+    AccountBillingAndShipping,
+  },
   props: {
     user: {
       type: Object,
@@ -184,7 +197,7 @@ export default {
 .account-component {
   background-color: #f6f5f3;
 
-  @include layout-lg {
+  @include global.layout-lg {
     display: flex;
     flex-flow: row wrap;
   }
@@ -194,7 +207,7 @@ export default {
     top: 75px;
     z-index: 1;
 
-    @include layout-lg {
+    @include global.layout-lg {
       width: 230px;
     }
   }
@@ -202,16 +215,16 @@ export default {
   .view {
     padding: 20px 10px;
 
-    @include layout-sm {
+    @include global.layout-sm {
       padding: 20px;
     }
 
-    @include layout-lg {
+    @include global.layout-lg {
       flex: 1;
     }
   
     h1 {
-      @include font-style-heading($size: 26px);
+      @include global.font-style-heading($size: 26px);
     }
 
     h4 {

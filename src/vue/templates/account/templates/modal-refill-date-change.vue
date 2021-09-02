@@ -69,7 +69,6 @@
 import RechargeService from "@/vue/services/recharge.service";
 import AccountHelpers from "@/vue/services/account-helpers";
 import { mapGetters } from "vuex";
-import moment from "moment";
 
 export default {
   name: "AccountRefillDateUpdateModal",
@@ -101,7 +100,7 @@ export default {
   computed: {
     ...mapGetters("account", ["rechargeUser", "rechargeAddresses",  "currentGroupName", "currentGroup"]),
     refillDateDisplay() {
-      return moment(this.newRefillDate).format("dddd, MMM Do, YYYY");
+      return this.$moment(this.newRefillDate).format("dddd, MMM Do, YYYY");
     },
     processedItemsWithPayload() {
       let nextRefillWithPayload = this.items.nextRefill.map(item => {
@@ -119,7 +118,7 @@ export default {
       let upcomingRefillWithPayload = this.items.upcomingRefill
         .filter(item => item.order_interval_frequency)
         .map(item => {
-          const delayedRefillDate = moment(this.newRefillDate).add(Number(item.order_interval_frequency), "months").format("YYYY-MM-DD");
+          const delayedRefillDate = this.$moment(this.newRefillDate).add(Number(item.order_interval_frequency), "months").format("YYYY-MM-DD");
           return {
             isOnetime: false,
             id: item.id,

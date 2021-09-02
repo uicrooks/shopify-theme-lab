@@ -199,7 +199,7 @@ $account-brown: #473729;
     background-color: $account-brown;
     @include global.font-style-body($color: global.$white, $size: 16px);
 
-    @include layout-lg {
+    @include global.layout-lg {
       display: none;
     }
 
@@ -214,10 +214,10 @@ $account-brown: #473729;
   .account-nav {
     padding: 0 16px;
     background-color: $account-brown;
-    @include font-style-body($color: $white);
+    @include global.font-style-body($color: global.$white);
 
     &.mobile {
-      @include layout-lg {
+      @include global.layout-lg {
         display: none;
       }
     }
@@ -228,7 +228,7 @@ $account-brown: #473729;
       height: 100%;
       
 
-      @include layout-lg {
+      @include global.layout-lg {
         display: inline-block;
       }
     }
@@ -246,7 +246,7 @@ $account-brown: #473729;
       }
 
       h4 {
-        @include font-style-body-bold($color: inherit, $size: 16px);
+        @include global.font-style-body-bold($color: inherit, $size: 16px);
       }
     }
 
@@ -263,7 +263,7 @@ $account-brown: #473729;
         cursor: pointer;
 
         &.active, :hover {
-          @include font-style-body($color: $text-orange)
+          @include global.font-style-body($color: global.$text-orange)
           ;
         }
 
