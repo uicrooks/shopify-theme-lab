@@ -65,13 +65,14 @@
       class="view"
     >
       <h1>Billing & Shipping</h1>
-      <account-billing-and-shipping
-        @ready="isLoading = false"
-      />
+      <account-billing-and-shipping />
     </div>
-    <!-- <account-subscriptions
-      v-if="rechargeUser.id"
-    /> -->
+    <div
+      v-else-if="currentView === 'Account Settings'"
+      class="view"
+    >
+      <h1>Account Settings</h1>
+    </div>
   </div>
 </template>
 

@@ -30,18 +30,21 @@ export default {
       console.log(err);
     }
   },
-  async updateCustomer(customerId, customerData) {
+  async updateUser(userId, userData) {
     try {
       const response = await rechargeProxyAPI.put(
-        `/customer/${customerId}`,
-        customerData
+        `/customer/${userId}`,
+        userData
       );
-      // if (dataLayer) {
-      //   dataLayer.push({ event: "RechargeProxyAPI - attempt", trace: "updateCustomer" });
-      // }
-      return response.data;
+      return {
+        success: true,
+        data: response.data
+      };
     } catch (err) {
-      return err.response.data.message || `status ${err.response.status}`;
+      return {
+        success: false,
+        error: err.response.data.message || `status ${err.response.status}`
+      };
     }
   },
   async updateSubscription(subId, subData) {

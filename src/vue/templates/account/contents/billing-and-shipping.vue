@@ -21,7 +21,7 @@
         <div class="section-title">
           <span>Billing Address</span>
           <span
-            @click="openAddressChangeModal(squatchBoxGroups[groupName])"
+            @click="openAddressChangeModal()"
             class="edit-link"
           >
             Edit
@@ -83,12 +83,14 @@
       :show-modal="showAddressChangeModal"
       :current-address="currentAddress"
       :address-ids="addressIds"
+      :address-type="addressType"
       @hide="closeAddressChangeModal"
     />
   </div>
 </template>
 
 <script>
+import FormOptions from "@/configs/form-options";
 import { mapGetters } from "vuex";
 
 export default {
@@ -98,10 +100,24 @@ export default {
       showAddressChangeModal: false,
       currentAddress: {},
       addressIds: [],
+      addressType: "",
     };
   },
   computed: {
-    ...mapGetters("account", ["rechargePaymentSource", "squatchBoxGroups"]),
+    ...mapGetters("account", ["rechargeUser", "rechargePaymentSource", "squatchBoxGroups"]),
+    billingAddress() {
+      const stateAbbrs = FormOptions.stateNameToAbbreviationMappings;
+      return {
+        first_name: this.rechargeUser.first_name,
+        last_name: this.rechargeUser.last_name,
+        address1: this.rechargeUser.billing_address1,
+        address2: this.rechargeUser.billing_address2,
+        city: this.rechargeUser.billing_city,
+        province: stateAbbrs[this.rechargeUser.billing_province],
+        country: this.rechargeUser.billing_country,
+        zip: this.rechargeUser.billing_zip,
+      };ß
+    }
   },
   methods: {
     getFullName(rechargeAddressObj) {
@@ -114,9 +130,17 @@ export default {
       return [addressLine1, addressLine2, addressLine3];
     },
     openAddressChangeModal(currentGroup) {
-      console.log(currentGroup);
-      this.currentAddress = currentGroup.fullAddress;
-      this.addressIds = currentGroup.addresses.map(address => address.id);
+      console.log(this.rechargeUser);
+      if (currentGroup) {
+        console.log(currentGroup);
+        this.currentAddress = currentGroup.fullAddress;
+        this.addressIds = currentGroup.addresses.map(address => address.id);
+        this.addressType = "shipping";
+      } else {
+        this.currentAddress = this.billingAddress;
+        this.addressIds = [];
+        this.addressType = "billing";
+      }
       this.showAddressChangeModal = true;
     },
     closeAddressChangeModal() {

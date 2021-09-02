@@ -14,7 +14,7 @@
     >
       <template #modal-header>
         <div class="header-wrapper">
-          <h2>Update Shipping Address</h2>
+          <h2>Update {{ addressType }} Address</h2>
           <span
             v-if="!inProgress"
             class="close-button"
@@ -27,9 +27,13 @@
         </div>
       </template>
 
-      <b-overlay :show="inProgress">
+      <b-overlay
+        :show="inProgress"
+        variant="white"
+      >
         <b-form>
           <b-form-group
+            v-if="allowNameChange"
             label="First Name"
             label-for="input-first-name"
           >
@@ -47,6 +51,7 @@
             </b-form-invalid-feedback>
           </b-form-group>
           <b-form-group
+            v-if="allowNameChange"
             label="Last Name"
             label-for="input-last-name"
           >
@@ -241,6 +246,11 @@ export default {
       required: false,
       default: () => []
     },
+    addressType: {
+      type: String,
+      required: true,
+      default: "",
+    }
   },
   data() {
     return {
@@ -263,10 +273,17 @@ export default {
   },
   computed: {
     ...mapGetters("account", ["rechargeUser", "rechargeOrders", "rechargeAddresses", "currentGroupName"]),
+    isCurrentAddressEmpty() {
+      return Object.keys(this.currentAddress).length === 0;
+    },
+    allowNameChange() {
+      return this.addressType === "shipping";
+    },
     isFormReady() {
       let hasUpdatedField = false;
       if (!this.currentAddress) return false;
-      const fields = Object.keys(this.formData);
+      const fields = getApplicableFields(this.addressType, this.formData);
+
       for (let i = 0; i < fields.length; i++) {
         // U.S. zip code validation
         if (this.formData.country === "United States" && fields[i] === "zip" && !/^\d{5}(-\d{4})?$/.test(this.formData[fields[i]])) {
@@ -282,6 +299,25 @@ export default {
         }
       }
       return hasUpdatedField;
+
+      function getApplicableFields(addressType, form) {
+        const fields = Object.keys(form);
+        if (addressType === "billing") {
+          return fields.filter(field => !["first_name", "last_name"].includes(field));
+        }
+        return fields;
+      }
+    },
+    billingAddressPayload() {
+      const stateNames = FormOptions.stateAbbreviationToNameMappings;
+      return {
+        billing_address1: this.formData.address1,
+        billing_address2: this.formData.address2,
+        billing_city: this.formData.city,
+        billing_province: stateNames[this.formData.province],
+        billing_country: this.formData.country,
+        billing_zip: this.formData.zip,
+      };
     }
   },
   watch: {
@@ -289,7 +325,8 @@ export default {
       this.showModalFlag = val;
     },
     currentAddress(val) {
-      if (!val.id) {
+      console.log("currentAddress", val);
+      if (this.isCurrentAddressEmpty) {
         this.inProgress = false;
         this.errored = false;
         this.resetForm();
@@ -309,7 +346,7 @@ export default {
   },
   methods: {
     checkIfValid(field) {
-      if (!this.currentAddress.id) return false;
+      if (this.isCurrentAddressEmpty) return false;
       // U.S. zip code format validation
       if (this.formData.country === "United States" && field === "zip" && !/^\d{5}(-\d{4})?$/.test(this.formData[field])) {
         return false;
@@ -338,7 +375,22 @@ export default {
     },
     async submit() {
       this.inProgress = true;
-
+      if (this.addressType === "billing") {
+        return await this.submitBillingAddressChange();
+      }
+      if (this.addressType === "shipping") {
+        return await this.submitShippingAddressChange();
+      }
+    },
+    async submitBillingAddressChange() {
+      const result = await RechargeService.updateUser(this.rechargeUser.id, this.billingAddressPayload);
+      if (!result.success) {
+        this.inProgress = false;
+        this.errored = true;
+      }
+      await this.onUpdateComplete();
+    },
+    async submitShippingAddressChange() {
       let failedRequests = await this.runUpdateAndReturnFailedRequests(this.addressIds, this.formData);
       if (!failedRequests.length) {
         return await this.onUpdateComplete();
@@ -365,7 +417,7 @@ export default {
       for (let i = 0; i < addressIds.length; i++) {
         const result = await RechargeService.updateAddress(
           addressIds[i],
-          newAddress
+          newAddress,
         );
         if (!result.success) {
           failed.push(addressIds[i]);
@@ -374,6 +426,23 @@ export default {
       return failed;
     },
     async onUpdateComplete() {
+      if (this.addressType === "billing") {
+        await this.onBillingAddressUpdateComplete();
+      } else if (this.addressType === "shipping") {
+        await this.onShippingAddressUpdateComplete();
+      }
+      if (!this.errored) {
+        this.$emit("hide");
+      }
+    },
+    async onBillingAddressUpdateComplete() {
+      const paymentSources = await RechargeService.getUserResource(this.rechargeUser.id, "payment_sources");
+      console.log(paymentSources);
+      this.$store.commit("account/setRechargePaymentSource",paymentSources[0]);
+      // const user = await RechargeService.getUser(this.rechargeUser.email);
+      // this.$store.commit("account/setRechargeUser", user);
+    },
+    async onShippingAddressUpdateComplete() {
       const addresses = await RechargeService.getUserResource(this.rechargeUser.id, "addresses");
       this.$store.commit("account/setRechargeAddresses", addresses);
 
@@ -382,10 +451,6 @@ export default {
         "account/initializeSquatchBoxGroups",
         { squatchBoxGroups: squatchBoxGroups, groupName: this.formData.address1.toLowerCase() }
       );
-
-      if (!this.errored) {
-        this.$emit("hide");
-      }
     },
   }
 };
