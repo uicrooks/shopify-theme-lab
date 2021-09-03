@@ -69,7 +69,7 @@ module.exports = merge(common, {
         path.resolve(__dirname, '../../src/**/*.vue'),
       ]),
       safelist: { 
-        greedy: [ /data-v-.*/ ]
+        greedy: [ /data-v-.*/, /^carousel/]
       }
     })
   ],

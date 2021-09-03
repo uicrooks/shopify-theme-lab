@@ -1,4 +1,8 @@
 <template>
+<collection-base-template
+    :handle="handle"
+  >
+    <template #collection-content>
   <div class="collection-haircare-content-component">
     <div class="collection-section-header">
       Kits + Bundles
@@ -63,22 +67,32 @@
       </b-row>
     </b-container>
   </div>
+  </template>
+  </collection-base-template>
 </template>
 
 <script>
+import CollectionBaseTemplate from "../collection.vue";
 import ProductCard from "../reusables/product-card.vue";
 export default {
   name: "CollectionHaircareContent",
   components: {
+    CollectionBaseTemplate,
     ProductCard,
   },
   props: {
-    products: {
-      type: Array,
-      default: () => []
+    handle: {
+      type: String
+    },
+    productsData: {
+      type: String,
+      default: () => "[]"
     }
   },
   computed: {
+    products() {
+      return JSON.parse(this.productsData);
+    },
     bundles() {
       return this.products.filter(product => {
         return product.variants[0].sku.includes("hair-kit");
@@ -101,6 +115,7 @@ export default {
     }
   },
   mounted() {
+    console.log('haircares',this.products)
     // console.log("harcare collection content", this.products);
   }
 };

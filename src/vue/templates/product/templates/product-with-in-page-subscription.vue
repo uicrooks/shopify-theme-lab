@@ -96,12 +96,12 @@ export default {
     SquatchButton
   },
   props: {
-    product: {
+    productData: {
       type:Object,
       required: true,
       default: () => {}
     },
-    collection: {
+    collectionData: {
       type: Object,
       required: true,
       default: () => {}
@@ -122,6 +122,12 @@ export default {
     };
   },
   computed: {
+    product() {
+      return this.productData;
+    },
+    collection() {
+      return this.collectionData;
+    },
     showBanner() {
       return this.productIdentityTags[0] !== "toothpaste";
     },

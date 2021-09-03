@@ -1,36 +1,53 @@
 <template>
-  <b-container class="collection-default-content-component">
-    <b-row>
-      <b-col
-        v-for="(product, index) of products"
-        :key="`collection-product-${index}`"
-        sm="6"
-        lg="4"
-        xl="3"
-      >
-        <product-card 
-          :product="product"
-          class="product-card"
-        />
-      </b-col>
-    </b-row>
-  </b-container>
+  <collection-base-template
+    :handle="handle"
+  >
+    <template #collection-content>
+      <b-container class="collection-default-content-component">
+        <b-row>
+          <b-col
+            v-for="(product, index) of products"
+            :key="`collection-product-${index}`"
+            sm="6"
+            lg="4"
+            xl="3"
+          >
+            <product-card 
+              :product="product"
+              class="product-card"
+            />
+          </b-col>
+        </b-row>
+      </b-container>
+    </template>
+  </collection-base-template>
 </template>
 
 <script>
+import CollectionBaseTemplate from "../collection.vue";
 import ProductCard from "../reusables/product-card.vue";
 export default {
   name: "CollectionDefaultContent",
   components: {
+    CollectionBaseTemplate,
     ProductCard
   },
   props: {
-    products: {
-      type: Array,
-      default: () => []
+    handle: {
+      type: String
+    },
+    productsData: {
+      type: String,
+      default: () => "[]"
+    }
+  },
+  computed: {
+    products() {
+      return JSON.parse(this.productsData);
     }
   },
   mounted() {
+    console.log(this)
     console.log(this.products);
   }
 };

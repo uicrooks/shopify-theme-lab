@@ -126,6 +126,7 @@ export default {
     }
   },
   mounted() {
+    window.testtest = this;
     this.productIdentityTags = ProductIdentifier.identify(this.product);
     this.productIdentityString = this.productIdentityTags.join("-");
   }
