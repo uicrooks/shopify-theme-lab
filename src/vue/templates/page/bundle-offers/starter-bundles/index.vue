@@ -61,20 +61,20 @@
               </p>
               <label
                 class="sq-checkbox"
-                @click.prevent="setPurchaseType(!isSubToBundle)"
+                @click.prevent="toggleBundleSubSelected(product.title)"
               >
                 <input
                   id="checkbox_smooth"
                   type="checkbox"
                   name="radios"
-                  :checked="isSubToBundle"
+                  :checked="checkIfSubSelected(product.title)"
                 >
                 <span class="outer"><span
                   class="inner"
-                  :class="{ 'squatch-icon icon_checkmark' : isSubToBundle}"
+                  :class="{ 'squatch-icon icon_checkmark' : checkIfSubSelected(product.title) }"
                 /></span>
                 <div class="sq-checkbox__content">
-                  <h6>Subscribe &amp; Save 15</h6>
+                  <h6>Subscribe &amp; Save {{product.price - product.subscriptionPrice | money("$", 0) }}</h6>
                   <p>Shipped every 3 months</p>
                 </div>
               </label>
@@ -127,9 +127,11 @@ export default {
         HairCare: JSON.parse(this.subdetails.HairCare),
         Deodorant: JSON.parse(this.subdetails.Deodorant),
         Toothpaste: JSON.parse(this.subdetails.Toothpaste),
+        SoapSaver: this.subdetails.SoapSaver
       });
     },
     computed: {
+        ...mapGetters("starterBundles",["selectedLevel","selectedScent","starterBundleDrawerOpened","subscriptionProducts","subSelected_Clean","subSelected_Groomed","subSelected_Suave","subSelected_Smooth"]),
         "beach-bundle" () {
             return this.products.filter((bundle) => { return bundle.handle == "beach-bundle"; })[0] || {};
         },
@@ -149,6 +151,7 @@ export default {
                     price: this.levelsReference[0].price,
                     compare_at_price: this.levelsReference[0].compare_at_price,
                     savings: (this.levelsReference[0].compare_at_price - this.levelsReference[0].price),
+                    subscriptionPrice: this.subscriptionProducts["BarSoap"].price + this.subscriptionProducts["SoapSaver"].price,
                     image: this["squatch-bundle"].variants[0].featured_image.src
                 },
                 {
@@ -157,6 +160,7 @@ export default {
                     price: this.levelsReference[4].price,
                     compare_at_price: this.levelsReference[4].compare_at_price,
                     savings: (this.levelsReference[4].compare_at_price - this.levelsReference[4].price),
+                    subscriptionPrice: this.subscriptionProducts["BarSoap"].price + this.subscriptionProducts["Deodorant"].price + this.subscriptionProducts["HairCare"].price,
                     image: this["fresh-bundle"].variants[4].featured_image.src
                 },
                 {
@@ -165,6 +169,7 @@ export default {
                     price: this.levelsReference[1].price,
                     compare_at_price: this.levelsReference[1].compare_at_price,
                     savings: (this.levelsReference[1].compare_at_price - this.levelsReference[1].price),
+                    subscriptionPrice: this.subscriptionProducts["BarSoap"].price + this.subscriptionProducts["HairCare"].price + (0.33*this.subscriptionProducts["SoapSaver"].price),
                     image: this["forest-bundle"].variants[1].featured_image.src
                 },
                 {
@@ -173,6 +178,7 @@ export default {
                     price: this.levelsReference[5].price,
                     compare_at_price: this.levelsReference[5].compare_at_price,
                     savings: (this.levelsReference[5].compare_at_price - this.levelsReference[5].price),
+                    subscriptionPrice: this.subscriptionProducts["BarSoap"].price + this.subscriptionProducts["Deodorant"].price + this.subscriptionProducts["HairCare"].price + this.subscriptionProducts["Toothpaste"].price,
                     image: this["beach-bundle"].variants[5].featured_image.src
                 },
             ];
@@ -180,13 +186,18 @@ export default {
         levelsReference() {
             return this.products[0].variants;
         },
-        ...mapGetters("starterBundles",["selectedLevel","selectedScent","starterBundleDrawerOpened", "isSubToBundle","subscriptionProducts"])
     },
     methods: {
-      ...mapMutations("starterBundles", ["setSelectedLevel", "setDrawerOpened", "setPurchaseType"])
+      ...mapMutations("starterBundles", ["setSelectedLevel", "setDrawerOpened", "setPurchaseType","toggleBundleSubSelected"]),
+      checkIfSubSelected(title) {
+        return this[`subSelected_${title}`];
+      }
     },
     mounted() {
         window.sb_test = this;
+        this.$nextTick(() => {
+          this.$store.commit("starterBundles/setCards",this.cards);
+        });
     }
 };
 </script>

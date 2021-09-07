@@ -13,18 +13,20 @@
   >
     <template #default>
       <div class="dialog-header">
-        <span
-          v-if="selectedCard.savings"
-          class="discount"
-        >
-          {{ selectedCard.savings | money("$", 0) }} Off!
-        </span>
-        <span
-          v-if="selectedCard.price>4000"
-          class="free-shipping"
-        >
-          Free Shipping!
-        </span>
+        <div>
+          <span
+            v-if="selectedCard.savings"
+            class="discount"
+          >
+            {{ selectedCard.compare_at_price | money("$", 0) }} Value!
+          </span>
+          <span
+            v-if="selectedCard.price>4000 || isSubView"
+            class="free-shipping"
+          >
+            Free Shipping{{ isSubView ? " For Life!" : "!"}}
+          </span>
+        </div>
         <b-icon
           icon="x"
           font-scale="1.5"
@@ -36,17 +38,7 @@
           :src="selectedVariant.featured_image.src"
           :alt="`${selectedVariant.title} image`"
         >
-        <h2>{{ selectedCard.title.split(" ")[0] }}</h2>
-        <p>{{ selectedVariant.title.split(" Bundle")[0] }}</p>
-        <div class="product-pricing">
-          {{ selectedCard.price | money("$", 0) }}
-          <span
-            v-if="selectedCard.compare_at_price"
-            class="compare-at-pricing"
-          >
-            {{ selectedCard.compare_at_price | money("$", 0) }}
-          </span>
-        </div>
+        <h2>{{ selectedCard.title }}</h2>
       </div>
       <div class="variants-box">
         <h3>Choose Your Scent Profile:</h3>
@@ -79,6 +71,8 @@
             v-for="(handle) in includedObject[category]"
             :key="handle"
             :handle="handle"
+            :subPurchase="isSubView"
+            :selectedLvl="selectedCard.title"
           />
         </div>
       </div>
@@ -89,7 +83,7 @@
         :disabled="btnsDisabled"
         @clicked="finishFlow()"
       >
-        Finish
+        <span v-if="isSubView">{{ selectedCard.subscriptionPrice | money("$",0) }}</span><span v-else>{{ selectedCard.price | money("$",0) }}</span>&nbsp;|&nbsp;Finish
       </squatch-button>
     </template>
   </b-sidebar>
@@ -111,14 +105,17 @@ export default {
       IncludedItem
     },
     computed: {
-      ...mapGetters("starterBundles",["selectedVariant","selectedScent","selectedCard","starterBundleDrawerOpened","fetchedProducts","subscriptionProducts"]),
+      ...mapGetters("starterBundles",["selectedVariant","selectedScent","selectedCard","starterBundleDrawerOpened","fetchedProducts","subscriptionProducts","subSelected_Clean","subSelected_Groomed","subSelected_Suave","subSelected_Smooth"]),
       includedObject() {
         return IncludedList["starter-bundles-variants"][this.selectedScent] || {};
       },
       includedListCategories() {
-        return IncludedList[this.selectedCard.title];
+        let key = `${this.selectedCard.title}${this.isSubView ? "Sub" : ""}`;
+        return IncludedList[key];
       },
-
+      isSubView() {
+        return this[`subSelected_${this.selectedCard.title}`]
+      },
       drawerOpened: {
         get() {
           return this.starterBundleDrawerOpened;

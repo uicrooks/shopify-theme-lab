@@ -1,30 +1,42 @@
 export default {
   // Starter Bundles Section
   "Clean": ["3 Bar Soaps & Saver"],
+  "CleanSub": ["Soap Saver", "3 Bar Soaps"],
   "Suave": ["3 Bar Soaps & Saver", "Deodorant", "Hair Care Kit"],
+  "SuaveSub": ["Soap Saver", "3 Bar Soaps","Deodorant","Hair Care Kit"],
   "Groomed": ["3 Bar Soaps & Saver", "Hair Care Kit"],
+  "GroomedSub": ["Soap Saver", "3 Bar Soaps","Hair Care Kit"],
   "Smooth": ["3 Bar Soaps & Saver", "Deodorant", "Hair Care Kit", "Toothpaste Kit"],
+  "SmoothSub": ["Soap Saver", "3 Bar Soaps","Deodorant","Hair Care Kit","Toothpaste Kit"],
   "starter-bundles-variants": {
     "squatch-bundle": {
       "3 Bar Soaps & Saver": ["pine-tar", "deep-sea-goats-milk", "grapefruit-ipa", "soap-saver"],
+      "Soap Saver": ["soap-saver"],
+      "3 Bar Soaps": ["pine-tar", "deep-sea-goats-milk", "grapefruit-ipa"],
       "Deodorant": ["alpine-sage-deodorant"],
       "Hair Care Kit": ["shampoo-1", "conditioner"],
       "Toothpaste Kit": ["toothpaste"]
     },
     "fresh-bundle": {
       "3 Bar Soaps & Saver": ["cool-fresh-aloe", "eucalyptus-yogurt", "spearmint-basil", "soap-saver"],
+      "Soap Saver": ["soap-saver"],
+      "3 Bar Soaps": ["cool-fresh-aloe", "eucalyptus-yogurt", "spearmint-basil"],
       "Deodorant": ["fresh-falls-deodorant"],
       "Hair Care Kit": ["shampoo-1", "conditioner"],
       "Toothpaste Kit": ["toothpaste"]
     },
     "beach-bundle": {
       "3 Bar Soaps & Saver": ["bay-rum", "alpine-sage", "grapefruit-ipa", "soap-saver"],
+      "Soap Saver": ["soap-saver"],
+      "3 Bar Soaps": ["bay-rum", "alpine-sage", "grapefruit-ipa"],
       "Deodorant": ["bay-rum-deodorant"],
       "Hair Care Kit": ["shampoo-1", "conditioner"],
       "Toothpaste Kit": ["toothpaste"]
     },
     "forest-bundle": {
       "3 Bar Soaps & Saver": ["pine-tar", "cedar-citrus", "gold-moss", "soap-saver"],
+      "Soap Saver": ["soap-saver"],
+      "3 Bar Soaps": ["pine-tar", "cedar-citrus", "gold-moss"],
       "Deodorant": ["birchwood-breeze-deodorant"],
       "Hair Care Kit": ["shampoo-1", "conditioner"],
       "Toothpaste Kit": ["toothpaste"]

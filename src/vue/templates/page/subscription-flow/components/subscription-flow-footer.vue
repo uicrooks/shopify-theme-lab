@@ -4,86 +4,88 @@
     v-if="currentHandle!='intro'"
     class="sub-flow-footer"
   >
-    <div class="flowSummary">
-      <!-- DESKTOP FLOW TOTAL -->
-      <div class="desktop-summary d-flex">
-        <div
-          class="d-block"
-          style="width: 231px;"
-        >
-          <p
-            class="mb-1 dsktp-bk"
-            style="font-family: worker-3d; font-size: 16px;"
-          />
+    <div class="footer-max-width">
+      <div class="flowSummary">
+        <!-- DESKTOP FLOW TOTAL -->
+        <div class="desktop-summary d-flex">
           <div
-            v-if="flowSummary.total"
-            class="price-row"
+            class="d-block"
+            style="width: 231px;"
           >
-            <p class="price_label mb-0 font-weight-bold">
-              Total:
-              <span>{{ flowSummary.total }}</span><span class="text-success"> ({{ flowSummary.compare_at_price - flowSummary.total }} saved!)</span>
-            </p>
-          </div>
-        </div>
-        <div
-          class="containter-fluid scent-summary dsktp-bk"
-          style="padding-top: 15px; padding-bottom: 15px;"
-        >
-          <div
-            v-if="selectedScentsOnScreen"
-            class="row selected-scents-row"
-          >
+            <p
+              class="mb-1 dsktp-bk"
+              style="font-family: worker-3d; font-size: 16px;"
+            />
             <div
-              v-for="(scent,i) in selectedScentsOnScreen"
-              :key="scent.sku + i"
-              class="col text-center"
+              v-if="flowSummary.total"
+              class="price-row"
             >
-              <div
-                class="selected-scent"
-                :class="'bg-'+scent.handle"
-                @click="decreaseScentQty(scent.sku)"
-              >
-                <i :class="'squatch-icon icon_'+scent.handle" />
-                <i class="icon-squatch icon-cross remove-scent-icon" />
-              </div>
-              <p class="font-weight-bold mb-0 d-none">
-                {{ scent.title }}
+              <p class="price_label mb-0 font-weight-bold">
+                Total:
+                <span>{{ flowSummary.total }}</span><span class="text-success"> ({{ flowSummary.compare_at_price - flowSummary.total }} saved!)</span>
               </p>
             </div>
+          </div>
+          <div
+            class="containter-fluid scent-summary dsktp-bk"
+            style="padding-top: 15px; padding-bottom: 15px;"
+          >
             <div
-              v-for="(blank) in unselectedScentsOnScreen"
-              :key="blank"
-              class="col text-center"
+              v-if="selectedScentsOnScreen"
+              class="row selected-scents-row"
             >
-              <div class="selected-scent empty">
-                <i :class="'text-brown squatch-icon icon-'+screen.handle" />
+              <div
+                v-for="(scent,i) in selectedScentsOnScreen"
+                :key="scent.sku + i"
+                class="col text-center"
+              >
+                <div
+                  class="selected-scent"
+                  :class="'bg-'+scent.handle"
+                  @click="decreaseScentQty(scent.sku)"
+                >
+                  <i :class="'squatch-icon icon_'+scent.handle" />
+                  <i class="icon-squatch icon-cross remove-scent-icon" />
+                </div>
+                <p class="font-weight-bold mb-0 d-none">
+                  {{ scent.title }}
+                </p>
+              </div>
+              <div
+                v-for="(blank) in unselectedScentsOnScreen"
+                :key="blank"
+                class="col text-center"
+              >
+                <div class="selected-scent empty">
+                  <i :class="'text-brown squatch-icon icon-'+screen.handle" />
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <!-- / DESKTOP FLOW TOTAL -->
       </div>
-      <!-- / DESKTOP FLOW TOTAL -->
-    </div>
-    <div class="flowControl">
-      <b-button
-        v-show="current_step_index>0"
-        class="prevButton"
-        size="lg"
-        :disabled="choicesRequired"
-        @click.prevent="flowPrevious()"
-      >
-        <b-icon 
-          icon="arrow-left"
-        />
-      </b-button> 
-      <b-button
-        size="lg"
-        class="nextButton"
-        :disabled="choicesRequired"
-        @click.prevent="flowNext()"
-      >
-        {{ currentHandle != 'Addons' ? 'Next' : 'Finish' }}
-      </b-button> 
+      <div class="flowControl">
+        <b-button
+          v-show="current_step_index>0"
+          class="prevButton"
+          size="lg"
+          :disabled="choicesRequired"
+          @click.prevent="flowPrevious()"
+        >
+          <b-icon 
+            icon="arrow-left"
+          />
+        </b-button> 
+        <b-button
+          size="lg"
+          class="nextButton"
+          :disabled="choicesRequired"
+          @click.prevent="flowNext()"
+        >
+          {{ currentHandle != 'Addons' ? 'Next' : 'Finish' }}
+        </b-button> 
+      </div>
     </div>
   </section>
   <!-- / FOOTER -->
@@ -181,6 +183,10 @@ export default {
     background: #fff;
     padding-left: 15px;
     border-top: 1px solid #1b110a5e;
+    .footer-max-width {
+      max-width: 1440px;
+      margin:auto;
+    }
 }
 .flowSummary {
   float:left;

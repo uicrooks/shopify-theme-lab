@@ -9,6 +9,20 @@
         <p>Loading</p>
       </div>
     </template>
+    <template v-else-if="product.title=='Soap Saver' && subPurchase">
+      <p style="color:#40a040;font-weight:700;width:100%;" v-if="selectedLvl != 'Clean'">{{selectedLvl == "Groomed" ? "67% OFF" : "FREE"}} Soap Saver, sent with your first shipment!<br />Discount code applied at checkout.</p>
+      <p v-else style="color:#40a040;font-weight:700;width:100%;">Only sent with your first shipment!</p>
+      <div class="image-box">
+        <img
+          :src="getProductImage(product)"
+          :alt="`${product.title} image`"
+        >
+      </div>
+      <div class="details-box">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.description }}</p>
+      </div>
+    </template>
     <template v-else>
       <div class="image-box">
         <img
@@ -24,10 +38,13 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "IncludedItem",
   props: {
-    handle: {required: true, type: String}
+    handle: {required: true, type: String},
+    subPurchase: {required: true, type: Boolean},
+    selectedLvl: {required: true, type: String}
   },
   data() {
     return {

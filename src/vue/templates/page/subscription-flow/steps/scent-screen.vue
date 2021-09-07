@@ -15,7 +15,7 @@
           v-if="filterOnTab(scent)"
           :key="scent.sku"
           class="scent-col"
-          cols="6"
+          cols="12"
           sm="6"
           md="4"
           lg="3"
@@ -176,27 +176,44 @@ export default {
   margin-bottom: 30px;
   height: 100%;
   display:flex;
-  flex-direction: column;
+  @include global.layout-md {
+    flex-direction: column;
+  }
   background: #fff;
   border-radius: 6px;
   .scent__card-image {
     background-color: global.$sand;
     text-align: center;
     border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
+      width: 100%;
+    }
+    @include global.layout-md {
       width: calc(100% - 30px);
-      padding: 15px;
+      border-bottom-left-radius: 0px;
+      border-top-right-radius: 6px;
+      img {
+        width: 100%;
+      }
     }
   }
   .scent__card-body {
     padding: 15px;
     height: 100%;
+    width: 60%;
     display:flex;
     flex-direction: column;
+    @include global.layout-md {
+      width: 100%;
+    }
     .scent__card-title {
       font-family: global.$font-heading;
-      font-size: 16px;
+      font-size: 22px;
       margin-bottom: 10px;
       padding-bottom: 6px;
       border-bottom: 1px solid global.$brown;
@@ -206,7 +223,7 @@ export default {
         font-size: 14px;
         margin-bottom: 5px;
         &:last-of-type {
-          margin-bottom: 15px;
+          margin-bottom: 0px;
         }
         strong {
           

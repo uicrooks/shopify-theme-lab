@@ -11,6 +11,7 @@
 {% assign hairCareSubscription = all_products["hair-care-kit-1-per-quarter"] %}
 {% assign deodorantSubscription = all_products["deodorant-subscription-1-stick"] %}
 {% assign toothpasteSubscription = all_products["toothpaste-bundle-subscription-1-kit"] %}
+{% assign soapSaver = all_products["soap-saver"] %}
 
 
 {% capture soapSubDetails %}
@@ -18,8 +19,8 @@
     "variant_id": {{soapSubscription.variants[0].id}},
     "sku": "{{soapSubscription.variants[0].sku | downcase }}",
     "type": "{{soapSubscription.type}}",
-    "price": {{soapSubscription.variants[0].price | divided_by: 100 }},
-    "compare_at_price": {{soapSubscription.variants[0].compare_at_price | divided_by: 100 }},
+    "price": {{soapSubscription.variants[0].price }},
+    "compare_at_price": {{soapSubscription.variants[0].compare_at_price }},
     "properties": {
       "type": "soap",
       "subscription_id": {{ soapSubscription.metafields.subscriptions.subscription_id }},
@@ -40,8 +41,8 @@
     "variant_id": {{hairCareSubscription.variants[0].id}},
     "sku": "{{hairCareSubscription.variants[0].sku | downcase }}",
     "type": "{{hairCareSubscription.type}}",
-    "price": {{hairCareSubscription.variants[0].price | divided_by: 100 }},
-    "compare_at_price": {{hairCareSubscription.variants[0].compare_at_price | divided_by: 100 }},
+    "price": {{hairCareSubscription.variants[0].price }},
+    "compare_at_price": {{hairCareSubscription.variants[0].compare_at_price }},
     "properties": {
       "type": "haircare",
       "subscription_id": {{ hairCareSubscription.metafields.subscriptions.subscription_id }},
@@ -62,8 +63,8 @@
     "variant_id": {{deodorantSubscription.variants[0].id}},
     "sku": "{{deodorantSubscription.variants[0].sku | downcase }}",
     "type": "{{deodorantSubscription.type}}",
-    "price": {{deodorantSubscription.variants[0].price | divided_by: 100 }},
-    "compare_at_price": {{deodorantSubscription.variants[0].compare_at_price | divided_by: 100 }},
+    "price": {{deodorantSubscription.variants[0].price }},
+    "compare_at_price": {{deodorantSubscription.variants[0].compare_at_price }},
     "properties": {
       "type": "deodorant",
       "subscription_id": {{ deodorantSubscription.metafields.subscriptions.subscription_id }},
@@ -84,8 +85,8 @@
     "variant_id": {{toothpasteSubscription.variants[0].id}},
     "sku": "{{toothpasteSubscription.variants[0].sku | downcase }}",
     "type": "{{toothpasteSubscription.type}}",
-    "price": {{toothpasteSubscription.variants[0].price | divided_by: 100 }},
-    "compare_at_price": {{toothpasteSubscription.variants[0].compare_at_price | divided_by: 100 }},
+    "price": {{toothpasteSubscription.variants[0].price }},
+    "compare_at_price": {{toothpasteSubscription.variants[0].compare_at_price }},
     "properties": {
       "type": "toothpaste",
       "subscription_id": {{ toothpasteSubscription.metafields.subscriptions.subscription_id }},
@@ -116,6 +117,7 @@
       'Toothpaste': {{toothpasteSubDetails | json | escape }},
       'Deodorant': {{deodorantSubDetails | json | escape }},
       'HairCare': {{haircareSubDetails | json | escape }},
+      'SoapSaver': {{soapSaver | json | escape}}
     }"
   ></bundle-offers-page>
   

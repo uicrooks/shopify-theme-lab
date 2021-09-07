@@ -5,7 +5,23 @@ import cartService from "../../../../services/cart.service";
 const state = () => ({
   fetchedProducts: {},
   starterBundles: {},
-  subscriptionProducts: {},
+  subscriptionProducts: {
+    BarSoap: {
+      price: 0,
+    },
+    HairCare: {
+      price: 0,
+    },
+    Deodorant: {
+      price: 0,
+    },
+    Toothpaste: {
+      price: 0
+    },
+    SoapSaver: {
+      price: 0
+    }
+  },
   cards: [],
   selectedVariant: function() {
     return this.starterBundles[this.selectedScent].variants.filter((variant) => {
@@ -19,7 +35,10 @@ const state = () => ({
   },
   selectedScent: "forest-bundle",
   selectedLevel: "Clean",
-  isSubToBundle: true,
+  subSelected_Clean: false,
+  subSelected_Groomed: false,
+  subSelected_Suave: false,
+  subSelected_Smooth: false,
   starterBundleDrawerOpened: false,
 });
 
@@ -39,8 +58,17 @@ const getters = {
   selectedLevel: (state) => {
     return state.selectedLevel;
   },
-  isSubToBundle: (state) => {
-    return state.isSubToBundle;
+  subSelected_Clean: (state) => {
+    return state.subSelected_Clean;
+  },
+  subSelected_Groomed: (state) => {
+    return state.subSelected_Groomed;
+  },
+  subSelected_Suave: (state) => {
+    return state.subSelected_Suave;
+  },
+  subSelected_Smooth: (state) => {
+    return state.subSelected_Smooth;
   },
   starterBundleDrawerOpened: (state) => {
     return state.starterBundleDrawerOpened;
@@ -72,6 +100,9 @@ const mutations = {
   addFetchedProduct: (state, prod) => {
     state.fetchedProducts[prod.handle] = prod;
   },
+  toggleBundleSubSelected: (state, bundleLvl) => {
+    state[`subSelected_${bundleLvl}`] = !state[`subSelected_${bundleLvl}`];
+  },
   setBundles: (state, bundles) => {
     state.starterBundles = bundles;
   },
@@ -91,6 +122,7 @@ const mutations = {
     state.isSubToBundle = val;
   },
   setSubscriptionProducts: (state, obj) => {
+    console.log("asdfsdf", obj)
     state.subscriptionProducts = obj;
   }
 };

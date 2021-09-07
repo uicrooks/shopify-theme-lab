@@ -46,10 +46,12 @@ export default {
     },
     shareCart() {
       const value = CookieService.get("cart");
-      CookieService.set("cart", value, {
-        path: "/",
-        domain: ".drsquatch.com"
-      });
+      if (value) {
+        CookieService.set("cart", value, {
+          path: "/",
+          domain: ".drsquatch.com"
+        });
+      }
     },
     generateMatchingStoreDomain(currencyOption) {
       const subdomain = currencyOption.handle ? `${currencyOption.handle}.` : "";
