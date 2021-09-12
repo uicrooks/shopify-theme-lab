@@ -22,25 +22,25 @@
     "fix:shopify": "cd shopify && shopify theme check -a"
   },
   "dependencies": {
-    "tailwindcss": "^2.2.7",
-    "vue": "^3.1.5",
+    "tailwindcss": "^2.2.15",
+    "vue": "^3.2.11",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.8",
-    "@babel/plugin-transform-runtime": "^7.14.5",
-    "@babel/preset-env": "^7.14.9",
-    "@vue/compiler-sfc": "^3.1.5",
-    "autoprefixer": "^10.3.1",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
+    "@vue/compiler-sfc": "^3.2.11",
+    "autoprefixer": "^10.3.4",
     "babel-loader": "^8.2.2",
-    "clean-webpack-plugin": "^3.0.0",
+    "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.2.0",
     "css-minimizer-webpack-plugin": "^3.0.2",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^7.15.0",
+    "eslint-plugin-vue": "^7.17.0",
     "eslint-webpack-plugin": "^3.0.1",
-    "mini-css-extract-plugin": "^2.1.0",
+    "mini-css-extract-plugin": "^2.3.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.3.6",
     "postcss-import": "^14.0.2",
@@ -50,9 +50,9 @@
     "stylelint-config-recommended": "^5.0.0",
     "stylelint-webpack-plugin": "^3.0.1",
     "url-loader": "^4.1.1",
-    "vue-loader": "^16.4.1",
-    "webpack": "^5.48.0",
-    "webpack-cli": "^4.7.2",
+    "vue-loader": "^16.5.0",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0",
     "webpack-merge": "^5.8.0"
   }
 }
