@@ -45,7 +45,6 @@
     "postcss": "^8.3.6",
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.1.1",
-    "postcss-preset-env": "^6.7.0",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0",
     "stylelint-webpack-plugin": "^3.0.1",
