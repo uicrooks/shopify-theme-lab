@@ -6,6 +6,23 @@ import { createStore } from 'vuex'
 import './css/main.css'
 
 /**
+ * vuex
+ * auto-import all modules and prepare shared store
+ */
+const vuexModules = require.context('./vue/store/', true, /\.js$/)
+const modules = {}
+
+vuexModules.keys().forEach(key => {
+  const name = key.replace(/\.(\/|js)/g, '').replace(/\s/g, '-')
+  modules[name] = vuexModules(key).default
+})
+
+const store = createStore({
+  strict: process.env.NODE_ENV !== 'production',
+  modules
+})
+
+/**
  * create vue instance function
  */
 const createVueApp = () => {
@@ -27,25 +44,6 @@ const createVueApp = () => {
 
     app.component(name, component)
   })
-
-  /**
-   * vuex
-   * auto-import all modules
-   */
-  const vuexModules = require.context('./vue/store/', true, /\.js$/)
-  const modules = {}
-
-  vuexModules.keys().forEach(key => {
-    const name = key.replace(/\.(\/|js)/g, '').replace(/\s/g, '-')
-    modules[name] = vuexModules(key).default
-  })
-
-  const store = createStore({
-    strict: process.env.NODE_ENV !== 'production',
-    modules
-  })
-
-  app.use(store)
 
   /**
    * vue mixins
@@ -72,15 +70,22 @@ const createVueApp = () => {
    * vue plugins
    * extend with additional features
    */
-  // app.use(MyPlugin)
+  app.use(store)
 
   return app
 }
 
 /**
- * create and mount vue instance
+ * create and mount vue instance(s)
  */
-createVueApp().mount('#app')
+const appElement = document.querySelector('#app')
+
+if (appElement) {
+  createVueApp().mount(appElement)
+} else {
+  const vueElements = document.querySelectorAll('[vue]')
+  if (vueElements) vueElements.forEach(el => createVueApp().mount(el))
+}
 
 /**
  * fixes for Shopify sections
