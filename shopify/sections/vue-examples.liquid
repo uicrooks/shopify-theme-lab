@@ -65,7 +65,7 @@
               Vuex “my-module” state “visible” is set to <strong>{% raw %}{{ visible }}{% endraw %}</strong>
             </div>
 
-            <button @click="toggle" class="shopify-theme-lab__button bg-blue-500 shadow-lg shadow-blue-500/50">
+            <button @click="toggle" class="shopify-theme-lab__button">
               Click me!
             </button>
           </div>
@@ -82,7 +82,7 @@
           </div>
 
           <button
-            class="shopify-theme-lab__button bg-cyan-500 shadow-lg shadow-cyan-500/50"
+            class="shopify-theme-lab__button"
             @click="$store.dispatch('my-module/toggle')"
           >
             Click me, too!
@@ -134,6 +134,7 @@
 
 .shopify-theme-lab__button {
   color: rgb(255,255,255);
+  background: rgb(0,0,0);
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
