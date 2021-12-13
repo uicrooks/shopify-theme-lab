@@ -8,7 +8,6 @@ const path = require('path')
 
 module.exports = {
   mode: 'jit',
-  darkMode: false,
   theme: {
     extend: {},
     container: {
@@ -16,9 +15,8 @@ module.exports = {
       padding: '1rem'
     }
   },
-  variants: {},
   plugins: [],
-  purge: {
+  content: {
     enabled: process.env.NODE_ENV === 'production',
     content: [
       path.resolve(__dirname, '**/*.{js,vue}'),
