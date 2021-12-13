@@ -23,5 +23,5 @@ module.exports = {
     'at-rule-no-unknown': null,
     'no-descending-specificity': null
   },
-  customSyntax: "postcss-html"
+  customSyntax: 'postcss-html'
 }
