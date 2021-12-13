@@ -1,6 +1,0 @@
-{
-  "eslint.options": {
-    "configFile": ".config/.eslintrc.js"
-  },
-  "eslint.validate": ["vue", "javascript"]
-}
