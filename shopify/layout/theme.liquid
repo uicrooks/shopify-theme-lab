@@ -9,6 +9,10 @@
     <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
     <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
 
+    {%- if settings.favicon -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- endif -%}
+    
     <title>{{ page_title | escape }}</title>
 
     {% if page_description %}
