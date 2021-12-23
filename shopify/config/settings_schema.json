@@ -19,5 +19,16 @@
         "content": "t:settings_schema.custom_settings.settings.paragraph"
       }
     ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Image",
+        "info": "32 x 32px .png recommended"
+      }
+    ]
   }
 ]
