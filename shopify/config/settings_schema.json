@@ -21,13 +21,13 @@
     ]
   },
   {
-    "name": "Favicon",
+    "name": "t:settings_schema.favicon.name",
     "settings": [
       {
         "type": "image_picker",
         "id": "favicon",
-        "label": "Image",
-        "info": "32 x 32px .png recommended"
+        "label": "t:settings_schema.favicon.settings.label",
+        "info": "t:settings_schema.favicon.settings.info"
       }
     ]
   }

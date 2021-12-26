@@ -6,6 +6,13 @@
         "header": "About JSON settings",
         "paragraph": "The settings_schema.json file controls the content of the Theme settings area of the theme editor. Settings in this file translate to global theme settings, which can be accessed through the Liquid settings object. [Learn more](https://shopify.dev/themes/architecture/settings)"
       }
+    },
+    "favicon": {
+      "name": "Favicon",
+      "settings": {
+        "label": "Image",
+        "info": "32 x 32px .png recommended"
+      }
     }
   },
   "sections": {
