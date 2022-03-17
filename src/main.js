@@ -25,8 +25,8 @@ const store = createStore({
 /**
  * create vue instance function
  */
-const createVueApp = () => {
-  const app = createApp({})
+const createVueApp = name => {
+  const app = createApp({ name: name });
 
   /**
    * vue components
@@ -84,7 +84,11 @@ if (appElement) {
   createVueApp().mount(appElement)
 } else {
   const vueElements = document.querySelectorAll('[vue]')
-  if (vueElements) vueElements.forEach(el => createVueApp().mount(el))
+  if (vueElements) {
+    vueElements.forEach(el => {
+      createVueApp(el.dataset.name).mount(el);
+    });
+  }
 }
 
 /**
