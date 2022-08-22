@@ -20,6 +20,10 @@ module.exports = merge(common, {
     new StylelintPlugin({
       files: 'src/**/*.{vue,css,sass,scss}',
       configFile: path.resolve(__dirname, '../.stylelintrc.js')
+    }),
+    new webpack.DefinePlugin({
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: true 
     })
   ]
 })
