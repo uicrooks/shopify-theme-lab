@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    {{ 'bundle.css' | asset_url | preload_tag }}
-    {{ 'bundle.js' | asset_url | preload_tag }}
+    {{ 'bundle.css' | asset_url | preload_tag: as 'style' }}
+    {{ 'bundle.js' | asset_url | preload_tag: as 'script' }}
 
     {% if settings.favicon %}
       <link rel="shortcut icon" href="{{ settings.favicon | image_url: '32x32' }}" type="image/png">
