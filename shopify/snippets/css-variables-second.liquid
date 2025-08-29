@@ -1,0 +1,118 @@
+{% comment %}
+  This is used to create CSS custom variables with Liquid references
+  The file variables.scss is referring these CSS custom variables as Sass variables
+  to use throughout the stylesheet
+{% endcomment %}
+{% style %}
+  {%- assign header_font = settings.type_header_font -%}
+  {%- assign base_font = settings.type_base_font -%}
+  {%- assign base_font_bolder = base_font | font_modify: 'weight', 'bolder' -%}
+  {%- assign base_font_bold = base_font | font_modify: 'weight', 'bold' -%}
+  {%- assign base_font_italic = base_font | font_modify: 'style', 'italic' -%}
+  {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%}
+
+  :root {
+    --color-text: {{ settings.color_text }};
+    --color-text-rgb: {{ settings.color_text | color_to_rgb | remove: 'rgb(' | remove: 'rgba(' | remove: ')' | remove: ', 0.0' }};
+    --color-body-text: {{ settings.color_body_text }};
+    --color-sale-text: {{ settings.color_sale_text }};
+    --color-small-button-text-border: {{ settings.color_small_button_text_border }};
+    --color-text-field: {{ settings.color_text_field }};
+    --color-text-field-text: {{ settings.color_text_field_text }};
+    --color-text-field-text-rgb: {{ settings.color_text_field_text | color_to_rgb | remove: 'rgb(' | remove: 'rgba(' | remove: ')' | remove: ', 0.0' }};
+
+    --color-btn-primary: {{ settings.color_button }};
+    --color-btn-primary-darker: {{ settings.color_button | color_darken: 10 }};
+    --color-btn-primary-text: {{ settings.color_button_text }};
+
+    --color-blankstate: {{ settings.color_body_text | color_modify: 'alpha', 0.35 }};
+    --color-blankstate-border: {{ settings.color_body_text | color_modify: 'alpha', 0.2 }};
+    --color-blankstate-background: {{ settings.color_body_text | color_modify: 'alpha', 0.1 }};
+
+    --color-text-focus: {%- include 'adaptive-color' with settings.color_text as color -%};
+    --color-overlay-text-focus: {%- include 'adaptive-color' with settings.color_image_overlay_text as color -%};
+    --color-btn-primary-focus: {%- include 'adaptive-color' with settings.color_button as color -%};
+    --color-btn-social-focus: {%- include 'adaptive-color' with settings.color_borders as color -%};
+    --color-small-button-text-border-focus: {%- include 'adaptive-color' with settings.color_small_button_text_border as color -%};
+    --predictive-search-focus: {%- include 'adaptive-color' with settings.color_body_bg as color, is_background_color: true -%};
+
+    --color-body: {{ settings.color_body_bg }};
+    --color-bg: {{ settings.color_body_bg }};
+    --color-bg-rgb: {{ settings.color_body_bg | color_to_rgb | remove: 'rgb(' | remove: 'rgba(' | remove: ')' | remove: ', 0.0' }};
+    --color-bg-alt: {{ settings.color_body_text | color_modify: 'alpha', 0.05 }};
+    --color-bg-currency-selector: {{ settings.color_body_text | color_modify: 'alpha', 0.2 }};
+
+    --color-overlay-title-text: {{ settings.color_image_overlay_text }};
+    --color-image-overlay: {{ settings.color_image_overlay }};
+    --color-image-overlay-rgb: {{ settings.color_image_overlay | color_to_rgb | remove: 'rgb(' | remove: 'rgba(' | remove: ')' | remove: ', 0.0' }};
+
+    {%- assign image_overlay_opacity = settings.image_overlay_opacity | divided_by: 100.00 -%}
+    --opacity-image-overlay: {{ image_overlay_opacity }};
+
+    {%- comment -%}
+      Based on the image overlay opacity, either lighten or darken the image on hover
+    {%- endcomment -%}
+    {%- if image_overlay_opacity > 0.85 -%}
+      {%- assign image_overlay_opacity_hover = image_overlay_opacity | minus: 0.3 -%}
+    {%- else -%}
+      {%- assign image_overlay_opacity_hover = image_overlay_opacity | plus: 0.4 -%}
+    {%- endif -%}
+    --hover-overlay-opacity: {{ image_overlay_opacity_hover | at_most: 1 }};
+
+    --color-border: {{ settings.color_borders }};
+    --color-border-form: {{ settings.color_text_field_border }};
+    --color-border-form-darker: {{ settings.color_text_field_border | color_darken: 10}};
+
+    --svg-select-icon: url({{ "ico-select.static.svg" | asset_url }});
+    --slick-img-url: url({{ "ajax-loader.static.gif" | asset_url }});
+
+    --font-weight-body--bold: {{ base_font_bold.weight | default: 700 }};
+    --font-weight-body--bolder: {{ base_font_bolder.weight | default: 700 }};
+
+    --font-stack-header: {{ header_font.family }}, {{ header_font.fallback_families }};
+    --font-style-header: {{ header_font.style }};
+    --font-weight-header: {{ header_font.weight }};
+
+    --font-stack-body: {{ base_font.family }}, {{ base_font.fallback_families }};
+    --font-style-body: {{ base_font.style }};
+    --font-weight-body: {{ base_font.weight }};
+
+    --font-size-header: {{ settings.type_header_base_size }};
+
+    --font-size-base: {{ settings.type_base_size }};
+
+    --font-h1-desktop: {{ settings.type_header_base_size | times: 1.35 | floor }};
+    --font-h1-mobile: {{ settings.type_header_base_size | times: 1.25 | floor }};
+    --font-h2-desktop: {{ settings.type_header_base_size | times: 0.78 | floor }};
+    --font-h2-mobile: {{ settings.type_header_base_size | times: 0.78 | times: 0.9 | floor }};
+    --font-h3-mobile: {{ settings.type_header_base_size | times: 0.78 | floor }};
+    --font-h4-desktop: {{ settings.type_header_base_size | times: 0.68 | floor }};
+    --font-h4-mobile: {{ settings.type_header_base_size | times: 0.68 | times: 0.9 | floor }};
+    --font-h5-desktop: {{ settings.type_header_base_size | times: 0.58 | floor }};
+    --font-h5-mobile: {{ settings.type_header_base_size | times: 0.58 | times: 0.9 | floor }};
+    --font-h6-desktop: {{ settings.type_header_base_size | times: 0.54 | floor }};
+    --font-h6-mobile: {{ settings.type_header_base_size | times: 0.54 | times: 0.9 | floor }};
+
+    --font-mega-title-large-desktop: {{ settings.type_header_base_size | times: 2.5 | floor }};
+
+    --font-rich-text-large: {{ settings.type_base_size | times: 1.15 | floor }};
+    --font-rich-text-small: {{ settings.type_base_size | times: 0.88 | floor }};
+
+    {% comment %} Create an appropriate poster background color based on background color and brightness {% endcomment %}
+    {%- assign color_body_bg = settings.color_body_bg -%}
+    {%- assign color_body_bg_brightness = color_body_bg | color_brightness -%}
+    {%- if color_body_bg_brightness <= 26 -%}
+      {%- assign background_color_poster = color_body_bg | color_lighten: 10 -%}
+    {%- elsif color_body_bg_brightness <= 65 -%}
+      {%- assign background_color_poster = color_body_bg | color_lighten: 5 -%}
+    {%- else -%}
+      {%- assign background_color_poster = color_body_bg | color_darken: 5 -%}
+    {%- endif -%}
+
+    --color-video-bg: {{ background_color_poster }};
+
+    {% comment %} Image placeholder {% endcomment %}
+    --global-color-image-loader-primary: {{ settings.color_text | color_modify: 'alpha', 0.06 }};
+    --global-color-image-loader-secondary: {{ settings.color_text | color_modify: 'alpha', 0.12 }};
+  }
+{% endstyle %}

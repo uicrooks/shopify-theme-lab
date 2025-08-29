@@ -1,0 +1,21 @@
+.announcement-bar {
+  background-color: var(--header-accent-color);
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
+
+  @media #{$m-xxl} {
+    font-size: 16px;
+  }
+  
+  @media #{$no-m-xl} {
+		padding-top: 32px;
+		padding-bottom: 32px;
+	}
+
+	@media #{$m-xl} {
+		padding-top: 26px;
+		padding-bottom: 26px;
+	}
+}

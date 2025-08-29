@@ -1,2 +1,126 @@
-<h1>{{ page.title }}</h1>
-<div>{{ page.content }}</div>
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-{{ section.id }} .content-wrapper {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+
+  #shopify-section-{{ section.id }} .title-wrapper__subtitle {
+    font-size: {{ section.settings.subtitle_font_size }}px;
+  }
+</style>
+
+<section
+	class="page"
+	data-section-id="{{- section.id -}}"
+	data-section-type="page"
+>
+	<div class="content-wrapper">
+    <div class="container">
+      <div class="title-wrapper">
+        {%- if section.settings.title or section.settings.subtitle -%}
+          {%- if section.settings.title -%}
+            <h1 class="title-wrapper__title title-bg">{{ section.settings.title }}</h1>
+          {%- endif -%}
+  
+          {%- if section.settings.subtitle -%}
+            <div class="title-wrapper__subtitle rte">{{ section.settings.subtitle }}</div>
+          {%- endif -%}
+        {%- else -%}
+          <h1 class="title-bg">{{ page.title }}</h1>
+        {%- endif -%}
+      </div>
+      <div class="rte">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "Page",
+	"settings": [
+    {
+      "type": "header",
+      "content": "Title"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "range",
+      "id": "subtitle_font_size",
+      "label": "Subtitle Font Size",
+      "default": 24,
+      "min": 16,
+      "max": 48,
+      "step": 1
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "default": 80,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "default": 40,
+      "min": 0,
+      "max": 100,
+      "step": 5
+    }
+	],
+	"presets": [
+		{
+			"name": "Page"
+		}
+	]
+}
+{% endschema %}

@@ -1,0 +1,7 @@
+.template-addresses {
+	@media #{$no-fw} {
+		.title-wrapper {
+			max-width: 30.65vw;
+		}
+	}
+}

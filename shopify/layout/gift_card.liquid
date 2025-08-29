@@ -1,0 +1,36 @@
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="theme-color" content="{{ settings.color_button }}">
+		<link rel="canonical" href="{{ canonical_url }}">
+
+		{% if settings.favicon != blank %}
+			<link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+		{% endif %}
+
+		{%- assign formatted_initial_value = gift_card.initial_value | money_without_trailing_zeros: gift_card.currency -%}
+		{%- assign formatted_initial_value_stripped = formatted_initial_value | strip_html -%}
+
+		<title>
+			{{- 'gift_cards.issued.title_html' | t: value: formatted_initial_value_stripped, shop: shop.name -}}
+		</title>
+
+		<meta name="description" content="{{- 'gift_cards.issued.subtext' | t -}}">
+
+		{%- render 'head-theme-meta' with layout: 'gift_cart' -%}
+
+		<link rel="stylesheet" href="{{- 'bundle.css' | asset_url -}}">
+
+		{{ content_for_header }}
+	</head>
+
+	<body class="template-giftcard">
+		{{ content_for_layout }}
+
+		<script src="{{- 'vendor/qrcode.js' | shopify_asset_url -}}" defer></script>
+		<script src="{{- 'bundle.js' | asset_url -}}" defer></script>
+	</body>
+</html>

@@ -1,0 +1,195 @@
+{%- if product.metafields.custom.redirect != blank -%}
+  <script>
+    window.location = '{{ product.metafields.custom.redirect }}';
+  </script>
+{%- endif -%}
+
+{%- assign sec_sett = section.settings -%}
+
+{% comment %} Get product color from Shopify metafields {% endcomment %}
+{%- include 'product-field-color' -%}
+
+{%- style -%}
+	[data-pdp-bg="primary"],
+	[data-pdp-bg="primary"] .main-product {
+	background-color: #dbaaeb;
+	}
+
+	[data-pdp-bg="secondary"],
+	[data-pdp-bg="secondary"] .main-product {
+	background-color: #5359e5;
+	}
+
+	[data-pdp-bg="tertiary"],
+	[data-pdp-bg="tertiary"] .main-product,
+	[data-pdp-bg="tertiary"] .main-product__bg-line {
+	background-color: #2ac2bd;
+	}
+
+	[data-pdp-bg="quaternary"],
+	[data-pdp-bg="quaternary"] .main-product {
+	background-color: #f3587f;
+	}
+  
+    [data-pdp-bg="quinary"],
+	[data-pdp-bg="quinary"] .main-product {
+	background-color: #035d64;
+	}
+
+    [data-pdp-bg="senary"],
+	[data-pdp-bg="senary"] .main-product {
+	background-color: #9c4054;
+	}
+
+  {% if product.metafields.custom.background_color -%}
+    .main-product, .header {
+      background-color: {{ product.metafields.custom.background_color }} !important;
+    }
+
+    @media screen and (max-width: 991px) {
+      .product-form {
+        background-color: {{ product.metafields.custom.background_color }} !important;
+      }
+    }
+  {%- endif -%}
+
+  {%- if product.metafields.custom.accent_color -%}
+    .main-product .title-bg > span::before, .product-form__button::before{
+      background-color: {{ product.metafields.custom.accent_color }} !important;
+    }
+
+    .header__logo-wrapper {
+      color: {{ product.metafields.custom.accent_color }} !important;
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+<div class="main-product bundle-product"
+		 data-section-id="{{ section.id }}"
+		 data-section-type="product"
+		 data-product-background="{{ product_bg_color }}"
+>
+
+  {%- render 'bundle-product-snippet', underline_word: section.settings.underline_word -%}
+
+  {% comment %}
+    <div class="main-product__images">
+      {%- render 'main-product-images', product: product -%}
+    </div>
+
+    <div class="main-product__info">
+      {%- render 'main-product-info', product: product -%}
+    </div>
+  {% endcomment %}
+
+	<div class="base-triangular-line">
+		{%- render 'icon-triangular-line' -%}
+	</div>
+
+  
+</div>
+
+{% unless product == empty %}
+	<script type="application/json" id="ProductJson-{{ section.id }}">
+		{{ product | json }}
+	</script>
+{% endunless %}
+
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org/",
+	"@type": "Product",
+	"name": "{{ product.title | escape }}",
+	"url": "{{ shop.url }}{{ product.url }}",
+	{%- if product.featured_image -%}
+		{%- assign image_size = product.featured_image.width | append: 'x' -%}
+		"image": [
+			"https:{{ product.featured_image.src | img_url: image_size }}"
+		],
+	{%- endif -%}
+	"description": "{{ product.description | strip_html | escape }}",
+	{%- if current_variant.sku != blank -%}
+		"sku": "{{ current_variant.sku }}",
+	{%- endif -%}
+	"brand": {
+		"@type": "Thing",
+		"name": "{{ product.vendor | escape }}"
+	},
+	"offers": [
+		{%- for variant in product.variants -%}
+			{
+				"@type" : "Offer",
+				{%- if variant.sku != blank -%}
+					"sku": "{{ variant.sku }}",
+				{%- endif -%}
+				"availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+				"price" : "{{ variant.price | divided_by: 100.00 }}",
+				"priceCurrency" : "{{ cart.currency.iso_code }}",
+				"url" : "{{ shop.url }}{{ variant.url }}"
+			}{% unless forloop.last %},{% endunless %}
+	{%- endfor -%}
+	]
+}
+</script>
+
+
+{% schema %}
+{
+	"name": "Product",
+	"settings": [
+		{
+			"type": "text",
+			"id": "background_color",
+			"label": "Background color",
+			"info": "[Metafields] Background for products need add one of [ Green, Blue, Purple, Red ]"
+		},
+    {
+			"type": "text",
+			"id": "underline_word",
+			"label": "Word to underline"
+		},
+    {
+			"type": "text",
+			"id": "subtitle",
+			"label": "Subtitle"
+		},
+		{
+			"type": "text",
+			"id": "reviews_average_rating",
+			"label": "Average rating reviews",
+			"info": "[Metafields] Example - 4.87"
+		},
+		{
+			"type": "text",
+			"id": "reviews_quantity_text",
+			"label": "Quantity of reviews",
+			"info": "[Metafields] Example - 400 reviews"
+		},
+    {
+      "type":"collection",
+      "id":"product_dropdown_1",
+      "label":"Product Dropdown 1"
+    },
+    {
+      "type":"collection",
+      "id":"product_dropdown_2",
+      "label":"Product Dropdown 2"
+    },
+    {
+      "type":"product",
+      "id":"free_product",
+      "label":"Free Product"
+    }
+	],
+	"presets": [
+		{
+			"name": "Product",
+			"category": "Product page"
+		}
+	],
+	"templates": ["product"]
+}
+{% endschema %}

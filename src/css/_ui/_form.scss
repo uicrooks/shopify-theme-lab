@@ -1,0 +1,21 @@
+.form {
+	&.form--base {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+}
+
+.form-message {
+	margin-bottom: 30px;
+
+	.form-message__title,
+	li {
+		padding-bottom: 24px;
+		color: #ffffff;
+	}
+
+	.form-message__link {
+		color: #fff;
+	}
+}

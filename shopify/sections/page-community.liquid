@@ -1,0 +1,64 @@
+{%- assign title = section.settings.title -%}
+{%- assign subtitle = section.settings.subtitle -%}
+{%- assign form = section.settings.contact_form -%}
+
+{%- if title or subtitle or form -%}
+	<section
+		class="community"
+		data-section-id="{{- section.id -}}"
+		data-section-type="page-community"
+	>
+		<div class="content-wrapper">
+			<div class="community__container">
+				{%- if title or subtitle -%}
+					<div class="title-wrapper">
+						{%- if title -%}
+							<h1 class="community__title title-wrapper__title title-bg">{{ title }}</h1>
+						{%- endif -%}
+
+						{%- if subtitle -%}
+							<p class="community__subtitle title-wrapper__subtitle">{{ subtitle }}</p>
+						{%- endif -%}
+					</div>
+				{%- endif -%}
+
+				{%- if form -%}
+					<div class="community__form">
+						{{ form }}
+					</div>
+				{%- endif -%}
+			</div>
+		</div>
+
+    <div class="base-triangular-line">
+      {%- render 'icon-triangular-line' -%}
+    </div>
+	</section>
+{%- endif -%}
+
+{% schema %}
+	{
+		"name": "Community",
+		"settings": [
+			{
+				"type": "text",
+				"id": "title",
+				"label": "Title",
+				"info": "Need wrap words to see background, <span><span>example</span></span>",
+				"default": "Werde Teil und fange an zu <span><span>gestalten</span></span>"
+			},
+			{
+				"type": "text",
+				"id": "subtitle",
+				"label": "Subtitle",
+				"default": "Denk dir einen Text aus, der später auf die Riegel gedruckt wird."
+			},
+			{
+				"type": "textarea",
+				"id": "contact_form",
+				"label": "Contact form",
+				"info": "Need add code from app - Form Builder with File Upload"
+			}
+		]
+	}
+{% endschema %}

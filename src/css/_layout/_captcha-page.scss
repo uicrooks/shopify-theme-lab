@@ -1,0 +1,18 @@
+#challenge {
+	main {
+		padding: 150px 0;
+	}
+
+	.shopify-challenge__container {
+		font-size: 18px;
+		text-align: center;
+	}
+
+	/* stylelint-disable */
+	.shopify-challenge__button {
+		&:hover,
+		&:focus {
+		}
+	}
+	/* stylelint-enable */
+}

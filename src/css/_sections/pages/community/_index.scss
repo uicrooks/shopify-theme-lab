@@ -1,0 +1,18 @@
+.community__form {
+	@media #{$m-xl} {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	@media #{$no-qhd} {
+		iframe {
+			min-height: 920px;
+		}
+	}
+
+	@media (min-width: 2816px) {
+		iframe {
+			min-height: 1210px;
+		}
+	}
+}

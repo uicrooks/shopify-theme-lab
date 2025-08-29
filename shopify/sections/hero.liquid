@@ -1,0 +1,298 @@
+<style>
+  {% if section.settings.hide_on_mobile %}
+    @media (max-width: 768px) {
+      #shopify-section-{{ section.id }} {
+        display: none;
+      }
+    }
+  {% endif %}
+
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-{{ section.id }} .hero__content-text {
+    color: var(--color-text);
+    {% if section.settings.max_width == 'fixed' %}
+      max-width: {{ section.settings.max_width_px }}px;
+    {% else %}
+      max-width: 100%;
+    {% endif %}
+  }
+
+  #shopify-section-{{ section.id }} .hero__content-image {
+    --desktop-aspect-ratio: {{ section.settings.desktop_image.aspect_ratio }};
+    --mobile-aspect-ratio: {{ section.settings.mobile_image.aspect_ratio }};
+  }
+</style>
+
+{%- if section.settings.desktop_image_height == 'adapt' -%}
+  {%- assign aspect_ratio_desktop = section.settings.desktop_image.aspect_ratio | default: '16/9' -%}
+{%- else -%}
+  {%- assign aspect_ratio_desktop = section.settings.desktop_image_height -%}
+{%- endif -%}
+{%- if section.settings.mobile_image_height == 'adapt' -%}
+  {%- assign aspect_ratio_mobile = section.settings.mobile_image.aspect_ratio | default: '16/9' -%}
+{%- else -%}
+  {%- assign aspect_ratio_mobile = section.settings.mobile_image_height -%}
+{%- endif -%}
+
+<section
+	class="hero"
+	data-section-id="{{- section.id -}}"
+	data-section-type="hero"
+>
+  <div class="hero__content">
+    <div class="hero__content-image" style="--desktop-aspect-ratio: {{ aspect_ratio_desktop }}; --mobile-aspect-ratio: {{ aspect_ratio_mobile }}">
+      {% if section.settings.desktop_image != blank %}
+        {{ section.settings.desktop_image | image_url: width: 1000 | image_tag: class: 'hero__image hidden-phone' }}
+      {% endif %}
+      {% if section.settings.mobile_image != blank %}
+        {{ section.settings.mobile_image | image_url: width: 1000 | image_tag: class: 'hero__image hero__image--mobile hidden-desktop' }}
+      {% endif %}
+    </div>
+    <div class="hero__content-text hero__content-text--{{ section.settings.horizontal_alignment }} hero__content-text--{{ section.settings.vertical_alignment }}">
+      {% if section.settings.title != blank %}
+        <h2 class="hero__title title-bg">{{ section.settings.title }}</h2>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="hero__text">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        <a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if section.settings.show_base_triangular_line %}
+    <div class="base-triangular-line">
+      {%- render 'icon-triangular-line' -%}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "class": "index-section index-section--flush",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Desktop image"
+    },
+    {
+      "type": "select",
+      "id": "desktop_image_height",
+      "label": "Desktop image height",
+      "default": "adapt",
+      "options": [
+        {
+          "label": "Adapt to image",
+          "value": "adapt"
+        },
+        {
+          "label": "Extra small",
+          "value": "4/1"
+        },
+        {
+          "label": "Small",
+          "value": "3/1"
+        },
+        {
+          "label": "Medium",
+          "value": "2.5/1"
+        },
+        {
+          "label": "Large",
+          "value": "2/1"
+        },
+        {
+          "label": "Extra Large",
+          "value": "1.5/1"
+        },
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile image"
+    },
+    {
+      "type": "select",
+      "id": "mobile_image_height",
+      "label": "Mobile image height",
+      "default": "adapt",
+      "options": [
+        {
+          "label": "Adapt to image",
+          "value": "adapt"
+        },
+        {
+          "label": "Extra small",
+          "value": "1.5/1"
+        },
+        {
+          "label": "Small",
+          "value": "1/1"
+        },
+        {
+          "label": "Medium",
+          "value": "4/5"
+        },
+        {
+          "label": "Large",
+          "value": "3/5"
+        },
+        {
+          "label": "Extra Large",
+          "value": "1/2"
+        },
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_mobile",
+      "label": "Hide on mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Text settings"
+    },
+    {
+      "type": "select",
+      "id": "vertical_alignment",
+      "label": "Alignment",
+      "default": "middle",
+      "options": [
+        {
+          "value": "top",
+          "label": "Top"
+        },
+        {
+          "value": "middle",
+          "label": "Middle"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "horizontal_alignment",
+      "label": "Horizontal alignment",
+      "default": "center",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "max_width",
+      "label": "Max width",
+      "options": [
+        {
+          "label": "Full width",
+          "value": "100%"
+        },
+        {
+          "label": "Fixed width",
+          "value": "fixed"
+        },
+      ]
+    },
+    {
+      "type": "range",
+      "id": "max_width_px",
+      "label": "Max width",
+      "default": 1200,
+      "min": 100,
+      "max": 1600,
+      "step": 100,
+      "unit": "px",
+      "visible_if": "{{ section.settings.max_width == 'fixed' }}"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Hero banner"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Other settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_base_triangular_line",
+      "label": "Show base triangular line",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner"
+    }
+  ]
+}
+{% endschema %}

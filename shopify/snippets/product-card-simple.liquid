@@ -1,0 +1,14 @@
+<li class="predictive-search-container__recommendation">
+  <a class="link"href="{{ product.url }}">
+    <div class="predictive-search-container__recommendation-image">
+      {{ product.featured_image | image_url: width: 300 | image_tag: class: "predictive-search-container__recommendation-image" }}
+    </div>
+    <span class="predictive-search-container__recommendation-title">
+      {%- if product.metafields.custom.short_title != blank -%}
+        {{ product.metafields.custom.short_title }}
+      {%- else -%}
+        {{ product.title }}
+      {%- endif -%}
+    </span>
+  </a>
+</li>

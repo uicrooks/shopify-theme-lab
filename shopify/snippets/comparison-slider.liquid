@@ -1,0 +1,14 @@
+<comparison-slider>
+  <div class="comparison-slider">
+    <div class="comparison-slider__wrapper">
+      <div class="comparison-slider__image">
+        <img src="{{ product.metafields.custom.comparison_slider_without_wrap | img_url: 'master' }}" alt="Before Image">
+      </div>
+      <div class="comparison-slider__image comparison-slider__image--top">
+        <img src="{{ product.metafields.custom.comparison_slider_with_wrap | img_url: 'master' }}" alt="After Image">
+      </div>
+      <!-- Single range input without mobile/desktop distinction -->
+      <input type="range" id="compare-slider-range" min="0">
+    </div>
+  </div>
+</comparison-slider>

@@ -1,0 +1,113 @@
+{%- assign lazy_load = 'eager' -%}
+
+{%- if index > 4 -%}
+  {%- assign lazy_load = 'lazy' -%}
+{%- endif -%}
+
+{%- if product.has_only_default_variant -%}
+  {%- assign unit_price = product.variants.first.unit_price -%}
+  {%- assign unit_reference = product.variants.first.unit_price_measurement.reference_unit -%}
+  {%- assign unit_reference_value = product.variants.first.unit_price_measurement.reference_value -%}
+{%- else -%}
+  {%- assign unit_price = product.unit_price -%}
+  {%- assign unit_reference = product.unit_price_measurement.reference_unit -%}
+  {%- assign unit_reference_value = product.unit_price_measurement.reference_value -%}
+{%- endif -%}
+
+{%- assign short_title = product.metafields.custom.short_title -%}
+{%- assign quantity_content = product.metafields.custom.quantity_content -%}
+{%- assign weight_content = product.metafields.custom.weight_content -%}
+{%- assign unit_name = product.metafields.custom.unit_name -%}
+{%- assign custom_card_badge = product.metafields.custom.custom_card_badge.value -%}
+
+<div class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
+
+  <div class="custom_data_wrapping">
+    <div id="{{ wrapper_id }}" class="grid-view-item__image-wrapper product-card__image-wrapper js">
+      {%- assign cover_image = product.featured_image -%}
+
+      {%- if product.metafields.custom.alternate_product_card_image != blank -%}
+        {%- assign cover_image = product.metafields.custom.alternate_product_card_image.value -%}
+      {%- endif -%}
+
+      {%- assign aspect_ratio  = 1 | divided_by: cover_image.aspect_ratio | times: 100 -%}
+
+      {%- if aspect_ratio > 100 -%}
+        {%- assign aspect_ratio  = 100 -%}
+      {%- endif -%}
+
+      <div style="padding-top:{% unless aspect_ratio == blank %}{{ aspect_ratio }}%{% else %}100%{% endunless %};">
+        <a href="{{ product.url }}" class="image-link-wrapper">
+          {{ cover_image | image_url: width: 700 | image_tag: class: "grid-view-item__image", sizes: '(max-width: 749px) 175px, (min-width: 750px) 350px' }}
+        </a>
+      </div>
+    </div>
+
+    <div class="product_content_wrapping">
+      <div class="product-card__top-content">
+        <a href="{{ product.url }}" class="hidden-phone">
+          <div class="h4 grid-view-item__title product-card__title" aria-hidden="true">
+            {%- if short_title != blank and unit_name != blank -%}
+              {{ short_title }} {{ unit_name }}
+            {%- else -%}
+              {{ product.title }}
+            {%- endif -%}
+          </div>
+        </a>
+        <a href="{{ product.url }}" class="hidden-desktop">
+          <div class="h4 grid-view-item__title product-card__title" aria-hidden="true">
+            {%- if short_title != blank -%}
+              {{ short_title }}
+            {%- else -%}
+              {{ product.title }}
+            {%- endif -%}
+          </div>
+        </a>
+        <div class="products_listing__information">
+          <div class="products_listing__information-wrapper">
+            <div class="products_listing__information-labels">
+              {%- if custom_card_badge -%}
+                <div class="products_listing__label products_listing__label--custom" style="background-color:{{ custom_card_badge.background_color }};color:{{ custom_card_badge.text_color }};">
+                  {%- if custom_card_badge.emoji -%}
+                    <style>
+                      .products_listing ul.grid li.grid__item:hover .products_listing__label--custom {
+                        border: 1px solid {{ custom_card_badge.text_color }};
+                      }
+                    </style>
+                    <span class="products_listing__label--emoji">
+                      {{ custom_card_badge.emoji }}
+                    </span>
+                  {%- endif -%}
+
+                  <span class="hidden-phone">{{ custom_card_badge.text }}</span>
+                  <span class="hidden-desktop">
+                    {%- if custom_card_badge.mobile_text != blank -%}
+                      {{ custom_card_badge.mobile_text }}
+                    {%- else -%}
+                      {{ custom_card_badge.text }}
+                    {%- endif -%}
+                  </span>
+                </div>
+              {%- endif -%}
+              <div class="products_listing__label">
+                {% render 'icon-vegan' %}
+                {{ 'collections.product_card.vegan_badge' | t }}
+              </div>
+              <div class="products_listing__label">
+                {% render 'icon-bio' %}
+                {{ 'collections.product_card.bio_badge' | t }}
+              </div>
+            </div>
+            {% if quantity_content != blank and weight_content != blank and unit_name != blank %}
+              <div class="products_listing__label">
+                <p>{{ quantity_content }} x {{ weight_content.value | split: ' ' }} {{ unit_name }} {% if unit_price %}| {{ unit_price | money }} / {{ unit_reference_value }}{{ unit_reference }}{% endif %}</p>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      {% render 'atc-button', product: product%}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+.product-page {
+  .container--two-columns {
+    @media #{$no-m} {
+      gap: 4rem;
+    }
+  }
+
+  .product-form__button-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .quantity-element {
+    border: 1px solid white;
+    width: auto;
+    height: 100%;
+    flex: 0 0 30%;
+
+    &__button {
+      height: 100%;
+    }
+  }
+
+  .quantity-element__button {
+    flex: 0 0 33.3%;
+    display: flex;
+  }
+
+  .quantity-element__button[data-quantity="decrement"] {
+    border-right: 1px solid white;
+  }
+
+  .quantity-element__button[data-quantity="increment"] {
+    border-left: 1px solid white;
+  }
+
+  .product-form__meta-price {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+}

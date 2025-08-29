@@ -1,0 +1,90 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+<section
+	class="home-ticker"
+	data-section-id="{{- section.id -}}"
+	data-section-type="ticker"
+>
+	{%- if section.blocks.size > 0 -%}
+		<div class="home-ticker__container" data-ticker="list">
+			{%- for block in section.blocks -%}
+				{%- assign text = block.settings.text -%}
+				{%- assign revert = block.settings.revert -%}
+
+				{%- assign revert_class = '' -%}
+				{%- assign data_revert = '' -%}
+				{%- if revert -%}
+					{%- assign revert_class = 'ticker-wrap--revert' -%}
+					{%- assign data_revert = 'true' -%}
+				{%- endif -%}
+
+				{%- if text != blank -%}
+					<div class="ticker-wrap {{ revert_class }} ticker-wrap--{{ block.id }}" data-ticker="wrap" data-ticker-revert="{{ data_revert }}">
+						<div class="ticker" data-ticker="item">
+							<div class="ticker__item">{{ text }}</div>
+						</div>
+					</div>
+				{%- endif -%}
+			{%- endfor -%}
+		</div>
+
+		<div class="base-triangular-line">
+			{%- render 'icon-triangular-line' -%}
+		</div>
+	{% endif %}
+</section>
+
+{% schema %}
+{
+	"name": "Home ticker",
+	"settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#2ac2bd"
+    }
+  ],
+	"blocks": [
+		{
+			"type": "ticker_item",
+			"name": "Ticker item line",
+			"settings": [
+				{
+					"type": "checkbox",
+					"id": "revert",
+					"label": "Revert line animation",
+					"default": false
+				},
+				{
+					"type": "text",
+					"id": "text",
+					"label": "Text"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Home ticker",
+			"category": "Homepage"
+		}
+	]
+}
+{% endschema %}

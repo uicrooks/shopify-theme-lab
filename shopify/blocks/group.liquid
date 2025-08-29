@@ -1,0 +1,129 @@
+{% stylesheet %}
+  .group {
+    display: flex;
+  }
+{% endstylesheet %}
+
+<style>
+  #shopify-block-{{ block.id }} .group {
+    flex-direction: {{ block.settings.direction }};
+    display: {{ block.settings.display_type }};
+    grid-template-columns: {{ block.settings.child_width }};
+    gap: {{ block.settings.gap }}px;
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+  }
+</style>
+
+<div class="group">
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Group",
+  "settings": [
+    {
+      "type": "select",
+      "id": "display_type",
+      "label": "Display type",
+      "options": [
+        {
+          "value": "flex",
+          "label": "Flex"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "options": [
+        {
+          "value": "row",
+          "label": "Row"
+        },
+        {
+          "value": "column",
+          "label": "Column"
+        }
+      ],
+      "default": "row"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "child_width",
+      "label": "Child width",
+      "options": [
+        {
+          "value": "1fr",
+          "label": "100%"
+        },
+        {
+          "value": "1fr 1fr",
+          "label": "50%"
+        },
+        {
+          "value": "1fr 1fr 1fr",
+          "label": "33.33%"
+        },
+        {
+          "value": "1fr 1fr 1fr 1fr",
+          "label": "25%"
+        },
+        {
+          "value": "1fr 1fr 1fr 1fr 1fr",
+          "label": "20%"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Group"
+    }
+  ]
+}
+{% endschema %}

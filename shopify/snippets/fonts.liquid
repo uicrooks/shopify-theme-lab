@@ -1,0 +1,31 @@
+{% style %}
+  @font-face {
+    font-family: "Founders Grotesk";
+    src: url('{{ 'FoundersGrotesk-Regular.woff2' | asset_url }}') format("woff2"),
+         url('{{ 'FoundersGrotesk-Regular.woff' | asset_url }}') format("woff"),
+         url('{{ 'FoundersGrotesk-Regular.ttf' | asset_url }}') format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Founders Grotesk";
+    src: url('{{ 'FoundersGroteskMono-Medium.woff2' | asset_url }}') format("woff2"),
+         url('{{ 'FoundersGroteskMono-Medium.woff' | asset_url }}') format("woff"),
+         url('{{ 'FoundersGroteskMono-Medium.ttf' | asset_url }}') format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Founders Grotesk";
+    src: url('{{ 'FoundersGrotesk-Bold.woff2' | asset_url }}') format("woff2"),
+         url('{{ 'FoundersGrotesk-Bold.woff' | asset_url }}') format("woff"),
+         url('{{ 'FoundersGrotesk-Bold.ttf' | asset_url }}') format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+{% endstyle %}

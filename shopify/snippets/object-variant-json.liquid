@@ -1,0 +1,46 @@
+{%- if include_recharge == blank -%}
+	{%- assign include_recharge = false -%}
+{%- endif -%}
+
+{%- if variant != blank -%}
+	{%- if include_recharge -%}
+		{%- capture recharge_metafields -%}
+			"subscriptions": {{- variant.metafields.subscriptions.discount_variant_id | json -}}
+		{%- endcapture -%}
+	{%- endif -%}
+
+	{
+		"available": {{- variant.available | json -}},
+		"barcode": "{{- variant.barcode -}}",
+		"compare_at_price": {{- variant.compare_at_price | json -}},
+		"featured_image": {%- render 'object-image-json' with image: variant.featured_image -%},
+		"image": {%- render 'object-image-json' with image: variant.image -%},
+		"id": {{- variant.id | json -}},
+		"url": {{- variant.url | json -}},
+		"inventory_management": {{- variant.inventory_management | json -}},
+		"inventory_policy": {{- variant.inventory_policy | json -}},
+		"inventory_quantity": {{- variant.inventory_quantity | json -}},
+		"next_incoming_date": {{- variant.next_incoming_date | json -}},
+		"requires_shipping": {{- variant.requires_shipping | json -}},
+		"name": {{- variant.name | json -}},
+		"option1": {{- variant.option1 | json -}},
+		"option2": {{- variant.option2 | json -}},
+		"option3": {{- variant.option3 | json -}},
+		"options": {{- variant.options | json -}},
+		"price": {{- variant.price | json -}},
+		"public_title": {{- variant.public_title | json -}},
+		"requires_shipping": {{- variant.requires_shipping | json -}},
+		"sku": {{- variant.sku | json -}},
+		"taxable": {{- variant.taxable | json -}},
+		"title": {{- variant.title | json -}},
+		"weight": {{- variant.weight | json -}},
+		"weight_unit": {{- variant.weight_unit | json -}},
+		"unit_price": {{- variant.unit_price | json -}},
+		"unit_price_measurement": {{- variant.unit_price_measurement | json -}},
+		"weight_in_unit": {{- variant.weight_in_unit | json -}},
+		"store_availabilities": {{- variant.store_availabilities | json -}},
+		"metafields": {
+			{{- recharge_metafields -}}
+		}
+	}
+{%- else -%}null{%- endif -%}

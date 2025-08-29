@@ -1,0 +1,266 @@
+<div class="page-width">
+	<header class="section-header text-center">
+		<h1>
+			{{- page_title -}}
+		</h1>
+	</header>
+
+	{% case section.settings.grid %}
+		{% when 2 %}
+			{%- assign grid_item_width = 'medium-up--one-half' -%}
+			{%- assign image_size = '530x' -%}
+		{% when 3 %}
+			{%- assign grid_item_width = 'small--one-half medium-up--one-third' -%}
+			{%- assign image_size = '350x' -%}
+		{% when 4 %}
+			{%- assign grid_item_width = 'small--one-half medium-up--one-quarter' -%}
+			{%- assign image_size = '250x' -%}
+		{% when 5 %}
+			{%- assign grid_item_width = 'small--one-half medium-up--one-fifth' -%}
+			{%- assign image_size = '225x' -%}
+	{% endcase %}
+
+	<ul class="grid grid--uniform">
+		{% if section.settings.display_type == 'all' %}
+			{% case section.settings.sort %}
+				{% when 'products_high' or 'products_low' %}
+					{%- assign collections = collections | sort: 'all_products_count' -%}
+				{% when 'date' or 'date_reversed' %}
+					{%- assign collections = collections | sort: 'published_at' -%}
+			{% endcase %}
+			{% if section.settings.sort == 'products_low' or section.settings.sort == 'date' or section.settings.sort == 'alphabetical' %}
+				{% for collection in collections %}
+					<li class="grid__item {{ grid_item_width }}">
+						{% include 'collection-grid-item', collection_image_size: image_size %}
+					</li>
+				{% endfor %}
+			{% else %}
+				{% for collection in collections reversed %}
+					<li class="grid__item {{ grid_item_width }}">
+						{% include 'collection-grid-item', collection_image_size: image_size %}
+					</li>
+				{% endfor %}
+			{% endif %}
+		{% else %}
+			{% for block in section.blocks %}
+				<li class="grid__item {{ grid_item_width }}">
+					{%- assign collection = collections[block.settings.collection] -%}
+					{% include 'collection-grid-item', collection_image_size: image_size %}
+				</li>
+			{% endfor %}
+		{% endif %}
+	</ul>
+</div>
+
+
+
+{% schema %}
+{
+	"name": {
+		"de": "Kategorien-Liste Seite",
+		"en": "Collections list page",
+		"es": "Lista de colecciones",
+		"fr": "Liste des collections",
+		"it": "Elenco collezioni",
+		"ja": "コレクションリストのページ",
+		"pt-BR": "Lista de coleções"
+	},
+	"settings": [
+		{
+			"type": "paragraph",
+			"content": {
+				"de": "Alle kategorien sind automatisch gelistet. Zum Ändern der Liste wählen Sie 'Ausgewählt' und fügen Sie Kategorien hinzu.",
+				"en": "All of your collections are listed by default. To customize your list, choose 'Selected' and add collections.",
+				"es": "Todas tus colecciones están enlistadas por defecto. Para personalizar tu lista, elige 'Seleccionadas' y agrega colecciones.",
+				"fr": "Toutes vos collections sont listées par défaut. Pour personaliser votre liste, cliquez sur « Sélection » et ajoutez des collections.",
+				"it": "Tutte le tue collezioni vengono elencate per impostazione predefinita. Per personalizzare il tuo elenco, scegli \"Selezionato\" e aggiungi delle collezioni.",
+				"ja": "すべてのコレクションがデフォルトで一覧表示されます。一覧をカスタマイズするには、「選択済み」を選択してコレクションを追加します。",
+				"pt-BR": "Todas as suas coleções são listadas por padrão. Para personalizar sua lista, escolha \"Selecionado\" e adicione coleções."
+			}
+		},
+		{
+			"type": "radio",
+			"id": "display_type",
+			"label": {
+				"de": "Collections auswählen, die angezeigt werden sollen",
+				"en": "Select collections to show",
+				"es": "Selecciona colecciones para mostrar",
+				"fr": "Sélectionner les collections à afficher",
+				"it": "Seleziona le collezioni da mostrare",
+				"ja": "表示するコレクションを選択する",
+				"pt-BR": "Selecione coleções para exibir"
+			},
+			"default": "all",
+			"options": [
+				{
+					"value": "all",
+					"label": {
+						"de": "Alle",
+						"en": "All",
+						"es": "Todas",
+						"fr": "Toutes",
+						"it": "Tutti",
+						"ja": "すべて",
+						"pt-BR": "Tudo"
+					}
+				},
+				{
+					"value": "selected",
+					"label": {
+						"de": "Ausgewählt",
+						"en": "Selected",
+						"es": "Seleccionadas",
+						"fr": "Sélection",
+						"it": "Selezionato",
+						"ja": "選択済み",
+						"pt-BR": "Selecionado"
+					}
+				}
+			]
+		},
+		{
+			"type": "select",
+			"id": "sort",
+			"label": {
+				"de": "Kategorien sortieren nach:",
+				"en": "Sort collections by:",
+				"es": "Ordenar colecciones por:",
+				"fr": "Trier les collections par:",
+				"it": "Ordina le collezioni per:",
+				"ja": "コレクションの並べ替え方法:",
+				"pt-BR": "Ordenar coleções por:"
+			},
+			"info": {
+				"de": "Sortieren funktioniert nur, wenn 'Alle' ausgewählt ist",
+				"en": "Sorting only applies when 'All' is selected",
+				"es": "La función ordenar solo se aplica cuando se selecciona \"Todas\"",
+				"fr": "Le tri ne s'applique que lorsque “Toutes“ est sélectionné",
+				"it": "L'ordinamento viene applicato solo quanto è selezionato \"Tutto\"",
+				"ja": "「すべて」が選択されている場合にのみ並べ替えを適用する",
+				"pt-BR": "A classificação só se aplica quando \"Tudo\" está selecionado"
+			},
+			"default": "alphabetical",
+			"options": [
+				{
+					"value": "products_high",
+					"label": {
+						"de": "Produktanzahl, hoch zu niedrig",
+						"en": "Product count, high to low",
+						"es": "Recuento de productos, de mayor a menor",
+						"fr": "Nombre de produits, ordre décroissant",
+						"it": "Conteggio decrescente prodotti",
+						"ja": "商品数の多い順",
+						"pt-BR": "Contagem de produtos, alta para baixa"
+					}
+				},
+				{
+					"value": "products_low",
+					"label": {
+						"de": "Produktanzahl, niedrig zu hoch",
+						"en": "Product count, low to high",
+						"es": "Recuento de productos, de menor a mayor",
+						"fr": "Nombre de produits, ordre croissant",
+						"it": "Conteggio crescente prodotti",
+						"ja": "商品数の少ない順",
+						"pt-BR": "Contagem de produtos, baixa para alta"
+					}
+				},
+				{
+					"value": "alphabetical",
+					"label": {
+						"de": "Alphabetisch, A-Z",
+						"en": "Alphabetically, A-Z",
+						"es": "Alfabéticamente, A-Z",
+						"fr": "Alphabétique, A-Z",
+						"it": "In ordine alfabetico, A - Z",
+						"ja": "アルファベット順、 A-Z",
+						"pt-BR": "Ordem alfabética, A–Z"
+					}
+				},
+				{
+					"value": "alphabetical_reversed",
+					"label": {
+						"de": "Alphabetisch, Z-A",
+						"en": "Alphabetically, Z-A",
+						"es": "Alfabéticamente, Z-A",
+						"fr": "Alphabétique, Z-A",
+						"it": "In ordine alfabetico, Z - A",
+						"ja": "アルファベット順、 Z-A",
+						"pt-BR": "Ordem alfabética, Z–A"
+					}
+				},
+				{
+					"value": "date",
+					"label": {
+						"de": "Datum, alt zu neu",
+						"en": "Date, old to new",
+						"es": "Fecha: antiguo(a) a reciente",
+						"fr": "Date, anciennes à récentes",
+						"it": "Data, dal più vecchio al più recente",
+						"ja": "古い商品順",
+						"pt-BR": "Data, mais antiga primeiro"
+					}
+				},
+				{
+					"value": "date_reversed",
+					"label": {
+						"de": "Datum, neu zu alt",
+						"en": "Date, new to old",
+						"es": "Fecha: reciente a antiguo(a)",
+						"fr": "Date, récentes à anciennes",
+						"it": "Data, dal più recente al più vecchio",
+						"ja": "新着順",
+						"pt-BR": "Data, mais recente primeiro"
+					}
+				}
+			]
+		},
+		{
+			"type": "range",
+			"id": "grid",
+			"label": {
+				"de": "Kategorien per Reihe",
+				"en": "Collections per row",
+				"es": "Colecciones por fila",
+				"fr": "Collections par rangée",
+				"it": "Collezioni per riga",
+				"ja": "行あたりのコレクション数",
+				"pt-BR": "Coleções por linha"
+			},
+			"default": 3,
+			"min": 2,
+			"max": 5,
+			"step": 1
+		}
+	],
+	"blocks": [
+		{
+			"type": "collection",
+			"name": {
+				"de": "Kategorie",
+				"en": "Collection",
+				"es": "Colección",
+				"fr": "Collection",
+				"it": "Collezione",
+				"ja": "コレクション",
+				"pt-BR": "Coleção"
+			},
+			"settings": [
+				{
+					"label": {
+						"de": "Kategorie",
+						"en": "Collection",
+						"es": "Colección",
+						"fr": "Collection",
+						"it": "Collezione",
+						"ja": "コレクション",
+						"pt-BR": "Coleção"
+					},
+					"id": "collection",
+					"type": "collection"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

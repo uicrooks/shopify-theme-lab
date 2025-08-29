@@ -1,0 +1,180 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign sec_sett = section.settings -%}
+{%- assign title = sec_sett.title -%}
+{%- assign subtitle = sec_sett.subtitle -%}
+{%- assign img_left = sec_sett.img_left -%}
+{%- assign img_right = sec_sett.img_right -%}
+
+<section
+	class="jobs"
+	data-section-id="{{- section.id -}}"
+	data-section-type="jobs"
+>
+	<div class="content-wrapper">
+		{%- if title or subtitle -%}
+			<div class="title-wrapper">
+				{%- if title -%}
+					<h1 class="title-wrapper__title title-bg">{{ title }}</h1>
+				{%- endif -%}
+
+				{%- if subtitle -%}
+					<p class="title-wrapper__subtitle">{{ subtitle }}</p>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		{%- if img_right.src != blank -%}
+			<picture class="jobs__img jobs__img--right">
+				<source
+					srcset="{{ img_right.src | img_url: '320x' }} 1x, {{ img_right.src | img_url: '640x' }} 2x, {{ img_right.src | img_url: '960x' }} 3x"
+					media="(min-width: 2560px)">
+				<source
+					srcset="{{ img_right.src | img_url: '240x' }} 1x, {{ img_right.src | img_url: '480x' }} 2x, {{ img_right.src | img_url: '720x' }} 3x"
+					media="(min-width: 1921px)">
+				<img src="{{ img_right.src | img_url: '160x' }} 1x"
+						 srcset="{{ img_right.src | img_url: '160x' }} 1x, {{ img_right.src | img_url: '320x' }} 2x"
+						 alt="{{ img_right.alt }}">
+			</picture>
+		{%- endif -%}
+		<div class="jobs__container">
+			{%- if img_left.src != blank -%}
+				<picture class="jobs__img jobs__img--left">
+					<source
+						srcset="{{ img_left.src | img_url: '320x' }} 1x, {{ img_left.src | img_url: '640x' }} 2x, {{ img_left.src | img_url: '960x' }} 3x"
+						media="(min-width: 2560px)">
+					<source
+						srcset="{{ img_left.src | img_url: '240x' }} 1x, {{ img_left.src | img_url: '480x' }} 2x, {{ img_left.src | img_url: '720x' }} 3x"
+						media="(min-width: 1921px)">
+					<img src="{{ img_left.src | img_url: '160x' }} 1x"
+							 srcset="{{ img_left.src | img_url: '160x' }} 1x, {{ img_left.src | img_url: '320x' }} 2x"
+							 alt="{{ img_left.alt }}">
+				</picture>
+			{%- endif -%}
+			<div class="container container--sm">
+				<div class="jobs__list">
+					<div class="accordion">
+						{%- for block in section.blocks -%}
+							{%- assign title = block.settings.title -%}
+							{%- assign description = block.settings.description -%}
+							{%- assign button_text = block.settings.button_text -%}
+							{%- assign button_url = block.settings.button_url -%}
+
+							<section class="accordion__item js-accordion__item">
+								<header class="accordion__header js-accordion__header">
+									<h2 class="h3 accordion__title">{{ title }}</h2>
+									{%- render 'icon-arrow-down' -%}
+								</header>
+								<div class="accordion__body">
+									<div class="accordion__dsc text color-white ">{{ description }}</div>
+									{%- if button_url != blank -%}
+										<a href="{{ button_url }}" class="button button--fw accordion__button">{{ button_text }}</a>
+									{%- endif -%}
+								</div>
+							</section>
+						{%- endfor -%}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+{% comment %} TODO: This is not guidelines {% endcomment %}
+{% schema %}
+	{
+		"name": "Guidelines",
+		"max_blocks": 4,
+		"settings": [
+			{
+				"type": "textarea",
+				"id": "title",
+				"info": "Need wrap words to see background, <span><span>example</span></span>",
+				"label": "Title",
+				"default": "<span><span>Jobs!</span></span> Wir vergeben <span><span>Jobs!</span></span>"
+			},
+			{
+				"type": "textarea",
+				"id": "subtitle",
+				"label": "Subtitle",
+				"default": "Werde ein Teil der treatfuls Revolution und nimm einen Job bei uns an."
+			},
+			{
+				"type": "image_picker",
+				"id": "img_left",
+				"label": "Background Image left"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_right",
+				"label": "Background Image right"
+			},
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#5359e5"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "color",
+        "id": "hover_color",
+        "label": "Hover Color",
+        "default": "#f3587f"
+      }
+		],
+		"blocks": [
+			{
+				"type": "jobs_item",
+				"name": "Job",
+				"settings": [
+					{
+						"type": "text",
+						"id": "title",
+						"label": "Title"
+					},
+					{
+					"type": "textarea",
+					"id": "description",
+					"label": "Description"
+					},
+					{
+						"type": "text",
+						"id": "button_text",
+						"label": "Button text",
+						"default": "Jetzt per Mail bewerben"
+					},
+					{
+						"type": "url",
+						"id": "button_url",
+						"label": "Button Url"
+					}
+				]
+			}
+		]
+	}
+{% endschema %}

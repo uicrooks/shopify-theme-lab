@@ -1,0 +1,40 @@
+{%- style -%}
+  {% assign cart_popup_box_shadow = settings.color_borders | color_modify: 'alpha', 0.5 %}
+
+  .cart-popup {
+    box-shadow: 1px 1px 10px 2px {{ cart_popup_box_shadow }};
+  }
+{%- endstyle -%}
+
+<div class="cart-popup-wrapper cart-popup-wrapper--hidden critical-hidden" role="dialog" aria-modal="true" aria-labelledby="CartPopupHeading" data-cart-popup-wrapper>
+  <div class="cart-popup" data-cart-popup tabindex="-1">
+    <div class="cart-popup__header">
+      <h2 id="CartPopupHeading" class="cart-popup__heading">{{ 'cart.popup.added_to_cart' | t }}</h2>
+      <button class="cart-popup__close" aria-label="{{ 'general.accessibility.close_modal' | t }}" data-cart-popup-close>{% include 'icon-close' %}</button>
+    </div>
+    <div class="cart-popup-item">
+      <div class="cart-popup-item__image-wrapper hide" data-cart-popup-image-wrapper data-image-loading-animation></div>
+      <div class="cart-popup-item__description">
+        <div>
+          <h3 class="cart-popup-item__title" data-cart-popup-title></h3>
+          <ul class="product-details" aria-label="{{ 'cart.popup.product_details' | t }}" data-cart-popup-product-details></ul>
+        </div>
+        <div class="cart-popup-item__quantity">
+          <span class="visually-hidden" data-cart-popup-quantity-label></span>
+          <span aria-hidden="true">{{ 'cart.popup.quantity' | t }}:</span>
+          <span aria-hidden="true" data-cart-popup-quantity></span>
+        </div>
+      </div>
+    </div>
+
+    <a href="{{ routes.cart_url }}" class="cart-popup__cta-link btn btn--secondary-accent">
+      {{ 'products.product.view_cart' | t }} (<span data-cart-popup-cart-quantity></span>)
+    </a>
+
+    <div class="cart-popup__dismiss">
+      <button class="cart-popup__dismiss-button text-link text-link--accent" data-cart-popup-dismiss>
+        {{ 'cart.general.continue_shopping' | t }}
+      </button>
+    </div>
+  </div>
+</div>

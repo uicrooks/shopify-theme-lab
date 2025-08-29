@@ -1,0 +1,106 @@
+{%- if include_recharge == blank -%}
+	{%- assign include_recharge = false -%}
+{%- endif -%}
+
+{%- if product != blank -%}
+	{%- assign variants_json = "" -%}
+	{%- for variant in product.variants -%}
+		{%- if variants_json != "" -%}
+			{%- assign variants_json = variants_json | append: "," -%}
+		{%- endif -%}
+
+		{%- capture variant_json -%}
+			{%- render 'object-variant-json' with variant: variant, include_recharge: include_recharge -%}
+		{%- endcapture -%}
+
+		{%- if variant_json == "null" -%}
+			{%- continue -%}
+		{%- endif -%}
+
+		{%- assign variants_json = variants_json | append: variant_json -%}
+	{%- endfor -%}
+
+	{%- assign images_json = "" -%}
+	{%- for image in product.images -%}
+		{%- if images_json != "" -%}
+			{%- assign images_json = images_json | append: "," -%}
+		{%- endif -%}
+
+		{%- capture image_json -%}
+			{%- render 'object-image-json' with image: image -%}
+		{%- endcapture -%}
+
+		{%- if image_json == "null" -%}
+			{%- continue -%}
+		{%- endif -%}
+
+		{%- assign images_json = images_json | append: image_json -%}
+	{%- endfor -%}
+
+	{%- assign product_recharge_json_properties = "" -%}
+	{% if include_recharge %}
+		{%- assign has_subscription = false -%}
+		{%- if product.metafields.subscriptions.shipping_interval_frequency -%}
+			{%- assign has_subscription 			= true -%}
+			{%- assign subscription_product 		= product.metafields.subscriptions -%}
+			{%- assign shipping_interval_unit_type 	= subscription_product.shipping_interval_unit_type | default: 'Days' -%}
+			{%- assign shipping_interval_frequency 	= subscription_product.shipping_interval_frequency | split: ',' | default: 30 -%}
+			{%- assign product_tags = product.tags | remove: ' ' | downcase -%}
+			{%- if subscription_product.is_subscription_only == 'true' or product_tags contains 'subscriptiononly' -%}
+				{%- assign subscription_only = true -%}
+			{%- else -%}
+				{%- assign subscription_only = false -%}
+			{%- endif -%}
+
+			{%- assign discount_percentage 	= subscription_product.discount_percentage | round: 2 -%}
+			{%- assign discount_floor 		= subscription_product.discount_percentage | floor -%}
+			{%- if discount_percentage == discount_floor -%}
+				{%- assign discount_percentage = discount_floor -%}
+			{%- endif -%}
+		{%- endif -%}
+
+		{%- capture product_recharge_json_properties -%}
+			"has_subscription": {{- has_subscription | json -}},
+			"shipping_interval_unit_type": {{- shipping_interval_unit_type | json -}},
+			"shipping_interval_frequency": {{- shipping_interval_frequency | json -}},
+			"subscription_only": {{- subscription_only | json -}},
+			"discount_percentage": {{- discount_percentage | json -}},
+			"discount_floor": {{- discount_floor | json -}},
+		{%- endcapture -%}
+	{%- endif -%}
+
+	{
+		"available": {{- product.available | json -}},
+		"first_available_variant": {%- render 'object-variant-json' with variant: product.first_available_variant -%},
+		"compared_at_price": {{- product.compared_at_price | json -}},
+		"compared_at_price_max": {{- product.compared_at_price_max | json -}},
+		"compared_at_price_min": {{- product.compared_at_price_min | json -}},
+		"content": {{- product.content | json -}},
+		"created_at": "{{- product.created_at -}}",
+		"description": {{- product.description | json -}},
+		"featured_image": {%- render 'object-image-json' with image: product.featured_image -%},
+		"handle": {{- product.handle | json -}},
+		"has_only_default_variant": {{- product.has_only_default_variant | json -}},
+		"options": {{- product.options_with_values | json -}},
+		"options_with_values": {{- product.options_with_values | json -}},
+		"template_suffix": {{- product.template_suffix | json -}},
+		"url": {{- product.url | json -}},
+		"id": {{- product.id | json -}},
+		"images": [{{- images_json -}}],
+		"media": {{- product.media | json -}},
+		"price": {{- product.price | json -}},
+		"price_max": {{- product.price_max | json -}},
+		"price_min": {{- product.price_min | json -}},
+		"price_varies": {{- product.price_varies | json -}},
+		"published_at": "{{- product.published_at -}}",
+		"variants": [{{- variants_json -}}],
+		"tags": {{- product.tags | json -}},
+		"title": {{- product.title | json -}},
+		"type": {{- product.type | json -}},
+		"vendor": {{- product.vendor | json -}},
+		{{- product_recharge_json_properties -}}
+		"metafields": {
+			"product_bg_color": {{- product_bg_color | json -}}
+		}
+	}
+{%- else -%}null{%- endif -%}

@@ -1,33 +1,208 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Shopify Theme Lab",
+    "theme_name": "Buildify",
+    "theme_author": "UTD",
     "theme_version": "1.0.0",
-    "theme_author": "THEME_AUTHOR",
-    "theme_documentation_url": "https://THEME_DOCUMENTATION_URL.com",
-    "theme_support_url": "https://THEME_SUPPORT_URL.com"
+    "theme_support_url": "https:\/\/www.google.com\/",
+    "theme_documentation_url": "https:\/\/www.google.com\/"
   },
   {
-    "name": "t:settings_schema.custom_settings.name",
+    "name": "Colors",
     "settings": [
       {
         "type": "header",
-        "content": "t:settings_schema.custom_settings.settings.header"
+        "content": "Theme"
       },
       {
-        "type": "paragraph",
-        "content": "t:settings_schema.custom_settings.settings.paragraph"
+        "type": "color",
+        "id": "color_text",
+        "label": "Text Color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "background",
+        "label": "Background",
+        "default": "#dbaaeb"
+      },
+      {
+        "type": "color",
+        "id": "accent",
+        "label": "Accent",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "color",
+        "id": "hover",
+        "label": "Button Hover",
+        "default": "#f3587f"
+      },
+      {
+        "type": "color",
+        "id": "color_error",
+        "label": "Error Color",
+        "default": "#f3587f"
+      },
+      {
+        "type": "header",
+        "content": "Header",
+        "info": "This colors are used when there is no alternative set in the color scheme of that page"
+      },
+      {
+        "type": "color",
+        "id": "header_background",
+        "label": "Header Background Color",
+        "default": "#dbaaeb"
+      },
+      {
+        "type": "color",
+        "id": "header_accent",
+        "label": "Header Accent Color",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "header",
+        "content": "Footer",
+        "info": "This colors are used when there is no alternative set in the color scheme of that page"
+      },
+      {
+        "type": "color",
+        "id": "footer_background",
+        "label": "Footer Background Color",
+        "default": "#dbaaeb"
+      },
+      {
+        "type": "color",
+        "id": "footer_accent",
+        "label": "Footer Accent Color",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "header",
+        "content": "Navigation"
+      },
+      {
+        "type": "color",
+        "id": "nav_background",
+        "label": "Nav Background Color",
+        "default": "#5359e5"
       }
     ]
   },
   {
-    "name": "t:settings_schema.favicon.name",
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "border_radius",
+        "label": "Border Radius",
+        "info": "Here you can set the border radius for all images and other stuff, that should have rounded or straight edges",
+        "min": 0,
+        "max": 20,
+        "default": 8,
+        "step": 1,
+        "unit": "px"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "active_search",
+        "label": "Active Search",
+        "default": true
+      },
+      {
+        "type": "collection",
+        "id": "recommendation_collection",
+        "label": "Recommendation Collection",
+        "info": "This collection will be used to show the recommendation products in the search page"
+      },
+      {
+        "type": "product_list",
+        "id": "recommendation_products",
+        "label": "Recommendation Products",
+        "info": "This products will be used to show the recommendation products in the search page (Only applies when there is no collection set)"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social accounts"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
     "settings": [
       {
         "type": "image_picker",
         "id": "favicon",
-        "label": "t:settings_schema.favicon.settings.label",
-        "info": "t:settings_schema.favicon.settings.info"
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Free Shipping",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_show_free_shipping_threshold",
+        "label": "Show free shipping bar in cart"
+      },
+      {
+        "type": "number",
+        "id": "cart_free_shipping_threshold",
+        "label": "Free shipping threshold"
+      },
+      {
+        "type": "color",
+        "id": "free_shipping_success_color",
+        "label": "Free shipping success color",
+        "default": "#2AC2BD"
+      },
+      {
+        "type": "color",
+        "id": "free_shipping_remaining_color",
+        "label": "Free shipping remaining color",
+        "default": "#F3587F"
       }
     ]
   }

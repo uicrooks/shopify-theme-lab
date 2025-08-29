@@ -1,0 +1,126 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+<section
+	class="image-with-text"
+	data-section-id="{{- section.id -}}"
+	data-section-type="image-with-text"
+>
+	<div class="content-wrapper">
+    <div class="container">
+      <div class="image-with-text__items">
+        {% for block in section.blocks %}
+          <div class="image-with-text__wrapper">
+            <div class="image-with-text__image">
+              {% if block.settings.image != blank %}
+                {{ block.settings.image | image_url: width: 1000 | image_tag: class: 'image-with-text__image-image' }}
+              {% endif %}
+            </div>
+            <div class="image-with-text__content">
+              <div class="image-with-text__text-content">
+                {% if block.settings.title != blank %}
+                  <h2 class="image-with-text__title title-bg">{{ block.settings.title }}</h2>
+                {% endif %}
+                {% if block.settings.content != blank %}
+                  <div class="image-with-text__content-text">
+                    {{ block.settings.content }}
+                  </div>
+                {% endif %}
+              </div>
+              {% if block.settings.button_text != blank %}
+                <a href="{{ block.settings.button_url }}" class="button">{{ block.settings.button_text }}</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="base-triangular-line">
+		{%- render 'icon-triangular-line' -%}
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Image with text",
+	"settings": [
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color"
+    }
+	],
+  "blocks": [
+    {
+      "type": "image_with_text",
+      "name": "Image with text",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Content</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Button URL"
+        }
+      ]
+    }
+  ],
+	"presets": [
+		{
+			"name": "Image with text"
+		}
+	]
+}
+{% endschema %}

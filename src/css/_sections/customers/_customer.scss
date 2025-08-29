@@ -1,0 +1,87 @@
+.form-address {
+	margin-top: 30px;
+}
+
+.customer__base-container {
+	max-width: 470px;
+	margin: 0 auto;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.customer__table {
+	width: 100%;
+
+	.button-link {
+		display: inline;
+	}
+}
+
+.customer-grid {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 1140px;
+	margin: 0 auto;
+	padding-left: 16px;
+	padding-right: 16px;
+}
+
+.customer-grid__main,
+.customer-grid__aside {
+	width: 100%;
+}
+
+.account__heading {
+	> * {
+		padding-bottom: 16px;
+	}
+}
+.account__divider {
+	margin-bottom: 32px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid #fff;
+}
+
+.address-list {
+	padding-top: 30px;
+}
+
+.address-list__actions {
+	padding-top: 16px;
+
+	.button-link {
+		padding: 0;
+
+		&.address-edit-toggle {
+			margin-right: 15px;
+		}
+	}
+}
+
+@media #{$m-xxl} {
+	.customer-grid__main {
+		margin-bottom: 40px;
+		padding-bottom: 16px;
+		border-bottom: 1px solid #fff;
+	}
+}
+@media #{$no-m} {
+	.customer-grid__main {
+		width: 70%;
+	}
+
+	.customer-grid__aside {
+		width: 30%;
+	}
+}
+
+@media #{$no-fw} {
+	.customer-grid {
+		max-width: 60vw;
+	}
+
+	.customer__table-container,
+	.customer__base-container {
+		max-width: 34vw;
+	}
+}

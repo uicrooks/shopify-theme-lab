@@ -1,10 +1,199 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "main-product"
+      "type": "main-product",
+      "settings": {
+        "reviews_average_rating": "",
+        "reviews_quantity_text": "",
+        "background_color": "{{ product.metafields.custom.background_color.value }}",
+        "accent_color": "{{ product.metafields.custom.accent_color.value }}",
+        "hover_color": "{{ product.metafields.custom.hover_color.value }}"
+      }
+    },
+    "main_product_ingredients": {
+      "type": "main-product-ingredients",
+      "settings": {
+        "title": "Wir verwenden nur <span>beste Zutaten</span>",
+        "background_color": "{{ product.metafields.custom.accent_color.value }}",
+        "accent_color": "{{ product.metafields.custom.background_color.value }}"
+      }
+    },
+    "advantages": {
+      "type": "advantages",
+      "blocks": {
+        "cd0713e6-e4ea-4e90-8cc5-54ba5f4a2756": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-1-smile.png",
+            "text": "Lecker"
+          }
+        },
+        "e004a74c-a36a-44c7-b2a2-bd6859ece912": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-2-vegan.png",
+            "text": "Vegan"
+          }
+        },
+        "481cf990-f8c9-4949-b40c-95dfcf923edf": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-3-organic.png",
+            "text": "Bio-zertifiziert"
+          }
+        },
+        "d45fe6f2-1704-4dc6-a123-33beb7e857b3": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-4-packaging.png",
+            "text": "Recyclebare Verpackung"
+          }
+        },
+        "81513617-39d3-48cb-b383-42d5a0f019fd": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-5-soy.png",
+            "text": "Ohne Soja"
+          }
+        },
+        "07747c04-c64f-454d-b22f-e67f32c4045d": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-6-gluten-free.png",
+            "text": "Ohne Gluten"
+          }
+        },
+        "8581f446-2cf4-400e-ab7a-09e3a9966d9f": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-7-sugar.png",
+            "text": "Ohne raffinierten Zucker"
+          }
+        },
+        "b0320aa1-5a6d-4909-ab2b-f306fe0e69cc": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-8-additives.png",
+            "text": "Ohne Zusatzstoffe"
+          }
+        }
+      },
+      "block_order": [
+        "cd0713e6-e4ea-4e90-8cc5-54ba5f4a2756",
+        "e004a74c-a36a-44c7-b2a2-bd6859ece912",
+        "481cf990-f8c9-4949-b40c-95dfcf923edf",
+        "d45fe6f2-1704-4dc6-a123-33beb7e857b3",
+        "81513617-39d3-48cb-b383-42d5a0f019fd",
+        "07747c04-c64f-454d-b22f-e67f32c4045d",
+        "8581f446-2cf4-400e-ab7a-09e3a9966d9f",
+        "b0320aa1-5a6d-4909-ab2b-f306fe0e69cc"
+      ],
+      "settings": {
+        "title": "Unsere Riegel bieten viele Vorteile",
+        "subtitle": "wir verwenden ausschließlich Bio-Zutaten für unsere yummy veganen Rezepturen",
+        "background_color": "{{ product.metafields.custom.background_color.value }}",
+        "accent_color": "{{ product.metafields.custom.accent_color.value }}",
+        "hover_color": "{{ product.metafields.custom.hover_color.value }}"
+      }
+    },
+    "compare_product_reviews": {
+      "type": "compare-product-reviews",
+      "blocks": {
+        "text_FgLqia": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "",
+            "review_title": "",
+            "review_content": ""
+          }
+        },
+        "text_eeiGkC": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "",
+            "review_title": "",
+            "review_content": ""
+          }
+        },
+        "aa617827-5535-4d4b-a335-b84f4c3b4b27": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "c3fbd356-cf27-49d8-ae72-878d6f919592": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "89088c16-9028-4a04-98c9-2df8e95dd102": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "b1694818-0b81-42c8-ac0e-020a9ca87756": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "3bd524cf-72c4-47af-8ff2-8b3b5f87b9a9": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        }
+      },
+      "block_order": [
+        "text_FgLqia",
+        "text_eeiGkC",
+        "aa617827-5535-4d4b-a335-b84f4c3b4b27",
+        "c3fbd356-cf27-49d8-ae72-878d6f919592",
+        "89088c16-9028-4a04-98c9-2df8e95dd102",
+        "b1694818-0b81-42c8-ac0e-020a9ca87756",
+        "3bd524cf-72c4-47af-8ff2-8b3b5f87b9a9"
+      ],
+      "settings": {
+        "title": "Eure Bewertungen",
+        "underline_word": "Bewertungen",
+        "text-box": "",
+        "link": "#",
+        "linktext": "Schreibe eine Bewertung"
+      }
     }
   },
   "order": [
-    "main"
+    "main",
+    "main_product_ingredients",
+    "advantages",
+    "compare_product_reviews"
   ]
 }

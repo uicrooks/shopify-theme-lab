@@ -1,0 +1,115 @@
+{%- assign is_empty_cart = false -%}
+
+{%- if cart.item_count == 0 -%}
+  {%- assign is_empty_cart = true -%}
+{%- endif -%}
+
+<section
+	id="cart-{{- section.id -}}"
+	data-section-id="{{- section.id -}}"
+	data-section-type="cart"
+>
+	<div 
+    class="cart content-wrapper" 
+    class="{% if is_empty_cart %}cart--empty{% endif %}" 
+    id="cart"
+  >
+    {% if section.settings.image_left != blank -%}
+      <picture class="cart__img cart__img--left">
+        <source srcset="{{ section.settings.image_left | img_url: '353x353' }}" media="(min-width: 1920px)">
+        <img src="{{ section.settings.image_left | img_url: '236x236' }}" alt="''" />
+      </picture>
+    {%- endif -%}
+		<div class="cart__wrap">
+			<section class="cart__heading title-wrapper">
+				<h1 class="cart__title title-wrapper__title title-bg">
+          {% if is_empty_cart -%}
+            {{ 'cart.general.mini_cart_empty_title' | t }}
+          {%- else -%}
+            {{ section.settings.cart_title }}
+          {%- endif -%}
+        </h1>
+				<p class="cart__subtitle title-wrapper__subtitle">
+          {% if is_empty_cart -%}
+            {{ 'cart.general.mini_cart_empty_subtitle' | t }}
+          {%- else -%}
+            {{ section.settings.cart_subtitle }}
+          {%- endif -%}
+        </p>
+        {%- if is_empty_cart -%}
+          <a href="{{ section.settings.continue_shopping_url }}"
+            class="cart__link-empty text"
+          >
+            {{ 'cart.general.continue_shopping' | t }}
+          </a>
+        {%- endif -%}
+			</section>
+
+      {% unless is_empty_cart %}
+        <div class="cart__body">
+          <form id="cart-form" action="{{ routes.cart_url }}" novalidate method="post">
+            <input type="hidden" name="checkout">
+            {%- for item in cart.items -%}
+              {% render 'cart-item', item: item, key: item.key %}
+            {%- endfor -%}
+          </form>
+        </div>
+      {% endunless %}
+			<div class="cart__footer">
+        {% unless is_empty_cart %}
+          {% render 'cart-subtotal' cart: cart, is_mini_cart: false -%}
+        {% endunless %}
+			</div>
+		</div>
+    {% if section.settings.image_right != blank -%}
+      <picture class="cart__img cart__img--right">
+        <source srcset="{{ section.settings.image_right | img_url: '353x353' }}" media="(min-width: 1920px)">
+        <img src="{{ section.settings.image_right | img_url: '236x236' }}" alt="''" />
+      </picture>
+    {% endif %}
+	</div>
+</section>
+
+{% schema %}
+
+{
+  "name": "Cart",
+  "class": "cart-section jsCart jsShippingCalculator",
+  "settings": [
+		{
+			"type": "text",
+			"id": "cart_title",
+			"label": "Cart title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "<span><span>Warenkorb</span></span>"
+		},
+		{
+			"type": "text",
+			"id": "cart_subtitle",
+			"label": "Cart subtitle",
+			"default": "Die folgenden Waren befinden sich momentan in deinem Warenkorb."
+		},
+		{
+			"type": "image_picker",
+			"id": "image_left",
+			"label": "Image left background"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_right",
+			"label": "Image right background"
+		},
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+		{
+			"type": "url",
+			"id": "continue_shopping_url",
+			"label": "Сontinue Shopping url",
+			"default": "/collections/all"
+		}
+  ]
+}
+
+{% endschema %}

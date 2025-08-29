@@ -1,0 +1,89 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign title = section.settings.title -%}
+{%- assign subtitle = section.settings.subtitle -%}
+
+<section
+	class="withdrawal"
+	data-section-id="{{- section.id -}}"
+	data-section-type="withdrawal"
+>
+	<div class="content-wrapper">
+		{%- if title or subtitle -%}
+			<div class="title-wrapper">
+				{%- if title -%}
+					<h1 class="title-wrapper__title title-bg">{{ title }}</h1>
+				{%- endif -%}
+
+				{%- if subtitle -%}
+					<p class="title-wrapper__subtitle">{{ subtitle }}</p>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		<div class="container container--sm">
+			<div class="rte rte--pages">
+				{{ page.content }}
+			</div>
+		</div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+	{
+		"name": "Withdrawal",
+		"settings": [
+			{
+				"type": "textarea",
+				"id": "title",
+				"info": "Need wrap words to see background, <span><span>example</span></span>",
+				"label": "Title",
+				"default": "Ja du hast auch ein <span><span>Widerrufsrecht</span></span>"
+			},
+			{
+				"type": "textarea",
+				"id": "subtitle",
+				"label": "Subtitle",
+				"default": "Willst du etwa ein Produkt wieder zurück schicken? 😢"
+			},
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#f3587f"
+      },
+      {
+        "type": "color",
+        "id": "hover_color",
+        "label": "Hover Color",
+        "default": "#f3587f"
+      }
+		]
+	}
+{% endschema %}

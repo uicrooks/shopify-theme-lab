@@ -1,0 +1,36 @@
+.countdown {
+  padding: 16px 8px;
+  background-color: transparent;
+  border-radius: 4px;
+  margin: 1vw 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-weight: bolder;
+
+  countdown-display {
+    display: flex;
+    gap: 40px;
+
+    @media #{$m-xl} {
+      gap: 15px;
+    }
+  }
+
+  &__heading {
+    text-align: center;
+    display: block;
+  }
+
+  .countdown__timer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110%;
+  }
+
+  .countdown__timer-item-data {
+    font-size: 18px;
+  }
+}

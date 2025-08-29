@@ -1,0 +1,17 @@
+{%- if predictive_search.performed -%}
+  <div id="predictive-search-results" class="predictive-search-results">
+    {%- if predictive_search.resources.products.size > 0 -%}
+      <ul class="product-card-list--simple" role="listbox" aria-labelledby="predictive-search-products">
+        {%- for product in predictive_search.resources.products -%}
+          {%- render 'product-card-simple', product: product -%}
+        {%- endfor -%}
+      </ul>
+
+      <button class="button" type="submit" form="predictive-search-form">
+        {{ 'general.search.search_for' | t }} “{{ predictive_search.terms }}”
+      </button>
+    {%- else -%}
+      <span>{{ 'general.search.no_results' | t }}</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

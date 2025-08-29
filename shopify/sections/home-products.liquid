@@ -1,0 +1,163 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign sec_sett = section.settings -%}
+
+<section
+	class="home-products"
+	data-section-id="{{- section.id -}}"
+	data-section-type="home-products"
+>
+	<div class="home-products__container">
+		{%- if sec_sett.title != blank -%}
+			<h2 class="title-bg home-products__title"
+					data-home-products-title="{{ sec_sett.title }}##{{ sec_sett.title-second }}##{{ sec_sett.title-third }}"
+			></h2>
+		{%- endif -%}
+
+		{%- if section.blocks.size > 0 -%}
+			<div class="swiper-container-wrapper">
+				<div class="swiper-container js-home-products-slider home-products__slider opacity-0">
+					<div class="swiper-wrapper">
+						{%- for block in section.blocks limit: 10 -%}
+							{%- assign b_sett = block.settings -%}
+							{%- assign product = all_products[b_sett.product] -%}
+							{%- assign product_image = product.featured_image -%}
+
+							<div 
+                class="swiper-slide"
+              >
+								{%- if product_image != blank -%}
+									<a href="{{- product.url | within: collection -}}">
+										<picture>
+											<source
+												srcset="{{ product_image.src | img_url: '1364x' }} 1x, {{ product_image.src | img_url: '2728x' }} 2x"
+												media="(min-width: 1920px)">
+											<source
+												srcset="{{ product_image.src | img_url: '906x' }} 1x, {{ product_image.src | img_url: '1812x' }} 2x, {{ product_image.src | img_url: '2061x' }} 3x"
+												media="(min-width: 1710px)">
+											<source
+												srcset="{{ product_image.src | img_url: '690x' }} 1x, {{ product_image.src | img_url: '1380x' }} 2x, {{ product_image.src | img_url: '2070x' }} 3x"
+												media="(min-width: 1550px)">
+											<source
+												srcset="{{ product_image.src | img_url: '610x' }} 1x, {{ product_image.src | img_url: '1220x' }} 2x, {{ product_image.src | img_url: '1830x' }} 3x"
+												media="(min-width: 1250px)">
+											<source
+												srcset="{{ product_image.src | img_url: '458x' }} 1x, {{ product_image.src | img_url: '916x' }} 2x,{{ product_image.src | img_url: '1374x' }} 3x"
+												media="(min-width: 575px)">
+											<img src="{{ product_image.src | img_url: '265x' }} 1x"
+													 srcset="{{ product_image.src | img_url: '265x' }} 1x, {{ product_image.src | img_url: '530x' }} 2x,{{ product_image.src | img_url: '795x' }} 3x"
+													 alt="{{ product_image.alt }}">
+										</picture>
+									</a>
+								{%- endif -%}
+
+                <a href="{{- product.url | within: collection -}}"
+                   class="button home-products__button" 
+                >
+                  {{- sec_sett.link_text -}}
+                </a>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{%- endif -%}
+	</div>
+	<div class="base-triangular-line">
+		{%- render 'icon-triangular-line' -%}
+	</div>
+</section>
+
+
+{% schema %}
+{
+	"name": "Home products",
+	"max_blocks": 10,
+	"settings": [
+		{
+			"type": "header",
+			"content": "Titles"
+		},
+		{
+			"type": "textarea",
+			"id": "title",
+			"label": "Title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "OMG, a compostable packaging that <span><span>doesn’t</span></span> <span><span>look compostable</span></span>"
+		},
+		{
+			"type": "textarea",
+			"id": "title-second",
+			"label": "Title second",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "OMG, a vegan snack that <span><span>doesn’t &#160</span></span><span><span>taste vegan</span></span>"
+		},
+		{
+			"type": "textarea",
+			"id": "title-third",
+			"label": "Title third",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "OMG, a healthy snack, that <span><span>doesn’t &#160</span></span><span><span>taste healthy.</span></span>"
+		},
+		{
+			"type": "text",
+			"id": "link_text",
+			"label": "Link text for button in slider",
+			"default": "Jetzt kaufen"
+		},
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#dbaaeb"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#dbaaeb"
+    }
+	],
+	"blocks": [
+		{
+			"type": "product_item",
+			"name": "Product",
+			"settings": [
+				{
+					"type": "product",
+					"id": "product",
+					"label": "Product"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Home products",
+			"category": "Homepage"
+		}
+	]
+}
+{% endschema %}

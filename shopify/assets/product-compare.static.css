@@ -1,0 +1,29 @@
+.main-product .product_main .main_ptoduct_title--underline:after {
+  content: "";
+  background: #dbaaeb;
+  width: 104%;
+  height: 70%;
+  position: absolute;
+  left: -2%;
+  bottom: -1px;
+  z-index: -1;
+}
+
+.main-product .product_main .container .product_main_wraper .image_side .image_side_wwrp {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 100px;
+}
+
+.delevery_section-info {
+  line-height: 20px;
+  margin-bottom: 10px;
+}
+
+.delevery_section-time {
+  font-weight: normal;
+}
+
+.hidden {
+  display: none !important;
+}

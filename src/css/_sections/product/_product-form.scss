@@ -1,0 +1,55 @@
+.main-product .product-form, .product-page .product-form__buttons {
+	@media #{$m-xxl} {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		z-index: 98;
+		width: 100%;
+		padding: 32px;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+	}
+
+	@media #{$m-xl} {
+		padding: 16px;
+	}
+}
+
+.product-form__footer {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+
+	@media #{$no-m} {
+		margin-bottom: 40px;
+	}
+}
+
+.product-form__price {
+	color: #ffffff;
+
+	&.product-form__price--old {
+		text-decoration: line-through;
+	}
+
+	&.product-form__price__price--new {
+		margin-left: 25px;
+	}
+}
+
+.product-form__quantity-wrapper {
+	display: inline-block;
+
+	&.product-form__quantity-wrapper--hidden {
+		pointer-events: none;
+	}
+}
+
+.product-form__button {
+	width: 100%;
+}
+
+.product-form__button-price {
+  margin-right: 5px;
+  font-size: 110%;
+}

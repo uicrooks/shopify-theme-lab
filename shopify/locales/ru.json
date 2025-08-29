@@ -1,0 +1,446 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Перейти к контенту",
+      "close_modal": "Закрыть",
+      "refresh_page": "Выбор выделенного элемента приводит к полному обновлению страницы.",
+      "selection_help": "Нажмите клавишу пробела, а затем клавиши со стрелками, чтобы выделить необходимый элемент.",
+      "unit_price_separator": "за",
+      "error": "Ошибка",
+      "link_messages": {
+        "new_window": "Открывается в новом окне.",
+        "external": "Открывает внешний сайт.",
+        "new_window_and_external": "Открывает внешний сайт в новом окне."
+      }
+    },
+    "meta": {
+      "tags": "Помечено \"{{ tags }}\"",
+      "page": "Страница {{ page }}"
+    },
+    "404": {
+      "title": "404. Страница не найдена",
+      "subtext": "Запрошенная вами страница не существует.",
+      "link": "Продолжить покупки"
+    },
+    "pagination": {
+      "previous": "Предыдущая страница",
+      "next": "Следующая страница",
+      "current_page": "Страница {{ current }} из {{ total }}"
+    },
+    "password_page": {
+      "opening_soon": "Скоро открытие",
+      "login_form_heading": "Войдите в магазин с помощью пароля",
+      "login_form_password_label": "Пароль",
+      "login_form_password_placeholder": "Ваш пароль",
+      "login_form_submit": "Ввести",
+      "signup_form_email_label": "Электронный адрес",
+      "signup_form_success": "Мы отправим вам письмо незадолго до открытия!",
+      "admin_link_html": "Вы владелец магазина? <a href=\"/admin\" class=\"text-link\">Войдите здесь</a>",
+      "password_link": "Войдите с помощью пароля"
+    },
+    "social": {
+      "share_on_facebook": "Поделиться",
+      "share_on_twitter": "Твитнуть",
+      "share_on_pinterest": "Создать пин",
+      "alt_text": {
+        "share_on_facebook": "Поделиться в Facebook",
+        "share_on_twitter": "Опубликовать в Твиттере",
+        "share_on_pinterest": "Сохранить в Pinterest"
+      }
+    },
+    "search": {
+      "empty_search_message": "Поле поиска не может быть пустым",
+      "title": "Поиск на нашем сайте",
+      "placeholder": "Поиск",
+      "submit": "Отправить",
+      "close": "Закрыть окно поиска",
+      "no_results": "Проверьте правописание или выберите другие слова.",
+      "search_for": "Поиск",
+      "products": "Продукты",
+      "loading": "Загрузка",
+      "clear_search_term": "Удалить поисковой запрос",
+      "number_of_results": "{{ result_number }} из {{ results_count }}",
+      "number_of_results_found": "Найдено результатов: {{ results_count }}",
+      "one_result_found": "Найден 1 результат",
+      "results_with_count": {
+        "one": "Результатов по запросу \"{{ terms }}\": {{ count }}",
+        "other": "Результатов по запросу \"{{ terms }}\": {{ count }}",
+        "few": "Результатов по запросу \"{{ terms }}\": {{ count }}",
+        "many": "Результатов по запросу \"{{ terms }}\": {{ count }}"
+      },
+      "heading": {
+        "one": "Результат поиска",
+        "other": "Результаты поиска",
+        "few": "Результаты поиска",
+        "many": "Результаты поиска"
+      }
+    },
+    "newsletter_form": {
+      "newsletter_email": "Подпишитесь на нашу почтовую рассылку",
+      "email_placeholder": "Адрес электронной почты",
+      "confirmation": "Спасибо, что подписались!",
+      "submit": "Подписаться"
+    },
+    "filters": {
+      "show_more": "Показать больше",
+      "show_less": "Показать меньше"
+    },
+    "payment": {
+      "method": "Способы оплаты"
+    },
+    "language": {
+      "dropdown_label": "Язык"
+    },
+    "country": {
+      "dropdown_label": "Страна/регион"
+    }
+  },
+  "sections": {
+    "slideshow": {
+      "next_slide": "Следующий слайд",
+      "previous_slide": "Предыдущий слайд",
+      "pause_slideshow": "Приостановить показ слайд-шоу",
+      "rotate_slideshow": "Воспроизвести слайд-шоу",
+      "load_slide": "Загрузить слайд {{ slide_number }}",
+      "navigation_instructions": "Используйте стрелки влево/вправо для навигации по слайд-шоу или проведите влево/вправо, если вы используете мобильное устройство"
+    },
+    "featured_product": {
+      "title": "Рекомендуемый продукт",
+      "gallery_thumbnail_alt": "Загрузить изображение в средство просмотра галереи, {{ imageAlt }}",
+      "video_thumbnail_alt": "Загружайте и воспроизводите видео в средстве просмотра галереи {{ imageAlt }}",
+      "model_thumbnail_alt": "Загружайте трехмерные модели в средство просмотра галереи {{ imageAlt }}"
+    },
+    "map": {
+      "address_error": "Не удалось найти этот адрес",
+      "address_no_results": "Нет результатов для этого адреса",
+      "address_query_limit_html": "Вы превысили ограничение использования Google API. Рассмотрите переход на план уровня <a href=\"https://developers.google.com/maps/premium/usage-limits\">Премиум</a>.",
+      "auth_error_html": "При аутентификации вашей учетной записи в Картах Google возникла проблема.",
+      "section_heading": "Расположение"
+    },
+    "video": {
+      "play": "Воспроизвести видео \"{{ video_title }}\"",
+      "pause": "Приостановить видео \"{{ video_title }}\"",
+      "resume": "Возобновить воспроизведение видео \"{{ video_title }}\"",
+      "close": "Закрыть видео \"{{ video_title }}\""
+    },
+    "header": {
+      "announcement_bar_label": "Объявление"
+    }
+  },
+  "blogs": {
+    "article": {
+      "view_all": "Посмотреть все",
+      "view_all_blogs": "Посмотреть все блоги",
+      "all_topics": "Все темы",
+      "by_author": "по автору: {{ author }}",
+      "posted_in": "Опубликовано в",
+      "read_more": "Подробнее",
+      "read_more_title": "Узнать больше: {{ title }}",
+      "back_to_blog": "Вернуться к {{ title }}",
+      "tags": "Теги",
+      "article_with_count": {
+        "one": "{{ count }} статья",
+        "other": "Статей: {{ count }}",
+        "few": "Статей: {{ count }}",
+        "many": "Статей: {{ count }}"
+      }
+    },
+    "comments": {
+      "title": "Комментировать",
+      "name": "Имя",
+      "email": "Электронный адрес",
+      "message": "Сообщение",
+      "post": "Добавить комментарий",
+      "moderated": "Обратите внимание, что комментарии проходят одобрение перед публикацией.",
+      "success_moderated": "Ваш комментарий отправлен. Мы опубликуем его через некоторое время, так как наш блог модерируется.",
+      "success": "Ваш комментарий отправлен. Спасибо!",
+      "unapproved": "Указанный адрес электронной почты не одобрен для размещения комментариев.",
+      "comments_with_count": {
+        "one": "{{ count }} комментарий",
+        "other": "Комментариев: {{ count }}",
+        "few": "Комментариев: {{ count }}",
+        "many": "Комментариев: {{ count }}"
+      }
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Корзина",
+      "note": "Добавить примечание к заказу",
+      "removed_item_html": "Удалено из корзины: <span class=\"cart__removed-product-details\"> ({{ quantity }}) {{ link }} </span>.",
+      "remove": "Удалить",
+      "subtotal": "Промежуточный итог",
+      "savings": "Вы экономите",
+      "taxes_and_shipping_at_checkout": "Налоги и стоимость доставки, рассчитанные при оформлении заказа",
+      "taxes_and_shipping_policy_at_checkout_html": "Налоги и <a href=\"{{ link }}\">стоимость доставки</a>, рассчитанные при оформлении заказа",
+      "taxes_included_but_shipping_at_checkout": "Сумма налога и стоимость доставки, рассчитанные при оформлении заказа",
+      "taxes_included_and_shipping_policy_html": "Налоги включены. <a href=\"{{ link }}\">Стоимость доставки</a>, рассчитанная при оформлении заказа.",
+      "update": "Обновить",
+      "checkout": "Оформить заказ",
+      "empty": "Корзина пуста.",
+      "cookies_required": "Разрешить использование файлов cookie для корзины",
+      "continue_shopping": "Продолжить покупки",
+      "cart_error": "Произошла ошибка при обновлении вашей корзины. Повторите попытку."
+    },
+    "label": {
+      "discounted_total": "Всего со скидкой",
+      "product": "Продукт",
+      "price": "Цена",
+      "price_column": "Дополнительные сведения о скидках см. в столбце \"Цена\".",
+      "product_details": "Информация о продукте",
+      "quantity": "Количество",
+      "qty": "Кол-во",
+      "regular_total": "Всего без скидки",
+      "remove": "Удалить {{ product }}",
+      "total": "Всего",
+      "update": "Обновить"
+    },
+    "popup": {
+      "added_to_cart": "Только что добавлено в корзину",
+      "product_details": "Информация о продукте",
+      "quantity": "Кол-во",
+      "quantity_label": "Количество: {{ quantity_count }}",
+      "cart_count": {
+        "one": "{{ count }} элемент",
+        "other": "Элементов: {{ count }}",
+        "few": "Элементов: {{ count }}",
+        "many": "Элементов: {{ count }}"
+      }
+    }
+  },
+  "collections": {
+    "general": {
+      "view_all": "Посмотреть все",
+      "view_all_label": "Посмотреть все продукты в коллекции \"{{ collection_name }}\"",
+      "no_matches": "В этой коллекции нет продуктов",
+      "collection_label": "Коллекция",
+      "items_with_count": {
+        "one": "{{ count }} продукт",
+        "other": "Продуктов: {{ count }}",
+        "few": "Продуктов: {{ count }}",
+        "many": "Продуктов: {{ count }}"
+      }
+    },
+    "catalog": {
+      "title": "Каталог"
+    },
+    "sorting": {
+      "title": "Сортировка"
+    },
+    "filters": {
+      "title_tags": "Фильтр",
+      "all_tags": "Все продукты"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Имя",
+      "email": "Электронный адрес",
+      "phone": "Номер телефона",
+      "message": "Сообщение",
+      "submit": "Отправить",
+      "post_success": "Спасибо за обращение. Мы свяжемся с вами как можно скорее.",
+      "error_heading": "Измените следующие элементы:"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Моя учетная запись",
+      "details": "Детали учетной записи",
+      "view_addresses": "Посмотреть адреса",
+      "return": "Вернуться к деталям учетной записи"
+    },
+    "activate_account": {
+      "title": "Активировать учетную запись",
+      "subtext": "Создайте пароль для активации учетной записи.",
+      "password": "Пароль",
+      "password_confirm": "Подтвердите пароль",
+      "submit": "Активировать учетную запись",
+      "cancel": "Отклонить приглашение"
+    },
+    "addresses": {
+      "title": "Ваши адреса",
+      "default": "По умолчанию",
+      "add_new": "Добавить новый адрес",
+      "edit_address": "Изменить адрес",
+      "first_name": "Имя",
+      "last_name": "Фамилия",
+      "company": "Компания",
+      "address1": "Адрес",
+      "address2": "Квартира, апартаменты и т. д.",
+      "city": "Город",
+      "country": "Страна/регион",
+      "province": "Область",
+      "zip": "Почтовый индекс",
+      "phone": "Телефон",
+      "set_default": "Задать в качестве адреса по умолчанию",
+      "add": "Добавить адрес",
+      "update": "Обновить адрес",
+      "cancel": "Отмена",
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "delete_confirm": "Удалить этот адрес?"
+    },
+    "login": {
+      "title": "Вход",
+      "email": "Электронный адрес",
+      "password": "Пароль",
+      "forgot_password": "Забыли пароль?",
+      "sign_in": "Войти в систему",
+      "guest_title": "Продолжить в качестве гостя",
+      "guest_continue": "Продолжить"
+    },
+    "orders": {
+      "title": "История заказов",
+      "order_number": "Заказ",
+      "order_number_link": "Номер заказа: {{ number }}",
+      "date": "Дата",
+      "payment_status": "Статус оплаты",
+      "fulfillment_status": "Статус выполнения",
+      "total": "Всего",
+      "none": "У вас еще нет заказов."
+    },
+    "order": {
+      "title": "Заказ: {{ name }}",
+      "date_html": "Размещен: {{ date }}",
+      "cancelled_html": "Заказ отменен: {{ date }}",
+      "cancelled_reason": "Причина: {{ reason }}",
+      "billing_address": "Адрес выставления счета",
+      "payment_status": "Статус оплаты",
+      "shipping_address": "Адрес доставки",
+      "fulfillment_status": "Статус выполнения",
+      "discount": "Скидка",
+      "shipping": "Доставка",
+      "tax": "Налог",
+      "product": "Продукт",
+      "sku": "Артикул",
+      "price": "Цена",
+      "quantity": "Количество",
+      "total": "Всего",
+      "fulfilled_at_html": "Выполнен: {{ date }}",
+      "subtotal": "Промежуточный итог",
+      "track_shipment": "Отследить доставку"
+    },
+    "recover_password": {
+      "title": "Сбросить пароль",
+      "email": "Электронный адрес",
+      "submit": "Отправить",
+      "cancel": "Отмена",
+      "subtext": "Мы отправим вам письмо со ссылкой для сброса пароля.",
+      "success": "Мы отправили вам письмо со ссылкой для обновления пароля."
+    },
+    "reset_password": {
+      "title": "Сбросить пароль учетной записи",
+      "subtext": "Введите новый пароль для {{ email }}",
+      "password": "Пароль",
+      "password_confirm": "Подтвердите пароль",
+      "submit": "Сбросить пароль"
+    },
+    "register": {
+      "title": "Создать учетную запись",
+      "first_name": "Имя",
+      "last_name": "Фамилия",
+      "email": "Электронный адрес",
+      "password": "Пароль",
+      "submit": "Создать"
+    }
+  },
+  "homepage": {
+    "general": {
+      "title": "Домашняя страница"
+    },
+    "onboarding": {
+      "product_title": "Название продукта",
+      "product_description": "Здесь можно добавить описание продукта. Расскажите покупателям о продукте и его характеристиках. Добавьте сведения о цвете, используемых материалах, размерах и месте изготовления.",
+      "collection_title": "Название коллекции",
+      "blog_title": "Заголовок публикации",
+      "blog_excerpt": "В блоге магазина нет публикаций. Здесь можно сообщать о появлении новых товаров, размещать советы или другие новости, которыми вы хотите поделиться с клиентами. Посетите блог Shopify об электронной коммерции, чтобы найти идеи для своего магазина и блога, а также получить советы по их развитию.",
+      "blog_author": "Имя автора",
+      "no_content": "В этом разделе пока нет контента. Добавьте контент в этот раздел, используя боковую панель."
+    }
+  },
+  "layout": {
+    "navigation": {
+      "search": "Поиск",
+      "expand": "развернуть",
+      "collapse": "свернуть",
+      "menu": "Меню"
+    },
+    "cart": {
+      "title": "Корзина",
+      "items_count": {
+        "one": "товар",
+        "other": "тов.",
+        "few": "тов.",
+        "many": "тов."
+      }
+    },
+    "customer": {
+      "account": "Учетная запись",
+      "log_out": "Выйти",
+      "log_in": "Войти",
+      "create_account": "Создать учетную запись"
+    },
+    "footer": {
+      "social_platform": "{{ name }} на {{ platform }}"
+    }
+  },
+  "products": {
+    "product": {
+      "regular_price": "Обычная цена",
+      "sold_out": "Продано",
+      "unavailable": "Недоступно",
+      "availability": "Доступность",
+      "on_sale": "Распродажа",
+      "from_lowest_price_html": "от {{ lowest_price }}",
+      "sale_price": "Цена со скидкой",
+      "quantity": "Количество",
+      "add_to_cart": "Добавить в корзину",
+      "loader_label": "Добавление товара в корзину",
+      "back_to_collection": "Вернуться к",
+      "vendor": "Продавец",
+      "quantity_minimum_message": "Значение в графе \"Количество\" не может быть меньше 1",
+      "include_taxes": "Сумма налога включена.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Стоимость доставки</a> рассчитывается при оформлении заказа.",
+      "unit_price_label": "Цена за единицу",
+      "view_cart": "Просмотреть корзину",
+      "view_in_space": "Просматривайте в реальных условиях",
+      "view_in_space_label": "При просмотре в реальных условиях элемент загружается в окне дополненной реальности"
+    }
+  },
+  "gift_cards": {
+    "issued": {
+      "title_html": "Вот ваша подарочная карта на {{ value }} для магазина {{ shop }}!",
+      "subtext": "Ваша подарочная карта",
+      "gift_card_code": "Код подарочной карты",
+      "disabled": "Отключено",
+      "expired": "Срок действия истек {{ expiry }}",
+      "active": "Срок действия истекает {{ expiry }}",
+      "redeem_html": "Укажите этот код при оформлении заказа, чтобы использовать подарочную карту на {{ value }}",
+      "shop_link": "Начать покупки",
+      "print": "Распечатать эту подарочную карту",
+      "remaining_html": "Осталось: {{ balance }}",
+      "add_to_apple_wallet": "Добавить в Apple Wallet",
+      "qr_image_alt": "Отсканируйте QR-код, чтобы использовать подарочную карту"
+    }
+  },
+  "store_availability": {
+    "general": {
+      "view_store_info": "Сведения о магазине",
+      "check_other_stores": "Проверить наличие в других магазинах",
+      "pick_up_available": "Самовывоз доступен",
+      "pick_up_currently_unavailable": "Самовывоз сейчас недоступен",
+      "pick_up_available_at_html": "Самовывоз доступен: <strong>{{ location_name }}</strong>",
+      "pick_up_unavailable_at_html": "Самовывоз сейчас недоступен: <strong>{{ location_name }}</strong>"
+    }
+  }
+}

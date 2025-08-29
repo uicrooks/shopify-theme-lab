@@ -1,0 +1,21 @@
+{%- assign cart_amount = cart.total_price | money -%}
+
+<div class="cart-order" class="{% if is_mini_cart %}cart-order--mini{% endif %}">
+  <div class="cart-order__heading">
+    {%- unless is_empty_cart -%}
+      <span class="cart-order__title">{{ 'cart.general.cart_subtotal' | t }}</span>
+    {%- endunless -%}
+  </div>
+  <div class="cart-order__actions">
+    {%- if is_empty_cart -%}
+    <button class="cart-order__button button cart-order__link">
+      {{ 'cart.general.continue_shopping' | t }}
+    </button>
+    {%- else -%}
+      <button form="{% if is_mini_cart %}mini-cart-form{% else %}cart-form{% endif %}" type="submit"
+        class="cart-order__button button">
+        {{ 'cart.general.checkout' | t: cart_amount: cart_amount }}
+      </button>
+    {%- endif -%}
+  </div>
+</div>

@@ -1,0 +1,331 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "subtitle": "",
+        "background_color": "",
+        "accent_color": "",
+        "hover_color": ""
+      }
+    },
+    "contact_form_edBndX": {
+      "type": "contact-form",
+      "blocks": {
+        "group_BcmKFK": {
+          "type": "group",
+          "name": "Anrede",
+          "settings": {
+            "display_type": "grid",
+            "direction": "row",
+            "gap": 16,
+            "child_width": "25%",
+            "margin_top": 0,
+            "margin_bottom": 20
+          },
+          "blocks": {
+            "dropdown_wnxqXn": {
+              "type": "dropdown",
+              "name": "Dropdown",
+              "settings": {
+                "label": "Anrede",
+                "required": false
+              },
+              "blocks": {
+                "option_MYcUWa": {
+                  "type": "_option",
+                  "name": "Option",
+                  "settings": {
+                    "label": "Keine Angabe"
+                  },
+                  "blocks": {}
+                },
+                "option_EMMB4e": {
+                  "type": "_option",
+                  "name": "Option",
+                  "settings": {
+                    "label": "Herr"
+                  },
+                  "blocks": {}
+                },
+                "option_3YEMx3": {
+                  "type": "_option",
+                  "name": "Option",
+                  "settings": {
+                    "label": "Frau"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "option_MYcUWa",
+                "option_EMMB4e",
+                "option_3YEMx3"
+              ]
+            }
+          },
+          "block_order": [
+            "dropdown_wnxqXn"
+          ]
+        },
+        "group_chTntW": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "display_type": "grid",
+            "direction": "row",
+            "gap": 16,
+            "child_width": "1fr 1fr",
+            "margin_top": 0,
+            "margin_bottom": 20
+          },
+          "blocks": {
+            "form_input_jVcq76": {
+              "type": "form-input",
+              "name": "Vorname",
+              "settings": {
+                "type": "custom",
+                "label": "Vorname",
+                "placeholder": "Vorname",
+                "required": true
+              },
+              "blocks": {}
+            },
+            "form_input_pUtPKf": {
+              "type": "form-input",
+              "name": "Nachname",
+              "settings": {
+                "type": "custom",
+                "label": "Nachname",
+                "placeholder": "Nachname",
+                "required": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "form_input_jVcq76",
+            "form_input_pUtPKf"
+          ]
+        },
+        "group_Az7xz6": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "display_type": "grid",
+            "direction": "row",
+            "gap": 16,
+            "child_width": "1fr 1fr",
+            "margin_top": 0,
+            "margin_bottom": 20
+          },
+          "blocks": {
+            "form_input_776jwp": {
+              "type": "form-input",
+              "name": "Firma",
+              "settings": {
+                "type": "custom",
+                "label": "Firma",
+                "placeholder": "Firma eingeben..",
+                "required": true
+              },
+              "blocks": {}
+            },
+            "dropdown_XBDVkY": {
+              "type": "dropdown",
+              "name": "Unternehmensart",
+              "settings": {
+                "label": "Unternehmensart",
+                "required": false
+              },
+              "blocks": {
+                "option_3TyxEh": {
+                  "type": "_option",
+                  "name": "Option",
+                  "settings": {
+                    "label": "Unternehmensart eingeben..."
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "option_3TyxEh"
+              ]
+            }
+          },
+          "block_order": [
+            "form_input_776jwp",
+            "dropdown_XBDVkY"
+          ]
+        },
+        "group_8eq9FF": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "display_type": "grid",
+            "direction": "row",
+            "gap": 16,
+            "child_width": "1fr 1fr",
+            "margin_top": 0,
+            "margin_bottom": 20
+          },
+          "blocks": {
+            "form_input_L6k8Np": {
+              "type": "form-input",
+              "name": "Webseite",
+              "settings": {
+                "type": "custom",
+                "label": "Webseite",
+                "placeholder": "Webseite eingeben",
+                "required": false
+              },
+              "blocks": {}
+            },
+            "form_input_AWaDVi": {
+              "type": "form-input",
+              "name": "USt ID",
+              "settings": {
+                "type": "custom",
+                "label": "Umsatzsteuer ID",
+                "placeholder": "Umsatzsteuer ID eingeben...",
+                "required": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "form_input_L6k8Np",
+            "form_input_AWaDVi"
+          ]
+        },
+        "group_i9JzmG": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "display_type": "flex",
+            "direction": "row",
+            "gap": 16,
+            "child_width": "1fr",
+            "margin_top": 0,
+            "margin_bottom": 0
+          },
+          "blocks": {
+            "dropdown_9acf8T": {
+              "type": "dropdown",
+              "name": "Land",
+              "settings": {
+                "label": "Land",
+                "required": true
+              },
+              "blocks": {
+                "option_Edcdgy": {
+                  "type": "_option",
+                  "name": "Option",
+                  "settings": {
+                    "label": "Deutschland"
+                  },
+                  "blocks": {}
+                },
+                "option_z4NwmG": {
+                  "type": "_option",
+                  "name": "Option",
+                  "settings": {
+                    "label": "Schweiz"
+                  },
+                  "blocks": {}
+                },
+                "option_wAeAtq": {
+                  "type": "_option",
+                  "name": "Option",
+                  "settings": {
+                    "label": "Österreich"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "option_Edcdgy",
+                "option_z4NwmG",
+                "option_wAeAtq"
+              ]
+            },
+            "form_input_mrDTwr": {
+              "type": "form-input",
+              "name": "Stadt",
+              "settings": {
+                "type": "custom",
+                "label": "Stadt",
+                "placeholder": "Stadt eingeben...",
+                "required": false
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "dropdown_9acf8T",
+            "form_input_mrDTwr"
+          ]
+        },
+        "group_7UHnw7": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "display_type": "grid",
+            "direction": "row",
+            "gap": 16,
+            "child_width": "1fr 1fr",
+            "margin_top": 20,
+            "margin_bottom": 0
+          },
+          "blocks": {
+            "form_input_3X3DYL": {
+              "type": "form-input",
+              "name": "Form input",
+              "settings": {
+                "type": "email",
+                "label": "Email Adresse",
+                "placeholder": "Email Adresse eingeben",
+                "required": true
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "form_input_3X3DYL"
+          ]
+        }
+      },
+      "block_order": [
+        "group_BcmKFK",
+        "group_chTntW",
+        "group_Az7xz6",
+        "group_8eq9FF",
+        "group_i9JzmG",
+        "group_7UHnw7"
+      ],
+      "name": "Contact form",
+      "settings": {
+        "title": "B2B Registration",
+        "subtitle": "<p>1. Als Firmenkunde kannst Du unsere B2B-Rabatte erhalten. Damit kaufst Du unsere Produkte zu vergünstigten Preisen ein</p><p>2. Nachdem Du Dich registriert hast, prüfen wir Deine Angaben innerhalb weniger Tage. Im Anschluss erhältst Du eine Bestätigungsmail sowie eine ausführliche Beschreibung zu der B2B-Rabattstruktur. Bitte beachte, dass die B2B-Rabatte ohne unsere Validierung noch nicht gültig sind.</p><p>3. Nach erfolgreicher Freischaltung werden die B2B-Rabatte abhängig vom Einkaufswert stets auf Deinen Warenkorb angewandt.</p><p>4. Registriere Dich jetzt!</p>",
+        "background_color": "#5359e5",
+        "accent_color": "#2ac2bd",
+        "hover_color": "#f3587f"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "contact_form_edBndX"
+  ]
+}

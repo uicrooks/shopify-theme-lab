@@ -1,10 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "main": {
-      "type": "main-collection"
+    "product-grid": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_item_HBNT6z": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "produkte",
+            "image": "shopify://shop_images/treatfuls_bio_vegan_14_riegel_energyballs_c794a023-0e44-4a29-9808-de3609ff8a4b.webp",
+            "collection_title": "Alle Produkte"
+          }
+        },
+        "collection_item_njphjp": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "riegel",
+            "image": "shopify://shop_images/treatfuls-mix_box_mit_allen_riegeln_1008x_5edda097-847a-4641-935a-c89b38e371d3.png",
+            "collection_title": "Riegel"
+          }
+        },
+        "collection_item_BpgG7M": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "love-bites-valentinstag",
+            "image": "shopify://shop_images/Summer_Crush_Box_NEW.webp",
+            "collection_title": "Sommerboxen"
+          }
+        },
+        "collection_item_LLzRme": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "nuss-aufstriche",
+            "image": "shopify://shop_images/spreads-treatfuls.webp",
+            "collection_title": "Aufstriche"
+          }
+        },
+        "collection_item_zt4DCn": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "balls",
+            "image": "shopify://shop_images/treatfuls_bio_vegan_21_energyballs_baelle.webp",
+            "collection_title": "Balls"
+          }
+        },
+        "collection_item_fnrKqm": {
+          "type": "collection_item",
+          "disabled": true,
+          "settings": {
+            "collection": "bundles",
+            "image": "shopify://shop_images/Vday_pink_treatfuls_love_gifting_box_5e5ef7a0-747e-4974-9748-891852561307.webp",
+            "collection_title": "Boxen"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_HBNT6z",
+        "collection_item_njphjp",
+        "collection_item_BpgG7M",
+        "collection_item_LLzRme",
+        "collection_item_zt4DCn",
+        "collection_item_fnrKqm"
+      ],
+      "settings": {
+        "heading_desktop": "Produkte",
+        "heading_mobile": "Produktübersicht",
+        "background_color": "#dbaaeb",
+        "background_color_mobile": "#2ac2bd",
+        "accent_color": "#2ac2bd",
+        "accent_color_mobile": "#f3587f"
+      }
+    },
+    "f507b3a2-8d74-41d4-a1c9-d3dc0f20e0ee": {
+      "type": "collection",
+      "settings": {
+        "title": "",
+        "collection": "produkte",
+        "items_per_page": 48,
+        "show_vendor": false,
+        "show_view_all": false,
+        "background_color": "#2ac2bd",
+        "accent_color": "#f3587f",
+        "hover_color": "#dbaaeb"
+      }
     }
   },
   "order": [
-    "main"
+    "product-grid",
+    "f507b3a2-8d74-41d4-a1c9-d3dc0f20e0ee"
   ]
 }

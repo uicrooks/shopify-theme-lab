@@ -1,0 +1,85 @@
+{%- assign sec_sett = section.settings -%}
+{%- assign title = sec_sett.title -%}
+{%- assign title_mobile = sec_sett.title_mobile -%}
+{%- assign subtitle = sec_sett.subtitle -%}
+{%- assign img_right = sec_sett.img_right -%}
+
+<section
+	class="terms"
+	data-section-id="{{- section.id -}}"
+	data-section-type="terms"
+>
+	<div class="content-wrapper">
+		{%- if title or subtitle -%}
+			<div class="title-wrapper">
+				{%- if title -%}
+					<h1 class="title-wrapper__title title-bg">{{ title }}</h1>
+				{%- endif -%}
+
+				{%- if title_mobile -%}
+					<h2 class="title-wrapper__title title-wrapper__title--mobile title-bg>{{ title_mobile }}</h2>
+				{%- endif -%}
+
+				{%- if subtitle -%}
+					<p class="title-wrapper__subtitle">{{ subtitle }}</p>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		{%- if img_right.src != blank -%}
+			<picture class="terms__img terms__img--right">
+				<source
+					srcset="{{ img_right.src | img_url: '706x' }} 1x, {{ img_right.src | img_url: '1414x' }} 2x"
+					media="(min-width: 2560px)">
+				<source
+					srcset="{{ img_right.src | img_url: '530x' }} 1x, {{ img_right.src | img_url: '1060x' }} 2x"
+					media="(min-width: 1921px)">
+				<img src="{{ img_right.src | img_url: '353x' }} 1x"
+						 srcset="{{ img_right.src | img_url: '353x' }} 1x, {{ img_right.src | img_url: '706x' }} 2x"
+						 alt="{{ img_right.alt }}">
+			</picture>
+		{%- endif -%}
+		<div class="container container--sm terms__container">
+			<div class="rte rte--pages">
+				{{ page.content }}
+			</div>
+		</div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+	{
+		"name": "Terms",
+		"settings": [
+			{
+				"type": "textarea",
+				"id": "title",
+				"info": "Need wrap words to see background, <span><span>example</span></span>",
+				"label": "Title",
+				"default": "Allgemeine <span><span>Geschäftsbedingungen</span></span>"
+			},
+			{
+				"type": "textarea",
+				"id": "title_mobile",
+				"info": "Need wrap words to see background, <span><span>example</span></span>",
+				"label": "Title",
+				"default": "Allgemeine <span><span>Geschäftsbedi-</span></span> <span><span>ngungen</span></span>"
+			},
+			{
+				"type": "textarea",
+				"id": "subtitle",
+				"label": "Subtitle",
+				"default": "Das musst du beachten wenn du bei treatfuls Produkte bestellst."
+			},
+			{
+				"type": "image_picker",
+				"id": "img_right",
+				"label": "Background Image right"
+			}
+		]
+	}
+{% endschema %}

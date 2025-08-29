@@ -1,7 +1,23 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
-      "type": "main-cart"
+      "type": "main-cart",
+      "settings": {
+        "cart_title": "<span><span>Warenkorb</span></span>",
+        "cart_subtitle": "yay, das ist in deinem Warenkorb:",
+        "image_left": "shopify://shop_images/cart-img-left.png",
+        "image_right": "shopify://shop_images/cart-img-right.png",
+        "continue_shopping_url": "shopify://collections/all"
+      }
     }
   },
   "order": [

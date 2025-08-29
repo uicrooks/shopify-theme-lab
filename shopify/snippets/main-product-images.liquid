@@ -1,0 +1,92 @@
+{% comment %} Optional values {% endcomment %}
+{%- assign product_fields = product.metafields.my_fields -%}
+{%- assign next_product = all_products[product_fields.link_to_next_product] -%}
+
+{%- capture product_images -%}
+	<div class="product-gallery__slider swiper-container" data-product-gallery="gallery" >
+		<div class="swiper-wrapper">
+			{%- for media in product.media -%}
+				<div class="swiper-slide">
+					<picture>
+						<source
+							srcset="{{ media.preview_image | img_url: '1208x' }} 1x, {{ media.preview_image | img_url: '2416x' }} 2x, {{ media.preview_image | img_url: '3624x' }} 3x"
+							media="(min-width: 2560px)">
+
+						<source
+							srcset="{{ media.preview_image | img_url: '1008x' }} 1x, {{ media.preview_image | img_url: '2016x' }} 2x, {{ media.preview_image | img_url: '3024x' }} 3x"
+							media="(min-width: 1920px)">
+
+						<source
+							srcset="{{ media.preview_image | img_url: '672x' }} 1x, {{ media.preview_image | img_url: '1344x' }} 2x, {{ media.preview_image | img_url: '2016x' }} 3x"
+							media="(min-width: 1250px)">
+
+						<source
+							srcset="{{ media.preview_image | img_url: '550x' }} 1x, {{ media.preview_image | img_url: '1100x' }} 2x, {{ media.preview_image | img_url: '1650x' }} 3x"
+							media="(min-width: 991px)">
+
+						<source
+							srcset="{{ media.preview_image | img_url: '458x' }} 1x, {{ media.preview_image | img_url: '916x' }} 2x,{{ media.preview_image | img_url: '1374x' }} 3x"
+							media="(min-width: 575px)">
+						<img
+							src="{{ media.preview_image | img_url: '264x' }}"
+							srcset="{{ media.preview_image | img_url: '264x' }} 1x, {{ media.preview_image | img_url: '528x' }} 2x, {{ media.preview_image | img_url: '792x' }} 3x"
+							alt="{{- media.alt | default: title -}}"
+						/>
+					</picture>
+				</div>
+			{%- endfor -%}
+		</div>
+	</div>
+{%- endcapture -%}
+
+{%- capture product_images_thumbnail -%}
+	<div class="product-gallery__slider-thumbnail swiper-container" data-product-gallery="thumbnail" data-slide-length="{{ product.media.size }}">
+		<div class="swiper-wrapper">
+			{%- for media in product.media -%}
+				<div class="swiper-slide">
+					<picture>
+						<img
+							src="{{ media.preview_image | img_url: 'master' }}"
+							alt="{{- media.alt | default: title -}}"
+						/>
+					</picture>
+				</div>
+			{%- endfor -%}
+		</div>
+	</div>
+{%- endcapture -%}
+
+{%- capture next_product_item -%}
+	<a href="{{- next_product.url -}}" class="next-product">
+		{%- assign next_product_image = next_product.featured_image -%}
+		{%- if next_product_image != blank -%}
+			<picture>
+				<source
+					srcset="{{ next_product_image.src | img_url: '656x' }} 1x, {{ next_product_image.src | img_url: '1312x' }} 2x, {{ next_product_image.src | img_url: '1968x' }} 3x"
+					media="(min-width: 1920px)">
+				<source
+					srcset="{{ next_product_image.src | img_url: '437x' }} 1x, {{ next_product_image.src | img_url: '874x' }} 2x, {{ next_product_image.src | img_url: '1313x' }} 3x"
+					media="(min-width: 991px)">
+				<source
+					srcset="{{ next_product_image.src | img_url: '213x' }} 1x, {{ next_product_image.src | img_url: '426x' }} 2x,{{ next_product_image.src | img_url: '639x' }} 3x"
+					media="(min-width: 767px)">
+				<img src="{{ next_product_image.src | img_url: '171x' }} 1x"
+						 srcset="{{ next_product_image.src | img_url: '171x' }} 1x, {{ next_product_image.src | img_url: '342x' }} 2x,{{ next_product_image.src | img_url: '533x' }} 3x"
+						 alt="{{ next_product_image.alt }}">
+			</picture>
+		{%- endif -%}
+	</a>
+{%- endcapture -%}
+
+<div class="product-gallery">
+	<div class="swiper-container-wrapper opacity-0" data-product-gallery="wrapper">
+		{%- if product_images_thumbnail != blank -%}
+			{{- product_images_thumbnail -}}
+		{%- endif -%}
+		{%- if product_images != blank -%}
+			{{- product_images -}}
+		{%- endif -%}
+	</div>
+
+	{{- next_product_item -}}
+</div>

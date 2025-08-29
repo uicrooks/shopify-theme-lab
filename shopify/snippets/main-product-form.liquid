@@ -1,0 +1,149 @@
+{%- comment -%}
+  @params
+  product - product object *required
+{%- endcomment -%}
+{%- if product != blank -%}
+  {%- assign current_variant = product.selected_or_first_available_variant -%}
+
+  {%- capture no_script -%}
+		<select
+			name="id"
+			class="no-js visually-hidden"
+			data-productid="{{- product.id -}}"
+			data-original-product-select
+		>
+			{%- for variant in product.variants -%}
+				<option
+					{% if variant == current_variant %}selected="selected"{% endif %}
+					{% unless variant.available %}disabled="disabled"{% endunless %}
+					value="{{ variant.id }}"
+				>
+					{{ variant.title }}
+				</option>
+			{%- endfor -%}
+		</select>
+	{%- endcapture -%}
+
+  {%- capture price -%}
+		<span class="product-form__meta-price h3" data-price-wrapper>
+			{%- unless product.compare_at_price_max > product.price -%}
+				{% assign hidden_class = 'hide' %}
+			{%- endunless -%}
+			<s class="product-form__price product-form__price--old {{ hidden_class }}"
+				 data-compare-price>
+				{%- if current_variant.compare_at_price > current_variant.price -%}
+					{% assign sale_class = 'product-form__price--new' %}
+					{{- current_variant.compare_at_price | money -}}
+				{%- endif -%}
+			</s>
+			<span class="product-form__price {{ sale_class }}" data-product-price>
+				{{- current_variant.price | money -}}
+			</span>
+      {%- if current_variant.unit_price_measurement -%}
+        {%- capture unit_price_base_unit -%}
+          
+            {%- if current_variant.available and current_variant.unit_price_measurement -%}
+              {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
+                {{- current_variant.unit_price_measurement.reference_value -}}
+              {%- endif -%}
+              {{ current_variant.unit_price_measurement.reference_unit }}
+            {%- endif -%}
+          
+        {%- endcapture -%}
+        <span class="product-form__unit-price {{ sale_class }}" data-product-price>
+          {{- current_variant.unit_price | money -}} / {{ unit_price_base_unit }}
+        </span>
+      {%- endif -%}
+		</span>
+	{%- endcapture -%}
+
+  {%- capture product_quantity -%}
+		<div class="quantity-element {% unless current_variant.available %}visually-hidden{% endunless %}" data-quantity="wrapper">
+			<button
+				type="button"
+				class="quantity-element__button js-quantity-button"
+				data-quantity="decrement"
+			>
+				{%- render 'icon-quantity-minus' -%}
+			</button>
+
+			<label class="quantity-element__label">
+				<input
+					class="quantity-element__input"
+					type="number"
+					id="Quantity"
+					name="quantity"
+					value="1"
+					min="1"
+					max="99"
+					maxlength="2"
+					data-quantity="input"
+				/>
+			</label>
+
+			<button
+				type="button"
+				class="quantity-element__button js-quantity-button"
+				data-quantity="increment"
+			>
+				{%- render 'icon-quantity-plus' -%}
+			</button>
+		</div>
+	{%- endcapture -%}
+
+  {%- capture form_submit -%}
+    {%- if current_variant.available == true and product.metafields.custom.preorder_date != blank -%}
+      <span class="product-info__shipping">
+        {{ "products.pre_order.shipping_info" | t: date: product.metafields.custom.preorder_date }}
+      </span>
+
+      <input type="hidden" id="PreorderNote" name="properties[{{ 'products.pre_order.note' | t }}]" value="{{ 'products.pre_order.pre_order' | t }}" data-product-property>
+      <input type="hidden" id="PreorderShipping" name="properties[{{ 'products.pre_order.shipping' | t }}]" value="{{ product.metafields.custom.preorder_date }}" data-product-property>
+    {%- endif -%}
+		<button
+			class="button product-form__button"
+			type="submit"
+			name="add"
+      {% unless current_variant.available %}
+        disabled
+      {% endunless %}
+			data-submit-button
+		>
+			<span
+				class="product-form__button-text product-form__button-text--add-to-card"
+				data-submit-button-text
+			>
+				{%- if current_variant.available == true -%}
+          {% if product.metafields.custom.preorder_date != blank %}
+            {{ "products.pre_order.pre_order_atc" | t }}
+          {% else %}
+            {{ "products.product.add_to_cart" | t }}
+          {% endif %}
+				{%- else -%}
+					{{ "products.product.sold_out" | t }}
+				{%- endif -%}
+			</span>
+		</button>
+	{%- endcapture -%}
+
+  {%- form 'product',
+    product,
+    class: 'product-form',
+    data-product-form: '',
+    data-product-handle: product.handle,
+    data-enable-history-state: 'true',
+    data-productid: product.id
+  -%}
+    {{- no_script -}}
+
+    <div class="product-form__footer">
+      <div class="product-form__quantity-wrapper">
+        {{- product_quantity -}}
+      </div>
+
+      {{- price -}}
+    </div>
+
+    {{- form_submit -}}
+  {%- endform -%}
+{%- endif -%}

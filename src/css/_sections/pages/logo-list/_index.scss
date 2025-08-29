@@ -1,0 +1,24 @@
+.logo-list {
+
+  .swiper-wrapper {
+    align-items: center;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

@@ -1,0 +1,196 @@
+<style>
+  @media screen and (min-width: 992px) {
+    #shopify-section-{{ section.id }} {
+      {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+        --section-background-color: {{ section.settings.background_color }};
+      {%- endif -%}
+      {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+        --section-accent-color: {{ section.settings.accent_color }};
+      {%- endif -%}
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    #shopify-section-{{ section.id }} {
+      {%- if section.settings.background_color_mobile != 'rgba(0,0,0,0)' and section.settings.background_color_mobile!= blank -%}
+        --section-background-color: {{ section.settings.background_color_mobile }};
+      {%- else -%}
+        --section-background-color: {{ section.settings.background_color }};
+      {%- endif -%}
+
+      {%- if section.settings.accent_color_mobile != 'rgba(0,0,0,0)' and section.settings.accent_color_mobile != blank -%}
+        --section-accent-color: {{ section.settings.accent_color_mobile }};
+      {%- else -%}
+        --section-accent-color: {{ section.settings.accent_color }};
+      {%- endif -%}
+    }
+  }
+</style>
+
+{% comment %} TODO: Rename this section {% endcomment %}
+<section
+  class="featured-collections"
+  data-section-id="{{- section.id -}}"
+  data-section-type="featured-collections"
+>
+  <div class="featured-collections__container page-width">
+    {%- if section.settings.heading_desktop != blank -%}
+      <h2
+        class="title-bg home-products__title hidden-phone"
+      >
+        {{ section.settings.heading_desktop }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.heading_mobile != blank -%}
+      <h2
+        class="title-bg home-products__title hidden-desktop"
+      >
+        {{ section.settings.heading_mobile }}
+      </h2>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="swiper-container-wrapper">
+        <collection-slider class="swiper" data-slides="{{ section.blocks.size }}">
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              {%- assign block_collection = collections[block.settings.collection] -%}
+              {%- assign collection_image = block.settings.image -%}
+              {%- assign collection_title = block_collection.title -%}
+
+              {%- if block.settings.collection_title != blank -%}
+                {%- assign collection_title = block.settings.collection_title -%}
+              {%- endif -%}
+
+              <div class="custom_slider swiper-slide">
+                {%- if block_collection != blank -%}
+                  <a
+                    href="{{- block_collection.url -}}"
+                    class="{% if collection == block_collection %}active{% endif %}"
+                  >
+                    {%- if collection_image != blank -%}
+                      {{
+                        collection_image
+                        | image_url: width: 800
+                        | image_tag: class: 'hidden-phone', alt: collection_image.alt
+                      }}
+                    {%- else -%}
+                      {{
+                        block_collection.featured_image
+                        | image_url: width: 800
+                        | image_tag: class: 'hidden-phone', alt: block_collection.featured_image.alt
+                      }}
+                    {%- endif -%}
+                    <div class="collection-swiper__link">
+                      <span>{{- collection_title -}}</span>
+                    </div>
+                  </a>
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag }}
+                {%- endif -%}
+              </div>
+            {% endfor %}
+          </div>
+        </collection-slider>
+        <div class="swiper-button-prev">
+        </div>
+        <div class="swiper-button-next">
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collections",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_desktop",
+      "label": "Heading desktop",
+      "default": "<span><span>Produkte</span></span>"
+    },
+    {
+      "type": "text",
+      "id": "heading_mobile",
+      "label": "Heading mobile",
+      "default": "<span><span>Produktübersicht</span></span>"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#dbaaeb"
+    },
+    {
+      "type": "color",
+      "id": "background_color_mobile",
+      "label": "Background Color Mobile",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "accent_color_mobile",
+      "label": "Accent Color Mobile",
+      "default": "#f3587f"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "collection_title",
+          "label": "Collection Title"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collections",
+      "blocks": [
+        {
+          "type": "collection_item",
+          "settings": {}
+        },
+        {
+          "type": "collection_item",
+          "settings": {}
+        },
+        {
+          "type": "collection_item",
+          "settings": {}
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

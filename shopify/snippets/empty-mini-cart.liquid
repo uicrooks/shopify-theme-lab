@@ -1,0 +1,18 @@
+<div class="minicart__section minicart__section--empty js-minicart-items">
+  <section class="minicart-empty">
+    <h2 class="minicart-empty__title">
+      {{ 'cart.general.mini_cart_empty_title' | t }}
+    </h2>
+    <p class="minicart-empty__subtitle text">
+      {{ 'cart.general.mini_cart_empty_subtitle' | t }}
+    </p>
+    {%- if emptyButtonText and emptyButtonUrl -%}
+      <a 
+        href="{{ emptyButtonUrl }}"
+        class="minicart-empty__button button"
+      >
+        {{ emptyButtonText }}
+      </a>
+    {%- endif -%}
+  </section>
+</div>

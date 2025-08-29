@@ -1,0 +1,180 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "faq",
+      "blocks": {
+        "88bfeb12-e232-45e0-a79a-5ecaf80568b5": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Woher bezieht ihr euren Kakao?",
+            "content": "Wir beziehen unseren Kakao von Zotter, einem Familienunternehmen aus Österreich, das den gesamten Herstellungsprozess von der Bohne bis zur Tafel (\"Bean to Bar\") abdeckt. Uns ist es besonders wichtig, dass unser Kakao fair gehandelt wird und höchste Qualität bietet. Zotter steht für nachhaltige und faire Arbeitsbedingungen in den Anbauländern, sodass Schokolade ein sauberes Genussgut ist, das wir mit gutem Gewissen genießen können.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "9df1bced-8623-4ef2-8cbc-8d188c99f220": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Was bedeutet Fairtrade & \"Bean to Bar\"?",
+            "content": "Fairtrade bedeutet, dass die Bauern und Arbeiter in den Anbauländern faire Preise und Löhne erhalten, unter sicheren Arbeitsbedingungen arbeiten und nachhaltige Praktiken gefördert werden. \"Bean to Bar\"-Schokolade bedeutet, dass der gesamte Prozess der Schokoladenherstellung – vom Rohstoff bis zur fertigen Schokoladentafel – in einer Hand liegt. Das sichert nicht nur die Qualität, sondern garantiert auch Transparenz und Fairness in der gesamten Lieferkette.\n\nZusätzlich ist unser Schokolade von Zotter, WTFO-zertifiziert (World Fair Trade Organization). Diese Zertifizierung stellt sicher, dass strenge soziale, ökonomische und ökologische Kriterien erfüllet werden. Das bedeutet, dass unsere Schokolade nicht nur fair gehandelt, sondern auch nachhaltig und ethisch produziert ist.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "e4d77e9c-63cb-47d0-bcbc-3294423a1eea": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Sind eure Schokoriegel wirklich vegan?",
+            "content": "Ja, unsere Schokoriegel sind 100% vegan. Wir verwenden keinerlei tierische Produkte und setzen stattdessen auf hochwertige, pflanzliche Zutaten.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "918472f0-71b3-4d88-a0db-89aa6d2be2a9": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Welche Zutaten verwendet ihr in euren Schokoriegeln?",
+            "content": "Unsere Zutaten sind 100% bio, glutenfrei, sojafrei und 100% natürlich. Wir verzichten auf raffinierten Zucker und andere unnötige Zusatzstoffe, um euch den puren Genuss zu bieten. Wir verwenden ganze Datteln zum Süßen, was bedeutet, dass unsere Riegel voller Ballaststoffe sind und keinen Zucker-High verursachen",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_44aWrN": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Sind Datteln besser zum süßen?",
+            "content": "Datteln sind unsere geheime Zutat für die perfekte Süße! Im Gegensatz zu raffiniertem Zucker bieten Datteln zahlreiche gesundheitliche Vorteile. Sie sind reich an Ballaststoffen, was die Verdauung unterstützt und einen gleichmäßigen Blutzuckerspiegel fördert. Das bedeutet, dass ihr keinen schnellen Zucker-High und den darauffolgenden Absturz erlebt, sondern eine langanhaltende Energiequelle habt.\n\nAußerdem sind Datteln vollgepackt mit Vitaminen und Mineralstoffen wie Kalium, Magnesium und Vitamin B6, die eure allgemeine Gesundheit fördern. Im Gegensatz dazu liefert raffinierter Zucker nur leere Kalorien ohne jeglichen Nährwert. Datteln bringen also nicht nur natürliche Süße, sondern auch eine Menge Nährstoffe, die euch guttun.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_hVzqHg": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Sind eure Verpackungen umweltfreundlich?",
+            "content": "Unsere Verpackungen sind recycelbar, was bedeutet, dass sie zu 100% in den Kreislauf zurückgeführt und wiederverwendet werden können. Das ist zwar nicht perfekt, aber eine echt gute Lösung, um Abfall zu reduzieren und Ressourcen zu schonen. Ursprünglich haben wir auch heimkompostierbare Verpackungen ausprobiert. Leider können diese in Deutschland nicht effektiv in den Recyclingzyklus integriert werden und müssen häufig verbrannt werden, was ihrem ökologischen Nutzen entgegenwirkt​ (European Environment Agency's home page)​​ (Repaq)​.\n\nUnsere recycelbaren Verpackungen sind daher momentan die nachhaltigere Wahl, da sie in den Kreislauf zurückgeführt werden können und somit den Materialverbrauch senken. Wir achten darauf, dass unsere Produkte nicht nur lecker, sondern auch umweltfreundlich sind und setzen auf Verpackungen, die nachhaltig und ressourcenschonend sind. Aus diesem Grund verwenden wir auch die Versandkartonagen, die wir von unserer Produktion erhalten weiter für den Versand an euch- Also nicht wundern, wenn der äußere Karton etwas mitgenommen aussieht, er wurde ja auch wieder verwendet.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_zPkTNw": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Warum sollte ich treatfuls Schokoriegel probieren?",
+            "content": "Unsere Schokoriegel sind nicht nur preisgekrönt im Geschmack (PETA Award als beste vegane Süßware), sondern auch das Ergebnis der Leidenschaft und Hingabe. Hinter treatfuls, stehen wir, Magda und Tugce, stecken unser Herzblut in jede Produktentwicklung und prüfen alles bis ins kleinste Detail, um die bestmöglichen Süßigkeiten zu kreieren. Unsere Süßigkeiten sollen Freude und Genuss bringen – und das komplett ohne Reue. Bei uns ist jede Zutat sorgfältig ausgewählt, jedes Rezept ausgiebig getestet und jede Verpackung durchdacht, um euch den perfekten, nachhaltigen Snack zu bieten. Lecker und nachhaltig ohne Kompromisse – das ist unser Versprechen!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_awEGBw": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wie kann ich sicher sein, dass eure Produkte von hoher Qualität sind?",
+            "content": "Unsere Produkte werden mit viel Liebe und Sorgfalt hergestellt. Durch die Zusammenarbeit mit renommierten Partnern wie Zotter und die Auswahl bester, natürlicher Zutaten stellen wir sicher, dass ihr immer die beste Qualität erhaltet. Zusätzlich sind unsere Produkte Bio-zertifiziert, was bedeutet, dass sie strengen Prüfungen unterliegen, um die höchsten ökologischen Standards zu erfüllen. Außerdem sind wir IFS (International Featured Standards) zertifiziert, was weitere Sicherheit und Qualität in der Herstellung garantiert. Ihr könnt euch also darauf verlassen, dass ihr bei uns nur das Beste bekommt.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_PwYWU7": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Sind eure Produkte wirklich glutenfrei?",
+            "content": "Ja, unsere Schokoriegel sind glutenfrei. Allerdings werden in der gleichen Produktionsstätte auch glutenhaltige Produkte hergestellt. Deshalb müssen wir darauf hinweisen, dass unsere Riegel Spuren von Gluten enthalten können. Keine Sorge, zwischen jeder Produktion wird gründlich gereinigt und geprüft, um sicherzustellen, dass kein Gluten übrig bleibt",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_FqqitK": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Warum sind eure Produkte sojafrei?",
+            "content": "Unsere Schokoriegel sind sojafrei, weil wir als Frauen – die treatfuls gegründet haben – besonders auf die gesundheitlichen Auswirkungen achten. Soja kann negative Einflüsse auf die Hormone haben, daher haben wir beschlossen, darauf zu verzichten.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_DffttF": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Was ist mit dem Erythrit in eurem Schokoüberzug?",
+            "content": "Wir verwenden Erythrit auschließlich in unserem Schokoüberzug, da er den so cremig macht und kalorienarm ist, aber keine Sorge – es sind weniger als 2g pro Riegelpackung. Der normale empfohlene Verzehr für einen Erwachsenen liegt bei etwa 1 Gramm pro Kilogramm Körpergewicht täglich. Das bedeutet für einen durchschnittlichen Erwachsenen mit einem Gewicht von 65 kg bis 70 kg eine empfohlene Menge von 65 bis 70 Gramm Erythrit pro Tag. Unser Erythrit wird aus fermentiertem Bio-Mais hergestellt, was es zu einer natürlichen und nachhaltigen Wahl macht. Erythrit hat den Vorteil, dass es kaum Kalorien hat und den Blutzuckerspiegel nicht beeinflusst, wodurch es perfekt für eine bewusste Ernährung geeignet ist. Außerdem ist es auch für Kinder unbedenklich.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_fFEGkJ": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Habt ihr Sonderaktionen oder Rabatte?",
+            "content": "Ja, wir bieten regelmäßig Sonderaktionen und limitierte Rabatte an. Meldet euch für unseren Newsletter an, um keine Angebote zu verpassen!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_nQB97K": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Kann ich treatfuls Schokoriegel auch verschenken?",
+            "content": "Natürlich! Unsere Schokoriegel sind das perfekte Geschenk für jede Gelegenheit. Mit unseren witzigen Sprüchen auf der Verpackung zaubern sie jedem ein Lächeln ins Gesicht. Wir haben auch tolle Geschenkboxen mit individualisierbaren Grußkarten.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_GcHzmE": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wo kann ich treatfuls Schokoriegel kaufen?",
+            "content": "Ihr könnt unsere Schokoriegel direkt in unserem Onlineshop kaufen. Wir liefern schnell und zuverlässig, sodass ihr euren süßen Genuss bald in den Händen haltet. Außerdem findet ihr uns deutschlandweit bei Alnatura, bei Rewe national in den Riegelregalen, in ausgewählten Bio-Märkten und Edeka Filialen sowie in Budnikowsky Filialen. Ihr könnt uns auch unterstützen, indem ihr in euren Supermärkten nach unseren Riegeln fragt. So helft ihr mit, dass noch mehr Läden uns ins Sortiment aufnehmen.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_YdVAy4": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Stimmt es, dass ihr keine Ahnung vom Food Business habt?",
+            "content": "Ja, das stimmt tatsächlich! Wir, Magda und Tugce, kommen ursprünglich aus der Modebranche. Warum also Schokoriegel? Naja, wir waren auf der Suche nach dem perfekten Snack – lecker, gesund und ohne schlechtes Gewissen. Als wir nichts fanden, das unseren hohen Ansprüchen genügte, beschlossen wir, einfach selbst welche zu machen. Mode und Schokolade – klingt unkonventionell, oder? Aber genau das sind wir! Unsere Reise war ein wildes Abenteuer: von der glamourösen Welt der Mode in die Küche, wo wir unzählige Rezepte ausprobiert und unsere fairen Anteile an Misserfolgen und Erfolgen erlebt haben. Mit viel Herzblut und Liebe zum Detail haben wir treatfuls erschaffen, um Freude und Genuss ohne Kompromisse zu bieten.\n\nWenn du mehr über unsere spannende Geschichte erfahren möchtest, schau doch mal hier vorbei: bei instagram @enjoytreatfuls oder hier unter about us.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        }
+      },
+      "block_order": [
+        "88bfeb12-e232-45e0-a79a-5ecaf80568b5",
+        "9df1bced-8623-4ef2-8cbc-8d188c99f220",
+        "e4d77e9c-63cb-47d0-bcbc-3294423a1eea",
+        "918472f0-71b3-4d88-a0db-89aa6d2be2a9",
+        "faq_item_44aWrN",
+        "faq_item_hVzqHg",
+        "faq_item_zPkTNw",
+        "faq_item_awEGBw",
+        "faq_item_PwYWU7",
+        "faq_item_FqqitK",
+        "faq_item_DffttF",
+        "faq_item_fFEGkJ",
+        "faq_item_nQB97K",
+        "faq_item_GcHzmE",
+        "faq_item_YdVAy4"
+      ],
+      "settings": {
+        "title": "Häufig gestellte Fragen <span>(FAQs)</span>",
+        "subtitle": "Ihr habt gefragt – wir haben die Antworten für euch!",
+        "background_color": "#5359e5",
+        "accent_color": "#2ac2bd",
+        "hover_color": "#f3587f"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

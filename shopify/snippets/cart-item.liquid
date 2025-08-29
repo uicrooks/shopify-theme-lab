@@ -1,0 +1,98 @@
+{%- assign quantity_content = item.product.metafields.custom.quantity_content -%}
+{%- assign weight_content = item.product.metafields.custom.weight_content -%}
+{%- assign unit_name = item.product.metafields.custom.unit_name -%}
+
+<cart-item class="cart-product" class="{% if is_mini_cart %}cart-product--mini{% endif %}">
+  <a href="{{ item.url }}" class="cart-product__image-wrap">
+    <picture>
+      <source
+        srcset="{{ item.image.src | img_url: '190x190' }}"
+        media="(min-width: 2560px)">
+      <source
+        srcset="{{ item.image.src | img_url: '150x150' }}"
+        media="(min-width: 1920px)">
+      <img
+        src="{{ item.image.src | img_url: '120x120' }}"
+        alt="{{ item.image.alt }}"
+      />
+    </picture>
+  </a>
+  <div class="cart-product__info">
+    <div class="cart-product__heading">
+      <div class="cart-product__content">
+        <a class="cart-product__title" href="item.url">
+          {%- if item.product.metafields.custom.short_title != blank -%}
+            {{ item.product.metafields.custom.short_title }}
+          {%- else -%}
+            {{ item.title }}
+          {%- endif -%}
+        </a>
+        {%- if quantity_content != blank and weight_content != blank and unit_name != blank -%}
+          <span class="cart-product__item-content">
+            {{ quantity_content }} x {{ weight_content.value | split: ' ' }} {{ unit_name }}
+          </span>
+        {%- endif -%}
+        
+        <div class="cart-product__properties">
+          {%- for property in item.properties -%}
+            {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
+
+            {%- if property.last == blank or first_character_in_key == '_' -%}
+              {%- continue -%}
+            {%- endif -%}
+
+            <span class="cart-product__item-property text text--sm">{{ property.first }}: {{ property.last }}</span>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- unless is_mini_cart -%}
+        <div class="cart-product__amount">
+          <span class="cart-product__price">{{ item.final_line_price | money }}</span>
+        </div>
+      {%- else -%}
+        <div class="cart-product__amount">
+          {%- if item.variant.compare_at_price -%}
+            <span
+              class="cart-product__price cart-product__price--old"
+            >
+              {{ item.variant.compare_at_price | money }}
+            </span>
+          {%- endif -%}
+          <span
+            class="cart-product__price"
+            class="{% if item.variant.compare_at_price %}cart-product__price--new{% endif %}"
+          >
+            {{ item.final_line_price | money }}
+          </span>
+        </div>
+      {%- endunless -%}
+    </div>
+
+    <div class="cart-product__footer">
+      <div class="cart-product__quantity">
+        <button class="cart-product__quantity-btn cart-product__quantity-btn--minus" type="button"></button>
+
+        <input class="cart-product__quantity-input"
+                type="number"
+                value="{{ item.quantity }}"
+        />
+
+        <button class="cart-product__quantity-btn cart-product__quantity-btn--plus" type="button"></button>
+      </div>
+
+      <button
+        type="button"
+        class="cart-product__remove"
+        data-item-key="{{ item.key }}"
+      >
+        {% if is_mini_cart %}
+          <svg viewBox="0 0 21 22" xmlns="http://www.w3.org/2000/svg" class="icon icon-bin icon-bin"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.44 2.173v.874h4.513v-.874H8.44zm-1.4-.7v1.574H3.813a.709.709 0 00-.086.005.706.706 0 00-.087-.005H1.267a.7.7 0 100 1.4h1.885l.902 15.92a.7.7 0 00.7.66h11.9a.7.7 0 00.698-.661l.89-15.92h1.885a.7.7 0 100-1.4h-2.354a.706.706 0 00-.096.007.709.709 0 00-.097-.006h-3.227V1.473a.7.7 0 00-.7-.7H7.74a.7.7 0 00-.7.7zM4.554 4.447H16.84l-.849 15.18H5.415l-.86-15.18zM6.883 5.59a.65.65 0 00-.612.686l.667 11.654a.65.65 0 101.298-.075L7.569 6.203a.65.65 0 00-.686-.612zm6.915.612a.65.65 0 111.298.074l-.66 11.653a.65.65 0 01-1.298-.073l.66-11.654zm-3.105-.613a.65.65 0 00-.65.65v11.653a.65.65 0 101.3 0V6.24a.65.65 0 00-.65-.65z" fill="currentColor"/></svg>
+        {% else %}
+          <svg class="icon icon-cross icon-cross" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 4L4 20m16.001 0l-16-16" stroke="currentColor" stroke-width="1.5"/></svg>
+        {% endif %}
+      </button>
+    </div>
+  </div>
+</cart-item>
+

@@ -1,0 +1,293 @@
+{%- assign product_title = product.metafields.my_fields.pdp_title -%}
+{%- assign short_title = product.metafields.custom.short_title -%}
+{%- assign quantity_content = product.metafields.custom.quantity_content -%}
+{%- assign weight_content = product.metafields.custom.weight_content -%}
+{%- assign unit_name = product.metafields.custom.unit_name -%}
+
+<section class="product-info">
+	<div class="product-info__container">
+    <div class="product-info__main">
+      {%- unless product.metafields.judgeme.badge contains "No reviews" -%}
+        <div class="product-info__rating product-rating">
+          <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+            {{ product.metafields.judgeme.badge }} 
+          </div>
+        </div>
+      {%- endunless -%}
+
+      {%- if section.settings.show_price -%}
+        <div class="product-form__price">
+          <span class="product-form__meta-price h3" data-price-wrapper>
+            {%- unless product.compare_at_price_max > product.price -%}
+              {% assign hidden_class = 'hide' %}
+            {%- endunless -%}
+            <s class="product-form__price product-form__price--old {{ hidden_class }}"
+              data-compare-price>
+              {%- if current_variant.compare_at_price > current_variant.price -%}
+                {% assign sale_class = 'product-form__price--new' %}
+                {{- current_variant.compare_at_price | money -}}
+              {%- endif -%}
+            </s>
+            <span class="product-form__price {{ sale_class }}" data-product-price>
+              {{- current_variant.price | money -}}
+            </span>
+            {%- if current_variant.unit_price_measurement -%}
+              {%- capture unit_price_base_unit -%}
+                
+                  {%- if current_variant.available and current_variant.unit_price_measurement -%}
+                    {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
+                      {{- current_variant.unit_price_measurement.reference_value -}}
+                    {%- endif -%}
+                    {{ current_variant.unit_price_measurement.reference_unit }}
+                  {%- endif -%}
+                
+              {%- endcapture -%}
+              <span class="product-form__unit-price {{ sale_class }}" data-product-price>
+                {{- current_variant.unit_price | money -}} / {{ unit_price_base_unit }}
+              </span>
+            {%- endif -%}
+          </span>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="product-info__content">
+      {%- form 'product', product,
+        class: 'product-form',
+        data-product-form: '',
+        data-product-handle: product.handle,
+        data-enable-history-state: 'true',
+        data-productid: product.id
+      -%}
+        {%- assign current_variant = product.selected_or_first_available_variant -%}
+
+        <select
+          name="id"
+          class="no-js visually-hidden"
+          data-productid="{{- product.id -}}"
+          data-original-product-select
+        >
+          {%- for variant in product.variants -%}
+            <option
+              {% if variant == current_variant %}selected="selected"{% endif %}
+              {% unless variant.available %}disabled="disabled"{% endunless %}
+              value="{{ variant.id }}"
+            >
+              {{ variant.title }}
+            </option>
+          {%- endfor -%}
+        </select>
+
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'description' -%}
+              {%- if product.description != blank -%}
+                <div class="product-info__description text">{{ product.description }}</div>
+              {%- endif -%}
+
+            {%- when 'buy_button' -%}
+              <div class="product-form__buttons">
+                {%- if block.settings.show_price -%}
+                  <div class="product-form__price">
+                    <span class="product-form__meta-price h3" data-price-wrapper>
+                      {%- unless product.compare_at_price_max > product.price -%}
+                        {% assign hidden_class = 'hide' %}
+                      {%- endunless -%}
+                      <s class="product-form__price product-form__price--old {{ hidden_class }}"
+                        data-compare-price>
+                        {%- if current_variant.compare_at_price > current_variant.price -%}
+                          {% assign sale_class = 'product-form__price--new' %}
+                          {{- current_variant.compare_at_price | money -}}
+                        {%- endif -%}
+                      </s>
+                      <span class="product-form__price {{ sale_class }}" data-product-price>
+                        {{- current_variant.price | money -}}
+                      </span>
+                      {%- if current_variant.unit_price_measurement -%}
+                        {%- capture unit_price_base_unit -%}
+                          
+                            {%- if current_variant.available and current_variant.unit_price_measurement -%}
+                              {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
+                                {{- current_variant.unit_price_measurement.reference_value -}}
+                              {%- endif -%}
+                              {{ current_variant.unit_price_measurement.reference_unit }}
+                            {%- endif -%}
+                          
+                        {%- endcapture -%}
+                        <span class="product-form__unit-price {{ sale_class }}" data-product-price>
+                          {{- current_variant.unit_price | money -}} / {{ unit_price_base_unit }}
+                        </span>
+                      {%- endif -%}
+                    </span>
+                  </div>
+                {%- endif -%}
+
+                {%- if current_variant.available == true and product.metafields.custom.preorder_date != blank -%}
+                  <span class="product-info__shipping">
+                    {{ "products.pre_order.shipping_info" | t: date: product.metafields.custom.preorder_date }}
+                  </span>
+            
+                  <input type="hidden" id="PreorderNote" name="properties[{{ 'products.pre_order.note' | t }}]" value="{{ 'products.pre_order.pre_order' | t }}" data-product-property>
+                  <input type="hidden" id="PreorderShipping" name="properties[{{ 'products.pre_order.shipping' | t }}]" value="{{ product.metafields.custom.preorder_date }}" data-product-property>
+                {%- endif -%}
+
+                <div class="product-form__button-wrapper">
+                  {%- if block.settings.show_quantity_selector -%}
+                    <div class="quantity-element {% unless current_variant.available %}visually-hidden{% endunless %}" data-quantity="wrapper">
+                      <button
+                        type="button"
+                        class="quantity-element__button js-quantity-button"
+                        data-quantity="decrement"
+                      >
+                        {%- render 'icon-quantity-minus' -%}
+                      </button>
+
+                      <input
+                        class="quantity-element__input"
+                        type="number"
+                        id="Quantity"
+                        name="quantity"
+                        value="1"
+                        min="1"
+                        max="99"
+                        maxlength="2"
+                        data-quantity="input"
+                      />
+
+                      <button
+                        type="button"
+                        class="quantity-element__button js-quantity-button"
+                        data-quantity="increment"
+                      >
+                        {%- render 'icon-quantity-plus' -%}
+                      </button>
+                    </div>
+                  {%- endif -%}
+                  <button
+                    class="button product-form__button"
+                    type="submit"
+                    name="add"
+                    data-submit-button
+                  >
+                    <span
+                      class="product-form__button-text product-form__button-text--add-to-card"
+                      data-submit-button-text
+                    >
+                      {%- if current_variant.available == true -%}
+                        {% if product.metafields.custom.preorder_date != blank %}
+                          {{ "products.pre_order.pre_order_atc" | t }}
+                        {% else %}
+                          {{ "products.product.add_to_cart" | t }}
+                        {% endif %}
+                      {%- else -%}
+                        {{ "products.product.sold_out" | t }}
+                      {%- endif -%}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+            {%- when 'countdown' -%}
+              {%- if product.metafields.custom.countdown_date != blank -%}
+                {% assign today_date = 'now' | date: '%s' %}
+                {% assign countdown_date = product.metafields.custom.countdown_date | date: '%s' -%}
+                {% assign remaining_time = countdown_date | minus: today_date %}
+
+                {%- if remaining_time > 0 -%}
+                  {%- assign days = remaining_time | divided_by: 86400 -%}
+                  {%- assign hours = remaining_time | modulo: 86400 | divided_by: 3600 -%}
+                  {%- assign minutes = remaining_time | modulo: 3600 | divided_by: 60 -%}
+                  {%- assign seconds = remaining_time | modulo: 60 | minus: 1 -%}
+
+                  {%- assign days = days | prepend: "0" | slice: -2, 2 -%}
+                  {%- assign hours = hours | prepend: "0" | slice: -2, 2 -%}
+                  {%- assign minutes = minutes | prepend: "0" | slice: -2, 2 -%}
+                  {%- assign seconds = seconds | prepend: "0" | slice: -2, 2 -%}
+
+                  <style>
+                    .countdown {
+                      {%- if block.settings.background_color != 'rgba(0,0,0,0)' -%}
+                        background-color: {{ block.settings.background_color }};
+                      {%- endif -%}
+
+                      {%- if block.settings.color != 'rgba(0,0,0,0)' -%}
+                        color: {{ block.settings.color }};
+                      {%- endif -%}
+                    }
+
+                    .countdown__timer-item-info {
+                      {%- if block.settings.color_time != 'rgba(0,0,0,0)' -%}
+                        color: {{ block.settings.color_time }};
+                      {%- endif -%}
+                    }
+                  </style>
+                  <div class="countdown">
+                    {%- if block.settings.heading != blank -%}
+                      <span class="countdown__heading">{{ block.settings.heading}}</span>
+                    {%- endif -%}
+
+                    <div class="countdown__wrapper">
+                      <countdown-display data-date="{{ product.metafields.custom.countdown_date }}">
+                        <div class="countdown__timer-item">
+                          <span class="countdown__timer-item-info" id="days">{{ days }}</span>
+                          <span class="countdown__timer-item-data">Tage</span>
+                        </div>
+                        :
+                        <div class="countdown__timer-item">
+                          <span class="countdown__timer-item-info" id="hours">{{ hours }}</span>
+                          <span class="countdown__timer-item-data">Std</span>
+                        </div>
+                        :
+                        <div class="countdown__timer-item">
+                          <span class="countdown__timer-item-info" id="minutes">{{ minutes }}</span>
+                          <span class="countdown__timer-item-data">Min</span>
+                        </div>
+                        :
+                        <div class="countdown__timer-item">
+                          <span class="countdown__timer-item-info" id="seconds">{{ seconds }}</span>
+                          <span class="countdown__timer-item-data">Sek</span>
+                        </div>
+                      </countdown-display>
+                    </div>
+                  </div>
+                {%- endif -%}
+              {%- endif -%}
+
+            {% when 'price' %}
+              <div class="product-form__price">
+                <span class="product-form__meta-price h3" data-price-wrapper>
+                  {%- unless product.compare_at_price_max > product.price -%}
+                    {% assign hidden_class = 'hide' %}
+                  {%- endunless -%}
+                  <s class="product-form__price product-form__price--old {{ hidden_class }}"
+                    data-compare-price>
+                    {%- if current_variant.compare_at_price > current_variant.price -%}
+                      {% assign sale_class = 'product-form__price--new' %}
+                      {{- current_variant.compare_at_price | money -}}
+                    {%- endif -%}
+                  </s>
+                  <span class="product-form__price {{ sale_class }}" data-product-price>
+                    {{- current_variant.price | money -}}
+                  </span>
+                  {%- if current_variant.unit_price_measurement -%}
+                    {%- capture unit_price_base_unit -%}
+                      
+                        {%- if current_variant.available and current_variant.unit_price_measurement -%}
+                          {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
+                            {{- current_variant.unit_price_measurement.reference_value -}}
+                          {%- endif -%}
+                          {{ current_variant.unit_price_measurement.reference_unit }}
+                        {%- endif -%}
+                      
+                    {%- endcapture -%}
+                    <span class="product-form__unit-price {{ sale_class }}" data-product-price>
+                      {{- current_variant.unit_price | money -}} / {{ unit_price_base_unit }}
+                    </span>
+                  {%- endif -%}
+                </span>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      {%- endform -%}
+    </div>
+  </div>
+</section>

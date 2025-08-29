@@ -1,0 +1,24 @@
+textarea,
+.textarea {
+  width: 100%;
+  min-height: 100px;
+  max-height: 200px;
+  padding: 16px 10px 16px 0;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: 0;
+  background: transparent;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #ffffff;
+  box-shadow: none;
+  resize: none;
+
+  &::placeholder {
+    color: #ffffff;
+  }
+
+  @media #{$no-fw} {
+    font-size: 1.1vw;
+  }
+}

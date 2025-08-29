@@ -1,42 +1,156 @@
-<!doctype html>
-<html lang="{{ request.locale.iso_code }}">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html> 
+<html class="no-js" lang="{{- shop.locale -}}">
+	<head>
+{% render "load-metafields" %}
 
-    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-    <link rel="preload" href="{{ 'bundle.css' | asset_url }}" as="style">
-    <link rel="preload" href="{{ 'bundle.js' | asset_url }}" as="script">
-
-    {% if settings.favicon %}
-      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="theme-color" content="{{- settings.color_button -}}">
+    {% if product.metafields.custom.hide_product %}
+      <meta name="robots" content="noindex">
     {% endif %}
+      	<!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-NFCVWZ5');</script>
+        <!-- End Google Tag Manager -->
+		<link rel="canonical" href="{{- canonical_url -}}">
 
-    <title>{{ page_title | escape }}</title>
+{% render 'ultimate-datalayer' %}
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+      
+		{%- if settings.favicon != blank -%}
+			<link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+		{%- endif -%}
 
-    {{ 'bundle.css' | asset_url | stylesheet_tag }}
+		{%- capture seo_title -%}
+			{%- if template == 'search' and search.performed == true -%}
+				{{ 'general.search.heading' | t: count: search.results_count }}: {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+			{%- else -%}
+				{{ page_title }}
+			{%- endif -%}
 
-    <!-- header hook for Shopify plugins -->
-    {{ content_for_header }}
-  </head>
+			{%- if current_tags -%}
+				{%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+			{%- endif -%}
 
-  <body>
-    <div {% unless request.page_type == 'captcha' %}id="app"{% endunless %}>
-      {% section 'header' %}
+			{%- if current_page != 1 -%}
+				&ndash; {{ 'general.meta.page' | t: page: current_page }}
+			{%- endif -%}
 
-      <main id="main" role="main">
-        {{ content_for_layout }}
-      </main>
+			{%- assign escaped_page_title = page_title | escape -%}
+			{%- unless escaped_page_title contains shop.name -%}
+				&ndash; {{ shop.name }}
+			{%- endunless -%}
+		{%- endcapture -%}
 
-      {% section 'footer' %}
-    </div>
+		<title>
+			{{- seo_title | strip -}}
+		</title>
 
-    <!-- webpack bundle -->
-    <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
-  </body>
+		{%- if page_description -%}
+			<meta name="description" content="{{- page_description | escape -}}">
+		{%- endif -%}
+
+		{%- render 'social-meta-tags' -%}
+		{%- render 'head-theme-meta' with layout: 'theme' -%}
+
+		{%- render 'custom-variables.css' -%}
+    {%- render 'css-variables' -%}
+
+		{% render 'social-meta-tags' %}
+
+    {{ 'FoundersGrotesk-Regular.woff2' | asset_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+    {{ 'FoundersGrotesk-Bold.woff2' | asset_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+    {{ 'FoundersGroteskMono-Medium.woff2' | asset_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
+    {% render 'fonts' %}
+
+    {{ 'bundle.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'custom.static.css' | asset_url | stylesheet_tag: preload: true }}
+
+		{%- if template.directory == 'customers' -%}
+			<script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+		{%- endif -%}
+    <script src="{{- 'bundle.js' | asset_url -}}" defer="defer"></script>
+      
+     <!-- START SCRIPT --><script id="wgs-scripttag-prod" src="/apps/ap/static/scripts/dist/wgs.bundle.js?shop=treatfuls.myshopify.com&cart_attr_disabled=false&line_items_disabled=false&shopify_app_proxy_enabled=true&wgs_mode=4" async=true></script><style>#customerReferenceId { display: none; }</style><!-- END SCRIPT -->{{ content_for_header }}
+
+		<script>
+			const LOCATION_PATHNAME = window.location.pathname;
+			if ( LOCATION_PATHNAME === '/collections' || LOCATION_PATHNAME === '/collections/') {
+				location.href = "{{ shop.url }}/collections/all";
+			}
+		</script>
+     {% render 'judgeme_core' %}
+     {% render 'translations' %}
+	</head>
+
+	{%- assign body_classes = "template " -%}
+	{%- capture template_class -%}
+		{%- if request.path contains 'challenge' -%}template-challenge {%- else -%}template-{{ template.name | handle }} {%- endif -%}
+		{% if template.suffix != blank %}template-{{ template.name | handle }}--{{ template.suffix | handle }}{% endif %}
+	{%- endcapture -%}
+
+	{%- assign body_classes = body_classes | append: template_class -%}
+  {%- assign ressource = '' -%}
+
+  {% if template.name == 'product' %}
+    {% assign resource = product %}
+  {% elsif template.name == 'collection' %}
+    {% assign resource = collection %}
+  {% elsif template.name == 'page' %}
+    {% assign resource = page %}
+  {% endif %}
+
+  {%- render 'color-scheme', resource: resource -%}
+
+	<body class="{{ body_classes }}">
+      	<!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFCVWZ5"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+    {% sections 'header-group' %}
+
+		{{ content_for_layout }}
+
+		{%- section 'footer' -%}
+
+		{%- section 'main-cart-mini' -%}
+
+		{%- if template.directory == 'customers' -%}
+			<script src="{{- 'shopify_common.js' | shopify_asset_url -}}" defer></script>
+		{%- endif -%}
+	    {%- section 'global-newsletter-popup' -%}
+        {% include "bc_banner" %}
+</body>
 </html>
+
+{%- if product.metafields.custom.redirect != blank -%}
+  <script>
+    window.location = '{{ product.metafields.custom.redirect }}';
+  </script>
+{%- endif -%}
+
+
+<style>
+  @media screen and (min-width: 800px) {
+
+  .jdgm-carousel-wrapper .jdgm-carousel-item {
+
+    width: 48.5% !important;
+}
+}
+
+  @media screen and (max-width: 600px) {
+
+  .jdgm-carousel-wrapper .jdgm-carousel-item {
+
+    width: 95% !important;
+}
+}
+
+</style>
+

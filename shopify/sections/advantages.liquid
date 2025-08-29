@@ -1,0 +1,143 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{% assign sec_sett = section.settings %}
+
+{%- capture slider -%}
+	{%- if section.blocks.size > 0 -%}
+		<div class="advantages__gallery">
+			<div class="swiper" data-advantages-slider>
+				<div class="swiper-wrapper">
+					{%- for block in section.blocks -%}
+						{%- assign image = block.settings.image -%}
+						{%- assign text = block.settings.text -%}
+
+						<div class="swiper-slide advantages__slide">
+							<div class="advantage-item">
+								{%- if image != blank -%}
+									<img class="advantage-item__img"
+											 src="{{- image | img_url: '100x' -}}"
+											 srcset="{{ image | img_url: '100x' }} 1x, {{ image | img_url: '200x' }} 2x, {{ image | img_url: '300x' }} 3x"
+											 alt="{{- text -}}"
+									>
+								{%- endif -%}
+								{%- if text != blank -%}
+									<h3 class="advantage-item__title">{{- text -}}</h3>
+								{%- endif -%}
+							</div>
+						</div>
+					{%- endfor -%}
+				</div>
+			</div>
+		</div>
+	{%- endif -%}
+{%- endcapture -%}
+
+
+
+<section
+	class="advantages"
+	data-section-id="{{- section.id -}}"
+	data-section-type="advantages"
+>
+  <div class="content-wrapper">
+    <div class="container container--sm">
+      {%- if product.metafields.custom.comparison_slider_without_wrap != blank and product.metafields.custom.comparison_slider_with_wrap != blank -%}
+        {% render 'comparison-slider' %}
+      {%- endif -%}
+      <div class="title-wrapper">
+        {%- if sec_sett.title != blank or sec_sett.subtitle != blank -%}       
+          {%- if sec_sett.title != blank -%}
+            <h2 class="title-wrapper__title title-bg">{{- sec_sett.title -}}</h2>
+          {%- endif -%}
+          {%- if sec_sett.subtitle != blank -%}
+            <p class="title-wrapper__subtitle">{{- sec_sett.subtitle -}}</p>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+
+    {{ slider }}
+  </div>
+
+  <div class="base-triangular-line">
+		{%- render 'icon-triangular-line' -%}
+	</div>
+</section>
+
+{% schema %}
+{
+	"name": "Advantages",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "Unsere Riegel bieten <span><span>viele Vorteile</span></span>"
+		},
+		{
+			"type": "text",
+			"id": "subtitle",
+			"label": "Subtitle",
+			"default": "Hier ist Platz für eine kurze Beschreibung eurer Vorteile."
+		},
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#dbaaeb"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    }
+	],
+	"blocks": [
+		{
+			"type": "advantage_item",
+			"name": "Advantage item",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image"
+				},
+				{
+					"type": "text",
+					"id": "text",
+					"label": "Text"
+				}
+			]
+		}
+	],
+  "presets": [
+    {
+      "name": "Advantages"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-guidelines",
+      "blocks": {
+        "7d482bfa-9d2a-4518-a41c-e9d9dd2f0e88": {
+          "type": "guidelines_item",
+          "settings": {
+            "page_type": "imprint",
+            "title": "<span><span>Impressum</span></span> und Richtlinien",
+            "subtitle": "Informationen zum Impressum und anderen Richtlinien."
+          }
+        },
+        "b5eb851f-5691-4766-8ddf-bccc588ea482": {
+          "type": "guidelines_item",
+          "settings": {
+            "page_type": "data-protection",
+            "title": "<span><span>Datenschutz</span></span> und Richtlinien",
+            "subtitle": "Informationen zu Datenschutz und anderen Richtlinien."
+          }
+        }
+      },
+      "block_order": [
+        "7d482bfa-9d2a-4518-a41c-e9d9dd2f0e88",
+        "b5eb851f-5691-4766-8ddf-bccc588ea482"
+      ],
+      "settings": {
+        "img_left": "shopify://shop_images/book-open-4x.png",
+        "img_right": "shopify://shop_images/books-4x.png"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

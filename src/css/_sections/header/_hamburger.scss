@@ -1,0 +1,106 @@
+.hamburger {
+	position: relative;
+	overflow: visible;
+	z-index: 4;
+	display: none;
+	margin: 0;
+	padding: 4px 4px 0 4px;
+	border: 0;
+	background-color: transparent;
+	font: inherit;
+	text-transform: none;
+	color: inherit;
+	cursor: pointer;
+	transition-property: opacity, filter;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+
+	@media #{$m-xl} {
+		display: flex;
+	}
+}
+
+.hamburger-box {
+	position: relative;
+	display: inline-block;
+	width: 26px;
+	height: 24px;
+}
+
+.hamburger-inner {
+	position: absolute;
+	top: 50%;
+	display: block;
+	width: 26px;
+	height: 2px;
+	margin-top: -2px;
+	transition-property: transform;
+	transition-duration: 0.15s;
+	transition-timing-function: ease;
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		display: block;
+		width: 26px;
+		height: 2px;
+		transition-property: transform;
+		transition-duration: 0.15s;
+		transition-timing-function: ease;
+	}
+
+	&::before {
+		top: -7px;
+	}
+
+	&::after {
+		bottom: -7px;
+	}
+}
+
+.hamburger-inner,
+.hamburger-inner::before,
+.hamburger-inner::after {
+	background-color: #fff;
+}
+
+.hamburger--spin {
+	.hamburger-inner {
+		transition-duration: 0.22s;
+		transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+		&::before {
+			transition: top 0.1s 0.25s ease-in, opacity 0.1s ease-in;
+		}
+
+		&::after {
+			transition: bottom 0.1s 0.25s ease-in,
+				transform 0.22s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+		}
+	}
+
+	&.is-active {
+		.hamburger-inner {
+			background-color: #fff;
+			transform: rotate(225deg);
+			transition-delay: 0.12s;
+			transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+			&::before {
+				top: 0;
+				opacity: 0;
+				background-color: #fff;
+				transition: top 0.1s ease-out, opacity 0.1s 0.12s ease-out;
+			}
+
+			&::after {
+				bottom: 0;
+				background-color: #fff;
+				transform: rotate(-90deg);
+				transition: bottom 0.1s ease-out,
+					transform 0.22s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+			}
+		}
+	}
+}

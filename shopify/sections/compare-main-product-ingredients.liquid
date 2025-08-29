@@ -1,0 +1,101 @@
+{%- assign sec_sett = section.settings -%}
+{%- assign field_product = product.metafields.my_fields -%}
+
+{%- assign ingredient_counter = 0 -%}
+{%- for number in (1..3) -%}
+{%- capture ingredient_image -%}ingredients_image_{{ number }}{%- endcapture -%}
+{%- capture ingredient_svg -%}ingredients_circle_{{ number }}{%- endcapture -%}
+
+{%- if field_product[ingredient_image] and field_product[ingredient_svg] -%}
+{%- assign ingredient_counter = ingredient_counter | plus: 1 -%}
+{%- break -%}
+{%- endif -%}
+{%- endfor -%}
+
+{%- capture slider -%}
+{%- if ingredient_counter > 0 -%}
+<div class="ingredients__gallery">
+	<div class="swiper" data-ingredients-slider>
+		<div class="swiper-wrapper">
+			{%- for number in (1..3) -%}
+			{%- capture ingredient_image -%}ingredients_image_{{ number }}{%- endcapture -%}
+			{%- capture ingredient_svg -%}ingredients_circle_{{ number }}{%- endcapture -%}
+
+			{%- assign image = field_product[ingredient_image] -%}
+			{%- assign icon_name = field_product[ingredient_svg] -%}
+			{%- assign full_icon_name = 'icon-circle-' | append: icon_name -%}
+
+			{%- if image or icon_name -%}
+			<div class="swiper-slide ingredients__slide">
+				<div class="ingredients-item">
+					{%- if image != blank -%}
+					<picture>
+						<source
+						srcset="{{ image | img_url: '180x' }} 1x, {{ image | img_url: '360x' }} 2x, {{ image | img_url: '540x' }} 3x"
+						media="(min-width: 2560px)">
+						<source
+						srcset="{{ image | img_url: '120x' }} 1x, {{ image | img_url: '240x' }} 2x, {{ image | img_url: '360x' }} 3x"
+						media="(min-width: 1920px)">
+						<img class="ingredients-item__img"
+						src="{{- image | img_url: '60x' -}}"
+						srcset="{{ image | img_url: '60x' }} 1x, {{ image | img_url: '120x' }} 2x, {{ image | img_url: '180x' }} 3x"
+						alt="{{ ingredient_svg }}">
+					</picture>
+					{%- endif -%}
+
+					{%- if icon_name != blank -%}
+					{%- include full_icon_name -%}
+					{%- endif -%}
+				</div>
+			</div>
+			{%- endif -%}
+			{%- endfor -%}
+		</div>
+	</div>
+</div>
+{%- endif -%}
+{%- endcapture -%}
+
+<section
+class="ingredients"
+data-section-id="{{- section.id -}}"
+data-section-type="ingredients"
+>
+<div class="container ingredients__container">
+	{%- if field_product.ingredients_title != blank -%}
+	<h2 class="ingredients__title title-bg">{{- field_product.ingredients_title -}}</h2>
+	{%- elsif sec_sett.title != blank -%}
+	<h2 class="ingredients__title title-bg">{{- sec_sett.title -}}</h2>
+	{%- endif -%}
+
+	{{ slider }}
+
+
+
+	<div class="accordian_tabber_content product-ingredients">
+    {{ product.metafields.custom.ingredients }}
+  </div>
+
+</div>
+<div class="ingredients__bg-line base-triangular-line">
+	{%- render 'icon-triangular-line' -%}
+</div>
+</section>
+
+
+
+
+{% schema %}
+{
+	"name": "Product ingredients",
+	"settings": [
+	{
+		"type": "text",
+		"id": "title",
+		"label": "Title",
+		"info": "Need wrap words to see background, <span><span>example</span></span>",
+		"default": "Wir verwenden nur <span><span>beste Zutaten</span></span>"
+	}
+	]
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-header {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --header-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --header-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-footer{
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --footer-accent-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --footer-background-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign title = section.settings.title -%}
+{%- assign subtitle = section.settings.subtitle -%}
+{%- assign link_text = section.settings.link_text -%}
+
+<section
+	class="customer customer--register"
+	data-section-id="{{- section.id -}}"
+	data-section-type="customer-register"
+>
+	<div class="content-wrapper">
+		<div class="title-wrapper">
+			<h1 class="title-wrapper__title title-bg">{{ title }}</h1>
+
+			<p class="title-wrapper__subtitle">{{ subtitle }}</p>
+		</div>
+		<div class="customer__base-container">
+			{% form 'create_customer', class: 'form form--base' %}
+				{%- if form.errors -%}
+					<div class="form-message form-message--error">
+						{{ form.errors | default_errors }}
+					</div>
+				{%- endif -%}
+
+				<label class="label label--half">
+					<span class="sr-only">{{ 'customer.register.first_name' | t }}</span>
+					<input
+						type="text"
+						name="customer[first_name]"
+						placeholder="{{ 'customer.register.first_name' | t }}"
+						id="FirstName"
+						class="input input--blue"
+						{% if form.first_name %}value="{{ form.first_name }}"{% endif %}
+						autofocus
+					>
+				</label>
+
+				<label class="label label--half">
+					<span class="sr-only">{{ 'customer.register.last_name' | t }}</span>
+					<input
+						type="text"
+						name="customer[last_name]"
+						placeholder="{{ 'customer.register.last_name' | t }}"
+						id="LastName"
+						class="input input--blue"
+						{% if form.last_name %}value="{{ form.last_name }}"{% endif %}
+					>
+				</label>
+
+				<label class="label">
+					<span class="sr-only">{{ 'customer.register.email' | t }}</span>
+					<input
+						type="email"
+						name="customer[email]"
+						placeholder="{{ 'customer.register.email' | t }}"
+						id="Email"
+						class="input input--blue {% if form.errors contains 'email' %} input--error{% endif %}"
+						{% if form.email %} value="{{ form.email }}"{% endif %}
+						autocorrect="off"
+						autocapitalize="off"
+					>
+				</label>
+
+				<label class="label">
+					<span class="sr-only">{{ 'customer.register.password' | t }}</span>
+					<input
+						type="password"
+						name="customer[password]"
+						placeholder="{{ 'customer.register.password' | t }}"
+						id="CreatePassword"
+						class="input input--blue {% if form.errors contains 'password' %} input--error{% endif %}"
+					>
+				</label>
+
+				<button type="submit" class="button button--space button--fw">
+					{{ 'customer.register.submit' | t }}
+				</button>
+
+				<a href="/account/login" class="link-underline text">{{ link_text }}</a>
+			{% endform %}
+		</div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "Register",
+	"class": "jsAccounts",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "<span><span>Erstelle</span></span> jetzt einen <span><span>Account</span></span>"
+		},
+		{
+			"type": "text",
+			"id": "subtitle",
+			"label": "Subtitle",
+			"default": "Erstelle ein Konto, um deine Bestellungen zu verfolgen"
+		},
+		{
+			"type": "text",
+			"id": "link_text",
+			"label": "Footer link text",
+			"default": "Du hast einen Account? Anmelden"
+		},
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#5359e5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    }
+	]
+}
+{% endschema %}

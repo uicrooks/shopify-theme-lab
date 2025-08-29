@@ -1,0 +1,6 @@
+{%- layout none -%}
+{%- capture result -%}
+	{%- include 'object-product-json' with product: product, include_recharge: true -%}
+{%- endcapture -%}
+
+<script data-json-response type="application/json">{{- result -}}</script>

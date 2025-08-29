@@ -1,0 +1,84 @@
+/* -- quantity box -- */
+.quantity-element {
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 28px;
+	border: none;
+}
+
+.quantity-element__label {
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.quantity-element__input {
+	width: 100%;
+	min-height: 28px;
+	padding: 0;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 20px;
+	text-align: center;
+	color: #ffffff;
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		margin: 0;
+		-webkit-appearance: none;
+	}
+
+	&[type="number"] {
+		-moz-appearance: textfield;
+	}
+
+	&:focus {
+		border-color: transparent;
+	}
+
+	@media #{$no-fw} {
+		font-size: 1.5vw;
+		line-height: 0.9;
+	}
+}
+
+.quantity-element__button {
+	flex-shrink: 0;
+	width: 24px;
+	height: 28px;
+	padding: 0;
+	background-color: transparent;
+	transition: color 0.3s ease;
+
+	.icon {
+		pointer-events: none;
+		width: 100%;
+		height: 100%;
+		color: #ffffff;
+	}
+
+	&.disabled,
+	&[disabled] {
+		&:hover {
+			cursor: auto;
+		}
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:hover {
+		background-color: transparent;
+		cursor: pointer;
+	}
+
+	@media #{$no-fw} {
+		width: 1.1vw;
+		height: 1.16vw;
+	}
+}

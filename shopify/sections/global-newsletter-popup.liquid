@@ -1,0 +1,282 @@
+{% comment %}
+	Error state:
+	/?contact%5Btags%5D=prospect%2Cnewsletter&form_type=customer
+
+	Success:
+	/?customer_posted=true
+{% endcomment %}
+
+{%- assign enable_popup 		= section.settings.enable_popup -%}
+{%- assign title 				= section.settings.title -%}
+{%- assign description 			= section.settings.description -%}
+{%- assign image 				= section.settings.image -%}
+{%- assign image_mobile 	= section.settings.image_mobile -%}
+{%- assign button_text 	= section.settings.button_text -%}
+{%- assign under_button_text 	= section.settings.under_button_text -%}
+{%- assign thank_you_message 	= section.settings.thank_you_message -%}
+
+{% if image_mobile == blank %}
+	{%- assign image_mobile = section.settings.image -%}
+{% endif %}
+
+{% comment %} {% form 'customer' %}
+	<div class="input-group">
+		<input type="text" name="contact[first_name]" placeholder="Ім'я" required>
+		<input type="email" name="contact[email]" placeholder="Електронна адреса" required>
+		<input type="date" name="contact[dob]" id="dob">
+		<button type="submit" class="btn">Підписатися</button>
+	</div>
+{% endform %}
+
+{% form 'create_customer', return_to: routes.all_products_collection_url %}
+  <!-- form content -->
+{% endform %} {% endcomment %}
+
+{%- unless request.path contains "/challenge" -%}
+	{%- if enable_popup -%}
+		{%- form 'customer', id: "newsletter-popup" -%}
+			{%- assign name_error 		= false -%}
+			{%- assign email_error 		= false -%}
+			{%- assign has_errors 		= false -%}
+			{%- assign email_error_message 	= "" -%}
+
+			{%- unless form.posted_successfully? -%}
+				{%- if form.email != blank -%}
+					{%- assign has_errors 			= true -%}
+					{%- assign email_error 			= true -%}
+					{%- assign email_error_message 	= "Something went wrong. Please, try again." -%}
+				{%- endif -%}
+			{%- endunless -%}
+
+			{%- if form.errors != blank -%}
+				{%- for field in form.errors -%}
+					{%- assign downcased_field_name = field | downcase -%}
+
+					{%- if downcased_field_name == "first_name" -%}
+						{%- assign name_error = true -%}
+						{%- assign has_errors = true -%}
+					{%- endif -%}
+
+					{%- if downcased_field_name == "email" -%}
+						{%- assign email_error = true -%}
+						{%- assign has_errors = true -%}
+						{%- capture email_error_message -%}
+							Email field {{ form.errors.messages["email"] }}
+						{%- endcapture -%}
+					{%- endif -%}
+				{%- endfor -%}
+			{%- endif -%}
+
+			<section
+				class="popup newsletter-popup {% if form.posted_successfully? %}newsletter-popup--success{% endif %}"
+				data-section-id="{{- section.id -}}"
+				data-section-type="newsletter-popup"
+				data-errors="{{- has_errors -}}"
+				data-success="{{- form.posted_successfully? -}}"
+				data-customer="{%- if customer -%}true{%- else -%}false{%- endif -%}"
+			>
+				<div class="popup__container newsletter-popup__container" data-close>
+
+					<div class="popup__content-wrapper newsletter-popup__content-wrapper" data-wrapper>
+						<a href="#" class="popup__close-button newsletter-popup__close" data-close>
+							{%- render 'icon-close' -%}
+						</a>
+
+						<div class="newsletter-popup__image-wrapper ">
+
+							<img
+								class="newsletter-popup__image mobile"
+								src="{{- image_mobile | img_url: "360x" -}}"
+								srcset="{{ image_mobile | img_url: "360x" }} 1x, {{ image_mobile | img_url: "720x" }} 2x, {{ image_mobile | img_url: "1080x" }} 3x"
+								alt="{{- image_mobile.alt -}}"
+							>
+							<img
+								class="newsletter-popup__image"
+								src="{{- image | img_url: "360x" -}}"
+								srcset="{{ image | img_url: "360x" }} 1x, {{ image | img_url: "720x" }} 2x, {{ image | img_url: "1080x" }} 3x"
+								alt="{{- image.alt -}}"
+							>
+						</div>
+
+						<div class="popup__content">
+							{%- if form.posted_successfully? -%}
+								<h2 class="newsletter-popup__success">
+									{{- thank_you_message -}}
+								</h2>
+							{%- else -%}
+								{%- if title != blank -%}
+									<h2 class="newsletter-popup__title">
+										{{- title -}}
+									</h2>
+								{%- endif -%}
+
+								{%- if description != blank -%}
+									<div class="newsletter-popup__description">
+										{{- description -}}
+									</div>
+								{%- endif -%}
+
+								<div class="newsletter-popup__form">
+									<input type="hidden" name="form_type" value="customer">
+									<input type="hidden" name="contact[tags]" value="newsletter">
+
+									<div class="field newsletter-popup__field {% if email_error %}field--error{% endif %}">
+
+										<label class="input-label newsletter-popup__label" for="newsletter-popup-email">
+										</label>
+
+										<input
+											id="newsletter-popup-email"
+											class="input {% if email_error %}input--error{% endif %} newsletter-popup__input"
+											type="email"
+											name="contact[email]"
+											pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.([a-zA-Z0-9-]+)*$"
+											value="{{- form.email -}}"
+											required
+											placeholder="{{ 'sections.newsletter.email' | t }}*"
+										>
+
+										{%- if email_error -%}
+											<div class="newsletter-popup__field-message">
+												{{- email_error_message -}}
+											</div>
+										{%- endif -%}
+									</div>
+
+									<div class="field newsletter-popup__field {% if name_error %}field--error{% endif %}">
+										<label class="input-label newsletter-popup__label" for="newsletter-popup-name">
+											{{ 'sections.newsletter.name' | t }} <span>*</span>
+										</label>
+
+										<input
+											id="newsletter-popup-name"
+											class="input {% if name_error %}input--error{% endif %} newsletter-popup__input"
+											type="text"
+											pattern="[a-zA-Z\s]+"
+											name="contact[first_name]"
+											value="{{- form.first_name -}}"
+											required
+											placeholder="{{ 'sections.newsletter.name' | t }} *"
+										>
+
+										{%- if name_error -%}
+											<div class="newsletter-popup__field-message">
+												Name field {{- form.errors.messages["first_name"] -}}
+											</div>
+										{%- endif -%}
+									</div>
+
+									<div class="field newsletter-popup__field">
+										<label class="input-label newsletter-popup__label" for="newsletter-popup-dob">
+											{{ 'sections.newsletter.b_date' | t }} <span>(optional)</span>
+										</label>
+
+										<input
+											{% comment %} id="dob" {% endcomment %}
+											id="newsletter-popup-dob"
+											name="contact[dob]"
+											class="input newsletter-popup__input"
+											type="text"
+											value="{{- form.dob -}}"
+											placeholder="{{ 'sections.newsletter.b_date' | t }} (optional)" onfocus="(this.type='date')"
+											onblur="(this.type='text')"
+										>
+									</div>
+
+									<button class="button newsletter-popup__button" type="submit">
+										{{ button_text }}
+									</button>
+
+									{% comment %} <button type="submit" class="button contact-form__button" >Nachricht senden</button> {% endcomment %}
+								</div>
+
+								{%- if under_button_text != blank -%}
+									<div class="newsletter-popup__footer-text">
+										{{- under_button_text -}}
+									</div>
+								{%- endif -%}
+							{%- endif -%}
+
+							<div class="newsletter-popup__border-border">
+								<svg class="mobile" width="358" height="16" viewBox="0 0 358 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path fill="currentColor" d="M0 16L0.00656557 9.03902e-06L35.828 15.9999L71.6494 9.03902e-06L107.471 15.9999L143.292 9.03902e-06L179.114 15.9999L214.935 9.03902e-06L250.756 15.9999L286.578 9.03902e-06L322.399 15.9999L358 0V6.39998V15.9999L322.399 15.9999L250.756 15.9999L179.114 15.9999L107.471 15.9999L35.828 15.9999L0 16Z"/>
+								</svg>
+
+								<svg viewBox="0 0 31 1008" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+									<path d="M31 0L4.07204e-05 72.0317L31 144.063L3.44232e-05 216.095L31 288.127L2.8126e-05 360.158L31 432.19L2.18288e-05 504.222L31 576.253L1.55316e-05 648.285L31 720.317L9.23437e-06 792.348L31 864.38L2.93717e-06 936.412L31 1008L18.6 1008L-1.92061e-07 1008L2.93717e-06 936.412L9.23437e-06 792.348L1.55316e-05 648.285L2.18288e-05 504.222L2.8126e-05 360.158L3.44232e-05 216.095L4.07204e-05 72.0317L4.3869e-05 -1.35505e-06L31 0Z" fill="currentColor"/>
+								</svg>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		{%- endform -%}
+	{%- endif -%}
+{%- endunless -%}
+{% schema %}
+  {
+	"name": "Newsletter Popup",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Newsletter Popup"
+		},
+		{
+			"type": "checkbox",
+			"id": "enable_popup",
+			"label": "Enable newsletter popup?"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Image",
+			"info": "Image is for desktop view only"
+		},
+		{
+			"type": "image_picker",
+			"id": "image_mobile",
+			"label": "Image (mobile)",
+			"info": "Image is for mobile view only"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Heading",
+			"info": "*Recommended maximum character count of 100"
+		},
+		{
+			"type": "richtext",
+			"id": "description",
+			"label": "Content",
+			"info": "*Recommended maximum character count of 180"
+		},
+		{
+			"type": "text",
+			"id": "button_text",
+			"label": "Button text",
+			"default": "Jetzt Probierpaket gewinnen!"
+		},
+		{
+			"type": "richtext",
+			"id": "under_button_text",
+			"label": "Under button text"
+		},
+		{
+			"type": "header",
+			"content": "Thank You popup"
+		},
+		{
+			"type": "text",
+			"id": "thank_you_message",
+			"label": "Message",
+			"default": "Thank your for signing up to our newsletter!"
+		}
+	]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

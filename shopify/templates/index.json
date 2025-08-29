@@ -1,14 +1,301 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "vue-examples": {
-      "type": "vue-examples"
+    "hero_GRwq8M": {
+      "type": "hero",
+      "name": "Image with text overlay",
+      "settings": {
+        "desktop_image": "shopify://shop_images/treatfuls_backtoschool_banner_desktop_cf106ed9-a5c3-48fa-8b1d-48ab3cdde303.svg",
+        "desktop_image_height": "adapt",
+        "mobile_image": "shopify://shop_images/heroSection_Back_to_scool__mobile.png",
+        "mobile_image_height": "adapt",
+        "vertical_alignment": "middle",
+        "horizontal_alignment": "center",
+        "max_width": "100%",
+        "max_width_px": 700,
+        "title": "✏️ back to <span>School<span></span></span>",
+        "text": "<p>Die coolste Schultüte seit es Pausen <br/>gibt: limited Edition im treatfuls-Design,<br/>gefüllt mit unseren leckeren, bio<br/>Snacks + <strong>buah</strong>-Trockenfrüchte und <strong>Stickerbogen</strong> zum <br/>Selbstgestalten natürlich, bunt<br/>und zum Anbeißen! ✨</p>",
+        "button_label": "zur Schultüte",
+        "button_link": "shopify://products/schultute-bio-vegan",
+        "background_color": "#f3587f",
+        "accent_color": "#f3587f",
+        "hover_color": "#dbaaeb",
+        "show_base_triangular_line": true
+      }
     },
-    "main": {
-      "type": "main-index"
+    "featured_collections_EUemmF": {
+      "type": "featured-collections",
+      "blocks": {
+        "collection_item_nBcRpr": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "produkte",
+            "image": "shopify://shop_images/treatfuls_bio_vegan_14_riegel_energyballs_c794a023-0e44-4a29-9808-de3609ff8a4b.webp",
+            "collection_title": "Alle produkte"
+          }
+        },
+        "collection_item_c33Q89": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "riegel",
+            "image": "shopify://shop_images/treatfuls-mix_box_mit_allen_riegeln_1008x_5edda097-847a-4641-935a-c89b38e371d3.png",
+            "collection_title": ""
+          }
+        },
+        "collection_item_hHjCCf": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "love-bites-valentinstag",
+            "image": "shopify://shop_images/Summer_Crush_Box_NEW.webp",
+            "collection_title": "Sommerboxen"
+          }
+        },
+        "collection_item_zbE6pg": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "nuss-aufstriche",
+            "image": "shopify://shop_images/spreads-treatfuls.webp",
+            "collection_title": "Aufstriche"
+          }
+        },
+        "collection_item_7HkdAc": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "balls",
+            "collection_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_nBcRpr",
+        "collection_item_c33Q89",
+        "collection_item_hHjCCf",
+        "collection_item_zbE6pg",
+        "collection_item_7HkdAc"
+      ],
+      "disabled": true,
+      "name": "Featured collections",
+      "settings": {
+        "heading_desktop": "Produkte",
+        "heading_mobile": "Produkte",
+        "background_color": "#1ba7a2",
+        "background_color_mobile": "#2ac2bd",
+        "accent_color": "#f3587f",
+        "accent_color_mobile": "#f3587f"
+      }
+    },
+    "home-products": {
+      "type": "home-products",
+      "blocks": {
+        "1cfded86-563d-4d47-bb13-779d107d88ef": {
+          "type": "product_item",
+          "settings": {
+            "product": "schultute-bio-vegan"
+          }
+        },
+        "28b053f4-1040-48a6-9229-7fa4f1d54ca5": {
+          "type": "product_item",
+          "settings": {
+            "product": "white-covered-crunchy-hazelnut-treats-healthier-than-your-last-relationship"
+          }
+        },
+        "product_item_mGLG8t": {
+          "type": "product_item",
+          "settings": {
+            "product": "vegan-snack-love-bundle-alle-sorten-in-einem-bio-vegan"
+          }
+        },
+        "product_item_fwnbt4": {
+          "type": "product_item",
+          "settings": {
+            "product": "alle-sorten-probierbox-14-stuck-riegel-balle-zum-probieren-bio-vegan"
+          }
+        },
+        "product_item_iM9nAw": {
+          "type": "product_item",
+          "settings": {
+            "product": "selflove-snackbox-bio-vegan"
+          }
+        },
+        "product_item_A3669g": {
+          "type": "product_item",
+          "settings": {
+            "product": "gemischtes-paket-mit-allen-4-riegeln"
+          }
+        },
+        "product_item_yJ9RiE": {
+          "type": "product_item",
+          "settings": {
+            "product": "creme-de-la-creme-bundle-21-nussmus-snackballe-alle-sorten-bio-vegan"
+          }
+        },
+        "product_item_ALK7CL": {
+          "type": "product_item",
+          "settings": {
+            "product": "20-x-weisse-zitronenkuchen-riegel-bio-vegan"
+          }
+        },
+        "product_item_6mCijk": {
+          "type": "product_item",
+          "settings": {
+            "product": "love-you-like-snacks-bio-vegan"
+          }
+        }
+      },
+      "block_order": [
+        "1cfded86-563d-4d47-bb13-779d107d88ef",
+        "28b053f4-1040-48a6-9229-7fa4f1d54ca5",
+        "product_item_mGLG8t",
+        "product_item_fwnbt4",
+        "product_item_iM9nAw",
+        "product_item_A3669g",
+        "product_item_yJ9RiE",
+        "product_item_ALK7CL",
+        "product_item_6mCijk"
+      ],
+      "settings": {
+        "title": "This is what <span><span>guiltfree</span></span><span><span></span></span> looks like",
+        "title-second": "powered by  <span><span>plants </span></span><span><span>loved </span></span> by everyone",
+        "title-third": "healthy <span><span>never </span></span><span><span></span>tasted </span> this naughty",
+        "link_text": "Jetzt kaufen",
+        "background_color": "#f3587f",
+        "accent_color": "#2ac2bd",
+        "hover_color": "#dbaaeb"
+      }
+    },
+    "home-ticker": {
+      "type": "home-ticker",
+      "blocks": {
+        "79893080-8679-4ecc-b984-44037aa372e8": {
+          "type": "ticker_item",
+          "settings": {
+            "revert": false,
+            "text": "recyclebar • bio-zertifiziert • Glutenfrei • fair-trade Schoki • recyclebar • bio-zertifiziert • Glutenfrei • fair-trade Schoki • recyclebar • bio-zertifiziert • Glutenfrei • recyclebar • bio-zertifiziert • Glutenfrei • recyclebar • bio-zertifiziert • Glutenfrei • recyclebar • bio-zertifiziert • Glutenfrei • fair-trade Schoki •"
+          }
+        },
+        "516bcf2f-264d-4de0-80a9-94bb5edd64ce": {
+          "type": "ticker_item",
+          "settings": {
+            "revert": true,
+            "text": "lecker • Sojafrei • ohne raffinierten Zucker • vegan • ohne Zusatzstoffe •Sojafrei • ohne raffinierten Zucker • ohne Zusatzstoffe • Sojafrei • ohne raffinierten Zucker • ohne Zusatzstoffe • Sojafrei • ohne raffinierten Zucker • ohne Zusatzstoffe • Sojafrei • ohne raffinierten Zucker • ohne Zusatzstoffe • Sojafrei • ohne raffinierten Zucker • ohne Zusatzstoffe •"
+          }
+        }
+      },
+      "block_order": [
+        "79893080-8679-4ecc-b984-44037aa372e8",
+        "516bcf2f-264d-4de0-80a9-94bb5edd64ce"
+      ],
+      "settings": {
+        "background_color": "#2ac2bd"
+      }
+    },
+    "advantages_C7eDVR": {
+      "type": "advantages",
+      "blocks": {
+        "advantage_item_Rxrckx": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-1-smile.png",
+            "text": "Lecker"
+          }
+        },
+        "advantage_item_aLtQhy": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-2-vegan.png",
+            "text": "Vegan"
+          }
+        },
+        "advantage_item_AyV7yV": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-3-organic.png",
+            "text": "Bio-zertifiziert"
+          }
+        },
+        "advantage_item_XntbcJ": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-4-packaging.png",
+            "text": "Recyclebare Verpackung"
+          }
+        },
+        "advantage_item_CR9zhB": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-5-soy.png",
+            "text": "Ohne Soja"
+          }
+        },
+        "advantage_item_j6BMtx": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-6-gluten-free.png",
+            "text": "Ohne Gluten"
+          }
+        },
+        "advantage_item_RbjjRA": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-7-sugar.png",
+            "text": "Ohne raffinierten Zucker"
+          }
+        },
+        "advantage_item_f8LpM9": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-8-additives.png",
+            "text": "Ohne Zusatzstoffe"
+          }
+        }
+      },
+      "block_order": [
+        "advantage_item_Rxrckx",
+        "advantage_item_aLtQhy",
+        "advantage_item_AyV7yV",
+        "advantage_item_XntbcJ",
+        "advantage_item_CR9zhB",
+        "advantage_item_j6BMtx",
+        "advantage_item_RbjjRA",
+        "advantage_item_f8LpM9"
+      ],
+      "settings": {
+        "title": "nicht noch so <br><span>ein Bio-Riegel…</span>",
+        "subtitle": "sondern der beste Snack, an dem sich dein Gaumen zu Lebzeiten erfreuen wird*. Unsere Treats sind hergestellt aus und geschichtet mit den besten Zutaten + umrandet von Fair-Trade Schoko und eingepackt in recyclebarer Verpackung + bedruckt mit witzigen Sprüchen + kreiert mit viel Herzblut + Leidenschaft + Unmengen von Spaß.",
+        "background_color": "#5359e5",
+        "accent_color": "#2ac2bd",
+        "hover_color": "#f3587f"
+      }
+    },
+    "richtext_QaqNnf": {
+      "type": "richtext",
+      "settings": {
+        "title": "hungry for a <span>change?</span>",
+        "first_text": "Bist du bereit mit uns gemeinsam die Snack-Industrie zu revolutionieren? Wir wollen Snacks die besser sind, als das was <span class=\"tooltip\">der Markt uns gerade bietet</span>. Wir wollen Süßigkeiten die geil schmecken und besser für dich und die Umwelt sind.",
+        "img_on_hover": "shopify://shop_images/home-richtext-img-hover.png",
+        "second_text": "Wir sind Macher und Träumerinnen zugleich und haben aus diesem Grund treatfuls ins Leben gerufen. Mach mit und probiere und überzeuge dich selbst, wie lecker vegane und natürliche Snacks sein können.",
+        "link_url": "shopify://products/probierbox-alle-sorten-16-stuck-bio-vegan",
+        "link_text": "Jetzt Probierpaket kaufen",
+        "background_color": "#2ac2bd",
+        "accent_color": "#dbaaeb",
+        "hover_color": "#f3587f"
+      }
     }
   },
   "order": [
-    "vue-examples",
-    "main"
+    "hero_GRwq8M",
+    "featured_collections_EUemmF",
+    "home-products",
+    "home-ticker",
+    "advantages_C7eDVR",
+    "richtext_QaqNnf"
   ]
 }
