@@ -1,0 +1,186 @@
+{% stylesheet %}
+  .group {
+    display: flex;
+  }
+{% endstylesheet %}
+
+<style>
+  #shopify-block-{{ block.id }} .group > .shopify-block {
+    width: {{ block.settings.child_width }};
+  }
+  #shopify-block-{{ block.id }} .group {
+    flex-direction: {{ block.settings.direction }};
+    display: {{ block.settings.display_type }};
+    grid-template-columns: {{ block.settings.child_width }};
+    gap: {{ block.settings.gap }}px;
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+    justify-content: {{ block.settings.alignment }};
+    {% if block.settings.max_width_enabled %}
+      max-width: {{ block.settings.max_width }}px;
+      margin-inline: auto;
+    {% endif %}
+  }
+</style>
+
+<div class="group">
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Group",
+  "settings": [
+    {
+      "type": "select",
+      "id": "display_type",
+      "label": "Display type",
+      "options": [
+        {
+          "value": "flex",
+          "label": "Flex"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "options": [
+        {
+          "value": "row",
+          "label": "Row"
+        },
+        {
+          "value": "column",
+          "label": "Column"
+        }
+      ],
+      "default": "row"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Start"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "space-between",
+          "label": "Space between"
+        },
+        {
+          "value": "flex-end",
+          "label": "Center"
+        },
+        {
+          "value": "end",
+          "label": "End"
+        }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "child_width",
+      "label": "Child width",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
+          "value": "100%",
+          "label": "100%"
+        },
+        {
+          "value": "50%",
+          "label": "50%"
+        },
+        {
+          "value": "33.33%",
+          "label": "33.33%"
+        },
+        {
+          "value": "25%",
+          "label": "25%"
+        },
+        {
+          "value": "20%",
+          "label": "20%"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "max_width_enabled",
+      "label": "Max width enabled",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "label": "Max width",
+      "min": 0,
+      "max": 1500,
+      "step": 50,
+      "default": 1200,
+      "unit": "px",
+      "visible_if": "{{ block.settings.max_width_enabled }}"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Group"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,54 @@
+<predictive-search id="predictive-search-container" class="predictive-search-container container">
+  <div class="popover__overlay"></div>
+  <div class="predictive-search-container__inner-wrapper">
+    <div class="predictive-search-container__inner">
+      <h2 class="title-bg predictive-search-container__title">
+        <span>{{ 'general.search.title' | t }}</span>
+      </h2>
+      <div class="predictive-search-container__search">
+        <form action="{{ routes.search_url }}" method="get" role="search" id="predictive-search-form">
+          <label class="label">
+            <span class="sr-only">{{ 'general.search.title' | t }}</span>
+            <input
+              type="search"
+              name="q"
+              id="predictive-search-input"
+              placeholder="{{ 'general.search.title' | t }}"
+              class="input input--blue"
+              autocorrect="off"
+              autocapitalize="off"
+              autofocus=""
+              value="{{ search.terms }}"
+            >
+            <button type="button" class="remove-search-input">
+              {% render 'icon-close' %}
+            </button>
+            <button type="button" class="popover__close-button">
+              {% render 'icon-close' %}
+            </button>
+          </label>
+        </form>
+      </div>
+
+      {% if settings.recommendation_collection != blank or settings.recommendation_products != blank %}
+        {% if settings.recommendation_collection != blank %}
+          {%- assign recommendation_products = settings.recommendation_collection.products -%}
+        {% else %}
+          {%- assign recommendation_products = settings.recommendation_products -%}
+        {% endif %}
+
+        <ul
+          class="predictive-search-container__recommendations product-card-list--simple"
+          role="listbox"
+          aria-labelledby="predictive-search-products"
+        >
+          {% for product in recommendation_products %}
+            {% render 'product-card-simple', product: product %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <div id="predictive-search-results"></div>
+    </div>
+  </div>
+</predictive-search>

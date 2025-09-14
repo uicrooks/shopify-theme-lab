@@ -1,0 +1,226 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    --free-shipping-success: {{ settings.free_shipping_success_color }};
+    --free-shipping-remaining: {{ settings.free_shipping_remaining_color }};
+    --mini-cart-background: {{ section.settings.background_color }};
+    --section-accent-color: {{ section.settings.accent_color }};
+    --section-hover-color: {{ section.settings.hover_color }};
+    --upsell-background: {{ section.settings.upsell_collection_background_desktop }};
+  }
+
+  #shopify-section-{{ section.id }} .cart-upsell__button {
+    --section-accent-color: {{ section.settings.hover_color }};
+    --section-hover-color: {{ section.settings.accent_color }};
+  }
+</style>
+
+{%- assign is_empty_cart = false -%}
+
+{%- if cart.item_count == 0 -%}
+  {%- assign is_empty_cart = true -%}
+{%- endif -%}
+
+{% if section.settings.show_upsell -%}
+  {%- assign has_upsell_items_left = false -%}
+  {%- assign upsell_products = collections[section.settings.upsell_collection].products -%}
+
+  {%- for upsell_product in upsell_products -%}
+    {%- assign found_in_cart = false -%}
+    {%- for item in cart.items -%}
+      {%- if upsell_product.id == item.product_id -%}
+        {%- assign found_in_cart = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- unless found_in_cart -%}
+      {%- assign has_upsell_items_left = true -%}
+      {%- break -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endif -%}
+
+<section
+	id="minicart-{{- section.id -}}"
+	data-section-id="{{- section.id -}}"
+	data-section-type="minicart"
+>
+	<mini-cart
+		class="minicart"
+		data-section-id="{{- section.id -}}"
+		data-section-type="{{- section.type -}}"
+	>
+		<div class="minicart__overlay"></div>
+
+		<div class="minicart__container"
+				 style="">
+			<div class="minicart__wrapper">
+				<div class="minicart__section minicart__section--header">
+					<div class="minicart__header">
+            <div class="minicart__heading">
+              <h3 class="minicart__title title-bg">
+                <span>{{ 'cart.general.title' | t }}</span>
+              </h3>
+              <button class="minicart__close">
+              </button>
+            </div>
+            {%- if settings.cart_show_free_shipping_threshold and settings.cart_free_shipping_threshold != '' -%}
+              {%- assign free_shipping_thresholds = settings.cart_free_shipping_threshold | remove: ' ' | split: ',' -%}
+              {%- assign free_shipping_money = settings.cart_free_shipping_threshold | times: 100 | money -%}
+              {%- assign has_found_matching_threshold = false -%}
+
+              {%- if free_shipping_thresholds.size > 1 -%}
+                {%- for threshold in free_shipping_thresholds -%}
+                  {%- assign threshold_parts = threshold | split: ':' -%}
+                  {%- assign currency_code = threshold_parts | first | upcase -%}
+
+                  {%- if currency_code == cart.currency.iso_code -%}
+                    {%- assign free_shipping_calculated_threshold = threshold_parts | last -%}
+                    {%- assign has_found_matching_threshold = true -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- else -%}
+                {%- assign free_shipping_calculated_threshold = free_shipping_thresholds | last -%}
+                {%- assign has_found_matching_threshold = true -%}
+              {%- endif -%}
+
+              {%- if has_found_matching_threshold -%}
+                {%- assign threshold_in_cents = free_shipping_calculated_threshold | times: 100.0 -%}
+
+                {%- assign calculated_total_price = 0 -%}
+
+                {%- for line_item in cart.items -%}
+                  {%- if line_item.requires_shipping -%}
+                    {%- assign calculated_total_price = calculated_total_price | plus: line_item.final_line_price -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                <free-shipping-bar threshold="{{ threshold_in_cents }}" class="shipping-bar" style="--progress: {{ calculated_total_price | times: 1.0 | divided_by: threshold_in_cents | at_most: 1 }}">
+                  {%- if calculated_total_price >= threshold_in_cents -%}
+                    <span class="shipping-bar__text text--small">{{ 'cart.general.free_shipping_html' | t }}</span>
+                  {%- else -%}
+                    {%- capture remaining_amount -%}{{ calculated_total_price | minus: threshold_in_cents | abs | money }}{%- endcapture -%}
+                    <span class="shipping-bar__text text--small">{{ 'cart.general.free_shipping_remaining_html' | t: remaining_amount: remaining_amount }}</span>
+                  {%- endif -%}
+
+                  <span class="shipping-bar__progress{% if calculated_total_price >= threshold_in_cents %} shipping-bar__progress--achieved{% else %} shipping-bar__progress--remaining{% endif %}"></span>
+                  <span class="shipping-bar__information">{{ 'cart.general.free_shipping_amount' | t: free_shipping_amount: free_shipping_money }}</span>
+                </free-shipping-bar>
+
+                <div class="divider"></div>
+              {%- endif -%}
+            {%- endif -%}
+					</div>
+
+          <div class="base-triangular-line">
+            {%- render 'icon-triangular-line' -%}
+          </div>
+				</div>
+
+				<div
+					class="minicart__body {% if is_empty_cart %}minicart__body--empty{% endif %}"
+				>
+          <div
+            class="minicart__section minicart__section--items js-minicart-items"
+          >
+            <span class="minicart__item-count title-bg--sm"><b>{{ 'cart.general.mini_cart_item' | t: item_count: cart.item_count }}</b></span>
+            {%- if is_empty_cart -%}
+            <div class="minicart__empty-cart-notice">
+              <span>{{ 'cart.general.mini_cart_empty_subtitle' | t }}</span>
+            </div>
+            {%- else -%}
+              <form id="mini-cart-form" action="{{ routes.cart_url }}" novalidate method="post">
+                <input type="hidden" name="checkout">
+                {%- for item in cart.items -%}
+                  {% render 'cart-item', key: item.key, item: item, is_mini_cart: true %}
+                {%- endfor -%}
+              </form>
+            {%- endif -%}
+
+            {%- if has_upsell_items_left -%}
+              {% render 'cart-upsell', cart: cart, is_mini_cart: true, settings: section.settings, mobile: true -%}
+            {%- endif -%}
+          </div>
+				</div>
+				<div class="minicart__section minicart__section--footer">
+          <div class="top-triangular-line">
+            {%- render 'icon-triangular-line' -%}
+          </div>
+          {% render 'cart-subtotal', cart: cart, is_mini_cart: true, is_empty_cart: is_empty_cart -%}
+				</div>
+			</div>
+      {%- if has_upsell_items_left -%}
+        {% render 'cart-upsell', cart: cart, is_mini_cart: true, settings: section.settings, mobile: false -%}
+      {%- endif -%}
+		</div>
+	</mini-cart>
+</section>
+
+{%- schema -%}
+{
+	"name": "Minicart",
+	"settings": [
+		{
+			"type": "text",
+			"id": "empty_button_text",
+			"label": "Button text",
+			"default": "SHOP ALL",
+			"info": "Shown when minimap is empty"
+		},
+		{
+			"type": "url",
+			"id": "empty_button_url",
+			"label": "Button url"
+		},
+    {
+      "type": "header",
+      "content": "Upsell"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_upsell",
+      "label": "Show Upsell",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "upsell_heading",
+      "label": "Upsell Heading",
+      "default": "Die perfekte Ergänzung"
+    },
+    {
+      "type": "collection",
+      "id": "upsell_collection",
+      "label": "Upsell Collection"
+    },
+    {
+      "type": "color",
+      "id": "upsell_collection_background_desktop",
+      "label": "Background Color Desktop",
+      "default": "#9977a5"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#dbaaeb"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2AC2BD"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#F3587F"
+    }
+	]
+}
+{%- endschema -%}

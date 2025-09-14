@@ -1,0 +1,100 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "title": "B2B",
+        "subtitle": "<p>Wir sind treatfuls: unsere Riegel, Balls und Spreads sind 100 % natürlich, bio, vegan, ohne raffinierten Zucker und voller Energie.</p><p>Egal ob <strong>im Supermarkt</strong>, <strong>im Concept Store</strong> oder <strong>direkt auf dem Meetingtisch</strong> – treatfuls passen dahin, wo bewusster Genuss nicht nur ein Buzzword ist, sondern Standard.</p><p><strong>Bold im Design. Unverschämt gut im Geschmack. Ehrlich in der Zusammenarbeit.</strong></p><p>Lass uns gemeinsam den Snackmarkt aufmischen, die Regale schöner machen und zeigen, dass „better for you“ verdammt lecker sein kann.</p><p><strong>Klingt gut? Dann lass uns loslegen.</strong></p>",
+        "subtitle_font_size": 24,
+        "background_color": "#5359e5",
+        "accent_color": "#2ac2bd",
+        "hover_color": "",
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
+    },
+    "image_with_text_mY6byN": {
+      "type": "image-with-text",
+      "blocks": {
+        "image_with_text_KyBfe3": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/fashion_treatfuls_creamy_coco_kisses_sweeter_than_your_ex_1.jpg",
+            "title": "Office-Snacks, Geschenke und Co.",
+            "content": "<p><strong>treatfuls</strong> bringt Abwechslung ins Büro, in Geschenkboxen und ins Onboarding-Paket: Unsere veganen Snacks sind ideal für Teams, Kund:innen und Partner:innen – ganz ohne Kompromisse bei Geschmack oder Inhaltsstoffen. Ob als Snack-Box fürs Office, süße Aufmerksamkeit zu Weihnachten oder nachhaltige Giveaway-Lösung: <strong>treatfuls</strong> vereint Design, Qualität und Verantwortung. Bio, fair, ohne raffinierten Zucker, für Genuss, der hängen bleibt.</p>",
+            "button_text": "Fürs Office anfragen",
+            "button_url": "shopify://pages/b2b-kontakt"
+          }
+        },
+        "image_with_text_pfetXG": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/healthier_than_your_last_relationship_treatfuls_V1.png",
+            "title": "Gyms, Cafés und Conceptstores",
+            "content": "<p>Für alle, die bewussten Genuss stylish verkaufen wollen: <strong>treatfuls</strong> passt perfekt in Cafés, Fitnessstudios, Yogastudios und moderne Concept Stores.</p><p>Unsere Snacks sehen nicht nur gut aus, sie erfüllen auch den Anspruch moderner Konsument:innen nach cleanen Zutaten, Ballaststoffreicher Ernährung, nachhaltiger Produktion und gutem Geschmack. Ob an der Theke, zum Mitnehmen oder als kleines Add-on – <strong>treatfuls</strong> fällt auf. Und bleibt im Kopf.</p>",
+            "button_text": "Für dein Store anfragen",
+            "button_url": "shopify://pages/b2b-kontakt"
+          }
+        },
+        "image_with_text_YMWAXJ": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/treatfuls_best_date_youll_ever_have_5.jpg",
+            "title": "stationärer Handel",
+            "content": "<p>Im <strong>Handel</strong> zählt, was sich abhebt. treatfuls ist das Upgrade im Snackregal: bio, vegan, mit 30% weniger Zucker, ohne Zusatzstoffe und mit auffälligem Packaging, das überzeugt.</p><p> Unsere Produkte eignen sich für den klassischen LEH, Drogerie, genauso wie für den Biofachhandel, den Online-Shop oder das SB-Regal im Store. Dank attraktiver UVP und Rundum-Sorglos-Rezeptur sind <strong>treatfuls</strong> die richtige Wahl für alle, die neue Standards im Süßwarensortiment setzen wollen.</p>",
+            "button_text": "Für den Handel anfragen",
+            "button_url": "shopify://pages/b2b-kontakt"
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_KyBfe3",
+        "image_with_text_pfetXG",
+        "image_with_text_YMWAXJ"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "background_color": "#5359e5",
+        "accent_color": "#2ac2bd",
+        "hover_color": ""
+      }
+    },
+    "logo_list_UihVAX": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_image_b7weHh": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Faire_White_Logo.png",
+            "link": "https://treatfuls.faire.com"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_b7weHh"
+      ],
+      "name": "Logo list",
+      "settings": {
+        "title": "treatfuls im Großhandel",
+        "subtitle": "<p>Neukund:innen aufgepasst: 50 % Rabatt auf deine erste treatfuls-Bestellung über Faire (bis zu 150 €) – plus 1 Jahr gratis Versand. 🧡 Aber pssst… das Angebot gilt nur, wenn du über unseren Link bestellst. Los geht’s –  treat your customers!</p>",
+        "background_color": "#2ac2bd",
+        "accent_color": "",
+        "hover_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "image_with_text_mY6byN",
+    "logo_list_UihVAX"
+  ]
+}

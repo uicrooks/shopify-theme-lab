@@ -1,0 +1,27 @@
+<section id="shopify-section-announcement-bar" class="announcement-bar shopify-section">
+  <div class="announcement-bar__text">
+    <span>{{ section.settings.text }}</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Announcement Bar"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

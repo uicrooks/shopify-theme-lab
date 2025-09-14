@@ -1,0 +1,197 @@
+{% assign data = shop.metafields.bc_cookie %}
+{% assign cookieData = data.bc_cookie_list %}
+
+{% if data.size > 0 and cookieData._bc_c_set.live == '1' and content_for_header contains 'app.gdpr-legal-cookie.com\/get-script.php' %}
+
+    <script>
+        if (typeof BC_JSON_ObjectBypass === "undefined"){
+            var BC_JSON_ObjectBypass = {{ cookieData | json }};
+        }
+
+    </script>
+    <script>
+        const data_gdpr_legal_banner_content = {{ data.bc_cookie_banner_main | json }};
+    </script>
+    <style>
+        body #cookie-banner_flag {
+            position: fixed;
+            top: 70vh;
+            z-index: 2147483647;
+            background-color: #fff;
+            padding: 0px;
+            left: 4px;
+            border-radius: 14px;
+            width: 28px;
+            max-width: 28px;
+            height: 28px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: #0006 0px 0px 4px;
+            transform: rotate(0deg);
+            display: flex;
+            opacity: 0;
+        }
+        body #cookie-banner_flag__fingerprint{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2147483647;
+            background-color: #fff;
+            border-radius: 14px;
+            padding: 2px;
+        }
+        body #cookie-banner_flag__infotext{
+            height: 28px;
+            line-height: 28px;
+            background-color: #fff;
+            color: black;
+            border-radius: 14px;
+            padding: 1px 14px 0 35px;
+            box-shadow: #0006 0px 0px 4px;
+            position: absolute;
+            top: 0px;
+            left: -20px;
+            z-index: 1;
+            width: 100px;
+            opacity: 0;
+            transform: rotate3d(0, -1, 0, 90deg);
+            transition: all 0.5s;
+        }
+        body #cookie-banner_flag:hover > #cookie-banner_flag__infotext{
+            left: 0;
+            width: 100px;
+            opacity: 1;
+            transform: rotate3d(0, 0, 0, 0deg);
+            transition: all 0.5s;
+			min-width: fit-content;
+        }
+    </style>
+
+    <div id="cookie-banner_flag" hidden="hidden">
+        <div id="cookie-banner_flag__fingerprint">
+            <svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/">
+            <g transform="matrix(1.26522,0,0,1.26522,-48.1485,-57.5756)">
+                <g transform="matrix(0.991875,-0.127215,0.127215,0.991875,-29.8048,32.7802)">
+                    <path d="M59.004,200.883C62.918,201.688 67.32,198.996 68.25,195.684C74.813,172.266 85.902,150.734 101.219,131.684C103.813,128.457 103.301,123.734 100.074,121.141C96.844,118.547 92.125,119.059 89.527,122.285C72.938,142.926 60.918,166.258 53.809,191.637C52.688,195.625 54.949,200.047 59.004,200.883Z" style="fill-rule:nonzero;"></path>
+                    <path d="M420.998,299.872C424.7,300.68 428.521,297.44 429.385,294.381C430.314,291.09 431.774,284.079 432.385,276.851C433.233,266.809 433.996,254.75 433.821,245.66C433.658,237.212 432.764,228.93 431.605,220.753C429.882,208.606 427.17,196.231 423.315,184.871C418.172,169.713 411.807,154.718 403.319,141.433C368.562,87.035 310.283,49.414 241.52,49.414C195.02,49.414 149.992,66.059 114.73,96.277C111.586,98.973 111.223,103.707 113.918,106.852C116.613,109.996 121.348,110.363 124.492,107.664C157.035,79.773 198.598,64.41 241.52,64.41C304.306,64.41 357.401,98.555 389.648,147.906C397.451,159.847 403.315,173.386 408.177,187.011C412.051,197.867 414.789,209.749 416.54,221.407C417.691,229.068 418.751,236.826 418.804,244.75C418.88,256.085 418.358,266.293 417.726,274.819C417.257,281.141 415.926,287.399 414.96,291.601C414.032,295.637 416.952,298.989 420.998,299.872Z" style="fill-rule:nonzero;"></path>
+                    <path d="M386.915,266.049C387.118,266.049 387.325,266.041 387.532,266.021C391.661,265.685 394.176,262.072 394.399,257.939C395.195,243.208 392.269,222.399 389.077,209.385C384.855,192.173 377.776,175.7 369.367,160.34C357.383,138.441 339.324,119.945 317.145,106.84C294.367,93.383 268.215,86.27 241.52,86.27C171.574,86.27 109.711,133.039 91.07,200.027C90.418,202.395 89.637,205.758 88.75,210.02C87.406,216.48 82.141,221.371 75.648,222.188C69.367,222.98 62.168,223.543 54.25,223.859C50.113,224.027 46.891,227.516 47.059,231.656C47.227,235.797 50.707,239.012 54.852,238.848C63.191,238.516 70.82,237.914 77.523,237.07C90.371,235.449 100.785,225.809 103.434,213.07C104.258,209.121 104.961,206.07 105.523,204.027C122.363,143.523 178.285,101.266 241.52,101.266C265.535,101.266 289.047,107.66 309.516,119.754C329.371,131.484 345.52,148.008 356.207,167.535C363.951,181.682 370.578,196.734 374.489,212.61C377.522,224.921 380.245,244.464 379.446,259.154C379.232,263.087 383.047,266.049 386.915,266.049Z" style="fill-rule:nonzero;"></path>
+                    <path d="M354.164,257.132L354.379,257.132C358.422,257.132 361.758,253.913 361.871,249.843C362.062,242.972 361.788,244.606 361.738,242C361.148,211.184 348.891,182.09 327.195,160.039C324.289,157.086 319.539,157.051 316.59,159.953C313.637,162.859 313.598,167.609 316.504,170.563C335.586,189.949 346.324,215.559 346.75,242.664C346.754,242.953 346.808,243.24 346.813,243.531C346.842,245.529 347.055,243.132 346.879,249.425C346.762,253.565 350.023,257.015 354.164,257.132Z" style="fill-rule:nonzero;"></path>
+                    <path d="M54.801,274.766L55.824,274.727C78.949,273.824 98.074,270.91 112.676,266.063C126.23,261.563 135.695,249.262 136.789,234.73C137,231.906 137.344,229.102 137.809,226.398C141.977,202.25 154.605,180.152 173.375,164.18C192.383,148.004 216.586,139.094 241.52,139.094C258.457,139.094 275.297,143.23 290.223,151.059C293.891,152.98 298.426,151.566 300.348,147.898C302.273,144.23 300.859,139.695 297.191,137.773C280.125,128.824 260.875,124.094 241.52,124.094C213.027,124.094 185.371,134.273 163.656,152.758C142.219,171 127.789,196.246 123.027,223.848C122.48,227.023 122.078,230.309 121.832,233.609C121.195,242.09 115.746,249.238 107.949,251.828C98.832,254.855 82.289,258.684 55.242,259.738L54.219,259.777C50.078,259.941 46.855,263.426 47.016,267.566C47.172,271.605 50.496,274.773 54.504,274.773C54.602,274.773 54.699,274.77 54.801,274.766Z" style="fill-rule:nonzero;"></path>
+                    <path d="M269.329,415.66C260.953,421.617 244.688,431.914 236.133,435.664C232.34,437.328 230.613,441.754 232.273,445.547C233.508,448.359 236.262,450.035 239.148,450.035C240.152,450.035 241.176,449.832 242.156,449.402C251.355,445.371 268.472,435.293 277.22,428.414C280.479,425.852 281.833,421.609 279.654,418.086C277.47,414.567 272.703,413.261 269.329,415.66Z" style="fill-rule:nonzero;"></path>
+                    <path d="M317.09,263.125C321.2,263.551 324.987,260.571 325.329,256.445C326.277,244.996 326.137,246.461 325.875,243.922C325.648,197.598 287.895,159.98 241.52,159.98C200.348,159.98 165.387,189.406 158.391,229.953C157.457,235.367 157.187,241.219 157.562,247.84C157.797,251.879 157.043,259.91 149.414,268.313C139.246,279.504 114.898,293.324 56.641,295.598C52.5,295.758 49.277,299.242 49.437,303.383C49.594,307.422 52.918,310.594 56.926,310.594C57.023,310.594 57.125,310.59 57.223,310.586C108.168,308.598 142.922,297.77 160.52,278.398C171.828,265.945 172.906,253.371 172.539,246.984C172.227,241.516 172.434,236.777 173.172,232.504C178.922,199.172 207.664,174.98 241.52,174.98C279.762,174.98 310.875,206.094 310.875,244.336C310.875,244.629 310.895,244.926 310.926,245.215C310.941,245.328 310.837,246.423 310.411,254.887C310.203,259.021 312.969,262.691 317.09,263.125Z" style="fill-rule:nonzero;"></path>
+                    <path d="M270.965,376.23C268.223,373.129 263.48,372.836 260.379,375.582C235.566,397.527 202.098,412.219 160.91,419.242C156.828,419.938 154.082,423.813 154.781,427.898C155.402,431.555 158.574,434.137 162.164,434.137C162.582,434.137 163.008,434.102 163.434,434.027C207.418,426.527 243.379,410.645 270.316,386.816C273.418,384.07 273.711,379.332 270.965,376.23Z" style="fill-rule:nonzero;"></path>
+                    <path d="M291.93,244.027C291.762,216.371 269.211,193.926 241.52,193.926C216.914,193.926 196.02,211.508 191.844,235.727C191.352,238.563 191.227,241.891 191.457,245.898C191.988,255.25 190.504,273.563 174.543,291.133C158.02,309.328 131.887,320.824 94.656,326.277C84.695,327.047 75.184,327.859 66.387,328.687C62.262,329.078 59.234,332.734 59.625,336.859C60.012,340.98 63.68,344.008 67.793,343.621C76.586,342.793 86.098,341.98 96.066,341.211C96.234,341.199 96.398,341.18 96.566,341.156C137.512,335.195 166.648,322.133 185.648,301.219C205.285,279.594 207.098,256.738 206.43,245.043C206.27,242.227 206.336,239.949 206.621,238.277C209.559,221.27 224.234,208.926 241.52,208.926C261.043,208.926 276.93,224.809 276.93,244.336C276.93,244.547 276.938,244.762 276.957,244.973C277.004,245.52 281.238,300.148 246.984,338.121C228.023,359.141 183.469,383.953 115.277,390.563C111.152,390.961 108.133,394.625 108.535,398.75C108.91,402.625 112.176,405.527 115.988,405.527C116.23,405.527 116.477,405.516 116.723,405.488C177.348,399.617 231.527,377.652 258.121,348.168C295.641,306.582 292.336,249.422 291.93,244.027Z" style="fill-rule:nonzero;"></path>
+                    <path d="M164.852,343.156C154.879,347.488 144.117,351.082 132.863,353.836C118.301,357.402 102.73,359.617 86.59,360.418C82.449,360.625 79.266,364.145 79.469,368.281C79.668,372.293 82.98,375.41 86.953,375.41C87.078,375.41 87.203,375.406 87.332,375.398C104.426,374.551 120.945,372.199 136.434,368.406C148.508,365.449 160.078,361.582 170.828,356.914C191.457,347.953 209.539,335.852 224.574,320.941C240.258,305.387 248.605,280.352 248.082,250.449C248.078,250.191 248.074,249.977 248.07,249.809C248.234,247.699 247.508,245.535 245.895,243.922C242.961,240.996 238.215,241 235.285,243.93C233.008,246.215 233.051,248.707 233.086,250.711C233.539,276.488 226.766,297.645 214.016,310.289C200.305,323.883 183.766,334.937 164.852,343.156Z" style="fill-rule:nonzero;"></path>
+                </g>
+                <g transform="matrix(1,0,0,1,-40.4502,-56.1014)">
+                    <path d="M397.715,398.539C393.57,398.539 390.215,401.898 390.215,406.039L390.215,421.117C390.215,425.262 393.57,428.617 397.715,428.617C401.859,428.617 405.215,425.262 405.215,421.117L405.215,406.039C405.215,401.898 401.855,398.539 397.715,398.539Z" style="fill-rule:nonzero;"></path>
+                    <path d="M441.996,367.902L440.449,367.902L440.449,354.699C440.449,331.137 421.277,311.969 397.715,311.969C374.152,311.969 354.98,331.137 354.98,354.699L354.98,367.902L353.434,367.902C346.887,367.902 341.559,373.23 341.559,379.777L341.559,443.117C341.559,449.664 346.887,454.992 353.434,454.992L441.996,454.992C448.547,454.992 453.871,449.664 453.871,443.117L453.871,379.777C453.871,373.23 448.547,367.902 441.996,367.902ZM369.98,354.699C369.98,339.41 382.422,326.969 397.715,326.969C413.008,326.969 425.445,339.41 425.445,354.699L425.445,367.902L369.98,367.902L369.98,354.699ZM438.871,439.992L356.559,439.992L356.559,382.902L438.871,382.902L438.871,439.992Z" style="fill-rule:nonzero;"></path>
+                </g>
+            </g>
+        </svg>
+        </div>
+        <div id="cookie-banner_flag__infotext">
+            {{ data.bc_cookie_banner_main.flag.text }}
+        </div>
+    </div>
+    <div id="banner-wrapper" hidden="hidden" style="opacity: 0; display: none; visibility: hidden; top: 0px; left: 0px;">
+        <style>{{ data['bc_cookie_banner_css'] }}</style>
+
+        <div class="overlay_bc_banner">
+            <div class="banner-body">
+                <div class="banner-body__content">
+                    <div class="banner-header">
+                        <div class="banner-logo">
+                            {% if data.bc_cookie_banner_settings.body.content.header.logo.settings.src != '' %}
+                                <img class="logo"
+                                     src="{{ data.bc_cookie_banner_settings.body.content.header.logo.settings.src }}"
+                                     alt="{{ data.bc_cookie_banner_settings.body.content.header.logo.settings.alt }}">
+                            {% endif %}
+                        </div>
+                        <div class="banner-header__title">
+                            <p>{{ data.bc_cookie_banner_header.title }}</p>
+                        </div>
+                    </div>
+                    <div class="banner-main">
+                        <div class="banner-main_header">
+                            <p>{{ data.bc_cookie_banner_main.primary }}</p>
+                            <p>{{ data.bc_cookie_banner_main.secondary }}</p>
+                        </div>
+                        <div class="banner-main_header list-type">
+                            <p>{{ data.bc_cookie_banner_main.essential_button }}</p>
+                            <p>{{ data.bc_cookie_banner_main.marketing_button }}</p>
+                        </div>
+                        <div class="banner-main_buttons">
+                            <p id="all_accept" class="btn-accept">
+                                <span class="btn-btn btn-btn-accept-all cursor" data-cookie-accept-all="">{{  data.bc_cookie_banner_main.buttons.accept }}</span>
+                            </p>
+                            <p id="essential_accept" class="btn-accept">
+                                <span class="btn-btn btn-btn-save cursor" data-cookie-save="">{{  data.bc_cookie_banner_main.buttons.save }}</span>
+                            </p>
+                            <!-- todo indivuell entscheiden -->
+                            <p class="btn-manage cursor">
+                                {{  data.bc_cookie_banner_main.buttons.edit }}</p>
+
+                            <p class="btn-accept btn-manage__save cursor" hidden>{{ data.bc_cookie_banner_main.buttons.save_close }}</p>
+                        </div>
+
+                    </div>
+
+                    <div class="tabs" hidden="hidden">
+
+                        <div class="cookie_tab__wrapper_header">
+                            <p id="countEssentials">
+                                <strong>{{  data.bc_cookie_banner_main.essential_button }}</strong>
+                                <strong class="counter"></strong>
+                            </p>
+                            <p>{{  data.bc_cookie_banner_main.essential }}</p>
+                            <details>
+                                <summary id="summary_essential" style="cursor: pointer;">{{  data.bc_cookie_banner_main.details }}</summary>
+                                <div class="cookie_tab__wrapper essential display"></div>
+                            </details>
+
+
+                        </div>
+
+                        <div class="cookie_tab__wrapper_header">
+                            <p id="countMarketing">
+                                <strong>{{  data.bc_cookie_banner_main.marketing_button }}</strong>
+                                <strong class="counter"></strong>
+                            </p>
+                            <p>{{  data.bc_cookie_banner_main.marketing }}</p>
+                            <div class="toggle">
+                                <label for="input_all_cookies">
+                                    <input name="all_cookies" id="input_all_cookies" type="checkbox"><span class="slider"></span>
+                                </label>
+                            </div>
+                            <p style="height: 1.2em;"></p>
+                            <details>
+                                <summary id="summary_marketing" style="cursor: pointer;">{{  data.bc_cookie_banner_main.details }}</summary>
+                                <div class="cookie_tab__wrapper marketing display"></div>
+                            </details>
+
+                        </div>
+
+                    </div>
+
+                    <div style="text-align: center; font-size: 0.7em; color: #7d7d7d;">
+                        <a href="https://gdpr-legal-cookie.myshopify.com/" rel="nofollow" style="color: #7d7d7d;">GDPR legal Cookie</a>
+                    </div>
+                    <div class="banner-footer">
+                        {% if data.bc_cookie_banner_footer.content.link_1.link.size > 0 %}
+                            <a href="{{ data.bc_cookie_banner_footer.content.link_1.link }}">{{ data.bc_cookie_banner_footer.content.link_1.text }}</a>
+                        {% endif %}
+
+                        {% if data.bc_cookie_banner_footer.content.link_2.link.size > 0 %}
+                            <a href="{{ data.bc_cookie_banner_footer.content.link_2.link }}">{{ data.bc_cookie_banner_footer.content.link_2.text }}</a>
+                        {% endif %}
+
+                        {% if data.bc_cookie_banner_footer.content.link_3.link.size > 0 %}
+                            <a href="{{ data.bc_cookie_banner_footer.content.link_3.link }}">{{ data.bc_cookie_banner_footer.content.link_3.text }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

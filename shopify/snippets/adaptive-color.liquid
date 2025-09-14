@@ -1,0 +1,24 @@
+{%- assign color_brightness = color | color_brightness -%}
+{%- if color_brightness < 64 -%}
+  {%- if is_background_color -%}
+    {%- assign new_color = color | color_lighten: 10 -%}
+  {%- else -%}
+    {%- assign new_color = color | color_lighten: 15 -%}
+  {%- endif -%}
+{%- else -%}
+  {%- if is_background_color -%}
+    {%- assign new_color = color | color_darken: 5 -%}
+  {%- else -%}
+    {%- assign new_color = color | color_darken: 10 -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if color_brightness < 26 -%}
+  {%- if is_background_color -%}
+    {%- assign new_color = color | color_lighten: 15 -%}
+  {%- else -%}
+    {%- assign new_color = color | color_lighten: 25 -%}
+  {%- endif -%}
+{%- endif -%}
+
+{{- new_color -}}

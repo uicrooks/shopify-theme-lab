@@ -1,0 +1,35 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announcement_bar_dw4NUd": {
+      "type": "announcement-bar",
+      "disabled": true,
+      "name": "Announcement Bar",
+      "settings": {
+        "text": "🌱 100 % vegan 💚 100 % Bio 🍀 100 % natürlich"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "main_linklist": "header-menu",
+        "mobile_left_img": "shopify://shop_images/mobile-menu-img-left.png",
+        "mobile_right_img": "shopify://shop_images/mobile-menu-img-bottom.png"
+      }
+    }
+  },
+  "order": [
+    "announcement_bar_dw4NUd",
+    "header"
+  ]
+}

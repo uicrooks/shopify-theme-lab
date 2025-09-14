@@ -1,25 +1,67 @@
-<div class="container">
-  <div>
-    {% for link in linklists.footer.links %}
-      <a href="{{ link.url }}">
-        {{ link.title }}
-      </a>
-    {% endfor %}
-  </div>
+{% assign sec_sett = section.settings %}
 
-  <div>
-    &copy; Shopify Theme Lab
-  </div>
-</div>
+{% capture copyright %}
+	<div class="copyright h3">
+		{%- if sec_sett.copyright_text -%}
+			{{ sec_sett.copyright_text }}
+		{%- else -%}
+			{{ 'layout.footer.copyright' | t }} {{ 'now' | date: "%Y" }}, {{ shop.name }}. {{ 'layout.footer.all_rights_served' | t }}
+		{%- endif -%}
+	</div>
+{% endcapture %}
+
+<footer class="footer" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="site-footer">
+	<div class="footer__wrap triangular-balance">
+		<div class="container footer__list-menu">
+			<div class="row">
+				{% if section.blocks.size > 0 %}
+					{%- for block in section.blocks -%}
+						<ul class="footer-menu">
+							{%- for link in linklists[block.settings.menu].links -%}
+								<li class="footer-menu__item">
+									<a class="footer-menu__link h3"
+										 href="{{ link.url }}"
+									>{{- link.title | escape -}}</a>
+								</li>
+							{%- endfor -%}
+						</ul>
+					{%- endfor -%}
+				{% endif %}
+			</div>
+		</div>
+		<div class="container">
+			<a class="footer__logo">
+				{%- include 'icon-logo-big' -%}
+			</a> 
+
+          {{- copyright -}} 
+		</div>
+	</div>
+</footer>
 
 {% schema %}
 {
-  "name": "t:sections.footer.name",
-  "settings": [
-    {
-      "type": "paragraph",
-      "content": "t:sections.footer.settings.paragraph"
-    }
-  ]
+	"name": "Site Footer",
+	"settings": [
+		{
+			"type": "textarea",
+			"id": "copyright_text",
+			"label": "Copyright text",
+			"default": "© 2022, snacks with benefits GmbH. Alle Rechte vorbehalten."
+		}
+	],
+	"blocks": [
+		{
+			"type": "footer_menu",
+			"name": "Footer menu",
+			"settings": [
+				{
+					"type": "link_list",
+					"id": "menu",
+					"label": "Menu"
+				}
+			]
+		}
+	]
 }
 {% endschema %}

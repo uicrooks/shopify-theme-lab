@@ -1,0 +1,157 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-{{ section.id }} .title-wrapper__subtitle {
+    font-size: {{ section.settings.font_size_adjustment }}%;
+  }
+</style>
+
+{% capture slider_config %}
+  {
+    "slidesPerView": 1,
+    "breakpoints": {
+      "768": {
+        "slidesPerView": {% if section.blocks.size > 2 %}3{% else %}{{ section.blocks.size }}{% endif %}
+      }
+    }
+  }
+{% endcapture %}
+
+<section
+	class="logo-list"
+	data-section-id="{{- section.id -}}"
+	data-section-type="logo-list"
+>
+	<div class="content-wrapper">
+    <div class="container">
+      <div class="title-wrapper">
+        {%- if section.settings.title or section.settings.subtitle -%}
+          {%- if section.settings.title != blank -%}
+            <h2 class="title-wrapper__title title-bg">{{ section.settings.title }}</h2>
+          {%- endif -%}
+  
+          {%- if section.settings.subtitle != blank -%}
+            <div class="title-wrapper__subtitle rte">{{ section.settings.subtitle }}</div>
+          {%- endif -%}
+        {% endif %}
+      </div>
+      <slider-element class="logo-list__list swiper" data-swiper-config='{{ slider_config }}'>
+        <div class="swiper-wrapper">
+          {% for block in section.blocks %}
+            <div class="logo-list__item swiper-slide">
+              {% if block.settings.image != blank %}
+                <a href="{{ block.settings.link }}" class="logo-list__link">
+                  {{ block.settings.image | image_url: width: 800 | image_tag: class: 'logo-list__image' }}
+                </a>
+              {% else %}
+                {{ 'image' | placeholder_svg_tag }}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </slider-element>
+    </div>
+  </div>
+
+  <div class="base-triangular-line">
+		{%- render 'icon-triangular-line' -%}
+	</div>
+</section>
+
+{% schema %}
+{
+  "name": "Logo list",
+  "class": "index-section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Logo list"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "<p>Subheading</p>"
+    },
+    {
+      "type": "range",
+      "id": "font_size_adjustment",
+      "label": "Font size adjustment",
+      "default": 100,
+      "min": 50,
+      "max": 200,
+      "step": 5
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo_image",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Logo list",
+      "blocks": [
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        },
+        {
+          "type": "logo_image"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,206 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{% comment %} TODO: Cleanup this section {% endcomment %}
+{%- assign search_sort_by = search.sort_by | default: search.default_sort_by -%}
+
+<section
+	class="search"
+	data-section-id="{{- section.id -}}"
+	data-section-type="search"
+>
+  <div class="content-wrapper">
+    <div class="title-wrapper">
+      <h2 class="title-wrapper__title title-bg">
+        <span>{{ 'general.search.title' | t }}</span>
+      </h2>
+    </div>
+
+    <div class="products_listing collection-template" data-section-id="{{ section.id }}">
+      <div class="page-width" >
+
+        <div class="search-container">
+          <form action="{{ routes.search_url }}" method="get" role="search">
+            <label class="label">
+              <span class="sr-only">{{ 'general.search.title' | t }}</span>
+              <input 
+                type="search"
+                name="q"
+                id="predictive-search-input"
+                placeholder="{{ 'general.search.title' | t }}" 
+                class="input input--blue" 
+                autocorrect="off" 
+                autocapitalize="off" 
+                autofocus=""
+                value="{{ search.terms }}"
+              >
+            </label>
+          </form>
+        </div>
+
+        {% if search.performed and search.results_count > 0 %}
+          <div class="search-results-wrapper">
+            <div class="product-facet__meta-bar-item product-facet__meta-bar-item--sort">
+              <span class="product-facet__sort-by-title text--subdued hidden-pocket">{{ 'collections.sorting.title' | t }}</span>
+              <popover-container class="popover-container">
+                {%- for option in search.sort_options -%}
+                  {%- if option.value == search_sort_by -%}
+                    {%- assign search_sort_by_name = option.name -%}
+                    {%- break -%}
+                  {%- endif -%}
+                {%- endfor -%}
+        
+                <button type="button" class="popover-button hidden-pocket" aria-expanded="false">
+                  <span id="sort-by-selected-value" style="pointer-events: none">{{- search_sort_by_name -}}</span>
+                  {%- render 'icon-chevron-down' -%}
+                </button>
+        
+                <div class="popover">
+                  <span class="popover__overlay"></span>
+        
+                  <header class="popover__header">
+                    <span class="popover__title heading h6">{{- 'collections.sorting.title' | t -}}</span>
+        
+                    <button type="button" class="popover__close-button tap-area tap-area--large" title="{{ 'general.accessibility.close' | t | escape }}">
+                      {%- render 'icon-close' -%}
+                    </button>
+                  </header>
+        
+                  <div class="popover__content">
+                    <div class="popover__choice-list">
+                        {%- for sort_option in search.sort_options -%}
+                        <label class="popover__choice-item">
+                          <input type="radio" data-bind-value="sort-by-selected-value" class="visually-hidden" {% if sort_option.value == search_sort_by %}checked="checked"{% endif %} name="sort_by" value="{{ sort_option.value }}" title="{{ sort_option.name }}">
+                          <span class="popover__choice-label">{{ sort_option.name }}</span>
+                        </label>
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+              </popover-container>
+            </div>
+
+            <span class="search-results-count">
+              <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+              {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+            </span>
+          </div>
+      
+          {% case section.settings.grid %}
+            {% when 2 %}
+              {%- assign max_height = 530 -%}
+            {% when 3 %}
+              {%- assign max_height = 345 -%}
+            {% when 4 %}
+              {%- assign max_height = 250 -%}
+            {% when 5 %}
+              {%- assign max_height = 195 -%}
+          {% endcase %}
+      
+          {%- assign product_limit = section.settings.items_per_page -%}
+      
+          <ul class="grid grid--uniform grid--view-items">
+            {% for product in search.results limit: product_limit %}
+              {%- if product.metafields.custom.hide_product -%}
+                {%- continue -%}
+              {%- endif -%}
+              
+              <li class="AAA grid__item grid__item--{{section.id}}">
+                {% render 'product-card-grid', max_height: max_height, product: product, show_vendor: section.settings.show_vendor, index: forloop.index %}
+              </li>
+            {% endfor %}
+          </ul>
+      
+          {% if section.settings.show_view_all %}
+            <hr class="hr--invisible" aria-hidden="true" />
+            <div class="text-center">
+              <a href="{{ collection.url }}" class="btn" aria-label="{{ 'collections.general.view_all_label' | t: collection_name: collection.title }}">
+                {{ 'collections.general.view_all' | t }}
+              </a>
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="search-results-wrapper">
+            <span class="search-results-count">
+              <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
+              <span>{{ 'general.search.no_results' | t }}</span>
+            </span>
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="base-triangular-line">
+        {%- render 'icon-triangular-line' -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main search",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "items_per_page",
+      "label": "Items per page",
+      "min": 4,
+      "max": 48,
+      "step": 4,
+      "default": 48
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show view all",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#f3587f"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#dbaaeb"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Main search",
+      "category": "Search"
+    }
+  ]
+}
+{% endschema %}

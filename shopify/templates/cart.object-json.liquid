@@ -1,0 +1,6 @@
+{%- layout none -%}
+{%- capture cart_json -%}
+	{%- include 'object-cart-json' -%}
+{%- endcapture -%}
+
+<script data-json-response type="application/json">{{- cart_json -}}</script>

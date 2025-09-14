@@ -1,0 +1,67 @@
+// Header
+@import "header/header";
+@import "header/hamburger";
+@import "header/header-nav";
+@import "header/announcement-bar";
+@import "header/predictive-search";
+
+// Footer
+@import "footer/footer";
+
+// Cart
+@import "cart/minicart";
+@import "cart/cart";
+@import "cart/cart-product";
+@import "cart/cart-order";
+@import "cart/cart-upsell";
+
+// Home
+@import "home/home-products";
+@import "home/richtext";
+@import "home/home-ticker";
+@import "home/hero";
+
+// Collections
+@import "collections/collections";
+@import "collections/products-listing";
+@import "collections/sort-by";
+
+// Product
+@import "product/main-product";
+@import "product/product-page";
+@import "product/product-gallery";
+@import "product/product-images";
+@import "product/product-info";
+@import "product/product-form";
+@import "product/ingredients";
+@import "product/comparison-slider";
+@import "product/review-slider";
+@import "product/countdown-display";
+@import "product/image-gallery";
+
+// Customers
+@import "customers/customer";
+@import "customers/login";
+
+// Careers section
+
+// Pages
+@import "pages/404/index";
+@import "pages/community/index";
+@import "pages/guidelines/index";
+@import "pages/methods/index";
+@import "pages/contact/index";
+@import "pages/contact/contact-form";
+@import "pages/about-us/index";
+@import "pages/jobs/index";
+@import "pages/terms/terms";
+@import "pages/signup-with-image/index";
+@import "pages/video/index";
+@import "pages/image-with-text/index";
+@import "pages/main/index";
+@import "pages/logo-list/index";
+
+// Search
+@import "search/search";
+
+// Blog

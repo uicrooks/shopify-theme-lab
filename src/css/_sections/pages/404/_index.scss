@@ -1,0 +1,101 @@
+.not-found__container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.not-found__img {
+	position: relative;
+	display: flex;
+}
+
+.eyes {
+	position: absolute;
+	top: 25%;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 150px;
+	height: 150px;
+	background-color: #ffffff;
+	border-radius: 50%;
+
+	&.eyes--left {
+		left: 210px;
+	}
+
+	&.eyes--right {
+		right: 90px;
+	}
+
+	@media #{$xl} {
+		&.eyes--left {
+			left: 210px;
+		}
+
+		&.eyes--right {
+			right: 90px;
+		}
+	}
+
+	@media #{$m-xl} {
+		width: 80px;
+		height: 80px;
+
+		&.eyes--left {
+			left: 110px;
+		}
+
+		&.eyes--right {
+			right: 64px;
+		}
+	}
+
+	@media #{$no-fw} {
+		width: 250px;
+		height: 250px;
+
+		&.eyes--left {
+			left: 285px;
+		}
+
+		&.eyes--right {
+			right: 135px;
+		}
+	}
+
+	@media #{$no-qhd} {
+		width: 290px;
+		height: 290px;
+
+		&.eyes--left {
+			left: 350px;
+		}
+
+		&.eyes--right {
+			right: 160px;
+		}
+	}
+}
+
+.eyes__pupil {
+	width: 60px;
+	height: 60px;
+
+	.icon-404-pupils {
+		width: 100%;
+		height: 100%;
+		color: #000000;
+	}
+
+	@media #{$m-xl} {
+		width: 30px;
+		height: 30px;
+	}
+
+	@media #{$no-fw} {
+		width: 90px;
+		height: 90px;
+	}
+}

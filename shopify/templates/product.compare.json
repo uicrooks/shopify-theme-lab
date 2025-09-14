@@ -1,0 +1,128 @@
+{
+  "sections": {
+    "main": {
+      "type": "compare-main-product",
+      "custom_css": [
+
+      ],
+      "settings": {
+        "background_color": "{{ section.settings.product0.metafields.my_fields.product_background_color.value }}",
+        "underline_word": "",
+        "reviews_average_rating": "",
+        "reviews_quantity_text": "",
+        "product0": "geschenkbox-bundle-weihnachtssorten-bio-vegan",
+        "pro_title0": "Geschenkboxen als Bundle",
+        "bar_qty0": "42",
+        "discount0": "Ersparnis: 4%",
+        "product1": "xmas-geschenkbox-24-stuck-alle-sorten-bio-vegan",
+        "pro_title1": "große  x-mas Geschenkbox",
+        "bar_qty1": "24",
+        "discount1": "inkl. Weihnachtskarte",
+        "product2": "probierbox-alle-sorten-16-stuck-bio-vegan",
+        "pro_title2": "kleine Probierbox",
+        "bar_qty2": "16"
+      }
+    },
+    "168126247459f8a605": {
+      "type": "apps",
+      "blocks": {
+        "3b562b00-3e58-4222-9342-db0be1d383ae": {
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+          }
+        }
+      },
+      "block_order": [
+        "3b562b00-3e58-4222-9342-db0be1d383ae"
+      ],
+      "disabled": true,
+      "settings": {
+      }
+    },
+    "main_product_ingredients": {
+      "type": "compare-main-product-ingredients",
+      "settings": {
+        "title": "Wir verwenden nur beste Zutaten"
+      }
+    },
+    "compare_big_content": {
+      "type": "compare-big-content",
+      "settings": {
+        "title": "Hey, wir sind <span data-tooltip=\"1\">treatfuls<\/span> eine unglaublich leckere und vegane <span class=\"emoji\">🌱<\/span> Snack-Company aus Düsseldorf. Wir, das sind zwei leidenschaftliche <span data-tooltip=\"2\">Foodies<\/span>, die die Snack <span class=\"emoji\">🍫<\/span> Industrie revolutionieren <span class=\"emoji\">💪<\/span> wollen.",
+        "img_on_hover_first": "shopify:\/\/shop_images\/about-us-prod-3x.png",
+        "img_on_hover_second": "shopify:\/\/shop_images\/about-us-img-3x.jpg"
+      }
+    },
+    "compare_product_reviews": {
+      "type": "compare-product-reviews",
+      "blocks": {
+        "aa617827-5535-4d4b-a335-b84f4c3b4b27": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "c3fbd356-cf27-49d8-ae72-878d6f919592": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "89088c16-9028-4a04-98c9-2df8e95dd102": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "b1694818-0b81-42c8-ac0e-020a9ca87756": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "3bd524cf-72c4-47af-8ff2-8b3b5f87b9a9": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        }
+      },
+      "block_order": [
+        "aa617827-5535-4d4b-a335-b84f4c3b4b27",
+        "c3fbd356-cf27-49d8-ae72-878d6f919592",
+        "89088c16-9028-4a04-98c9-2df8e95dd102",
+        "b1694818-0b81-42c8-ac0e-020a9ca87756",
+        "3bd524cf-72c4-47af-8ff2-8b3b5f87b9a9"
+      ],
+      "settings": {
+        "title": "Eure Bewertungen",
+        "underline_word": "Bewertungen",
+        "text-box": "",
+        "link": "#",
+        "linktext": "Schreibe eine Bewertung"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "168126247459f8a605",
+    "main_product_ingredients",
+    "compare_big_content",
+    "compare_product_reviews"
+  ]
+}

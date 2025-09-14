@@ -1,0 +1,44 @@
+.signup-with-image {
+
+  .container {
+    .title-wrapper {
+      max-width: none;
+    }
+  }
+
+  &__content {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .title-wrapper {
+      @media #{$no-m-xl} {
+        padding-bottom: 60px;
+      }
+
+      @media #{$m-xl} {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .input-checkbox {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .label {
+    padding: 0;
+  }
+
+  .button--space {
+    margin-bottom: 0;
+  }
+}

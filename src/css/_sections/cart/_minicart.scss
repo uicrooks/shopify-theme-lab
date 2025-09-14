@@ -1,0 +1,311 @@
+.minicart {
+  position: relative;
+  z-index: 99999;
+}
+
+.minicart__container {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--section-accent-color);
+  transform: translateX(100%);
+  max-width: 400px;
+  transition-property: transform;
+  transition-duration: 0.3s;
+
+  &.minicart__container--open {
+    right: 0;
+    transform: translateX(0);
+  }
+}
+
+.minicart__overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(231, 232, 233, 0.7);
+  transition-property: visibility, opacity;
+  transition-duration: 0.3s;
+
+  &.minicart__overlay--shown {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.minicart__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  color: rgb(var(--color-text));
+}
+
+.minicart__title {
+  flex-grow: 1;
+  font-weight: bold;
+  text-align: left;
+  color: rgb(var(--color-text));
+
+  @media #{$no-fw} {
+    font-size: 3.2vw;
+  }
+}
+
+.minicart__header {
+  display: flex;
+  flex-direction: column;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.minicart__heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.minicart__close {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: flex;
+    width: 32px;
+    height: 2px;
+    background-color: rgb(var(--color-text));
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  @include hover {
+    opacity: 0.7;
+  }
+}
+
+.minicart__body {
+  position: relative;
+  flex: 1 0 auto;
+  margin: 20px 20px 0;
+  overflow-y: auto;
+
+  &.minicart__body--empty {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+#mini-cart-form {
+  margin: 0 0 20px;
+}
+
+.minicart__section {
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &.minicart__section--header {
+    background-color: var(--mini-cart-background);
+
+    .base-triangular-line {
+      color: var(--mini-cart-background);
+      left: 0;
+    }
+  }
+
+  &.minicart__section--items {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    padding: 0;
+    overflow-y: auto;
+  }
+
+  &.minicart__section--empty {
+    display: flex;
+    padding: 0;
+    flex-grow: 1;
+  }
+
+  &.minicart__section--footer {
+    position: relative;
+    padding-bottom: 12px;
+    background-color: var(--section-background-color);
+
+    .top-triangular-line {
+      color: var(--section-background-color);
+      left: 0;
+    }
+  }
+}
+
+.minicart-empty {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+  max-width: 350px;
+  text-align: center;
+}
+
+.minicart-empty__title {
+  margin-bottom: 15px;
+  color: rgb(var(--color-text));
+}
+
+.minicart-empty__subtitle {
+  color: rgb(var(--color-text));
+}
+
+.minicart-empty__button {
+  width: 100%;
+  margin-top: 5vw;
+  text-align: center;
+}
+
+.minicart__item-count {
+  font-size: 120%;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid rgb(var(--color-text));
+  padding-bottom: 20px;
+}
+
+.minicart__empty-cart-notice {
+  margin: 20px 0 40px;
+}
+
+@media #{$no-fw} {
+  .minicart__container {
+    max-width: 30vw;
+  }
+}
+
+@media (max-width: 374px) {
+  .minicart__section {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    &.minicart__section--items {
+      width: calc(100% - 30px);
+      margin-left: 15px;
+      margin-right: 15px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .minicart__close {
+    right: 7px;
+    top: 10px;
+  }
+}
+
+/* Free shipping bar */
+
+.shipping-bar {
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: center;
+  color: rgb(var(--color-text));
+}
+
+.shipping-bar__text {
+  display: block;
+}
+
+.shipping-bar__progress {
+  position: relative;
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 6px;
+  height: 7px;
+  border-radius: 4px;
+  background-color: rgb(var(--color-text));
+
+  &:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: transform 0.2s ease;
+    transform: scaleX(var(--progress));
+    transform-origin: left;
+  }
+
+  &--achieved {
+    &:after {
+      background: var(--free-shipping-success);
+      border-radius: 4px;
+    }
+  }
+
+  &--remaining {
+    &:after {
+      background: var(--free-shipping-remaining);
+      border-radius: 4px;
+    }
+  }
+}
+
+.shipping-bar__information {
+  font-size: 12px;
+
+  @media #{$no-fw} {
+    font-size: 16px;
+  }
+}
+
+.shipping-bar--large {
+  max-width: 392px;
+}
+
+@media screen and (min-width: 741px) {
+  .shipping-bar {
+    margin-bottom: 8px;
+  }
+
+  .shipping-bar__progress {
+    margin: 8px 0;
+    height: 8px;
+  }
+
+  .shipping-bar--large .shipping-bar__progress {
+    margin: 16px 0;
+  }
+}

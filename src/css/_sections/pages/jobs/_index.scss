@@ -1,0 +1,70 @@
+.jobs {
+	overflow: hidden;
+}
+
+.jobs__container {
+	position: relative;
+}
+
+.jobs__img {
+	display: none;
+
+	@media #{$no-m-xl} {
+		position: absolute;
+		display: inline-block;
+		min-width: 160px;
+		min-height: 160px;
+
+		&.jobs__img--left {
+			top: 0;
+			left: -37px;
+		}
+
+		&.jobs__img--right {
+			top: 120px;
+			right: -37px;
+		}
+	}
+
+	@media #{$no-l} {
+		&.jobs__img--left {
+			top: -80px;
+			left: 8%;
+		}
+
+		&.jobs__img--right {
+			top: 80px;
+			right: 2vw;
+		}
+	}
+
+	@media #{$no-xl} {
+		&.jobs__img--left {
+			left: 15vw;
+		}
+
+		&.jobs__img--right {
+			right: 6vw;
+		}
+	}
+
+	@media #{$no-fw} {
+		min-width: 240px;
+		min-height: 240px;
+
+		&.jobs__img--left {
+			top: -120px;
+		}
+
+		&.jobs__img--right {
+			top: 7vw;
+			right: 10vw;
+		}
+	}
+
+	@media #{$no-qhd} {
+		&.jobs__img--left {
+			top: -160px;
+		}
+	}
+}

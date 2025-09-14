@@ -1,0 +1,74 @@
+/* stylelint-disable */
+.input {
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 10px 16px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #ffffff;
+  box-shadow: none;
+  outline: 0;
+
+  &.input--blue {
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-text-fill-color: #ffffff;
+      -webkit-box-shadow: 0 0 0 62px var(--section-background-color) inset !important;
+    }
+  }
+
+  &.input--error {
+    border-bottom-color: var(--error-color);
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &:focus {
+    border-bottom-color: var(--section-accent-color);
+    box-shadow: none;
+  }
+
+  // Date picker icon styling
+  &[type="date"] {
+    // Webkit browsers (Chrome, Safari, Edge)
+    &::-webkit-calendar-picker-indicator {
+      filter: invert(1); // Makes the icon white
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    // Firefox
+    &::-moz-calendar-picker-indicator {
+      filter: invert(1); // Makes the icon white
+      cursor: pointer;
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    // For custom colors, you can use:
+    // filter: hue-rotate(180deg) saturate(200%) brightness(150%); // Example for blue tint
+    // filter: sepia(1) saturate(5) hue-rotate(30deg); // Example for orange tint
+  }
+
+  @media #{$no-fw} {
+    font-size: 1.1vw;
+  }
+}
+
+/* stylelint-enable */

@@ -1,0 +1,77 @@
+{% assign color_scheme = resource.metafields.custom.color_scheme.value %}
+
+{%- style -%}
+  #shopify-section-header, #shopify-section-announcement-bar {
+    {% if color_scheme.header_background.value != blank %}
+      --header-background-color: {{ color_scheme.header_background.value }};
+    {% elsif product.metafields.custom.background_color %}
+      --header-background-color: {{ product.metafields.custom.background_color }};
+    {% else %}
+      --header-background-color: {{ settings.header_background }};
+    {% endif %}
+
+    {% if color_scheme.header_accent.value != blank %}
+      --header-accent-color: {{ color_scheme.header_accent.value }};
+    {% elsif product.metafields.custom.accent_color %}
+      --header-accent-color: {{ product.metafields.custom.accent_color }};
+    {% else %}
+      --header-accent-color: {{ settings.header_accent }};
+    {% endif %}
+  }
+  
+  #shopify-section-footer {
+    {% if color_scheme.footer_background.value != blank %}
+      --footer-background-color: {{ color_scheme.footer_background.value }};
+    {% else %}
+      --footer-background-color: {{ settings.footer_background }};
+    {% endif %}
+
+    {% if color_scheme.footer_accent.value != blank %}
+      --footer-accent-color: {{ color_scheme.footer_accent.value }};
+    {% else %}
+      --footer-accent-color: {{ settings.footer_accent }};
+    {% endif %}
+  }
+
+  @media screen and (max-width: 991px) {
+    #shopify-section-header, #shopify-section-announcement-bar {
+      {% if color_scheme.header_background_mobile.value != blank %}
+        --header-background-color: {{ color_scheme.header_background_mobile.value }};
+      {% elsif color_scheme.header_background.value != blank %}
+        --header-background-color: {{ color_scheme.header_background.value }};
+      {%- elsif product.metafields.custom.background_color -%}
+        --header-background-color: {{ product.metafields.custom.background_color }};
+      {%- else -%}
+        --header-background-color: {{ settings.header_background }};
+      {% endif %}
+
+      {% if color_scheme.header_accent_mobile.value != blank %}
+        --header-accent-color: {{ color_scheme.header_accent_mobile.value }};
+      {% elsif color_scheme.header_accent.value != blank %}
+        --header-accent-color: {{ color_scheme.header_accent.value }};
+      {%- elsif product.metafields.custom.accent_color -%}
+        --header-background-color: {{ product.metafields.custom.accent_color }};
+      {% else %}
+        --header-accent-color: {{ settings.header_accent }};
+      {% endif %}
+    }
+    
+    #shopify-section-footer {
+      {% if color_scheme.footer_background_mobile.value != blank %}
+        --footer-background-color: {{ color_scheme.footer_background_mobile.value }};
+      {% elsif color_scheme.footer_background.value != blank %}
+        --footer-background-color: {{ color_scheme.footer_background.value }};
+      {% else %}
+        --footer-background-color: {{ settings.footer_background }};
+      {% endif %}
+
+      {% if color_scheme.footer_accent_mobile.value != blank %}
+        --footer-accent-color: {{ color_scheme.footer_accent_mobile.value }};
+      {% elsif color_scheme.footer_accent.value != blank %}
+        --footer-accent-color: {{ color_scheme.footer_accent.value }};
+      {%- else -%}
+        --footer-accent-color: {{ settings.footer_accent }};
+      {% endif %}
+    }
+  }
+{%- endstyle -%}

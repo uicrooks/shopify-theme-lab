@@ -1,0 +1,206 @@
+<style>
+  #shopify-block-{{ block.id }} .product-card__content {
+    {% if block.settings.background_color != 'rgba(0,0,0,0)' %}
+      --product-card-background: {{ block.settings.background_color.red }}, {{ block.settings.background_color.green }}, {{ block.settings.background_color.blue }};
+    {% endif %}
+    {% if block.settings.text_color != 'rgba(0,0,0,0)' %}
+      --color-text: {{ block.settings.text_color.red }}, {{ block.settings.text_color.green }}, {{ block.settings.text_color.blue }};
+    {% endif %}
+  }
+</style>
+
+{%- assign card_product = block.settings.card_product -%}
+{%- assign short_title = card_product.metafields.custom.short_title -%}
+
+<div
+  class="product-card{% if block.settings.background_color != 'rgba(0,0,0,0)' or block.settings.text_color != 'rgba(0,0,0,0)' %} product-card--custom-colors{% endif %}"
+  id="shopify-block-{{ block.id }}"
+  {{ block.shopify_attributes }}
+  {% if block.settings.background_color != 'rgba(0,0,0,0)' %}
+    style="--product-card-background: {{ block.settings.background_color.red }}, {{ block.settings.background_color.green }}, {{ block.settings.background_color.blue }};"
+  {% endif %}
+  {% if block.settings.text_color != 'rgba(0,0,0,0)' %}
+    style="--product-card-text-color: {{ block.settings.text_color.red }}, {{ block.settings.text_color.green }}, {{ block.settings.text_color.blue }};"
+  {% endif %}
+>
+  <div class="product-card__image">
+    {% if card_product.featured_image != blank %}
+      {{ card_product.featured_image | image_url: width: 800 | image_tag }}
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'product-card__image-placeholder' }}
+    {% endif %}
+  </div>
+  <div class="product-card__content">
+    <h3 class="product-card__title">
+      {%- if short_title != blank -%}
+        {{ short_title }}
+      {%- else -%}
+        {{ card_product.title }}
+      {%- endif -%}
+    </h3>
+
+    <info-tabs class="info-tabs">
+      <div class="tabs-navigation hidden-desktop">
+        <div class="tabs-navigation__item" data-tab-heading="Information" open>Information</div>
+        <div class="tabs-navigation__item" data-tab-heading="Ingredients">Ingredients</div>
+        <div class="tabs-navigation__item" data-tab-heading="Directions">Directions</div>
+      </div>
+      <div class="tab-wrapper" data-tab-heading="Information" open>
+        {% if card_product.metafields.custom.bullet_points.value != blank %}
+          <div class="product-card__bullet-points">
+            {% for bullet_point in card_product.metafields.custom.bullet_points.value %}
+              <div class="product-card__bullet-point">
+                {% render 'icon-check' %}
+                <span class="product-card__bullet-point-text">{{ bullet_point }}</span>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+        <div class="product-card__price">
+          {% if card_product != blank %}
+            {% assign current_variant = card_product.selected_or_first_available_variant %}
+
+            <span class="product-form__meta-price h3" data-price-wrapper>
+              {%- unless card_product.compare_at_price_max > card_product.price -%}
+                {% assign hidden_class = 'hide' %}
+              {%- endunless -%}
+              <s
+                class="product-form__price product-form__price--old {{ hidden_class }}"
+                data-compare-price
+              >
+                {%- if current_variant.compare_at_price > current_variant.price -%}
+                  {% assign sale_class = 'product-form__price--new' %}
+                  {{- current_variant.compare_at_price | money -}}
+                {%- endif -%}
+              </s>
+              <span class="product-form__price {{ sale_class }}" data-product-price>
+                {{- current_variant.price | money -}}
+              </span>
+              {%- if current_variant.unit_price_measurement -%}
+                {%- capture unit_price_base_unit -%}
+                  
+                    {%- if current_variant.available and current_variant.unit_price_measurement -%}
+                      {%- if current_variant.unit_price_measurement.reference_value != 1 -%}
+                        {{- current_variant.unit_price_measurement.reference_value -}}
+                      {%- endif -%}
+                      {{ current_variant.unit_price_measurement.reference_unit }}
+                    {%- endif -%}
+                  
+                {%- endcapture -%}
+                <span class="product-form__unit-price {{ sale_class }}" data-product-price>
+                  {{- current_variant.unit_price | money -}}
+                  / {{ unit_price_base_unit }}
+                </span>
+              {%- endif -%}
+            </span>
+          {% else %}
+            $100.00
+          {% endif %}
+        </div>
+        <div class="product-card__ctas">
+          {% if card_product != blank %}
+            <atc-button>
+              {% form 'product', card_product, class: 'product-form' %}
+                <input type="hidden" name="id" value="{{ card_product.selected_or_first_available_variant.id }}">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="button product-form__button">Add to Cart</button>
+              {% endform %}
+            </atc-button>
+          {% endif %}
+          {% if card_product != blank %}
+            <a href="{{ card_product.url }}" class="button product-form__button">View Product</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="tab-wrapper" data-tab-heading="Ingredients">
+        <div class="product-card__ingredients">
+          {{ card_product.metafields.custom.ingredients }}
+        </div>
+      </div>
+      <div class="tab-wrapper" data-tab-heading="Directions">
+        <div class="product-card__directions">
+          {%- assign nutrition_values = card_product.metafields.custom.nutrition_values.value -%}
+
+          <table>
+            <tr>
+              <td></td>
+              <td>{{ 'products.product.nutrition_grams' | t }}</td>
+              <td>{{ 'products.product.nutrition_portion_html' | t }}</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.product.energy' | t }}</td>
+              <td>{{ nutrition_values.energie_100_gr }}</td>
+              <td>{{ nutrition_values.energie_portion }}</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.product.fat' | t }}</td>
+              <td>{{ nutrition_values.fett_100_gr }}</td>
+              <td>{{ nutrition_values.fett_portion }}</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.product.sat_fat' | t }}</td>
+              <td>{{ nutrition_values.gesattigte_fettsauren_100_gr }}</td>
+              <td>{{ nutrition_values.gesattigte_fettsauren_portion }}</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.product.carbs' | t }}</td>
+              <td>{{ nutrition_values.kohlenhydrate_100_gr }}</td>
+              <td>{{ nutrition_values.kohlenhydrate_portion }}</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.product.sugar' | t }}</td>
+              <td>{{ nutrition_values.zucker_100_gr }}</td>
+              <td>{{ nutrition_values.zucker_portion }}</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.product.fibre' | t }}</td>
+              <td>{{ nutrition_values.ballaststoffe_100_gr }}</td>
+              <td>{{ nutrition_values.ballaststoffe_portion }}</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.product.protein' | t }}</td>
+              <td>{{ nutrition_values.eiweiss_100_gr }}</td>
+              <td>{{ nutrition_values.eiweiss_portion }}</td>
+            </tr>
+            <tr>
+              <td>{{ 'products.product.salt' | t }}</td>
+              <td>{{ nutrition_values.salz_100_gr }}</td>
+              <td>{{ nutrition_values.salz_portion }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </info-tabs>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Card",
+  "tag": null,
+  "settings": [
+    {
+      "type": "product",
+      "id": "card_product",
+      "label": "Product"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "rgba(0,0,0,0)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Card"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,387 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-header {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --header-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --header-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-footer{
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --footer-accent-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --footer-background-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign login_title = section.settings.login_title -%}
+{%- assign login_subtitle = section.settings.login_subtitle -%}
+{%- assign login_form_title = section.settings.login_form_title -%}
+{%- assign login_column_title = section.settings.login_column_title -%}
+{%- assign login_column_subtitle = section.settings.login_column_subtitle -%}
+
+{%- assign recover_title = section.settings.recover_title -%}
+{%- assign recover_subtitle = section.settings.recover_subtitle -%}
+{%- assign recover_form_title = section.settings.recover_form_title -%}
+{%- assign recover_form_footer_text = section.settings.recover_form_footer_text -%}
+{%- assign recover_success_title = section.settings.recover_success_title -%}
+{%- assign recover_success_subtitle = section.settings.recover_success_subtitle -%}
+{%- assign recover_success_link_text = section.settings.recover_success_link_text -%}
+{%- assign recover_success_image = section.settings.recover_success_image -%}
+{%- assign recover_success_image_mobile = section.settings.recover_success_image_mobile -%}
+
+
+{%- capture login_form -%}
+	{%- assign formId = 'CustomerLoginForm' -%}
+	<div id="{{ formId }}" class="customer__login form-vertical">
+		{%- if login_title or login_subtitle -%}
+			<div class="title-wrapper">
+				{%- if login_title -%}
+					<h1 class="title-wrapper__title title-bg">{{ login_title }}</h1>
+				{%- endif -%}
+
+				{%- if login_subtitle -%}
+					<p class="title-wrapper__subtitle">{{ login_subtitle }}</p>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		<div class="customer__login-wrapper">
+			{% form 'customer_login', id: formId, class: 'form form-login' %}
+
+				{%- if form.errors -%}
+					<div class="form-message form-message--error">
+						{{ form.errors | default_errors }}
+					</div>
+					{%- capture email_error_class -%}
+						{%- if form.errors contains 'email' -%}input--error{%- endif -%}
+					{%- endcapture -%}
+
+					{%- capture password_error_class -%}
+						{%- if form.errors contains 'password' -%}input--error{%- endif -%}
+					{%- endcapture -%}
+				{%- endif -%}
+
+				{%- if login_form_title -%}
+					<h3 class="customer__title-sm">{{ login_form_title }}</h3>
+				{%- endif -%}
+
+				<label class="label">
+					<span class="sr-only">{{ 'customer.login.email' | t }}</span>
+					<input
+						type="email"
+						name="customer[email]"
+						placeholder="{{ 'customer.login.email' | t }}"
+						id="{{ formId }}-email"
+						class="input input--blue {{ email_error_class }}"
+						autocorrect="off"
+						autocapitalize="off"
+						autofocus
+					>
+				</label>
+
+				{% if form.password_needed %}
+					<label class="label">
+						<span class="sr-only">{{ 'customer.login.password' | t }}</span>
+						<input
+							type="password"
+							name="customer[password]"
+							placeholder="{{ 'customer.login.password' | t }}"
+							id="{{ formId }}-password"
+							class="input input--blue {{ password_error_class }}"
+						>
+					</label>
+				{% endif %}
+
+				<button type="submit" class="button button--space button--fw">{{ 'customer.login.sign_in' | t }}</button>
+
+				{% if form.password_needed %}
+					<a href="#recover" id="RecoverPassword" class="link-underline text">
+						{{ 'customer.login.forgot_password' | t }}
+					</a>
+				{% endif %}
+			{% endform %}
+
+			<section class="customer__column">
+				{%- if login_column_title -%}
+					<h3 class="customer__title-sm customer__column-title">{{ login_column_title }}</h3>
+				{%- endif -%}
+				{%- if login_column_subtitle -%}
+					<p class="customer__column-subtitle text">{{ login_column_subtitle }}</p>
+				{%- endif -%}
+				<a href="/account/register" class="button button--space button--fw">{{ 'layout.customer.create_account' | t }}</a>
+			</section>
+		</div>
+
+	</div>
+{%- endcapture -%}
+
+{%- capture recover_form -%}
+	{%- assign formId = 'RecoverPasswordForm' -%}
+	<div id="{{ formId }}" class="customer__recover hide">
+
+		{%- if recover_title or recover_subtitle -%}
+			<div class="title-wrapper">
+				{%- if recover_title -%}
+					<h1 class="title-wrapper__title title-bg">{{ recover_title }}</h1>
+				{%- endif -%}
+
+				{%- if recover_subtitle -%}
+					<p class="title-wrapper__subtitle">{{ recover_subtitle }}</p>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		<div class="customer__recover-form">
+			{% form 'recover_customer_password', id: formId %}
+
+					{%- if form.errors -%}
+						<div class="form-message form-message--error">
+							{{ form.errors | default_errors }}
+						</div>
+					{%- endif -%}
+
+					{% comment %}
+						Add a hidden span to indicate the form was submitted succesfully.
+					{% endcomment %}
+					{% if form.posted_successfully? %}
+						{% assign recover_success = form.posted_successfully? %}
+						<span class="hide reset-password-success"></span>
+					{% endif %}
+
+					{%- if recover_form_title -%}
+						<h3 class="customer__title-sm">{{ recover_form_title }}</h3>
+					{%- endif -%}
+
+					<label class="label">
+						<span class="sr-only">{{ 'customer.recover_password.email' | t }}</span>
+						<input
+							type="email"
+							name="email"
+							placeholder="{{ 'customer.recover_password.email' | t }}"
+							id="{{ formId }}-email"
+							class="input input--blue"
+							autocorrect="off"
+							autocapitalize="off"
+						>
+					</label>
+
+					<div class="customer__recover-actions">
+						<button  type="submit" class="button">{{ 'customer.recover_password.submit' | t }}</button>
+
+						<button type="button" id="HideRecoverPasswordLink" class="button">{{ 'customer.recover_password.cancel' | t }}</button>
+					</div>
+
+					{%- if recover_form_footer_text -%}
+						<p class="text color-white">{{ recover_form_footer_text }}</p>
+					{%- endif -%}
+				{% endform %}
+		</div>
+
+	</div>
+{%- endcapture -%}
+
+<section
+	class="customer customer--login"
+	data-section-id="{{- section.id -}}"
+	data-section-type="customer"
+>
+	<div class="content-wrapper">
+		{%- if login_form -%}
+			{{ login_form }}
+		{%- endif -%}
+
+		{%- if recover_form -%}
+			{{ recover_form }}
+		{%- endif -%}
+
+		{%- if recover_success == true -%}
+			<div class="customer__recover-success">
+				{%- if recover_success_title or recover_success_subtitle -%}
+					<div class="title-wrapper">
+						{%- if recover_success_title -%}
+							<h2 class="h1 title-wrapper__title title-bg">{{ recover_success_title }}</h2>
+						{%- endif -%}
+
+						{%- if recover_success_subtitle -%}
+							<p class="title-wrapper__subtitle">{{ recover_success_subtitle }}</p>
+						{%- endif -%}
+
+						<a href="/account/login" class="link-underline text">{{ recover_success_link_text }}</a>
+					</div>
+				{%- endif -%}
+				<picture class="customer__recover-img">
+					<source srcset="{{ recover_success_image.src | img_url: '1920x' }} 1x, {{ recover_success_image.src | img_url: '3840x' }} 2x"
+									media="(min-width: 1500px)">
+					<source
+						srcset="{{ recover_success_image.src | img_url: '1440x' }} 1x"
+						media="(min-width: 991px)">
+					<img src="{{ recover_success_image_mobile.src | img_url: '790x' }} 1x"
+							 srcset="{{ recover_success_image_mobile.src | img_url: '790x' }} 1x, {{ recover_success_image_mobile.src | img_url: '1580x' }} 2x"
+							 alt="{{ recover_success_image_mobile.alt }}">
+				</picture>
+				<script>
+					document.addEventListener('DOMContentLoaded', function() {
+						const loginForm = document.querySelector('#CustomerLoginForm');
+						loginForm.classList.add('hide');
+						document.body.dataset.siteBg = 'primary';
+						document.body.classList.add('customer-recover-success');
+					});
+				</script>
+			</div>
+		{%- endif -%}
+
+		{% comment %}
+			If accounts are set as optional, the following will be shown as an option
+			during checkout, not on the default /login page.
+		{% endcomment %}
+		{% if shop.checkout.guest_login %}
+				<div class="text-center">
+					<hr class="hr--invisible">
+					<h2>{{ 'customer.login.guest_title' | t }}</h2>
+
+					{% form 'guest_login' %}
+						<input type="submit" class="btn" value="{{ 'customer.login.guest_continue' | t }}">
+					{% endform %}
+				</div>
+			{% endif %}
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "Login",
+	"class": "login-page jsAccounts",
+	"settings": [
+		{
+			"type": "text",
+			"id": "login_title",
+			"label": "Login Title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "<span><span>Melde dich an</span></span> oder <span><span>registriere</span></span> dich"
+		},
+		{
+			"type": "text",
+			"id": "login_subtitle",
+			"label": "Login Subtitle",
+			"default": "Du kannst dich mit einem Account anmelden oder einen neuen erstellen."
+		},
+		{
+			"type": "text",
+			"id": "login_form_title",
+			"label": "Login form title",
+			"default": "Anmelden"
+		},
+		{
+			"type": "text",
+			"id": "login_column_title",
+			"label": "Login second column tittle",
+			"default": "Registrieren"
+		},
+		{
+			"type": "text",
+			"id": "login_column_subtitle",
+			"label": "Login second column subtittle",
+			"default": "Erstelle jetzt ein Konto, um Bestellungen zu verfolgen, dein Profil zu verwalten, deine Leiferadresse hinzuzufügen und den Bezahlvorgang zum optimieren."
+		},
+		{
+			"type": "text",
+			"id": "recover_title",
+			"label": "Recover Title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "Setze hier dein <span><span>Passwort zurück</span></span>"
+		},
+		{
+			"type": "text",
+			"id": "recover_subtitle",
+			"label": "Recover Subtitle",
+			"default": "Du hast dein Passwort vergessen? Gar kein Problem, setze es einfach zurück."
+		},
+		{
+			"type": "text",
+			"id": "recover_form_title",
+			"label": "Recover form title",
+			"default": "Passwort zurücksetzen"
+		},
+		{
+			"type": "text",
+			"id": "recover_form_footer_text",
+			"label": "Recover form footer text",
+			"default": "Wir senden Ihnen eine E-Mail, um Ihr Passwort zurückzusetzen."
+		},
+		{
+			"type": "text",
+			"id": "recover_success_title",
+			"label": "Recover success title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "Check doch mal deine <span><span>Mails!</span></span>"
+		},
+		{
+			"type": "text",
+			"id": "recover_success_subtitle",
+			"label": "Recover success subtitle",
+			"default": "Wir haben dir eine E-Mail geschickt, in der du dein Passwort zurücksetzen kannst."
+		},
+		{
+			"type": "text",
+			"id": "recover_success_link_text",
+			"label": "Recover success link text",
+			"default": "Zurück zur Login-Seite"
+		},
+		{
+			"type": "image_picker",
+			"id": "recover_success_image",
+			"label": "Recover success image"
+		},
+		{
+			"type": "image_picker",
+			"id": "recover_success_image_mobile",
+			"label": "Recover success image mobile"
+		},
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#5359e5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    }
+	]
+}
+{% endschema %}

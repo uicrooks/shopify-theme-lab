@@ -1,10 +1,43 @@
-{
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+ {
   "sections": {
-    "main": {
-      "type": "main-search"
+    "f507b3a2-8d74-41d4-a1c9-d3dc0f20e0ee": {
+      "type": "collection",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "collection": "produkte",
+        "items_per_page": 48,
+        "show_vendor": false,
+        "show_view_all": false,
+        "background_color": "#2ac2bd",
+        "accent_color": "#f3587f",
+        "hover_color": "#dbaaeb"
+      }
+    },
+    "main_search_YNrPWF": {
+      "type": "main-search",
+      "name": "Main search",
+      "settings": {
+        "items_per_page": 48,
+        "show_vendor": false,
+        "show_view_all": false,
+        "background_color": "#2ac2bd",
+        "accent_color": "#f3587f",
+        "hover_color": "#dbaaeb"
+      }
     }
   },
   "order": [
-    "main"
+    "f507b3a2-8d74-41d4-a1c9-d3dc0f20e0ee",
+    "main_search_YNrPWF"
   ]
 }

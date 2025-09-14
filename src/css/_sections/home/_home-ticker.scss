@@ -1,0 +1,57 @@
+.home-ticker {
+  [data-ticker="item"] {
+    transition: transform 0.4s ease-out;
+  }
+}
+
+.home-ticker__container {
+	position: relative;
+	overflow: hidden;
+
+	@media #{$no-m} {
+		padding-top: 120px;
+		padding-bottom: 120px;
+	}
+
+	@media #{$m-xxl} {
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+}
+
+.ticker {
+	display: inline-block;
+	padding-right: 90%;
+	white-space: nowrap;
+
+	@media #{$m-xl} {
+		padding-right: 80%;
+	}
+}
+
+.ticker-wrap {
+	width: 100%;
+	box-sizing: content-box;
+
+	&.ticker-wrap--revert {
+		padding-left: 0;
+	}
+
+	@media #{$m-xl} {
+	}
+}
+
+.ticker__item {
+	font-size: 200px;
+	font-weight: 700;
+	line-height: 1.1;
+	color: #fff;
+
+	@media #{$m-xxl} {
+		font-size: 150px;
+	}
+
+	@media #{$m-xl} {
+		font-size: 64px;
+	}
+}

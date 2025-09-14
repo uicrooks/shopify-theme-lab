@@ -1,0 +1,31 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product_teaser_cHpidz": {
+      "type": "signup-with-image",
+      "settings": {
+        "title": "Das süßeste Geheimnis der Saison: unser Adventskalender",
+        "title_mobile": "",
+        "subtitle": "Melde dich zum Newsletter an und hol dir 15% Rabatt🎅✨",
+        "image": "shopify://shop_images/treatfuls_adventskalender_teaser.webp",
+        "content_title": "Setz dich jetzt auf die Warteliste für den Adventskalender!",
+        "content": "<p>Darauf haben wir so lange gewartet – unser Traum wird wahr: Der allererste treatfuls Adventskalender ist da! Gefüllt mit 24 unwiderstehlichen, veganen Überraschungen, die nicht nur lecker sind, sondern auch gut für dich und den Planeten. 🌍✨</p><p>Um Danke zu sagen, möchten wir unseren treuen Newsletter-Abonnent:innen etwas Besonderes schenken: </p><p><br/>Trag dich jetzt auf die Warteliste ein und sei unter den Ersten, die erfahren, wann der Vorverkauf startet. Als Dankeschön gibt’s für dich <strong>exklusive 15% Rabatt</strong> – nur im Pre-Access auf den Adventskalender! 😍</p><p>Der Countdown läuft: Mitte September geht’s los! ⏰<br/>Sichere dir jetzt dein Stück vegane Vorfreude und feiere diesen besonderen Moment mit uns!</p>",
+        "klaviyo_id": "X3H7FL",
+        "background_color": "#275c63",
+        "accent_color": "#aa3e59",
+        "hover_color": "#f3587f"
+      }
+    }
+  },
+  "order": [
+    "product_teaser_cHpidz"
+  ]
+}

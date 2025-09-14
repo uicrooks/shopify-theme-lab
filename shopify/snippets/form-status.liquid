@@ -1,0 +1,33 @@
+{% if form.posted_successfully? %}
+	<p class="form-message form-message--success" tabindex="-1" data-form-status="success">
+		{{ success_message | default: 'contact.form.post_success' | t }}
+	</p>
+{% endif %}
+
+{%- if form.errors -%}
+	<div class="form-message form-message--error">
+		<h3 class="form-message__title" tabindex="-1" data-form-status="error">{{ 'contact.form.error_heading' | t }}</h3>
+		<ul class="form-message__list">
+			{%- for field in form.errors -%}
+				<li class="form-message__item">
+
+					{%- capture field_label -%}
+						{%- case field -%}
+							{%- when 'author' -%}
+								{{ 'contact.form.name' | t }}
+							{%- when 'body' -%}
+								{{ 'contact.form.message' | t }}
+							{%- else -%}
+								{{ form.errors.translated_fields[field] }}
+						{%- endcase -%}
+					{%- endcapture -%}
+
+					{% comment %} the href should match the input's id {% endcomment %}
+					<a href="#{{ form_id }}-{{ field }}" class="form-message__link text">
+						{{ field_label | strip | capitalize }} {{ form.errors.messages[field] }}
+					</a>
+				</li>
+			{%- endfor -%}
+		</ul>
+	</div>
+{%- endif -%}

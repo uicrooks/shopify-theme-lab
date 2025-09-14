@@ -1,0 +1,23 @@
+<div class="table-wrapper">
+  <table id="shopify-block-{{ block.id }}">
+    {% content_for 'blocks' %}
+  </table>
+</div>
+{% schema %}
+{
+  "name": "Table",
+  "tag": null,
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "table-row"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Table"
+    }
+  ]
+}
+{% endschema %}

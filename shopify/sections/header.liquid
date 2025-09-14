@@ -1,37 +1,107 @@
-<div class="container">
-  <a href="{{ routes.root_url }}">
-    Logo
-  </a>
+{%- capture header_static_menu -%}
+  {%- if settings.active_search -%}
+		<a href="{{ routes.search_url }}" class="header-nav__link header-nav__link--static hidden-phone" data-toggle="predictive-search-container">
+			{%- render 'icon-search' -%}
+		</a>
+	{%- endif -%}
 
-  {% render 'layout-menu' %}
+	{%- if shop.customer_accounts_enabled -%}
+		<a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+			class="header-nav__link header-nav__link--static">
+			{%- render 'icon-account' -%}
+		</a>
+	{%- endif -%}
+	<a class="basket header-nav__link header-nav__link--static" data-open-minicart>
+		{%- render 'icon-cart' -%}
+		<span class="basket__count js-header-cat-items">
+			{%- if cart.item_count > 99 -%}
+				99+
+			{%- else -%}
+				{{- cart.item_count -}}
+			{%- endif -%}
+		</span>
+	</a>
+{%- endcapture -%}
 
-  <div>
-    {% if shop.customer_accounts_enabled %}
-      {% if customer %}
-        <a href="{{ routes.account_url }}">
-          {{ 'action.account' | t }}
-        </a>
-        {{ 'action.log_out' | t | customer_logout_link }}
-      {% else %}
-        {{ 'action.log_in' | t | customer_login_link }}
-        {{ 'action.register' | t | customer_register_link }}
-      {% endif %}
-    {% endif %}
+<div id="shopify-section-header" class="shopify-section">
+  <section
+    class="header"
+    data-section-id="{{- section.id -}}"
+    data-section-type="header"
+  >
+    <div class="container header__container">
+      <div class="row header__row header__row--top">
+        <div class="js-header-burger hamburger hamburger--spin">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+          {%- if settings.active_search -%}
+            <div class="header-nav header__nav">
+              <a href="{{ routes.search_url }}" class="header-nav__link header-nav__link--static hidden-desktop" data-toggle="predictive-search-container">
+                {%- render 'icon-search' -%}
+              </a>
+            </div>
+          {%- endif -%}
+        </div>
 
-    <a href="{{ routes.cart_url }}">
-      {{ 'action.cart' | t }}
-    </a>
-  </div>
+        <div class="header__column header__column--logo">
+          <a class="header__logo-wrapper" href="{{- routes.root_url -}}">
+            {%- include 'icon-header-logo' -%}
+          </a>
+        </div>
+
+        <div class="header-nav header__nav">
+          <nav class="header-nav__wrap js-header-nav" role="navigation">
+            {%- if section.settings.mobile_left_img -%}
+              {{ section.settings.mobile_left_img | image_url: width: section.settings.mobile_left_img.width | image_tag: class: "header-nav__img-left" }}
+            {%- endif -%}
+            {%- if section.settings.main_linklist != blank -%}
+              <ul class="header-nav__menu">
+                {% for link in linklists[section.settings.main_linklist].links %}
+                  <li class="header-nav__item">
+                    <a class="header-nav__link link-swipe"
+                      href="{{ link.url }}"
+                      {% if link.active %}aria-current="page"{% endif %}
+                    >{{ link.title | escape }}</a>
+                  </li>
+                {% endfor %}
+                {%- if section.settings.mobile_right_img -%}
+                  {{ section.settings.mobile_right_img | image_url: width: section.settings.mobile_right_img.width | image_tag: class: "header-nav__img-right" }}
+                {%- endif -%}
+              </ul>
+            {%- endif -%}
+          </nav>
+          {{- header_static_menu -}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% render 'predictive-search-container' %}
 </div>
 
 {% schema %}
 {
-  "name": "t:sections.header.name",
-  "settings": [
-    {
-      "type": "paragraph",
-      "content": "t:sections.header.settings.paragraph"
-    }
-  ]
+	"name": "Header",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+	"settings": [
+		{
+			"type": "link_list",
+			"id": "main_linklist",
+			"label": "Header Menu"
+		},
+		{
+			"type": "image_picker",
+			"id": "mobile_left_img",
+			"label": "Mobile Menu left image"
+		},
+		{
+			"type": "image_picker",
+			"id": "mobile_right_img",
+			"label": "Mobile Menu right image"
+		}
+	]
 }
 {% endschema %}

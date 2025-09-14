@@ -1,0 +1,102 @@
+{
+  "sections": {
+    "main": {
+      "type": "bundle-product",
+      "settings": {
+        "background_color": "{{ product.metafields.my_fields.product_background_color.value }}",
+        "underline_word": "Limitierte Weihnachtsbox Aktion",
+        "subtitle": "für 79,80€ einkaufen +  Weihnachtsbox gratis",
+        "reviews_average_rating": "",
+        "reviews_quantity_text": "",
+        "product_dropdown_1": "weihnachtsbox-produktauswah",
+        "product_dropdown_2": "weihnachtsbox-produktauswah",
+        "free_product": "kleine-geschenkbox-vegane-weihnachten-bio-1"
+      }
+    },
+    "main_product_ingredients": {
+      "type": "main-product-ingredients",
+      "settings": {
+        "title": "Wir verwenden nur <span><span>beste Zutaten<\/span><\/span>"
+      }
+    },
+    "compare_product_reviews": {
+      "type": "compare-product-reviews",
+      "blocks": {
+        "text_pfjpEN": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "",
+            "review_title": "",
+            "review_content": ""
+          }
+        },
+        "aa617827-5535-4d4b-a335-b84f4c3b4b27": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "c3fbd356-cf27-49d8-ae72-878d6f919592": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "89088c16-9028-4a04-98c9-2df8e95dd102": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "b1694818-0b81-42c8-ac0e-020a9ca87756": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        },
+        "3bd524cf-72c4-47af-8ff2-8b3b5f87b9a9": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "name": "Adrianna",
+            "review_title": "Lorem ipsum dolor sit amet",
+            "review_content": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labor"
+          }
+        }
+      },
+      "block_order": [
+        "text_pfjpEN",
+        "aa617827-5535-4d4b-a335-b84f4c3b4b27",
+        "c3fbd356-cf27-49d8-ae72-878d6f919592",
+        "89088c16-9028-4a04-98c9-2df8e95dd102",
+        "b1694818-0b81-42c8-ac0e-020a9ca87756",
+        "3bd524cf-72c4-47af-8ff2-8b3b5f87b9a9"
+      ],
+      "settings": {
+        "title": "Eure Bewertungen",
+        "underline_word": "Bewertungen",
+        "text-box": "",
+        "link": "#",
+        "linktext": "Schreibe eine Bewertung"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "main_product_ingredients",
+    "compare_product_reviews"
+  ]
+}

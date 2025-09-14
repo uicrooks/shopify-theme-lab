@@ -1,0 +1,163 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-header {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --header-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --header-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-footer{
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --footer-accent-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --footer-background-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign title = section.settings.title -%}
+{%- assign subtitle = section.settings.subtitle -%}
+
+<section
+	class="customer customer--account"
+	data-section-id="{{- section.id -}}"
+	data-section-type="customer-account"
+>
+	<div class="content-wrapper">
+		<div class="title-wrapper">
+			<h1 class="title-wrapper__title title-bg">{{ title | replace: 'UserName', customer.first_name }}</h1>
+
+			<p class="title-wrapper__subtitle">{{ subtitle }}</p>
+		</div>
+
+		<div class="account">
+			<div class="account__item">
+				<div class="account__heading customer__base-container">
+					<h2 class="h3 color-white"><b>{{ 'customer.orders.title' | t }}</b></h2>
+					{% if customer.orders.size == 0 %}
+						<p class="color-white text">{{ 'customer.orders.none' | t }}</p>
+					{% endif %}
+				</div>
+
+				<div class="customer__base-container">
+					{% paginate customer.orders by 20 %}
+						{% if customer.orders.size != 0 %}
+
+							<table class="responsive-table text text--sm color-white customer__table">
+								<thead>
+								<tr>
+									<th>{{ 'customer.orders.order_number' | t }}</th>
+									<th>{{ 'customer.orders.date' | t }}</th>
+									<th>{{ 'customer.orders.payment_status' | t }}</th>
+									<th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+									<th>{{ 'customer.orders.total' | t }}</th>
+								</tr>
+								</thead>
+								<tbody>
+								{% for order in customer.orders %}
+									<tr>
+										<td data-label="{{ 'customer.orders.order_number' | t }}">
+											<a href="{{ order.customer_url }}" class="button-link">{{ order.name }}</a>
+										</td>
+										<td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: '%b %d, %Y' }}</td>
+										<td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+										<td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+										<td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							</table>
+
+						{% endif %}
+						{% if paginate.pages > 1 %}
+							{% render 'pagination' %}
+						{% endif %}
+					{% endpaginate %}
+
+					<div class="account__divider"></div>
+				</div>
+			</div>
+
+			<div class="account__item">
+				<div class="account__heading customer__base-container">
+					<h2 class="h3 color-white"><b>{{ 'customer.account.details' | t }}</b></h2>
+					{% comment %}{{ customer.default_address | format_address }}{% endcomment %}
+					<a href="/account/addresses" class="link-underline text">{{ 'customer.account.view_addresses' | t }} {% comment %}({{ customer.addresses_count }}){% endcomment %}</a>
+				</div>
+			</div>
+
+			<div class="account__item">
+				<div class="account__heading customer__base-container">
+					<br>
+					<a href="/account/logout" class="link-underline text">{{ 'layout.customer.log_out' | t  }}</a>
+					{% comment %}{{ 'layout.customer.log_out' | t | customer_logout_link }}{% endcomment %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "Account",
+	"class": "jsAccounts",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>, UserName will be replaced as customer name",
+			"default": "Hallo <span><span>UserName,</span></span> willkommen zurück"
+		},
+		{
+			"type": "text",
+			"id": "subtitle",
+			"label": "Subtitle",
+			"default": "Hier kannst du deine Bestellungen einsehen und deinen Account verwalten"
+		},
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#5359e5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    }
+	]
+}
+{% endschema %}

@@ -1,0 +1,98 @@
+<div class="store-availability-container">
+  {%- assign pick_up_availabilities = product_variant.store_availabilities | where: 'pick_up_enabled', true -%}
+  {%- if pick_up_availabilities.size > 0 -%}
+    <div class="store-availability-information">
+      {%- assign closest_location = pick_up_availabilities.first -%}
+        {%- if closest_location.available -%} {% render 'icon-in-stock' %} {%- else -%} {% render 'icon-out-of-stock' %} {%- endif -%}
+        <div class="store-availability-information-container">
+          {%- if closest_location.available -%}
+            <p class="store-availability-information__title">
+              {{ 'store_availability.general.pick_up_available_at_html' | t: location_name: closest_location.location.name }}
+            </p>
+            <p class="store-availability-information__stock store-availability-small-text">
+              {{ closest_location.pick_up_time }}
+            </p>
+            <button class="store-availability-information__button js-modal-open-store-availability-modal store-availability-small-text" data-store-availability-modal-open aria-haspopup="dialog">
+              {%- if pick_up_availabilities.size == 1 -%}
+                {{ 'store_availability.general.view_store_info' | t }}
+              {%- else -%}
+                {{ 'store_availability.general.check_other_stores' | t }}
+              {%- endif -%}
+            </button>
+          {%- else -%}
+            <p class="store-availability-information__title">
+              {{ 'store_availability.general.pick_up_unavailable_at_html' | t: location_name: closest_location.location.name }}
+            </p>
+            {%- if pick_up_availabilities.size > 1 -%}
+              <button class="store-availability-information__button js-modal-open-store-availability-modal store-availability-small-text" data-store-availability-modal-open aria-haspopup="dialog">
+                {{ 'store_availability.general.check_other_stores' | t }}
+              </button>
+            {%- endif -%}
+        {%- endif -%}
+        </div>
+    </div>
+    <div
+      class="store-availabilities-modal modal"
+      id="StoreAvailabilityModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="StoreAvailabilitiesModalProductTitle"
+    >
+      <div class="store-availabilities-modal__header">
+        <div class="store-availabilities-modal__product-information">
+          <h2
+            id="StoreAvailabilitiesModalProductTitle"
+            class="store-availabilities-modal__product-title"
+            data-store-availability-modal-product-title
+          >
+          </h2>
+          <p
+            class="store-availabilities-modal__variant-title store-availability-small-text"
+            data-store-availability-modal-variant-title
+          >
+            {{ product_variant.title }}
+          </p>
+        </div>
+        <button
+          type="button"
+          class="store-availabilities-modal__close js-modal-close-store-availability-modal text-link"
+          aria-label="{{ 'general.accessibility.close_modal' | t }}"
+        >
+          {% render 'icon-close' %}
+        </button>
+      </div>
+      <ul class="store-availabilities-list" role="list">
+        {%- for availability in pick_up_availabilities -%}
+          <li class="store-availability-list__item">
+            <h3 class="store-availability-list__location">
+              {{availability.location.name}}
+            </h3>
+            <div class="store-availability-list__stock store-availability-small-text">
+              {%- if availability.available -%}
+                {% render 'icon-in-stock' %} {{ 'store_availability.general.pick_up_available' | t }}, {{ availability.pick_up_time | downcase }}
+              {%- else -%}
+                {% render 'icon-out-of-stock' %} {{ 'store_availability.general.pick_up_currently_unavailable' | t }}
+              {%- endif -%}
+            </div>
+            {%- assign address = availability.location.address -%}
+            <address class="store-availability-list__address">
+              {{ address | format_address }}
+            </address>
+            {%- if address.phone.size > 0 -%}
+              <p class="store-availability-list__phone store-availability-small-text">
+                {{ address.phone }}<br>
+              </p>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+  	</div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": {},
+  "settings": []
+}
+{% endschema %}

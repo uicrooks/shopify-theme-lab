@@ -1,0 +1,346 @@
+<script src="{{- 'product-compare.static.js' | asset_url -}}" defer></script>
+<link rel="stylesheet" href="{{ 'product-compare.static.css' | asset_url }}">
+
+{% assign product0 = all_products[section.settings.product0] %}
+{% assign product1 = all_products[section.settings.product1] %}
+{% assign product2 = all_products[section.settings.product2] %}
+
+
+
+{% assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media %}
+{% assign title = product.title %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+{%- assign price = product.first_available_variant.price | money -%}
+{% assign variant_id = product.selected_or_first_available_variant.id %}
+
+
+
+{% assign featured_media0 = product0.selected_or_first_available_variant.featured_media | default: product0.featured_media %}
+{% if section.settings.pro_title0 != blank %}
+  {% assign title0 = section.settings.pro_title0 %}
+{% else %}
+  {% assign title0 = product0.title %}
+{% endif %}
+
+{% assign current_variant0 = product0.selected_or_first_available_variant %}
+{%- assign price0 = product0.first_available_variant.price | money -%}
+{% assign variant_id0 = product0.selected_or_first_available_variant.id %}
+
+
+{% assign featured_media1 = product1.selected_or_first_available_variant.featured_media | default: product1.featured_media %}
+
+{% if section.settings.pro_title1 != blank %}
+  {% assign title1 = section.settings.pro_title1 %}
+{% else %}
+{% assign title1 = product1.title %}
+{% endif %}
+  
+{% assign current_variant1 = product1.selected_or_first_available_variant %}
+{%- assign price1 = product1.first_available_variant.price | money -%}
+{% assign variant_id1 = product1.selected_or_first_available_variant.id %}
+
+
+{% assign featured_media2 = product2.selected_or_first_available_variant.featured_media | default: product2.featured_media %}
+{% if section.settings.pro_title2 != blank %}
+  {% assign title2 = section.settings.pro_title2 %}
+{% else %}
+{% assign title2 = product2.title %}
+{% endif %}
+{% assign current_variant2 = product2.selected_or_first_available_variant %}
+{%- assign price2 = product2.first_available_variant.price | money -%}
+{% assign variant_id2 = product2.selected_or_first_available_variant.id %}
+
+
+
+<div class="product_main">
+  <div class="container">
+    <div class="product_main_wraper">
+
+      <div class="image_side">
+        <div class="image_side_wwrp">
+          
+          <div class="product_main_img">    
+            <img src="{{ featured_media1 | img_url: 'master' }}">
+          </div>
+        </div>
+        <div class="product-info__content hidden-phone">
+          <div class="product-info__description text">
+            {{ product1.description }}
+          </div>
+        </div>
+      </div>
+
+      <div class="content_side">
+
+        <div class="main_title_content">
+          {%- if underline_word != blank -%}
+            {%- assign title_without_word = title | remove: underline_word -%}
+            <h2 class="main_ptoduct_title"><span>{{ title_without_word }}</span>{%- if underline_word != blank -%}<span class="main_ptoduct_title--underline">{{ underline_word }}</span>{%- endif -%}</h2>
+          {%- else -%}
+            <h2 class="main_ptoduct_title"><span>{{ title }}</span></h2>
+          {%- endif -%}
+
+          <p class="sub_ttile">vegane + bio-zertifizierte Schokoriegel</p>
+          <div class="review_variant_pr">
+            <div class="product_review">
+              <div class="hidden" data-id="{{ product0.id }}">
+                {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false, product: product0 %}
+              </div>
+              <div class="" data-id="{{ product1.id }}">
+                {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false, product: product1 %}
+              </div>
+              <div class="hidden" data-id="{{ product2.id }}">
+                {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false, product: product2 %}
+              </div>
+           </div>
+           <div class="prodcut_price">
+            <p class="custom_varint">24 Riegel</p>
+
+            {%- assign bar_price = product1.first_available_variant.price | divided_by: section.settings.bar_qty1 -%}
+            <p class="main_price">{{ bar_price | money }} pro Riegel</p>
+          </div>
+        </div>
+        
+      </div>
+      
+
+      <div class="content_side_cont">
+        <div class="content_side_wwrp">
+         
+          <div 
+            bg_color="#5359e5" 
+            class="product_wraping default_product " 
+            variant_id="{{ variant_id0 }}" 
+            product_id="{{ product0.id }}" 
+            data_img="{{ featured_media0 | img_url: 'master' }}" 
+            description="{{ product0.description | escape }}"
+            shipping_info="{{ product0.metafields.custom.shipping_info }}"
+            shipping_time="{{ product0.metafields.custom.shipping_time }}"
+            ingredients="{{ product0.metafields.custom.ingredients | escape }}"
+          >
+            <p class="prodduct_label"><span>bester Preis</span></p>
+            <div class="product_wraping_inner">
+              <h2 class="selected_pro_title">{{ title0 }}</h2>
+              
+              {% if section.settings.bar_qty0 != blank %}
+                <p class="custom_varint" val="{{ section.settings.bar_qty0 }}">{{ section.settings.bar_qty0 }} Riegel</p>
+              {% endif %}
+              
+              <div class="wrap_img">
+                <img src="{{ featured_media0 | img_url: 'master' }}">
+              </div>
+
+              
+              {% for variant in product0.variants %}
+                <div class="sle_price_pro" price="{{ variant.price }}">
+                  <span>{{ variant.price | money }}</span>
+                  {%- if variant.unit_price -%}
+                  <span class="sle_price_pro-unit-price" unit_price="{{ variant.unit_price }}">{{ variant.unit_price | money }} / {{ variant.unit_price_measurement.reference_unit }}</span>
+                  {%- endif -%}
+                </div>
+                
+              {% endfor %}
+            </div>
+            <div class="discount_label">
+              {% if section.settings.discount0 != blank %}
+                  <p>{{ section.settings.discount0 }}</p>
+              {% endif %}
+              
+            </div>
+          </div>
+          
+          <div
+            bg_color="#dbaaeb" 
+            class="product_wraping selectest_product1 Active" 
+            variant_id="{{ variant_id1 }}" 
+            product_id="{{ product1.id }}" 
+            data_img="{{ featured_media1 | img_url: 'master' }}" 
+            description="{{ product1.description | escape }}"
+            shipping_info="{{ product1.metafields.custom.shipping_info }}"
+            shipping_time="{{ product1.metafields.custom.shipping_time }}"
+            ingredients="{{ product1.metafields.custom.ingredients | escape }}"
+          >
+            <p class="prodduct_label"><span>favorite</span></p>
+            <div class="product_wraping_inner">
+              <h1 class="selected_pro_title">{{ title1 }}</h1>
+              {% if section.settings.bar_qty1 != blank %}
+                <p class="custom_varint" val="{{ section.settings.bar_qty1 }}">{{ section.settings.bar_qty1 }} Riegel</p>
+              {% endif %}
+              <div class="wrap_img">
+                <img src="{{ featured_media1 | img_url: 'master' }}">
+              </div>
+              
+              
+              {% for variant in product1.variants %}
+                <div class="sle_price_pro" price="{{ variant.price }}">
+                  <span>{{ variant.price | money }}</span>
+                  {%- if variant.unit_price -%}
+                  <span class="sle_price_pro-unit-price" unit_price="{{ variant.unit_price }}">{{ variant.unit_price | money }} / {{ variant.unit_price_measurement.reference_unit }}</span>
+                  {%- endif -%}
+                </div>
+                
+              {% endfor %}
+            </div>
+            <div class="discount_label">
+              {% if section.settings.discount1 != blank %}
+                  <p>{{ section.settings.discount1 }}</p>
+              {% endif %}
+            </div>
+          </div>
+          
+          <div 
+            bg_color="#2ac2bd" 
+            class="product_wraping selectest_product2" 
+            variant_id="{{ variant_id2 }}"
+            product_id="{{ product2.id }}" 
+            data_img="{{ featured_media2 | img_url: 'master' }}" 
+            description="{{ product2.description | escape }}"
+            shipping_info="{{ product2.metafields.custom.shipping_info }}"
+            shipping_time="{{ product2.metafields.custom.shipping_time }}"
+            ingredients="{{ product2.metafields.custom.ingredients | escape }}"
+          >
+            <!--           <p class="prodduct_label"><span></span></p> -->
+            <div class="product_wraping_inner">
+              <h1 class="selected_pro_title">{{ title2 }}</h1>
+             {% if section.settings.bar_qty2 != blank %}
+                <p class="custom_varint" val="{{ section.settings.bar_qty2 }}">{{ section.settings.bar_qty2 }} Riegel</p>
+              {% endif %}
+              <div class="wrap_img">
+                <img src="{{ featured_media2 | img_url: 'master' }}">
+              </div>
+              
+              {% for variant in product2.variants %}
+                <div class="sle_price_pro" price="{{ variant.price }}">
+                  <span>{{ variant.price | money }}</span>
+                  {%- if variant.unit_price -%}
+                  <span class="sle_price_pro-unit-price" unit_price="{{ variant.unit_price }}">{{ variant.unit_price | money }} / {{ variant.unit_price_measurement.reference_unit }}</span>
+                  {%- endif -%}
+                </div>
+                
+              {% endfor %}
+            </div>
+          </div> 
+        </div>
+        <div class="add_to_cart_section">
+          
+          <form method="post" action="/cart/add" class="product-form" enctype="multipart/form-data" data-productid="{{ product.id }}">
+           
+           <input type="hidden" name="form_type" value="product">
+           <input type="hidden" name="utf8" value="✓">
+           <div class="hide_content" style="display:none;">
+             <select name="id" class="no-js visually-hidden" data-productid="{{ product.id }}" data-original-product-select="">
+              <option selected="selected" value="{{ variant_id }}">Default Title</option>
+            </select>
+
+
+            <div class="quantity-element " data-quantity="wrapper">
+             <input class="quantity-element__input" type="number" id="Quantity" name="quantity" value="1" min="1" max="99" maxlength="2" data-quantity="input">
+           </div>
+
+         </div>
+
+         <button class="button product-form__button" type="submit" name="add" data-submit-button="">
+          <span class="product-form__button-text product-form__button-text--add-to-card" data-submit-button-text="">Zum Warenkorb hinzufügen</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="delevery_payment">
+      <p class="tit_label"><span>Yay auf Lager</span></p>
+      <div class="delivery_payment-wrapper">
+        <div class="delevery_section">
+          <p>🚚</p>
+          <p class="delevery_section-info">{{ product1.metafields.custom.shipping_info.value  }}</p>
+          <span class="delevery_section-time">{{ product1.metafields.custom.shipping_time.value  }}</span>
+        </div>
+        <div class="payment_section">
+          <img class="payment_section-image" src="https://cdn.shopify.com/s/files/1/0601/8256/0962/files/new-payments.png?v=1678780107" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="product-info__content hidden-desktop">
+      <div class="product-info__description text">
+        {{ product1.description }}
+      </div>
+    </div>
+
+
+    
+
+    
+  </div>
+</div>
+
+</div>
+</div>
+<div class="main-product__bg-line base-triangular-line"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 139" fill="none" class="icon icon-triangular-line" preserveAspectRatio="none"><path fill="currentColor" d="M0 0l277.778 138.889L555.556 0l277.777 138.889L1111.11 0l277.78 138.889L1666.67 0l277.77 138.889L2222.22 0 2500 138.889 2777.78 0l277.78 138.889L3333.33 0l277.78 138.889L3888.89 0 4000 55.556v83.333H0V0z"></path></svg></div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    var product_id = $('.product_main_wraper .content_side_cont .content_side_wwrp .product_wraping.Active').attr('product_id');
+    var variant_id = $('.product_main_wraper .content_side_cont .content_side_wwrp .product_wraping.Active').attr('variant_id');
+    var img = $('.product_main_wraper .content_side_cont .content_side_wwrp .product_wraping.Active').attr('data_img');
+    
+    var custom_var = $('.product_main_wraper .content_side_cont .content_side_wwrp .product_wraping.Active .custom_varint').text();
+    var price = $('.product_main_wraper .content_side_cont .content_side_wwrp .product_wraping.Active .sle_price_pro').text();
+
+   var bar_qty = $('.product_main_wraper .content_side_cont .content_side_wwrp .product_wraping.Active .custom_varint').attr('val');    
+     var price = $('.product_main_wraper .content_side_cont .content_side_wwrp .product_wraping.Active .sle_price_pro').attr('price');
+    var pr = price/100;
+
+    var main_price = pr/bar_qty;
+
+  var price_text = main_price.toFixed(2)+' € pro Riegel';
+
+
+    
+    $('.add_to_cart_section form.product-form').attr('data-productid',product_id);
+    $('.add_to_cart_section form.product-form .hide_content select.no-js').attr('data-productid',product_id);
+    $(".add_to_cart_section form.product-form .hide_content select.no-js option").attr("value",variant_id);
+    
+
+    $('.product_main_wraper .image_side .product_main_img img').attr('src',img);
+    $('.main-product .product_main .review_variant_pr .prodcut_price p.custom_varint').text(custom_var);
+    $('.main-product .product_main .review_variant_pr .prodcut_price p.main_price').text(price_text);
+
+
+  });
+  
+  $(document).on('click','.product_main_wraper .content_side_wwrp .product_wraping',function(e){
+   e.preventDefault();
+
+   $('.product_main_wraper .content_side_cont .content_side_wwrp .product_wraping').removeClass('Active');
+   $(this).addClass('Active');
+
+   var product_id = $(this).attr('product_id');
+   var variant_id = $(this).attr('variant_id');
+   
+   var img = $(this).attr('data_img');
+   var custom_var = $(this).find('.custom_varint').text();
+   var price = $(this).find('.sle_price_pro').text();
+    
+ var bar_qty = $(this).find('.custom_varint').attr('val');    
+
+     var price = $(this).find('.sle_price_pro').attr('price');
+    var pr = price/100;
+
+    var main_price = pr/bar_qty;
+
+  var price_text = main_price.toFixed(2)+' € pro Riegel';
+
+
+
+   $('.add_to_cart_section form.product-form').attr('data-productid',product_id);
+   $('.add_to_cart_section form.product-form .hide_content select.no-js').attr('data-productid',product_id);
+   $(".add_to_cart_section form.product-form .hide_content select.no-js option").attr("value",variant_id);
+   
+
+   $('.product_main_wraper .image_side .product_main_img img').attr('src',img);
+   $('.main-product .product_main .review_variant_pr .prodcut_price p.custom_varint').text(custom_var);
+   $('.main-product .product_main .review_variant_pr .prodcut_price p.main_price').text(price_text);
+   
+ });
+</script>
+

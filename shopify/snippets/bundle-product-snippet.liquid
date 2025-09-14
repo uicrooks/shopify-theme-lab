@@ -1,0 +1,241 @@
+{% comment %} 
+TODO: Whole Snippet is really not that clean because of fiverr work and should be redone at one point. 
+This was also made fast for black friday so that added up the the mess 
+{% endcomment %}
+
+<script src="{{- 'product-bundle.static.js' | asset_url -}}" defer></script>
+<link rel="stylesheet" href="{{ 'product-compare.static.css' | asset_url }}">
+
+{%- assign product_form_id = 'product-form-' | append: section.id -%}
+
+{% assign products_dropdown_1 = collections[section.settings.product_dropdown_1] %}
+{% assign products_dropdown_2 = collections[section.settings.product_dropdown_2] %}
+
+{%- assign first_product = products_dropdown_1.products.first -%}
+{%- assign second_product = products_dropdown_2.products.first -%}
+{% assign free_product = all_products[section.settings.free_product] %}
+
+<bundle-picker class="product_main">
+  <div class="container">
+    <div class="product_main_wraper">
+
+      <div class="image_side">
+        <div class="image_side_wwrp">
+          
+          <div class="product_main_img">    
+            <img src="{{ product.featured_media | img_url: 'master' }}">
+          </div>
+        </div>
+        <div class="product-info__content hidden-phone">
+          <div class="product-info__description text">
+            {{ product.description }}
+          </div>
+        </div>
+      </div>
+
+      <div class="content_side">
+
+        <div class="main_title_content">
+          {%- if underline_word != blank -%}
+            {%- assign title_without_word = product.title | remove: underline_word -%}
+            <h2 class="main_ptoduct_title"><span>{{ title_without_word }}</span>{%- if underline_word != blank -%}<span class="main_ptoduct_title--underline">{{ underline_word }}</span>{%- endif -%}</h2>
+          {%- else -%}
+            <h2 class="main_ptoduct_title"><span>{{ product.title }}</span></h2>
+          {%- endif -%}
+
+          <p class="sub_ttile">{{ section.settings.subtitle }}</p>
+          <div class="review_variant_pr">
+            <div class="product_review">
+              <div class="" data-id="8153219465480">
+                {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', jm_style: '', concierge_install: false, product: all_products['probierbox-alle-sorten-16-stuck-bio-vegan'] %}
+              </div>
+            </div>
+            <div class="prodcut_price">
+              {%- assign bar_quantity = first_product.metafields.custom.quantity_content.value | plus: second_product.metafields.custom.quantity_content.value | plus: free_product.metafields.custom.quantity_content.value -%}
+              {%- assign bundle_total = first_product.first_available_variant.price | plus: second_product.first_available_variant.price -%}
+              <p class="custom_varint">{{ bar_quantity }} Riegel</p>
+
+              {%- assign bar_price = bundle_total | divided_by: bar_quantity -%}
+              <p class="main_price">{{ bar_price | money }} pro Riegel</p>
+          </div>
+        </div>
+        <div class="product-info__content hidden-desktop">
+          <div class="product-info__description text">
+            {{ product.description }}
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="content_side_cont">
+        <div class="content_side_wwrp">
+          <div 
+            bg_color="#5359e5" 
+            class="product_wraping default_product bundle-selector" 
+            data-input-id="item-1-id"
+          >
+            <p class="prodduct_label"><span>Wähle Produkt 1</span></p>
+            <div class="product_wraping_inner">
+              <h2 class="selected_pro_title">{{ first_product.metafields.custom.bundle_custom_title.value }}</h2>
+              <span class="product-quantity-content">{{ first_product.metafields.custom.quantity_content }} Riegel</span>
+              
+              <div class="wrap_img">
+                {%- if first_product.metafields.custom.bundle_custom_product_image -%}
+                  <img class="image_thumbnail" src="{{ first_product.metafields.custom.bundle_custom_product_image | img_url: 'master' }}">
+                {%- else -%}
+                  <img class="image_thumbnail" src="{{ first_product.featured_image | img_url: 'master' }}">
+                {%- endif -%}
+              </div>
+              {% for variant in first_product.variants %}
+                <div class="sle_price_pro" price="{{ variant.price }}">
+                  <span class="sle_price_pro-price">{{ variant.price | money }}</span>
+                  {%- if variant.unit_price -%}
+                  <span class="sle_price_pro-unit-price" unit_price="{{ variant.unit_price }}">{{ variant.unit_price | money }} / {{ variant.unit_price_measurement.reference_unit }}</span>
+                  {%- endif -%}
+                </div> 
+              {% endfor %}
+              <div class="product_select">
+                <select class="product_select_selector">
+                  {%- for dropdown_product in products_dropdown_1.products -%}
+                    <option value="{{ dropdown_product.variants.first.id }}">{{ dropdown_product.title }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div
+            bg_color="#5359e5" 
+            class="product_wraping default_product bundle-selector"
+            data-input-id="item-2-id"
+          >
+            <p class="prodduct_label"><span>Wähle Produkt 2</span></p>
+            <div class="product_wraping_inner">
+              <h2 class="selected_pro_title">{{ second_product.metafields.custom.bundle_custom_title.value }}</h2>
+              <span class="product-quantity-content">{{ second_product.metafields.custom.quantity_content }} Riegel</span>
+              
+              <div class="wrap_img">
+                {%- if second_product.metafields.custom.bundle_custom_product_image -%}
+                  <img class="image_thumbnail" src="{{ second_product.metafields.custom.bundle_custom_product_image | img_url: 'master' }}">
+                {%- else -%}
+                  <img class="image_thumbnail" src="{{ second_product.featured_image | img_url: 'master' }}">
+                {%- endif -%}
+              </div>
+              {% for variant in second_product.variants %}
+                <div class="sle_price_pro" price="{{ variant.price }}">
+                  <span class="sle_price_pro-price">{{ variant.price | money }}</span>
+                  {%- if variant.unit_price -%}
+                  <span class="sle_price_pro-unit-price" unit_price="{{ variant.unit_price }}">{{ variant.unit_price | money }} / {{ variant.unit_price_measurement.reference_unit }}</span>
+                  {%- endif -%}
+                </div> 
+              {% endfor %}
+              <div class="product_select">
+                <select class="product_select_selector">
+                  {%- for dropdown_product in products_dropdown_2.products -%}
+                    <option value="{{ dropdown_product.variants.first.id }}">{{ dropdown_product.title }}</option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div 
+            bg_color="#5359e5" 
+            class="product_wraping default_product "
+            data-input-id="item-3-id" 
+          >
+            <p class="prodduct_label"><span>Gratis Produkt</span></p>
+            <div class="product_wraping_inner">
+              <h2 class="selected_pro_title">{{ free_product.metafields.custom.bundle_custom_title.value }}</h2>
+              <span class="product-quantity-content">{{ free_product.metafields.custom.quantity_content }} Riegel</span>
+              
+              <div class="wrap_img">
+                {%- if free_product.metafields.custom.bundle_custom_product_image -%}
+                  <img class="image_thumbnail" src="{{ free_product.metafields.custom.bundle_custom_product_image | img_url: 'master' }}">
+                {%- else -%}
+                  <img class="image_thumbnail" src="{{ free_product.featured_image | img_url: 'master' }}">
+                {%- endif -%}
+              </div>
+              <div class="sle_price_pro" price="{{ variant.price }}">
+                <span class="sle_price_pro-price">€0,00</span>
+                <span class="sle_price_pro-unit-price" style="text-decoration:line-through;">{{ free_product.price | money }}</span>
+              </div>
+              <div class="product_select" style="visibility:hidden;">
+                <select class="product_select_selector">
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="add_to_cart_section">
+          
+          <form action="/cart/add" method="post" id="{{ product_form_id }}" novalidate="novalidate" data-type="add-to-cart-form">
+           
+            <input id="item-1-id" type="hidden" name="items[0]id" value="{{ first_product.variants.first.id }}"/>
+            <input id="item-2-id" type="hidden" name="items[1]id" value="{{ second_product.variants.first.id }}"/>
+            <input id="item-3-id" type="hidden" name="items[2]id" value="{{ free_product.variants.first.id }}"/>
+
+            <button class="button product-form__button" type="submit" name="add">
+              <span class="product-form__button-text product-form__button-text--add-to-card" data-submit-button-text="">Zum Warenkorb hinzufügen</span>
+            </button>
+          </form>
+        </div>
+
+        <div class="delevery_payment">
+          <p class="tit_label"><span>Yay auf Lager</span></p>
+          <div class="delivery_payment-wrapper">
+            <div class="delevery_section">
+              <p>🚚</p>
+              <p class="delevery_section-info">{{ product.metafields.custom.shipping_info.value  }}</p>
+              <span class="delevery_section-time">{{ product.metafields.custom.shipping_time.value  }}</span>
+            </div>
+            <div class="payment_section">
+              <img class="payment_section-image" src="https://cdn.shopify.com/s/files/1/0601/8256/0962/files/new-payments.png?v=1678780107" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</bundle-picker>
+
+<div class="main-product__bg-line base-triangular-line" style="display:none;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 139" fill="none" class="icon icon-triangular-line" preserveAspectRatio="none"><path fill="currentColor" d="M0 0l277.778 138.889L555.556 0l277.777 138.889L1111.11 0l277.78 138.889L1666.67 0l277.77 138.889L2222.22 0 2500 138.889 2777.78 0l277.78 138.889L3333.33 0l277.78 138.889L3888.89 0 4000 55.556v83.333H0V0z"></path></svg></div>
+</div>
+
+<script type="application/json" data-products-json>
+{
+  "products": [
+    {
+      "title": {% if free_product.metafields.custom.bundle_custom_title != blank %}{{ free_product.metafields.custom.bundle_custom_title | json }}{% else %}{{ free_product.title | json }}{% endif %},
+      "id": {{ free_product.variants.first.id | json }},
+      "isFreeProduct": true,
+      "price": {{ free_product.price | json }},
+      "unitPrice":  {% for variant in free_product.variants %}
+                      {{ variant.unit_price | json }},
+                    {% endfor %}
+      "unitPriceMeasurement":  {% for variant in free_product.variants %}
+                      {{ variant.unit_price_measurement.reference_unit | json }},
+                    {% endfor %}     
+      "quantityContent": {{ free_product.metafields.custom.quantity_content | json }},
+      "bundleCustomTitle": {{ free_product.metafields.custom.bundle_custom_title | json }},
+      "bundleCustomProductImage": {% if free_product.metafields.custom.bundle_custom_product_image != blank %}{{ free_product.metafields.custom.bundle_custom_product_image.value.src | json }}{% else %}{{ free_product.featured_image.src | json }}{% endif %}
+    },
+    {% for product in collections[section.settings.product_dropdown_1].products %}
+      {
+        "title": {% if product.metafields.custom.bundle_custom_title != blank %}{{ product.metafields.custom.bundle_custom_title | json }}{% else %}{{ product.title | json }}{% endif %},
+        "id": {{ product.variants.first.id | json }},
+        "isFreeProduct": false,
+        "price": {{ product.price | json }},
+        "unitPrice":  {% for variant in product.variants %}
+                      {{ variant.unit_price | json }},
+                    {% endfor %}
+      "unitPriceMeasurement":  {% for variant in product.variants %}
+                      {{ variant.unit_price_measurement.reference_unit | json }},
+                    {% endfor %} 
+        "quantityContent": {{ product.metafields.custom.quantity_content | json }},
+        "bundleCustomTitle": {{ product.metafields.custom.bundle_custom_title | json }},
+        "bundleCustomProductImage": {% if product.metafields.custom.bundle_custom_product_image != blank %}{{ product.metafields.custom.bundle_custom_product_image.value.src | json }}{% else %}{{ product.featured_image.src | json }}{% endif %}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>

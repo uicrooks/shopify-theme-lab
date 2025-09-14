@@ -1,0 +1,131 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  @media screen and (max-width: 991px) {
+    #shopify-section-{{ section.id }} .product-form {
+      background-color: {{ section.settings.background_color }};
+    }
+  }
+</style>
+
+{%- assign sec_sett = section.settings -%}
+
+<div class="main-product"
+		 data-section-id="{{ section.id }}"
+		 data-section-type="product"
+		 data-product-background="{{ product_bg_color }}"
+>
+	<div class="main-product__images">
+		{%- render 'main-product-images', product: product -%}
+	</div>
+
+	<div class="main-product__info">
+		{%- render 'main-product-info', product: product -%}
+	</div>
+
+	<div class="base-triangular-line">
+		{%- render 'icon-triangular-line' -%}
+	</div>
+</div>
+
+{% unless product == empty %}
+	<script type="application/json" id="ProductJson-{{ section.id }}">
+		{{ product | json }}
+	</script>
+{% endunless %}
+
+
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<script type="application/ld+json">
+{
+	"@context": "http://schema.org/",
+	"@type": "Product",
+	"name": "{{ product.title | escape }}",
+	"url": "{{ shop.url }}{{ product.url }}",
+	{%- if product.featured_image -%}
+		{%- assign image_size = product.featured_image.width | append: 'x' -%}
+		"image": [
+			"https:{{ product.featured_image.src | img_url: image_size }}"
+		],
+	{%- endif -%}
+	"description": "{{ product.description | strip_html | escape }}",
+	{%- if current_variant.sku != blank -%}
+		"sku": "{{ current_variant.sku }}",
+	{%- endif -%}
+	"brand": {
+		"@type": "Thing",
+		"name": "{{ product.vendor | escape }}"
+	},
+	"offers": [
+		{%- for variant in product.variants -%}
+			{
+				"@type" : "Offer",
+				{%- if variant.sku != blank -%}
+					"sku": "{{ variant.sku }}",
+				{%- endif -%}
+				"availability" : "http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
+				"price" : "{{ variant.price | divided_by: 100.00 }}",
+				"priceCurrency" : "{{ cart.currency.iso_code }}",
+				"url" : "{{ shop.url }}{{ variant.url }}"
+			}{% unless forloop.last %},{% endunless %}
+	{%- endfor -%}
+	]
+}
+</script>
+
+{% schema %}
+{
+	"name": "Product",
+	"settings": [
+		{
+			"type": "text",
+			"id": "reviews_average_rating",
+			"label": "Average rating reviews",
+			"info": "[Metafields] Example - 4.87"
+		},
+		{
+			"type": "text",
+			"id": "reviews_quantity_text",
+			"label": "Quantity of reviews",
+			"info": "[Metafields] Example - 400 reviews"
+		},
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color"
+    }
+	],
+	"presets": [
+		{
+			"name": "Product",
+			"category": "Product page"
+		}
+	],
+	"templates": ["product"]
+}
+{% endschema %}

@@ -1,0 +1,38 @@
+{%- assign product_title = product.metafields.my_fields.pdp_title -%}
+{%- assign short_title = product.metafields.custom.short_title -%}
+{%- assign quantity_content = product.metafields.custom.quantity_content -%}
+{%- assign weight_content = product.metafields.custom.weight_content -%}
+{%- assign unit_name = product.metafields.custom.unit_name -%}
+
+<section class="product-info">
+	<div class="product-info__container">
+		<div class="product-info__row">
+			<div class="product-info__col">
+				<div class="product-info__main">
+					{%- if product_title -%}
+						<h1 class="product-info__title title-bg title-bg--sm">{{ product_title }}</h1>
+					{%- else -%}
+						<h1 class="product-info__title h2">{{ product.title }}</h1>
+					{% endif %}
+
+					{%- render 'main-product-form', product: product -%}
+				</div>
+			</div>
+			<div class="product-info__col">
+				<div class="product-info__content">
+          {%- unless product.metafields.judgeme.badge contains "No reviews" -%}
+            <div class="product-info__rating product-rating">
+              <div class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}'> 
+                {{ product.metafields.judgeme.badge }} 
+              </div>
+            </div>
+          {%- endunless -%}
+
+					{%- if product.description != blank -%}
+						<div class="product-info__description text">{{ product.description }}</div>
+					{%- endif -%}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

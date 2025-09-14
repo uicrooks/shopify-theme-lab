@@ -1,0 +1,15 @@
+{%- if section != blank -%}
+	{
+	"id": {{- section.id | json -}},
+	"type": {{- type | json -}},
+	"settings": {{- section.settings | json -}},
+	"blocks": [
+	{%- for block in section.blocks -%}
+		{{ block.settings | json }}
+		{% unless forloop.last %},{% endunless %}
+   	{%- endfor -%}
+    	]
+	}
+{%- else -%}{}{%- endif -%}
+
+

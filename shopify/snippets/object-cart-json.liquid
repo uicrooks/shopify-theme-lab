@@ -1,0 +1,35 @@
+{%- if include_recharge == blank -%}
+	{%- assign include_recharge = false -%}
+{%- endif -%}
+
+{%- assign items_json = "" -%}
+{%- for item in cart.items -%}
+	{%- if items_json != "" -%}
+		{%- assign items_json = items_json | append: "," -%}
+	{%- endif -%}
+
+	{%- capture item_json -%}
+		{%- include 'object-line-item-json' with item: item, include_recharge: include_recharge -%}
+	{%- endcapture -%}
+
+	{%- if item_json == "null" -%}
+		{%- continue -%}
+	{%- endif -%}
+
+	{%- assign items_json = items_json | append: item_json -%}
+{%- endfor -%}
+
+{
+	"attributes": {{- cart.attributes | json -}},
+	"cart_level_discount_applications": {{- cart.cart_level_discount_applications | json -}},
+	"currency": {{- cart.currency.iso_code | json -}},
+	"item_count": {{- cart.item_count | json -}},
+	"items": [{{- items_json -}}],
+	"items_subtotal_price": {{- cart.items_subtotal_price | json -}},
+	"note": {{- cart.note | json -}},
+	"original_total_price": {{- cart.original_total_price | json -}},
+	"requires_shipping": {{- cart.requires_shipping | json -}},
+	"total_discount": {{- cart.total_discount | json -}},
+	"total_price": {{- cart.total_price | json -}},
+	"total_weight": {{- cart.total_weight | json -}}
+}

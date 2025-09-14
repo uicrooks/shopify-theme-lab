@@ -1,0 +1,33 @@
+@mixin html-has-class($name) {
+	@if & {
+		$selector: &;
+		@at-root {
+			html.#{$name} {
+				#{$selector} {
+					@content;
+				}
+			}
+		}
+	} @else {
+		html.#{$name} {
+			@content;
+		}
+	}
+}
+
+@mixin body-has-class($name) {
+	@if & {
+		$selector: &;
+		@at-root {
+			body.#{$name} {
+				#{$selector} {
+					@content;
+				}
+			}
+		}
+	} @else {
+		body.#{$name} {
+			@content;
+		}
+	}
+}

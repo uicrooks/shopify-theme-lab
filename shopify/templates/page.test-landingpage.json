@@ -1,0 +1,961 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "subtitle": "",
+        "subtitle_font_size": 24,
+        "background_color": "",
+        "accent_color": "",
+        "hover_color": "",
+        "padding_top": 80,
+        "padding_bottom": 40
+      }
+    },
+    "hero_eNmaQw": {
+      "type": "hero",
+      "name": "Hero banner",
+      "settings": {
+        "desktop_image_height": "adapt",
+        "mobile_image_height": "adapt",
+        "hide_on_mobile": true,
+        "vertical_alignment": "middle",
+        "horizontal_alignment": "center",
+        "max_width": "100%",
+        "max_width_px": 1200,
+        "title": "Hero banner",
+        "text": "<p>Use overlay text to give your customers insight into your brand. Select imagery and text that relates to your style and story.</p>",
+        "button_label": "",
+        "button_link": "",
+        "background_color": "rgba(0,0,0,0)",
+        "accent_color": "rgba(0,0,0,0)",
+        "hover_color": "rgba(0,0,0,0)",
+        "show_base_triangular_line": false
+      }
+    },
+    "featured_product_GbQVWw": {
+      "type": "featured-product",
+      "blocks": {
+        "description_TrMApc": {
+          "type": "description",
+          "settings": {}
+        },
+        "countdown_yp9z36": {
+          "type": "countdown",
+          "settings": {
+            "heading": "",
+            "color": "",
+            "color_time": "",
+            "background_color": ""
+          }
+        },
+        "price_zwAehL": {
+          "type": "price",
+          "settings": {}
+        },
+        "buy_button_W846tk": {
+          "type": "buy_button",
+          "settings": {
+            "show_quantity_selector": true,
+            "show_price": false
+          }
+        }
+      },
+      "block_order": [
+        "description_TrMApc",
+        "countdown_yp9z36",
+        "price_zwAehL",
+        "buy_button_W846tk"
+      ],
+      "name": "Featured product",
+      "settings": {
+        "product": "20-x-banana-bread-energieballs-bio-vegan",
+        "heading": "{{ section.settings.product.title }}",
+        "mobile_heading": "",
+        "show_price": true,
+        "reviews_average_rating": "",
+        "reviews_quantity_text": "",
+        "background_color": "#f3587f",
+        "accent_color": "",
+        "hover_color": ""
+      }
+    },
+    "advantages_BcfMf9": {
+      "type": "advantages",
+      "blocks": {
+        "advantage_item_8gBfw3": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-1-smile.png",
+            "text": "Lecker"
+          }
+        },
+        "advantage_item_G8CBAM": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-2-vegan.png",
+            "text": "Vegan"
+          }
+        },
+        "advantage_item_CARaAK": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-3-organic.png",
+            "text": "Bio-zertifiziert"
+          }
+        },
+        "advantage_item_qxe3cw": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-4-packaging.png",
+            "text": "Recyclebare Verpackung"
+          }
+        },
+        "advantage_item_hy9grG": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-5-soy.png",
+            "text": "Ohne Soja"
+          }
+        },
+        "advantage_item_XE7riB": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-6-gluten-free.png",
+            "text": "Ohne Gluten"
+          }
+        },
+        "advantage_item_WEkgHC": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-7-sugar.png",
+            "text": "Ohne raffinierten Zucker"
+          }
+        },
+        "advantage_item_mqdQfY": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-8-additives.png",
+            "text": "Ohne Zusatzstoffe"
+          }
+        }
+      },
+      "block_order": [
+        "advantage_item_8gBfw3",
+        "advantage_item_G8CBAM",
+        "advantage_item_CARaAK",
+        "advantage_item_qxe3cw",
+        "advantage_item_hy9grG",
+        "advantage_item_XE7riB",
+        "advantage_item_WEkgHC",
+        "advantage_item_mqdQfY"
+      ],
+      "settings": {
+        "hide_on_mobile": false,
+        "title": "nicht noch so ein Bio-Riegel…",
+        "subtitle": "sondern der beste Snack, an dem sich dein Gaumen zu Lebzeiten erfreuen wird*. Unsere Treats sind hergestellt aus und geschichtet mit den besten Zutaten + umrandet von Fair-Trade Schoko und eingepackt in recyclebarer Verpackung + bedruckt mit witzigen Sprüchen + kreiert mit viel Herzblut + Leidenschaft + Unmengen von Spaß.",
+        "background_color": "#5359e5",
+        "accent_color": "#2ac2bd",
+        "hover_color": "#f3587f"
+      }
+    },
+    "custom_section_9AEAFL": {
+      "type": "custom-section",
+      "blocks": {
+        "heading_kWUKzf": {
+          "type": "heading",
+          "name": "Heading",
+          "settings": {
+            "heading_text": "Heading",
+            "subtitle_text": "Subheading",
+            "margin_top": 24,
+            "margin_bottom": 24
+          },
+          "blocks": {}
+        },
+        "group_Dc9Gp7": {
+          "type": "group",
+          "name": "Group",
+          "settings": {
+            "display_type": "flex",
+            "direction": "row",
+            "alignment": "center",
+            "gap": 32,
+            "child_width": "100%",
+            "max_width_enabled": false,
+            "max_width": 1200,
+            "margin_top": 0,
+            "margin_bottom": 0
+          },
+          "blocks": {
+            "slider_X7fgak": {
+              "type": "slider",
+              "name": "Slider",
+              "settings": {
+                "hide_desktop": true,
+                "hide_mobile": false,
+                "loop": true,
+                "slides_per_view_desktop": 4,
+                "slides_per_view_mobile": 1,
+                "show_next_slide": true,
+                "gap": 20
+              },
+              "blocks": {
+                "slide_b3rKQL": {
+                  "type": "slide",
+                  "name": "Slide",
+                  "settings": {},
+                  "blocks": {
+                    "product_card_Wdtkzx": {
+                      "type": "product-card",
+                      "name": "Product Card",
+                      "settings": {
+                        "card_product": "20-x-carrot-cake-energyballs-bio-vegan",
+                        "background_color": "#ffffff",
+                        "text_color": "#000000"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "product_card_Wdtkzx"
+                  ]
+                },
+                "slide_UXkYT6": {
+                  "type": "slide",
+                  "name": "Slide",
+                  "settings": {},
+                  "blocks": {
+                    "product_card_BVnnPr": {
+                      "type": "product-card",
+                      "name": "Product Card",
+                      "settings": {
+                        "card_product": "20-x-banana-bread-energieballs-bio-vegan",
+                        "background_color": "#ffffff",
+                        "text_color": "#000000"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "product_card_BVnnPr"
+                  ]
+                },
+                "slide_jjKDwy": {
+                  "type": "slide",
+                  "name": "Slide",
+                  "settings": {},
+                  "blocks": {
+                    "product_card_CnqMpU": {
+                      "type": "product-card",
+                      "name": "Product Card",
+                      "settings": {
+                        "card_product": "20-x-weisse-schoko-erdnuss-dattelkaramell-riegel-bio-vegan",
+                        "background_color": "#ffffff",
+                        "text_color": "#000000"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "product_card_CnqMpU"
+                  ]
+                },
+                "slide_pg6biV": {
+                  "type": "slide",
+                  "name": "Slide",
+                  "settings": {},
+                  "blocks": {
+                    "product_card_wmWiAV": {
+                      "type": "product-card",
+                      "name": "Product Card",
+                      "settings": {
+                        "card_product": "white-covered-crunchy-hazelnut-treats-healthier-than-your-last-relationship",
+                        "background_color": "#ffffff",
+                        "text_color": "#000000"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "product_card_wmWiAV"
+                  ]
+                }
+              },
+              "block_order": [
+                "slide_b3rKQL",
+                "slide_UXkYT6",
+                "slide_jjKDwy",
+                "slide_pg6biV"
+              ]
+            }
+          },
+          "block_order": [
+            "slider_X7fgak"
+          ]
+        }
+      },
+      "block_order": [
+        "heading_kWUKzf",
+        "group_Dc9Gp7"
+      ],
+      "name": "Custom block section",
+      "settings": {
+        "background_color": "rgba(0,0,0,0)",
+        "accent_color": "",
+        "hover_color": "",
+        "padding_top": 80,
+        "padding_bottom": 40
+      }
+    },
+    "comparison_table_dT7KWy": {
+      "type": "comparison-table",
+      "blocks": {
+        "table_EbWcfp": {
+          "type": "table",
+          "name": "Table",
+          "settings": {},
+          "blocks": {
+            "table_row_3VeDUX": {
+              "type": "table-row",
+              "name": "Table Row",
+              "settings": {},
+              "blocks": {
+                "table_cell_EdLPEn": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_bq8KLa": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "image": "shopify://shop_images/Bildschirmfoto_2025-08-26_um_15.22.54.png",
+                    "text": "Herkömmliche Süßigkeiten",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_dPaGtF": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "image": "shopify://shop_images/Bildschirmfoto_2025-08-26_um_15.22.54.png",
+                    "text": "Gummibärchen",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_CDQdBf": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "image": "{{ closest.product.featured_image }}",
+                    "text": "{{ closest.product.metafields.custom.short_title.value }}",
+                    "liquid": "{%- if closest.product.has_only_default_variant -%}\n  {%- assign unit_price = closest.product.variants.first.unit_price -%}\n  {%- assign unit_reference = closest.product.variants.first.unit_price_measurement.reference_unit -%}\n  {%- assign unit_reference_value = closest.product.variants.first.unit_price_measurement.reference_value -%}\n{%- else -%}\n  {%- assign unit_price = product.unit_price -%}\n  {%- assign unit_reference = product.unit_price_measurement.reference_unit -%}\n  {%- assign unit_reference_value = product.unit_price_measurement.reference_value -%}\n{%- endif -%}\n\n{%- assign quantity_content = closest.product.metafields.custom.quantity_content -%}\n{%- assign weight_content = closest.product.metafields.custom.weight_content -%}\n{%- assign unit_name = closest.product.metafields.custom.unit_name -%}\n\n{% if quantity_content != blank and weight_content != blank and unit_name != blank %}\n<div class=\"products_listing__label\"\nstyle=\"font-weight: 400;\n    font-size: 12px;\n    line-height: 24px;\n    color: #1d8884;\n    background-color: #6ad4d1;\n    padding: 4px 8px;\nborder-radius: 4px;\n    border: 1px solid #1d8884;\"\n>\n              <p>{{ quantity_content }} x {{ weight_content.value | split: ' ' }} {{ unit_name }} {% if unit_price %}| {{ unit_price | money }} / {{ unit_reference_value }}{{ unit_reference }}{% endif %}</p>\n            </div>\n          {% endif %}"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_EdLPEn",
+                "table_cell_bq8KLa",
+                "table_cell_dPaGtF",
+                "table_cell_CDQdBf"
+              ]
+            },
+            "table_row_FdtTwp": {
+              "type": "table-row",
+              "name": "Vegan",
+              "settings": {},
+              "blocks": {
+                "table_cell_aTMDDn": {
+                  "type": "table-cell",
+                  "name": "Vegan",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Vegan",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_qWj77V": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_BVHMme": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_JxzWU7": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "text": "✅",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_aTMDDn",
+                "table_cell_qWj77V",
+                "table_cell_BVHMme",
+                "table_cell_JxzWU7"
+              ]
+            },
+            "table_row_qRweF6": {
+              "type": "table-row",
+              "name": "Bio",
+              "settings": {},
+              "blocks": {
+                "table_cell_AAjPcr": {
+                  "type": "table-cell",
+                  "name": "Vegan",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Bio",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_hxF3jG": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_nTLj3N": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_dpiL8N": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "text": "✅",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_AAjPcr",
+                "table_cell_hxF3jG",
+                "table_cell_nTLj3N",
+                "table_cell_dpiL8N"
+              ]
+            },
+            "table_row_rjxCg9": {
+              "type": "table-row",
+              "name": "Produkttyp",
+              "settings": {},
+              "blocks": {
+                "table_cell_TzTnmn": {
+                  "type": "table-cell",
+                  "name": "Vegan",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Produkttyp",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_yDAyMi": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Riegel",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_cVqDAD": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Bärchen",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_d699NA": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "text": "Riegel",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_TzTnmn",
+                "table_cell_yDAyMi",
+                "table_cell_cVqDAD",
+                "table_cell_d699NA"
+              ]
+            },
+            "table_row_JkGcKx": {
+              "type": "table-row",
+              "name": "Nachhaltig",
+              "settings": {},
+              "blocks": {
+                "table_cell_P9TewY": {
+                  "type": "table-cell",
+                  "name": "Vegan",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Nachhaltig",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_LCrXgC": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_mY7zCQ": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_wABQzt": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "text": "✅",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_P9TewY",
+                "table_cell_LCrXgC",
+                "table_cell_mY7zCQ",
+                "table_cell_wABQzt"
+              ]
+            },
+            "table_row_egiqnF": {
+              "type": "table-row",
+              "name": "Ohne Gluten",
+              "settings": {},
+              "blocks": {
+                "table_cell_GHLpmM": {
+                  "type": "table-cell",
+                  "name": "Vegan",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Ohne Gluten",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_WK3B9x": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_gayeYF": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_TUFaPV": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "text": "✅",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_GHLpmM",
+                "table_cell_WK3B9x",
+                "table_cell_gayeYF",
+                "table_cell_TUFaPV"
+              ]
+            },
+            "table_row_ndaVMJ": {
+              "type": "table-row",
+              "name": "Ohne Zusatzstoffe",
+              "settings": {},
+              "blocks": {
+                "table_cell_8GHQzx": {
+                  "type": "table-cell",
+                  "name": "Vegan",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Ohne Zusatzstoffe",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_KEkDjp": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_6RnUHj": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_BXDkdE": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "text": "✅",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_8GHQzx",
+                "table_cell_KEkDjp",
+                "table_cell_6RnUHj",
+                "table_cell_BXDkdE"
+              ]
+            },
+            "table_row_q9hQGQ": {
+              "type": "table-row",
+              "name": "Ohne Raffinierten Zucker",
+              "settings": {},
+              "blocks": {
+                "table_cell_yKteyA": {
+                  "type": "table-cell",
+                  "name": "Vegan",
+                  "settings": {
+                    "cell_type": "th",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "Ohne Raffinierten Zucker",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_DweEEz": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_Rh6dGT": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "❌",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_PV6BxK": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "text": "✅",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_yKteyA",
+                "table_cell_DweEEz",
+                "table_cell_Rh6dGT",
+                "table_cell_PV6BxK"
+              ]
+            },
+            "table_row_J8iF9r": {
+              "type": "table-row",
+              "name": "Footer",
+              "disabled": true,
+              "settings": {},
+              "blocks": {
+                "table_cell_wCg8FN": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_6magYA": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_XFtVXG": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "rgba(0,0,0,0)",
+                    "sticky": false,
+                    "text": "",
+                    "liquid": ""
+                  },
+                  "blocks": {}
+                },
+                "table_cell_VxNXVe": {
+                  "type": "table-cell",
+                  "name": "Table Cell",
+                  "settings": {
+                    "cell_type": "td",
+                    "background_color": "#6ad4d1",
+                    "sticky": true,
+                    "text": "",
+                    "liquid": "<atc-button>\n              {% form 'product', closest.product, class: 'product-form' %}\n                <input type=\"hidden\" name=\"id\" value=\"{{ closest.product.selected_or_first_available_variant.id }}\">\n                <input type=\"hidden\" name=\"quantity\" value=\"1\">\n                <button\n          class=\"button product-form__button\"\n          type=\"submit\"\n          name=\"add\"\n          data-submit-button\n        >\n          <span\n            class=\"product-form__button-text product-form__button-text--add-to-card\"\n            data-submit-button-text\n          >\n            {%- if closest.product.variants.first.available == true -%}\n              <span class=\"product-form__button-price\" style=\"margin-right:5px;\">{{ closest.product.price | money}}</span> {% if closest.product.metafields.custom.preorder_date != blank %}{{ \"collections.product_card.preorder\" | t }}{% else %}{{ \"collections.product_card.add_to_cart\" | t }}{% endif %}\n            {%- else -%}\n              {{ \"collections.product_card.sold_out\" | t }}\n            {%- endif -%}\n          </span>\n        </button>\n              {% endform %}\n            </atc-button>"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "table_cell_wCg8FN",
+                "table_cell_6magYA",
+                "table_cell_XFtVXG",
+                "table_cell_VxNXVe"
+              ]
+            }
+          },
+          "block_order": [
+            "table_row_3VeDUX",
+            "table_row_FdtTwp",
+            "table_row_qRweF6",
+            "table_row_rjxCg9",
+            "table_row_JkGcKx",
+            "table_row_egiqnF",
+            "table_row_ndaVMJ",
+            "table_row_q9hQGQ",
+            "table_row_J8iF9r"
+          ]
+        }
+      },
+      "block_order": [
+        "table_EbWcfp"
+      ],
+      "name": "Comparison Table",
+      "settings": {
+        "product": "20-x-banana-bread-energieballs-bio-vegan",
+        "title": "Du kannst dich nicht entscheiden? Hier der Vergleich",
+        "footer_note": "",
+        "background_color": "#2ac2bd",
+        "accent_color": "#f3587f",
+        "hover_color": "#dbaaeb",
+        "padding_top": 80,
+        "padding_bottom": 40
+      }
+    },
+    "image_with_text_NHKmKF": {
+      "type": "image-with-text",
+      "blocks": {
+        "image_with_text_EUwxUY": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/treatfuls_Brownie_filled.png",
+            "image_position": "left",
+            "title": "Title",
+            "content": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+            "button_text": "Button Text",
+            "button_url": ""
+          }
+        },
+        "image_with_text_XgJXRN": {
+          "type": "image_with_text",
+          "settings": {
+            "image": "shopify://shop_images/treatfuls_Schultuete_mockup_V2.webp",
+            "image_position": "right",
+            "title": "Title",
+            "content": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>",
+            "button_text": "Button Text",
+            "button_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_with_text_EUwxUY",
+        "image_with_text_XgJXRN"
+      ],
+      "name": "Image with text",
+      "settings": {
+        "background_color": "",
+        "accent_color": "",
+        "hover_color": "",
+        "padding_top": 80,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_eNmaQw",
+    "featured_product_GbQVWw",
+    "advantages_BcfMf9",
+    "custom_section_9AEAFL",
+    "comparison_table_dT7KWy",
+    "image_with_text_NHKmKF"
+  ]
+}

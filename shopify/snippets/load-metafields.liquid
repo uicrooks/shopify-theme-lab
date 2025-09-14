@@ -1,0 +1,102 @@
+{% assign metafields = shop.metafields.bc_cookie %}
+{% assign data = shop.metafields.bc_cookie %}
+{% assign cookieData = data.bc_cookie_list %}
+
+{% if data.size > 0 and cookieData._bc_c_set.live == '1' and content_for_header contains 'app.gdpr-legal-cookie.com\/get-script.php' %}
+    
+  	    <script>
+        var sDomain = location.host;
+
+        /****** Start thirdPartyScriptDefinition ******/
+        (function(){
+            window.thirdPartyScriptDefinition = [
+                /* start example
+
+                {
+                    "src" : "facebook",
+                    "cookie" : "fr",
+                    "provider" : "facebook.com",
+                    "description" : "",
+                    "expires" : 7776000,
+                    "domain" : "facebook.com",
+                    "declaration" : 1,
+                    "group" : "facebook"
+                },{
+                    "src" : "facebook",
+                    "cookie" : "_fbp",
+                    "provider" : sDomain,
+                    "description" : "",
+                    "expires" : 7776000,
+                    "domain" : sDomain,
+                    "declaration" : 1,
+                    "group" : "facebook"
+                }
+
+                end example */
+            ]
+        })();
+        /****** End thirdPartyScriptDefinition ******/
+
+        {% render 'zload-metafields' %}
+		
+		window.thirdPartyScriptDefinition.push(
+          { "src" : "analytics.js", "cookie" : "_shopify_fs", "provider" : "shopify.com", "description" : "", "expires" : 0, "domain" : sDomain, "declaration" : 1, "group" : "shopify" },
+          { "src" : "doubleclick.net","cookie" : "_shopify_fs","provider" : "shopify.com","description" : "","expires" : 0,"domain" : sDomain,"declaration" : 1,"group" : "shopify" },
+          { "src" : "trekkie", "cookie" : "_shopify_fs", "provider" : "shopify.com", "description" : "", "expires" : 0, "domain" : sDomain, "declaration" : 1, "group" : "shopify" },
+          { "src" : "luckyorange", "cookie" : "_shopify_fs", "provider" : "shopify.com", "description" : "", "expires" : 0, "domain" : sDomain, "declaration" : 1, "group" : "shopify" },
+          { "src" : "googletagmanager", "cookie" : "_gat", "provider" : "googletagmanager.com", "description" : "", "expires" : 0, "domain" : sDomain, "declaration" : 1, "group" : "googletagmanager" }
+        );
+
+        {% if false %}
+        /**************************** start custom section *******************************/
+
+        // Declaration of the cookie to be listened to
+
+        /* example start
+
+        var customCookies = {
+           "myCookie" : true,
+           "myOtherCookie" : true
+        };
+
+        example end */
+        {% endif %}
+
+        var customCookies = {
+            "testCookie" : true
+        };
+
+        function BC_GDPR_CustomScriptForShop () {
+            return [
+
+                function testCookie () {
+                    // your additional script
+                }
+
+                {% if false %}
+                /* example start
+
+                --------------------------------------------
+                **************   define function   **************
+
+                **************   the name of the function is the cookie name   **************
+                **************   Important, the use of commas as separators    **************
+
+                function myCookie () {
+                    your additional code
+                },
+
+                function myOtherCookie () {
+                    your additional code
+                }
+
+                --------------------------------------------
+                example end */
+
+                /**************************** End custom section *******************************/
+                {% endif %}
+            ];
+        }
+
+    </script>
+{% endif %}

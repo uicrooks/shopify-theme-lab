@@ -1,0 +1,34 @@
+.info-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .tabs-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    &__item {
+      padding: 5px;
+      cursor: pointer;
+      border: 1px solid rgb(var(--color-text));
+      color: rgb(var(--product-card-text));
+      border-radius: 4px;
+    }
+
+    &__item[open] {
+      background-color: rgb(var(--color-text));
+      color: rgb(var(--product-card-background));
+    }
+  }
+
+  .tab-wrapper {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+
+    &[open] {
+      display: flex;
+    }
+  }
+}

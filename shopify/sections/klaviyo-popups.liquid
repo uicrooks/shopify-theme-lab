@@ -1,0 +1,38 @@
+{% for block in section.blocks %}
+  {% if block.settings.klaviyo_form != blank %}
+    <modal-popover class="modal-popover" id="{{ block.settings.klaviyo_form }}">
+      <div class="popover__overlay"></div>
+      <div class="popover__content">
+        <button class="popover__close-button">
+          {%- render 'icon-close' -%}
+        </button>
+        <div class="klaviyo-form-{{ block.settings.klaviyo_form }}"></div>
+      </div>
+    </modal-popover>
+  {% endif %}
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Klaviyo Popups",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "klaviyo_popup",
+      "name": "Klaviyo Popup",
+      "settings": [
+        {
+          "type": "text",
+          "id": "klaviyo_form",
+          "label": "Klaviyo Form"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Klaviyo Popup"
+    }
+  ]
+}
+{% endschema %}

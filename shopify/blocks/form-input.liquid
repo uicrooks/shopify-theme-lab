@@ -1,0 +1,109 @@
+{% case block.settings.type %}
+  {% when 'email' %}
+    <label class="label">
+      <span class="text input__label">
+        {{- block.settings.label -}}
+        {% if block.settings.required %} *{% endif %}
+      </span>
+      <input
+        type="email"
+        name="contact[email]"
+        placeholder="{{ 'customer.login.email' | t }}"
+        id="ContactForm-email"
+        class="input input--blue"
+        autocorrect="off"
+        autocapitalize="off"
+        autofocus
+        {% if block.settings.required %}
+          required="required"
+        {% endif %}
+      >
+    </label>
+
+  {% when 'date' %}
+    <label class="label">
+      <span class="text input__label">
+        {{- block.settings.label -}}
+        {% if block.settings.required %} *{% endif %}
+      </span>
+      <input
+        type="date"
+        name="contact[{{ block.settings.label }}]"
+        placeholder="{{ block.settings.placeholder }}"
+        id="ContactForm-{{ block.settings.label }}"
+        class="input input--blue"
+        autocorrect="off"
+        autocapitalize="off"
+        autofocus
+      >
+    </label>
+
+  {% when 'custom' %}
+    <label class="label">
+      <span class="text input__label">
+        {{- block.settings.label -}}
+        {% if block.settings.required %} *{% endif %}
+      </span>
+      <input
+        type="text"
+        name="contact[{{ block.settings.label }}]"
+        placeholder="{{ block.settings.placeholder }}"
+        id="ContactForm-{{ block.settings.label }}"
+        class="input input--blue"
+        autocorrect="off"
+        autocapitalize="off"
+        autofocus
+        {% if block.settings.required %}
+          required="required"
+        {% endif %}
+      >
+    </label>
+{% endcase %}
+
+{% schema %}
+{
+  "name": "Form input",
+  "settings": [
+    {
+      "type": "select",
+      "id": "type",
+      "label": "Type",
+      "options": [
+        {
+          "value": "email",
+          "label": "Email"
+        },
+        {
+          "value": "date",
+          "label": "Date"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder"
+    },
+    {
+      "type": "checkbox",
+      "id": "required",
+      "label": "Required",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Form input"
+    }
+  ]
+}
+{% endschema %}

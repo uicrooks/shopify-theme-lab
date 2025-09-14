@@ -1,0 +1,156 @@
+.ingredients {
+  transition: all 0.25s ease-in-out;
+}
+
+.ingredients__container {
+  padding-top: 105px;
+
+  @media #{$m-xxl} {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+  @media #{$no-m} {
+    padding-bottom: 119px;
+  }
+
+  @media #{$no-fw} {
+    padding-top: 7vw;
+    padding-bottom: 7vw;
+  }
+}
+
+.ingredients__title {
+  max-width: 672px;
+  margin: 0 auto;
+  padding-bottom: 120px;
+  text-align: center;
+
+  @media #{$no-fw} {
+    max-width: 39.65vw;
+  }
+
+  @media #{$l} {
+    max-width: 39.65vw;
+  }
+
+  @media #{$m-xxl} {
+    padding-bottom: 60px;
+  }
+
+  @media #{$m-xl} {
+    max-width: 85%;
+  }
+
+  @media #{$m-l} {
+    max-width: none;
+  }
+}
+
+.ingredients__gallery {
+  position: relative;
+  overflow: hidden;
+
+  @media #{$no-m} {
+    max-width: 939px;
+    margin: 0 auto;
+  }
+
+  @media #{$no-m-xl} {
+    .swiper-wrapper {
+      flex-wrap: wrap;
+    }
+
+    .ingredients__slide {
+      width: 33.3333%;
+    }
+  }
+
+  @media #{$no-fw} {
+    max-width: 45vw;
+  }
+
+  @media #{$m-xl} {
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+
+  @media #{$m-l} {
+    margin-left: -16px;
+    margin-right: -16px;
+  }
+}
+
+.ingredients-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 202px;
+  width: 100%;
+  margin: 10px 0;
+  text-align: center;
+
+  .ingredients-item__image-wrapper {
+    width: 60px;
+    height: 60px;
+
+    @media #{$no-fw} {
+      width: 120px;
+      height: 120px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(0deg);
+    animation-name: spin;
+    animation-duration: 23s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  @media #{$m-l} {
+    min-height: 180px;
+  }
+
+  @media #{$no-fw} {
+    min-height: 260px;
+  }
+
+  @media #{$no-qhd} {
+    min-height: 320px;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+//.ingredients-item__img {
+//	width: 100px;
+//	height: 100px;
+//}

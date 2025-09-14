@@ -1,0 +1,227 @@
+.main-product__images {
+  .product-gallery {
+    position: relative;
+    margin-bottom: 100px;
+
+    .swiper-container-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column-reverse;
+      transition: opacity 0.25s ease-in-out;
+    }
+
+    .swiper-container {
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      list-style: none;
+      padding: 0;
+      z-index: 1;
+    }
+
+    .product-gallery__slider {
+      max-width: 550px;
+
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      picture {
+        display: inline-block;
+      }
+    }
+
+    .product-gallery__slider-thumbnail {
+      min-height: 66px;
+
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 64px;
+        min-height: 64px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      picture {
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 64px;
+        height: 64px;
+        border: 1px solid #fff;
+      }
+    }
+
+    @media #{$no-m} {
+      .product-gallery__slider-thumbnail {
+        position: absolute;
+        top: 0;
+        left: 10vw;
+        height: 100%;
+        max-height: 420px;
+        padding-right: 5vw;
+      }
+
+      .swiper-container-wrapper {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    @media #{$no-l} {
+      .product-gallery__slider {
+        max-width: 672px;
+      }
+
+      .product-gallery__slider-thumbnail {
+        max-height: 440px;
+      }
+    }
+
+    @media #{$no-xl} {
+      .product-gallery__slider-thumbnail {
+        left: 15vw;
+      }
+    }
+
+    @media #{$no-fw} {
+      margin-bottom: 5vw;
+
+      .product-gallery__slider {
+        max-width: 50vw;
+      }
+
+      .product-gallery__slider-thumbnail {
+        max-height: 650px;
+        left: 10vw;
+
+        .swiper-slide {
+          min-width: 120px;
+          min-height: 120px;
+        }
+
+        picture {
+          width: 120px;
+          height: 120px;
+        }
+      }
+    }
+
+    @media #{$no-qhd} {
+      .product-gallery__slider {
+        max-width: 40vw;
+      }
+
+      .product-gallery__slider-thumbnail {
+        left: 15vw;
+      }
+    }
+
+    @media #{$m-xxl} {
+      margin-bottom: 60px;
+
+      .swiper-container-wrapper {
+        align-items: center;
+      }
+
+      .product-gallery__slider {
+        margin-bottom: 60px;
+      }
+
+      .product-gallery__slider-thumbnail {
+        max-width: 500px;
+
+        .swiper-slide {
+          min-width: 32px;
+          min-height: 32px;
+        }
+      }
+    }
+
+    @media #{$m-xl} {
+      .product-gallery__slider {
+        max-width: 480px;
+      }
+
+      .product-gallery__slider-thumbnail {
+        min-width: 200px;
+      }
+    }
+
+    @media #{$m-l} {
+      .product-gallery__slider {
+        max-width: 270px;
+      }
+
+      .product-gallery__slider-thumbnail {
+        max-width: 300px;
+
+        .swiper-slide {
+          min-width: 32px;
+          min-height: 32px;
+        }
+
+        picture {
+          width: 32px;
+          height: 32px;
+        }
+      }
+    }
+  }
+
+  .next-product {
+    position: absolute;
+    top: 18%;
+    right: -250px;
+    display: inline-block;
+
+    @media #{$no-l} {
+      right: -199px;
+    }
+
+    @media #{$no-fw} {
+      top: 23%;
+      right: -330px;
+    }
+
+    @media #{$l} {
+      right: -280px;
+    }
+
+    @media #{$m-xxl} {
+      right: -114px;
+    }
+
+    @media #{$m-l} {
+      top: 11%;
+      right: -136px;
+    }
+  }
+
+  @media screen and (min-width: 991px) {
+    .product-gallery__slider-thumbnail picture {
+      height: 60px !important;
+      width: 60px !important;
+    }
+  }
+
+  @media screen and (max-width: 990px) {
+    .product-gallery__slider-thumbnail picture {
+      height: 70px !important;
+      width: 70px !important;
+    }
+  }
+
+  .product-gallery .product-gallery__slider-thumbnail img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
+}

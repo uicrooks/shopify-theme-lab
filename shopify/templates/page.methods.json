@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "page-methods",
+      "settings": {
+        "title": "<span><span>Zahlungsarten</span></span>  und <span><span>Versand</span></span>",
+        "subtitle": "Informationen zu Zahlungsarten und Versandmöglichkeiten.",
+        "img_left_top": "shopify://shop_images/box.png",
+        "img_right_top": "shopify://shop_images/money-with-wings.png",
+        "img_left_bottom": "shopify://shop_images/money-with-wings.png",
+        "img_right_bottom": "shopify://shop_images/box.png"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,140 @@
+.header-nav {
+	.header-nav__link {
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 24px;
+		text-decoration: none;
+		color: #ffffff;
+	}
+
+	.icon-account {
+		width: 24px;
+		height: 24px;
+	}
+
+	.icon-search {
+		width: 24px;
+		height: 24px;
+	}
+
+	.icon-cart {
+		width: 28px;
+		height: 22px;
+	}
+
+	.header-nav__link--static {
+		margin-left: 32px;
+		padding-left: 0;
+		line-height: 1;
+
+		@media #{$m-l} {
+			margin-left: 16px;
+		}
+	}
+
+	.header-nav__img-left,
+	.header-nav__img-right {
+		visibility: hidden;
+		opacity: 0;
+		transition: all 0.25s ease-in-out;
+	}
+
+	@media #{$m-xl} {
+		.header-nav__img-left,
+		.header-nav__img-right {
+			position: absolute;
+			display: block;
+			visibility: visible;
+		}
+
+		.header-nav__img-left {
+			left: 0;
+		}
+
+		.header-nav__img-right {
+			bottom: 0;
+			right: 0;
+		}
+
+		.header-nav__wrap {
+			position: absolute;
+			top: 54px;
+			left: -32px;
+			right: 0;
+			overflow: hidden;
+			z-index: 100;
+			display: flex;
+			align-items: center;
+			flex-direction: column;
+			width: 100vw;
+			height: 0;
+			transition: all 0.25s ease-in-out;
+
+			&.header-nav__wrap--open {
+				max-height: 100vh;
+				height: calc(100vh - 80px);
+				background-color: var(--nav-background);
+				transition: all 0.25s ease-out;
+
+				.header-nav__img-left,
+				.header-nav__img-right {
+					visibility: visible;
+					opacity: 1;
+				}
+			}
+		}
+
+		.header-nav__item:not(.header-nav__link--static) {
+			padding-top: 32px;
+			text-align: center;
+		}
+	}
+
+	@media #{$m-l} {
+		.header-nav__wrap {
+			left: -16px;
+		}
+	}
+
+	@media #{$no-m-xl} {
+		.header-nav__img-left,
+		.header-nav__img-right {
+			display: none;
+		}
+
+		.header-nav__menu {
+			display: flex;
+			align-items: center;
+		}
+
+		.header-nav__item:not(.header-nav__link--static) {
+			padding-left: 32px;
+		}
+	}
+
+	@media #{$no-fw} {
+		.header-nav__link {
+			font-size: 1vw;
+			line-height: 1.4;
+		}
+
+		.header-nav__link--static {
+			line-height: 1;
+		}
+
+		.icon-account {
+			width: 35px;
+			height: 35px;
+		}
+
+		.icon-search {
+			width: 35px;
+			height: 35px;
+		}
+
+		.icon-cart {
+			width: 47px;
+			height: 50px;
+		}
+	}
+}

@@ -1,0 +1,255 @@
+// Form Builder with File Upload Community (Code insert in to form app)
+
+#formGeneratorForm {
+	max-width: 750px;
+	margin: 0 auto;
+}
+
+#formGeneratorForm .form-group.textarea {
+	min-height: 355px;
+	margin-bottom: 60px;
+	padding-top: 7%;
+	padding-left: 30%;
+	padding-right: 22%;
+	background-image: url("https://cdn.shopify.com/s/files/1/0601/8256/0962/files/textarea-bg-2x.png?v=1640187699");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+#formGeneratorForm .form-group.textarea textarea {
+	width: 100%;
+	min-height: 153px;
+	padding: 15px;
+	resize: none;
+	border-color: #000;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1.1;
+	color: #ffffff;
+}
+
+#formGeneratorForm .form-group.textarea textarea::placeholder {
+	color: #ffffff;
+}
+
+#formGeneratorForm input.form-control {
+	min-height: 56px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+	padding-left: 0;
+	border-color: transparent;
+	border-bottom-color: #fff;
+	font-size: 16px;
+	line-height: 1.4;
+	color: #ffffff;
+	box-shadow: none;
+}
+
+#formGeneratorForm input.form-control::placeholder {
+	color: #ffffff;
+}
+
+#formGeneratorForm button.btn[type="submit"] {
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+	display: inline-block;
+	padding: 16px 53px;
+	border: none;
+	outline: none;
+	background: transparent !important;
+	font-style: normal;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 24px;
+	text-decoration: none;
+	color: #fff !important;
+	transition: all 0.5s;
+	border-radius: 4px;
+	box-shadow: none;
+	cursor: pointer;
+}
+
+button.btn[type="submit"]::after,
+button.btn[type="submit"]::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	display: block;
+	width: 100%;
+	height: 100%;
+	transform: translate3D(-101%, 0, 0);
+	transition: all 0.5s;
+}
+
+button.btn[type="submit"]::after {
+	background-color: #f3587f;
+}
+
+button.btn[type="submit"]::before {
+	z-index: -2;
+	background-color: #2ac2bd;
+	transform: translate3D(0, 0, 0);
+}
+
+#formGeneratorForm button.btn[type="submit"]:hover,
+#formGeneratorForm button.btn[type="submit"]:focus {
+	border: none;
+	background: transparent;
+}
+
+.btn[type="submit"]:hover::after,
+.btn[type="submit"]:focus::after {
+	transform: translate3D(0, 0, 0);
+	transition: all 0.5s;
+}
+
+.after_form_submit .form_generater_form_div h2 {
+	color: #ffffff;
+}
+
+#formGeneratorForm input.form-control#form_input_3 {
+	border-bottom-color: transparent;
+}
+
+@media (max-width: 991px) {
+	#formGeneratorForm {
+		max-width: 513px;
+	}
+
+	#formGeneratorForm .form-group.textarea {
+		min-height: 240px;
+		padding-left: 27%;
+		padding-right: 18%;
+	}
+}
+
+@media (max-width: 575px) {
+	#formGeneratorForm {
+		max-width: 358px;
+	}
+
+	#formGeneratorForm input.form-control {
+		padding-right: 0;
+		font-family: Arial, Helvetica, sans-serif !important;
+		font-size: 13px;
+		font-weight: 300;
+	}
+
+	#formGeneratorForm input.form-control::placeholder,
+	#formGeneratorForm input.form-control::-ms-input-placeholder {
+		font-family: Arial, Helvetica, sans-serif !important;
+		font-weight: 300 !important;
+	}
+
+	.formElement_1.form-group.col-sm-6 {
+		padding-right: 10px;
+	}
+
+	.formElement_2.form-group.col-sm-6 {
+		padding-left: 10px;
+	}
+
+	#formGeneratorForm .form-group.textarea {
+		min-height: 180px;
+		padding-left: 27%;
+		padding-right: 18%;
+	}
+
+	#formGeneratorForm .form-group.textarea textarea {
+		min-height: 115px;
+	}
+}
+
+@media (max-width: 480px) {
+	#formGeneratorForm .form_container .form-group.col-sm-6 {
+		width: 50%;
+	}
+}
+
+@media (min-width: 992px) {
+	#formGeneratorForm button.btn[type="submit"] {
+		max-width: 438px;
+	}
+
+	#form_input_1 {
+		margin-left: auto;
+	}
+
+	#form_input_3 {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	input.form-control {
+		width: 65%;
+	}
+
+	input#form_input_1,
+	input#form_input_2 {
+		width: 63%;
+	}
+
+	#formGeneratorForm .form-group.textarea textarea {
+		font-size: 40px;
+		min-height: 225px;
+	}
+}
+
+@media (min-width: 1920px) {
+	#formGeneratorForm {
+		max-width: 1000px;
+	}
+
+	#formGeneratorForm .form-group.textarea {
+		min-height: 454px;
+		padding-top: 10%;
+		padding-left: 27%;
+		padding-right: 20%;
+	}
+
+	#formGeneratorForm .form-group.textarea textarea {
+		min-height: 250px;
+		padding: 30px;
+	}
+
+	input.form-control {
+		width: 74%;
+		min-height: 3vw;
+		font-size: 1.2vw;
+	}
+
+	input#form_input_1,
+	input#form_input_2 {
+		width: 73%;
+	}
+
+	#formGeneratorForm button.btn[type="submit"] {
+		max-width: 74%;
+		font-size: 1.2vw;
+		line-height: 1.4;
+	}
+
+	.after_form_submit .form_generater_form_div h2 {
+		font-size: 2vw;
+	}
+}
+
+@media (min-width: 2560px) {
+	#formGeneratorForm {
+		max-width: 1500px;
+	}
+
+	#formGeneratorForm .form-group.textarea {
+		min-height: 704px;
+		padding-left: 30%;
+	}
+
+	#formGeneratorForm .form-group.textarea textarea {
+		min-height: 398px;
+		font-size: 2.2vw;
+	}
+}

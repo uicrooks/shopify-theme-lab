@@ -1,0 +1,22 @@
+<tr id="shopify-block-{{ block.id }}">
+  {% content_for 'blocks' %}
+</tr>
+
+{% schema %}
+{
+  "name": "Table Row",
+  "tag": null,
+  "settings": [
+  ],
+  "blocks": [
+    {
+      "type": "table-cell"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Table Row"
+    }
+  ]
+}
+{% endschema %}

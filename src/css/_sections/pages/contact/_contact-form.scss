@@ -1,0 +1,24 @@
+.contact-form__button {
+  margin-top: 24px;
+  max-width: 300px;
+}
+
+.contact-form {
+  .title-wrapper {
+    max-width: 1200px;
+    padding-inline: 0;
+
+    .title-wrapper__title {
+      margin-bottom: 24px;
+    }
+  }
+  .title-wrapper .title-wrapper__subtitle {
+    text-align: left;
+    max-width: none;
+  }
+}
+
+.contact-form__form {
+  max-width: 1200px;
+  margin: auto;
+}

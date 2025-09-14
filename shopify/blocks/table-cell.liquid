@@ -1,0 +1,81 @@
+{% if block.settings.background_color != 'rgba(0,0,0,0)' %}
+  <style>
+    #shopify-block-{{ block.id }} {
+      background-color: {{ block.settings.background_color }};
+    }
+  </style>
+{% endif %}
+
+<{{ block.settings.cell_type }} {% if block.settings.sticky %}class="sticky-cell"{% endif %} id="shopify-block-{{ block.id }}">
+  <div class="table-cell__content">
+    {% if block.settings.image %}
+      {{ block.settings.image | image_url: width: 100 | image_tag }}
+    {% endif %}
+    {% if block.settings.text %}
+      <span>{{ block.settings.text }}</span>
+    {% endif %}
+    {% if block.settings.liquid %}
+      {{ block.settings.liquid }}
+    {% endif %}
+  </div>
+</{{ block.settings.cell_type }}>
+
+{% schema %}
+{
+  "name": "Table Cell",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "cell_type",
+      "label": "Cell Type",
+      "options": [
+        {
+          "value": "th",
+          "label": "Header"
+        },
+        {
+          "value": "td",
+          "label": "Body"
+        }
+      ],
+      "default": "td"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "Sticky",
+      "default": false
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Text"
+    },
+    {
+      "type": "liquid",
+      "id": "liquid",
+      "label": "Liquid"
+    }
+  ],
+  "blocks": [
+  ],
+  "presets": [
+    {
+      "name": "Table Cell"
+    }
+  ]
+}
+{% endschema %}

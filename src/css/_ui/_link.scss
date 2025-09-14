@@ -1,0 +1,41 @@
+.link-swipe {
+	color: #fff;
+
+	@media #{$no-m} {
+		position: relative;
+		transition: color 0.3s ease-in-out;
+		cursor: pointer;
+
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			display: block;
+			width: 0;
+			height: 1px;
+			background-color: #fff;
+			transition: all 0.25s ease-in-out;
+		}
+
+		&:hover,
+		&:focus {
+			color: #fff;
+
+			&::after {
+				left: 0;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.link-underline {
+	text-decoration: underline;
+	color: #ffffff;
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+}

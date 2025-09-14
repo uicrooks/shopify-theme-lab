@@ -1,0 +1,160 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign sec_sett = section.settings -%}
+{%- assign img_left = sec_sett.img_left -%}
+{%- assign img_right = sec_sett.img_right -%}
+
+<section
+	class="guidelines"
+	data-section-id="{{- section.id -}}"
+	data-section-type="guidelines"
+>
+	<div class="content-wrapper">
+		{%- for block in section.blocks -%}
+		  {%- assign block_sett = block.settings -%}
+		  {%- assign page_type = block_sett.page_type -%}
+		  {%- assign title = block_sett.title -%}
+		  {%- assign subtitle = block_sett.subtitle -%}
+
+			{%- if page.handle == page_type -%}
+				{%- if title or subtitle -%}
+					<div class="title-wrapper">
+						{%- if title -%}
+							<h1 class="title-wrapper__title title-bg">{{ title }}</h1>
+						{%- endif -%}
+
+						{%- if subtitle -%}
+							<p class="title-wrapper__subtitle">{{ subtitle }}</p>
+						{%- endif -%}
+					</div>
+				{%- endif -%}
+				{% break %}
+			{%- endif -%}
+		{%- endfor -%}
+
+		<div class="guidelines__container">
+			{%- if img_left.src != blank -%}
+				<picture class="guidelines__img guidelines__img--left">
+					<source
+						srcset="{{ img_left.src | img_url: '320x' }} 1x, {{ img_left.src | img_url: '640x' }} 2x, {{ img_left.src | img_url: '960x' }} 3x"
+						media="(min-width: 2560px)">
+					<source
+						srcset="{{ img_left.src | img_url: '240x' }} 1x, {{ img_left.src | img_url: '480x' }} 2x, {{ img_left.src | img_url: '720x' }} 3x"
+						media="(min-width: 1921px)">
+					<img src="{{ img_left.src | img_url: '160x' }} 1x"
+							 srcset="{{ img_left.src | img_url: '160x' }} 1x, {{ img_left.src | img_url: '320x' }} 2x"
+							 alt="{{ img_left.alt }}">
+				</picture>
+			{%- endif -%}
+			<div class="container container--sm">
+				<div class="rte rte--pages">
+					{{ page.content }}
+				</div>
+			</div>
+			{%- if img_right.src != blank -%}
+				<picture class="guidelines__img guidelines__img--right">
+					<source
+						srcset="{{ img_right.src | img_url: '320x' }} 1x, {{ img_right.src | img_url: '640x' }} 2x, {{ img_right.src | img_url: '960x' }} 3x"
+						media="(min-width: 2560px)">
+					<source
+						srcset="{{ img_right.src | img_url: '240x' }} 1x, {{ img_right.src | img_url: '480x' }} 2x, {{ img_right.src | img_url: '720x' }} 3x"
+						media="(min-width: 1921px)">
+					<img src="{{ img_right.src | img_url: '160x' }} 1x"
+							 srcset="{{ img_right.src | img_url: '160x' }} 1x, {{ img_right.src | img_url: '320x' }} 2x"
+							 alt="{{ img_right.alt }}">
+				</picture>
+			{%- endif -%}
+		</div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+	{
+		"name": "Guidelines",
+		"max_blocks": 2,
+		"settings": [
+			{
+				"type": "image_picker",
+				"id": "img_left",
+				"label": "Background Image left"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_right",
+				"label": "Background Image right"
+			},
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#5359e5"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "color",
+        "id": "hover_color",
+        "label": "Hover Color",
+        "default": "#f3587f"
+      }
+		],
+		"blocks": [
+			{
+				"type": "guidelines_item",
+				"name": "Guidelines page title",
+				"settings": [
+					{
+						"type": "select",
+						"id": "page_type",
+						"label": "Page name",
+						"options": [
+							{
+								"value": "imprint",
+								"label": "Imprint"
+							},
+							{
+								"value": "data-protection",
+								"label": "Data protection"
+							}
+						]
+					},
+					{
+						"type": "textarea",
+						"id": "title",
+						"info": "Need wrap words to see background, <span><span>example</span></span>",
+						"label": "Title"
+					},
+					{
+						"type": "textarea",
+						"id": "subtitle",
+						"label": "Subtitle"
+					}
+				]
+			}
+		]
+	}
+{% endschema %}

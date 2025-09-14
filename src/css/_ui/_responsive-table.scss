@@ -1,0 +1,72 @@
+/*============================================================================
+  Responsive tables, defined with .responsive-table on table element.
+==============================================================================*/
+.responsive-table {
+	&.responsive-table--fw {
+		width: 100%;
+	}
+
+	th {
+		color: inherit;
+	}
+
+	th,
+	td {
+		padding: 0 5px 0 0;
+		vertical-align: middle;
+		text-align: left;
+
+		@media #{$m-xxl} {
+			color: inherit;
+		}
+	}
+
+	td {
+		color: inherit;
+	}
+}
+
+@media #{$m-xl} {
+	.responsive-table {
+		width: 100%;
+
+		thead {
+			display: none;
+		}
+
+		tr {
+			display: block;
+		}
+
+		// IE9 table layout fixes
+		tr,
+		td {
+			float: left;
+			clear: both;
+			width: 100%;
+		}
+
+		th,
+		td {
+			display: block;
+			margin: 0;
+			padding: 0 0;
+			text-align: right;
+		}
+
+		td[data-label]::before {
+			content: attr(data-label);
+			float: left;
+			padding-right: 10px;
+			text-align: center;
+		}
+	}
+
+	// Add a keyline between rows
+	.responsive-table-row + .responsive-table-row,
+	tfoot > .responsive-table-row:first-child {
+		position: relative;
+		margin-top: 40px;
+		padding-top: 15px;
+	}
+}

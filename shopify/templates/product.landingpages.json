@@ -1,0 +1,440 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "advantages_DpAYct": {
+      "type": "advantages",
+      "blocks": {
+        "advantage_item_b3E4dj": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-1-smile.png",
+            "text": "24 yummy Türchen"
+          }
+        },
+        "advantage_item_LKhnLL": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-2-vegan.png",
+            "text": "kein Industriezucker + vegan"
+          }
+        },
+        "advantage_item_xmLDka": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-3-organic.png",
+            "text": "bio-zertfiziert + natürlich"
+          }
+        },
+        "advantage_item_DmdpGF": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-4-packaging.png",
+            "text": "Kalender wieder-verwendbar"
+          }
+        }
+      },
+      "block_order": [
+        "advantage_item_b3E4dj",
+        "advantage_item_LKhnLL",
+        "advantage_item_xmLDka",
+        "advantage_item_DmdpGF"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Was macht unseren Kalender besonders",
+        "subtitle": "",
+        "background_color": "#275c63",
+        "accent_color": "#aa3e59",
+        "hover_color": "#f3587f"
+      }
+    },
+    "product_template_fbYgEz": {
+      "type": "product-template",
+      "disabled": true,
+      "settings": {
+        "image_size": "medium",
+        "show_quantity_selector": false,
+        "show_variant_labels": true,
+        "show_vendor": false,
+        "enable_zoom": true,
+        "enable_payment_button": false,
+        "show_share_buttons": true
+      }
+    },
+    "product_page_yfm8Yb": {
+      "type": "product-page",
+      "blocks": {
+        "description_qt6wj4": {
+          "type": "description",
+          "settings": {}
+        },
+        "countdown_VtCQd8": {
+          "type": "countdown",
+          "disabled": true,
+          "settings": {
+            "heading": "Early Bird Sale endet in :",
+            "color": "#275c63",
+            "color_time": "#ffffff",
+            "background_color": "#37b7a5"
+          }
+        },
+        "buy_button_MxK7PU": {
+          "type": "buy_button",
+          "disabled": true,
+          "settings": {
+            "show_quantity_selector": true,
+            "show_price": true
+          }
+        }
+      },
+      "block_order": [
+        "description_qt6wj4",
+        "countdown_VtCQd8",
+        "buy_button_MxK7PU"
+      ],
+      "settings": {
+        "heading": "Cyber Monday treats",
+        "mobile_heading": "Cyber Monday treats",
+        "show_price": true,
+        "reviews_average_rating": "",
+        "reviews_quantity_text": "",
+        "background_color": "{{ product.metafields.custom.background_color.value }}",
+        "accent_color": "{{ product.metafields.custom.accent_color.value }}",
+        "hover_color": "{{ product.metafields.custom.hover_color.value }}"
+      }
+    },
+    "video_iTDPK9": {
+      "type": "video",
+      "disabled": true,
+      "settings": {
+        "video": "shopify://files/videos/adventskalender aufbau treatmas.mp4",
+        "video_mobile": "shopify://files/videos/treatmas_mobile video29.mp4",
+        "background_color": "#aa3e59",
+        "accent_color": "#2ac2bd",
+        "hover_color": "#f3587f"
+      }
+    },
+    "image_gallery_GH9tRD": {
+      "type": "image-gallery",
+      "blocks": {
+        "image_E7xyiR": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Bildschirmfoto_2024-12-02_um_13.02.25.png",
+            "content": "<p>🎅 🎁</p>",
+            "content_position_y": 55,
+            "content_position_x": 25,
+            "grid_number": "1",
+            "column_start": "1",
+            "column_span": "3",
+            "row_start": "1",
+            "row_span": "2",
+            "column_start_mobile": "1",
+            "column_span_mobile": "5",
+            "row_start_mobile": "1",
+            "row_span_mobile": "2"
+          }
+        },
+        "image_CHXcKq": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Bildschirmfoto_2024-12-02_um_13.05.12.png",
+            "content": "<p>🎅 🎁</p>",
+            "content_position_y": 50,
+            "content_position_x": 50,
+            "grid_number": "1",
+            "column_start": "4",
+            "column_span": "6",
+            "row_start": "1",
+            "row_span": "1",
+            "column_start_mobile": "6",
+            "column_span_mobile": "7",
+            "row_start_mobile": "2",
+            "row_span_mobile": "1"
+          }
+        },
+        "image_ELrtHw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Bildschirmfoto_2024-12-02_um_13.04.05.png",
+            "content": "<p>🎅 🎁</p>",
+            "content_position_y": 50,
+            "content_position_x": 50,
+            "grid_number": "1",
+            "column_start": "4",
+            "column_span": "6",
+            "row_start": "2",
+            "row_span": "1",
+            "column_start_mobile": "6",
+            "column_span_mobile": "7",
+            "row_start_mobile": "1",
+            "row_span_mobile": "1"
+          }
+        },
+        "image_q7LijX": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Bildschirmfoto_2024-12-02_um_13.05.23.png",
+            "content": "<p>🎅 🎁</p>",
+            "content_position_y": 50,
+            "content_position_x": 50,
+            "grid_number": "1",
+            "column_start": "10",
+            "column_span": "3",
+            "row_start": "1",
+            "row_span": "2",
+            "column_start_mobile": "1",
+            "column_span_mobile": "12",
+            "row_start_mobile": "3",
+            "row_span_mobile": "2"
+          }
+        }
+      },
+      "block_order": [
+        "image_E7xyiR",
+        "image_CHXcKq",
+        "image_ELrtHw",
+        "image_q7LijX"
+      ],
+      "settings": {
+        "heading": "Der süßeste Deal des Jahres: Cyber Monday bei treatfuls!🎄",
+        "show_atc_button": false,
+        "grid_container_quantity": "1",
+        "background_color": "#aa3e59",
+        "accent_color": "#275c63",
+        "hover_color": "#f3587f",
+        "popup_background_color": "#f3587f",
+        "popup_text_color": "#aa3e59"
+      }
+    },
+    "advantages_AtVQrF": {
+      "type": "advantages",
+      "blocks": {
+        "advantage_item_RgLwwJ": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-1-smile.png",
+            "text": "24 yummy Türchen"
+          }
+        },
+        "advantage_item_7gpaeh": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-2-vegan.png",
+            "text": "kein Industriezucker + vegan"
+          }
+        },
+        "advantage_item_rYayte": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-3-organic.png",
+            "text": "bio-zertfiziert + natürlich"
+          }
+        },
+        "advantage_item_pzt4D6": {
+          "type": "advantage_item",
+          "settings": {
+            "image": "shopify://shop_images/img-4-packaging.png",
+            "text": "Kalender wieder-verwendbar"
+          }
+        }
+      },
+      "block_order": [
+        "advantage_item_RgLwwJ",
+        "advantage_item_7gpaeh",
+        "advantage_item_rYayte",
+        "advantage_item_pzt4D6"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Was macht unseren Kalender besonders",
+        "subtitle": "",
+        "background_color": "#275c63",
+        "accent_color": "#aa3e59",
+        "hover_color": "#f3587f"
+      }
+    },
+    "page_faq_bhJL4L": {
+      "type": "faq",
+      "blocks": {
+        "faq_item_Ey8e3K": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wann kann ich den treatfuls Adventskalender kaufen?",
+            "content": "🎄 Ab sofort! Der Countdown läuft, und unser limitierter Kalender ist ready to roll. Schnell sein lohnt sich, bevor alle Türchen vergeben sind!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_RbNWq3": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wann wird der Adventskalender versendet?",
+            "content": "🚚 Anfang/Mitte November flitzt dein treatfuls Kalender direkt zu dir – perfekt getimt, damit du pünktlich am 1. Dezember losnaschen kannst!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_fjwx6m": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Kann ich meine Bestellung später noch stornieren?",
+            "content": "❌ Ja, aber nur bevor der Kalender gepackt wird! Danach sind die Treats bereit für die Reise – und eine Rückkehr gibt's nicht mehr.",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_T3Lfyj": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Sind die Artikel im Adventskalender auch im Shop erhältlich oder sind es nur exklusive Stücke?",
+            "content": "🔐 Exklusiv, Baby! Die meisten Leckereien gibt es nur in diesem Kalender. Das bedeutet: Du bekommst den ersten, vielleicht einzigen Biss!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_UVU9Uk": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Was ist, wenn mir der Adventskalender nicht gefällt? Kann ich ihn zurückgeben?",
+            "content": "🙅‍♀️ Sorry, das geht leider nicht! Jeder Kalender wird extra für dich mit Liebe zusammengestellt und verpackt. Aber mal ehrlich – wer kann bei diesen Überraschungen widerstehen?",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_mFrMiH": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Sind die Produkte im Adventskalender glutenfrei, ohne raffinierten Zucker und bio?",
+            "content": "🌿 Aber natürlich! Alles in unserem Kalender ist 100% glutenfrei, bio und kommt ganz ohne raffinierten Zucker aus. Das heißt: Naschen mit gutem Gewissen – ganz im treatfuls-Style!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_TXQkJk": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Was ist das Besondere am treatfuls Adventskalender?",
+            "content": "✨ Neu, frech, unwiderstehlich! Er ist unser allererster Adventskalender, vollgepackt mit brandneuen Sorten, limitierter Zotter-Schokolade, einer Überraschung, die nicht essbar ist, und einem Gutschein zwischen 15 und 100 Euro! Plus: Alle Produkte sind in Originalgröße – kein Mini-Kram!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_JhBJq6": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Gibt es eine Liste mit den Treats, die im Adventskalender enthalten sein werden?",
+            "content": "🤫 Nope, Spoiler sind langweilig! Lass dich überraschen – das ist doch der ganze Spaß daran, oder? Jeden Tag ein neuer Wow-Moment!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_DPb7te": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Kann ich den Kalender auch verschenken?",
+            "content": "🎁 Na klar! Der treatfuls Adventskalender ist das perfekte Geschenk für jeden, der süße Überraschungen liebt. Einfach bei der Bestellung die Adresse deiner Lieblingsperson angeben, und wir kümmern uns um den Rest!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_6BDP6Q": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Ist der Kalender nachhaltig?",
+            "content": "🌱 Auf jeden Fall! Unsere Verpackung ist wiederverwendbar und kann nächstes Jahr als DIY-Projekt für deinen eigenen Adventskalender genutzt werden. Kreativität kennt keine Grenzen!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_KXXnVi": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Was kostet der Adventskalender und wie hoch ist der Wert der enthaltenen Produkte?",
+            "content": "💸 Der Kalender kostet 119,99 und hat einen Wert von über 130 Euro. Und das für volle 24 Tage pure treatfuls Freude!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_79W7iH": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Gibt es eine Anleitung, wie man den Adventskalender aufbauen kann?",
+            "content": "📄 Ja, klar! In jedem Adventskalender liegt ein Infoblatt bei, das dir zeigt, wie du ihn auf unterschiedliche und kreative Arten aufbauen kannst. Egal ob zum Stapeln, Aufstellen oder Verstecken – du entscheidest, wie du den Kalender in Szene setzt!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_iDnQkE": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Exklusive Rabatte nur für Adventskalender-Besitzer!",
+            "content": "💥 Jeden Tag ein neues Türchen, und ein geheimer QR-Code mit Rabatten, die es nur für dich gibt – gültig nur an jeweiligenTagen und nur für dich. Der süßeste Deal des Jahres!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        },
+        "faq_item_MXXPVk": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wird der Adventskalender separat zu anderen bestellten Artikeln verschickt?",
+            "content": "📦 ja, dein Adventskalender wird separat versendet. Damit du nicht warten musst, bis der Kalender bereit ist, werden alle anderen Produkte in deiner Bestellung sofort verschickt. Der Kalender kommt dann Anfang/Mitte November direkt hinterher!",
+            "show_ingredients": false,
+            "show_nutrition": false
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_Ey8e3K",
+        "faq_item_RbNWq3",
+        "faq_item_fjwx6m",
+        "faq_item_T3Lfyj",
+        "faq_item_UVU9Uk",
+        "faq_item_mFrMiH",
+        "faq_item_TXQkJk",
+        "faq_item_JhBJq6",
+        "faq_item_DPb7te",
+        "faq_item_6BDP6Q",
+        "faq_item_KXXnVi",
+        "faq_item_79W7iH",
+        "faq_item_iDnQkE",
+        "faq_item_MXXPVk"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Du hast Fragen?  Hier sind die Antworten!",
+        "subtitle": "",
+        "background_color": "#aa3e59",
+        "accent_color": "#275c63",
+        "hover_color": "#f3587f"
+      }
+    },
+    "page_about_us_xeLARH": {
+      "type": "about-us",
+      "settings": {
+        "title": "Hey, wir sind <span data-tooltip=\"1\">treatfuls</span> eine unglaublich leckere und vegane <span class=\"emoji\">🌱</span> Snack-Company aus Düsseldorf. Wir, das sind zwei leidenschaftliche <span data-tooltip=\"2\">Foodies</span>, die die Snack <span class=\"emoji\">🍫</span> Industrie revolutionieren <span class=\"emoji\">💪</span> wollen.",
+        "background_color": "#275c63",
+        "accent_color": "#aa3e59",
+        "hover_color": "#f3587f"
+      }
+    }
+  },
+  "order": [
+    "advantages_DpAYct",
+    "product_template_fbYgEz",
+    "product_page_yfm8Yb",
+    "video_iTDPK9",
+    "image_gallery_GH9tRD",
+    "advantages_AtVQrF",
+    "page_faq_bhJL4L",
+    "page_about_us_xeLARH"
+  ]
+}

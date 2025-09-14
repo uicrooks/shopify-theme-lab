@@ -1,0 +1,45 @@
+{% if block.settings.signup_button %}
+  <button class="button" data-toggle="{{ block.settings.klaviyo_form }}">{{ block.settings.text }}</button>
+{% else%}
+  {% if block.settings.url != blank %}
+    <a href="{{ block.settings.url }}" class="button">{{ block.settings.text }}</a>
+  {% else %} 
+    <button href="{{ block.settings.url }}" class="button">{{ block.settings.text }}</button>
+  {% endif %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Button",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "signup_button",
+      "label": "Signup button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "klaviyo_form",
+      "label": "Klaviyo form",
+      "visible_if": "{{ block.settings.signup_button }}"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Button"
+    }
+  ]
+}
+{% endschema %}

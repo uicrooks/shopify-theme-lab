@@ -1,0 +1,19 @@
+@mixin hover {
+	@media (-moz-touch-enabled: 0), (hover: hover) {
+		&:hover {
+			@content;
+		}
+	}
+}
+
+@mixin isHoverEnabled {
+	@media (-moz-touch-enabled: 0), (hover: hover) {
+		@content;
+	}
+}
+
+@mixin isHoverDisabled {
+	@media (-moz-touch-enabled: 1), (hover: none) {
+		@content;
+	}
+}

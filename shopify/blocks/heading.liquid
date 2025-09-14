@@ -1,0 +1,63 @@
+<style>
+  #shopify-block-{{ block.id }} .heading {
+    margin-top: {{ block.settings.margin_top }}px;
+    margin-bottom: {{ block.settings.margin_bottom }}px;
+  }
+</style>
+
+<div class="title-wrapper">
+  {%- if block.settings.heading_text -%}
+    <h1 class="title-wrapper__title title-bg">{{ block.settings.heading_text }}</h1>
+  {%- endif -%}
+
+  {%- if block.settings.subtitle_text -%}
+    <p class="title-wrapper__subtitle">{{ block.settings.subtitle_text }}</p>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Heading",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_text",
+      "label": "Heading Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle_text",
+      "label": "Subtitle Text"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin top",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin bottom",
+      "min": 16,
+      "max": 48,
+      "step": 1,
+      "default": 24,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heading",
+      "settings": {
+        "heading_text": "Heading",
+        "subtitle_text": "Subtitle"
+      }
+    }
+  ]
+}
+{% endschema %}

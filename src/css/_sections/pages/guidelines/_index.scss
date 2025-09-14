@@ -1,0 +1,60 @@
+.guidelines {
+	overflow: hidden;
+}
+.guidelines__container {
+	position: relative;
+}
+
+.guidelines__img {
+	display: none;
+
+	@media #{$no-m-xl} {
+		position: absolute;
+		display: inline-block;
+		min-width: 160px;
+		min-height: 160px;
+
+		&.guidelines__img--left {
+			bottom: 10%;
+			left: -37px;
+		}
+
+		&.guidelines__img--right {
+			top: 0;
+			right: -37px;
+		}
+	}
+
+	@media #{$no-l} {
+		&.guidelines__img--left {
+			bottom: 10%;
+			left: 8%;
+		}
+
+		&.guidelines__img--right {
+			top: -25%;
+			right: 2vw;
+		}
+	}
+
+	@media #{$no-xl} {
+		&.guidelines__img--left {
+			left: 15vw;
+		}
+
+		&.guidelines__img--right {
+			top: -25%;
+			right: 6vw;
+		}
+	}
+
+	@media #{$no-fw} {
+		min-width: 240px;
+		min-height: 240px;
+
+		&.guidelines__img--right {
+			top: -20%;
+			right: 10vw;
+		}
+	}
+}

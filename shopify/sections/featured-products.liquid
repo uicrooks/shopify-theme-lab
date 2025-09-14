@@ -1,0 +1,100 @@
+{%- assign sec_sett = section.settings -%}
+{%- assign title = sec_sett.title -%}
+{%- assign img_1 = sec_sett.img_on_hover_first -%}
+{%- assign img_2 = sec_sett.img_on_hover_second -%}
+
+<section
+	class="about-us"
+	data-section-id="{{- section.id -}}"
+	data-section-type="about-us"
+>
+	<div class="content-wrapper">
+		<div class="about-us__head container container--md">
+			{%- if title -%}
+				<h1 class="about-us__head-title color-white text-center">{{ title }}</h1>
+			{%- endif -%}
+			{%- if img_1.src != blank -%}
+				<picture class="about-us__head-img js-tooltip-img" data-tooltip-img="1">
+					<source srcset="{{ img_1.src | img_url: '378x' }} 1x, {{ img_1.src | img_url: '756x' }} 2x, {{ img_1.src | img_url: '1134x' }} 3x"
+									media="(min-width: 1920px)">
+					<img src="{{ img_1.src | img_url: '252x' }} 1x"
+							 srcset="{{ img_1.src | img_url: '252x' }} 1x, {{ img_1.src | img_url: '504x' }} 2x"
+							 alt="{{ img_1.alt }}">
+				</picture>
+			{%- endif -%}
+			{%- if img_2.src != blank -%}
+				<picture class="about-us__head-img js-tooltip-img" data-tooltip-img="2">
+					<source srcset="{{ img_2.src | img_url: '365x' }} 1x, {{ img_2.src | img_url: '730x' }} 2x, {{ img_2.src | img_url: '1095x' }} 3x"
+									media="(min-width: 1920px)">
+					<img src="{{ img_2.src | img_url: '243x' }} 1x"
+							 srcset="{{ img_2.src | img_url: '243x' }} 1x, {{ img_2.src | img_url: '504x' }} 2x"
+							 alt="{{ img_2.alt }}">
+				</picture>
+			{%- endif -%}
+		</div>
+
+		{%- if section.blocks.size > 0 -%}
+			<div class="container container--sm">
+				{%- for block in section.blocks -%}
+					{%- assign title = block.settings.title -%}
+					{%- assign content = block.settings.content -%}
+					<div class="title-wrapper">
+						{%- if title -%}
+							<h2 class="title-wrapper__title title-bg">{{ title }}</h2>
+						{%- endif -%}
+
+						{%- if content -%}
+							<div class="title-wrapper__subtitle title-wrapper__subtitle--sm">{{ content }}</div>
+						{%- endif -%}
+					</div>
+				{%- endfor -%}
+			</div>
+		{%- endif -%}
+	</div>
+</section>
+
+{% schema %}
+	{
+		"name": "new-one",
+		"settings": [
+			{
+				"type": "textarea",
+				"id": "title",
+				"label": "Title",
+				"info": "Need wrap words <span data-tooltip='1'>text</span> or <span data-tooltip='2'>text</span> to see hover image and wrap <span class='emoji'>&#x1F331;</span>",
+				"default": "Hey, wir sind <span data-tooltip='1'>treatfuls</span> eine unglaublich leckere und vegane <span class='emoji'>&#x1F331;</span> Snack-Company aus Düsseldorf. Wir, das sind zwei leidenschaftliche <span data-tooltip='2'>Foodies</span>, die die Snack <span class='emoji'>&#x1F36B;</span> Industrie revolutionieren <span class='emoji'>&#x1F4AA;</span> wollen."
+			},
+			{
+				"type": "image_picker",
+				"id": "img_on_hover_first",
+				"info": "For <span data-tooltip='1'>text</span>",
+				"label": "Tooltip Image 1 on link hover"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_on_hover_second",
+				"info": "For <span data-tooltip='2'>text</span>",
+				"label": "Tooltip Image 2 on link hover"
+			}
+		],
+		"blocks": [
+			{
+				"type": "article_item",
+				"name": "Article item",
+				"settings": [
+					{
+						"type": "textarea",
+						"id": "title",
+						"info": "Need wrap words to see background, <span><span>example</span></span>",
+						"label": "Title"
+					},
+					{
+						"type": "textarea",
+						"id": "content",
+						"label": "Content"
+					}
+				]
+			}
+		]
+	}
+{% endschema %}

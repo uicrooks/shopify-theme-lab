@@ -1,0 +1,200 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-header {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --header-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --header-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-footer{
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --footer-accent-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --footer-background-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign title = section.settings.title -%}
+{%- assign subtitle = section.settings.subtitle -%}
+
+<section
+	class="customer customer--order"
+	data-section-id="{{- section.id -}}"
+	data-section-type="customer-order"
+>
+	<div class="content-wrapper">
+		<div class="title-wrapper">
+			<h1 class="title-wrapper__title title-bg">{{ title }}</h1>
+
+			<p class="title-wrapper__subtitle">{{ subtitle }}</p>
+
+			<a href="/account" class="link-underline text color-white">{{ 'customer.account.return' | t }}</a>
+		</div>
+
+		<div class="customer-grid">
+			<div class="customer-grid__main">
+				<h2 class="color-white h3 fw-500">{{ 'customer.order.title' | t: name: order.name }}</h2>
+
+				{%- assign order_date = order.created_at | date: "%B %d, %Y %I:%M%p" -%}
+				<p class="text color-white">{{ 'customer.order.date_html' | t: date: order_date }}</p>
+				<br>
+				{% if order.cancelled %}
+					<div class="order--cancelled">
+						{%- assign cancelled_at = order.cancelled_at | date: "%B %d, %Y %I:%M%p" -%}
+						<p>{{ 'customer.order.cancelled_html' | t: date: cancelled_at }}</p>
+						<p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason }}</p>
+					</div>
+				{% endif %}
+
+				<table class="responsive-table responsive-table--fw text color-white">
+					<thead>
+						<tr>
+							<th class="fw-500">{{ 'customer.order.product' | t }}</th>
+							<th class="fw-500">{{ 'customer.order.sku' | t }}</th>
+							<th class="fw-500">{{ 'customer.order.price' | t }}</th>
+							<th class="fw-500">{{ 'customer.order.quantity' | t }}</th>
+							<th class="fw-500">{{ 'customer.order.total' | t }}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for line_item in order.line_items %}
+							<tr id="{{ line_item.key }}" class="responsive-table__row" >
+								<td data-label="{{ 'customer.order.product' | t }}">
+									<a href="{{ line_item.product.url }}" class="link-underline text">{{ line_item.title }}</a>
+									{% if line_item.fulfillment %}
+										<div class="note">
+											{%- assign created_at = line_item.fulfillment.created_at | date: format: 'month_day_year' -%}
+											{{ 'customer.order.fulfilled_at' | t: date: created_at }}
+											<div>
+												{% if line_item.fulfillment.tracking_url %}
+													<a href="{{ line_item.fulfillment.tracking_url }}">
+														{{ 'customer.order.track_shipment' | t }}
+													</a>
+												{% endif %}
+												<div>
+													{{ line_item.fulfillment.tracking_company }}
+													{% if line_item.fulfillment.tracking_number %} #{{ line_item.fulfillment.tracking_number }} {% endif %}
+												</div>
+											</div>
+										</div>
+									{% endif %}
+								</td>
+								<td data-label="{{ 'customer.order.sku' | t }}">{{ line_item.sku }}</td>
+								<td data-label="{{ 'customer.order.price' | t }}">{{ line_item.price | money }}</td>
+								<td data-label="{{ 'customer.order.quantity' | t }}">{{ line_item.quantity }}</td>
+								<td data-label="{{ 'customer.order.total' | t }}">{{ line_item.quantity | times: line_item.price | money }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+					<tfoot>
+					<tr class="responsive-table__row">
+						<td colspan="4" class="small--hide">{{ 'customer.order.subtotal' | t }}</td>
+						<td data-label="{{ 'customer.order.subtotal' | t }}">{{ order.subtotal_price | money }}</td>
+					</tr>
+
+					{% for discount in order.discounts %}
+						<tr class="order_summary discount">
+							<td colspan="4" class="small--hide">{{ discount.code }} {{ 'customer.order.discount' | t }}</td>
+							<td data-label="{{ 'customer.order.discount' | t }}">{{ discount.savings | money }}</td>
+						</tr>
+					{% endfor %}
+
+					{% for shipping_method in order.shipping_methods %}
+						<tr>
+							<td colspan="4" class="small--hide">{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</td>
+							<td data-label="{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})">{{ shipping_method.price | money }}</td>
+						</tr>
+					{% endfor %}
+
+					{% for tax_line in order.tax_lines %}
+						<tr>
+							<td colspan="4" class="small--hide">{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</td>
+							<td data-label="{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)">{{ tax_line.price | money }}</td>
+						</tr>
+					{% endfor %}
+
+					<tr>
+						<td colspan="4" class="small--hide"><span class="fw-500">{{ 'customer.order.total' | t }}</span></td>
+						<td data-label="{{ 'customer.order.total' | t }}"><span class="fw-500">{{ order.total_price | money }} {{ order.currency }}</span></td>
+					</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="customer-grid__aside text color-white">
+				<h3 class="fw-500 mb-15">{{ 'customer.order.billing_address' | t }}</h3>
+				<p><span class="fw-500">{{ 'customer.order.payment_status' | t }}:</span> {{ order.financial_status_label }}</p>
+				{{ order.billing_address | format_address }}
+				<div class="account__divider"></div>
+				<h3 class="fw-500 mb-15">{{ 'customer.order.shipping_address' | t }}</h3>
+				<p><span class="fw-500">{{ 'customer.order.fulfillment_status' | t }}:</span> {{ order.fulfillment_status_label }}</p>
+				{{ order.shipping_address | format_address }}
+			</div>
+		</div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "Account",
+	"class": "jsAccounts",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "Mein <span><span>Konto</span></span>"
+		},
+		{
+			"type": "text",
+			"id": "subtitle",
+			"label": "Subtitle",
+			"default": "Informationen zu Ihrer Bestellung"
+		},
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#5359e5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    }
+	]
+}
+{% endschema %}

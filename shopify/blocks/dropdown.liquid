@@ -1,0 +1,51 @@
+{% stylesheet %}
+  .select-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+{% endstylesheet %}
+
+<label class="select-box select-box--blue">
+  <span class="text color-white select-box__label input__label">{{ block.settings.label }}</span>
+  <select
+    id="{{ block.label }}-{{ block.id }}"
+    name="contact[{{ block.settings.label}}]"
+    {% if block.settings.required %}
+      required="required"
+    {% endif %}
+  >
+    {% content_for 'blocks' %}
+  </select>
+  {%- render 'icon-arrow' -%}
+</label>
+
+{% schema %}
+{
+  "name": "Dropdown",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label"
+    },
+    {
+      "type": "checkbox",
+      "id": "required",
+      "label": "Required",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "_option"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dropdown"
+    }
+  ]
+}
+{% endschema %}

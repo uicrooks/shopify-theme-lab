@@ -1,0 +1,92 @@
+<atc-button class="product_content-buttons">
+  {%- form 'product',
+    product,
+    class: '',
+    data-product-form: '',
+    data-product-handle: product.handle,
+    data-enable-history-state: 'true',
+    data-productid: product.id
+  -%}
+    {%- if product.metafields.custom.preorder_date != blank -%}
+      <span class="product-info__shipping">
+        {{ 'products.pre_order.shipping_info' | t: date: product.metafields.custom.preorder_date }}
+      </span>
+
+      <input
+        type="hidden"
+        id="PreorderNote"
+        name="properties[{{ 'products.pre_order.note' | t }}]"
+        value="{{ 'products.pre_order.pre_order' | t }}"
+        data-product-property
+      >
+      <input
+        type="hidden"
+        id="PreorderShipping"
+        name="properties[{{ 'products.pre_order.shipping' | t }}]"
+        value="{{ product.metafields.custom.preorder_date }}"
+        data-product-property
+      >
+    {%- endif -%}
+
+    <select
+      name="id"
+      class="no-js visually-hidden"
+      data-productid="{{- product.id -}}"
+      data-original-product-select
+    >
+      {%- for variant in product.variants -%}
+        <option
+          {% if variant == current_variant %}
+            selected="selected"
+          {% endif %}
+          {% unless variant.available %}
+            disabled="disabled"
+          {% endunless %}
+          value="{{ variant.id }}"
+        >
+          {{ variant.title }}
+        </option>
+      {%- endfor -%}
+    </select>
+
+    <label class="quantity-element__label">
+      <input
+        class="quantity-element__input"
+        type="hidden"
+        id="Quantity"
+        name="quantity"
+        value="1"
+        min="1"
+        max="99"
+        maxlength="2"
+        data-quantity="input"
+      >
+    </label>
+
+    <button
+      class="button product-form__button"
+      type="submit"
+      name="add"
+      {% unless product.available == true %}
+        disabled
+      {% endunless %}
+      data-submit-button
+    >
+      <span
+        class="product-form__button-text product-form__button-text--add-to-card"
+        data-submit-button-text
+      >
+        {%- if product.variants.first.available == true -%}
+          <span class="product-form__button-price" style="margin-right:5px;">{{ product.price | money }}</span>
+          {% if product.metafields.custom.preorder_date != blank -%}
+            {{- 'collections.product_card.preorder' | t -}}
+          {%- else -%}
+            {{- 'collections.product_card.add_to_cart' | t -}}
+          {%- endif %}
+        {%- else -%}
+          {{ 'collections.product_card.sold_out' | t }}
+        {%- endif -%}
+      </span>
+    </button>
+  {%- endform -%}
+</atc-button>

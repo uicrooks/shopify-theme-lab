@@ -1,0 +1,170 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign sec_sett = section.settings -%}
+{%- assign title = sec_sett.title -%}
+{%- assign subtitle = sec_sett.subtitle -%}
+{%- assign img_left_top = sec_sett.img_left_top -%}
+{%- assign img_left_bottom = sec_sett.img_left_bottom -%}
+{%- assign img_right_top = sec_sett.img_right_top -%}
+{%- assign img_right_bottom = sec_sett.img_right_bottom -%}
+
+<section
+	class="methods"
+	data-section-id="{{- section.id -}}"
+	data-section-type="methods"
+>
+	<div class="content-wrapper">
+		{%- if img_left_top.src != blank -%}
+			<picture class="methods__img methods__img--left-top">
+				<source
+					srcset="{{ img_left_top.src | img_url: '320x' }} 1x, {{ img_left_top.src | img_url: '640x' }} 2x, {{ img_left_top.src | img_url: '960x' }} 3x"
+					media="(min-width: 2560px)">
+				<source
+					srcset="{{ img_left_top.src | img_url: '240x' }} 1x, {{ img_left_top.src | img_url: '480x' }} 2x, {{ img_left_top.src | img_url: '720x' }} 3x"
+					media="(min-width: 1921px)">
+				<img src="{{ img_left_top.src | img_url: '160x' }} 1x"
+						 srcset="{{ img_left_top.src | img_url: '160x' }} 1x, {{ img_left_top.src | img_url: '320x' }} 2x"
+						 alt="{{ img_left_top.alt }}">
+			</picture>
+		{%- endif -%}
+
+		{%- if title or subtitle -%}
+			<div class="title-wrapper">
+				{%- if title -%}
+					<h1 class="title-wrapper__title title-bg">{{ title }}</h1>
+				{%- endif -%}
+
+				{%- if subtitle -%}
+					<p class="title-wrapper__subtitle">{{ subtitle }}</p>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		{%- if img_right_top.src != blank -%}
+			<picture class="methods__img methods__img--right-top">
+				<source
+					srcset="{{ img_right_top.src | img_url: '320x' }} 1x, {{ img_right_top.src | img_url: '640x' }} 2x, {{ img_right_top.src | img_url: '960x' }} 3x"
+					media="(min-width: 2560px)">
+				<source
+					srcset="{{ img_right_top.src | img_url: '240x' }} 1x, {{ img_right_top.src | img_url: '480x' }} 2x, {{ img_right_top.src | img_url: '720x' }} 3x"
+					media="(min-width: 1921px)">
+				<img src="{{ img_right_top.src | img_url: '160x' }} 1x"
+						 srcset="{{ img_right_top.src | img_url: '160x' }} 1x, {{ img_right_top.src | img_url: '320x' }} 2x"
+						 alt="{{ img_right_top.alt }}">
+			</picture>
+		{%- endif -%}
+
+		<div class="methods__container">
+			{%- if img_left_bottom.src != blank -%}
+				<picture class="methods__img methods__img--left-bottom">
+					<source
+						srcset="{{ img_left_bottom.src | img_url: '320x' }} 1x, {{ img_left_bottom.src | img_url: '640x' }} 2x, {{ img_left_bottom.src | img_url: '960x' }} 3x"
+						media="(min-width: 2560px)">
+					<source
+						srcset="{{ img_left_bottom.src | img_url: '240x' }} 1x, {{ img_left_bottom.src | img_url: '480x' }} 2x, {{ img_left_bottom.src | img_url: '720x' }} 3x"
+						media="(min-width: 1921px)">
+					<img src="{{ img_left_bottom.src | img_url: '160x' }} 1x"
+							 srcset="{{ img_left_bottom.src | img_url: '160x' }} 1x, {{ img_left_bottom.src | img_url: '320x' }} 2x"
+							 alt="{{ img_left_bottom.alt }}">
+				</picture>
+			{%- endif -%}
+			<div class="container container--sm">
+				<div class="rte methods__rte">
+					{{ page.content }}
+				</div>
+			</div>
+			{%- if img_right_bottom.src != blank -%}
+				<picture class="methods__img methods__img--right-bottom">
+					<source
+						srcset="{{ img_right_bottom.src | img_url: '320x' }} 1x, {{ img_right_bottom.src | img_url: '640x' }} 2x, {{ img_right_bottom.src | img_url: '960x' }} 3x"
+						media="(min-width: 2560px)">
+					<source
+						srcset="{{ img_right_bottom.src | img_url: '240x' }} 1x, {{ img_right_bottom.src | img_url: '480x' }} 2x, {{ img_right_bottom.src | img_url: '720x' }} 3x"
+						media="(min-width: 1921px)">
+					<img src="{{ img_right_bottom.src | img_url: '160x' }} 1x"
+							 srcset="{{ img_right_bottom.src | img_url: '160x' }} 1x, {{ img_right_bottom.src | img_url: '320x' }} 2x"
+							 alt="{{ img_right_bottom.alt }}">
+				</picture>
+			{%- endif -%}
+		</div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+	{
+		"name": "Methods",
+		"settings": [
+			{
+				"type": "textarea",
+				"id": "title",
+				"info": "Need wrap words to see background, <span><span>example</span></span>",
+				"label": "Title",
+				"default": "<span><span>Zahlungsarten</span></span>&#160 und <span><span>Versand</span></span>"
+			},
+			{
+				"type": "textarea",
+				"id": "subtitle",
+				"label": "Subtitle",
+				"default": "Informationen zu Zahlungsarten und Versandmöglichkeiten."
+			},
+			{
+				"type": "image_picker",
+				"id": "img_left_top",
+				"label": "Left Top background image"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_right_top",
+				"label": "Right Top background image"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_left_bottom",
+				"label": "Left Bottom background image"
+			},
+			{
+				"type": "image_picker",
+				"id": "img_right_bottom",
+				"label": "Right Bottom background image"
+			},
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#5359e5"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "color",
+        "id": "hover_color",
+        "label": "Hover Color",
+        "default": "#f3587f"
+      }
+		]
+	}
+{% endschema %}

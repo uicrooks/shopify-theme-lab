@@ -1,0 +1,7 @@
+<span class="basket__count js-header-cat-items">
+  {%- if cart.item_count > 99 -%}
+    99+
+  {%- else -%}
+    {{- cart.item_count -}}
+  {%- endif -%}
+</span>

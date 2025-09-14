@@ -1,0 +1,170 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign title = section.settings.title -%}
+{%- assign subtitle = section.settings.subtitle -%}
+
+{%- capture form -%}
+	{%- assign form_id = 'ContactForm' -%}
+	{% form 'contact', id: form_id %}
+		{% render 'form-status', form_id: form_id %}
+
+		<label class="label">
+			<span class="sr-only">{{ 'contact.form.first_name' | t }}</span>
+			<input 
+        type="text"
+        name="contact[vorname]"
+        placeholder="{{ 'contact.form.first_name' | t }} *"
+        id="{{ form_id }}-vorname"
+        class="input input--blue"
+        required
+        value="{% if form['vorname'] %}{{ form['vorname'] }}{% elsif customer %}{{ customer.first_name }}{% endif %}"
+      >
+		</label>
+
+    <label class="label">
+			<span class="sr-only">{{ 'contact.form.last_name' | t }}</span>
+			<input 
+        type="text"
+        name="contact[nachname]"
+        placeholder="{{ 'contact.form.last_name' | t }} *"
+        id="{{ form_id }}-nachname"
+        class="input input--blue"
+        required
+        value="{% if form['nachname'] %}{{ form['nachname'] }}{% elsif customer %}{{ customer.last_name }}{% endif %}"
+      >
+		</label>
+
+		<label class="label">
+			<span class="sr-only">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></span>
+			<input
+				type="email"
+				name="contact[email]"
+				placeholder="{{ 'contact.form.email' | t }} *"
+				id="{{ form_id }}-email"
+				class="input input--blue"
+				required
+				autocorrect="off"
+				autocapitalize="off"
+				value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+				aria-required="true"
+				{%- if form.errors contains 'email' -%}
+					class="input--error"
+					aria-invalid="true"
+					aria-describedby="{{ form_id }}-email-error"
+				{%- endif -%}
+			>
+		</label>
+
+    <label class="label">
+			<span class="sr-only">{{ 'contact.form.order_number' | t }}</span>
+			<input 
+        type="text"
+        name="contact[bestellnummer]"
+        placeholder="{{ 'contact.form.order_number' | t }}"
+        id="{{ form_id }}-bestellnummer"
+        class="input input--blue"
+        value="{% if form['bestellnummer'] %}{{ form['bestellnummer'] }}{% endif %}"
+      >
+		</label>
+
+		<label class="label">
+			<span class="sr-only">{{ 'contact.form.message' | t }}</span>
+			<textarea
+				rows="10"
+				name="contact[body]"
+				placeholder="{{ 'contact.form.message' | t }} *"
+				id="{{ form_id }}-message"
+				class="textarea"
+				required
+			>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+		</label>
+		<button type="submit" class="button contact-form__button">{{ 'contact.form.submit' | t }}</button>
+
+	{% endform %}
+{%- endcapture -%}
+<section
+  class="contact"
+  data-section-id="{{- section.id -}}"
+  data-section-type="contact"
+>
+  <div class="content-wrapper">
+    <div class="contact__container">
+      {%- if title or subtitle -%}
+        <div class="title-wrapper">
+          {%- if title -%}
+            <h1 class="contact__title title-wrapper__title title-bg">{{ title }}</h1>
+          {%- endif -%}
+
+          {%- if subtitle -%}
+            <p class="contact__subtitle title-wrapper__subtitle">{{ subtitle }}</p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if form -%}
+        <div class="contact__form">
+          {{ form }}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "info": "Need wrap words to see background, <span><span>example</span></span>",
+      "default": "Hier kannst du treatfuls <span><span>kontaktieren</span></span>"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Wir freuen uns von dir zu hören! Egal ob Feedback oder Kooperation, melde dich."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#5359e5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    }
+  ]
+}
+{% endschema %}

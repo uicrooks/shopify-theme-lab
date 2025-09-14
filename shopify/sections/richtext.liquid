@@ -1,0 +1,128 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{% assign sec_sett = section.settings %}
+
+<section
+	class="richtext"
+	data-section-id="{{- section.id -}}"
+	data-section-type="richtext"
+>
+	<div class="container richtext__container">
+		{%- if sec_sett.title != blank -%}
+			<h2 class="richtext__title title-bg">{{ sec_sett.title }}</h2>
+		{%- endif -%}
+		{%- if sec_sett.first_text != blank -%}
+			<div class="richtext__text richtext__text--first subtitle">
+				{{- sec_sett.first_text -}}
+				{%- if sec_sett.img_on_hover.src != blank -%}
+					<picture class="richtext__hover-img js-home-tooltip-img">
+						<source
+							srcset="{{ sec_sett.img_on_hover.src | img_url: '423x' }} 1x, {{ sec_sett.img_on_hover.src | img_url: '846x' }} 2x, {{ sec_sett.img_on_hover.src | img_url: '1269x' }} 3x"
+							media="(min-width: 991px)">
+						<source
+							srcset="{{ sec_sett.img_on_hover.src | img_url: '317x' }} 1x, {{ sec_sett.img_on_hover.src | img_url: '634x' }} 2x,{{ sec_sett.img_on_hover.src | img_url: '951x' }} 3x"
+							media="(min-width: 389px)">
+						<img src="{{ sec_sett.img_on_hover.src | img_url: '317x' }} 1x"
+								 srcset="{{ sec_sett.img_on_hover.src | img_url: '317x' }} 1x, {{ sec_sett.img_on_hover.src | img_url: '634x' }} 2x, {{ sec_sett.img_on_hover.src | img_url: '951x' }} 3x"
+								 alt="">
+					</picture>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+		{%- if sec_sett.second_text != blank  -%}
+			<div class="richtext__text subtitle">{{- sec_sett.second_text -}}</div>
+		{%- endif -%}
+		{%- if sec_sett.link_url != blank -%}
+			<a href="{{- sec_sett.link_url -}}" class="button richtext__button">{{- sec_sett.link_text -}}</a>
+		{%- endif -%}
+	</div>
+
+  <div class="base-triangular-line">
+		{%- render 'icon-triangular-line' -%}
+	</div>
+</section>
+
+
+{% schema %}
+{
+	"name": "Richtext",
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title",
+			"info": "Need wrap words to see background, <span><span>example</span></span>",
+			"default": "hungry for a <span><span>change?</span></span>"
+		},
+		{
+			"type": "textarea",
+			"id": "first_text",
+			"label": "First Paragraph",
+			"info": "Need wrap words <span class='tooltip'>example</span> to see hover image",
+			"default": "Bist du bereit mit uns gemeinsam die Snack-Industrie zu revolutionieren? Wir wollen Snacks die besser sind, als das was <span class='tooltip'>der Markt uns gerade bietet</span>. Wir wollen Süßigkeiten die geil schmecken und besser für dich und die Umwelt sind."
+		},
+		{
+			"type": "image_picker",
+			"id": "img_on_hover",
+			"label": "Image on link hover"
+		},
+		{
+			"type": "textarea",
+			"id": "second_text",
+			"label": "Second Paragraph",
+			"default": "Wir sind Macher und Träumerinnen zugleich und haben aus diesem Grund treatfuls ins Leben gerufen. Mach mit und probiere und überzeuge dich selbst, wie lecker vegane und natürliche Snacks sein können."
+		},
+		{
+			"type": "url",
+			"id": "link_url",
+			"label": "Link Url"
+		},
+		{
+			"type": "text",
+			"id": "link_text",
+			"label": "Link text",
+			"default": "Jetzt Probierpaket kaufen"
+		},
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#dbaaeb"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    }
+	],
+	"presets": [
+		{
+			"name": "Richtext",
+			"category": "Homepage"
+		}
+	]
+}
+{% endschema %}

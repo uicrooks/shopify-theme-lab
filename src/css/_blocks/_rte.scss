@@ -1,0 +1,141 @@
+// Styles for Rich text editor content
+.rte {
+	line-height: 1.25;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 20px 0;
+	}
+
+	h1 {
+		font-size: 58px;
+	}
+
+	h2 {
+		font-size: 40px;
+	}
+
+	h3 {
+		font-size: 32px;
+	}
+
+	h4 {
+		font-size: 24px;
+	}
+
+	h5,
+	h6 {
+		font-size: 20px;
+	}
+
+	p {
+		+ p {
+			margin-top: 25px;
+		}
+	}
+
+	a {
+		text-decoration: underline;
+		color: #fff;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
+
+	em {
+		font-style: italic;
+	}
+
+	blockquote {
+		margin: 15px 0;
+		padding-left: 20px;
+		font-style: italic;
+
+		&::before {
+			content: open-quote;
+		}
+
+		&::after {
+			content: close-quote;
+		}
+	}
+
+	ol,
+	ul {
+		margin: 15px 0;
+		padding-left: 20px;
+
+		li {
+			margin: 5px 0;
+		}
+	}
+
+	ol {
+		list-style-type: decimal;
+	}
+
+	ul {
+		list-style-type: disc;
+	}
+
+	.rte__table-wrapper {
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	table {
+		margin-top: 35px;
+		margin-left: auto;
+		margin-right: auto;
+		border-collapse: collapse;
+
+		td {
+			padding-top: 17px;
+			padding-bottom: 10px;
+			border: 1px solid #fff;
+		}
+
+		th,
+		td {
+			padding: 14px 10px 8px 16px;
+			font-size: 16px;
+			font-weight: 600;
+			text-align: left;
+		}
+
+		th {
+			border: 1px solid #fff;
+			background-color: transparent;
+			border-bottom: none;
+
+			&:not(:last-of-type) {
+				border-right: 1px solid #fff;
+			}
+
+			h6 {
+				text-align: left;
+				color: #fff;
+			}
+		}
+	}
+
+	&.rte--pages {
+		color: #ffffff;
+
+		p {
+			font-size: 20px;
+			line-height: 1.5;
+		}
+
+		@media #{$no-fw} {
+			p {
+				font-size: 1vw;
+			}
+		}
+	}
+}

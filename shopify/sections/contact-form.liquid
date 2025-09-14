@@ -1,0 +1,132 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+<section
+	class="contact-form"
+	data-section-id="{{- section.id -}}"
+	data-section-type="contact-form"
+>
+	<div class="content-wrapper">
+    <div class="container">
+      {% form 'contact' %}
+        <div class="title-wrapper">
+          {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+            {%- if section.settings.title -%}
+              <h1 class="title-wrapper__title title-bg">{{ section.settings.title }}</h1>
+            {%- endif -%}
+            
+            {% if form.posted_successfully? %}
+              <div class="form-message form-message--success">
+                <h3 class="form-message__title title-bg title-bg--sm">{{ 'contact.form.post_success_html' | t }}</h3>
+
+                <a class="button" href="{{ routes.root_url }}">
+                  {{ 'contact.form.back_to_home' | t }}
+                </a>
+              </div>
+            {% else %}
+              {%- if section.settings.subtitle -%}
+                <div class="title-wrapper__subtitle rte">{{ section.settings.subtitle }}</div>
+              {%- endif -%}
+            {% endif %}
+          {%- endif -%}
+        </div>
+
+        <div class="contact-form__wrapper">
+          <div class="contact-form__form">
+            {% unless form.posted_successfully? %}              
+              <div id="ContactForm" class="form-vertical">
+                {%- if form.errors -%}
+                  <div class="form-message form-message--error">
+                    {{ form.errors | default_errors }}
+                  </div>
+                {%- endif -%}
+                
+                {% content_for 'blocks' %}
+              </div>
+
+              <button type="submit" class="button contact-form__button">
+                {{ 'contact.form.b2b_submit' | t }}
+              </button>
+            {% endunless %}
+          </div>
+        </div>
+      {% endform %}
+    </div>
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+{
+	"name": "Contact form",
+	"settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Contact us"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "<p>We're here to help you</p>"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#5359e5"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    }
+	],
+  "blocks": [
+    {
+      "type": "@theme",
+    },
+    {
+      "type": "group",
+    },
+    {
+      "type": "form-input",
+    },
+    {
+      "type": "heading",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact form"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,339 @@
+//typography: base styles for fonts, p, a, standard h1, h2 ...
+$font-primary: "Founders Grotesk", sans-serif;
+
+body {
+	font-size: 16px;
+
+	@media #{$no-fw} {
+		font-size: 1.3vw;
+	}
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+	line-height: 1;
+	text-decoration: none;
+
+	&.mb-15 {
+		margin-bottom: 15px;
+	}
+}
+
+h1,
+.h1 {
+	font-size: 64px;
+
+	@media #{$no-fw} {
+		font-size: 3vw;
+	}
+
+	@media #{$m-l} {
+		font-size: 40px;
+	}
+}
+
+h2,
+.h2 {
+	font-size: 40px;
+}
+
+h3,
+.h3 {
+	font-size: 24px;
+
+	@media #{$no-fw} {
+		font-size: 1.5vw;
+	}
+}
+
+.title-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 670px;
+	margin: 0 auto;
+	padding-bottom: 80px;
+	text-align: center;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  &.title-wrapper--xs {
+		max-width: 500px;
+	}
+
+	&.title-wrapper--sm {
+		max-width: 736px;
+	}
+
+	&.title-wrapper--md {
+		max-width: 970px;
+	}
+
+  &.title-wrapper--lg {
+		max-width: 1200px;
+	}
+
+  @media #{$m-xxl} {
+    &.title-wrapper--lg {
+      max-width: 900px;
+    }
+
+		&.title-wrapper--md {
+			max-width: 768px;
+		}
+
+		&.title-wrapper--sm {
+			max-width: 490px;
+    }
+
+    &.title-wrapper--xs {
+      max-width: 300px;
+    }
+	}
+
+  @media #{$no-fw} {
+    &.title-wrapper--xs {
+      max-width: 20vw;
+    }
+
+		&.title-wrapper--sm {
+			max-width: 34vw;
+		}
+
+		&.title-wrapper--md {
+			max-width: 50vw;
+		}
+
+    &.title-wrapper--lg {
+      max-width: 70vw;
+    }
+	}
+
+	.title-wrapper__title {
+		padding-bottom: 12px;
+    color: #ffffff;
+	}
+
+	.title-wrapper__subtitle {
+		max-width: 438px;
+		font-size: 24px;
+		font-weight: 400;
+		color: #ffffff;
+    line-height: 1.5;
+
+		&.title-wrapper__subtitle--sm {
+			max-width: none;
+			font-size: 16px;
+			line-height: 1.5;
+
+			br {
+				content: "";
+				display: block !important;
+				margin-bottom: 25px !important;
+			}
+		}
+	}
+
+	@media #{$m-xxl} {
+		max-width: 60vw;
+		padding-bottom: 20px;
+	}
+
+	@media #{$m-xl} {
+		max-width: 70vw;
+	}
+
+	@media #{$m-l} {
+		max-width: none;
+	}
+
+	@media #{$no-fw} {
+		max-width: 40vw;
+		padding-bottom: 2vw;
+
+		.title-wrapper__title {
+			padding-bottom: 2vw;
+		}
+
+		.title-wrapper__subtitle {
+			max-width: 70%;
+			font-size: 1.5vw;
+			line-height: 1.3;
+
+			&.title-wrapper__subtitle--sm {
+				font-size: 1vw;
+			}
+		}
+	}
+}
+
+.title-bg {
+	font-size: 64px;
+	line-height: 1;
+	color: #ffffff;
+
+	> span {
+		position: relative;
+		display: inline-block;
+    z-index: 1;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 22px;
+			left: -5px;
+			z-index: -1;
+			display: block;
+			width: 104%;
+			height: 72%;
+			transition: background-color 0.25s ease-in;
+		}
+
+		> span {
+			position: relative;
+			z-index: 1;
+		}
+	}
+
+	&.title-bg--sm {
+		font-size: 40px;
+
+		> span {
+			&::before {
+				top: 13px;
+				left: -3px;
+			}
+		}
+	}
+
+  &.title-bg--xs {
+    font-size: 28px;
+
+    > span {
+      &::before {
+        top: 10px;
+      }
+    }
+  }
+
+	@media #{$no-fw} {
+		font-size: 3vw;
+
+		> span {
+			&::before {
+				top: 1.1vw;
+				left: -0.2vw;
+			}
+		}
+
+		&.title-bg--sm {
+			font-size: 2.2vw;
+
+			> span {
+				&::before {
+					top: 0.8vw;
+					left: -0.4vw;
+				}
+			}
+		}
+
+    &.title-bg--xs {
+			font-size: 1.5vw;
+
+      > span {
+				&::before {
+					top: 10px;
+				}
+			}
+		}
+	}
+
+	@media #{$m-xxl} {
+		&.title-bg--sm {
+			font-size: 64px;
+		}
+
+    &.title-bg--xs {
+			font-size: 40px;
+		}
+	}
+
+	@media #{$m-xl} {
+		font-size: 32px;
+
+    > span {
+      &::before {
+        top: 13px;
+        left: -2px;
+      }
+    }
+
+		&.title-bg--sm {
+			font-size: 32px;
+		}
+
+    &.title-bg--xs {
+			font-size: 24px;
+
+      > span {
+				&::before {
+					top: 8px;
+				}
+			}
+		}
+	}
+}
+
+.subtitle {
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 32px;
+
+	@media #{$no-fw} {
+		font-size: 1.5vw;
+		line-height: 1.3;
+	}
+}
+
+.text {
+	font-size: 16px;
+	line-height: 1.5;
+
+	&.text--sm {
+		font-size: 14px;
+	}
+
+	@media #{$no-fw} {
+		font-size: 1vw;
+
+		&.text--sm {
+			font-size: 1vw;
+		}
+	}
+}
+
+.fw-500 {
+	font-weight: 500;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.color-white {
+	color: #fff;
+}

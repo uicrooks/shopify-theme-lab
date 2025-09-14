@@ -1,0 +1,149 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-header {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --header-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --header-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+
+  #shopify-section-footer{
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --footer-accent-color: {{ section.settings.background_color }};
+    {%- endif -%}
+
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --footer-background-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+  }
+</style>
+
+
+{%- assign title = section.settings.title -%}
+{%- assign subtitle = section.settings.subtitle -%}
+{%- assign bg_image = section.settings.image -%}
+
+{%- capture image -%}
+	<div class="not-found__img-eyes eyes eyes--left">
+		<div class="eyes__pupil js-404-pupils">
+			{%- render 'icon-404-pupils' -%}
+		</div>
+	</div>
+	<picture>
+		<source srcset="{{ bg_image | img_url: '1208x' }} 1x, {{ bg_image | img_url: '2416x' }} 2x"
+						media="(min-width: 2560px)">
+
+		<source srcset="{{ bg_image | img_url: '1008x' }} 1x, {{ bg_image | img_url: '2016x' }} 2x"
+						media="(min-width: 1920px)">
+
+		<source srcset="{{ bg_image | img_url: '672x' }} 1x, {{ bg_image | img_url: '1344x' }} 2x"
+						media="(min-width: 991px)">
+
+		<source srcset="{{ bg_image | img_url: '704x' }} 1x, {{ bg_image | img_url: '1408x' }} 2x"
+						media="(min-width: 768px)">
+		<img src="{{ bg_image | img_url: '357x' }}"
+				 srcset="{{ bg_image | img_url: '357x' }} 1x, {{ bg_image | img_url: '714x' }} 2x"
+				 alt="{{- title | default: 'general.404.title' | t -}}"
+		/>
+	</picture>
+	<div class="not-found__img-eyes eyes eyes--right">
+		<div class="eyes__pupil js-404-pupils">
+			{%- render 'icon-404-pupils' -%}
+		</div>
+	</div>
+{%- endcapture -%}
+
+<section
+	class="not-found"
+	data-section-id="{{- section.id -}}"
+	data-section-type="not-found"
+>
+	<div class="content-wrapper not-found__container">
+		{%- if title or subtitle -%}
+			<div class="title-wrapper">
+				{%- if title -%}
+					<h1 class="title-wrapper__title not-found__title title-bg">{{ title }}</h1>
+				{%- else -%}
+					<h1 class="title-wrapper__title title-bg">{{ 'general.404.title' | t }}</h1>
+				{%- endif -%}
+
+				{%- if subtitle -%}
+					<p class="title-wrapper__subtitle not-found__subtitle">{{ subtitle }}</p>
+				{%- else -%}
+					<p class="title-wrapper__subtitle not-found__subtitle">{{ 'general.404.subtext' | t }}</p>
+				{%- endif -%}
+			</div>
+		{%- endif -%}
+
+		<div class="not-found__img">
+			{{- image -}}
+		</div>
+		{% comment %}{{ 'general.404.link' | t }}{% endcomment %}
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+
+{% schema %}
+	{
+		"name": "Not found",
+		"settings": [
+			{
+				"type": "text",
+				"id": "title",
+				"label": "Title",
+				"info": "Need wrap words to see background, <span><span>example</span></span>",
+				"default": "<span><span>Ups,</span></span> da ist etwas schief gelaufen"
+			},
+			{
+				"type": "text",
+				"id": "subtitle",
+				"label": "Subtitle",
+				"default": "Hier gibt es nichts zu sehen, gehen Sie bitte weiter"
+			},
+			{
+				"type": "image_picker",
+				"id": "image",
+				"label": "Image"
+			},
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#f3587f"
+      },
+      {
+        "type": "color",
+        "id": "hover_color",
+        "label": "Hover Color",
+        "default": "#f3587f"
+      }
+		]
+	}
+{% endschema %}

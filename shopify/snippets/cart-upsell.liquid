@@ -1,0 +1,103 @@
+<div class="cart-upsell {% if mobile %}hidden-desktop{% else %}hidden-phone{% endif %}">
+  {%- if mobile -%}
+    <cart-upsell>
+  {%- endif -%}
+    <div class="cart-upsell__wrapper">
+      <div class="cart-upsell__heading">
+        <h3>{{ settings.upsell_heading }}</h3>
+      </div>
+      <div class="cart-upsell__item-wrapper swiper" data-upsell-slider>
+        <div class="swiper-wrapper">
+          {%- for product in collections[settings.upsell_collection].products -%}
+            {%- assign quantity_content = product.metafields.custom.quantity_content -%}
+            {%- assign weight_content = product.metafields.custom.weight_content -%}
+            {%- assign unit_name = product.metafields.custom.unit_name -%}
+
+            {%- assign is_in_cart = false -%}
+
+            {%- for item in cart.items -%}
+              {%- if item.product_id == product.id -%}
+                {%- assign is_in_cart = true -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- unless is_in_cart -%}
+              <div class="cart-upsell__item {% if mobile %}swiper-slide{% endif %}">
+                <div class="cart-upsell__item-top-part">
+                  <div class="cart-upsell__item-image-wrapper cart-product__image-wrap">
+                    <a href="{{ product.url }}">
+                      <picture>
+                        <source srcset="{{ product.featured_image | img_url: '1208x' }} 1x, {{ product.featured_image | img_url: '2416x' }} 2x"
+                                media="(min-width: 2560px)">
+
+                        <source srcset="{{ product.featured_image | img_url: '1008x' }} 1x, {{ product.featured_image | img_url: '2016x' }} 2x"
+                                media="(min-width: 1920px)">
+
+                        <source srcset="{{ product.featured_image | img_url: '672x' }} 1x, {{ product.featured_image | img_url: '1344x' }} 2x"
+                                media="(min-width: 991px)">
+
+                        <source srcset="{{ product.featured_image | img_url: '704x' }} 1x, {{ product.featured_image | img_url: '1408x' }} 2x"
+                                media="(min-width: 768px)">
+                        <img src="{{ product.featured_image | img_url: 'master' }}"
+                            srcset="{{ product.featured_image | img_url: '357x' }} 1x, {{ product.featured_image | img_url: '714x' }} 2x"
+                            alt="{{- title | default: 'general.404.title' | t -}}"
+                        />
+                      </picture>
+                    </a>
+                    {% form 'product', product %}
+                      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                      <input type="hidden" name="quantity" value="1">
+
+                      {%- if product.metafields.custom.preorder_date != blank -%}       
+                        <input
+                          type="hidden"
+                          id="PreorderNote"
+                          name="properties[{{ 'products.pre_order.note' | t }}]"
+                          value="{{ 'products.pre_order.pre_order' | t }}"
+                          data-product-property
+                        >
+                        <input
+                          type="hidden"
+                          id="PreorderShipping"
+                          name="properties[{{ 'products.pre_order.shipping' | t }}]"
+                          value="{{ product.metafields.custom.preorder_date }}"
+                          data-product-property
+                        >
+                      {%- endif -%}
+
+                      <button type="submit" class="cart-upsell__button button">
+                        +
+                      </button>
+                    {% endform %}
+                  </div>
+                  
+                  <div class="cart-upsell__content-wrapper">
+                    <span class="cart-upsell__item-title">
+                      {%- if product.metafields.custom.short_title != blank -%}
+                        {{ product.metafields.custom.short_title }}
+                      {%- else -%}
+                        {{ product.title }}
+                      {%- endif -%}
+                    </span>
+                    <div class="cart-upsell__content">
+                      <span class="cart-upsell__product-contents">
+                        {%- if quantity_content != blank and weight_content != blank -%}
+                          {{ quantity_content }} x {{ weight_content.value | split: ' ' }}
+                        {%- endif -%}
+                      </span>
+                      <span class="cart-upsell__product-price">
+                        {{ product.price | money }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  {%- if mobile -%}
+    </cart-upsell>
+  {%- endif -%}
+</div>

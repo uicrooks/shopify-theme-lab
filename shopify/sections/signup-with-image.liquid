@@ -1,0 +1,153 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+{%- assign title = section.settings.title -%}
+{%- assign subtitle = section.settings.subtitle -%}
+{%- assign bg_image = section.settings.image -%}
+
+<section
+	class="signup-with-image"
+	data-section-id="{{- section.id -}}"
+	data-section-type="signup-with-image"
+>
+	<div class="content-wrapper">
+		{%- if section.settings.title or section.settings.subtitle -%}
+			<div class="title-wrapper">
+				{%- if section.settings.title -%}
+					<h1 class="title-wrapper__title title-bg">{{ section.settings.title }}</h1>
+				{%- endif -%}
+
+				{%- if section.settings.title_mobile -%}
+					<h2 class="title-wrapper__title title-wrapper__title--mobile title-bg">{{ section.settings.title_mobile }}</h2>
+				{%- endif -%}
+
+				{%- if section.settings.subtitle -%}
+					<p class="title-wrapper__subtitle">{{ section.settings.subtitle }}</p>
+				{%- endif -%}
+			</div>
+
+      <div class="container container--lg container--two-columns">
+        {%- if section.settings.image != blank -%}
+          <div class="signup-with-image__image-wrapper">
+            <img src="{{ section.settings.image | image_url: width: section.settings.image.width, height: section.settings.image.height }}">
+          </div>
+          <div class="signup-with-image__content">
+            {%- if section.settings.content_title != blank or section.settings.content != blank -%}
+              <div class="title-wrapper">
+                {%- if section.settings.content_title -%}
+                  <h3 class="title-wrapper__title title-bg title-bg--xs">{{ section.settings.content_title }}</h3>
+                {%- endif -%}
+
+                {%- if section.settings.content -%}
+                  <span class="title-wrapper__subtitle title-wrapper__subtitle--sm text-left">{{ section.settings.content }}</span>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+
+            {%- if section.settings.klaviyo_id != blank -%}
+              <div class="signup-with-image__sign-up-form">
+                <div class="klaviyo-form-{{ section.settings.klaviyo_id }}"></div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+			</div>
+		{%- endif -%}
+	</div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</section>
+{% schema %}
+	{
+		"name": "Signup With Image",
+		"settings": [
+      {
+				"type": "header",
+				"content": "Header"
+			},
+      {
+				"type": "text",
+				"id": "title",
+				"label": "Title",
+        "info": "Need wrap words to see background, <span><span>example</span></span>",
+			},
+      {
+				"type": "text",
+				"id": "title_mobile",
+				"label": "Title mobile",
+        "info": "Need wrap words to see background, <span><span>example</span></span>",
+			},
+      {
+				"type": "text",
+				"id": "subtitle",
+				"label": "Subtitle",
+        "info": "Need wrap words to see background, <span><span>example</span></span>",
+			},
+      {
+				"type": "header",
+				"content": "Content"
+			},
+			{
+				"type": "image_picker",
+				"id": "image",
+				"label": "Image"
+			},
+      {
+				"type": "text",
+				"id": "content_title",
+				"label": "Content Title"
+			},
+      {
+				"type": "richtext",
+				"id": "content",
+				"label": "Content"
+			},
+      {
+				"type": "text",
+				"id": "klaviyo_id",
+				"label": "Klavyio ID",
+        "info": "Put the ID of the signup form in this field. For Example 'ABCDEF'. NOT the whole Div, only the ID"
+			},
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color",
+        "default": "#5359e5"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#2ac2bd"
+      },
+      {
+        "type": "color",
+        "id": "hover_color",
+        "label": "Hover Color",
+        "default": "#f3587f"
+      }
+		],
+    "presets": [
+      {
+        "name": "Signup With Image"
+      }
+    ]
+	}
+{% endschema %}

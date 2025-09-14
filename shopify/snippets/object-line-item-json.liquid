@@ -1,0 +1,54 @@
+{%- if include_recharge == blank -%}
+	{%- assign include_recharge = false -%}
+{%- endif -%}
+
+{%- if item != blank -%}
+	{%- assign properties_json = "" -%}
+	{%- for property in item.properties -%}
+		{%- if properties_json != "" -%}
+			{%- assign properties_json = properties_json | append: "," -%}
+		{%- endif -%}
+
+		{%- capture property_json -%}
+			"{{- property.first -}}": {{- property.last | json -}}
+		{%- endcapture -%}
+
+		{%- assign properties_json = properties_json | append: property_json -%}
+	{%- endfor -%}
+
+	{
+		"discount_allocations": {{- item.discount_allocations | json -}},
+		"final_line_price": {{- item.final_line_price | json -}},
+		"final_price": {{- item.final_price | json -}},
+		"fulfillment": {{- item.fulfillment | json -}},
+		"fulfillment_service": {{- item.fulfillment_service | json -}},
+		"gift_card": {{- item.gift_card | json -}},
+		"grams": {{- item.grams | json -}},
+		"image": {%- include 'object-image-json' with image: item.image -%},
+		"key": {{- item.key | json -}},
+		"line_level_discount_allocations": {{- item.line_level_discount_allocations | json -}},
+		"line_level_total_discount": {{- item.line_level_total_discount | json -}},
+		"message": {{- item.message | json -}},
+		"options_with_values": {{- item.options_with_values | json -}},
+		"original_line_price": {{- item.original_line_price | json -}},
+		"original_price": {{- item.original_price | json -}},
+		"product": {%- include 'object-product-json' with product: item.product, include_recharge: include_recharge -%},
+		"product_id": {{- item.product_id | json -}},
+		"properties": {
+			{{- properties_json -}}
+		},
+		"quantity": {{- item.quantity | json -}},
+		"requires_shipping": {{- item.requires_shipping | json -}},
+		"sku": {{- item.sku | json -}},
+		"successfully_fulfilled_quantity": {{- item.successfully_fulfilled_quantity | json -}},
+		"taxable": {{- item.taxable | json -}},
+		"title": {{- item.title | json -}},
+		"unit_price": {{- item.unit_price | json -}},
+		"unit_price_measurement": {{- item.unit_price_measurement | json -}},
+		"url": {{- item.url | json -}},
+		"variant": {%- include 'object-variant-json' with variant: item.variant, include_recharge: include_recharge -%},
+		"variant_id": {{- item.variant_id | json -}},
+		"vendor": {{- item.vendor | json -}},
+		"id": {{- item.id | json -}}
+	}
+{%- else -%}null{%- endif -%}

@@ -1,0 +1,348 @@
+@import "reset-styles";
+@import "typography";
+
+* {
+	outline: none;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	background-color: #fff;
+	font-family: $font-primary, sans-serif;
+	scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+
+	#shopify-section-footer {
+		margin-top: auto;
+	}
+}
+
+.content {
+	flex: 1 0 auto;
+}
+
+.shopify-section {
+  transition: all 0.25s ease-in-out;
+}
+
+.shopify-section:not(.shopify-section-group-header-group):not(#shopify-section-announcement-bar):not(#shopify-section-header):not(#shopify-section-footer) {
+  background-color: var(--section-background-color);
+}
+
+.shopify-section:not(.shopify-section-group-header-group):not(#shopify-section-announcement-bar):not(#shopify-section-header):not(#shopify-section-footer) .button::after {
+  background-color: var(--section-hover-color);
+}
+
+.shopify-section .base-triangular-line {
+  color: var(--section-background-color);
+}
+
+.shopify-section:not(.shopify-section-group-header-group):not(#shopify-section-announcement-bar):not(#shopify-section-header):not(#shopify-section-footer) .button::before,
+.shopify-section:not(.shopify-section-group-header-group):not(#shopify-section-announcement-bar):not(#shopify-section-header):not(#shopify-section-footer) .title-bg > span::before {
+  background-color: var(--section-accent-color);
+}
+
+#shopify-section-header {
+  background-color: var(--header-background-color);
+  position: relative;
+}
+
+#shopify-section-footer {
+  background-color: var(--footer-background-color);
+}
+
+.header__logo-wrapper {
+  color: var(--header-accent-color);
+}
+
+.footer__logo {
+  color: var(--footer-accent-color);
+}
+
+.visually-hidden,
+.hide {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+}
+
+picture {
+  border-radius: var(--border-radius);
+	img {
+		filter: blur(0);
+		transition-property: filter;
+		transition-duration: 0.3s;
+	}
+}
+
+img {
+  border-radius: var(--border-radius);
+}
+
+.lazy {
+	img {
+		// width: 100%; // may be need remove/rework this solution
+		filter: blur(10px);
+	}
+}
+
+.no-scroll {
+	position: relative;
+	overflow: hidden;
+}
+
+.base-triangular-line, .top-triangular-line {
+  position: absolute;
+  width: 100%;
+  background-color: transparent;
+  transition: all .25s ease-in-out;
+  color: transparent;
+  left: 0;
+  z-index: 1;
+}
+
+.base-triangular-line {
+  transform: rotate(180deg);
+}
+
+.top-triangular-line {
+  transform: translateY(-100%);
+  top: 0.5px;
+}
+
+svg.icon-triangular-line {
+	display: flex;
+	width: 100%;
+	height: 100%;
+  stroke-width: 2px;
+  margin-bottom: -2px;
+
+  @media #{$xl} {
+    margin-bottom: -1px;
+  }
+
+  path {
+    stroke: currentColor;
+  }
+}
+
+.container {
+	width: 100%;
+	margin: 0 auto;
+	padding-left: 32px;
+	padding-right: 32px;
+
+  &.container--xs {
+		max-width: 500px;
+	}
+
+	&.container--sm {
+		max-width: 736px;
+	}
+
+	&.container--md {
+		max-width: 970px;
+	}
+
+  &.container--lg {
+		max-width: 1200px;
+	}
+
+	@media #{$m-xxl} {
+    &.container--lg {
+      max-width: 900px;
+    }
+
+		&.container--md {
+			max-width: 768px;
+		}
+
+		&.container--sm {
+			max-width: 490px;
+			padding-left: 16px;
+			padding-right: 16px;
+    }
+
+    &.container--xs {
+      max-width: 300px;
+    }
+	}
+
+	@media #{$m-l} {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	@media #{$no-fw} {
+    &.container--xs {
+      max-width: 20vw;
+    }
+
+		&.container--sm {
+			max-width: 34vw;
+		}
+
+		&.container--md {
+			max-width: 50vw;
+		}
+
+    &.container--lg {
+      max-width: 70vw;
+    }
+	}
+
+  &.container--two-columns {
+    @media #{$no-m} {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+    }
+  }
+}
+
+.content-wrapper {
+	position: relative;
+	margin: 0 auto;
+	padding-top: 120px;
+	padding-bottom: 80px;
+
+	@media #{$m-xxl} {
+		padding-top: 60px;
+		padding-bottom: 40px;
+	}
+}
+
+.shopify-section:nth-of-type(2) .content-wrapper {
+	padding-top: 20px !important;
+
+  @media #{$m-xxl} {
+		padding-top: 20px !important;
+	}
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.opacity-0 {
+	opacity: 0;
+}
+
+.sr-only {
+	position: absolute !important;
+	overflow: hidden !important;
+	width: 1px !important;
+	height: 1px !important;
+	margin: -1px !important;
+	padding: 0 !important;
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	clip-path: inset(50%) !important;
+	white-space: nowrap !important;
+
+	&.sr-only-focusable:focus,
+	&.sr-only-focusable:active {
+		overflow: visible !important;
+		width: auto !important;
+		height: auto !important;
+		margin: auto !important;
+		clip: auto !important;
+		clip-path: none !important;
+		white-space: normal !important;
+	}
+}
+
+.triangular-balance {
+  padding-top: 100px !important;
+
+  @media #{$m-xxl} {
+    padding-top: 40px !important
+  }
+}
+
+tool-tip {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.image-link-wrapper {
+  display: block;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.link {
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: rgb(var(--color-text));
+  transition: all 0.3s ease-in-out;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:active {
+    outline: none;
+  }
+}
+
+span {
+  color: rgb(var(--color-text));
+}
+
+a.button {
+  text-decoration: none !important;
+  text-align: center;
+}
+
+.shopify-section:has(.page) {
+  margin-bottom: -1px;
+}
+
+.text--strong {
+  font-weight: 600 !important;
+}
+
+.text--underline {
+  text-decoration: underline;
+}
+
+.shopify-block {
+  width: 100%;
+}
+
+.heading {
+  color: rgb(var(--color-text));
+}
+
+.text--subdued {
+  color: rgba(var(--color-text), 0.5);
+}
+
+.input__label {
+  font-size: 20px;
+}

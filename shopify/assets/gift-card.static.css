@@ -1,0 +1,254 @@
+/*================ Variable ================*/
+/*============================================================================
+  Grid Breakpoints and Class Names
+    - Do not change the variable names
+    - Breakpoint pixel values are used in the window.theme.breakpoints object
+==============================================================================*/
+/*============================================================================
+  Generate breakpoint-specific column widths and push classes
+    - Default column widths: $grid-breakpoint-has-widths: ($small, $medium-up);
+    - Default is no push classes
+==============================================================================*/
+/*================ Color Variables ================*/
+/*================ Sizing Variables ================*/
+/*================ Footer Variables ================*/
+/*================ Z-Index ================*/
+/*================ SVG ================*/
+/*================ Drawers ================*/
+/*================ Hero Slider ================*/
+/*================ Typography ================*/
+/*================ Gift Cards ================*/
+/*================ Z-index ================*/
+/*================ Product video ================*/
+/*================ Image placeholder ================*/
+/*================ #Giftcard Template ================*/
+.giftcard__apple-wallet-image {
+  display: block;
+  margin: 0 auto; }
+
+/*================ Print Giftcard Styles ================*/
+@media print {
+  @page {
+    margin: 0.5cm; }
+  p {
+    orphans: 3;
+    widows: 3; }
+  html,
+  body {
+    background-color: #fff;
+    color: #000; }
+  .giftcard__print-link,
+  .giftcard__apple-wallet {
+    display: none; } }
+
+/*================ Custom Giftcard Styles ================*/
+.template-giftcard {
+  background: var(--color-body);
+  padding: 0 11px; }
+  .template-giftcard .site-header__logo {
+    padding-left: 0; }
+  .template-giftcard .site-header__logo-image {
+    max-width: 200px; }
+  .template-giftcard .wrapper {
+    max-width: 588px; }
+    .template-giftcard .wrapper img,
+    .template-giftcard .wrapper object,
+    .template-giftcard .wrapper iframe {
+      max-width: 100%; }
+
+.giftcard-wrapper {
+  max-width: 31rem;
+  margin: 0 auto; }
+
+.giftcard__header {
+  margin-top: 110px; }
+
+.giftcard__tag--active {
+  opacity: 0.6; }
+
+/*================ Gift Card image ================*/
+.giftcard__wrap {
+  position: relative;
+  margin: 27.5px 27.5px 55px;
+  background-color: #e95e61;
+  border-radius: 10px; }
+  .giftcard__wrap img {
+    position: relative;
+    display: block;
+    border-radius: 10px;
+    z-index: 2; }
+  .giftcard__wrap::before, .giftcard__wrap::after {
+    content: '';
+    position: absolute;
+    width: 47px;
+    height: 47px;
+    z-index: 3; }
+  .giftcard__wrap::before {
+    background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNDdweCIgaGVpZ2h0PSI0N3B4IiB2aWV3Qm94PSIwIDAgNDcgNDciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDQ3IDQ3IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBvcGFjaXR5PSIwLjEiPgoJCTxwYXRoIGQ9Ik00NC41ODYsMUwxLDQ0LjU4NlYxMGMwLTQuOTYzLDQuMDM3LTksOS05SDQ0LjU4NiBNNDcsMEgxMEM0LjQ3NywwLDAsNC40NzcsMCwxMHYzN0w0NywwTDQ3LDB6Ii8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNDQuNTg2LDFMMSw0NC41ODZWMTBjMC00Ljk2Myw0LjAzNy05LDktOUg0NC41ODYiLz4KCTwvZz4KPC9nPgo8L3N2Zz4K") 0 0 no-repeat;
+    top: -1px;
+    left: -1px; }
+  .giftcard__wrap::after {
+    background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE3LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNDdweCIgaGVpZ2h0PSI0N3B4IiB2aWV3Qm94PSIwIDAgNDcgNDciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDQ3IDQ3IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBvcGFjaXR5PSIwLjEiPgoJCTxwYXRoIGQ9Ik0yLjQxNCw0Nkw0NiwyLjQxNFYzN2MwLDQuOTYzLTQuMDM3LDktOSw5SDIuNDE0IE0wLDQ3aDM3YzUuNTIzLDAsMTAtNC40NzcsMTAtMTBWMEwwLDQ3TDAsNDd6Ii8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMi40MTQsNDZMNDYsMi40MTRWMzdjMCw0Ljk2My00LjAzNyw5LTksOUgyLjQxNCIvPgoJPC9nPgo8L2c+Cjwvc3ZnPgo=") 0 0 no-repeat;
+    bottom: -1px;
+    right: -1px; }
+
+/*================ Gift card code ================*/
+.giftcard__code {
+  position: absolute;
+  text-align: center;
+  width: 90%;
+  z-index: 5;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%); }
+
+.giftcard__code--medium {
+  font-size: 0.875em; }
+
+.giftcard__code--small {
+  font-size: 0.75em; }
+
+.giftcard__code__inner {
+  width: 100%;
+  display: inline-block;
+  vertical-align: baseline;
+  background-color: #fff;
+  padding: 0.5em;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1); }
+
+.giftcard__code__text {
+  font-size: 4vw;
+  text-transform: uppercase;
+  border: 1px dashed var(--color-border-form);
+  padding: 0.4em 0.5em;
+  display: inline-block;
+  vertical-align: baseline;
+  line-height: 1;
+  text-align: center;
+  width: 100%; }
+  .giftcard__code__text.disabled {
+    color: #999;
+    text-decoration: line-through; }
+  @media screen and (min-width: 600px) {
+    .giftcard__code__text {
+      font-size: 24px; } }
+
+/*================ Gift card amount ================*/
+.giftcard__amount {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  font-size: 8vw;
+  line-height: 1.2;
+  padding: 10px;
+  z-index: 5; }
+  .giftcard__amount strong {
+    display: block;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1); }
+  @media screen and (min-width: 600px) {
+    .giftcard__amount {
+      font-size: 48px; } }
+
+.giftcard__amount--medium {
+  font-size: 2em; }
+
+/*================ Tooltip ================*/
+.giftcard__tooltip {
+  display: block;
+  position: absolute;
+  top: -50%;
+  right: 50%;
+  margin-top: 16px;
+  z-index: 4;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap; }
+  .giftcard__tooltip::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 100%;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    margin-left: -5px;
+    margin-bottom: -5px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 5px solid #333;
+    border-top: 5px solid rgba(0, 0, 0, 0.9); }
+
+.giftcard__tooltip-label {
+  display: block;
+  position: relative;
+  right: -50%;
+  border: 0;
+  border-radius: 4px;
+  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.9);
+  min-height: 14px;
+  font-size: 12px;
+  text-decoration: none;
+  line-height: 16px;
+  text-shadow: none;
+  padding: 0.5em 0.75em;
+  margin-left: 0.25em; }
+  .giftcard__tooltip-label small {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #b3b3b3;
+    font-size: 0.875em; }
+
+.giftcard-action-list {
+  text-align: center; }
+
+.giftcard-action-list__item {
+  margin: 0 0 19.44444px; }
+
+/*================ QR code (print only) ================*/
+.giftcard__qr-code img {
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  margin: 0 auto 55px; }
+
+/*================ Medium-down width ================*/
+@media screen and (max-width: 580px) {
+  .giftcard {
+    padding-top: 27.5px; }
+  .print-link {
+    display: none; } }
+
+/*================ Small width ================*/
+@media screen and (max-width: 400px) {
+  .giftcard__wrap::before,
+  .giftcard__wrap::after {
+    display: none; }
+  .giftcard__code {
+    font-size: 0.75em; }
+  .giftcard__code--medium {
+    font-size: 0.65em; }
+  .giftcard__code--small {
+    font-size: 0.55em; } }
+
+/*============================================================================
+  #Print Styles
+==============================================================================*/
+@media print {
+  .giftcard__actions,
+  .giftcard__wrap::before,
+  .giftcard__wrap::after,
+  .giftcard__tooltip {
+    display: none; }
+  .shop-url {
+    display: block;
+    text-align: center; }
+  .qr-code {
+    display: block; }
+  .print-link {
+    display: none; }
+  .giftcard__code {
+    margin-top: -90px; } }

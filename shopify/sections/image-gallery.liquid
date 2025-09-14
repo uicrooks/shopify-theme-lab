@@ -1,0 +1,426 @@
+<style>
+  #shopify-section-{{ section.id }} {
+    {%- if section.settings.background_color != 'rgba(0,0,0,0)' and section.settings.background_color != blank -%}
+      --section-background-color: {{ section.settings.background_color }};
+    {%- endif -%}
+    {%- if section.settings.accent_color != 'rgba(0,0,0,0)' and section.settings.accent_color != blank -%}
+      --section-accent-color: {{ section.settings.accent_color }};
+    {%- endif -%}
+    {%- if section.settings.hover_color != 'rgba(0,0,0,0)' and section.settings.hover_color != blank -%}
+      --section-hover-color: {{ section.settings.hover_color }};
+    {%- endif -%}
+  }
+</style>
+
+<style>
+  #shopify-section-{{ section.id }} .gallery-item__tooltip {
+    background-color: {{ section.settings.popup_background_color }};
+    border: 1px solid {{ section.settings.popup_text_color }};
+    color: {{ section.settings.popup_text_color }};
+  }
+</style>
+
+{%- if product == blank -%}
+  {%- assign product = section.settings.product -%}
+{%- endif -%}
+
+{%- assign is_swiper = false-%}
+{%- assign grid_container_quantity =  section.settings.grid_container_quantity | plus: 0 -%}
+
+<div class="image-gallery"
+		 data-section-id="{{ section.id }}"
+		 data-section-type="image-gallery"
+>
+  <div class="content-wrapper">
+    <div class="container container--md">
+      {%- if section.settings.heading != blank -%}
+        <div class="title-wrapper">
+          <h1 class="title-wrapper__title title-bg">{{ section.settings.heading }}</h1>
+        </div>
+      {%- endif -%}
+    </div>
+    {%- if grid_container_quantity > 1 -%}
+      {%- assign is_swiper = true -%}
+      {%- capture swiper_config -%}
+        {
+          "loop": true,
+          "slidesPerView": "auto"
+        }
+      {%- endcapture -%}
+
+      <slider-element data-swiper-config='{{ swiper_config }}' class="swiper">
+    {%- endif -%}
+    <div class="image-gallery__wrapper {% if is_swiper %}swiper-wrapper{% endif %}">
+      {%- for i in (1..grid_container_quantity) -%}
+        <div class="gallery-grid__wrapper {% if is_swiper %}swiper-slide{% endif %}">
+          <div class="gallery-grid">
+            {% for block in section.blocks %}
+              {%- assign grid_number = block.settings.grid_number | plus: 0 -%}
+              {%- assign mobile_span_quantity = block.settings.column_start_mobile | plus: block.settings.column_span_mobile -%}
+              {%- assign mobile_overhang = mobile_span_quantity | minus: 13 -%}
+
+              {%- if grid_number == i -%}
+                <div class="gallery-item" id="{{ block.id }}" data-tooltip-trigger="{{ block.id }}">
+                  <style>
+                    @media screen and (min-width: 992px) {
+                      #{{ block.id }} {
+                        grid-column: {{ block.settings.column_start }} / span {{ block.settings.column_span }};
+                        grid-row: {{ block.settings.row_start }} / span {{ block.settings.row_span }};
+                      }
+                    }
+                    @media screen and (max-width: 991px) {
+                      #{{ block.id }} {
+                        grid-column: {{ block.settings.column_start_mobile }} / span {% if mobile_overhang > 0 %}{{ block.settings.column_span_mobile | minus: mobile_overhang }}{% else %}{{ block.settings.column_span_mobile }}{% endif %};
+                        grid-row: {{ block.settings.row_start_mobile }} / span {{ block.settings.row_span_mobile }};
+                        {% if mobile_overhang > 0 %}
+                          margin-right: calc(-{{ mobile_overhang | times: 100 | divived_by: 12 }}% - {{ mobile_overhang | times: 4 }}px - {{ mobile_overhang | times: 4 }}px);
+                        {% endif %}
+                      }
+                    }
+
+                    {%- if block.settings.content != blank -%}
+                      @media screen and (min-width: 992px) {
+                        [data-id="{{ block.id }}"] {
+                          top: {{ block.settings.content_position_y }}%;
+                          left: {{ block.settings.content_position_x }}%;
+                        }
+                      }
+                    {%- endif -%}
+                  </style>
+
+                  {% if block.settings.image %}
+                    <img src="{{ block.settings.image | img_url: 'master' }}" alt="Gallery Image">
+                  {%- elsif block.settings.video -%}
+                    {{ block.settings.video | video_tag: autoplay: true, loop: true, muted: true, controls: false, class: '' }}
+                  {% endif %}
+                </div>
+              {%- endif -%}
+            {% endfor %}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="image-gallery__tooltip-wrapper">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.content != blank -%}
+          <tool-tip class="gallery-item__tooltip-wrapper" data-id="{{ block.id }}">
+            <div class="gallery-item__tooltip">
+              {{ block.settings.content }}
+            </div>
+          </tool-tip>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if grid_container_quantity > 1 -%}
+      </slider-element>
+    {%- endif -%}
+
+    {%- if section.settings.show_atc_button -%}
+      <div class="container container--xs image-gallery__button">
+        {% render 'atc-button' %}
+      </div>
+    {%- endif -%}
+  </div>
+
+  <div class="base-triangular-line">
+    {%- render 'icon-triangular-line' -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Image Gallery Grid",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "If you want to display a product in the image gallery, you can select it here. The product will be displayed in the image gallery as a button to add to cart."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_atc_button",
+      "label": "Show Atc Button",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "grid_container_quantity",
+      "label": "Grid Container Quantity",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        },
+        {
+          "value": "3",
+          "label": "3"
+        },
+        {
+          "value": "4",
+          "label": "4"
+        }
+      ],
+      "default": "1",
+      "info": "Here you can set how many overall containers there should be. A Container can be decorated with mulitple images"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#dbaaeb"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent Color",
+      "default": "#2ac2bd"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#f3587f"
+    },
+    {
+      "type": "color",
+      "id": "popup_background_color",
+      "label": "Popup Background Color"
+    },
+    {
+      "type": "color",
+      "id": "popup_text_color",
+      "label": "Popup Text Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Upload Image"
+        },
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Upload Video"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Grid Popup Content"
+        },
+        {
+          "type": "range",
+          "id": "content_position_y",
+          "label": "Vertical Content Position",
+          "min": 0,
+          "max": 100,
+          "unit": "%",
+          "step": 5,
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "content_position_x",
+          "label": "Horizontal Content Position",
+          "min": 0,
+          "max": 100,
+          "unit": "%",
+          "step": 5,
+          "default": 50
+        },
+        {
+          "type": "header",
+          "content": "Position"
+        },
+        {
+          "type": "select",
+          "id": "grid_number",
+          "label": "Grid Number",
+          "info": "Here you can choose, to which grid number the item should belong. It works only if this number is within the grid container quantity in the main settings",
+          "options": [
+            {
+              "value": "1",
+              "label": "1"
+            },
+            {
+              "value": "2",
+              "label": "2"
+            },
+            {
+              "value": "3",
+              "label": "3"
+            },
+            {
+              "value": "4",
+              "label": "4"
+            }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "header",
+          "content": "Desktop Position"
+        },
+        {
+          "type": "select",
+          "id": "column_start",
+          "label": "Column Start (1 to 24)",
+          "options": [
+            { "value": "1", "label": "Start at 1" },
+            { "value": "2", "label": "Start at 2" },
+            { "value": "3", "label": "Start at 3 1/4" },
+            { "value": "4", "label": "Start at 4" },
+            { "value": "5", "label": "Start at 5" },
+            { "value": "6", "label": "Start at 6 2/4" },
+            { "value": "7", "label": "Start at 7" },
+            { "value": "8", "label": "Start at 8" },
+            { "value": "9", "label": "Start at 9 3/4" },
+            { "value": "10", "label": "Start at 10" },
+            { "value": "11", "label": "Start at 11" },
+            { "value": "12", "label": "Start at 12 4/4" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "column_span",
+          "label": "Column Span (1 to 24)",
+          "options": [
+            { "value": "1", "label": "1 Column" },
+            { "value": "2", "label": "2 Columns" },
+            { "value": "3", "label": "3 Columns 1/4" },
+            { "value": "4", "label": "4 Columns" },
+            { "value": "5", "label": "5 Columns" },
+            { "value": "6", "label": "6 Columns 2/4" },
+            { "value": "7", "label": "7 Columns" },
+            { "value": "8", "label": "8 Columns" },
+            { "value": "9", "label": "9 Columns 3/4" },
+            { "value": "10", "label": "10 Columns" },
+            { "value": "11", "label": "11 Columns" },
+            { "value": "12", "label": "12 Columns 4/4" }
+          ],
+          "default": "8"
+        },
+        {
+          "type": "select",
+          "id": "row_start",
+          "label": "Row Start",
+          "options": [
+            { "value": "1", "label": "Start at Row 1" },
+            { "value": "2", "label": "Start at Row 2" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "row_span",
+          "label": "Row Span",
+          "options": [
+            { "value": "1", "label": "1 Row" },
+            { "value": "2", "label": "2 Rows" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "header",
+          "content": "Mobile Position"
+        },
+        {
+          "type": "select",
+          "id": "column_start_mobile",
+          "label": "Column Start Mobile (1 to 24)",
+          "options": [
+            { "value": "1", "label": "1 Column" },
+            { "value": "2", "label": "2 Columns" },
+            { "value": "3", "label": "3 Columns 1/4" },
+            { "value": "4", "label": "4 Columns" },
+            { "value": "5", "label": "5 Columns" },
+            { "value": "6", "label": "6 Columns 2/4" },
+            { "value": "7", "label": "7 Columns" },
+            { "value": "8", "label": "8 Columns" },
+            { "value": "9", "label": "9 Columns 3/4" },
+            { "value": "10", "label": "10 Columns" },
+            { "value": "11", "label": "11 Columns" },
+            { "value": "12", "label": "12 Columns 4/4" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "column_span_mobile",
+          "label": "Column Span Mobile (1 to 24)",
+          "options": [
+            { "value": "1", "label": "1 Column" },
+            { "value": "2", "label": "2 Columns" },
+            { "value": "3", "label": "3 Columns 1/4" },
+            { "value": "4", "label": "4 Columns" },
+            { "value": "5", "label": "5 Columns" },
+            { "value": "6", "label": "6 Columns 2/4" },
+            { "value": "7", "label": "7 Columns" },
+            { "value": "8", "label": "8 Columns" },
+            { "value": "9", "label": "9 Columns 3/4" },
+            { "value": "10", "label": "10 Columns" },
+            { "value": "11", "label": "11 Columns" },
+            { "value": "12", "label": "12 Columns 4/4" }
+          ],
+          "default": "8"
+        },
+        {
+          "type": "select",
+          "id": "row_start_mobile",
+          "label": "Row Start Mobile",
+          "options": [
+            { "value": "1", "label": "Start at Row 1" },
+            { "value": "2", "label": "Start at Row 2" },
+            { "value": "3", "label": "Start at Row 3" },
+            { "value": "4", "label": "Start at Row 4" }
+          ],
+          "default": "1"
+        },
+        {
+          "type": "select",
+          "id": "row_span_mobile",
+          "label": "Row Span Mobile",
+          "options": [
+            { "value": "1", "label": "1 Row" },
+            { "value": "2", "label": "2 Rows" },
+            { "value": "3", "label": "3 Rows" },
+            { "value": "4", "label": "4 Rows" }
+          ],
+          "default": "1"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Gallery Grid (24-cell)",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

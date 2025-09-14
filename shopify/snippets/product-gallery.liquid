@@ -1,0 +1,65 @@
+{%- capture product_images -%}
+	<div class="product-gallery__slider swiper-container" data-product-gallery="gallery" >
+		<div class="swiper-wrapper">
+			{%- for media in product.media -%}
+				<div class="swiper-slide">
+					<picture>
+						<source
+							srcset="{{ media.preview_image | img_url: '1208x' }} 1x, {{ media.preview_image | img_url: '2416x' }} 2x, {{ media.preview_image | img_url: '3624x' }} 3x"
+							media="(min-width: 2560px)">
+
+						<source
+							srcset="{{ media.preview_image | img_url: '1008x' }} 1x, {{ media.preview_image | img_url: '2016x' }} 2x, {{ media.preview_image | img_url: '3024x' }} 3x"
+							media="(min-width: 1920px)">
+
+						<source
+							srcset="{{ media.preview_image | img_url: '672x' }} 1x, {{ media.preview_image | img_url: '1344x' }} 2x, {{ media.preview_image | img_url: '2016x' }} 3x"
+							media="(min-width: 1250px)">
+
+						<source
+							srcset="{{ media.preview_image | img_url: '550x' }} 1x, {{ media.preview_image | img_url: '1100x' }} 2x, {{ media.preview_image | img_url: '1650x' }} 3x"
+							media="(min-width: 991px)">
+
+						<source
+							srcset="{{ media.preview_image | img_url: '458x' }} 1x, {{ media.preview_image | img_url: '916x' }} 2x,{{ media.preview_image | img_url: '1374x' }} 3x"
+							media="(min-width: 575px)">
+						<img
+							src="{{ media.preview_image | img_url: '264x' }}"
+							srcset="{{ media.preview_image | img_url: '264x' }} 1x, {{ media.preview_image | img_url: '528x' }} 2x, {{ media.preview_image | img_url: '792x' }} 3x"
+							alt="{{- media.alt | default: title -}}"
+              width="400"
+              height="500"
+						/>
+					</picture>
+				</div>
+			{%- endfor -%}
+		</div>
+	</div>
+{%- endcapture -%}
+
+{%- capture product_images_thumbnail -%}
+	<div class="product-gallery__slider-thumbnail swiper-container" data-product-gallery="thumbnail" data-slide-length="{{ product.media.size }}">
+		<div class="swiper-wrapper">
+			{%- for media in product.media -%}
+				<div class="swiper-slide">
+          <div class="thumbnail-slide__wrapper">
+            <picture>
+              {{ media.preview_image | image_url: width: 100 | image_tag: width: 64, height: 64 }}
+            </picture>
+          </div>
+				</div>
+			{%- endfor -%}
+		</div>
+	</div>
+{%- endcapture -%}
+
+<div class="product-gallery">
+	<div class="swiper-container-wrapper" data-product-gallery="wrapper">
+		{%- if product_images_thumbnail != blank -%}
+			{{- product_images_thumbnail -}}
+		{%- endif -%}
+		{%- if product_images != blank -%}
+			{{- product_images -}}
+		{%- endif -%}
+	</div>
+</div>
